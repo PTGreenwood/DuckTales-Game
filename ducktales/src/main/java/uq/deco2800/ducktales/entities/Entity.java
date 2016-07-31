@@ -2,6 +2,7 @@ package uq.deco2800.ducktales.entities;
 
 /**
  * Models an entity in the game.
+ * 
  * @author Leggy
  *
  */
@@ -14,7 +15,7 @@ public class Entity implements Comparable<Entity> {
 	 * The length in the direction parallel to the x axis - right.
 	 */
 	private int lengthX;
-	
+
 	/**
 	 * The length in the direction parallel to the y axis - left.
 	 */
@@ -29,9 +30,10 @@ public class Entity implements Comparable<Entity> {
 	 * The distance from the top most point of the entity to the point (0, 0).
 	 */
 	private int distanceTop;
-	
+
 	/**
-	 * The distance from the bottom most point of the entity to the point (0, 0).
+	 * The distance from the bottom most point of the entity to the point (0,
+	 * 0).
 	 */
 	private int distanceBottom;
 
@@ -57,23 +59,12 @@ public class Entity implements Comparable<Entity> {
 	public int compareTo(Entity entity) {
 		if (this.distanceTop == entity.distanceTop) {
 			if (this.distanceBottom == entity.distanceBottom) {
-				if (this.distanceInside == entity.distanceInside) {
-					return 0;
-				} else if (this.distanceInside < entity.distanceInside) {
-					return -1;
-				} else {
-					return 1;
-				}
-			} else if (this.distanceBottom < entity.distanceBottom) {
-				return -1;
+				return this.distanceInside - entity.distanceInside;
 			} else {
-				return 1;
+				return this.distanceBottom - entity.distanceBottom;
 			}
-		} else if (this.distanceTop < entity.distanceTop) {
-			return -1;
-		} else {
-			return 1;
 		}
+		return this.distanceTop - entity.distanceTop;
 	}
 
 	public boolean equals(Object object) {
@@ -95,23 +86,24 @@ public class Entity implements Comparable<Entity> {
 		return String.format("[%d %d %d %d    %f]", x, y, lengthX, lengthY,
 				distanceInside);
 	}
-	
-	public int getX(){
+
+	public int getX() {
 		return x;
 	}
-	
-	public int getY(){
+
+	public int getY() {
 		return y;
 	}
-	
-	public int getYLength(){
+
+	public int getYLength() {
 		return lengthY;
 	}
-	public int getXLength(){
+
+	public int getXLength() {
 		return lengthX;
 	}
-	
-	public String getType(){
+
+	public String getType() {
 		return "void";
 	}
 
