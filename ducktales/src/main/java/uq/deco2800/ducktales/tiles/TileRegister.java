@@ -56,7 +56,8 @@ public class TileRegister {
 		addTile("grass_2", "/grass_2.png");
 		addTile("grass_3", "/grass_3.png");
 		addTile("water", "/water.png");
-		addTile("storage_barn", "/storage_barn.png");
+		addTile("box", "/box2.png");
+		addTile("uberbox", "/uberbox.png");
 
 	}
 

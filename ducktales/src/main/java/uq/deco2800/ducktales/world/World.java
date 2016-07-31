@@ -43,15 +43,22 @@ public class World implements Tickable {
 		for (int y = 0; y < width; y++) {
 			for (int x = 0; x < height; x++) {
 				if (Math.sqrt(Math.pow(y + 1, 2) + Math.pow(x + 1, 2)) < 5) {
-					//Make a basic lake.
-					tiles.set(x, y, new Tile(tileRegister.getTileType("water")));
+					// Make a basic lake.
+					tiles.set(x, y,
+							new Tile(tileRegister.getTileType("water")));
 				} else {
-					tiles.set(x, y, new Tile(tileTypes[random.nextInt(3)]));
-
+					if (x == y && x == 14) {
+						tiles.set(x, y,
+								new Tile(tileRegister.getTileType("water")));
+					} else if (y == 15 && (x == 8 || x == 9)) {
+						tiles.set(x, y,
+								new Tile(tileRegister.getTileType("water")));
+					} else {
+						tiles.set(x, y, new Tile(tileTypes[random.nextInt(3)]));
+					}
 				}
 			}
 		}
-		this.name = name;
 	}
 
 	/**

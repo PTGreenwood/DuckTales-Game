@@ -8,6 +8,8 @@ import java.util.List;
 
 import org.junit.Test;
 
+import uq.deco2800.ducktales.entities.Entity;
+
 public class EntityTest {
 	
 	@Test

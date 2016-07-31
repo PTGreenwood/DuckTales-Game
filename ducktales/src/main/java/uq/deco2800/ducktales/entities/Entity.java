@@ -1,4 +1,4 @@
-package uq.deco2800.ducktales;
+package uq.deco2800.ducktales.entities;
 
 public class Entity implements Comparable<Entity> {
 
@@ -72,6 +72,25 @@ public class Entity implements Comparable<Entity> {
 	public String toString() {
 		return String.format("[%d %d %d %d    %f]", x, y, lengthX, lengthY,
 				dxbinside);
+	}
+	
+	public int getX(){
+		return x;
+	}
+	
+	public int getY(){
+		return y;
+	}
+	
+	public int getYLength(){
+		return lengthY;
+	}
+	public int getXLength(){
+		return lengthX;
+	}
+	
+	public String getType(){
+		return "void";
 	}
 
 }
