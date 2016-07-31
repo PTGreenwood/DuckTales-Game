@@ -29,7 +29,7 @@ public class GameRenderer extends AnimationTimer {
 	private TileRegister tileRegister;
 	private int tileHeight;
 	private int tileWidth;
-	
+
 	public List<Entity> entities;
 
 	/** The scale/zoom factor */
@@ -48,8 +48,11 @@ public class GameRenderer extends AnimationTimer {
 		this.tileWidth = TileRegister.TILE_WIDTH;
 		this.baseX = (int) (world.getWidth() * tileWidth * scale * 0.5);
 		this.baseY = 0;// (int) (world.getHeight() * tileHeight * scale) / 2;
-		
+
 		entities = new ArrayList<Entity>();
+		entities.add(new Box(4, 6));
+		entities.add(new Box(5, 6));
+		//entities.add(new Box(6, 6));
 		entities.add(new Box(14, 14));
 		entities.add(new Box(12, 7));
 		entities.add(new Box(13, 13));
@@ -89,27 +92,26 @@ public class GameRenderer extends AnimationTimer {
 
 	private void renderEntities() {
 		Collections.sort(entities);
-		for(int index = 0; index < entities.size(); index++) {
+		for (int index = 0; index < entities.size(); index++) {
 			Entity box = entities.get(index);
-			
+
 			int scaledWidth = (int) (tileWidth * scale);
 			int scaledHeight = (int) (tileHeight * scale);
 
-			int i = box.getX() - box.getXLength();
-			int j = box.getY() - box.getYLength();
+			int i = box.getX();
+			int j = box.getY();
 
-			// for (int i = 0; i < world.getWidth(); i++) {
-			// for (int j = 0; j < world.getHeight(); j++) {
-			
-			Image g = tileRegister.getTileImage(box.getType());
+			Image image = tileRegister.getTileImage(box.getType());
 			int x = baseX + (j - i) * scaledWidth / 2;
 			int y = baseY + (j + i) * scaledHeight / 2;
-			
-			//g.hei
-			graphicsContext.drawImage(g, x, y, scaledWidth, (int)(scaledHeight * g.getHeight()/tileHeight));
-			// }
-			// }
+
+			int anchorY = (int) ((image.getHeight() - tileHeight) * scale);
+			int anchorX = (int) ((box.getYLength() - 1) / 2.0 * tileWidth * scale);
+
+			graphicsContext.drawImage(image, x - anchorX, y - anchorY,
+					scaledWidth * image.getWidth() / tileWidth,
+					(int) (scaledHeight * image.getHeight() / tileHeight));
 		}
-		
+
 	}
 }

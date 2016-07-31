@@ -27,8 +27,8 @@ public class Entity implements Comparable<Entity> {
 			dxbinside = -Math.max(lengthY, lengthX) / 2.0;
 		}
 
-		this.dybbottom = (y + x) / 2;
-		this.dybtop = dybbottom - (double) (lengthX + lengthY) / 2;
+		this.dybbottom = (y + x) / 2.0;
+		this.dybtop = dybbottom - (double) (lengthX + lengthY) / 2.0;
 	}
 
 	@Override

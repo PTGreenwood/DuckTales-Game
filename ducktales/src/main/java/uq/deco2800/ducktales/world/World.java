@@ -2,6 +2,8 @@ package uq.deco2800.ducktales.world;
 
 import java.util.Random;
 
+import uq.deco2800.ducktales.entities.Box;
+import uq.deco2800.ducktales.entities.UberBox;
 import uq.deco2800.ducktales.tiles.Tile;
 import uq.deco2800.ducktales.tiles.TileRegister;
 import uq.deco2800.ducktales.util.Array2D;
@@ -53,7 +55,10 @@ public class World implements Tickable {
 					} else if (y == 15 && (x == 8 || x == 9)) {
 						tiles.set(x, y,
 								new Tile(tileRegister.getTileType("water")));
-					} else {
+					} else if (x == 12 && y == 7 || x == 13 && y == 13 || x == 7 && y == 5 || x == 15 && y == 14 || x == 14 && y == 17) { 
+						tiles.set(x, y,
+								new Tile(tileRegister.getTileType("void")));
+					}else {
 						tiles.set(x, y, new Tile(tileTypes[random.nextInt(3)]));
 					}
 				}
