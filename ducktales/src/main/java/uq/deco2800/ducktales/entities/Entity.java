@@ -1,17 +1,39 @@
 package uq.deco2800.ducktales.entities;
 
+/**
+ * Models an entity in the game.
+ * @author Leggy
+ *
+ */
 public class Entity implements Comparable<Entity> {
 
 	private int x;
 	private int y;
 
+	/**
+	 * The length in the direction parallel to the x axis - right.
+	 */
 	private int lengthX;
+	
+	/**
+	 * The length in the direction parallel to the y axis - left.
+	 */
 	private int lengthY;
 
-	public double dxbinside;
+	/**
+	 * The distance from the closest point of the entity to the line where y=x.
+	 */
+	public int distanceInside;
 
-	private double dybtop;
-	private double dybbottom;
+	/**
+	 * The distance from the top most point of the entity to the point (0, 0).
+	 */
+	private int distanceTop;
+	
+	/**
+	 * The distance from the bottom most point of the entity to the point (0, 0).
+	 */
+	private int distanceBottom;
 
 	public Entity(int x, int y, int lengthX, int lengthY) {
 		this.x = x;
@@ -20,34 +42,34 @@ public class Entity implements Comparable<Entity> {
 		this.lengthY = lengthY;
 
 		if (x > y) {
-			dxbinside = (x - y - lengthX) / 2.0;
+			distanceInside = (x - y - lengthX);
 		} else if (y > x) {
-			dxbinside = (y - x - lengthY) / 2.0;
+			distanceInside = (y - x - lengthY);
 		} else {
-			dxbinside = -Math.max(lengthY, lengthX) / 2.0;
+			distanceInside = -Math.max(lengthY, lengthX);
 		}
 
-		this.dybbottom = (y + x) / 2.0;
-		this.dybtop = dybbottom - (double) (lengthX + lengthY) / 2.0;
+		this.distanceBottom = (y + x);
+		this.distanceTop = distanceBottom - (lengthX + lengthY);
 	}
 
 	@Override
 	public int compareTo(Entity entity) {
-		if (this.dybtop == entity.dybtop) {
-			if (this.dybbottom == entity.dybbottom) {
-				if (this.dxbinside == entity.dxbinside) {
+		if (this.distanceTop == entity.distanceTop) {
+			if (this.distanceBottom == entity.distanceBottom) {
+				if (this.distanceInside == entity.distanceInside) {
 					return 0;
-				} else if (this.dxbinside < entity.dxbinside) {
+				} else if (this.distanceInside < entity.distanceInside) {
 					return -1;
 				} else {
 					return 1;
 				}
-			} else if (this.dybbottom < entity.dybbottom) {
+			} else if (this.distanceBottom < entity.distanceBottom) {
 				return -1;
 			} else {
 				return 1;
 			}
-		} else if (this.dybtop < entity.dybtop) {
+		} else if (this.distanceTop < entity.distanceTop) {
 			return -1;
 		} else {
 			return 1;
@@ -71,7 +93,7 @@ public class Entity implements Comparable<Entity> {
 
 	public String toString() {
 		return String.format("[%d %d %d %d    %f]", x, y, lengthX, lengthY,
-				dxbinside);
+				distanceInside);
 	}
 	
 	public int getX(){
