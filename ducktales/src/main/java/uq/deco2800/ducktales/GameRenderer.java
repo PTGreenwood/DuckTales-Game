@@ -20,7 +20,7 @@ import javafx.scene.image.Image;
  * GameRenderer renders the {@link World}.
  * 
  * @author Leggy
- *
+ * @author wondertroy
  */
 public class GameRenderer extends AnimationTimer {
 
