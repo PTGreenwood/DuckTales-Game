@@ -35,8 +35,8 @@ public class GameRenderer extends AnimationTimer {
 		this.tileRegister = TileRegister.getInstance();
 		this.tileHeight = TileRegister.TILE_HEIGHT;
 		this.tileWidth = TileRegister.TILE_WIDTH;
-		this.baseX = (int) (world.getWidth() * tileWidth * scale) / 2;
-		this.baseY = (int) (world.getHeight() * tileHeight * scale) / 2;
+		this.baseX = (int) (world.getWidth() * tileWidth * scale * 0.5);
+		this.baseY = 0;//(int) (world.getHeight() * tileHeight * scale) / 2;
 
 	}
 
