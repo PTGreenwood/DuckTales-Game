@@ -1,16 +1,24 @@
 package uq.deco2800.ducktales.entities;
 
-public class Box extends Entity{
-	
+/**
+ * Class representing a basic box.
+ * 
+ * @author leggy
+ *
+ */
+public class Box extends Entity {
+
+	private final static String TYPE = "box";
+
 	protected Box(int x, int y, int lengthX, int lengthY) {
-		super(x, y, lengthX, lengthY);
+		super(x, y, lengthX, lengthY, TYPE);
 	}
 
-	public Box(int x, int y){
-		super(x, y, 1, 1);
+	public Box(int x, int y) {
+		this(x, y, 1, 1);
 	}
-	
-	public String getType(){
-		return "box";
+
+	@Override
+	public void tick() {
 	}
 }

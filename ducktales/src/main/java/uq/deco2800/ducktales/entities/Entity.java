@@ -1,15 +1,19 @@
 package uq.deco2800.ducktales.entities;
 
+import uq.deco2800.ducktales.util.Tickable;
+
 /**
  * Models an entity in the game.
  * 
  * @author Leggy
  *
  */
-public abstract class Entity implements Comparable<Entity> {
+public abstract class Entity implements Comparable<Entity>, Tickable{
 
 	private int x;
 	private int y;
+	
+	private String type;
 
 	/**
 	 * The length in the direction parallel to the x axis - right.
@@ -37,12 +41,17 @@ public abstract class Entity implements Comparable<Entity> {
 	 */
 	private int distanceBottom;
 
-	public Entity(int x, int y, int lengthX, int lengthY) {
+	public Entity(int x, int y, int lengthX, int lengthY, String type) {
 		this.x = x;
 		this.y = y;
 		this.lengthX = lengthX;
 		this.lengthY = lengthY;
-
+		this.type = type;
+		calculateRenderingOrderValues();
+		
+	}
+	
+	protected void calculateRenderingOrderValues(){
 		if (x > y) {
 			distanceInside = (x - y - lengthX);
 		} else if (y > x) {
@@ -102,9 +111,9 @@ public abstract class Entity implements Comparable<Entity> {
 	public int getXLength() {
 		return lengthX;
 	}
-
-	public String getType() {
-		return "void";
+	
+	public String getType(){
+		return type;
 	}
 
 }

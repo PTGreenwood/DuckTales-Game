@@ -10,7 +10,7 @@ import org.junit.Test;
 
 import uq.deco2800.ducktales.entities.Box;
 import uq.deco2800.ducktales.entities.Entity;
-import uq.deco2800.ducktales.entities.UberBox;
+import uq.deco2800.ducktales.entities.LongBox;
 
 public class EntityTest {
 	
@@ -54,8 +54,8 @@ public class EntityTest {
 	
 	@Test
 	public void adjacentTest2(){
-		Entity foreground = new UberBox(7, 3);
-		Entity background = new UberBox(6, 4);
+		Entity foreground = new LongBox(7, 3);
+		Entity background = new LongBox(6, 4);
 		
 		
 		List<Entity> entities = new ArrayList<Entity>();
@@ -75,8 +75,8 @@ public class EntityTest {
 	
 	@Test
 	public void adjacentTestMiddle(){
-		Entity foreground = new UberBox(6, 7);
-		Entity background = new UberBox(7, 6);
+		Entity foreground = new LongBox(6, 7);
+		Entity background = new LongBox(7, 6);
 		
 		List<Entity> entities = new ArrayList<Entity>();
 		entities.add(foreground);

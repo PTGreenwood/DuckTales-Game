@@ -4,7 +4,7 @@ import java.util.Random;
 
 import uq.deco2800.ducktales.entities.Box;
 import uq.deco2800.ducktales.entities.EntityManager;
-import uq.deco2800.ducktales.entities.UberBox;
+import uq.deco2800.ducktales.entities.LongBox;
 import uq.deco2800.ducktales.tiles.Tile;
 import uq.deco2800.ducktales.tiles.TileRegister;
 import uq.deco2800.ducktales.util.Array2D;
@@ -58,7 +58,7 @@ public class World implements Tickable {
 		manager.addEntity(new Box(7, 9));
 		manager.addEntity(new Box(9, 7));
 
-		manager.addEntity(new UberBox(12, 5));
+		manager.addEntity(new LongBox(12, 5));
 
 	}
 
