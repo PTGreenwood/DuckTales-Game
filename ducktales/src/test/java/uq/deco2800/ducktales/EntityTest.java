@@ -8,15 +8,17 @@ import java.util.List;
 
 import org.junit.Test;
 
+import uq.deco2800.ducktales.entities.Box;
 import uq.deco2800.ducktales.entities.Entity;
+import uq.deco2800.ducktales.entities.UberBox;
 
 public class EntityTest {
 	
 	@Test
 	public void basicTest(){
-		Entity entity1 = new Entity(2, 3, 1, 1);
-		Entity entity2 = new Entity(4, 5, 1, 1);
-		Entity entity3 = new Entity(1, 1, 1, 1);
+		Entity entity1 = new Box(2, 3);
+		Entity entity2 = new Box(4, 5);
+		Entity entity3 = new Box(1, 1);
 		
 		List<Entity> entities = new ArrayList<Entity>();
 		entities.add(entity1);
@@ -31,29 +33,29 @@ public class EntityTest {
 	}
 	
 	
-	@Test
-	public void adjacentTest1(){
-		Entity entity1 = new Entity(3, 7, 1, 2);
-		Entity entity2 = new Entity(4, 6, 1, 2);
-		
-		
-		List<Entity> entities = new ArrayList<Entity>();
-		entities.add(entity1);
-		entities.add(entity2);
-		
-		assertTrue("Entity 1 incorrect!", entities.get(0).equals(entity1));
-		assertTrue("Entity 2 incorrect!", entities.get(1).equals(entity2));	
-		
-		Collections.sort(entities);
-		
-		assertTrue("Entity 1 incorrect!", entities.get(0).equals(entity2));
-		assertTrue("Entity 2 incorrect!", entities.get(1).equals(entity1));	
-	}
+//	@Test
+//	public void adjacentTest1(){
+//		Entity entity1 = new Entity(3, 7, 1, 2);
+//		Entity entity2 = new Entity(4, 6, 1, 2);
+//		
+//		
+//		List<Entity> entities = new ArrayList<Entity>();
+//		entities.add(entity1);
+//		entities.add(entity2);
+//		
+//		assertTrue("Entity 1 incorrect!", entities.get(0).equals(entity1));
+//		assertTrue("Entity 2 incorrect!", entities.get(1).equals(entity2));	
+//		
+//		Collections.sort(entities);
+//		
+//		assertTrue("Entity 1 incorrect!", entities.get(0).equals(entity2));
+//		assertTrue("Entity 2 incorrect!", entities.get(1).equals(entity1));	
+//	}
 	
 	@Test
 	public void adjacentTest2(){
-		Entity foreground = new Entity(7, 3, 2, 1);
-		Entity background = new Entity(6, 4, 2, 1);
+		Entity foreground = new UberBox(7, 3);
+		Entity background = new UberBox(6, 4);
 		
 		
 		List<Entity> entities = new ArrayList<Entity>();
@@ -73,8 +75,8 @@ public class EntityTest {
 	
 	@Test
 	public void adjacentTestMiddle(){
-		Entity foreground = new Entity(6, 7, 2, 1);
-		Entity background = new Entity(7, 6, 2, 1);
+		Entity foreground = new UberBox(6, 7);
+		Entity background = new UberBox(7, 6);
 		
 		List<Entity> entities = new ArrayList<Entity>();
 		entities.add(foreground);

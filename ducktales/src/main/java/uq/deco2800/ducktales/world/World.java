@@ -3,6 +3,7 @@ package uq.deco2800.ducktales.world;
 import java.util.Random;
 
 import uq.deco2800.ducktales.entities.Box;
+import uq.deco2800.ducktales.entities.EntityManager;
 import uq.deco2800.ducktales.entities.UberBox;
 import uq.deco2800.ducktales.tiles.Tile;
 import uq.deco2800.ducktales.tiles.TileRegister;
@@ -36,8 +37,7 @@ public class World implements Tickable {
 	public World(String name, int width, int height, int baseTileType) {
 		tiles = new Array2D<Tile>(width, height);
 
-		int[] tileTypes = { tileRegister.getTileType("grass_1"),
-				tileRegister.getTileType("grass_2"),
+		int[] tileTypes = { tileRegister.getTileType("grass_1"), tileRegister.getTileType("grass_2"),
 				tileRegister.getTileType("grass_3") };
 
 		Random random = new Random();
@@ -46,24 +46,20 @@ public class World implements Tickable {
 			for (int x = 0; x < height; x++) {
 				if (Math.sqrt(Math.pow(y + 1, 2) + Math.pow(x + 1, 2)) < 5) {
 					// Make a basic lake.
-					tiles.set(x, y,
-							new Tile(tileRegister.getTileType("water")));
+					tiles.set(x, y, new Tile(tileRegister.getTileType("water")));
 				} else {
-					if (x == y && x == 14) {
-						tiles.set(x, y,
-								new Tile(tileRegister.getTileType("water")));
-					} else if (y == 15 && (x == 8 || x == 9)) {
-						tiles.set(x, y,
-								new Tile(tileRegister.getTileType("water")));
-					} else if (x == 12 && y == 7 || x == 13 && y == 13 || x == 7 && y == 5 || x == 15 && y == 14 || x == 14 && y == 17) { 
-						tiles.set(x, y,
-								new Tile(tileRegister.getTileType("void")));
-					}else {
-						tiles.set(x, y, new Tile(tileTypes[random.nextInt(3)]));
-					}
+					tiles.set(x, y, new Tile(tileTypes[random.nextInt(3)]));
 				}
 			}
 		}
+		
+		EntityManager manager = EntityManager.getInstance();
+		manager.addEntity(new Box(5, 5));
+		manager.addEntity(new Box(7, 9));
+		manager.addEntity(new Box(9, 7));
+
+		manager.addEntity(new UberBox(12, 5));
+
 	}
 
 	/**

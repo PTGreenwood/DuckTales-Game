@@ -6,7 +6,7 @@ package uq.deco2800.ducktales.entities;
  * @author Leggy
  *
  */
-public class Entity implements Comparable<Entity> {
+public abstract class Entity implements Comparable<Entity> {
 
 	private int x;
 	private int y;

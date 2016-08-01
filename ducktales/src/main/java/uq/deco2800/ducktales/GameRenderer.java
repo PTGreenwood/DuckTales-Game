@@ -1,14 +1,12 @@
 package uq.deco2800.ducktales;
 
-import uq.deco2800.ducktales.entities.Box;
 import uq.deco2800.ducktales.entities.Entity;
-import uq.deco2800.ducktales.entities.UberBox;
+import uq.deco2800.ducktales.entities.EntityManager;
 import uq.deco2800.ducktales.tiles.Tile;
 import uq.deco2800.ducktales.tiles.TileRegister;
 import uq.deco2800.ducktales.world.World;
 import uq.deco2800.ducktales.world.WorldManager;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -20,7 +18,6 @@ import javafx.scene.image.Image;
  * GameRenderer renders the {@link World}.
  * 
  * @author Leggy
- * @author wondertroy
  */
 public class GameRenderer extends AnimationTimer {
 
@@ -29,8 +26,7 @@ public class GameRenderer extends AnimationTimer {
 	private TileRegister tileRegister;
 	private int tileHeight;
 	private int tileWidth;
-
-	public List<Entity> entities;
+	private EntityManager entityManager = EntityManager.getInstance();
 
 	/** The scale/zoom factor */
 	private double scale = 0.3;
@@ -47,20 +43,7 @@ public class GameRenderer extends AnimationTimer {
 		this.tileHeight = TileRegister.TILE_HEIGHT;
 		this.tileWidth = TileRegister.TILE_WIDTH;
 		this.baseX = (int) (world.getWidth() * tileWidth * scale * 0.5);
-		this.baseY = 0;// (int) (world.getHeight() * tileHeight * scale) / 2;
-
-		entities = new ArrayList<Entity>();
-		entities.add(new Box(4, 6));
-		entities.add(new Box(5, 6));
-		//entities.add(new Box(6, 6));
-		entities.add(new Box(14, 14));
-		entities.add(new Box(12, 7));
-		entities.add(new Box(13, 13));
-		entities.add(new Box(7, 5));
-		entities.add(new Box(15, 14));
-		entities.add(new Box(14, 17));
-		entities.add(new UberBox(9, 15));
-
+		this.baseY = 0;
 	}
 
 	@Override
@@ -90,7 +73,12 @@ public class GameRenderer extends AnimationTimer {
 		}
 	}
 
+	/**
+	 * Renders entities on the canvas.
+	 * @author Leggy, Wondertroy
+	 */
 	private void renderEntities() {
+		List<Entity> entities = entityManager.getEntities();
 		Collections.sort(entities);
 		for (int index = 0; index < entities.size(); index++) {
 			Entity box = entities.get(index);
