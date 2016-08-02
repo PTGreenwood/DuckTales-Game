@@ -1,11 +1,12 @@
 package uq.deco2800.ducktales.tiles;
 
+import uq.deco2800.ducktales.entities.WorldEntity;
 import uq.deco2800.ducktales.util.Tickable;
 
 /**
  * Represents a square unit of the world.
  * 
- * @author Leggy, Anonymousthing
+ * @author Leggy
  *
  */
 public class Tile implements Tickable {
@@ -13,7 +14,9 @@ public class Tile implements Tickable {
 	 * The type of this tile.
 	 */
 	private int tileType;
-	
+
+	private WorldEntity worldEntity;
+
 	/**
 	 * Initialises this Tile with a specified tile type.
 	 * 
@@ -23,7 +26,6 @@ public class Tile implements Tickable {
 	public Tile(int tileType) {
 		this.tileType = tileType;
 	}
-
 
 	/**
 	 * Sets the type of this Tile to the specified value.
@@ -35,8 +37,6 @@ public class Tile implements Tickable {
 		this.tileType = tileType;
 	}
 
-
-
 	/**
 	 * Gets the type of this Tile.
 	 * 
@@ -46,11 +46,28 @@ public class Tile implements Tickable {
 		return tileType;
 	}
 
+	/**
+	 * Adds a world entity to this tile.
+	 * 
+	 * @param worldEntity
+	 */
+	public void addWorldEntity(WorldEntity worldEntity) {
+		if (this.worldEntity != null) {
+			this.worldEntity = worldEntity;
+		}
+	}
+
+	/**
+	 * Returns the {@link WorldEntity} at this location.
+	 * 
+	 * @return Returns the WorldEntity at this location.
+	 */
+	public WorldEntity getWorldEntity() {
+		return worldEntity;
+	}
+
 	@Override
 	public void tick() {
-		// TODO Auto-generated method stub
-		
 	}
-	
 
 }
