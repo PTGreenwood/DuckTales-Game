@@ -10,8 +10,8 @@ import uq.deco2800.ducktales.util.Tickable;
  */
 public abstract class Entity implements Comparable<Entity>, Tickable{
 
-	private int x;
-	private int y;
+	private double x;
+	private double y;
 	
 	private String type;
 
@@ -28,20 +28,20 @@ public abstract class Entity implements Comparable<Entity>, Tickable{
 	/**
 	 * The distance from the closest point of the entity to the line where y=x.
 	 */
-	public int distanceInside;
+	public double distanceInside;
 
 	/**
 	 * The distance from the top most point of the entity to the point (0, 0).
 	 */
-	private int distanceTop;
+	private double distanceTop;
 
 	/**
 	 * The distance from the bottom most point of the entity to the point (0,
 	 * 0).
 	 */
-	private int distanceBottom;
+	private double distanceBottom;
 
-	public Entity(int x, int y, int lengthX, int lengthY, String type) {
+	public Entity(double x, double y, int lengthX, int lengthY, String type) {
 		this.x = x;
 		this.y = y;
 		this.lengthX = lengthX;
@@ -68,12 +68,23 @@ public abstract class Entity implements Comparable<Entity>, Tickable{
 	public int compareTo(Entity entity) {
 		if (this.distanceTop == entity.distanceTop) {
 			if (this.distanceBottom == entity.distanceBottom) {
-				return this.distanceInside - entity.distanceInside;
+				if (this.distanceInside == entity.distanceInside) {
+					return 0;
+				} else if (this.distanceInside < entity.distanceInside) {
+					return -1;
+				} else {
+					return 1;
+				}
+			} else if (this.distanceBottom < entity.distanceBottom) {
+				return -1;
 			} else {
-				return this.distanceBottom - entity.distanceBottom;
+				return 1;
 			}
+		} else if (this.distanceTop < entity.distanceTop) {
+			return -1;
+		} else {
+			return 1;
 		}
-		return this.distanceTop - entity.distanceTop;
 	}
 
 	public boolean equals(Object object) {
@@ -88,19 +99,20 @@ public abstract class Entity implements Comparable<Entity>, Tickable{
 	}
 
 	public int hashCode() {
+		//TODO: fix this
 		return 4;
 	}
 
 	public String toString() {
-		return String.format("[%d %d %d %d    %f]", x, y, lengthX, lengthY,
+		return String.format("[%f %f %f %f    %f]", x, y, lengthX, lengthY,
 				distanceInside);
 	}
 
-	public int getX() {
+	public double getX() {
 		return x;
 	}
 
-	public int getY() {
+	public double getY() {
 		return y;
 	}
 

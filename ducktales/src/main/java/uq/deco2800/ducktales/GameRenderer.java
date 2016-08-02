@@ -86,12 +86,9 @@ public class GameRenderer extends AnimationTimer {
 			int scaledWidth = (int) (tileWidth * scale);
 			int scaledHeight = (int) (tileHeight * scale);
 
-			int i = box.getX();
-			int j = box.getY();
-
 			Image image = tileRegister.getTileImage(box.getType());
-			int x = baseX + (j - i) * scaledWidth / 2;
-			int y = baseY + (j + i) * scaledHeight / 2;
+			int x = baseX + (int)((box.getY() - box.getX()) * scaledWidth / 2.0);
+			int y = baseY + (int)((box.getY() + box.getX()) * scaledHeight / 2.0);
 
 			int anchorY = (int) ((image.getHeight() - tileHeight) * scale);
 			int anchorX = (int) ((box.getYLength() - 1) / 2.0 * tileWidth * scale);

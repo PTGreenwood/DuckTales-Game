@@ -59,6 +59,11 @@ public class World implements Tickable {
 		manager.addEntity(new Box(9, 7));
 
 		manager.addEntity(new LongBox(12, 5));
+		manager.addEntity(new LongBox(13, 6));
+		manager.addEntity(new LongBox(16, 5));
+		manager.addEntity(new LongBox(6, 2));
+		manager.addEntity(new LongBox(12, 15));
+		manager.addEntity(new LongBox(17, 12));
 
 	}
 
