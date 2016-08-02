@@ -27,14 +27,14 @@ public class DuckTalesController implements Initializable {
 
 	private boolean running = false;
 
-	private TileRegister tileRegister;
+	private TextureRegister tileRegister;
 	private WorldManager worldManager;
 
 	private AtomicBoolean quit;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		tileRegister = TileRegister.getInstance();
+		tileRegister = TextureRegister.getInstance();
 		worldManager = WorldManager.getInstance();
 	}
 

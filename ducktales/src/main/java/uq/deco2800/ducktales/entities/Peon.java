@@ -10,9 +10,9 @@ import uq.deco2800.ducktales.util.Point;
  * @author leggy
  *
  */
-public class Peon extends Entity {
+public class Peon extends AgentEntity {
 
-	private final static String TYPE = "peon";
+	private final static String TYPE = "box";
 	
 	private Point goalPoint;
 	

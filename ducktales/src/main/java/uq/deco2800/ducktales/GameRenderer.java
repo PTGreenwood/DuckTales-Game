@@ -3,7 +3,7 @@ package uq.deco2800.ducktales;
 import uq.deco2800.ducktales.entities.Entity;
 import uq.deco2800.ducktales.entities.EntityManager;
 import uq.deco2800.ducktales.tiles.Tile;
-import uq.deco2800.ducktales.tiles.TileRegister;
+import uq.deco2800.ducktales.tiles.TextureRegister;
 import uq.deco2800.ducktales.world.World;
 import uq.deco2800.ducktales.world.WorldManager;
 
@@ -23,7 +23,7 @@ public class GameRenderer extends AnimationTimer {
 
 	private GraphicsContext graphicsContext;
 	private World world;
-	private TileRegister tileRegister;
+	private TextureRegister tileRegister;
 	private int tileHeight;
 	private int tileWidth;
 	private EntityManager entityManager = EntityManager.getInstance();
@@ -39,9 +39,9 @@ public class GameRenderer extends AnimationTimer {
 
 		this.graphicsContext = graphicsContext;
 		this.world = WorldManager.getInstance().getWorld();
-		this.tileRegister = TileRegister.getInstance();
-		this.tileHeight = TileRegister.TILE_HEIGHT;
-		this.tileWidth = TileRegister.TILE_WIDTH;
+		this.tileRegister = TextureRegister.getInstance();
+		this.tileHeight = TextureRegister.TEXTURE_HEIGHT;
+		this.tileWidth = TextureRegister.TEXTURE_WIDTH;
 		this.baseX = (int) (world.getWidth() * tileWidth * scale * 0.5);
 		this.baseY = 0;
 	}

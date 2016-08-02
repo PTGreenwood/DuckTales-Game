@@ -7,7 +7,7 @@ import uq.deco2800.ducktales.entities.EntityManager;
 import uq.deco2800.ducktales.entities.LongBox;
 import uq.deco2800.ducktales.entities.Peon;
 import uq.deco2800.ducktales.tiles.Tile;
-import uq.deco2800.ducktales.tiles.TileRegister;
+import uq.deco2800.ducktales.tiles.TextureRegister;
 import uq.deco2800.ducktales.util.Array2D;
 import uq.deco2800.ducktales.util.Point;
 import uq.deco2800.ducktales.util.Tickable;
@@ -21,7 +21,7 @@ import uq.deco2800.ducktales.util.Tickable;
 public class World implements Tickable {
 	private Array2D<Tile> tiles;
 	private String name;
-	private static TileRegister tileRegister = TileRegister.getInstance();
+	private static TextureRegister tileRegister = TextureRegister.getInstance();
 
 	/**
 	 * Instantiates a World object with the specified parameters.
@@ -67,6 +67,10 @@ public class World implements Tickable {
 		manager.addEntity(new LongBox(17, 12));
 		
 		manager.addEntity(new Peon(10, 10));
+		manager.addEntity(new Peon(10, 10));
+		manager.addEntity(new Peon(10, 10));
+		manager.addEntity(new Peon(10, 10));
+
 
 	}
 

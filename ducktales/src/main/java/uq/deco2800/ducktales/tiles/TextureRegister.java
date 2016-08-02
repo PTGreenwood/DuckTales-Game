@@ -14,25 +14,32 @@ import java.util.concurrent.ConcurrentHashMap;
  * retrieved from the instance method Tile.getTileType().
  *
  * This class is a singleton -- to get an instance of this class, you must call
- * TileRegister.getInstance(); you cannot instantiate it.
+ * TextureRegister.getInstance(); you cannot instantiate it.
  * 
  * @author Anonymousthing
  */
-public class TileRegister {
+public class TextureRegister {
 
-	private static final TileRegister INSTANCE = new TileRegister();
+	private static final TextureRegister INSTANCE = new TextureRegister();
 
 	/**
-	 * Returns the instance of {@link TileRegister}.
+	 * Returns the instance of {@link TextureRegister}.
 	 * 
-	 * @return Returns an instance of TileRegister.
+	 * @return Returns an instance of TextureRegister.
 	 */
-	public static TileRegister getInstance() {
+	public static TextureRegister getInstance() {
 		return INSTANCE;
 	}
 
-	public static final int TILE_HEIGHT = 100;
-	public static final int TILE_WIDTH = 174;
+	/**
+	 * The base height for a 1*1 texture.
+	 */
+	public static final int TEXTURE_HEIGHT = 100;
+	
+	/**
+	 * The base width for a 1*1 texture.
+	 */
+	public static final int TEXTURE_WIDTH = 174;
 
 	/*
 	 * We have two registers that have the same values; one is keyed by name,
@@ -46,7 +53,7 @@ public class TileRegister {
 	private ConcurrentHashMap<String, TileTypeInfo> nameRegister;
 	private int currentCount;
 
-	private TileRegister() {
+	private TextureRegister() {
 		tileTypeRegister = new ConcurrentHashMap<Integer, TileTypeInfo>();
 		nameRegister = new ConcurrentHashMap<String, TileTypeInfo>();
 		currentCount = 0;
@@ -74,7 +81,7 @@ public class TileRegister {
 		if (nameRegister.containsKey(name)) {
 			throw new RuntimeException(
 					"Attempted to add an already registered TileTypeInfo \""
-							+ name + "\" to a TileRegister");
+							+ name + "\" to a TextureRegister");
 		}
 
 		TileTypeInfo tile = new TileTypeInfo(currentCount++, name, new Image(
@@ -94,7 +101,7 @@ public class TileRegister {
 		if (!nameRegister.containsKey(name))
 			throw new RuntimeException(
 					"Attempted to access non-registered TileTypeInfo \"" + name
-							+ "\" from a TileRegister");
+							+ "\" from a TextureRegister");
 		return nameRegister.get(name).tileImage;
 	}
 
@@ -109,7 +116,7 @@ public class TileRegister {
 		if (!tileTypeRegister.containsKey(tileType))
 			throw new RuntimeException(
 					"Attempted to access non-registered TileTypeInfo of tile type \""
-							+ tileType + "\" from a TileRegister");
+							+ tileType + "\" from a TextureRegister");
 		return tileTypeRegister.get(tileType).tileImage;
 	}
 
@@ -124,7 +131,7 @@ public class TileRegister {
 		if (!nameRegister.containsKey(name))
 			throw new RuntimeException(
 					"Attempted to access non-registered TileTypeInfo \"" + name
-							+ "\" from a TileRegister");
+							+ "\" from a TextureRegister");
 		return nameRegister.get(name).tileType;
 	}
 

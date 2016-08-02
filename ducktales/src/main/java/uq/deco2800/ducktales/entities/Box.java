@@ -1,12 +1,12 @@
 package uq.deco2800.ducktales.entities;
 
 /**
- * Class representing a basic box.
+ * Representation of a basic box.
  * 
  * @author leggy
  *
  */
-public class Box extends Entity {
+public class Box extends WorldEntity {
 
 	private final static String TYPE = "box";
 

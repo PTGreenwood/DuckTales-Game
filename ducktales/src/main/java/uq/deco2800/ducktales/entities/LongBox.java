@@ -1,7 +1,7 @@
 package uq.deco2800.ducktales.entities;
 
 /**
- * Class representing a longer box.
+ * Representation of a longer box.
  * @author leggy
  *
  */

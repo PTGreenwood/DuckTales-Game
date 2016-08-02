@@ -6,6 +6,8 @@
 bin/
 lib/
 
+#Javadoc
+ducktales/doc/
 
 # Gradle
 build
