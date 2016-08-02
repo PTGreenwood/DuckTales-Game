@@ -2,10 +2,10 @@ package uq.deco2800.ducktales.entities;
 
 /**
  * Representation of a longer box.
- * @author leggy
+ * @author Leggy
  *
  */
-public class LongBox extends Entity {
+public class LongBox extends WorldEntity {
 	
 	private final static String TYPE = "long_box";
 
@@ -16,6 +16,11 @@ public class LongBox extends Entity {
 	@Override
 	public void tick() {
 		
+	}
+
+	@Override
+	public boolean isPassable() {
+		return false;
 	}
 
 }

@@ -3,7 +3,7 @@ package uq.deco2800.ducktales.entities;
 /**
  * Abstract representation of all agent-like Entities.
  * 
- * @author leggy
+ * @author Leggy
  *
  */
 public abstract class AgentEntity extends Entity {

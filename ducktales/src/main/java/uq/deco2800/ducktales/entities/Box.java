@@ -3,7 +3,7 @@ package uq.deco2800.ducktales.entities;
 /**
  * Representation of a basic box.
  * 
- * @author leggy
+ * @author Leggy
  *
  */
 public class Box extends WorldEntity {
@@ -20,5 +20,10 @@ public class Box extends WorldEntity {
 
 	@Override
 	public void tick() {
+	}
+
+	@Override
+	public boolean isPassable() {
+		return false;
 	}
 }
