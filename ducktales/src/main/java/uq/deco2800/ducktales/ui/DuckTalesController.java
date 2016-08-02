@@ -28,14 +28,14 @@ public class DuckTalesController implements Initializable {
 	private boolean running = false;
 
 	private TextureRegister tileRegister;
-	private WorldManager worldManager;
+	private GameManager gameManager;
 
 	private AtomicBoolean quit;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		tileRegister = TextureRegister.getInstance();
-		worldManager = WorldManager.getInstance();
+		gameManager = GameManager.getInstance(); 
 	}
 
 	@FXML
@@ -75,7 +75,7 @@ public class DuckTalesController implements Initializable {
 
 
 	private void createWorld() {
-		worldManager.setWorld(new World("DuckTales", 20, 20, tileRegister
+		gameManager.setWorld(new World("DuckTales", 20, 20, tileRegister
 				.getTileType("grass_2")));
 
 	}

@@ -2,7 +2,6 @@ package uq.deco2800.ducktales;
 
 import uq.deco2800.ducktales.entities.EntityManager;
 import uq.deco2800.ducktales.world.World;
-import uq.deco2800.ducktales.world.WorldManager;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -21,7 +20,7 @@ public class GameLoop implements Runnable {
 	private EntityManager entityManager = EntityManager.getInstance();
 
 	public GameLoop(AtomicBoolean quit, int tick) {
-		this.world = WorldManager.getInstance().getWorld();
+		this.world = GameManager.getInstance().getWorld();
 		this.tick = tick;
 		this.quit = quit;
 	}

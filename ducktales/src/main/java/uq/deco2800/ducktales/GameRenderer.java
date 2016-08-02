@@ -5,7 +5,6 @@ import uq.deco2800.ducktales.entities.EntityManager;
 import uq.deco2800.ducktales.tiles.Tile;
 import uq.deco2800.ducktales.tiles.TextureRegister;
 import uq.deco2800.ducktales.world.World;
-import uq.deco2800.ducktales.world.WorldManager;
 
 import java.util.Collections;
 import java.util.List;
@@ -38,7 +37,7 @@ public class GameRenderer extends AnimationTimer {
 		super();
 
 		this.graphicsContext = graphicsContext;
-		this.world = WorldManager.getInstance().getWorld();
+		this.world = GameManager.getInstance().getWorld();
 		this.tileRegister = TextureRegister.getInstance();
 		this.tileHeight = TextureRegister.TEXTURE_HEIGHT;
 		this.tileWidth = TextureRegister.TEXTURE_WIDTH;

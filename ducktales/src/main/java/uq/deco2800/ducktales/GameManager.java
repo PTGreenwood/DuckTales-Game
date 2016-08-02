@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import uq.deco2800.ducktales.util.Point;
+import uq.deco2800.ducktales.world.World;
 
 /**
  * Manages the interaction between the user and the game.
@@ -19,9 +20,11 @@ public class GameManager {
 
 	private int draggedX = -1;
 	private int draggedY = -1;
-	
+
 	private int pressedX = -1;
 	private int pressedY = -1;
+
+	private World world;
 
 	/**
 	 * Returns the instance of {@link GameManager}.
@@ -52,7 +55,7 @@ public class GameManager {
 
 	public void setReleased(int releasedX, int releasedY) {
 		updateSelection(pressedX, pressedY, releasedX, releasedY);
-
+		
 		draggedX = -1;
 		draggedY = -1;
 		pressedX = -1;
@@ -81,5 +84,24 @@ public class GameManager {
 				selection.add(new Point(i, j));
 			}
 		}
+	}
+
+	/**
+	 * Sets the current world.
+	 * 
+	 * @param world
+	 *            The world to use.
+	 */
+	public void setWorld(World world) {
+		this.world = world;
+	}
+
+	/**
+	 * Gets the world
+	 * 
+	 * @return Returns the current world.
+	 */
+	public World getWorld() {
+		return world;
 	}
 }
