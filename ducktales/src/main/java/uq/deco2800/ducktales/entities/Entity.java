@@ -126,5 +126,9 @@ public abstract class Entity implements Comparable<Entity>, Tickable{
 	public String getType(){
 		return type;
 	}
+	
+	protected void updateType(String newType){
+		this.type = newType;
+	}
 
 }

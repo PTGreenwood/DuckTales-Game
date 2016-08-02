@@ -4,10 +4,12 @@ import java.util.Random;
 
 import uq.deco2800.ducktales.entities.Box;
 import uq.deco2800.ducktales.entities.EntityManager;
+import uq.deco2800.ducktales.entities.House;
 import uq.deco2800.ducktales.entities.LongBox;
 import uq.deco2800.ducktales.entities.Peon;
-import uq.deco2800.ducktales.tiles.Tile;
+import uq.deco2800.ducktales.entities.Tree;
 import uq.deco2800.ducktales.tiles.TextureRegister;
+import uq.deco2800.ducktales.tiles.Tile;
 import uq.deco2800.ducktales.util.Array2D;
 import uq.deco2800.ducktales.util.Point;
 import uq.deco2800.ducktales.util.Tickable;
@@ -56,20 +58,20 @@ public class World implements Tickable {
 		
 		EntityManager manager = EntityManager.getInstance();
 		manager.addEntity(new Box(5, 5));
-		manager.addEntity(new Box(7, 9));
 		manager.addEntity(new Box(9, 7));
 
-		manager.addEntity(new LongBox(12, 5));
-		manager.addEntity(new LongBox(13, 6));
-		manager.addEntity(new LongBox(16, 5));
-		manager.addEntity(new LongBox(6, 2));
 		manager.addEntity(new LongBox(12, 15));
-		manager.addEntity(new LongBox(17, 12));
 		
 		manager.addEntity(new Peon(10, 10));
-		manager.addEntity(new Peon(10, 10));
-		manager.addEntity(new Peon(10, 10));
-		manager.addEntity(new Peon(10, 10));
+		
+		manager.addEntity(new Tree(4, 4));
+		manager.addEntity(new Tree(6, 4));
+		manager.addEntity(new Tree(8, 4));
+		manager.addEntity(new Tree(10, 4));
+		manager.addEntity(new Tree(12, 4));
+		manager.addEntity(new Tree(14, 4));
+		
+		manager.addEntity(new House(16, 19));
 
 
 	}
