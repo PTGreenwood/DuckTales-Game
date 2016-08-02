@@ -3,7 +3,9 @@ package uq.deco2800.ducktales.entities;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EntityManager {
+import uq.deco2800.ducktales.util.Tickable;
+
+public class EntityManager implements Tickable{
 	
 	private static final EntityManager INSTANCE = new EntityManager();
 	
@@ -23,6 +25,14 @@ public class EntityManager {
 	
 	public List<Entity> getEntities() {
 		return entities;
+	}
+
+	@Override
+	public void tick() {
+		for(int i = 0; i < entities.size(); i++){
+			entities.get(i).tick();
+		}
+		
 	}
 
 }

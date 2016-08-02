@@ -1,5 +1,6 @@
 package uq.deco2800.ducktales.entities;
 
+import uq.deco2800.ducktales.util.Point;
 import uq.deco2800.ducktales.util.Tickable;
 
 /**
@@ -10,8 +11,7 @@ import uq.deco2800.ducktales.util.Tickable;
  */
 public abstract class Entity implements Comparable<Entity>, Tickable{
 
-	private double x;
-	private double y;
+	protected Point point;
 	
 	private String type;
 
@@ -42,8 +42,7 @@ public abstract class Entity implements Comparable<Entity>, Tickable{
 	private double distanceBottom;
 
 	public Entity(double x, double y, int lengthX, int lengthY, String type) {
-		this.x = x;
-		this.y = y;
+		this.point = new Point(x, y);
 		this.lengthX = lengthX;
 		this.lengthY = lengthY;
 		this.type = type;
@@ -52,15 +51,15 @@ public abstract class Entity implements Comparable<Entity>, Tickable{
 	}
 	
 	protected void calculateRenderingOrderValues(){
-		if (x > y) {
-			distanceInside = (x - y - lengthX);
-		} else if (y > x) {
-			distanceInside = (y - x - lengthY);
+		if (point.getX() > point.getY()) {
+			distanceInside = (point.getX() - point.getY() - lengthX);
+		} else if (point.getY() > point.getX()) {
+			distanceInside = (point.getY() - point.getX() - lengthY);
 		} else {
 			distanceInside = -Math.max(lengthY, lengthX);
 		}
 
-		this.distanceBottom = (y + x);
+		this.distanceBottom = (point.getY() + point.getX());
 		this.distanceTop = distanceBottom - (lengthX + lengthY);
 	}
 
@@ -93,7 +92,7 @@ public abstract class Entity implements Comparable<Entity>, Tickable{
 		}
 
 		Entity entity = (Entity) object;
-		return this.x == entity.x && this.y == entity.y
+		return this.point.getX() == entity.point.getX() && this.point.getY()== entity.point.getY()
 				&& this.lengthX == entity.lengthX
 				&& this.lengthY == entity.lengthY;
 	}
@@ -104,16 +103,16 @@ public abstract class Entity implements Comparable<Entity>, Tickable{
 	}
 
 	public String toString() {
-		return String.format("[%f %f %f %f    %f]", x, y, lengthX, lengthY,
+		return String.format("[%f %f %f %f    %f]", point.getX(), point.getY(), lengthX, lengthY,
 				distanceInside);
 	}
 
 	public double getX() {
-		return x;
+		return point.getX();
 	}
 
 	public double getY() {
-		return y;
+		return point.getY();
 	}
 
 	public int getYLength() {
