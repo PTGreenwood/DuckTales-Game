@@ -10,7 +10,6 @@ public class KeyboardHandler implements EventHandler<KeyEvent> {
 
 	@Override
 	public void handle(KeyEvent event) {
-		System.out.println(event);
 		EventType<KeyEvent> eventType = event.getEventType();
 		if (eventType == KeyEvent.KEY_PRESSED) {
 			keyPressed(event.getCode());
@@ -21,7 +20,6 @@ public class KeyboardHandler implements EventHandler<KeyEvent> {
 
 	private void keyPressed(KeyCode code) {
 		GameManager gameManager = GameManager.getInstance();
-		System.out.println(code + "DOWN");
 		switch (code) {
 		case A:
 			gameManager.pan(GameManager.Direction.LEFT);
@@ -46,7 +44,6 @@ public class KeyboardHandler implements EventHandler<KeyEvent> {
 
 	private void keyReleased(KeyCode code) {
 		GameManager gameManager = GameManager.getInstance();
-		System.out.println(code + "UP");
 		switch (code) {
 		case A:
 			gameManager.stopPan(GameManager.Direction.LEFT);
