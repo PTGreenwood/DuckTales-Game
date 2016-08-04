@@ -20,7 +20,7 @@ import javafx.scene.layout.AnchorPane;
 public class DuckTalesController implements Initializable {
 
 	@FXML
-	private AnchorPane rightPane;
+	private AnchorPane gameWindow, rightPane;
 
 	private ExecutorService executor;
 
@@ -57,6 +57,8 @@ public class DuckTalesController implements Initializable {
 			rightPane.setOnMousePressed(new MousePressedHandler());
 			rightPane.setOnMouseReleased(new MouseReleasedHandler());
 			rightPane.setOnMouseDragged(new MouseDraggedHandler());
+			gameWindow.setOnKeyPressed(new KeyboardHandler());
+			gameWindow.setOnKeyReleased(new KeyboardHandler());
 			executor = Executors.newCachedThreadPool();
 
 			quit = new AtomicBoolean(false);

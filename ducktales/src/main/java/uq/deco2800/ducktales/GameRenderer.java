@@ -25,6 +25,8 @@ public class GameRenderer extends AnimationTimer {
 	private TextureRegister tileRegister;
 	private int tileHeight;
 	private int tileWidth;
+	
+	private GameManager gameManager = GameManager.getInstance();
 	private EntityManager entityManager = EntityManager.getInstance();
 
 	/** The scale/zoom factor */
@@ -47,6 +49,8 @@ public class GameRenderer extends AnimationTimer {
 
 	@Override
 	public void handle(long arg0) {
+		baseX += gameManager.getXPan();
+		baseY += gameManager.getYPan();
 		renderWorld();
 		renderEntities();
 	}

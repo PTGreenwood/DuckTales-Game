@@ -15,6 +15,11 @@ import uq.deco2800.ducktales.world.World;
 public class GameManager {
 
 	private static final GameManager INSTANCE = new GameManager();
+	
+	public static enum Direction {UP, DOWN, LEFT, RIGHT};
+	
+	private int yPan = 0;
+	private int xPan = 0;
 
 	private List<Point> selection;
 
@@ -55,7 +60,7 @@ public class GameManager {
 
 	public void setReleased(int releasedX, int releasedY) {
 		updateSelection(pressedX, pressedY, releasedX, releasedY);
-		
+
 		draggedX = -1;
 		draggedY = -1;
 		pressedX = -1;
@@ -104,4 +109,61 @@ public class GameManager {
 	public World getWorld() {
 		return world;
 	}
+	
+	public void pan(Direction direction){
+		switch(direction){
+		case DOWN:
+			yPan = 1;
+			break;
+		case LEFT:
+			xPan = -1;
+			break;
+		case RIGHT:
+			xPan = 1;
+			break;
+		case UP:
+			yPan = -1;
+			break;
+		default:
+			break;
+		
+		}
+	}
+	
+	public void stopPan(Direction direction){
+		switch(direction){
+		case DOWN:
+			if(yPan > 0){
+				yPan = 0;
+			}
+			break;
+		case LEFT:
+			if(xPan < 0){
+				xPan = 0;
+			}
+			break;
+		case RIGHT:
+			if(xPan > 0){
+				xPan = 0;
+			}
+			break;
+		case UP:
+			if(yPan < 0){
+				yPan = 0;
+			}
+			break;
+		default:
+			break;
+		
+		}
+	}
+	
+	public int getXPan(){
+		return xPan;
+	}
+	
+	public int getYPan(){
+		return yPan;
+	}
+
 }
