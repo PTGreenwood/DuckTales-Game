@@ -12,7 +12,7 @@ import uq.deco2800.ducktales.util.Point;
  */
 public class Peon extends AgentEntity {
 
-	private final static String TYPE = "wood_box";
+	private final static String TYPE = "peon";
 	
 	private Point goalPoint;
 	

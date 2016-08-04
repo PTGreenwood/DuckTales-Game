@@ -65,7 +65,7 @@ public class TextureRegister {
 		addTile("water", "/water.png");
 		addTile("box", "/box2.png");
 		addTile("long_box", "/longbox.png");
-		addTile("peon", "/black.png");
+		addTile("peon", "/peon.png");
 		addTile("wood_box", "/wood_stock.png");
 		addTile("tree_1", "/tree_1.png");
 		addTile("tree_2", "/tree_2.png");
