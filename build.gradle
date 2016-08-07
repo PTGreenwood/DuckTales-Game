@@ -15,6 +15,18 @@ subprojects {
   apply plugin: 'eclipse';
   apply plugin: 'idea';
   apply plugin: 'application';
+  apply plugin: 'jacoco';
+
+  jacoco {
+        toolVersion = "0.7.7.201606060606"
+  }
+
+  test {
+    jacoco {
+        append = false
+        destinationFile = file("$buildDir/jacoco/jacocoTest.exec")
+    }
+  }
 
   mainClassName = "uq.deco2800.ducktales.DuckTalesLauncher"
 
@@ -32,14 +44,14 @@ subprojects {
     // Unit testing with JUnit
     testCompile group: 'junit', name: 'junit', version: '4.11'
   }
-  
+
   sourceSets {
     main {
         java {
             srcDir 'src/main/java'
         }
         resources {
-            srcDir 'src/main/resources' 
+            srcDir 'src/main/resources'
         }
     }
 
@@ -53,4 +65,3 @@ subprojects {
     }
   }
 }
-
