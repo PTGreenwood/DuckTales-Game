@@ -28,6 +28,14 @@ subprojects {
     }
   }
 
+  tasks.withType(Javadoc) {
+    options.addStringOption('Xdoclint:none', '-quiet')
+  }
+
+  javadoc {
+    options.tags = ['require', 'ensure']
+  }
+
   mainClassName = "uq.deco2800.ducktales.DuckTalesLauncher"
 
   repositories {
