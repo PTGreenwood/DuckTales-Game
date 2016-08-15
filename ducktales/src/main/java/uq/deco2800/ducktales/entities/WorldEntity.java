@@ -2,9 +2,8 @@ package uq.deco2800.ducktales.entities;
 
 /**
  * Abstract representation of all static world entities.
- * 
- * @author Leggy
  *
+ * @author Leggy
  */
 public abstract class WorldEntity extends Entity {
 
@@ -14,7 +13,7 @@ public abstract class WorldEntity extends Entity {
 
 	/**
 	 * Returns true if this {@link WorldEntity} is passable.
-	 * 
+	 *
 	 * @return Returns true if this WorldEntity is passable.
 	 */
 	public abstract boolean isPassable();
