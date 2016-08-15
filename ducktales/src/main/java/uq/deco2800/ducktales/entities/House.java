@@ -5,7 +5,7 @@ package uq.deco2800.ducktales.entities;
  * @author Leggy
  *
  */
-public class House extends WorldEntity {
+public class House extends WorldEntity{
 	
 	private final static String TYPE = "house";
 

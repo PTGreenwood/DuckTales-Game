@@ -2,7 +2,7 @@ package uq.deco2800.ducktales.entities;
 
 import java.util.Random;
 
-public class Tree extends WorldEntity {
+public class Tree extends WorldEntity{
 	
 	private static String[] TYPES = {"tree_1", "tree_2", "tree_3"};
 	

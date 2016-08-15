@@ -68,7 +68,8 @@ public class World implements Tickable {
 
 		manager.addEntity(new House(16, 19));
 
-		manager.addEntity(new AnimalDuck(10, 12));
+		manager.addEntity(new AnimalDuck((10*(int)(Math.random() + 1)), (10*
+				(int)(Math.random() + 1))));
 
 	}
 
