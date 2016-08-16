@@ -3,6 +3,8 @@ package uq.deco2800.ducktales.tiles;
 import javafx.scene.image.Image;
 
 import java.util.concurrent.ConcurrentHashMap;
+import java.net.URL;
+import java.lang.Exception;
 
 /**
  * The Tile class holds information about an instance of a tile -- however there
@@ -58,19 +60,25 @@ public class TextureRegister {
 		nameRegister = new ConcurrentHashMap<String, TileTypeInfo>();
 		currentCount = 0;
 
-		addTile("void", "/black.png");
-		addTile("grass_1", "/grass_1.png");
-		addTile("grass_2", "/grass_2.png");
-		addTile("grass_3", "/grass_3.png");
-		addTile("water", "/water.png");
-		addTile("box", "/box2.png");
-		addTile("long_box", "/longbox.png");
-		addTile("peon", "/peon.png");
-		addTile("wood_box", "/wood_stock.png");
-		addTile("tree_1", "/tree_1.png");
-		addTile("tree_2", "/tree_2.png");
-		addTile("tree_3", "/tree_3.png");
-		addTile("house", "/house.png");
+		try {
+			// NOTE: the '..' is needed since TextureRegister is in the 'tiles' folder,
+			// and Class.getResource is relative to the .java file
+			addTile("void", "../resources/black.png");
+			addTile("grass_1", "../resources/grass_1.png");
+			addTile("grass_2", "../resources/grass_2.png");
+			addTile("grass_3", "../resources/grass_3.png");
+			addTile("water", "../resources/water.png");
+			addTile("box", "../resources/box2.png");
+			addTile("long_box", "../resources/longbox.png");
+			addTile("peon", "../resources/peon.png");
+			addTile("wood_box", "../resources/wood_stock.png");
+			addTile("tree_1", "../resources/tree_1.png");
+			addTile("tree_2", "../resources/tree_2.png");
+			addTile("tree_3", "../resources/tree_3.png");
+			addTile("house", "../resources/house.png");
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
 
 	}
 
@@ -88,9 +96,12 @@ public class TextureRegister {
 					"Attempted to add an already registered TileTypeInfo \""
 							+ name + "\" to a TextureRegister");
 		}
+		URL tileImageURL = getClass().getResource(tileImageName);
+
+		if (tileImageURL == null) throw new RuntimeException("tile Image is null for: " + tileImageName);
 
 		TileTypeInfo tile = new TileTypeInfo(currentCount++, name, new Image(
-				getClass().getResource(tileImageName).toString()));
+				tileImageURL.toString()));
 		tileTypeRegister.put(tile.tileType, tile);
 		nameRegister.put(tile.tileName, tile);
 	}
