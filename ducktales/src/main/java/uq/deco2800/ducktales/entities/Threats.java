@@ -19,12 +19,13 @@ public class Threats {
 			this.name = name;	
 		}
 		
-		if ( !(type.equals("Creature") || type.equals("Effect") || type.equals("creature") || type.equals("effect"))   ){
+		if ( !(type.equals("Enemy") || type.equals("Effect")) ){
 			// Throw exception
 		}else{
 		
 		this.type = type;
 				
 		}
+		
 	}
 }
