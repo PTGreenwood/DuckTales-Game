@@ -57,6 +57,7 @@ public class DuckTalesController implements Initializable {
 			rightPane.setOnMousePressed(new MousePressedHandler());
 			rightPane.setOnMouseReleased(new MouseReleasedHandler());
 			rightPane.setOnMouseDragged(new MouseDraggedHandler());
+			rightPane.setOnMouseMoved(new MouseMovedHandler());
 			gameWindow.setOnKeyPressed(new KeyboardHandler());
 			gameWindow.setOnKeyReleased(new KeyboardHandler());
 			executor = Executors.newCachedThreadPool();
