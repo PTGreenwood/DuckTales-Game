@@ -24,14 +24,11 @@ public class DuckTalesLauncher extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		// NOTE: getResource is relative to the .java file
-		URL location = getClass().getResource("resources/ducktales.fxml");
-
+		URL location = getClass().getResource("/ducktales.fxml");
 		FXMLLoader fxmlLoader = new FXMLLoader();
 		fxmlLoader.setLocation(location);
 
 		Parent root = fxmlLoader.load(location.openStream());
-
 		DuckTalesController ducktalesController = fxmlLoader.getController();
 
 		Scene scene = new Scene(root, 1200, 950);
