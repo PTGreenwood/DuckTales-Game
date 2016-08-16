@@ -46,11 +46,6 @@ public class Animal extends AgentEntity implements Tickable {
 		nextLocation = new Point(random.nextDouble() * 20, random.nextDouble() * 20);
 	}
 
-	@Override
-	public void tick() {
-		// TODO: override in subclasses
-	}
-
 	public Point getCurrentLocation() {
 		return new Point(currentLocation);
 	}
@@ -74,5 +69,16 @@ public class Animal extends AgentEntity implements Tickable {
 	// ???
 	public void spawnAnimal() {
 		// animals spawned using the world class under world package?
+	}
+
+	@Override
+	public void tick() {
+		if (point.distance(nextLocation) < speed) {
+			point = nextLocation;
+			newNextLocation();
+		} else {
+			point.moveToward(nextLocation, speed);
+		}
+		calculateRenderingOrderValues();
 	}
 }
