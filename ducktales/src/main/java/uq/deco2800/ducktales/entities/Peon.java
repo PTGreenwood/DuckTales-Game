@@ -31,6 +31,10 @@ public class Peon extends AgentEntity {
 			this.Health =NewValue;
 		}
 	}
+	
+	public int GetHealth(){
+		return Health;
+	}
 
 	@Override
 	public void tick() {

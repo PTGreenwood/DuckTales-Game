@@ -19,6 +19,10 @@ public class House extends WorldEntity{
 			this.Health =NewValue;
 		}
 	}
+	
+	public int GetHealth(){
+		return Health;
+	}
 
 	@Override
 	public void tick() {
