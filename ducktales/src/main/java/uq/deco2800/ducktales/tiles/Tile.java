@@ -1,6 +1,6 @@
 package uq.deco2800.ducktales.tiles;
 
-import uq.deco2800.ducktales.entities.WorldEntity;
+import uq.deco2800.ducktales.entities.worldentities.WorldEntity;
 import uq.deco2800.ducktales.util.Tickable;
 
 /**

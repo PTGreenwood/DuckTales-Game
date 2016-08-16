@@ -1,14 +1,13 @@
-package uq.deco2800.ducktales.entities;
+package uq.deco2800.ducktales.entities.agententities;
 
 import uq.deco2800.ducktales.util.Point;
-import uq.deco2800.ducktales.util.Tickable;
 
 import java.util.Random;
 
 /**
  * Base class for all animals.
  */
-public class Animal extends AgentEntity implements Tickable {
+public class Animal extends AgentEntity {
 
 	// The animal's current location.
 	Point currentLocation;

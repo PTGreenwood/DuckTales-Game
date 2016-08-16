@@ -1,4 +1,6 @@
-package uq.deco2800.ducktales.entities;
+package uq.deco2800.ducktales.entities.agententities;
+
+import uq.deco2800.ducktales.entities.Entity;
 
 /**
  * Abstract representation of all agent-like Entities.

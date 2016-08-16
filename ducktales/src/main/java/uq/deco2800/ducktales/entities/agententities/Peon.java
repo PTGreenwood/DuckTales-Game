@@ -1,4 +1,4 @@
-package uq.deco2800.ducktales.entities;
+package uq.deco2800.ducktales.entities.agententities;
 
 import java.util.Random;
 
@@ -52,7 +52,4 @@ public class Peon extends AgentEntity {
 		Random random = new Random();
 		goalPoint = new Point(random.nextDouble() * 20, random.nextDouble() * 20);
 	}
-	
-	
-
 }

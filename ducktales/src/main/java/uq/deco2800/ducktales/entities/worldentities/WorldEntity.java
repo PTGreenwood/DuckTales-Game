@@ -1,4 +1,6 @@
-package uq.deco2800.ducktales.entities;
+package uq.deco2800.ducktales.entities.worldentities;
+
+import uq.deco2800.ducktales.entities.Entity;
 
 /**
  * Abstract representation of all static world entities.
