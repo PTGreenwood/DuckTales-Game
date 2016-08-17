@@ -57,9 +57,10 @@ public class GameRenderer extends AnimationTimer {
 
 	/**
 	 * Renders the world to the canvas.
+	 * This method also handles scaling of the world
 	 */
 	private void renderWorld() {
-		Tile tile = null;
+		Tile tile;
 
 		int scaledWidth = (int) (tileWidth * scale);
 		int scaledHeight = (int) (tileHeight * scale);
@@ -70,6 +71,8 @@ public class GameRenderer extends AnimationTimer {
 				int x = baseX + (j - i) * scaledWidth / 2;
 				int y = baseY + (j + i) * scaledHeight / 2;
 				graphicsContext.drawImage(
+						// Draw the image at position x, y, and scaled to the box with given
+						// scaledWidth and scaledHeight
 						tileRegister.getTileImage(tile.getTileType()), x, y,
 						scaledWidth, scaledHeight);
 			}
