@@ -7,28 +7,30 @@ import java.util.Random;
 /**
  * Base class for all animals.
  */
-public class Animal extends AgentEntity {
+public abstract class Animal extends AgentEntity {
 
 	// The animal's current location.
-	Point currentLocation;
+	protected Point currentLocation;
 	// The location that the animal will move to.
-	Point nextLocation;
-
-	// The following will be overriden in subclasses
+	protected Point nextLocation;
 	// The animal's state of health.
-	int health;
+	private int health;
 	// The animal's state of hunger.
-	int hunger;
+	private int hunger;
 	// The animal's state of thirst.
-	int thirst;
+	private int thirst;
 	// The animal's movement speed.
-	double speed;
+	private double speed;
 	// The image to be rendered.
-	String image;
+	private String image;
+	// Determines whether the animal can be killed.
+	private boolean canBeKilled;
+	// Determines whether the animal is out of its zone
+	private boolean outOfZone;
 
 	public Animal(int x, int y, int health, int hunger, int thirst, double
 			speed, int lengthX, int lengthY, String type) {
-		super(x, y, 1, 1, type);
+		super(x, y, lengthX, lengthY, type);
 		this.image = type;
 		this.health = health;
 		this.hunger = hunger;
@@ -63,6 +65,10 @@ public class Animal extends AgentEntity {
 
 	public int getThirst() {
 		return thirst;
+	}
+
+	public void isOutOfZone() {
+		this.outOfZone = true;
 	}
 
 	// ???
