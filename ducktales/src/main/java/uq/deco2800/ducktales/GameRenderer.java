@@ -52,6 +52,7 @@ public class GameRenderer extends AnimationTimer {
 		baseX += gameManager.getXPan();
 		baseY += gameManager.getYPan();
 		renderWorld();
+		renderCanvas();
 		renderEntities();
 	}
 
@@ -75,6 +76,52 @@ public class GameRenderer extends AnimationTimer {
 						// scaledWidth and scaledHeight
 						tileRegister.getTileImage(tile.getTileType()), x, y,
 						scaledWidth, scaledHeight);
+			}
+		}
+	}
+	
+	/**
+	 * Re-renders the canvas around the world to ensure that no previous world
+	 * state artifacts are visible. Only renders a border of width
+	 * borderThickness tiles around the world.
+	 * 
+	 * Note: Will most likely need to increase borderThickness to accomodate for
+	 * tall entities (eg. buildings, trees etc.) that would otherwise draw
+	 * beyond the reach of the border.
+	 * @author Oliver Yule
+	 */
+	private void renderCanvas() {
+		int scaledWidth = (int) (tileWidth * scale);
+		int scaledHeight = (int) (tileHeight * scale);
+		int borderThickness = 3;
+		int length;
+		// Loop over 4 sides of world.
+		for (int n = 0; n < 4; n++) {
+			if (n % 2 == 0) length = world.getWidth();
+			else length = world.getHeight();
+			// Loop over length of side.
+			for (int i = -borderThickness; i < length + borderThickness; i++) {
+				// Loop over thickness of border.
+				for (int k = borderThickness; k > 0; k--) {
+					int j;
+					if (n < 2) {
+						// The top sides.
+						j = -k;
+					} else {
+						// The bottom sides.
+						if (n == 2) j = k + world.getHeight() - 1;
+						else j = k + world.getWidth() - 1;
+					}
+					int x;
+					if (n % 2 == 0) {
+						x = baseX + (j - i) * scaledWidth / 2;
+					} else {
+						x = baseX + (i - j) * scaledWidth / 2;
+					}
+					int y = baseY + (j + i) * scaledHeight / 2;
+					graphicsContext.drawImage(tileRegister.getTileImage(
+							"blank"), x, y, scaledWidth, scaledHeight);
+				}
 			}
 		}
 	}
