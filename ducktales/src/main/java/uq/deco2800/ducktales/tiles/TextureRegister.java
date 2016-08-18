@@ -71,6 +71,7 @@ public class TextureRegister {
 		addTile("tree_2", "/tree_2.png");
 		addTile("tree_3", "/tree_3.png");
 		addTile("house", "/house.png");
+		addTile("duck", "/duck.png");
 
 	}
 
