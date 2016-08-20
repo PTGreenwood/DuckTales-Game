@@ -28,6 +28,8 @@ public class World implements Tickable {
 
 	/**
 	 * Instantiates a World object with the specified parameters.
+	 *
+	 * Entities are also added
 	 * 
 	 * @param name
 	 *            The name of the World
@@ -81,7 +83,7 @@ public class World implements Tickable {
 
 	/**
 	 * Instantiates a World object with the specified parameters, with the tile
-	 * type defaulting to Tile.VOID.
+	 * type defaulting to type "grass_1".
 	 * 
 	 * @param name
 	 *            The name of the World
@@ -91,7 +93,20 @@ public class World implements Tickable {
 	 *            The height of the World
 	 */
 	public World(String name, int width, int height) {
-		this(name, width, height, tileRegister.getTileType("void"));
+		tiles = new Array2D<Tile>(width, height);
+
+		Random random = new Random();
+
+		for (int y = 0; y < width; y++) {
+			for (int x = 0; x < height; x++) {
+				if (Math.sqrt(Math.pow(y + 1, 2) + Math.pow(x + 1, 2)) < 5) {
+					// Make a basic lake.
+					tiles.set(x, y, new Tile(tileRegister.getTileType("water")));
+				} else {
+					tiles.set(x, y, new Tile(tileRegister.getTileType("grass_1")));
+				}
+			}
+		}
 	}
 
 	/**

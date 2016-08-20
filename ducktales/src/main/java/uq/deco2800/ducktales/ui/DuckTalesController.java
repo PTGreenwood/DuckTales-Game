@@ -18,6 +18,8 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.*;
+import uq.deco2800.ducktales.worldBuilder.WorldBuilderManager;
+import uq.deco2800.ducktales.worldBuilder.WorldBuilderRenderer;
 
 public class DuckTalesController implements Initializable {
 
@@ -37,6 +39,7 @@ public class DuckTalesController implements Initializable {
 
 	private TextureRegister tileRegister;
 	private GameManager gameManager;
+	private WorldBuilderManager worldBuilderManager;
 
 	private AtomicBoolean quit;
 
@@ -44,13 +47,22 @@ public class DuckTalesController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		tileRegister = TextureRegister.getInstance();
 		gameManager = GameManager.getInstance();
+		worldBuilderManager = WorldBuilderManager.getInstance();
+
+		// Set the handlers for the game panes
+		rightPane.setOnMousePressed(new MousePressedHandler());
+		rightPane.setOnMouseReleased(new MouseReleasedHandler());
+		rightPane.setOnMouseDragged(new MouseDraggedHandler());
+		rightPane.setOnMouseMoved(new MouseMovedHandler());
+		gameWindow.setOnKeyPressed(new KeyboardHandler());
+		gameWindow.setOnKeyReleased(new KeyboardHandler());
 	}
 
-	@FXML
 	/**
 	 * This method will be called when the 'Launch Game' button is pressed
 	 * The code that will call this method is defined in ducktales.fxml
 	 */
+	@FXML
 	public void startGame(ActionEvent event) throws Exception {
 		if (gameCanvas == null) { // the canvas has not been initialized
 			// Initialize the gameCanvas
@@ -65,12 +77,6 @@ public class DuckTalesController implements Initializable {
 
 			createWorld();
 
-			rightPane.setOnMousePressed(new MousePressedHandler());
-			rightPane.setOnMouseReleased(new MouseReleasedHandler());
-			rightPane.setOnMouseDragged(new MouseDraggedHandler());
-			rightPane.setOnMouseMoved(new MouseMovedHandler());
-			gameWindow.setOnKeyPressed(new KeyboardHandler());
-			gameWindow.setOnKeyReleased(new KeyboardHandler());
 			executor = Executors.newCachedThreadPool();
 
 			quit = new AtomicBoolean(false);
@@ -83,12 +89,13 @@ public class DuckTalesController implements Initializable {
 		}
 	}
 
-	@FXML
+
 	/**
 	 * This method is called when "Build World" button is pressed
 	 *
 	 * @author khoiphan21
 	 */
+	@FXML
 	public void buildWorld(ActionEvent event) throws Exception {
 		if (worldBuilderCanvas == null) {
 			// Initialize the gameCanvas
@@ -101,20 +108,13 @@ public class DuckTalesController implements Initializable {
 
 			GraphicsContext gc = worldBuilderCanvas.getGraphicsContext2D();
 
-			// Testing functions
-			gc.setFill( Color.RED );
-			gc.setStroke( Color.BLACK );
-			gc.setLineWidth(2);
-			Font theFont = Font.font( "Times New Roman", FontWeight.BOLD, 48 );
-			gc.setFont( theFont );
-			gc.fillText( "World Building!", 60, 50 );
-			gc.strokeText( "World Building!", 60, 50 );
+			worldBuilderManager.setWorld(new World("World Builder", 20, 20));
 
+			new WorldBuilderRenderer(gc).start();
 			running = true;
 		} else {
 			showCanvas(worldBuilderCanvas);
 		}
-
 	}
 
 
