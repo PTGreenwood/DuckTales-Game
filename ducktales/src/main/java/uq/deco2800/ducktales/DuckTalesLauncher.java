@@ -29,7 +29,7 @@ public class DuckTalesLauncher extends Application {
 		fxmlLoader.setLocation(location);
 
 		Parent root = fxmlLoader.load(location.openStream());
-		DuckTalesController ducktalesController = fxmlLoader.getController();
+		DuckTalesController ducktalesController = fxmlLoader.getController(); // link the controller to the FXML file
 
 		Scene scene = new Scene(root, 1200, 950);
 
