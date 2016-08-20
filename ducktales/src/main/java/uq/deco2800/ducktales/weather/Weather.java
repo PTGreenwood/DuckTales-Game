@@ -7,10 +7,12 @@ package uq.deco2800.ducktales.weather;
  * 
  * @author mattyleggy
  *
+ * Maybe this should be an interface instead of abstract? Something to consider.
  */
 public abstract class Weather {
 	protected int land;	
 	protected int water;	
+	protected String spriteName;
 	public Weather() {
 		
 	}
