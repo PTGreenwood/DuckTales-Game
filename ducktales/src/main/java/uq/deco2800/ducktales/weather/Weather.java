@@ -13,8 +13,8 @@ public abstract class Weather {
 		
 	}
 	
-	public getEffect() {
-		return 
+	public void getEffect() {
+		//return ""
 	}
 	
 }
