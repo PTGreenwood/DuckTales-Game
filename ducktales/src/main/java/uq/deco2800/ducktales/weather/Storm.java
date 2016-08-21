@@ -10,6 +10,7 @@ public class Storm implements Weather {
 	public Storm(StormType type) {
 		this.type = type;
 	}
+	
 	public Effect getEffect() {
 		Effect effect = new Effect();
 		return effect;

@@ -30,7 +30,7 @@ public class WeatherTest {
 		Storm storm = new Storm(type);		
 		Assert.assertEquals(false, storm.isLand());
 		Assert.assertEquals(true, storm.isWater());
-		Assert.assertEquals(false, storm.isAmphibious());
+		Assert.assertEquals(false, storm.isAmphibious());		
 	}
 	
 	
