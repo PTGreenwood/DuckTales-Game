@@ -41,9 +41,10 @@ public abstract class Weather {
 	
 	/**
 	 * Need a better name for this...
+	 * Better name selected now. isAmphibious is more correct
 	 * @return
 	 */
-	public boolean isAnywhere() {
+	public boolean isAmphibious() {
 		return isLand() && isWater();
 	}
 	
