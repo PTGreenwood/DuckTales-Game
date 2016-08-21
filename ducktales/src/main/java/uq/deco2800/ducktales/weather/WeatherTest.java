@@ -18,11 +18,17 @@ public class WeatherTest {
 		Assert.assertEquals(true, fire.isLand());
 		Assert.assertEquals(false, fire.isWater());
 		Assert.assertEquals(false, fire.isAmphibious());
-		
-		Fire rain = new Fire();		
+			
+		Rain rain = new Rain();		
 		Assert.assertEquals(true, rain.isLand());
 		Assert.assertEquals(true, rain.isWater());
 		Assert.assertEquals(true, rain.isAmphibious());
+		
+		StormType type = StormType.WHIRLPOOL;
+		Storm storm = new Storm(type);		
+		Assert.assertEquals(false, storm.isLand());
+		Assert.assertEquals(true, storm.isWater());
+		Assert.assertEquals(false, storm.isAmphibious());
 	}
 	
 	
