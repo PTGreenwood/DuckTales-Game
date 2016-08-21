@@ -1,6 +1,8 @@
-package uq.deco2800.ducktales.weather;
+package uq.deco2800.ducktales;
 
 import org.junit.*;
+
+import uq.deco2800.ducktales.weather.*;
 
 /**
  * Last modified: 21 August 2016 by mattyleggy
