@@ -14,8 +14,15 @@
 
           <children>
 
+<<<<<<< HEAD
             <Button layoutX="49.0" layoutY="244.0" mnemonicParsing="false" onAction="#startGame" text="Launch Game" />
                   <Button layoutX="49.0" layoutY="287.0" mnemonicParsing="false" onAction="#tutorial" text="Tutorial" />
+=======
+            <Button fx:id="startGameBtn" layoutX="49.0" layoutY="244.0" mnemonicParsing="false"
+                    onAction="#startGame" text="Launch Game" />
+            <Button layoutX="49.0" layoutY="274.0" mnemonicParsing="false"
+                    onAction="#buildWorld" text="Build World" />
+>>>>>>> 01d7d3f75ab452bf1d903c9527c084c1f7f6fdc4
 
           </children>
         </AnchorPane>

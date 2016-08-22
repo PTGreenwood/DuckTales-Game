@@ -125,16 +125,16 @@ public class GameManager {
 	public void pan(Direction direction){
 		switch(direction){
 		case DOWN:
-			yPan = 1;
+			yPan = 3;
 			break;
 		case LEFT:
-			xPan = -1;
+			xPan = -3;
 			break;
 		case RIGHT:
-			xPan = 1;
+			xPan = 3;
 			break;
 		case UP:
-			yPan = -1;
+			yPan = -3;
 			break;
 		default:
 			break;
