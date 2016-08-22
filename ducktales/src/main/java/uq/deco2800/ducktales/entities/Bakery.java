@@ -1,20 +1,20 @@
 package uq.deco2800.ducktales.entities;
 
 /**
- * A House.
- * @author Leggy
+ * A Sawmill.
+ * @author 
  *
  */
-public class House extends WorldEntity{
+public class Bakery extends WorldEntity{
 	
-	private final static String TYPE = "house";
+	private final static String TYPE = "bakery";
 	
-	private final static int TIME = 2;
+	private final static int TIME = 4;
 	
-	private final static int resourcesToBuild = 5;
+	private final static int resourcesToBuild = 14;
 
-	public House(double x, double y) {
-		super(x, y, 3, 3, TYPE);
+	public Bakery(double x, double y) {
+		super(x, y, 2, 2, TYPE);
 	}
 
 	@Override
