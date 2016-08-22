@@ -42,5 +42,12 @@ public class WorldBuilderManager {
         this.world = world;
     }
 
+    /**
+     * Get the world for this canvas
+     * @return the world of the WorldBuilder canvas
+     */
+    public World getWorld() { return world; };
+
+
 
 }
