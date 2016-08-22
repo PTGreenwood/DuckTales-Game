@@ -1,17 +1,19 @@
 package uq.deco2800.ducktales.entities.worldentities;
 
 /**
- * A Sawmill.
- * @author 
+ * An Observatory.
+ * 
+ * @author Gabrielle Hodge, 43590526 
  *
  */
 public class Observatory extends WorldEntity{
 	
-	private final static String TYPE = "observatory";
+	// Building type, time to build, resources required to build
+	private static final String TYPE = "observatory";
 	
-	private final static int TIME = 5;
+	private static final int TIME = 5;
 	
-	private final static int resourcesToBuild = 12;
+	private static final int BUILDRESOURCES = 12;
 
 	public Observatory(double x, double y) {
 		super(x, y, 2, 2, TYPE);
@@ -30,13 +32,26 @@ public class Observatory extends WorldEntity{
 		return TIME;
 	}
 	
+	/**
+	 * Public method to access and return the integer representation of the 
+	 * resources required to construct the observatory.
+	 * 
+	 * @return the number of resources required to construct an observatory
+	 */
 	public int resourcesBuild() {
-		return resourcesToBuild;
+		return BUILDRESOURCES;
 
 	}
 	
+	/**
+	 * Public method to access and return the integer representation of the 
+	 * resources returned when a building is selected to be destroyed by the 
+	 * user. Will return half of the resources required to construct.
+	 * 
+	 * @return the number of resources refunded when demolished
+	 */
 	public int resourcesReturn() {
-		return (int) (0.5*resourcesToBuild);
+		return (int) (0.5*BUILDRESOURCES);
 	}
 
 }
