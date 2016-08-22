@@ -16,8 +16,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
-import javafx.scene.text.*;
 import uq.deco2800.ducktales.worldBuilder.WorldBuilderManager;
 import uq.deco2800.ducktales.worldBuilder.WorldBuilderRenderer;
 
@@ -37,7 +35,7 @@ public class DuckTalesController implements Initializable {
 
 	private boolean running = false;
 
-	private TextureRegister tileRegister;
+	private ResourceRegister tileRegister;
 	private GameManager gameManager;
 	private WorldBuilderManager worldBuilderManager;
 
@@ -45,7 +43,7 @@ public class DuckTalesController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		tileRegister = TextureRegister.getInstance();
+		tileRegister = ResourceRegister.getInstance();
 		gameManager = GameManager.getInstance();
 		worldBuilderManager = WorldBuilderManager.getInstance();
 
@@ -129,7 +127,7 @@ public class DuckTalesController implements Initializable {
 
 	private void createWorld() {
 		gameManager.setWorld(new World("DuckTales", 20, 20, tileRegister
-				.getTileType("grass_2")));
+				.getResourceType("grass_2")));
 
 	}
 

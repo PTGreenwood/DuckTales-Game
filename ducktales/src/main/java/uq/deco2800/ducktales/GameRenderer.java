@@ -2,8 +2,8 @@ package uq.deco2800.ducktales;
 
 import uq.deco2800.ducktales.entities.Entity;
 import uq.deco2800.ducktales.entities.EntityManager;
+import uq.deco2800.ducktales.tiles.ResourceRegister;
 import uq.deco2800.ducktales.tiles.Tile;
-import uq.deco2800.ducktales.tiles.TextureRegister;
 import uq.deco2800.ducktales.world.World;
 
 import java.util.Collections;
@@ -22,7 +22,7 @@ public class GameRenderer extends AnimationTimer {
 
 	private GraphicsContext graphicsContext;
 	private World world;
-	private TextureRegister tileRegister;
+	private ResourceRegister resourceRegister;
 	private int tileHeight;
 	private int tileWidth;
 	
@@ -40,9 +40,9 @@ public class GameRenderer extends AnimationTimer {
 
 		this.graphicsContext = graphicsContext;
 		this.world = GameManager.getInstance().getWorld();
-		this.tileRegister = TextureRegister.getInstance();
-		this.tileHeight = TextureRegister.TEXTURE_HEIGHT;
-		this.tileWidth = TextureRegister.TEXTURE_WIDTH;
+		this.resourceRegister = ResourceRegister.getInstance();
+		this.tileHeight = ResourceRegister.TILE_HEIGHT;
+		this.tileWidth = ResourceRegister.TILE_WIDTH;
 		this.baseX = (int) (world.getWidth() * tileWidth * scale * 0.5);
 		this.baseY = 0;
 	}
@@ -74,7 +74,7 @@ public class GameRenderer extends AnimationTimer {
 				graphicsContext.drawImage(
 						// Draw the image at position x, y, and scaled to the box with given
 						// scaledWidth and scaledHeight
-						tileRegister.getTileImage(tile.getTileType()), x, y,
+						resourceRegister.getResourceImage(tile.getTileType()), x, y,
 						scaledWidth, scaledHeight);
 			}
 		}
@@ -119,7 +119,7 @@ public class GameRenderer extends AnimationTimer {
 						x = baseX + (i - j) * scaledWidth / 2;
 					}
 					int y = baseY + (j + i) * scaledHeight / 2;
-					graphicsContext.drawImage(tileRegister.getTileImage(
+					graphicsContext.drawImage(resourceRegister.getResourceImage(
 							"blank"), x, y, scaledWidth, scaledHeight);
 				}
 			}
@@ -139,7 +139,7 @@ public class GameRenderer extends AnimationTimer {
 			int scaledWidth = (int) (tileWidth * scale);
 			int scaledHeight = (int) (tileHeight * scale);
 
-			Image image = tileRegister.getTileImage(box.getType());
+			Image image = resourceRegister.getResourceImage(box.getType());
 			int x = baseX + (int)((box.getY() - box.getX()) * scaledWidth / 2.0);
 			int y = baseY + (int)((box.getY() + box.getX()) * scaledHeight / 2.0);
 

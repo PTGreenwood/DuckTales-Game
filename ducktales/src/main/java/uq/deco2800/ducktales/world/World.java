@@ -9,7 +9,7 @@ import uq.deco2800.ducktales.entities.worldentities.Box;
 import uq.deco2800.ducktales.entities.worldentities.House;
 import uq.deco2800.ducktales.entities.worldentities.LongBox;
 import uq.deco2800.ducktales.entities.worldentities.Tree;
-import uq.deco2800.ducktales.tiles.TextureRegister;
+import uq.deco2800.ducktales.tiles.ResourceRegister;
 import uq.deco2800.ducktales.tiles.Tile;
 import uq.deco2800.ducktales.util.Array2D;
 import uq.deco2800.ducktales.util.Point;
@@ -24,7 +24,7 @@ import uq.deco2800.ducktales.util.Tickable;
 public class World implements Tickable {
 	private Array2D<Tile> tiles;
 	private String name;
-	private static TextureRegister tileRegister = TextureRegister.getInstance();
+	private static ResourceRegister tileRegister = ResourceRegister.getInstance();
 
 	/**
 	 * Instantiates a World object with the specified parameters.
@@ -43,8 +43,8 @@ public class World implements Tickable {
 	public World(String name, int width, int height, int baseTileType) {
 		tiles = new Array2D<Tile>(width, height);
 
-		int[] tileTypes = { tileRegister.getTileType("grass_1"), tileRegister.getTileType("grass_2"),
-				tileRegister.getTileType("grass_3") };
+		int[] tileTypes = { tileRegister.getResourceType("grass_1"), tileRegister.getResourceType("grass_2"),
+				tileRegister.getResourceType("grass_3") };
 
 		Random random = new Random();
 
@@ -52,7 +52,7 @@ public class World implements Tickable {
 			for (int x = 0; x < height; x++) {
 				if (Math.sqrt(Math.pow(y + 1, 2) + Math.pow(x + 1, 2)) < 5) {
 					// Make a basic lake.
-					tiles.set(x, y, new Tile(tileRegister.getTileType("water")));
+					tiles.set(x, y, new Tile(tileRegister.getResourceType("water")));
 				} else {
 					tiles.set(x, y, new Tile(tileTypes[random.nextInt(3)]));
 				}
@@ -101,9 +101,9 @@ public class World implements Tickable {
 			for (int x = 0; x < height; x++) {
 				if (Math.sqrt(Math.pow(y + 1, 2) + Math.pow(x + 1, 2)) < 5) {
 					// Make a basic lake.
-					tiles.set(x, y, new Tile(tileRegister.getTileType("water")));
+					tiles.set(x, y, new Tile(tileRegister.getResourceType("water")));
 				} else {
-					tiles.set(x, y, new Tile(tileRegister.getTileType("grass_1")));
+					tiles.set(x, y, new Tile(tileRegister.getResourceType("grass_1")));
 				}
 			}
 		}
