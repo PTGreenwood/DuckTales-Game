@@ -12,10 +12,14 @@ import uq.deco2800.ducktales.world.*;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import uq.deco2800.ducktales.worldBuilder.WorldBuilderManager;
 import uq.deco2800.ducktales.worldBuilder.WorldBuilderRenderer;
 
@@ -32,9 +36,7 @@ public class DuckTalesController implements Initializable {
 
 	private ExecutorService executor;
 
-
 	private boolean running = false;
-
 	private ResourceRegister tileRegister;
 	private GameManager gameManager;
 	private WorldBuilderManager worldBuilderManager;
@@ -54,6 +56,19 @@ public class DuckTalesController implements Initializable {
 		rightPane.setOnMouseMoved(new MouseMovedHandler());
 		gameWindow.setOnKeyPressed(new KeyboardHandler());
 		gameWindow.setOnKeyReleased(new KeyboardHandler());
+	}
+	@FXML 
+	private void tutorial(ActionEvent event) throws Exception {
+				
+		URL location = getClass().getResource("Tutorial.fxml");
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(location);
+		Parent root = loader.load(location.openStream());
+		Scene tutorialScene = new Scene(root, 400, 400);		
+		Stage tutorialStage = new Stage();
+		tutorialStage.setTitle("Tutorial");
+		tutorialStage.setScene(tutorialScene);
+		tutorialStage.show();
 	}
 
 	/**
