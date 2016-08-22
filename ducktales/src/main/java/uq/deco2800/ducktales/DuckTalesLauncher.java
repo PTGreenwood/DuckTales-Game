@@ -27,12 +27,12 @@ public class DuckTalesLauncher extends Application {
 		URL location = getClass().getResource("/ducktales.fxml");
 		FXMLLoader fxmlLoader = new FXMLLoader();
 		fxmlLoader.setLocation(location);
-
+		
 		Parent root = fxmlLoader.load(location.openStream());
 		DuckTalesController ducktalesController = fxmlLoader.getController();
-
+		
 		Scene scene = new Scene(root, 1200, 950);
-
+		
 		primaryStage.setTitle("DuckTales v" + version);
 		primaryStage.setScene(scene);
 		primaryStage.setMinWidth(1200);
@@ -40,4 +40,7 @@ public class DuckTalesLauncher extends Application {
 		primaryStage.setOnCloseRequest(e -> ducktalesController.stopGame());
 		primaryStage.show();	
 	}
+	
+	
+	
 }
