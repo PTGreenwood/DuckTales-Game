@@ -54,7 +54,6 @@ public abstract class Animal extends AgentEntity {
 			point.moveToward(nextLocation, speed);
 		}
 		calculateRenderingOrderValues();
-		currentLocation = nextLocation;
 	}
 
 	/**
@@ -79,12 +78,13 @@ public abstract class Animal extends AgentEntity {
 	 * Enables the animal to be killed.
 	 */
 	public void killAnimal() {
-		if(this.getHunger() <= 0 && this.getThirst() <= 0) {
-			this.health = 0;
-		}
-		if(this.getHealth() <= 0) {
-			this.canBeKilled = true; // The animal will be removed in the AnimalManager class.
-		}
+		this.canBeKilled = true;
+//		if(this.getHunger() <= 0 && this.getThirst() <= 0) {
+//			this.health = 0;
+//		}
+//		if(this.getHealth() <= 0) {
+//			this.canBeKilled = true; // The animal will be removed in the AnimalManager class.
+//		}
 	}
 
 	/**

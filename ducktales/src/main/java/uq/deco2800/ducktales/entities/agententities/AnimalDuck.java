@@ -1,5 +1,7 @@
 package uq.deco2800.ducktales.entities.agententities;
 
+import uq.deco2800.ducktales.entities.EntityManager;
+
 /**
  * Defines the animal Duck that lays eggs.
  *
@@ -14,6 +16,10 @@ public class AnimalDuck extends Animal {
 	private boolean canDropFeathers = false;
 	// Whether the duck is dead.
 	private boolean isDead = false;
+	// The peon that the animal will battle.
+	private Peon opponent;
+	// List of possible opponents.
+	private EntityManager opponentList;
 
 
 	// AnimalDuck attributes will be set in the AnimalManagerClass
@@ -39,6 +45,13 @@ public class AnimalDuck extends Animal {
 		if(this.isDead() == true) {
 			this.canDropFeathers = true;
 		}
+	}
+
+	/**
+	 * Enables the predator to attack
+	 */
+	private void attack() {
+
 	}
 
 	// Getter methods below.
