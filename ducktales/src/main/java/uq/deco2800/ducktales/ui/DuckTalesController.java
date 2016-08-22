@@ -108,7 +108,12 @@ public class DuckTalesController implements Initializable {
 
 			worldBuilderManager.setWorld(new World("World Builder", 20, 20));
 
-			new WorldBuilderRenderer(gc).start();
+			try {
+				new WorldBuilderRenderer(gc).start();
+			} catch(Exception e) {
+				System.out.println("failed to start renderer completely");
+			}
+
 			running = true;
 		} else {
 			showCanvas(worldBuilderCanvas);
