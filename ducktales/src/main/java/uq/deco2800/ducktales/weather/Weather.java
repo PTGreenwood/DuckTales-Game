@@ -10,11 +10,10 @@ package uq.deco2800.ducktales.weather;
  */
 public interface Weather {
 	
-	
 	/**
 	 * @return sprite effect
 	 */
-	public Effect getEffect();
+	public WeatherEffect getWeatherEffect();
 	
 	/**
 	 * @return true or false depending on if it is a land 
@@ -22,14 +21,16 @@ public interface Weather {
 	public boolean isLand();
 	
 	/**
-	 * @return
+	 * @return true if weather event occurs over water
+	 * 		   false if weather event does not occur over water
 	 */
 	public boolean isWater();
 	
 	/**
 	 * Need a better name for this...
 	 * Better name selected now. isAmphibious is more correct
-	 * @return
+	 * @return true if weather event occurs over both land && water
+	 * 		   false if weather event does not occur over both
 	 */
 	public boolean isAmphibious();
 	

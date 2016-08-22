@@ -11,9 +11,9 @@ public class Storm implements Weather {
 		this.type = type;
 	}
 	
-	public Effect getEffect() {
-		Effect effect = new Effect();
-		return effect;
+	public WeatherEffect getWeatherEffect() {
+		WeatherEffect weatherEffect = new WeatherEffect();
+		return weatherEffect;
 	}
 	
 	public boolean isLand() {
