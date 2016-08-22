@@ -1,19 +1,19 @@
-package uq.deco2800.ducktales.entities;
+package uq.deco2800.ducktales.entities.worldentities;
 
 /**
  * A Sawmill.
  * @author 
  *
  */
-public class Cemetery extends WorldEntity{
+public class Bakery extends WorldEntity{
 	
-	private final static String TYPE = "cemetery";
+	private final static String TYPE = "bakery";
 	
-	private final static int TIME = 2;
+	private final static int TIME = 4;
 	
-	private final static int resourcesToBuild = 7;
+	private final static int resourcesToBuild = 14;
 
-	public Cemetery(double x, double y) {
+	public Bakery(double x, double y) {
 		super(x, y, 2, 2, TYPE);
 	}
 

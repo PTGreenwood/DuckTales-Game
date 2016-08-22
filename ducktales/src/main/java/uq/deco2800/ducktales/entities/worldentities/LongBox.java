@@ -1,4 +1,4 @@
-package uq.deco2800.ducktales.entities;
+package uq.deco2800.ducktales.entities.worldentities;
 
 /**
  * Representation of a longer box.

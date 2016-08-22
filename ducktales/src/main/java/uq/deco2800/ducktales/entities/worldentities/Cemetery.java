@@ -1,20 +1,19 @@
-package uq.deco2800.ducktales.entities;
+package uq.deco2800.ducktales.entities.worldentities;
 
 /**
  * A Sawmill.
- * 
- * @author Gabrielle Hodge, 43590526 
+ * @author 
  *
  */
-public class Hospital extends WorldEntity{
+public class Cemetery extends WorldEntity{
 	
-	private final static String TYPE = "hospital";
+	private final static String TYPE = "cemetery";
 	
-	private final static int TIME = 5;
+	private final static int TIME = 2;
 	
-	private final static int resourcesToBuild = 17;
+	private final static int resourcesToBuild = 7;
 
-	public Hospital(double x, double y) {
+	public Cemetery(double x, double y) {
 		super(x, y, 2, 2, TYPE);
 	}
 

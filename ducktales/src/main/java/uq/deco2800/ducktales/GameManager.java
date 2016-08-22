@@ -28,6 +28,9 @@ public class GameManager {
 
 	private int pressedX = -1;
 	private int pressedY = -1;
+	
+	private int movedX = -1;
+	private int movedY = -1;
 
 	private World world;
 
@@ -47,6 +50,15 @@ public class GameManager {
 	public void setPressed(int x, int y) {
 		pressedX = x;
 		pressedY = y;
+	}
+	
+	public void setMoved(int x, int y) {
+		movedX = x;
+		movedY = y;
+	}
+	
+	public Point getMoved() {
+		return new Point(movedX, movedY);
 	}
 
 	public void setDragged(int x, int y) {
@@ -113,16 +125,16 @@ public class GameManager {
 	public void pan(Direction direction){
 		switch(direction){
 		case DOWN:
-			yPan = 1;
+			yPan = 3;
 			break;
 		case LEFT:
-			xPan = -1;
+			xPan = -3;
 			break;
 		case RIGHT:
-			xPan = 1;
+			xPan = 3;
 			break;
 		case UP:
-			yPan = -1;
+			yPan = -3;
 			break;
 		default:
 			break;

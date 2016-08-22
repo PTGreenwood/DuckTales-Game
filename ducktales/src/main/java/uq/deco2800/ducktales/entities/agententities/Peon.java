@@ -1,4 +1,4 @@
-package uq.deco2800.ducktales.entities;
+package uq.deco2800.ducktales.entities.agententities;
 
 import java.util.Random;
 
@@ -17,11 +17,23 @@ public class Peon extends AgentEntity {
 	private Point goalPoint;
 	
 	private double speed;
+	
+	private int Health =1000;
 
 	public Peon(int x, int y) {
 		super(x, y, 1, 1, TYPE);
 		this.speed = 0.05;
 		newGoalPoint();
+	}
+	
+	public void ChangeHealth(int NewValue){
+		if (NewValue >0){
+			this.Health =NewValue;
+		}
+	}
+	
+	public int GetHealth(){
+		return Health;
 	}
 
 	@Override
@@ -40,5 +52,4 @@ public class Peon extends AgentEntity {
 		Random random = new Random();
 		goalPoint = new Point(random.nextDouble() * 20, random.nextDouble() * 20);
 	}
-
 }

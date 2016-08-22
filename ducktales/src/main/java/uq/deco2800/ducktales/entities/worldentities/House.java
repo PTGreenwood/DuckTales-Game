@@ -1,4 +1,4 @@
-package uq.deco2800.ducktales.entities;
+package uq.deco2800.ducktales.entities.worldentities;
 
 /**
  * A House.
@@ -13,8 +13,21 @@ public class House extends WorldEntity{
 	
 	private final static int resourcesToBuild = 5;
 
+	private int Health =1000;
+
+
 	public House(double x, double y) {
-		super(x, y, 3, 3, TYPE);
+		super(x, y, 2, 2, TYPE);
+	}
+	
+	public void ChangeHealth(int NewValue){
+		if (NewValue >0){
+			this.Health =NewValue;
+		}
+	}
+	
+	public int GetHealth(){
+		return Health;
 	}
 
 	@Override

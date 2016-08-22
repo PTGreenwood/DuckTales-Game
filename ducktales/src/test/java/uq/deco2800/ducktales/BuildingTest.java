@@ -8,9 +8,9 @@ import java.util.List;
 
 import org.junit.Test;
 
-import uq.deco2800.ducktales.entities.Box;
+import uq.deco2800.ducktales.entities.worldentities.Box;
 import uq.deco2800.ducktales.entities.Entity;
-import uq.deco2800.ducktales.entities.LongBox;
+import uq.deco2800.ducktales.entities.worldentities.LongBox;
 
 public class BuildingTest {
 	

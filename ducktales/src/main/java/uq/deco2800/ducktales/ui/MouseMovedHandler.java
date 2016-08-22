@@ -6,15 +6,15 @@ import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 
 /**
- * Handles Mouse drag events.
+ * Handles Mouse moved events.
  */
-public class MouseDraggedHandler implements EventHandler<MouseEvent> {
+public class MouseMovedHandler implements EventHandler<MouseEvent> {
 
 	@Override
 	public void handle(MouseEvent event) {
 		int tileX = (int) (event.getX() / ResourceRegister.TILE_WIDTH);
 		int tileY = (int) (event.getY() / ResourceRegister.TILE_HEIGHT);
-		GameManager.getInstance().setDragged(tileX, tileY);
+		GameManager.getInstance().setMoved(tileX, tileY);
 	}
 
 }
