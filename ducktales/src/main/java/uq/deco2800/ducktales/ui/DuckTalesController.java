@@ -19,12 +19,9 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.AnchorPane;
-<<<<<<< HEAD
 import javafx.stage.Stage;
-=======
 import uq.deco2800.ducktales.worldBuilder.WorldBuilderManager;
 import uq.deco2800.ducktales.worldBuilder.WorldBuilderRenderer;
->>>>>>> 01d7d3f75ab452bf1d903c9527c084c1f7f6fdc4
 
 public class DuckTalesController implements Initializable {
 
@@ -35,23 +32,12 @@ public class DuckTalesController implements Initializable {
 	private Canvas worldBuilderCanvas;
 
 	@FXML
-<<<<<<< HEAD
-	private AnchorPane gameWindow, rightPane;
-	
-=======
 	private AnchorPane gameWindow, rightPane; // rightPane is referenced in ducktales.fxml
 
->>>>>>> 01d7d3f75ab452bf1d903c9527c084c1f7f6fdc4
 	private ExecutorService executor;
 
 	private boolean running = false;
-<<<<<<< HEAD
-	
-	private TextureRegister tileRegister;
-=======
-
 	private ResourceRegister tileRegister;
->>>>>>> 01d7d3f75ab452bf1d903c9527c084c1f7f6fdc4
 	private GameManager gameManager;
 	private WorldBuilderManager worldBuilderManager;
 

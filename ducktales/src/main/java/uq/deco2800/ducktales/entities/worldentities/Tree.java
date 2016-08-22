@@ -23,7 +23,7 @@ public class Tree extends WorldEntity{
 			stage++;
 			updateType(TYPES[stage]);
 
-			Woodvalue += 100;
+			Woodvalue += 1;
 			updateType(TYPES[Woodvalue]);
 		}
 		

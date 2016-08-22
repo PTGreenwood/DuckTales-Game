@@ -29,21 +29,16 @@ public class DuckTalesLauncher extends Application {
 		fxmlLoader.setLocation(location);
 		
 		Parent root = fxmlLoader.load(location.openStream());
-<<<<<<< HEAD
-		DuckTalesController ducktalesController = fxmlLoader.getController();
 		
 		Scene scene = new Scene(root, 1200, 950);
 		
-=======
 		DuckTalesController ducktalesController = fxmlLoader.getController(); // link the controller to the FXML file
 
 		//Add in title screen CSS file for JavaFX
 		URL url = this.getClass().getResource("/title_screen.css");
-		Scene scene = new Scene(root, 1200, 950);
 		String css = url.toExternalForm(); 
 		//Apply CSS file to current scene
 	    scene.getStylesheets().add(css);
->>>>>>> 01d7d3f75ab452bf1d903c9527c084c1f7f6fdc4
 		primaryStage.setTitle("DuckTales v" + version);
 		primaryStage.setScene(scene);
 		primaryStage.setMinWidth(1200);
