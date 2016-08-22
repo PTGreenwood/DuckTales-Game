@@ -24,8 +24,10 @@
 
           <children>
 
-            <Button layoutX="49.0" layoutY="244.0" mnemonicParsing="false"
+            <Button fx:id="startGameBtn" layoutX="49.0" layoutY="244.0" mnemonicParsing="false"
                     onAction="#startGame" text="Launch Game" />
+            <Button layoutX="49.0" layoutY="274.0" mnemonicParsing="false"
+                    onAction="#buildWorld" text="Build World" />
 
           </children>
         </AnchorPane>
