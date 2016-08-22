@@ -99,12 +99,7 @@ public class World implements Tickable {
 
 		for (int y = 0; y < width; y++) {
 			for (int x = 0; x < height; x++) {
-				if (Math.sqrt(Math.pow(y + 1, 2) + Math.pow(x + 1, 2)) < 5) {
-					// Make a basic lake.
-					tiles.set(x, y, new Tile(tileRegister.getResourceType("water")));
-				} else {
-					tiles.set(x, y, new Tile(tileRegister.getResourceType("grass_1")));
-				}
+				tiles.set(x, y, new Tile(tileRegister.getResourceType("grass_1")));
 			}
 		}
 	}
