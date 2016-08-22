@@ -2,8 +2,8 @@ package uq.deco2800.ducktales;
 
 import uq.deco2800.ducktales.entities.Entity;
 import uq.deco2800.ducktales.entities.EntityManager;
+import uq.deco2800.ducktales.tiles.ResourceRegister;
 import uq.deco2800.ducktales.tiles.Tile;
-import uq.deco2800.ducktales.tiles.TextureRegister;
 import uq.deco2800.ducktales.world.World;
 
 import java.util.Collections;
@@ -22,7 +22,7 @@ public class GameRenderer extends AnimationTimer {
 
 	private GraphicsContext graphicsContext;
 	private World world;
-	private TextureRegister tileRegister;
+	private ResourceRegister resourceRegister;
 	private int tileHeight;
 	private int tileWidth;
 	
@@ -40,9 +40,9 @@ public class GameRenderer extends AnimationTimer {
 
 		this.graphicsContext = graphicsContext;
 		this.world = GameManager.getInstance().getWorld();
-		this.tileRegister = TextureRegister.getInstance();
-		this.tileHeight = TextureRegister.TEXTURE_HEIGHT;
-		this.tileWidth = TextureRegister.TEXTURE_WIDTH;
+		this.resourceRegister = ResourceRegister.getInstance();
+		this.tileHeight = ResourceRegister.TILE_HEIGHT;
+		this.tileWidth = ResourceRegister.TILE_WIDTH;
 		this.baseX = (int) (world.getWidth() * tileWidth * scale * 0.5);
 		this.baseY = 0;
 	}
@@ -52,14 +52,16 @@ public class GameRenderer extends AnimationTimer {
 		baseX += gameManager.getXPan();
 		baseY += gameManager.getYPan();
 		renderWorld();
+		renderCanvas();
 		renderEntities();
 	}
 
 	/**
 	 * Renders the world to the canvas.
+	 * This method also handles scaling of the world
 	 */
 	private void renderWorld() {
-		Tile tile = null;
+		Tile tile;
 
 		int scaledWidth = (int) (tileWidth * scale);
 		int scaledHeight = (int) (tileHeight * scale);
@@ -70,8 +72,56 @@ public class GameRenderer extends AnimationTimer {
 				int x = baseX + (j - i) * scaledWidth / 2;
 				int y = baseY + (j + i) * scaledHeight / 2;
 				graphicsContext.drawImage(
-						tileRegister.getTileImage(tile.getTileType()), x, y,
+						// Draw the image at position x, y, and scaled to the box with given
+						// scaledWidth and scaledHeight
+						resourceRegister.getResourceImage(tile.getTileType()), x, y,
 						scaledWidth, scaledHeight);
+			}
+		}
+	}
+	
+	/**
+	 * Re-renders the canvas around the world to ensure that no previous world
+	 * state artifacts are visible. Only renders a border of width
+	 * borderThickness tiles around the world.
+	 * 
+	 * Note: Will most likely need to increase borderThickness to accomodate for
+	 * tall entities (eg. buildings, trees etc.) that would otherwise draw
+	 * beyond the reach of the border.
+	 * @author Oliver Yule
+	 */
+	private void renderCanvas() {
+		int scaledWidth = (int) (tileWidth * scale);
+		int scaledHeight = (int) (tileHeight * scale);
+		int borderThickness = 3;
+		int length;
+		// Loop over 4 sides of world.
+		for (int n = 0; n < 4; n++) {
+			if (n % 2 == 0) length = world.getWidth();
+			else length = world.getHeight();
+			// Loop over length of side.
+			for (int i = -borderThickness; i < length + borderThickness; i++) {
+				// Loop over thickness of border.
+				for (int k = borderThickness; k > 0; k--) {
+					int j;
+					if (n < 2) {
+						// The top sides.
+						j = -k;
+					} else {
+						// The bottom sides.
+						if (n == 2) j = k + world.getHeight() - 1;
+						else j = k + world.getWidth() - 1;
+					}
+					int x;
+					if (n % 2 == 0) {
+						x = baseX + (j - i) * scaledWidth / 2;
+					} else {
+						x = baseX + (i - j) * scaledWidth / 2;
+					}
+					int y = baseY + (j + i) * scaledHeight / 2;
+					graphicsContext.drawImage(resourceRegister.getResourceImage(
+							"blank"), x, y, scaledWidth, scaledHeight);
+				}
 			}
 		}
 	}
@@ -89,7 +139,7 @@ public class GameRenderer extends AnimationTimer {
 			int scaledWidth = (int) (tileWidth * scale);
 			int scaledHeight = (int) (tileHeight * scale);
 
-			Image image = tileRegister.getTileImage(box.getType());
+			Image image = resourceRegister.getResourceImage(box.getType());
 			int x = baseX + (int)((box.getY() - box.getX()) * scaledWidth / 2.0);
 			int y = baseY + (int)((box.getY() + box.getX()) * scaledHeight / 2.0);
 
