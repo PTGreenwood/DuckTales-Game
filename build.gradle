@@ -5,9 +5,8 @@ allprojects {
 }
 
 repositories {
-  maven { url 'http://deco2800.uqcloud.net/artifactory/libs-release/' }
-  //mavenCentral()
   mavenLocal()
+  maven { url 'http://deco2800.uqcloud.net/artifactory/libs-release/' }
 }
 
 subprojects {
@@ -45,6 +44,10 @@ subprojects {
   }
 
   dependencies {
+    // DECO2800 dependencies
+    compile group: 'uq.deco2800.singularity', name: 'common', version: '0.1-SNAPSHOT', changing: true
+    compile group: 'uq.deco2800.singularity', name: 'clients', version: '0.1-SNAPSHOT', changing: true
+
     // Logging via Log4J 2.0 using the SLF4J API
     compile group: 'org.slf4j', name:'slf4j-api', version: '1.7.12'
     compile group: 'org.slf4j', name:'slf4j-log4j12', version: '1.7.12'
@@ -52,24 +55,5 @@ subprojects {
     // Unit testing with JUnit
     testCompile group: 'junit', name: 'junit', version: '4.11'
   }
-
-  sourceSets {
-    main {
-        java {
-            srcDir 'src/main/java'
-        }
-        resources {
-            srcDir 'src/main/resources'
-        }
-    }
-
-    test {
-        java {
-            srcDir 'src/test/java'
-        }
-        resources {
-            srcDir 'src/test/resources'
-        }
-    }
-  }
+ 
 }
