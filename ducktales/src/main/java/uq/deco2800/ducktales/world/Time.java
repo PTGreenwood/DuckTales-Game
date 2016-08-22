@@ -21,7 +21,7 @@ import uq.deco2800.ducktales.util.Array2D;
 import uq.deco2800.ducktales.util.Point;
 import uq.deco2800.ducktales.util.Tickable;
 
-public class time implements Tickable {
+public class Time implements Tickable {
 
 
 public void tick() {
