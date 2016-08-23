@@ -4,22 +4,14 @@ import java.util.Random;
 
 import uq.deco2800.ducktales.entities.EntityManager;
 
-import uq.deco2800.ducktales.entities.agententities.AnimalDuck;
-import uq.deco2800.ducktales.entities.agententities.Peon;
-import uq.deco2800.ducktales.entities.resourceentities.Tree;
-import uq.deco2800.ducktales.entities.worldentities.Bakery;
-import uq.deco2800.ducktales.entities.worldentities.Box;
-import uq.deco2800.ducktales.entities.worldentities.House;
-import uq.deco2800.ducktales.entities.worldentities.LongBox;
-
-import uq.deco2800.ducktales.entities.worldentities.Sawmill;
+import uq.deco2800.ducktales.entities.agententities.*;
+import uq.deco2800.ducktales.entities.resourceentities.*;
+import uq.deco2800.ducktales.entities.worldentities.*;
 
 import uq.deco2800.ducktales.tiles.ResourceRegister;
 
 import uq.deco2800.ducktales.tiles.Tile;
-import uq.deco2800.ducktales.util.Array2D;
-import uq.deco2800.ducktales.util.Point;
-import uq.deco2800.ducktales.util.Tickable;
+import uq.deco2800.ducktales.util.*;
 
 /**
  * Models the game's physical environment.
@@ -31,6 +23,7 @@ public class World implements Tickable {
 	private Array2D<Tile> tiles;
 	private String name;
 	private static ResourceRegister tileRegister = ResourceRegister.getInstance();
+	private static EntityManager entityManager = EntityManager.getInstance();
 
 	/**
 	 * Instantiates a World object with the specified parameters.
@@ -64,34 +57,27 @@ public class World implements Tickable {
 				}
 			}
 		}
-		
+
 		EntityManager manager = EntityManager.getInstance();
-		
-		//manager.addEntity(new Box(5, 5));
-		
-		//manager.addEntity(new Box(9, 7));
 
-		//manager.addEntity(new LongBox(12, 15));
-		
+		// manager.addEntity(new Box(5, 5));
+
+		// manager.addEntity(new Box(9, 7));
+
+		// manager.addEntity(new LongBox(12, 15));
+
 		manager.addEntity(new Peon(10, 10));
-		
-		//manager.addEntity(new Tree(6, 4));
-		
-		//manager.addEntity(new Tree(5, 12));
 
-		
-		//manager.addEntity(new Sawmill(13, 6));
-		
-		//manager.addEntity(new House(16, 19));
+		// manager.addEntity(new Tree(6, 4));
 
-		//manager.addEntity(new AnimalDuck(10, 11));
-		
-		for(int i = 4; i < 18; i++){
-			tiles.get(i, i).setWorldEntity(new Sawmill(i, i));
+		// manager.addEntity(new Tree(5, 12));
 
-		}
-		
+		addEntity(new Sawmill(13, 6));
+		addEntity(new Box(4, 15));
 
+		// manager.addEntity(new House(16, 19));
+
+		// manager.addEntity(new AnimalDuck(10, 11));
 
 	}
 
@@ -167,5 +153,30 @@ public class World implements Tickable {
 
 	public void setTile(int x, int y, int tileType) {
 		getTile(x, y).setTileType(tileType);
+	}
+
+	public void addEntity(AgentEntity entity) {
+		entityManager.addEntity(entity);
+
+	}
+
+	public void addEntity(WorldEntity entity) {
+		int entityX = (int) entity.getX();
+		int entityY = (int) entity.getY();
+
+		int xMin = (int) (entity.getX() - entity.getXLength()) + 1;
+		int yMin = (int) (entity.getY() - entity.getYLength()) + 1;
+
+		if (!(xMin >= 0 && entityX < getWidth() && yMin >= 0 && entityY < getHeight())) {
+			System.out.println("CANNOT ADD WORLD ENTITY");
+			return;
+		}
+		for (int x = xMin; x <= entityX; x++) {
+			for (int y = yMin; y <= entityY; y++) {
+				tiles.get(x, y).setWorldEntity(entity);
+			}
+		}
+		entityManager.addEntity(entity);
+
 	}
 }
