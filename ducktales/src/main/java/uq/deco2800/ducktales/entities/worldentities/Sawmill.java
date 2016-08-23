@@ -14,7 +14,7 @@ public class Sawmill extends WorldEntity{
 	private final static int resourcesToBuild = 10;
 
 	public Sawmill(double x, double y) {
-		super(x, y, 2, 2, TYPE);
+		super(x, y, 3, 3, TYPE);
 	}
 
 	@Override
