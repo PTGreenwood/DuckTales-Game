@@ -14,9 +14,10 @@ public class Tile implements Tickable {
 	 * The type of this tile.
 	 */
 	private int tileType;
-	
-	//TODO REMOVE THESE
+
+	// TODO REMOVE THESE
 	private int oldType = 0;
+	private boolean path = false;
 
 	private WorldEntity worldEntity;
 
@@ -46,7 +47,7 @@ public class Tile implements Tickable {
 	 * @return The type of the Tile
 	 */
 	public int getTileType() {
-		if(!isPassable()){
+		if (!isPassable()) {
 			return ResourceRegister.getInstance().getResourceType("cyan_crossed");
 		}
 		return tileType;
@@ -62,7 +63,7 @@ public class Tile implements Tickable {
 			this.worldEntity = worldEntity;
 		}
 	}
-	
+
 	public void setWorldEntity(WorldEntity entity) {
 		this.worldEntity = entity;
 	}
@@ -79,22 +80,26 @@ public class Tile implements Tickable {
 	@Override
 	public void tick() {
 	}
-	
-	public boolean isPassable(){
-		if(worldEntity == null){
+
+	public boolean isPassable() {
+		if (worldEntity == null) {
 			return true;
 		}
 		return worldEntity.isPassable();
 	}
-	
-	public void reset(){
+
+	public void reset() {
+		path = false;
 		this.tileType = oldType;
-		
+
 	}
-	
-	public void makePath(){
-		this.oldType = tileType;
-		this.tileType = ResourceRegister.getInstance().getResourceType("yellow");
+
+	public void makePath() {
+		if (!path) {
+			this.path = true;
+			this.oldType = tileType;
+			this.tileType = ResourceRegister.getInstance().getResourceType("yellow");
+		}
 	}
 
 }
