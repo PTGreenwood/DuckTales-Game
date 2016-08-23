@@ -54,6 +54,12 @@ public class Peon extends AgentEntity {
 	public int GetHealth() {
 		return Health;
 	}
+        public int getStrength(){
+            return strength;
+        }
+        public int getIntelligence(){
+            return intelligence;
+        }
 
 	@Override
 	public void tick() {
