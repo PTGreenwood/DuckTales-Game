@@ -15,13 +15,6 @@ public class AStar {
 		Tuple goal = new Tuple(goalPoint);
 		// Set of points already evaluated
 
-		/*
-		 * For each node, the total cost of getting from the start node to the
-		 * goal by passing by that node. That value is partly known, partly
-		 * heuristic.
-		 */
-		Map<Tuple, Integer> fScore = new HashMap<Tuple, Integer>();
-
 		Set<Tuple> closedSet = new HashSet<Tuple>();
 
 		// Set of discovered nodes yet to be evaluated
@@ -35,6 +28,13 @@ public class AStar {
 		Map<Tuple, Integer> gScore = new HashMap<Tuple, Integer>();
 
 		gScore.put(start, 0);
+		
+		/*
+		 * For each node, the total cost of getting from the start node to the
+		 * goal by passing by that node. That value is partly known, partly
+		 * heuristic.
+		 */
+		Map<Tuple, Integer> fScore = new HashMap<Tuple, Integer>();
 
 		fScore.put(start, heuristicCostEstimate(start, goal));
 
