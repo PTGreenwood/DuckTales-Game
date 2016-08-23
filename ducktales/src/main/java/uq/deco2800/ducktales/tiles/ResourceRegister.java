@@ -64,6 +64,8 @@ public class ResourceRegister {
 
 		addResource("void", "/black.png");
 		addResource("cyan", "/cyan.png");
+		addResource("cyan_crossed", "/cyan_crossed.png");
+		addResource("yellow", "/yellow.png");
 		addResource("grass_1", "/grass_1.png");
 		addResource("grass_2", "/grass_2.png");
 		addResource("grass_3", "/grass_3.png");

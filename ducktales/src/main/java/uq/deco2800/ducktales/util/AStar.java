@@ -36,7 +36,7 @@ public class AStar {
 		 * goal by passing by that node. That value is partly known, partly
 		 * heuristic.
 		 */
-		Map<Tuple, Integer> fScore = new HashMap<Tuple, Integer>();
+		Map<Tuple, Double> fScore = new HashMap<Tuple, Double>();
 
 		fScore.put(start, heuristicCostEstimate(start, goal));
 
@@ -56,11 +56,11 @@ public class AStar {
 
 				// gScore default value is infinite, distance from current to
 				// neighbour = 1
-				int tentativeGScore = gScore.getOrDefault(current, Integer.MAX_VALUE) + 1;
+				int tentativeGScore = gScore.getOrDefault(current, Integer.MAX_VALUE / 2) + 1;
 
 				if (!openSet.contains(tuple)) {
 					openSet.add(tuple);
-				} else if (tentativeGScore >= gScore.getOrDefault(tuple, Integer.MAX_VALUE)) {
+				} else if (tentativeGScore >= gScore.getOrDefault(tuple, Integer.MAX_VALUE / 2)) {
 					continue;
 				}
 
@@ -73,12 +73,14 @@ public class AStar {
 		return null;
 	}
 
-	private static Tuple getMinTuple(Set<Tuple> tuples, Map<Tuple, Integer> fScores) {
-		int minF = Integer.MAX_VALUE;
+	private static Tuple getMinTuple(Set<Tuple> tuples, Map<Tuple, Double> fScores) {
+		double minF = Integer.MAX_VALUE;
 		Tuple min = null;
 
 		for (Tuple tuple : tuples) {
-			if (fScores.getOrDefault(tuple, Integer.MAX_VALUE) < minF) {
+			double tupleFScore = fScores.getOrDefault(tuple, Double.MAX_VALUE / 2);
+			if (tupleFScore < minF) {
+				minF = tupleFScore;
 				min = tuple;
 			}
 		}
@@ -86,8 +88,8 @@ public class AStar {
 		return min;
 	}
 
-	private static int heuristicCostEstimate(Tuple node, Tuple goal) {
-		return Math.abs(node.x - goal.x) + Math.abs(node.y - goal.y);
+	private static double heuristicCostEstimate(Tuple node, Tuple goal) {
+		return Math.pow(node.x - goal.x, 2) + Math.pow(node.y - goal.y, 2);
 	}
 
 	private static List<Tuple> getAdjacentNodes(Tuple tuple, World world) {

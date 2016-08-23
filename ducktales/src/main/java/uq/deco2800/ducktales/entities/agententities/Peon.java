@@ -7,7 +7,6 @@ import java.util.Random;
 import uq.deco2800.ducktales.GameManager;
 import uq.deco2800.ducktales.util.AStar;
 import uq.deco2800.ducktales.util.Point;
-import uq.deco2800.ducktales.world.World;
 
 /**
  * Class representing the worker.
@@ -62,12 +61,12 @@ public class Peon extends AgentEntity {
 	private List<Point> newGoalPoints(){
 		Random random = new Random();
 		Point goalPoint = new Point(random.nextDouble() * 20, random.nextDouble() * 20);
+		while(!GameManager.getInstance().getWorld().getTile(goalPoint).isPassable()){
+			goalPoint = new Point(random.nextDouble() * 20, random.nextDouble() * 20);
+		}
 		
 		List<AStar.Tuple> path = AStar.aStar(point, goalPoint, GameManager.getInstance().getWorld());
 		List<Point> goalPoints = new ArrayList<Point>();
-		System.out.println(point + " -> " + goalPoint + " = " + path);
-		System.out.println("point: " + GameManager.getInstance().getWorld().getTile(point).isPassable());
-		System.out.println("gPoint: " + GameManager.getInstance().getWorld().getTile(goalPoint).isPassable());
 
 		for(AStar.Tuple tuple : path){
 			goalPoints.add(new Point(tuple.getX(), tuple.getY()));

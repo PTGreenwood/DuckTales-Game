@@ -66,24 +66,31 @@ public class World implements Tickable {
 		}
 		
 		EntityManager manager = EntityManager.getInstance();
-		manager.addEntity(new Box(5, 5));
-		manager.addEntity(new Box(9, 7));
+		
+		//manager.addEntity(new Box(5, 5));
+		
+		//manager.addEntity(new Box(9, 7));
 
-		manager.addEntity(new LongBox(12, 15));
+		//manager.addEntity(new LongBox(12, 15));
 		
 		manager.addEntity(new Peon(10, 10));
 		
-		tiles.get(6, 4).setWorldEntity(new Sawmill(6, 4));
-		manager.addEntity(new Tree(6, 4));
+		//manager.addEntity(new Tree(6, 4));
+		
+		//manager.addEntity(new Tree(5, 12));
 
 		
-		manager.addEntity(new Sawmill(13, 6));
+		//manager.addEntity(new Sawmill(13, 6));
 		
-		manager.addEntity(new House(16, 19));
+		//manager.addEntity(new House(16, 19));
 
-		manager.addEntity(new AnimalDuck(10, 11));
+		//manager.addEntity(new AnimalDuck(10, 11));
 		
-		tiles.get(13,  6).setWorldEntity(new Sawmill(13, 6));
+		for(int i = 4; i < 18; i++){
+			tiles.get(i, i).setWorldEntity(new Sawmill(i, i));
+
+		}
+		
 
 
 	}
