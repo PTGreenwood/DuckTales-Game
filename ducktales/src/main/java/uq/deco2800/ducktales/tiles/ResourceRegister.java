@@ -63,6 +63,7 @@ public class ResourceRegister {
 		currentCount = 0;
 
 		addResource("void", "/black.png");
+		addResource("cyan", "/cyan.png");
 		addResource("grass_1", "/grass_1.png");
 		addResource("grass_2", "/grass_2.png");
 		addResource("grass_3", "/grass_3.png");

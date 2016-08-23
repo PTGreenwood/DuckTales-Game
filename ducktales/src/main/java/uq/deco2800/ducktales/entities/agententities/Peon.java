@@ -1,8 +1,13 @@
 package uq.deco2800.ducktales.entities.agententities;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
+import uq.deco2800.ducktales.GameManager;
+import uq.deco2800.ducktales.util.AStar;
 import uq.deco2800.ducktales.util.Point;
+import uq.deco2800.ducktales.world.World;
 
 /**
  * Class representing the worker.
@@ -14,42 +19,60 @@ public class Peon extends AgentEntity {
 
 	private final static String TYPE = "peon";
 	
-	private Point goalPoint;
+	private List<Point> goalPoints;
+	//private Point goalPoint;
 	
 	private double speed;
 	
-	private int Health =1000;
+	private int health =1000;
 
 	public Peon(int x, int y) {
 		super(x, y, 1, 1, TYPE);
 		this.speed = 0.05;
-		newGoalPoint();
+		//newGoalPoints();
 	}
 	
-	public void ChangeHealth(int NewValue){
-		if (NewValue >0){
-			this.Health =NewValue;
+	public void ChangeHealth(int newValue){
+		if (newValue >0){
+			this.health =newValue;
 		}
 	}
 	
 	public int GetHealth(){
-		return Health;
+		return health;
 	}
 
 	@Override
 	public void tick() {
-		if(point.distance(goalPoint) < speed) {
-			point = goalPoint;
-			newGoalPoint();
+		if(goalPoints == null){
+			goalPoints = newGoalPoints();
+		}
+		if(point.distance(goalPoints.get(0)) < speed) {
+			point = goalPoints.remove(0);
+			GameManager.getInstance().getWorld().getTile(point).reset();
+			if(goalPoints.isEmpty()){
+				this.goalPoints = newGoalPoints();
+			}
 		} else {
-			point.moveToward(goalPoint, speed);
+			point.moveToward(goalPoints.get(0), speed);
 		}
 		calculateRenderingOrderValues();
-		
 	}
 	
-	private void newGoalPoint(){
+	private List<Point> newGoalPoints(){
 		Random random = new Random();
-		goalPoint = new Point(random.nextDouble() * 20, random.nextDouble() * 20);
+		Point goalPoint = new Point(random.nextDouble() * 20, random.nextDouble() * 20);
+		
+		List<AStar.Tuple> path = AStar.aStar(point, goalPoint, GameManager.getInstance().getWorld());
+		List<Point> goalPoints = new ArrayList<Point>();
+		System.out.println(point + " -> " + goalPoint + " = " + path);
+		System.out.println("point: " + GameManager.getInstance().getWorld().getTile(point).isPassable());
+		System.out.println("gPoint: " + GameManager.getInstance().getWorld().getTile(goalPoint).isPassable());
+
+		for(AStar.Tuple tuple : path){
+			goalPoints.add(new Point(tuple.getX(), tuple.getY()));
+			GameManager.getInstance().getWorld().getTile(tuple.getX(), tuple.getY()).makePath();
+		}
+		return goalPoints;
 	}
 }

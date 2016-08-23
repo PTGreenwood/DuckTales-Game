@@ -1,16 +1,18 @@
 package uq.deco2800.ducktales.util;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
+import uq.deco2800.ducktales.world.World;
 
 public class AStar {
 
 	public static List<Tuple> aStar(Point startPoint, Point goalPoint, World world) {
+
 		Tuple start = new Tuple(startPoint);
 		Tuple goal = new Tuple(goalPoint);
 		// Set of points already evaluated
@@ -28,7 +30,7 @@ public class AStar {
 		Map<Tuple, Integer> gScore = new HashMap<Tuple, Integer>();
 
 		gScore.put(start, 0);
-		
+
 		/*
 		 * For each node, the total cost of getting from the start node to the
 		 * goal by passing by that node. That value is partly known, partly
@@ -40,7 +42,6 @@ public class AStar {
 
 		while (!openSet.isEmpty()) {
 			Tuple current = getMinTuple(openSet, fScore);
-			System.out.println(current);
 
 			if (current.equals(goal)) {
 				return reconstructPath(cameFrom, current);
@@ -49,10 +50,10 @@ public class AStar {
 			closedSet.add(current);
 
 			for (Tuple tuple : getAdjacentNodes(current, world)) {
-				if (closedSet.contains(tuple) || !world.isPassable(current.x, current.y)) {
+				if (closedSet.contains(tuple) || !world.getTile(tuple.x, tuple.y).isPassable()) {
 					continue;
 				}
-				
+
 				// gScore default value is infinite, distance from current to
 				// neighbour = 1
 				int tentativeGScore = gScore.getOrDefault(current, Integer.MAX_VALUE) + 1;
@@ -71,17 +72,17 @@ public class AStar {
 		}
 		return null;
 	}
-	
-	private static Tuple getMinTuple(Set<Tuple> tuples, Map<Tuple, Integer> fScores){
+
+	private static Tuple getMinTuple(Set<Tuple> tuples, Map<Tuple, Integer> fScores) {
 		int minF = Integer.MAX_VALUE;
 		Tuple min = null;
-		
-		for(Tuple tuple : tuples){
-			if(fScores.getOrDefault(tuple, Integer.MAX_VALUE) < minF){
+
+		for (Tuple tuple : tuples) {
+			if (fScores.getOrDefault(tuple, Integer.MAX_VALUE) < minF) {
 				min = tuple;
 			}
 		}
-		
+
 		return min;
 	}
 
@@ -91,26 +92,27 @@ public class AStar {
 
 	private static List<Tuple> getAdjacentNodes(Tuple tuple, World world) {
 		List<Tuple> adjacencies = new ArrayList<Tuple>();
+
 		// Up
-		if (tuple.x >= 0 && tuple.x <= world.getWidth() && tuple.y - 1 >= 0 && tuple.y - 1 <= world.getHeight()) {
+		if (tuple.x >= 0 && tuple.x < world.getWidth() && tuple.y - 1 >= 0 && tuple.y - 1 < world.getHeight()) {
 			adjacencies.add(new Tuple(tuple.x, tuple.y - 1));
 
 		}
 
 		// Down
-		if (tuple.x >= 0 && tuple.x <= world.getWidth() && tuple.y + 1 >= 0 && tuple.y + 1 <= world.getHeight()) {
+		if (tuple.x >= 0 && tuple.x < world.getWidth() && tuple.y + 1 >= 0 && tuple.y + 1 < world.getHeight()) {
 			adjacencies.add(new Tuple(tuple.x, tuple.y + 1));
 
 		}
 
 		// Left
-		if (tuple.x - 1 >= 0 && tuple.x - 1 <= world.getWidth() && tuple.y >= 0 && tuple.y <= world.getHeight()) {
+		if (tuple.x - 1 >= 0 && tuple.x - 1 < world.getWidth() && tuple.y >= 0 && tuple.y < world.getHeight()) {
 			adjacencies.add(new Tuple(tuple.x - 1, tuple.y));
 
 		}
 
 		// Right
-		if (tuple.x + 1 >= 0 && tuple.x + 1 <= world.getWidth() && tuple.y >= 0 && tuple.y <= world.getHeight()) {
+		if (tuple.x + 1 >= 0 && tuple.x + 1 < world.getWidth() && tuple.y >= 0 && tuple.y < world.getHeight()) {
 			adjacencies.add(new Tuple(tuple.x + 1, tuple.y));
 
 		}
@@ -125,11 +127,12 @@ public class AStar {
 			result.add(current);
 			current = cameFrom.get(current);
 		}
+		Collections.reverse(result);
 		return result;
 
 	}
 
-	private static class Tuple {
+	public static class Tuple {
 		int x;
 		int y;
 
@@ -154,22 +157,17 @@ public class AStar {
 		public int hashCode() {
 			return (11 + 19 * x) * 23 + y;
 		}
-		
-		public String toString(){
+
+		public String toString() {
 			return String.format("(%d, %d)", x, y);
 		}
-	}
-	
-	
-	public static void main(String[] args){
-		World world = new World();
-		Point point1 = new Point(1, 1);
 
-		Point point2 = new Point(3, 3);
-		
-		List<Tuple> list = aStar(point1, point2, world);
-		
-		System.out.println(list);
-	}
+		public int getX() {
+			return x;
+		}
 
+		public int getY() {
+			return y;
+		}
+	}
 }

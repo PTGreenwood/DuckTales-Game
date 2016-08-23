@@ -7,6 +7,7 @@ import uq.deco2800.ducktales.entities.EntityManager;
 import uq.deco2800.ducktales.entities.agententities.AnimalDuck;
 import uq.deco2800.ducktales.entities.agententities.Peon;
 import uq.deco2800.ducktales.entities.resourceentities.Tree;
+import uq.deco2800.ducktales.entities.worldentities.Bakery;
 import uq.deco2800.ducktales.entities.worldentities.Box;
 import uq.deco2800.ducktales.entities.worldentities.House;
 import uq.deco2800.ducktales.entities.worldentities.LongBox;
@@ -72,18 +73,17 @@ public class World implements Tickable {
 		
 		manager.addEntity(new Peon(10, 10));
 		
-		manager.addEntity(new Tree(4, 4));
+		tiles.get(6, 4).setWorldEntity(new Sawmill(6, 4));
 		manager.addEntity(new Tree(6, 4));
-		manager.addEntity(new Tree(8, 4));
-		manager.addEntity(new Tree(10, 4));
-		manager.addEntity(new Tree(12, 4));
-		manager.addEntity(new Tree(14, 4));
+
 		
-		manager.addEntity(new Sawmill(8, 10));
+		manager.addEntity(new Sawmill(13, 6));
 		
 		manager.addEntity(new House(16, 19));
 
 		manager.addEntity(new AnimalDuck(10, 11));
+		
+		tiles.get(13,  6).setWorldEntity(new Sawmill(13, 6));
 
 
 	}
