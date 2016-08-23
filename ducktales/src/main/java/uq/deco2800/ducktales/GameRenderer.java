@@ -2,7 +2,6 @@ package uq.deco2800.ducktales;
 
 import uq.deco2800.ducktales.entities.Entity;
 import uq.deco2800.ducktales.entities.EntityManager;
-import uq.deco2800.ducktales.tiles.ResourceRegister;
 import uq.deco2800.ducktales.tiles.Tile;
 import uq.deco2800.ducktales.world.World;
 
@@ -59,7 +58,7 @@ public class GameRenderer extends AnimationTimer {
 	/**
 	 * Renders the world to the canvas.
 	 * This method also handles scaling of the world
-	 */
+	 */ 
 	private void renderWorld() {
 		Tile tile;
 

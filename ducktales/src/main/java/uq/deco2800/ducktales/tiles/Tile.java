@@ -15,6 +15,11 @@ public class Tile implements Tickable {
 	 */
 	private int tileType;
 
+	/**
+	 * The overlay containing the actual pixels this tile takes up
+	 */
+	private TileOverlay tileOverlay;
+
 	private WorldEntity worldEntity;
 
 	/**

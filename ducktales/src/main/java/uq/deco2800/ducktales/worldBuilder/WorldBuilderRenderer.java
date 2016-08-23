@@ -3,7 +3,7 @@ package uq.deco2800.ducktales.worldBuilder;
 import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-import uq.deco2800.ducktales.tiles.ResourceRegister;
+import uq.deco2800.ducktales.ResourceRegister;
 import uq.deco2800.ducktales.tiles.Tile;
 import uq.deco2800.ducktales.world.World;
 
@@ -76,11 +76,6 @@ public class WorldBuilderRenderer extends AnimationTimer {
                     tile = world.getTile(i, j);
                     int x = baseX + (j - i) * scaledWidth / 2;
                     int y = baseY + (j + i) * scaledHeight / 2;
-//                    graphicsContext.drawImage(
-//                            // Draw the image at position x, y, and scaled to the box with given
-//                            // scaledWidth and scaledHeight
-//                            resourceRegister.getResourceImage(tile.getTileType()), x, y,
-//                            scaledWidth, scaledHeight);
 
                     // This is used for testing - only one polygon is drawn
                     if (polygonDrawing) {
@@ -111,12 +106,6 @@ public class WorldBuilderRenderer extends AnimationTimer {
                                 new double[] {top.y, right.y, bottom.y, left.y},
                                 4
                         );
-
-                        graphicsContext.drawImage(
-                                // Draw the image at position x, y, and scaled to the box with given
-                                // scaledWidth and scaledHeight
-                                resourceRegister.getResourceImage(tile.getTileType()), x, y,
-                                scaledWidth, scaledHeight);
                         // polygonDrawing = false;
                     }
 

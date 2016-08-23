@@ -7,7 +7,6 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import uq.deco2800.ducktales.*;
-import uq.deco2800.ducktales.tiles.*;
 import uq.deco2800.ducktales.world.*;
 
 import javafx.event.ActionEvent;

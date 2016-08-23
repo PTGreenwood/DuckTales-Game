@@ -1,4 +1,4 @@
-package uq.deco2800.ducktales.tiles;
+package uq.deco2800.ducktales;
 
 import javafx.scene.image.Image;
 

@@ -9,7 +9,7 @@ import uq.deco2800.ducktales.entities.worldentities.Box;
 import uq.deco2800.ducktales.entities.worldentities.House;
 import uq.deco2800.ducktales.entities.worldentities.LongBox;
 import uq.deco2800.ducktales.entities.worldentities.Tree;
-import uq.deco2800.ducktales.tiles.ResourceRegister;
+import uq.deco2800.ducktales.ResourceRegister;
 import uq.deco2800.ducktales.tiles.Tile;
 import uq.deco2800.ducktales.util.Array2D;
 import uq.deco2800.ducktales.util.Point;
