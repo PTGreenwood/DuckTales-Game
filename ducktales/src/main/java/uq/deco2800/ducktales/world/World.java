@@ -3,13 +3,21 @@ package uq.deco2800.ducktales.world;
 import java.util.Random;
 
 import uq.deco2800.ducktales.entities.EntityManager;
+
 import uq.deco2800.ducktales.entities.agententities.AnimalDuck;
 import uq.deco2800.ducktales.entities.agententities.Peon;
+import uq.deco2800.ducktales.entities.resourceentities.Tree;
 import uq.deco2800.ducktales.entities.worldentities.Box;
 import uq.deco2800.ducktales.entities.worldentities.House;
 import uq.deco2800.ducktales.entities.worldentities.LongBox;
-import uq.deco2800.ducktales.entities.worldentities.Tree;
+
 import uq.deco2800.ducktales.ResourceRegister;
+
+
+import uq.deco2800.ducktales.entities.worldentities.Sawmill;
+
+
+
 import uq.deco2800.ducktales.tiles.Tile;
 import uq.deco2800.ducktales.util.Array2D;
 import uq.deco2800.ducktales.util.Point;
@@ -73,6 +81,8 @@ public class World implements Tickable {
 		manager.addEntity(new Tree(10, 4));
 		manager.addEntity(new Tree(12, 4));
 		manager.addEntity(new Tree(14, 4));
+		
+		manager.addEntity(new Sawmill(8, 10));
 		
 		manager.addEntity(new House(16, 19));
 

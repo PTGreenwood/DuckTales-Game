@@ -77,6 +77,15 @@ public class ResourceRegister {
 		addResource("house", "/house.png");
 		addResource("duck", "/duck.png");
 		addResource("blank", "/blank.png");
+		
+		addResource("sawmill", "/sawmill.png");
+		//To be uncommented as the relevant graphics are created
+		//addResource("bakery", "/bakery.png");
+		//addResource("cemetery", "/cemetery.png");
+		//addResource("farmhouse", "/farmhouse.png");
+		//addResource("forge", "/forge.png");
+		//addResource("hospital", "/hospital.png");
+		//addResource("observatory", "/observatory.png");
 
 	}
 

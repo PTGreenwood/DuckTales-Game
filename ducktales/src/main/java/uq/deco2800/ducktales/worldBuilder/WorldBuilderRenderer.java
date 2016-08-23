@@ -94,7 +94,7 @@ public class WorldBuilderRenderer extends AnimationTimer {
 
                         // Draw the overlaying polygon, to be used for checking mouse click
                         graphicsContext.setGlobalAlpha(TRANSPARENCY);
-                        graphicsContext.setFill(Color.GRAY);
+                        graphicsContext.setFill(Color.BLACK);
                         graphicsContext.setStroke(Color.BLACK);
                         graphicsContext.fillPolygon(
                                 new double[] {top.x, right.x, bottom.x, left.x},

@@ -1,0 +1,3 @@
+#startGameBtn { -fx-background-color: #fff; }
+#startGameBtn:hover { -fx-background-color: #aaa; }
+.background { -fx-background-color: black; }

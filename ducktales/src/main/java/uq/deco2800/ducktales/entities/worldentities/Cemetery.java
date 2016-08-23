@@ -1,33 +1,20 @@
 package uq.deco2800.ducktales.entities.worldentities;
 
 /**
- * A House.
- * @author Leggy
+ * A Sawmill.
+ * @author 
  *
  */
-public class House extends WorldEntity{
+public class Cemetery extends WorldEntity{
 	
-	private final static String TYPE = "house";
+	private final static String TYPE = "cemetery";
 	
 	private final static int TIME = 2;
 	
-	private final static int resourcesToBuild = 5;
+	private final static int resourcesToBuild = 7;
 
-	private int Health =1000;
-
-
-	public House(double x, double y) {
+	public Cemetery(double x, double y) {
 		super(x, y, 2, 2, TYPE);
-	}
-	
-	public void ChangeHealth(int NewValue){
-		if (NewValue >0){
-			this.Health =NewValue;
-		}
-	}
-	
-	public int GetHealth(){
-		return Health;
 	}
 
 	@Override

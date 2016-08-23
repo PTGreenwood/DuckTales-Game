@@ -1,8 +1,10 @@
-package uq.deco2800.ducktales.entities.worldentities;
+package uq.deco2800.ducktales.entities.resourceentities;
 
 import java.util.Random;
 
-public class Tree extends WorldEntity{
+import uq.deco2800.ducktales.entities.worldentities.WorldEntity;
+
+public class Tree extends ResourceEntity{
 	
 	private static String[] TYPES = {"tree_1", "tree_2", "tree_3"};
 	
