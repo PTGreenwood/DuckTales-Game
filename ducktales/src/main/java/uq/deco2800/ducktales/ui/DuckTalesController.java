@@ -59,7 +59,7 @@ public class DuckTalesController implements Initializable {
 	@FXML 
 	private void tutorial(ActionEvent event) throws Exception {
 				
-		URL location = getClass().getResource("Tutorial.fxml");
+		URL location = getClass().getResource("/tutorial.fxml");
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(location);
 		Parent root = loader.load(location.openStream());
