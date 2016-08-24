@@ -1,7 +1,7 @@
 package uq.deco2800.ducktales.ui;
 
 import uq.deco2800.ducktales.GameManager;
-import uq.deco2800.ducktales.ResourceRegister;
+import uq.deco2800.ducktales.resources.ResourceRegister;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 

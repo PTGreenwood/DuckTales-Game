@@ -1,6 +1,7 @@
 package uq.deco2800.ducktales.entities.resourceentities;
 
 import uq.deco2800.ducktales.entities.Entity;
+import uq.deco2800.ducktales.resources.ResourceType;
 
 /**
  * Abstract representation of all static world entities.
@@ -10,7 +11,7 @@ import uq.deco2800.ducktales.entities.Entity;
  */
 public abstract class ResourceEntity extends Entity {
 
-	protected ResourceEntity(double x, double y, int lengthX, int lengthY, String type) {
+	protected ResourceEntity(double x, double y, int lengthX, int lengthY, ResourceType type) {
 		super(x, y, lengthX, lengthY, type);
 	}
 

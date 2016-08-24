@@ -1,6 +1,7 @@
 package uq.deco2800.ducktales.entities.agententities;
 
 import uq.deco2800.ducktales.entities.EntityManager;
+import uq.deco2800.ducktales.resources.ResourceType;
 
 /**
  * Defines the animal Duck that lays eggs.
@@ -9,7 +10,7 @@ import uq.deco2800.ducktales.entities.EntityManager;
  */
 public class AnimalDuck extends Animal {
 
-	private final static String IMAGE = "duck";
+	private final static ResourceType type = ResourceType.DUCK;
 	// Whether the duck can lay eggs.
 	private boolean canLayEggs = false;
 	// Whether the duck can drop feathers.
@@ -25,7 +26,7 @@ public class AnimalDuck extends Animal {
 	// AnimalDuck attributes will be set in the AnimalManagerClass
 	public AnimalDuck(int x, int y) {
 		super(x, y, (int) ((Math.random() + 0.1) * 100), (int) ((Math.random() + 0.1) * 100), (int) ((Math.random() +
-			0.1) * 100), 0.05, 1, 1, IMAGE);
+			0.1) * 100), 0.05, 1, 1, type);
 	}
 
 	/**

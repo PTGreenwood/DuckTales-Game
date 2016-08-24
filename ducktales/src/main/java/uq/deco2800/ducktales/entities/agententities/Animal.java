@@ -1,5 +1,6 @@
 package uq.deco2800.ducktales.entities.agententities;
 
+import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.Point;
 
 import java.util.Random;
@@ -23,17 +24,17 @@ public abstract class Animal extends AgentEntity {
 	protected int thirst;
 	// The animal's movement speed.
 	protected double speed;
-	// The image to be rendered.
-	protected String image;
+	// The type of the animal
+	protected ResourceType type;
 	// Determines whether the animal can be killed.
 	private boolean canBeKilled;
 	// Determines whether the animal is out of its zone
 	private boolean outOfZone;
 
 	public Animal(int x, int y, int health, int hunger, int thirst, double
-			speed, int lengthX, int lengthY, String type) {
+			speed, int lengthX, int lengthY, ResourceType type) {
 		super(x, y, lengthX, lengthY, type);
-		this.image = type;
+		this.type = type;
 		this.health = health;
 		this.hunger = hunger;
 		this.thirst = thirst;
