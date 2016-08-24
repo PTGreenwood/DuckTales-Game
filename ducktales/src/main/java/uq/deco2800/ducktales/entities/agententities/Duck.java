@@ -7,7 +7,7 @@ import uq.deco2800.ducktales.entities.EntityManager;
  *
  * @author Josh Benavides
  */
-public class AnimalDuck extends Animal {
+public class Duck extends Animal {
 
 	private final static String IMAGE = "duck";
 	// Whether the duck can lay eggs.
@@ -23,7 +23,7 @@ public class AnimalDuck extends Animal {
 
 
 	// AnimalDuck attributes will be set in the AnimalManagerClass
-	public AnimalDuck(int x, int y) {
+	public Duck(int x, int y) {
 		super(x, y, (int) ((Math.random() + 0.1) * 100), (int) ((Math.random() + 0.1) * 100), (int) ((Math.random() +
 			0.1) * 100), 0.05, 1, 1, IMAGE);
 	}

@@ -10,11 +10,11 @@ import java.util.*;
 
 
 public class ThreatManager {
- private ArrayList<Effects> EffectsList = new ArrayList<Effects>();
+ private ArrayList<Effect> EffectsList = new ArrayList<Effect>();
  private ArrayList<Enemies> EnemiesList = new ArrayList<Enemies>();
  
  //Temp variables
- public Effects tempEffect;
+ public Effect tempEffect;
  public Enemies tempEnemy;
  
  public void ThreatsLVL1(){
@@ -24,14 +24,14 @@ public class ThreatManager {
 	 
 	 //------Effects---------
 	 	//Create Temp variable
-	 	tempEffect = new Effects("Earthqauke");
+	 	tempEffect = new Effect("Earthqauke");
 	 	//Add parameters to temp variable
 	 	//------------
 	 	//Add temp variable to list
 	 	EffectsList.add(tempEffect);
 	 	
 	 	//Create Temp variable
-	 	tempEffect = new Effects("Poisson Cloud");
+	 	tempEffect = new Effect("Poisson Cloud");
 	 	//Add parameters to temp variable
 	 	//------------
 	 	//Add temp variable to list

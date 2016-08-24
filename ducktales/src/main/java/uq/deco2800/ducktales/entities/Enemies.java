@@ -1,6 +1,6 @@
 package uq.deco2800.ducktales.entities;
 
-public class Enemies extends Threats{
+public class Enemies extends Threat{
 	
 	/**Creates an Enemy that does some harm to the world
 	 * 
