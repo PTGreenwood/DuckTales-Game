@@ -1,18 +1,16 @@
 package uq.deco2800.ducktales.worldBuilder;
 
 import javafx.animation.AnimationTimer;
-import javafx.event.EventHandler;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.transform.Rotate;
-import uq.deco2800.ducktales.ResourceRegister;
-import uq.deco2800.ducktales.tiles.Tile;
+import uq.deco2800.ducktales.resources.ResourceRegister;
+import uq.deco2800.ducktales.resources.tiles.Tile;
+import uq.deco2800.ducktales.resources.tiles.WorldBuilderTile;
 import uq.deco2800.ducktales.util.Array2D;
 import uq.deco2800.ducktales.world.World;
+
+import static uq.deco2800.ducktales.resources.ResourceType.*;
 
 /**
  * Created by Khoi on 19/08/2016.
@@ -44,8 +42,9 @@ public class WorldBuilderRenderer extends AnimationTimer {
     private int startingX;
     private int startingY;
 
-    private Array2D<ImageView> tiles;
+    private Array2D<WorldBuilderTile> tiles;
 
+    @Deprecated
     public WorldBuilderRenderer(GraphicsContext gc) {
         super();
         try {
@@ -65,48 +64,43 @@ public class WorldBuilderRenderer extends AnimationTimer {
 
     public WorldBuilderRenderer(Pane pane) {
         super();
-        this.startingX = (int) pane.getWidth()/2;
-        this.startingY = 0;
-        this.tileHeight = ResourceRegister.TILE_HEIGHT;
-        this.tileWidth = ResourceRegister.TILE_WIDTH;
         this.world = WorldBuilderManager.getInstance().getWorld();
         this.resourceRegister = ResourceRegister.getInstance();
+        this.tileHeight = ResourceRegister.TILE_HEIGHT;
+        this.tileWidth = ResourceRegister.TILE_WIDTH;
+        this.startingX = (int) (this.world.getWidth() * tileWidth * scale * 0.5);
+        this.startingY = 0;
 
         createWorld(pane);
     }
 
     private void createWorld(Pane pane) {
-        this.tiles = new Array2D<ImageView>(world.getWidth(), world.getHeight());
+        this.tiles = new Array2D<>(world.getWidth(), world.getHeight());
 
         int scaledWidth = (int) (tileWidth * scale);
         int scaledHeight = (int) (tileHeight * scale);
 
-        ImageView tile;
+        WorldBuilderTile tile;
+
+        System.out.println("Starting width: " + this.startingX);
+
 
         // Create the array of ImageViews
         for (int i = 0; i < this.world.getWidth(); i++) {
             for (int j = 0; j < this.world.getHeight(); j++) {
-                tiles.set(i, j, new ImageView());
+                tiles.set(i, j, new WorldBuilderTile(i, j));
 
                 int x = startingX + (j - i) * scaledWidth / 2;
                 int y = startingY + (j + i) * scaledHeight / 2;
 
                 tile = tiles.get(i, j);
-                tile.setImage(resourceRegister.getResourceImage("grass_1"));
+                tile.setImage(resourceRegister.getResourceImage(GRASS_1));
 
                 tile.setFitHeight(resourceRegister.TILE_HEIGHT*scale);
                 tile.setFitWidth(resourceRegister.TILE_WIDTH*scale);
 
                 tile.setLayoutX(x);
                 tile.setLayoutY(y);
-
-                tile.setOnMouseEntered(event -> {
-                    ImageView tileHovered = (ImageView) event.getSource();
-                    System.out.println("tile clicked: " + event.getSource());
-                    tileHovered.setImage(resourceRegister.getResourceImage("grass_3"));
-                });
-
-                System.out.println("adding tile at: " + x + ", " + y);
 
                 pane.getChildren().add(tile);
             }
@@ -132,7 +126,9 @@ public class WorldBuilderRenderer extends AnimationTimer {
     /**
      * Renders the world to the canvas
      * This method also handles scaling of the world
+     *
      */
+    @Deprecated
     private void renderWorld() {
         Tile tile;
 

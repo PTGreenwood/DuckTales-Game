@@ -1,5 +1,7 @@
 package uq.deco2800.ducktales.entities.worldentities;
 
+import uq.deco2800.ducktales.resources.ResourceType;
+
 /**
  * A Sawmill.
  * @author 
@@ -7,7 +9,7 @@ package uq.deco2800.ducktales.entities.worldentities;
  */
 public class Cemetery extends WorldEntity{
 	
-	private final static String TYPE = "cemetery";
+	private final static ResourceType TYPE = ResourceType.CEMETERY;
 	
 	private final static int TIME = 2;
 	

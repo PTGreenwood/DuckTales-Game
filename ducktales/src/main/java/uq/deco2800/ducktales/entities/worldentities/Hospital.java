@@ -1,5 +1,7 @@
 package uq.deco2800.ducktales.entities.worldentities;
 
+import uq.deco2800.ducktales.resources.ResourceType;
+
 /**
  * A Sawmill.
  * 
@@ -8,7 +10,7 @@ package uq.deco2800.ducktales.entities.worldentities;
  */
 public class Hospital extends WorldEntity{
 	
-	private final static String TYPE = "hospital";
+	private final static ResourceType TYPE = ResourceType.HOSPITAL;
 	
 	private final static int TIME = 5;
 	

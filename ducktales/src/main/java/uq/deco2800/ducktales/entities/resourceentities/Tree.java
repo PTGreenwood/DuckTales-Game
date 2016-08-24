@@ -1,12 +1,14 @@
 package uq.deco2800.ducktales.entities.resourceentities;
 
 import java.util.Random;
+import static uq.deco2800.ducktales.resources.ResourceType.*;
 
 import uq.deco2800.ducktales.entities.worldentities.WorldEntity;
+import uq.deco2800.ducktales.resources.ResourceType;
 
 public class Tree extends ResourceEntity{
 	
-	private static String[] TYPES = {"tree_1", "tree_2", "tree_3"};
+	private static ResourceType[] TYPES = {TREE_1, TREE_2, TREE_3};
 	
 	private int stage;
 

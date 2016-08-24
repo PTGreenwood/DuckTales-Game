@@ -6,11 +6,10 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 import uq.deco2800.ducktales.*;
+import uq.deco2800.ducktales.resources.ResourceRegister;
+import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.world.*;
 
 import javafx.event.ActionEvent;
@@ -129,13 +128,6 @@ public class DuckTalesController implements Initializable {
 			// Initiate the rendering engine for WorldBuilder
 			new WorldBuilderRenderer(worldBuilderPane).start();
 
-//			ImageView tile = new ImageView();
-//			tile.setFitHeight(100);
-//			tile.setFitWidth(174);
-//			tile.setImage(ResourceRegister.getInstance().getResourceImage("grass_1"));
-//			tile.setLayoutX(worldBuilderPane.getWidth()/2);
-//			tile.setLayoutY(100);
-
 		}
 //		if (worldBuilderCanvas == null) {
 //			// Initialize the gameCanvas
@@ -173,8 +165,7 @@ public class DuckTalesController implements Initializable {
 
 
 	private void createWorld() {
-		gameManager.setWorld(new World("DuckTales", 20, 20, tileRegister
-				.getResourceType("grass_2")));
+		gameManager.setWorld(new World("DuckTales", 20, 20));
 
 	}
 
