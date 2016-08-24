@@ -6,8 +6,10 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import javafx.scene.layout.Pane;
 import uq.deco2800.ducktales.*;
-import uq.deco2800.ducktales.tiles.*;
+import uq.deco2800.ducktales.resources.ResourceRegister;
+import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.world.*;
 import uq.deco2800.ducktales.world.builder.WorldBuilderManager;
 import uq.deco2800.ducktales.world.builder.WorldBuilderRenderer;
@@ -29,6 +31,7 @@ public class DuckTalesController implements Initializable {
 	 */
 	private Canvas gameCanvas;
 	private Canvas worldBuilderCanvas;
+	private Pane worldBuilderPane;
 
 	@FXML
 	private AnchorPane gameWindow, rightPane; // rightPane is referenced in ducktales.fxml
@@ -109,29 +112,45 @@ public class DuckTalesController implements Initializable {
 	 */
 	@FXML
 	public void buildWorld(ActionEvent event) throws Exception {
-		if (worldBuilderCanvas == null) {
-			// Initialize the gameCanvas
-			// and set the canvas to resize as the rightPane is resized
-			worldBuilderCanvas = new Canvas();
-			worldBuilderCanvas.widthProperty().bind(rightPane.widthProperty());
-			worldBuilderCanvas.heightProperty().bind(rightPane.heightProperty());
+		if (worldBuilderPane == null) {
+			worldBuilderPane = new Pane();
+			worldBuilderPane.setMinWidth(rightPane.getWidth());
+			worldBuilderPane.setMinHeight(rightPane.getHeight());
 
-			showCanvas(worldBuilderCanvas);
+			// Adding to right pane
+			rightPane.getChildren().removeAll();
+			rightPane.getChildren().add(worldBuilderPane);
 
-			GraphicsContext gc = worldBuilderCanvas.getGraphicsContext2D();
-
+			// Set the world for the builder
 			worldBuilderManager.setWorld(new World("World Builder", 20, 20));
 
-			try {
-				new WorldBuilderRenderer(gc).start();
-			} catch(Exception e) {
-				System.out.println("failed to start renderer completely");
-			}
+			// Initiate the rendering engine for WorldBuilder
+			new WorldBuilderRenderer(worldBuilderPane).start();
 
-			running = true;
-		} else {
-			showCanvas(worldBuilderCanvas);
 		}
+//		if (worldBuilderCanvas == null) {
+//			// Initialize the gameCanvas
+//			// and set the canvas to resize as the rightPane is resized
+//			worldBuilderCanvas = new Canvas();
+//			worldBuilderCanvas.widthProperty().bind(rightPane.widthProperty());
+//			worldBuilderCanvas.heightProperty().bind(rightPane.heightProperty());
+//
+//			showCanvas(worldBuilderCanvas);
+//
+//			GraphicsContext gc = worldBuilderCanvas.getGraphicsContext2D();
+//
+//			worldBuilderManager.setWorld(new World("World Builder", 20, 20));
+//
+//			try {
+//				new WorldBuilderRenderer(gc).start();
+//			} catch(Exception e) {
+//				System.out.println("failed to start renderer completely");
+//			}
+//
+//			running = true;
+//		} else {
+//			showCanvas(worldBuilderCanvas);
+//		}
 	}
 
 
@@ -145,8 +164,7 @@ public class DuckTalesController implements Initializable {
 
 
 	private void createWorld() {
-		gameManager.setWorld(new World("DuckTales", 20, 20, tileRegister
-				.getResourceType("grass_2")));
+		gameManager.setWorld(new World("DuckTales", 20, 20));
 
 	}
 

@@ -1,7 +1,11 @@
-package uq.deco2800.ducktales.tiles;
+package uq.deco2800.ducktales.resources.tiles;
 
 import uq.deco2800.ducktales.entities.worldentities.WorldEntity;
+import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.Tickable;
+import uq.deco2800.ducktales.resources.ResourceRegister;
+
+import static uq.deco2800.ducktales.resources.ResourceType.*;
 
 /**
  * Represents a square unit of the world.
@@ -13,10 +17,10 @@ public class Tile implements Tickable {
 	/**
 	 * The type of this tile.
 	 */
-	private int tileType;
+	private ResourceType tileType;
 
 	// TODO REMOVE THESE
-	private int oldType = 0;
+	private ResourceType oldType = YELLOW;
 	private boolean path = false;
 
 	private WorldEntity worldEntity;
@@ -27,7 +31,7 @@ public class Tile implements Tickable {
 	 * @param tileType
 	 *            The tile type to create this Tile with
 	 */
-	public Tile(int tileType) {
+	public Tile(ResourceType tileType) {
 		this.tileType = tileType;
 	}
 
@@ -37,7 +41,7 @@ public class Tile implements Tickable {
 	 * @param tileType
 	 *            The type to set this Tile to
 	 */
-	public void setTileType(int tileType) {
+	public void setTileType(ResourceType tileType) {
 		this.tileType = tileType;
 	}
 
@@ -46,10 +50,7 @@ public class Tile implements Tickable {
 	 * 
 	 * @return The type of the Tile
 	 */
-	public int getTileType() {
-		if (!isPassable()) {
-			return ResourceRegister.getInstance().getResourceType("cyan_crossed");
-		}
+	public ResourceType getTileType() {
 		return tileType;
 	}
 
@@ -98,7 +99,7 @@ public class Tile implements Tickable {
 		if (!path) {
 			this.path = true;
 			this.oldType = tileType;
-			this.tileType = ResourceRegister.getInstance().getResourceType("yellow");
+			this.tileType = YELLOW;
 		}
 	}
 

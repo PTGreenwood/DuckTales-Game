@@ -2,8 +2,9 @@ package uq.deco2800.ducktales;
 
 import uq.deco2800.ducktales.entities.Entity;
 import uq.deco2800.ducktales.entities.EntityManager;
-import uq.deco2800.ducktales.tiles.ResourceRegister;
-import uq.deco2800.ducktales.tiles.Tile;
+import uq.deco2800.ducktales.resources.ResourceRegister;
+import uq.deco2800.ducktales.resources.ResourceType;
+import uq.deco2800.ducktales.resources.tiles.Tile;
 import uq.deco2800.ducktales.world.World;
 
 import java.util.Collections;
@@ -59,7 +60,7 @@ public class GameRenderer extends AnimationTimer {
 	/**
 	 * Renders the world to the canvas.
 	 * This method also handles scaling of the world
-	 */
+	 */ 
 	private void renderWorld() {
 		Tile tile;
 
@@ -121,7 +122,7 @@ public class GameRenderer extends AnimationTimer {
 					}
 					int y = baseY + (j + i) * scaledHeight / 2;
 					graphicsContext.drawImage(resourceRegister.getResourceImage(
-							"blank"), x, y, scaledWidth, scaledHeight);
+							ResourceType.BLANK), x, y, scaledWidth, scaledHeight);
 				}
 			}
 		}

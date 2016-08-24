@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 import uq.deco2800.ducktales.GameManager;
+import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.AStar;
 import uq.deco2800.ducktales.util.Point;
 
@@ -16,7 +17,7 @@ import uq.deco2800.ducktales.util.Point;
  */
 public class Peon extends AgentEntity {
 
-	private final static String TYPE = "peon";
+	private final static ResourceType TYPE = ResourceType.PEON;
 
 	private List<Point> goalPoints;
 

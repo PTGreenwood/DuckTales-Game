@@ -1,5 +1,6 @@
 package uq.deco2800.ducktales.entities;
 
+import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.Point;
 import uq.deco2800.ducktales.util.Tickable;
 
@@ -13,7 +14,7 @@ public abstract class Entity implements Comparable<Entity>, Tickable{
 
 	protected Point point;
 	
-	private String type;
+	private ResourceType type;
 
 	/**
 	 * The length in the direction parallel to the x axis - right.
@@ -41,7 +42,7 @@ public abstract class Entity implements Comparable<Entity>, Tickable{
 	 */
 	private double distanceBottom;
 
-	public Entity(double x, double y, int lengthX, int lengthY, String type) {
+	public Entity(double x, double y, int lengthX, int lengthY, ResourceType type) {
 		this.point = new Point(x, y);
 		this.lengthX = lengthX;
 		this.lengthY = lengthY;
@@ -123,11 +124,11 @@ public abstract class Entity implements Comparable<Entity>, Tickable{
 		return lengthX;
 	}
 	
-	public String getType(){
+	public ResourceType getType(){
 		return type;
 	}
 	
-	protected void updateType(String newType){
+	protected void updateType(ResourceType newType){
 		this.type = newType;
 	}
 
