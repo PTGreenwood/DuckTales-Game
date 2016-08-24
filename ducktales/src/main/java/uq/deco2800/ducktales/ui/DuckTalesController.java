@@ -6,6 +6,10 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import uq.deco2800.ducktales.*;
 import uq.deco2800.ducktales.world.*;
 
@@ -29,6 +33,7 @@ public class DuckTalesController implements Initializable {
 	 */
 	private Canvas gameCanvas;
 	private Canvas worldBuilderCanvas;
+	private Pane worldBuilderPane;
 
 	@FXML
 	private AnchorPane gameWindow, rightPane; // rightPane is referenced in ducktales.fxml
@@ -109,29 +114,52 @@ public class DuckTalesController implements Initializable {
 	 */
 	@FXML
 	public void buildWorld(ActionEvent event) throws Exception {
-		if (worldBuilderCanvas == null) {
-			// Initialize the gameCanvas
-			// and set the canvas to resize as the rightPane is resized
-			worldBuilderCanvas = new Canvas();
-			worldBuilderCanvas.widthProperty().bind(rightPane.widthProperty());
-			worldBuilderCanvas.heightProperty().bind(rightPane.heightProperty());
+		if (worldBuilderPane == null) {
+			worldBuilderPane = new Pane();
+			worldBuilderPane.setMinWidth(rightPane.getWidth());
+			worldBuilderPane.setMinHeight(rightPane.getHeight());
 
-			showCanvas(worldBuilderCanvas);
+			// Adding to right pane
+			rightPane.getChildren().removeAll();
+			rightPane.getChildren().add(worldBuilderPane);
 
-			GraphicsContext gc = worldBuilderCanvas.getGraphicsContext2D();
-
+			// Set the world for the builder
 			worldBuilderManager.setWorld(new World("World Builder", 20, 20));
 
-			try {
-				new WorldBuilderRenderer(gc).start();
-			} catch(Exception e) {
-				System.out.println("failed to start renderer completely");
-			}
+			// Initiate the rendering engine for WorldBuilder
+			new WorldBuilderRenderer(worldBuilderPane).start();
 
-			running = true;
-		} else {
-			showCanvas(worldBuilderCanvas);
+//			ImageView tile = new ImageView();
+//			tile.setFitHeight(100);
+//			tile.setFitWidth(174);
+//			tile.setImage(ResourceRegister.getInstance().getResourceImage("grass_1"));
+//			tile.setLayoutX(worldBuilderPane.getWidth()/2);
+//			tile.setLayoutY(100);
+
 		}
+//		if (worldBuilderCanvas == null) {
+//			// Initialize the gameCanvas
+//			// and set the canvas to resize as the rightPane is resized
+//			worldBuilderCanvas = new Canvas();
+//			worldBuilderCanvas.widthProperty().bind(rightPane.widthProperty());
+//			worldBuilderCanvas.heightProperty().bind(rightPane.heightProperty());
+//
+//			showCanvas(worldBuilderCanvas);
+//
+//			GraphicsContext gc = worldBuilderCanvas.getGraphicsContext2D();
+//
+//			worldBuilderManager.setWorld(new World("World Builder", 20, 20));
+//
+//			try {
+//				new WorldBuilderRenderer(gc).start();
+//			} catch(Exception e) {
+//				System.out.println("failed to start renderer completely");
+//			}
+//
+//			running = true;
+//		} else {
+//			showCanvas(worldBuilderCanvas);
+//		}
 	}
 
 
