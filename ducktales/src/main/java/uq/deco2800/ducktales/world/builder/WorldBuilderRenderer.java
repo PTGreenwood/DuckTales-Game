@@ -1,4 +1,4 @@
-package uq.deco2800.ducktales.worldBuilder;
+package uq.deco2800.ducktales.world.builder;
 
 import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.GraphicsContext;

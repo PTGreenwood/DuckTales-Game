@@ -9,7 +9,8 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import uq.deco2800.ducktales.*;
 import uq.deco2800.ducktales.tiles.*;
 import uq.deco2800.ducktales.world.*;
-
+import uq.deco2800.ducktales.world.builder.WorldBuilderManager;
+import uq.deco2800.ducktales.world.builder.WorldBuilderRenderer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,8 +21,6 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import uq.deco2800.ducktales.worldBuilder.WorldBuilderManager;
-import uq.deco2800.ducktales.worldBuilder.WorldBuilderRenderer;
 
 public class DuckTalesController implements Initializable {
 
