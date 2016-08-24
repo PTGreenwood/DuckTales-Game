@@ -3,7 +3,7 @@ package uq.deco2800.ducktales.resources.tiles;
 import javafx.scene.image.ImageView;
 import uq.deco2800.ducktales.resources.ResourceRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
-import uq.deco2800.ducktales.worldBuilder.WorldBuilderManager;
+import uq.deco2800.ducktales.world.builder.WorldBuilderManager;
 
 import static uq.deco2800.ducktales.resources.ResourceType.*;
 
