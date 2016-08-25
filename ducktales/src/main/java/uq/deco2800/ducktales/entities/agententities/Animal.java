@@ -89,11 +89,18 @@ public abstract class Animal extends AgentEntity {
 	}
 
 	/**
-	 * Identifies that the animal is out of its zone.
+	 * Identifies whether the animal is out of its zone.
 	 */
 	public void isOutOfZone() {
 		// if animal location is out of zone limit:
 		this.outOfZone = true;
+	}
+
+	/**
+	 * Tells the animal to attack another entity.
+	 */
+    private void attack() {
+        // Turtles don't attack tho
 	}
 
 	// Getter Methods Below
