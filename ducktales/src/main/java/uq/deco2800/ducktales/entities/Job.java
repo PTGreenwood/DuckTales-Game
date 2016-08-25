@@ -67,4 +67,51 @@ public abstract class Job {
      * the given job
      * @return reqs, int[] of Required Values
      */
+    public int [] getMentorRequirements(){
+        int [] reqs = {this.getMentorStrength(), this.getMentorIntelligence()};
+        return reqs;        
+    }
+    /**
+     * Returns the required strength to become
+     * a mentor in the job
+     * @return mentorStrength
+     */
+    public int getMentorStrength(){
+        return mentorStrength;
+    }
+    /**
+     * Returns the required intelligence to become
+     * a mentor in the job
+     * @return mentorIntelligence;
+     */
+    public int getMentorIntelligence(){
+        return mentorIntelligence;
+    }
+    /**
+     * Defines whether or not the given peon is 
+     * qualified to do the job
+     * @param peon
+     * @return true iff peon is qualified, false otherwise
+     */
+    public boolean isQualified(Peon peon){
+        if (peon.getStrength() >= this.getRequiredStrength() &&
+                peon.getIntelligence() >= this.getRequiredIntelligence()){
+            return true;
+        }
+        return false;
+    }
+    /**
+     * Defines whether or not the given peon is 
+     * qualified to become a mentor in the job
+     * @param peon
+     * @return true iff peon is qualified and is already working, false otherwise
+     */
+    public boolean canBeMentor(Peon peon){
+        if (peon.getStrength() >= this.getMentorStrength()
+                && peon.getIntelligence()>=this.getMentorIntelligence()
+                ){
+            return true;
+        }
+        return false;
+    }
 }
