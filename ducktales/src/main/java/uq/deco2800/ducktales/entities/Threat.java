@@ -40,13 +40,21 @@ public class Threat {
 	 * Set time for a timer of start
 	 * 
 	 * @param time
-	 *            input the system time when the effect needs to start
+	 *            input the system time when the effect needs to start from now
+	 * @param Type System if time is in System time in ms or type Timer if it is time from now           
 	 */
-	public void setStartTimer(float time) {
-		if (time > 0) {
+	public void setStartTimer(float time, String type) {
+		if (time > 0 && type =="System") {
 			this.startTimer = time;
 			this.hasStartTimer = true;
-		} else {
+			
+		}if (time > 0 && type =="Timer") {
+			this.currentTime = System.currentTimeMillis();
+			this.startTimer =  currentTime + time;
+			this.hasStartTimer = true;
+			
+		}
+		else {
 			// throw new exception
 		}
 	}
@@ -55,12 +63,12 @@ public class Threat {
 	 * Set time for a timer of expiry
 	 * 
 	 * @param time
-	 *            in seconds when effect ends from now
+	 *            in seconds when effect ends from when it starts
 	 */
 	public void setEndTimer(float time) {
-		if (time > 0) {
+		if (time > startTimer) {
 			this.currentTime = System.currentTimeMillis();
-			this.endTimer = time + currentTime;
+			this.endTimer = currentTime +startTimer;
 			this.hasEndTimer = true;
 		} else {
 			// throw new exception
@@ -72,7 +80,7 @@ public class Threat {
 	 * 
 	 * @return true if the effect should/end expire
 	 */
-	public boolean hasEffectEnded() {
+	public boolean hasThreatEnded() {
 		this.currentTime = System.currentTimeMillis();
 		if (endTimer == currentTime && hasEndTimer) {
 			// Change HasEndTimer to false (Not sure if if stat will break)
@@ -86,7 +94,7 @@ public class Threat {
 	 * 
 	 * @return true when the effect should start
 	 */
-	public boolean shouldEffectStart() {
+	public boolean shouldThreatStart() {
 		this.currentTime = System.currentTimeMillis();
 		if (startTimer == currentTime && hasStartTimer) {
 			// Change HasStarTimer to false (Not sure if if stat will break)
@@ -118,6 +126,11 @@ public class Threat {
 		} else {
 			return 0;
 		}
+	}
+	
+	public String toString(){
+		return this.name;
+		
 	}
 
 }
