@@ -73,6 +73,7 @@ public class ResourceRegister {
 		addResource(TREE_3, "/tree_3.png");
 		addResource(HOUSE, "/house.png");
 		addResource(DUCK, "/duck.png");
+		addResource(COW, "/cow.png"); 
 		addResource(BLANK, "/blank.png");
 		
 		addResource(SAWMILL, "/sawmill.png");
