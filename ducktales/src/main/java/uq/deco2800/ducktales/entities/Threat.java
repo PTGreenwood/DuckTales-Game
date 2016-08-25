@@ -80,7 +80,7 @@ public class Threat {
 	 * 
 	 * @return true if the effect should/end expire
 	 */
-	public boolean hasEffectEnded() {
+	public boolean hasThreatEnded() {
 		this.currentTime = System.currentTimeMillis();
 		if (endTimer == currentTime && hasEndTimer) {
 			// Change HasEndTimer to false (Not sure if if stat will break)
@@ -94,7 +94,7 @@ public class Threat {
 	 * 
 	 * @return true when the effect should start
 	 */
-	public boolean shouldEffectStart() {
+	public boolean shouldThreatStart() {
 		this.currentTime = System.currentTimeMillis();
 		if (startTimer == currentTime && hasStartTimer) {
 			// Change HasStarTimer to false (Not sure if if stat will break)
