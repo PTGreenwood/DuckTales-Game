@@ -66,7 +66,7 @@ public class Duck extends Animal {
 	}
 
 	/**
-	 *  Returs whether the duck can lay eggs.
+	 *  Returns whether the duck can lay eggs.
 	 * @return canLayEggs
 	 */
 	private boolean canLayEggs() {
