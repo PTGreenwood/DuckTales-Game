@@ -67,6 +67,8 @@ public class World implements Tickable {
 
 		addEntity(new Peon(3, 4));
 		addEntity(new Peon(13, 17));
+
+		// addEntity(new Duck(10,10));
 	}
 
 	/**
