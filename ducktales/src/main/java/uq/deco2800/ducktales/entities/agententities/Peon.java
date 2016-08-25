@@ -28,6 +28,7 @@ public class Peon extends AgentEntity {
 	public Peon(int x, int y) {
 		super(x, y, 1, 1, TYPE);
 		this.speed = 0.05;
+		this.goalPoints = new ArrayList<Point>();
 	}
 
 	public void setHealth(int newValue) {
@@ -42,10 +43,9 @@ public class Peon extends AgentEntity {
 
 	@Override
 	public void tick() {
-		if (goalPoints == null) {
+		if (goalPoints.isEmpty()) {
 			goalPoints = newGoalPoints();
-		}
-		if (point.distance(goalPoints.get(0)) < speed) {
+		} else if (point.distance(goalPoints.get(0)) < speed) {
 			point = goalPoints.remove(0);
 			GameManager.getInstance().getWorld().getTile(point).reset();
 			if (goalPoints.isEmpty()) {

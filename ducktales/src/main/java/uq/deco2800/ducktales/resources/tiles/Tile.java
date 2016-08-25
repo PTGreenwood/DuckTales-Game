@@ -3,9 +3,6 @@ package uq.deco2800.ducktales.resources.tiles;
 import uq.deco2800.ducktales.entities.worldentities.WorldEntity;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.Tickable;
-import uq.deco2800.ducktales.resources.ResourceRegister;
-
-import static uq.deco2800.ducktales.resources.ResourceType.*;
 
 /**
  * Represents a square unit of the world.
@@ -20,7 +17,7 @@ public class Tile implements Tickable {
 	private ResourceType tileType;
 
 	// TODO REMOVE THESE
-	private ResourceType oldType = YELLOW;
+	private ResourceType oldType = ResourceType.YELLOW;
 	private boolean path = false;
 
 	private WorldEntity worldEntity;
@@ -51,7 +48,10 @@ public class Tile implements Tickable {
 	 * @return The type of the Tile
 	 */
 	public ResourceType getTileType() {
-		return tileType;
+		if(isPassable()){
+			return tileType;
+		}
+		return ResourceType.CYAN_CROSSED;
 	}
 
 	/**
@@ -99,7 +99,7 @@ public class Tile implements Tickable {
 		if (!path) {
 			this.path = true;
 			this.oldType = tileType;
-			this.tileType = YELLOW;
+			this.tileType = ResourceType.YELLOW;
 		}
 	}
 
