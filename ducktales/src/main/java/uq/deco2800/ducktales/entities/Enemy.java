@@ -1,6 +1,6 @@
 package uq.deco2800.ducktales.entities;
 
-public class Enemies extends Threat{
+public class Enemy extends Threat{
 	
 	/**Creates an Enemy that does some harm to the world
 	 * 
@@ -8,7 +8,7 @@ public class Enemies extends Threat{
 	 */
 	
 	
-	public Enemies(String name){
+	public Enemy(String name){
 		super(name,"Enemy");
 	}
 	

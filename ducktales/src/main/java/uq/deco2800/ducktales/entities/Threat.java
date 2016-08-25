@@ -119,5 +119,10 @@ public class Threat {
 			return 0;
 		}
 	}
+	
+	public String toString(){
+		return this.name;
+		
+	}
 
 }
