@@ -26,7 +26,7 @@ public class Duck extends Animal {
 	// AnimalDuck attributes will be set in the AnimalManagerClass
 	public Duck(int x, int y) {
 		super(x, y, (int) ((Math.random() + 0.1) * 100), (int) ((Math.random() + 0.1) * 100), (int) ((Math.random() +
-			0.1) * 100), 0.05, 1, 1, type);
+				0.1) * 100), 0.05, 1, 1, type);
 	}
 
 	/**
@@ -34,7 +34,7 @@ public class Duck extends Animal {
 	 * a certain threshold.
 	 */
 	private void layEggs() {
-		if(this.getHealth() >= 85 && this.getHunger() >= 85 && this.getThirst() >= 85) {
+		if (this.getHealth() >= 85 && this.getHunger() >= 85 && this.getThirst() >= 85) {
 			this.canLayEggs = true;
 		}
 	}
@@ -43,7 +43,7 @@ public class Duck extends Animal {
 	 * Enables the duck to drop feathers.
 	 */
 	private void DropFeathers() {
-		if(this.isDead() == true) {
+		if (this.isDead() == true) {
 			this.canDropFeathers = true;
 		}
 	}
@@ -59,6 +59,7 @@ public class Duck extends Animal {
 
 	/**
 	 * Returns whether the duck is dead.
+	 *
 	 * @return isDead;
 	 */
 	private boolean isDead() {
@@ -66,14 +67,15 @@ public class Duck extends Animal {
 	}
 
 	/**
-	 *  Returs whether the duck can lay eggs.
+	 * Returns whether the duck can lay eggs.
+	 *
 	 * @return canLayEggs
 	 */
 	private boolean canLayEggs() {
 		return this.canLayEggs;
 	}
 
-
-
-
+	private boolean canDropFeathers() {
+		return canDropFeathers;
+	}
 }
