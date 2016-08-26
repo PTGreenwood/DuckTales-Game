@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class ThreatsManager {
+public class EffectsTest {
 
 	@Test
 	public void test() {

@@ -1,30 +1,43 @@
-package uq.deco2800.ducktales.entities;
-import java.util.*;
+package uq.deco2800.ducktales;
 
-/** Creates enemies and effects and manages when they are deployed
- * 
- * 
- * @author Wian
- *
- */
+import static org.junit.Assert.*;
 
+import java.util.ArrayList;
 
-public class ThreatManager {
- private ArrayList<Effect> effectsList = new ArrayList<Effect>();
- private ArrayList<Enemy> enemiesList = new ArrayList<Enemy>();
- 
- //Temp variables
- private Effect tempEffect;
- private Enemy tempEnemy;
- 
- 
- 
- public void ThreatsLVL1(){
-	 //Clear Effects
-	 effectsList.clear();
-	 enemiesList.clear();
-	 
-	 //------Effects---------
+import org.junit.Test;
+
+import junit.framework.Assert;
+
+import static org.junit.Assert.assertEquals;
+
+import uq.deco2800.ducktales.entities.Effect;
+import uq.deco2800.ducktales.entities.Enemy;
+import uq.deco2800.ducktales.entities.ThreatManager;
+
+public class ThreatsManagerTest {
+
+	ThreatManager TM = new ThreatManager();
+	
+	@SuppressWarnings("deprecation")
+	@Test // For level1 testing
+	
+	public void testLevel1() {
+		
+		
+		//Temp Variables
+		ArrayList<Effect> effectsList = new ArrayList<Effect>();
+		ArrayList<Enemy> enemiesList = new ArrayList<Enemy>();
+		
+		effectsList.clear();
+		enemiesList.clear();
+		
+		 
+		//Temp variables
+		Effect tempEffect;
+		Enemy tempEnemy;
+		
+		
+		 //------Effects---------
 	 	//Create Temp variable
 	 	tempEffect = new Effect("Shake");
 	 	//Add parameters to temp variable
@@ -64,22 +77,33 @@ public class ThreatManager {
 	 	//Add temp variable to list
 	 	enemiesList.add(tempEnemy);
 	 	
-	 	
-	 
-	 
-	 
-	 
- }
- 
- 
- 
- 
- public void ThreatsLVL2(){
-	//Clear Effects
-	 effectsList.clear();
-	 enemiesList.clear();
-	 
-	//------Effects---------
+	
+		TM.ThreatsLVL1();
+		
+		assertTrue("Effects list is incorrect",TM.returnEffects().get(0).toString().equals(effectsList.get(0).toString()));
+		assertTrue("Effects list is incorrect",TM.returnEffects().get(1).toString().equals(effectsList.get(1).toString()));
+		assertTrue("Enemies list is incorrect", TM.returnEnemies().get(0).toString().equals(enemiesList.get(0).toString()));
+		assertTrue("Enemies list is incorrect", TM.returnEnemies().get(1).toString().equals(enemiesList.get(1).toString()));
+		
+
+		
+	}
+	@Test
+	public void testLevel2() {
+		
+		//Temp Variables
+		ArrayList<Effect> effectsList = new ArrayList<Effect>();
+		ArrayList<Enemy> enemiesList = new ArrayList<Enemy>();
+		
+		effectsList.clear();
+		enemiesList.clear();
+		
+		 
+		//Temp variables
+		Effect tempEffect;
+		Enemy tempEnemy;
+		
+		//------Effects---------
 	 	//Create Temp variable
 	 	tempEffect = new Effect("Rumble");
 	 	//Add parameters to temp variable
@@ -118,15 +142,38 @@ public class ThreatManager {
 	 	tempEnemy.setEndTimer(50);
 	 	//Add temp variable to list
 	 	enemiesList.add(tempEnemy);
- }
- 
- 
- public void ThreatsLVL3(){
-	//Clear Effects
-	 effectsList.clear();
-	 enemiesList.clear();
-	 
-	//------Effects---------
+		
+	 	TM.ThreatsLVL2();
+	 	
+	 	assertTrue("Effects list is incorrect",TM.returnEffects().get(0).toString().equals(effectsList.get(0).toString()));
+		assertTrue("Effects list is incorrect",TM.returnEffects().get(1).toString().equals(effectsList.get(1).toString()));
+		assertTrue("Enemies list is incorrect", TM.returnEnemies().get(0).toString().equals(enemiesList.get(0).toString()));
+		assertTrue("Enemies list is incorrect", TM.returnEnemies().get(1).toString().equals(enemiesList.get(1).toString()));
+		
+		
+		
+		
+		
+		
+		
+	}
+	@Test
+	public void testLevel3() {
+
+		
+		//Temp Variables
+		ArrayList<Effect> effectsList = new ArrayList<Effect>();
+		ArrayList<Enemy> enemiesList = new ArrayList<Enemy>();
+		
+		effectsList.clear();
+		enemiesList.clear();
+		
+		 
+		//Temp variables
+		Effect tempEffect;
+		Enemy tempEnemy;
+		
+		//------Effects---------
 	 	//Create Temp variable
 	 	tempEffect = new Effect("Earthqauke");
 	 	//Add parameters to temp variable
@@ -165,16 +212,33 @@ public class ThreatManager {
 	 	tempEnemy.setEndTimer(50);
 	 	//Add temp variable to list
 	 	enemiesList.add(tempEnemy);
-	 
- }
- 
- 
- public void ThreatsLVL4(){
-	//Clear Effects
-	 effectsList.clear();
-	 enemiesList.clear();
-	 
-	//------Effects---------
+	 	
+	 	TM.ThreatsLVL3();
+	 	
+	 	assertTrue("Effects list is incorrect",TM.returnEffects().get(0).toString().equals(effectsList.get(0).toString()));
+		assertTrue("Effects list is incorrect",TM.returnEffects().get(1).toString().equals(effectsList.get(1).toString()));
+		assertTrue("Enemies list is incorrect", TM.returnEnemies().get(0).toString().equals(enemiesList.get(0).toString()));
+		assertTrue("Enemies list is incorrect", TM.returnEnemies().get(1).toString().equals(enemiesList.get(1).toString()));
+		
+	}
+	
+	
+	@Test
+	public void testLevel4() {
+		
+		//Temp Variables
+		ArrayList<Effect> effectsList = new ArrayList<Effect>();
+		ArrayList<Enemy> enemiesList = new ArrayList<Enemy>();
+		
+		effectsList.clear();
+		enemiesList.clear();
+		
+		 
+		//Temp variables
+		Effect tempEffect;
+		Enemy tempEnemy;
+		
+		//------Effects---------
 	 	//Create Temp variable
 	 	tempEffect = new Effect("Blight");
 	 	//Add parameters to temp variable
@@ -213,36 +277,15 @@ public class ThreatManager {
 	 	tempEnemy.setEndTimer(50);
 	 	//Add temp variable to list
 	 	enemiesList.add(tempEnemy);
-	 
- }
- 
- 
- 
- /**Returns
-  * 
-  * @return The current list of enemies created
-  * 
-  * 
-  */
- public ArrayList<Enemy> returnEnemies(){ 
-	 return this.enemiesList;
- }
- 
- 
- 
- 
- /**
-  * 
-  * 
-  * @return The current list of Effects created.
-  * 
-  * 
-  */
- public ArrayList<Effect> returnEffects(){
-	 return this.effectsList;
- }
- 
- 
- 
- 
+	 	
+	 	
+	 	TM.ThreatsLVL4();
+	 	
+	 	assertTrue("Effects list is incorrect",TM.returnEffects().get(0).toString().equals(effectsList.get(0).toString()));
+		assertTrue("Effects list is incorrect",TM.returnEffects().get(1).toString().equals(effectsList.get(1).toString()));
+		assertTrue("Enemies list is incorrect", TM.returnEnemies().get(0).toString().equals(enemiesList.get(0).toString()));
+		assertTrue("Enemies list is incorrect", TM.returnEnemies().get(1).toString().equals(enemiesList.get(1).toString()));
+	}
+	
+
 }

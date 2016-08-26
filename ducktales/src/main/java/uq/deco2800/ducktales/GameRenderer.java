@@ -2,8 +2,9 @@ package uq.deco2800.ducktales;
 
 import uq.deco2800.ducktales.entities.Entity;
 import uq.deco2800.ducktales.entities.EntityManager;
-import uq.deco2800.ducktales.tiles.ResourceRegister;
-import uq.deco2800.ducktales.tiles.Tile;
+import uq.deco2800.ducktales.resources.ResourceRegister;
+import uq.deco2800.ducktales.resources.ResourceType;
+import uq.deco2800.ducktales.resources.tiles.Tile;
 import uq.deco2800.ducktales.world.World;
 
 import java.util.Collections;
@@ -59,7 +60,7 @@ public class GameRenderer extends AnimationTimer {
 	/**
 	 * Renders the world to the canvas.
 	 * This method also handles scaling of the world
-	 */
+	 */ 
 	private void renderWorld() {
 		Tile tile;
 
@@ -69,6 +70,7 @@ public class GameRenderer extends AnimationTimer {
 		for (int i = 0; i < world.getWidth(); i++) {
 			for (int j = 0; j < world.getHeight(); j++) {
 				tile = world.getTile(i, j);
+				
 				int x = baseX + (j - i) * scaledWidth / 2;
 				int y = baseY + (j + i) * scaledHeight / 2;
 				graphicsContext.drawImage(
@@ -120,7 +122,7 @@ public class GameRenderer extends AnimationTimer {
 					}
 					int y = baseY + (j + i) * scaledHeight / 2;
 					graphicsContext.drawImage(resourceRegister.getResourceImage(
-							"blank"), x, y, scaledWidth, scaledHeight);
+							ResourceType.BLANK), x, y, scaledWidth, scaledHeight);
 				}
 			}
 		}
@@ -134,20 +136,20 @@ public class GameRenderer extends AnimationTimer {
 		List<Entity> entities = entityManager.getEntities();
 		Collections.sort(entities);
 		for (int index = 0; index < entities.size(); index++) {
-			Entity box = entities.get(index);
+			Entity entity = entities.get(index);
 
 			int scaledWidth = (int) (tileWidth * scale);
 			int scaledHeight = (int) (tileHeight * scale);
 
-			Image image = resourceRegister.getResourceImage(box.getType());
-			int x = baseX + (int)((box.getY() - box.getX()) * scaledWidth / 2.0);
-			int y = baseY + (int)((box.getY() + box.getX()) * scaledHeight / 2.0);
+			Image image = resourceRegister.getResourceImage(entity.getType());
+			int x = baseX + (int)((entity.getY() - entity.getX()) * scaledWidth / 2.0);
+			int y = baseY + (int)((entity.getY() + entity.getX()) * scaledHeight / 2.0);
 
 			int anchorY = (int) ((image.getHeight() - tileHeight) * scale);
-			int anchorX = (int) ((box.getYLength() - 1) / 2.0 * tileWidth * scale);
+			int anchorX = (int) ((entity.getYLength() - 1) / 2.0 * tileWidth * scale);
 
 			graphicsContext.drawImage(image, x - anchorX, y - anchorY,
-					scaledWidth * image.getWidth() / tileWidth,
+					(int) (scaledWidth * image.getWidth() / tileWidth),
 					(int) (scaledHeight * image.getHeight() / tileHeight));
 		}
 
