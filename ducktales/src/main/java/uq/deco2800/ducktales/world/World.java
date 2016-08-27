@@ -53,7 +53,9 @@ public class World implements Tickable {
 
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
-				if (Math.sqrt(Math.pow(y + 1, 2) + Math.pow(x + 1, 2)) < 5) {
+				// Changed 1 to 1.0 to remove bug, required at least 1 element to be
+				// a double
+				if (Math.sqrt(Math.pow(y + 1.0, 2) + Math.pow(x + 1.0, 2)) < 5) {
 					// Make a basic lake.
 					tiles.set(x, y, new Tile(WATER));
 				} else {

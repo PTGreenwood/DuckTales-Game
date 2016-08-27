@@ -9,11 +9,14 @@ import uq.deco2800.ducktales.resources.ResourceType;
  */
 public class House extends WorldEntity{
 	
+
+	//private static final String TYPE = "house";
+
 	private final static ResourceType TYPE = ResourceType.HOUSE;
 	
-	private final static int TIME = 2;
+	private static final int TIME = 2;
 	
-	private final static int resourcesToBuild = 5;
+	private static final int BUILDRESOURCES = 5;
 
 	private int Health =1000;
 
@@ -46,12 +49,12 @@ public class House extends WorldEntity{
 	}
 	
 	public int resourcesBuild() {
-		return resourcesToBuild;
+		return BUILDRESOURCES;
 
 	}
 	
 	public int resourcesReturn() {
-		return (int) (0.5*resourcesToBuild);
+		return (int) (0.5*BUILDRESOURCES);
 	}
 
 }

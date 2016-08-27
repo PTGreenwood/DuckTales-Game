@@ -5,16 +5,21 @@ import static uq.deco2800.ducktales.resources.ResourceType.*;
 
 /**
  * A Sawmill.
- * @author 
+ * 
+ * @author Gabrielle Hodge, 43590526
  *
  */
 public class Bakery extends WorldEntity{
 	
+	// Building type, time to build, resources required to build
+	//private static final String TYPE = "bakery";
+
 	private final static ResourceType TYPE = BAKERY;
+
 	
-	private final static int TIME = 4;
+	private static final int TIME = 4;
 	
-	private final static int resourcesToBuild = 14;
+	private static final int BUILDRESOURCES = 14;
 
 	public Bakery(double x, double y) {
 		super(x, y, 2, 2, TYPE);
@@ -33,13 +38,26 @@ public class Bakery extends WorldEntity{
 		return TIME;
 	}
 	
+	/**
+	 * Public method to access and return the integer representation of the 
+	 * resources required to construct the bakery.
+	 * 
+	 * @return the number of resources required to construct a bakery
+	 */
 	public int resourcesBuild() {
-		return resourcesToBuild;
+		return BUILDRESOURCES;
 
 	}
 	
+	/**
+	 * Public method to access and return the integer representation of the 
+	 * resources returned when a building is selected to be destroyed by the 
+	 * user. Will return half of the resources required to construct.
+	 * 
+	 * @return the number of resources refunded when demolished
+	 */
 	public int resourcesReturn() {
-		return (int) (0.5*resourcesToBuild);
+		return (int) (0.5*BUILDRESOURCES);
 	}
 
 }
