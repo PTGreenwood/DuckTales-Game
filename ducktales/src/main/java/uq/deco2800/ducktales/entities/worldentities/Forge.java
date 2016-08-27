@@ -12,7 +12,6 @@ public class Forge extends WorldEntity{
 	
 
 	// Building type, time to build, resources required to build
-	//private static final String TYPE = "forge";
 
 	private static final ResourceType TYPE = ResourceType.FORGE;
 	

@@ -9,8 +9,7 @@ import uq.deco2800.ducktales.resources.ResourceType;
  */
 public class House extends WorldEntity{
 	
-
-	//private static final String TYPE = "house";
+	// Building type, time to build, resources required to build
 
 	private static final ResourceType TYPE = ResourceType.HOUSE;
 	

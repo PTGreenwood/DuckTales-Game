@@ -9,10 +9,8 @@ import uq.deco2800.ducktales.resources.ResourceType;
  *
  */
 public class Observatory extends WorldEntity{
-	
 
 	// Building type, time to build, resources required to build
-	//private static final String TYPE = "observatory";
 
 	private static final ResourceType TYPE = ResourceType.OBSERVATORY;
 	

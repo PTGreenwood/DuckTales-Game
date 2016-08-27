@@ -12,7 +12,6 @@ public class Hospital extends WorldEntity{
 	
 
 	// Building type, time to build, resources required to build
-	//private static final String TYPE = "hospital";
 
 	private static final ResourceType TYPE = ResourceType.HOSPITAL;
 

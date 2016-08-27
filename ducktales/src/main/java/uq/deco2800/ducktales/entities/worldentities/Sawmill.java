@@ -11,7 +11,6 @@ import uq.deco2800.ducktales.resources.ResourceType;
 public class Sawmill extends WorldEntity{
 	
 	// Building type, time to build, resources required to build
-//	private static final String TYPE = "sawmill";
 
 	private static final ResourceType TYPE = ResourceType.SAWMILL;
 

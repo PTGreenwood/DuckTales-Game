@@ -12,7 +12,6 @@ public class Cemetery extends WorldEntity{
 	
 
 	// Building type, time to build, resources required to build
-	//private static final String TYPE = "cemetery";
 
 	private static final ResourceType TYPE = ResourceType.CEMETERY;
 	
