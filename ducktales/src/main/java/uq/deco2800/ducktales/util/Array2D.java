@@ -42,4 +42,8 @@ public class Array2D<T> {
 	public int getHeight() {
 		return height;
 	}
+
+	public int size() {
+		return width*height;
+	}
 }
