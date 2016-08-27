@@ -1,4 +1,4 @@
-package uq.deco2800.ducktales.worldBuilder;
+package uq.deco2800.ducktales.world.builder;
 
 import uq.deco2800.ducktales.world.World;
 
@@ -17,7 +17,6 @@ public class WorldBuilderManager {
 
     private World world;
 
-
     /**
      * Returns the instance of {@link WorldBuilderManager}.
      *
@@ -30,6 +29,7 @@ public class WorldBuilderManager {
      */
     private WorldBuilderManager() {
         // stub method
+
     }
 
     /**

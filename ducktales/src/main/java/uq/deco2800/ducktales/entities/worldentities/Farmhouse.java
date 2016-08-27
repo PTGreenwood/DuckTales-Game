@@ -1,5 +1,7 @@
 package uq.deco2800.ducktales.entities.worldentities;
 
+import uq.deco2800.ducktales.resources.ResourceType;
+
 /**
  * A Farmhouse.
  * 
@@ -8,8 +10,11 @@ package uq.deco2800.ducktales.entities.worldentities;
  */
 public class Farmhouse extends WorldEntity{
 	
+
 	// Building type, time to build, resources required to build
-	private static final String TYPE = "farmhouse";
+	//private static final String TYPE = "farmhouse";
+
+	private final static ResourceType TYPE = ResourceType.FARMHOUSE;
 	
 	private static final int TIME = 9;
 	

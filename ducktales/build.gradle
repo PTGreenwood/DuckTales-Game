@@ -1,8 +1,11 @@
-
 dependencies {
-  
+    testCompile "org.testfx:testfx-core:4.0.+"
+    testCompile "org.testfx:testfx-junit:4.0+"
+    testCompile "org.testfx:testfx-legacy:4.0.+", {
+        exclude group: "junit", module: "junit"
+    }
+    testCompile group: 'org.testfx', name: 'openjfx-monocle', version: '1.8.0_20'
 }
-
 task(run2, dependsOn: "classes", type: JavaExec) {
    main = "uq.deco2800.ducktales.DuckTalesLauncher"
    classpath = sourceSets.main.runtimeClasspath

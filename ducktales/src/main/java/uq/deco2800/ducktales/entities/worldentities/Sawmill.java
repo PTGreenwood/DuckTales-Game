@@ -1,5 +1,7 @@
 package uq.deco2800.ducktales.entities.worldentities;
 
+import uq.deco2800.ducktales.resources.ResourceType;
+
 /**
  * A Sawmill.
  * 
@@ -9,14 +11,17 @@ package uq.deco2800.ducktales.entities.worldentities;
 public class Sawmill extends WorldEntity{
 	
 	// Building type, time to build, resources required to build
-	private static final String TYPE = "sawmill";
+//	private static final String TYPE = "sawmill";
+
+	private final static ResourceType TYPE = ResourceType.SAWMILL;
+
 	
 	private static final int TIME = 3;
 	
 	private static final int BUILDRESOURCES = 10;
 
 	public Sawmill(double x, double y) {
-		super(x, y, 2, 2, TYPE);
+		super(x, y, 3, 3, TYPE);
 	}
 
 	@Override

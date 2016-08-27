@@ -1,5 +1,7 @@
 package uq.deco2800.ducktales.entities.worldentities;
 
+import uq.deco2800.ducktales.resources.ResourceType;
+
 /**
  * A House.
  * @author Leggy
@@ -7,7 +9,10 @@ package uq.deco2800.ducktales.entities.worldentities;
  */
 public class House extends WorldEntity{
 	
-	private static final String TYPE = "house";
+
+	//private static final String TYPE = "house";
+
+	private final static ResourceType TYPE = ResourceType.HOUSE;
 	
 	private static final int TIME = 2;
 	

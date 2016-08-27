@@ -1,5 +1,7 @@
 package uq.deco2800.ducktales.entities.worldentities;
 
+import uq.deco2800.ducktales.resources.ResourceType;
+
 /**
  * A Forge.
  * 
@@ -8,8 +10,11 @@ package uq.deco2800.ducktales.entities.worldentities;
  */
 public class Forge extends WorldEntity{
 	
+
 	// Building type, time to build, resources required to build
-	private static final String TYPE = "forge";
+	//private static final String TYPE = "forge";
+
+	private final static ResourceType TYPE = ResourceType.FORGE;
 	
 	private static final int TIME = 3;
 	

@@ -1,5 +1,8 @@
 package uq.deco2800.ducktales.entities.worldentities;
 
+import uq.deco2800.ducktales.resources.ResourceType;
+import static uq.deco2800.ducktales.resources.ResourceType.*;
+
 /**
  * A Sawmill.
  * 
@@ -9,7 +12,10 @@ package uq.deco2800.ducktales.entities.worldentities;
 public class Bakery extends WorldEntity{
 	
 	// Building type, time to build, resources required to build
-	private static final String TYPE = "bakery";
+	//private static final String TYPE = "bakery";
+
+	private final static ResourceType TYPE = BAKERY;
+
 	
 	private static final int TIME = 4;
 	

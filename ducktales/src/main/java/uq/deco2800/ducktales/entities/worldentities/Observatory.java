@@ -1,5 +1,7 @@
 package uq.deco2800.ducktales.entities.worldentities;
 
+import uq.deco2800.ducktales.resources.ResourceType;
+
 /**
  * An Observatory.
  * 
@@ -8,8 +10,11 @@ package uq.deco2800.ducktales.entities.worldentities;
  */
 public class Observatory extends WorldEntity{
 	
+
 	// Building type, time to build, resources required to build
-	private static final String TYPE = "observatory";
+	//private static final String TYPE = "observatory";
+
+	private final static ResourceType TYPE = ResourceType.OBSERVATORY;
 	
 	private static final int TIME = 5;
 	

@@ -1,5 +1,7 @@
 package uq.deco2800.ducktales.entities.worldentities;
 
+import uq.deco2800.ducktales.resources.ResourceType;
+
 /**
  * A Cemetery.
  * 
@@ -8,8 +10,11 @@ package uq.deco2800.ducktales.entities.worldentities;
  */
 public class Cemetery extends WorldEntity{
 	
+
 	// Building type, time to build, resources required to build
-	private static final String TYPE = "cemetery";
+	//private static final String TYPE = "cemetery";
+
+	private final static ResourceType TYPE = ResourceType.CEMETERY;
 	
 	private static final int TIME = 2;
 	

@@ -7,9 +7,16 @@ import java.util.List;
  */
 public class AnimalManager {
 
-//	private List<AnimalDuck>
-//	private List<AnimalCow>;
-//	private List<AnimalSheep>;
-//	private List<AnimalTurtle>;
+	// Stores all the live Ducks in the world.
+	private List<Duck> ducks;
+//	// Stores all the live Cows in the world.
+//	private List<Cow> cows;
+//	// Stores all the live Sheep in the world.
+//	private List<Sheep> sheep;
+//	// Stores all the live Turtles in the world.
+//	private List<Turtle> turtles;
 
+	public AnimalManager() {
+
+	}
 }
