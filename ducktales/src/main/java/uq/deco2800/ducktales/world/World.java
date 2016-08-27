@@ -3,17 +3,21 @@ package uq.deco2800.ducktales.world;
 import java.util.Random;
 
 import uq.deco2800.ducktales.entities.EntityManager;
-import uq.deco2800.ducktales.entities.agententities.AnimalDuck;
-import uq.deco2800.ducktales.entities.agententities.Peon;
+
+
+import uq.deco2800.ducktales.entities.agententities.*;
 import uq.deco2800.ducktales.entities.worldentities.Box;
-import uq.deco2800.ducktales.entities.worldentities.House;
-import uq.deco2800.ducktales.entities.worldentities.LongBox;
-import uq.deco2800.ducktales.entities.worldentities.Tree;
-import uq.deco2800.ducktales.tiles.ResourceRegister;
-import uq.deco2800.ducktales.tiles.Tile;
-import uq.deco2800.ducktales.util.Array2D;
-import uq.deco2800.ducktales.util.Point;
-import uq.deco2800.ducktales.util.Tickable;
+
+import uq.deco2800.ducktales.resources.ResourceRegister;
+
+
+import uq.deco2800.ducktales.entities.worldentities.*;
+
+import uq.deco2800.ducktales.resources.ResourceType;
+import uq.deco2800.ducktales.resources.tiles.Tile;
+import uq.deco2800.ducktales.util.*;
+
+import static uq.deco2800.ducktales.resources.ResourceType.*;
 
 /**
  * Models the game's physical environment.
@@ -25,65 +29,13 @@ public class World implements Tickable {
 	private Array2D<Tile> tiles;
 	private String name;
 	private static ResourceRegister tileRegister = ResourceRegister.getInstance();
+	private static EntityManager entityManager = EntityManager.getInstance();
 
 	/**
-	 * Instantiates a World object with the specified parameters.
+	 * Instantiate the world with the given params, and the tile types are
+	 * randomized between GRASS_1, GRASS_2 and GRASS_3
 	 *
 	 * Entities are also added
-	 * 
-	 * @param name
-	 *            The name of the World
-	 * @param width
-	 *            The width of the World
-	 * @param height
-	 *            The height of the World
-	 * @param baseTileType
-	 *            The initial tile type to set every tile to
-	 */
-	public World(String name, int width, int height, int baseTileType) {
-		tiles = new Array2D<Tile>(width, height);
-
-		int[] tileTypes = { tileRegister.getResourceType("grass_1"), tileRegister.getResourceType("grass_2"),
-				tileRegister.getResourceType("grass_3") };
-
-		Random random = new Random();
-
-		for (int y = 0; y < height; y++) {
-			for (int x = 0; x < width; x++) {
-				if (Math.sqrt(Math.pow(y + 1, 2) + Math.pow(x + 1, 2)) < 5) {
-					// Make a basic lake.
-					tiles.set(x, y, new Tile(tileRegister.getResourceType("water")));
-				} else {
-					tiles.set(x, y, new Tile(tileTypes[random.nextInt(3)]));
-				}
-			}
-		}
-		
-		EntityManager manager = EntityManager.getInstance();
-		manager.addEntity(new Box(5, 5));
-		manager.addEntity(new Box(9, 7));
-
-		manager.addEntity(new LongBox(12, 15));
-		
-		manager.addEntity(new Peon(10, 10));
-		
-		manager.addEntity(new Tree(4, 4));
-		manager.addEntity(new Tree(6, 4));
-		manager.addEntity(new Tree(8, 4));
-		manager.addEntity(new Tree(10, 4));
-		manager.addEntity(new Tree(12, 4));
-		manager.addEntity(new Tree(14, 4));
-		
-		manager.addEntity(new House(16, 19));
-
-		manager.addEntity(new AnimalDuck(10, 11));
-
-
-	}
-
-	/**
-	 * Instantiates a World object with the specified parameters, with the tile
-	 * type defaulting to type "grass_1".
 	 * 
 	 * @param name
 	 *            The name of the World
@@ -95,11 +47,52 @@ public class World implements Tickable {
 	public World(String name, int width, int height) {
 		tiles = new Array2D<Tile>(width, height);
 
+		ResourceType[] tileTypes = { GRASS_1, GRASS_2, GRASS_3 };
+
+		Random random = new Random();
+
+		for (int y = 0; y < height; y++) {
+			for (int x = 0; x < width; x++) {
+				if (Math.sqrt(Math.pow(y + 1, 2) + Math.pow(x + 1, 2)) < 5) {
+					// Make a basic lake.
+					tiles.set(x, y, new Tile(WATER));
+				} else {
+					tiles.set(x, y, new Tile(tileTypes[random.nextInt(3)]));
+				}
+			}
+		}
+
+		addEntity(new Sawmill(13, 6));
+		addEntity(new Box(4, 15));
+
+		addEntity(new Peon(3, 4));
+		addEntity(new Peon(13, 17));
+
+		// addEntity(new Duck(10,10));
+		addEntity(new Cow(8, 10));
+	}
+
+	/**
+	 * Instantiates a World object with the specified parameters, with the tile
+	 * type defaulting to the given type
+	 * 
+	 * @param name
+	 *            The name of the World
+	 * @param width
+	 *            The width of the World
+	 * @param height
+	 *            The height of the World
+	 * @param baseTileType
+	 *            The initial tile type to set every tile to
+	 */
+	public World(String name, int width, int height, ResourceType baseTileType) {
+		tiles = new Array2D<Tile>(width, height);
+
 		Random random = new Random();
 
 		for (int y = 0; y < width; y++) {
 			for (int x = 0; x < height; x++) {
-				tiles.set(x, y, new Tile(tileRegister.getResourceType("grass_1")));
+				tiles.set(x, y, new Tile(baseTileType));
 			}
 		}
 	}
@@ -151,7 +144,32 @@ public class World implements Tickable {
 		}
 	}
 
-	public void setTile(int x, int y, int tileType) {
+	public void setTile(int x, int y, ResourceType tileType) {
 		getTile(x, y).setTileType(tileType);
+	}
+
+	public void addEntity(AgentEntity entity) {
+		entityManager.addEntity(entity);
+
+	}
+
+	public void addEntity(WorldEntity entity) {
+		int entityX = (int) entity.getX();
+		int entityY = (int) entity.getY();
+
+		int xMin = (int) (entity.getX() - entity.getXLength()) + 1;
+		int yMin = (int) (entity.getY() - entity.getYLength()) + 1;
+
+		if (!(xMin >= 0 && entityX < getWidth() && yMin >= 0 && entityY < getHeight())) {
+			System.out.println("CANNOT ADD WORLD ENTITY");
+			return;
+		}
+		for (int x = xMin; x <= entityX; x++) {
+			for (int y = yMin; y <= entityY; y++) {
+				tiles.get(x, y).setWorldEntity(entity);
+			}
+		}
+		entityManager.addEntity(entity);
+
 	}
 }

@@ -3,33 +3,21 @@ package uq.deco2800.ducktales.entities.worldentities;
 import uq.deco2800.ducktales.resources.ResourceType;
 
 /**
- * A House.
- * @author Leggy
+ * A Sawmill.
+ * 
+ * @author Gabrielle Hodge, 43590526 
  *
  */
-public class House extends WorldEntity{
+public class Hospital extends WorldEntity{
 	
-	private final static ResourceType TYPE = ResourceType.HOUSE;
+	private final static ResourceType TYPE = ResourceType.HOSPITAL;
 	
-	private final static int TIME = 2;
+	private final static int TIME = 5;
 	
-	private final static int resourcesToBuild = 5;
+	private final static int resourcesToBuild = 17;
 
-	private int Health =1000;
-
-
-	public House(double x, double y) {
+	public Hospital(double x, double y) {
 		super(x, y, 2, 2, TYPE);
-	}
-	
-	public void ChangeHealth(int NewValue){
-		if (NewValue >0){
-			this.Health =NewValue;
-		}
-	}
-	
-	public int GetHealth(){
-		return Health;
 	}
 
 	@Override

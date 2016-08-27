@@ -1,5 +1,6 @@
 package uq.deco2800.ducktales.entities.agententities;
 
+import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.Point;
 
 import java.util.Random;
@@ -23,17 +24,17 @@ public abstract class Animal extends AgentEntity {
 	protected int thirst;
 	// The animal's movement speed.
 	protected double speed;
-	// The image to be rendered.
-	protected String image;
+	// The type of the animal
+	protected ResourceType type;
 	// Determines whether the animal can be killed.
 	private boolean canBeKilled;
 	// Determines whether the animal is out of its zone
 	private boolean outOfZone;
 
 	public Animal(int x, int y, int health, int hunger, int thirst, double
-			speed, int lengthX, int lengthY, String type) {
+			speed, int lengthX, int lengthY, ResourceType type) {
 		super(x, y, lengthX, lengthY, type);
-		this.image = type;
+		this.type = type;
 		this.health = health;
 		this.hunger = hunger;
 		this.thirst = thirst;
@@ -54,7 +55,6 @@ public abstract class Animal extends AgentEntity {
 			point.moveToward(nextLocation, speed);
 		}
 		calculateRenderingOrderValues();
-		currentLocation = nextLocation;
 	}
 
 	/**
@@ -79,20 +79,28 @@ public abstract class Animal extends AgentEntity {
 	 * Enables the animal to be killed.
 	 */
 	public void killAnimal() {
-		if(this.getHunger() <= 0 && this.getThirst() <= 0) {
-			this.health = 0;
-		}
-		if(this.getHealth() <= 0) {
-			this.canBeKilled = true; // The animal will be removed in the AnimalManager class.
-		}
+		this.canBeKilled = true;
+//		if(this.getHunger() <= 0 && this.getThirst() <= 0) {
+//			this.health = 0;
+//		}
+//		if(this.getHealth() <= 0) {
+//			this.canBeKilled = true; // The animal will be removed in the AnimalManager class.
+//		}
 	}
 
 	/**
-	 * Identifies that the animal is out of its zone.
+	 * Identifies whether the animal is out of its zone.
 	 */
 	public void isOutOfZone() {
 		// if animal location is out of zone limit:
 		this.outOfZone = true;
+	}
+
+	/**
+	 * Tells the animal to attack another entity.
+	 */
+    private void attack() {
+        // Turtles don't attack tho
 	}
 
 	// Getter Methods Below

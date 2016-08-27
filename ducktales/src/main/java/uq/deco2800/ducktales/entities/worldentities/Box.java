@@ -1,5 +1,7 @@
 package uq.deco2800.ducktales.entities.worldentities;
 
+import uq.deco2800.ducktales.resources.ResourceType;
+
 /**
  * Representation of a basic box.
  * 
@@ -8,7 +10,7 @@ package uq.deco2800.ducktales.entities.worldentities;
  */
 public class Box extends WorldEntity {
 
-	private final static String TYPE = "box";
+	private final static ResourceType TYPE = ResourceType.BOX;
 
 	protected Box(int x, int y, int lengthX, int lengthY) {
 		super(x, y, lengthX, lengthY, TYPE);

@@ -1,4 +1,4 @@
-package uq.deco2800.ducktales.entities.worldentities;
+package uq.deco2800.ducktales.entities.resourceentities;
 
 import uq.deco2800.ducktales.entities.Entity;
 import uq.deco2800.ducktales.resources.ResourceType;
@@ -6,12 +6,12 @@ import uq.deco2800.ducktales.resources.ResourceType;
 /**
  * Abstract representation of all static world entities.
  * 
- * @author Leggy
+ * @author Andrew 22/08/16
  *
  */
-public abstract class WorldEntity extends Entity {
+public abstract class ResourceEntity extends Entity {
 
-	protected WorldEntity(double x, double y, int lengthX, int lengthY, ResourceType type) {
+	protected ResourceEntity(double x, double y, int lengthX, int lengthY, ResourceType type) {
 		super(x, y, lengthX, lengthY, type);
 	}
 
@@ -21,5 +21,10 @@ public abstract class WorldEntity extends Entity {
 	 * @return Returns true if this WorldEntity is passable.
 	 */
 	public abstract boolean isPassable();
+	
+	
+	public int getValue(){
+		return 0;
+	}
 
 }
