@@ -7,6 +7,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -24,54 +25,58 @@ import uq.deco2800.ducktales.ui.MousePressedHandler;
 import uq.deco2800.ducktales.ui.MouseReleasedHandler;
 import uq.deco2800.ducktales.world.builder.WorldBuilderManager;
 
-public class TutorialController implements Initializable {
+public class TutorialController {
 	
 	
-	private BorderPane tutorialPane;
+	//private BorderPane tutorialPane;
 	
-	@FXML
-	private Pane tutorial1;
+	
+	private BorderPane tutorial1;
+	private BorderPane tutorial2;
+	private BorderPane tutorial3;
 	
 	@FXML
 	private AnchorPane tutorialWindow, rightPane;
 	
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		
-
-		// Set the handlers for the game panes
-		rightPane.setOnMousePressed(new MousePressedHandler());
-		rightPane.setOnMouseReleased(new MouseReleasedHandler());
-		rightPane.setOnMouseDragged(new MouseDraggedHandler());
-		rightPane.setOnMouseMoved(new MouseMovedHandler());
-		tutorialWindow.setOnKeyPressed(new KeyboardHandler());
-		tutorialWindow.setOnKeyReleased(new KeyboardHandler());
-	}
+	
 	
 	@FXML
 	public void startTutorial1(ActionEvent event) throws Exception {
-		if (tutorial1 == null) { // the canvas has not been initialized
-			// Initialize the gameCanvas
-			// and set the canvas to resize as the rightPane is resized
-			
-			
-			
-			//showPane(tutorial1);
-
-
-
-			
-			
-		} else {
-			// just show the canvas
-			//showPane(tutorial1);
-		}
+		
+		URL location = getClass().getResource("tutorial1.fxml");
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(location);
+		tutorial1 = loader.load();
+		tutorial1.setPrefHeight(rightPane.getHeight());
+		tutorial1.setPrefWidth(rightPane.getWidth());
+		rightPane.getChildren().removeAll(tutorial1,tutorial2,tutorial3);
+		rightPane.getChildren().add(tutorial1);
 	}
 	
+	@FXML
+	public void startTutorial2(ActionEvent event) throws Exception {
+		
+		URL location = getClass().getResource("tutorial2.fxml");
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(location);
+		tutorial2 = loader.load();
+		tutorial2.setPrefHeight(rightPane.getHeight());
+		tutorial2.setPrefWidth(rightPane.getWidth());
+		rightPane.getChildren().removeAll(tutorial1,tutorial2,tutorial3);
+		rightPane.getChildren().add(tutorial2);
+	}
 	
-	private void showPane(Pane pane) {
-		rightPane.getChildren().removeAll();
-		rightPane.getChildren().add(pane);
+	@FXML
+	public void startTutorial3(ActionEvent event) throws Exception {
+		
+		URL location = getClass().getResource("tutorial3.fxml");
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(location);
+		tutorial3 = loader.load();
+		tutorial3.setPrefHeight(rightPane.getHeight());
+		tutorial3.setPrefWidth(rightPane.getWidth());
+		rightPane.getChildren().removeAll(tutorial1,tutorial2,tutorial3);
+		rightPane.getChildren().add(tutorial3);
 	}
 	
 }
