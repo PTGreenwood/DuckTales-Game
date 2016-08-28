@@ -21,13 +21,12 @@ public class GameLoop implements Runnable {
 	
 	private EntityManager entityManager = EntityManager.getInstance();
 	//Test adding time
-	private DuckCalendar duckCalendar;
+	private DuckCalendar duckCalendar = new DuckCalendar(1, 1);
 	
 	public GameLoop(AtomicBoolean quit, int tick) {
 		this.world = GameManager.getInstance().getWorld();
 		this.tick = tick;
-		this.quit = quit;
-		this.duckCalendar =  new DuckCalendar(1,1);
+		this.quit = quit;  
 
 	}
 

@@ -11,8 +11,7 @@ public class DuckClock {
 	//Instantiate a the time variables
 	int hour;
 	int minute;
-	//int day;
-	//int year;
+
 	
 	public DuckClock() {
 		this.hour = 0;
@@ -26,17 +25,12 @@ public class DuckClock {
 			this.hour++;
 			this.minute = 0;
 		}
-		
-		//if(this.hour == 24) {
-		//	day++;
-		//	this.currentHour = 0;
-		//}
-		//System.out.println(this.currentHour);
 	}
-
-	//public String getTime() {
-	//	return "" + this.currentHour + ":" + this.currentMinute;*/
-		
-	//}
-		
+	
+	/*Notes/thoughts
+	*
+	*Need to somehow implement the day counter in for when it reaches 24 hours in the day
+	*This could be super.day++ but that cause's errors
+	*Maybe I'm implementing Super/implements wrong.
+	*/
 }

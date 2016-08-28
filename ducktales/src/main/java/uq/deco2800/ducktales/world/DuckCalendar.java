@@ -24,7 +24,7 @@ public class DuckCalendar {// implements Tickable{
 	//private List<Date> markedDates;
 	
 	/**
-	 * 
+	 * 20 Day Seasons. 4 Seasons to 1 year.
 	 * @param d
 	 * 		- Integer: Current Day (1 >= d <= 80)
 	 * @param y
