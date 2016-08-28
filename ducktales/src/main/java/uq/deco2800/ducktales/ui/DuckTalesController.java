@@ -68,6 +68,7 @@ public class DuckTalesController implements Initializable {
 		gameWindow.setOnKeyPressed(new KeyboardHandler());
 		gameWindow.setOnKeyReleased(new KeyboardHandler());
 	}
+	
 	@FXML 
 	private void tutorial(ActionEvent event) throws Exception {
 				
@@ -75,7 +76,8 @@ public class DuckTalesController implements Initializable {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(location);
 		Parent root = loader.load(location.openStream());
-		Scene tutorialScene = new Scene(root, 400, 400);		
+		Scene tutorialScene = new Scene(root, 400, 400);
+		
 		Stage tutorialStage = new Stage();
 		tutorialStage.setTitle("Tutorial");
 		tutorialStage.setScene(tutorialScene);
