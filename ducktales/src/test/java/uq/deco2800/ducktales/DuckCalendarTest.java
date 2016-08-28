@@ -1,17 +1,15 @@
 package uq.deco2800.ducktales;
 
-
-import java.util.ArrayList;
+import uq.deco2800.ducktales.world.DuckCalendar;
+import uq.deco2800.ducktales.world.DuckClock;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-
-public class TimeTest {
+public class DuckCalendarTest {
 
 	//Instantiate Here 
-	
-	
+	DuckClock clock = new DuckClock();
+	DuckCalendar duckCal = new DuckCalendar(1, 1);
 	@Test // For firstTest testing (not sure yet :S)
 	public void firstTest() {
 		
@@ -19,6 +17,7 @@ public class TimeTest {
 
 		//Test Here:
 		//AssertTrue("");
+
 	}
 	
 	@Test //for secondTest testing (also not sure if we will use it just yet)
