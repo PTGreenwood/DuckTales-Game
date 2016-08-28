@@ -25,6 +25,7 @@ public abstract class WorldEntity extends Entity {
 	
 	/**
 	 * Returns the time to construct the building
+	 * 
 	 * @return int representing time to construct
 	 */
 	public abstract int timeToBuild();
@@ -32,6 +33,7 @@ public abstract class WorldEntity extends Entity {
 	/**
 	 * Returns the wood resources required to construct the 
 	 * building
+	 * 
 	 * @return the int of wood required
 	 */
 	public abstract int resourcesBuildWood();
@@ -39,6 +41,7 @@ public abstract class WorldEntity extends Entity {
 	/**
 	 * Returns the stone resources required to construct the 
 	 * building
+	 * 
 	 * @return the int of stone required
 	 */
 	public abstract int resourcesBuildStone();
@@ -46,6 +49,7 @@ public abstract class WorldEntity extends Entity {
 	/**
 	 * Returns the wood resources returned when the 
 	 * building is demolished
+	 * 
 	 * @return the int of wood returned
 	 */
 	public abstract int resourcesReturnWood();
@@ -53,6 +57,7 @@ public abstract class WorldEntity extends Entity {
 	/**
 	 * Returns the stone resources returned when the 
 	 * building is demolished
+	 * 
 	 * @return the int of stone returned
 	 */
 	public abstract int resourcesReturnStone();
