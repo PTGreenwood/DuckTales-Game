@@ -56,6 +56,7 @@ public class ResourceRegister {
 		resourceTypeRegister = new ConcurrentHashMap<>();
 		currentCount = 0;
 
+		// Landscape resources
 		addResource(VOID, "/black.png");
 		addResource(CYAN, "/cyan.png");
 		addResource(CYAN_CROSSED, "/cyan_crossed.png");
@@ -64,6 +65,11 @@ public class ResourceRegister {
 		addResource(GRASS_2, "/grass_2.png");
 		addResource(GRASS_3, "/grass_3.png");
 		addResource(WATER, "/water.png");
+		addResource(DIRT_1, "/dirt_1.png");
+		addResource(DIRT_2, "/dirt_2.png");
+		addResource(DIRT_3, "/dirt_3.png");
+		addResource(BLANK, "/blank.png");
+
 		addResource(BOX, "/box2.png");
 		addResource(LONG_BOX, "/longbox.png");
 		addResource(PEON, "/peon.png");
@@ -74,7 +80,7 @@ public class ResourceRegister {
 		addResource(HOUSE, "/house.png");
 		addResource(DUCK, "/duck.png");
 		addResource(COW, "/cow.png"); 
-		addResource(BLANK, "/blank.png");
+
 		
 		addResource(SAWMILL, "/sawmill.png");
 		//To be uncommented as the relevant graphics are created

@@ -1,0 +1,9 @@
+.resourceMenu {
+    -fx-background-color: grey;
+}
+.tileMenu {
+    -fx-background-color: grey;
+}
+.buildingScene {
+    -fx-background-color: beige;
+}
