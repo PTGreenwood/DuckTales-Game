@@ -1,19 +1,19 @@
 package uq.deco2800.ducktales.world.builder;
 
 import javafx.animation.AnimationTimer;
-import javafx.scene.canvas.GraphicsContext;
+import javafx.geometry.Insets;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
+import uq.deco2800.ducktales.renderingEngine.WorldEntityRenderingInfo;
 import uq.deco2800.ducktales.resources.ResourceRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
-import uq.deco2800.ducktales.resources.tiles.Tile;
 import uq.deco2800.ducktales.resources.tiles.WorldBuilderTile;
 import uq.deco2800.ducktales.util.Array2D;
 import uq.deco2800.ducktales.world.World;
-
-import java.util.ArrayList;
 
 import static uq.deco2800.ducktales.resources.ResourceType.*;
 
@@ -27,7 +27,19 @@ public class WorldBuilderRenderer extends AnimationTimer {
      */
     private final double TRANSPARENCY = 0.5;
     private final ResourceType[] TILE_TYPES = {
-            GRASS_1, GRASS_2, GRASS_3, DIRT_1, DIRT_2, DIRT_3};
+        GRASS_1, GRASS_2, GRASS_3, DIRT_1, DIRT_2, DIRT_3
+    };
+    private final ResourceType[] RESOURCE_TYPES = {
+        HOSPITAL, BAKERY, BARN
+    };
+    // The constants to layout the UI elements
+    private double BUILDING_SCENE_H_PORTION = 85.0/100.0;
+    private double BUILDING_SCENE_V_PORTION = 60.0/100.0;
+    private double TILE_MENU_H_PORTION = 100.0 - BUILDING_SCENE_H_PORTION;
+    private double TILE_MENU_V_PORTION = BUILDING_SCENE_V_PORTION;
+    private double RESOURCE_MENU_H_PORTION = 1.0;
+    private double RESOURCE_MENU_V_PORTION = 100.0 - BUILDING_SCENE_V_PORTION;
+
 
     /** General rendering variables */
     private World world;
@@ -35,8 +47,19 @@ public class WorldBuilderRenderer extends AnimationTimer {
     private int tileHeight;
     private int tileWidth;
 
+    /** UI variables */
+    private BorderPane worldBuilderPane; // The parent pane to layout all the ui elements
+    private Pane buildingScene;
+    private VBox tileMenu;
+    private HBox resourceMenu;
+
     /** The scale/zoom factor */
     private double scale = 0.2;
+
+    /**
+     * The rendering engine
+     */
+    WorldEntityRenderingInfo renderingEngine;
 
     /**
      * starting X and Y positions to render the tiles
@@ -49,12 +72,25 @@ public class WorldBuilderRenderer extends AnimationTimer {
      */
     private Array2D<WorldBuilderTile> tiles;
 
-    public WorldBuilderRenderer(Pane buildingScene, VBox tileMenu, HBox resourceMenu) {
+    private ImageView hoveringImage;
+
+    /**
+     * CONSTRUCTOR METHOD
+     * @param root
+     *          The root pane to render onto
+     */
+    public WorldBuilderRenderer(BorderPane root) {
         super();
+
+        // Setup the UI elements
+        this.worldBuilderPane = root;
+        setupWorldBuilderUI();
+
         this.world = WorldBuilderManager.getInstance().getWorld();
         this.resourceRegister = ResourceRegister.getInstance();
         this.tileHeight = ResourceRegister.TILE_HEIGHT;
         this.tileWidth = ResourceRegister.TILE_WIDTH;
+        this.renderingEngine = WorldEntityRenderingInfo.getInstance();
 
         // Setup the initial point where the rendering will start from
         this.startingX = (int) (this.world.getWidth() * tileWidth * scale * 0.5);
@@ -62,9 +98,16 @@ public class WorldBuilderRenderer extends AnimationTimer {
 
         createWorld(buildingScene);
         createTileMenu(tileMenu);
-        createResourceMenu(resourceMenu);
+        createWorldEntityMenu(resourceMenu);
+        setupHoveringImage(buildingScene);
     }
 
+    /**
+     * Set the current tile being selected to be shown on the map whenever
+     * a tile is hovered upon
+     *
+     * @param tileType
+     */
     public void setCurrentTileSelected(ResourceType tileType) {
         for (int i = 0; i < tiles.getWidth(); i++) {
             for (int j = 0; j < tiles.getHeight(); j++) {
@@ -73,24 +116,51 @@ public class WorldBuilderRenderer extends AnimationTimer {
         }
     }
 
+    public void setCurrentEntitySelected(ResourceType entityType) {
+        // Set the image that will follow the mouse
+        Image image = resourceRegister.getResourceImage(entityType);
+        hoveringImage.setImage(image);
+        hoveringImage.setY(-image.getHeight());
+        hoveringImage.setX(-renderingEngine.getStartPoint(entityType));
+    }
+
+    /**
+     * Initialize and set up the image to be displayed at the cursor when
+     * a world entity is clicked on
+     */
+    private void setupHoveringImage(Pane buildingScene) {
+        this.hoveringImage = new ImageView();
+
+        buildingScene.getChildren().add(hoveringImage);
+        buildingScene.setOnMouseMoved(event -> {
+            System.out.println("X Y are: " + event.getX() + ", " + event.getY());
+            hoveringImage.setLayoutX(event.getX());
+            hoveringImage.setLayoutY(event.getY());
+        });
+    }
+
     /**
      * Create the menu with all the resources to be added to the world
-     * @param resourceMenu
+     * @param worldEntityMenu
+     *          The HBox to add the resource images into
      */
-    private void createResourceMenu(HBox resourceMenu) {
-
+    private void createWorldEntityMenu(HBox worldEntityMenu) {
+        for (int i = 0; i < RESOURCE_TYPES.length; i++) {
+            worldEntityMenu.getChildren().add(
+                    new WorldEntitySprite(RESOURCE_TYPES[i]));
+        }
     }
 
     /**
      * Create the menu with all the tiles to be added to the world
      * @param tileMenu
+     *          The VBox to add all the tile images into
      */
     private void createTileMenu(VBox tileMenu) {
         for (int i = 0; i < TILE_TYPES.length; i++) {
             tileMenu.getChildren().add(new TileSprite(TILE_TYPES[i]));
         }
     }
-
 
     /**
      * Create and render the world into the world building scene
@@ -131,6 +201,47 @@ public class WorldBuilderRenderer extends AnimationTimer {
 
     }
 
+
+    /**
+     * Set up the UI for WorldBuidler
+     */
+    private void setupWorldBuilderUI() {
+        double renderingWidth = worldBuilderPane.getWidth();
+        double renderingHeight = worldBuilderPane.getHeight();
+
+        // The border pane to put all the panes into
+        this.worldBuilderPane.getStylesheets().add("/builderStyle.css");
+
+        // The pane where the world is rendered onto
+        buildingScene = new Pane();
+        buildingScene.setPrefSize(
+                renderingWidth * BUILDING_SCENE_H_PORTION,
+                renderingHeight * BUILDING_SCENE_V_PORTION
+        );
+        buildingScene.getStyleClass().add("buildingScene");
+
+        // The pane containing the tiles
+        tileMenu = new VBox();
+        tileMenu.setPrefSize(
+                renderingWidth * TILE_MENU_H_PORTION,
+                renderingHeight * TILE_MENU_V_PORTION
+        );
+        tileMenu.getStyleClass().add("tileMenu");
+        tileMenu.setPadding(new Insets(25));
+        tileMenu.setSpacing(20);
+
+        // The pane containing the resources
+        resourceMenu = new HBox();
+        resourceMenu.setPrefWidth(renderingWidth * RESOURCE_MENU_H_PORTION);
+        resourceMenu.setMaxHeight(renderingHeight * RESOURCE_MENU_V_PORTION);
+        resourceMenu.getStyleClass().add("resourceMenu");
+
+        // Add the child panes into the main pane
+        this.worldBuilderPane.setCenter(buildingScene);
+        this.worldBuilderPane.setRight(tileMenu);
+        this.worldBuilderPane.setBottom(resourceMenu);
+    }
+
     @Override
     public void handle(long arg0) {
         //renderWorld();
@@ -146,24 +257,11 @@ public class WorldBuilderRenderer extends AnimationTimer {
         super.stop();
     }
 
-    /**
-     * The class used to store the coordinates for each tile whenever rendering each tile
-     * The purpose of this class is to make rendering the tiles more understandable
-     */
-    private class Coordinate {
-        private double x;
-        private double y;
+    private class HoveringImage extends ImageView{
+        public HoveringImage() {
+            super();
+            this.setImage(null);
 
-        public Coordinate(double x, double y) {
-            this.x = x;
-            this.y = y;
-        }
-
-        public double getX() {
-            return this.x;
-        }
-        public double getY() {
-            return this.y;
         }
     }
 }

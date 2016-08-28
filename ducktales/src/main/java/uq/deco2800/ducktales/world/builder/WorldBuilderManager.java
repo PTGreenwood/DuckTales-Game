@@ -1,7 +1,11 @@
 package uq.deco2800.ducktales.world.builder;
 
 import uq.deco2800.ducktales.resources.ResourceType;
+import uq.deco2800.ducktales.resources.tiles.WorldBuilderTile;
+import uq.deco2800.ducktales.util.Array2D;
 import uq.deco2800.ducktales.world.World;
+
+import java.util.ArrayList;
 
 import static uq.deco2800.ducktales.resources.ResourceType.*;
 
@@ -17,6 +21,12 @@ import static uq.deco2800.ducktales.resources.ResourceType.*;
  */
 public class WorldBuilderManager {
     private static final WorldBuilderManager INSTANCE = new WorldBuilderManager();
+    /**
+     * CONSTANTS
+     */
+    public final int TILE = 0;
+    public final int ENTITY = 1;
+
 
     private World world;
     private WorldBuilderRenderer renderer;
@@ -33,8 +43,6 @@ public class WorldBuilderManager {
      * Constructor of the WorldBuilderManager class
      */
     private WorldBuilderManager() {
-        // stub method
-
     }
 
     public void setRenderer(WorldBuilderRenderer renderer) {
@@ -71,9 +79,14 @@ public class WorldBuilderManager {
      * @param resource
      *          The type of resource that is being managed
      */
-    public void setCurrentResource(ResourceType resource) {
+    public void setCurrentResource(ResourceType resource, int type) {
         currentResource = resource;
-        renderer.setCurrentTileSelected(resource);
+        if (type == this.TILE) {
+            renderer.setCurrentTileSelected(resource);
+        } else if (type == this.ENTITY) {
+            renderer.setCurrentEntitySelected(resource);
+        }
+
         System.out.println("Current resource is: " + resource.toString());
     }
 
