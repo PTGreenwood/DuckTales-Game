@@ -42,6 +42,9 @@ public class DuckTalesController implements Initializable {
 
 	private AtomicBoolean quit;
 
+	public Stage tutorialStage;
+	
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		tileRegister = ResourceRegister.getInstance();
@@ -56,15 +59,19 @@ public class DuckTalesController implements Initializable {
 		gameWindow.setOnKeyPressed(new KeyboardHandler());
 		gameWindow.setOnKeyReleased(new KeyboardHandler());
 	}
+	
 	@FXML 
 	private void tutorial(ActionEvent event) throws Exception {
 				
+		
+		
 		URL location = getClass().getResource("/tutorial.fxml");
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(location);
 		Parent root = loader.load(location.openStream());
-		Scene tutorialScene = new Scene(root, 400, 400);		
-		Stage tutorialStage = new Stage();
+		Scene tutorialScene = new Scene(root, 400, 400);
+		
+		this.tutorialStage = new Stage();
 		tutorialStage.setTitle("Tutorial");
 		tutorialStage.setScene(tutorialScene);
 		tutorialStage.show();
