@@ -1,9 +1,15 @@
 .resourceMenu {
-    -fx-background-color: grey;
+    -fx-background-color: #A7AA9F;
 }
 .tileMenu {
-    -fx-background-color: grey;
+    -fx-background-color: #A7AA9F;
 }
 .buildingScene {
-    -fx-background-color: beige;
+    -fx-background-color: #F0EDE4;
+    -fx-border-color: #574940;
+        -fx-border-insets: 0;
+        -fx-border-width: 2;
+}
+.tileTypes {
+    -fx-effect: dropshadow(gaussian, #F4F4F4, 10, 3, 3, 3);
 }
