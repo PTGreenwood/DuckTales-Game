@@ -17,7 +17,7 @@ public class WorldEntityRenderingInfo {
     /**
      * The lowest visible points of the corresponding entities
      */
-    private final int HOSPITAL_START_POINT = 150;
+    private final int HOSPITAL_START_POINT = 40;
 
     private static WorldEntityRenderingInfo ourInstance = new WorldEntityRenderingInfo();
 

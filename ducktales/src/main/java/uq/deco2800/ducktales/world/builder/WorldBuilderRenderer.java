@@ -13,8 +13,9 @@ import uq.deco2800.ducktales.resources.ResourceRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.resources.tiles.WorldBuilderTile;
 import uq.deco2800.ducktales.util.Array2D;
-import uq.deco2800.ducktales.util.Point;
 import uq.deco2800.ducktales.world.World;
+
+import java.util.ArrayList;
 
 import static uq.deco2800.ducktales.resources.ResourceType.*;
 
@@ -54,8 +55,8 @@ public class WorldBuilderRenderer extends AnimationTimer {
     private VBox tileMenu;
     private HBox resourceMenu;
 
-    /** The scale/zoom factor */
-    private double scale = 0.2;
+    /** The SCALE/zoom factor */
+    private double SCALE = 0.2;
 
     /**
      * The rendering engine
@@ -79,6 +80,11 @@ public class WorldBuilderRenderer extends AnimationTimer {
     private Array2D<WorldBuilderTile> tiles;
 
     /**
+     * The list of entities that have been added onto the scene
+     */
+    private ArrayList<ImageView> addedEntities;
+
+    /**
      * Variables to control the hovering image when managing a world entity
      */
     private ImageView hoveringImage; // The sprite for the image
@@ -86,6 +92,7 @@ public class WorldBuilderRenderer extends AnimationTimer {
 
     /**
      * CONSTRUCTOR METHOD
+     *
      * @param root
      *          The root pane to render onto
      */
@@ -101,10 +108,11 @@ public class WorldBuilderRenderer extends AnimationTimer {
         this.tileHeight = ResourceRegister.TILE_HEIGHT;
         this.tileWidth = ResourceRegister.TILE_WIDTH;
         this.renderingEngine = WorldEntityRenderingInfo.getInstance();
+        this.addedEntities = new ArrayList<>();
 
         // Setup the initial point where the rendering will start from
-        this.startingX = (int) (this.world.getWidth() * tileWidth * scale * 0.5);
-        this.startingY = (int) (this.world.getHeight() * tileHeight * scale * 0.3);
+        this.startingX = (int) (this.world.getWidth() * tileWidth * SCALE * 0.5);
+        this.startingY = (int) (this.world.getHeight() * tileHeight * SCALE * 0.3);
 
         createWorld(buildingScene);
         createTileMenu(tileMenu);
@@ -114,11 +122,14 @@ public class WorldBuilderRenderer extends AnimationTimer {
 
     /**
      * Set the current tile being selected to be shown on the map whenever
-     * a tile is hovered upon
+     * a tile is hovered upon, and also make sure the hovering image is not
+     * shown anymore
      *
      * @param tileType
      */
     public void setCurrentTileSelected(ResourceType tileType) {
+        hoveringImage.setImage(null);
+
         for (int i = 0; i < tiles.getWidth(); i++) {
             for (int j = 0; j < tiles.getHeight(); j++) {
                 tiles.get(i, j).setHoverType(tileType);
@@ -130,7 +141,12 @@ public class WorldBuilderRenderer extends AnimationTimer {
         // Set the image that will follow the mouse
         Image image = resourceRegister.getResourceImage(entityType);
         hoveringImage.setImage(image);
-        hoveringImage.setY(-image.getHeight());
+
+        // setup the size of the rendered image
+        hoveringImage.setFitHeight(image.getHeight() * SCALE);
+        hoveringImage.setFitWidth(image.getWidth() * SCALE);
+
+        hoveringImage.setY(-hoveringImage.getFitHeight());
         hoveringImage.setX(-renderingEngine.getStartPoint(entityType));
     }
 
@@ -150,11 +166,43 @@ public class WorldBuilderRenderer extends AnimationTimer {
         isTiledHovered = true;
         WorldBuilderTile tile = tiles.get(x, y);
 
-        hoveringImage.setLayoutX(tile.getLayoutX());
-        hoveringImage.setLayoutY(tile.getLayoutY());
+        hoveringImage.setLayoutX(tile.getLayoutX() + tile.getFitWidth()/2);
+        hoveringImage.setLayoutY(tile.getLayoutY() + tile.getFitHeight()/2);
     }
+
+    /**
+     * This method will make sure that the hoveringImage will follow the cursor
+     * if the cursor is not hovered on any tile.
+     *
+     * NOTE: there is currently a bug which causes occasional jittering when
+     * cursor moves from one tile to another
+     */
     public void notifyTileEndHovering() {
         isTiledHovered = false;
+    }
+
+    /**
+     * This method will be called whenever a tile is clicked while an entity is
+     * being managed. It will add the currently managed entity onto the scene
+     * @param x
+     * @param y
+     */
+    public void notifyTileClicked(int x, int y) {
+        ImageView entity = new ImageView();
+        entity.setImage(hoveringImage.getImage());
+        entity.setFitHeight(hoveringImage.getFitHeight());
+        entity.setFitWidth(hoveringImage.getFitWidth());
+        entity.setLayoutX(hoveringImage.getLayoutX());
+        entity.setLayoutY(hoveringImage.getLayoutY());
+        entity.setX(hoveringImage.getX());
+        entity.setY(hoveringImage.getY());
+
+        addedEntities.add(entity);
+
+        // add the entity onto the building scene
+        buildingScene.getChildren().add(entity);
+
+        System.out.println("Entities added: " + addedEntities.toString());
     }
 
     /**
@@ -194,7 +242,9 @@ public class WorldBuilderRenderer extends AnimationTimer {
      */
     private void createTileMenu(VBox tileMenu) {
         for (int i = 0; i < TILE_TYPES.length; i++) {
-            tileMenu.getChildren().add(new TileSprite(TILE_TYPES[i]));
+            TileSprite sprite = new TileSprite(TILE_TYPES[i]);
+            sprite.getStyleClass().add("menuTileTypes");
+            tileMenu.getChildren().add(sprite);
         }
     }
 
@@ -206,8 +256,8 @@ public class WorldBuilderRenderer extends AnimationTimer {
     private void createWorld(Pane pane) {
         this.tiles = new Array2D<>(world.getWidth(), world.getHeight());
 
-        int scaledWidth = (int) (tileWidth * scale);
-        int scaledHeight = (int) (tileHeight * scale);
+        int scaledWidth = (int) (tileWidth * SCALE);
+        int scaledHeight = (int) (tileHeight * SCALE);
 
         WorldBuilderTile tile;
 
@@ -229,8 +279,8 @@ public class WorldBuilderRenderer extends AnimationTimer {
                 tile = tiles.get(i, j);
                 tile.setImage(resourceRegister.getResourceImage(GRASS_1));
 
-                tile.setFitHeight(resourceRegister.TILE_HEIGHT*scale);
-                tile.setFitWidth(resourceRegister.TILE_WIDTH*scale);
+                tile.setFitHeight(resourceRegister.TILE_HEIGHT* SCALE);
+                tile.setFitWidth(resourceRegister.TILE_WIDTH* SCALE);
 
                 tile.setLayoutX(x);
                 tile.setLayoutY(y);

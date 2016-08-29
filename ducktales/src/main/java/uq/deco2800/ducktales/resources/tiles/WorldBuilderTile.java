@@ -67,8 +67,13 @@ public class WorldBuilderTile extends ImageView {
          * Handlers for mouse-click events
          */
         this.setOnMouseClicked(event -> {
-            this.currentType = hoverType;
-            this.setImage(currentType);
+            if (manager.getCurrentType() == manager.TILE) {
+                this.currentType = hoverType;
+                this.setImage(currentType);
+            } else if (manager.getCurrentType() == manager.ENTITY) {
+                renderer.notifyTileClicked(this.xPos, this.yPos);
+            }
+
         });
 
         /*

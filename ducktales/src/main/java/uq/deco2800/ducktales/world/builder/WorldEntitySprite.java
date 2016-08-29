@@ -57,7 +57,7 @@ public class WorldEntitySprite extends ImageView {
 
         this.setImage(sprite);
 
-        setMousEventHandler();
+        setMouseEventHandler();
     }
 
 
@@ -69,7 +69,7 @@ public class WorldEntitySprite extends ImageView {
         return this.sizeInTileUnit;
     }
 
-    private void setMousEventHandler() {
+    private void setMouseEventHandler() {
         this.setOnMouseClicked(event -> {
             manager.setCurrentResource(this.entityType, manager.ENTITY);
         });
