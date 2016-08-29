@@ -1,4 +1,5 @@
 package uq.deco2800.ducktales.world;
+import uq.deco2800.ducktales.util.Tickable;
 //import java.util.List;
 
 
@@ -7,9 +8,10 @@ package uq.deco2800.ducktales.world;
  * Calendar consists of a Calendar object that contains
  * days and years
  * 
+ * Inherits data from DuckCLock
  * has Clock Object inside it (probably needs to be fixed)
  */
-public class DuckCalendar {// implements Tickable{
+public class DuckCalendar extends DuckClock implements Tickable {
 
 
 	//Instantiate a the Calendar variables
@@ -17,8 +19,10 @@ public class DuckCalendar {// implements Tickable{
 	int year;
 	int season; //0 = Spring, 1 = Summer, 2 = Autumn, 3 = Winter
 	
-	//Instantiate a clock within the calendar
-	DuckClock duckClock = new DuckClock();
+	
+	//Instantiate a clock within the calendar with variables
+	//DuckClock duckClock = new DuckClock();
+
 	//Array to hold Dates held
 	//Still have to fully implement Date class
 	//private List<Date> markedDates;
@@ -30,41 +34,32 @@ public class DuckCalendar {// implements Tickable{
 	 * @param y
 	 * 		- Integer: Current Year (>0)
 	 */
-	public DuckCalendar(int d, int y) {
+	public DuckCalendar(DuckClock dc, int m, int h) {
 		
-		if(d <= 0) {
-			//Throw Exception
-			//Day can't be 0 or negative... Time begins on day 1 
-		} else {
-			this.day = d;
-		}
-		
-		if(y <= 0) {
-			//throw exception
-			//Can't be year 0 or negatives
-		} else {
-			this.year = y;
-		}
-		
-		if(d <= 20) {
-			//Set season to spring
-			this.season = 0;
-		} else if (d > 20 && d <= 40) {
-			//Set season to summer
-			this.season = 1;
-		} else if (d > 40 && d <= 60) {
-			//Set season to autumn
-			this.season = 2;
-		} else if (d > 60 && d <= 80) {
-			//Set season to winter
-			this.season = 3;
-		} else {
-			//The day given is not even on the calendar
-			//Throw Exception
-		}
+		super(m, h); //inherit minutes and hours from DuckClock SuperClass
+		this.day = 1; //Set day of calendar at 1
+		this.year = 1; //Set year of calendar at 1
+		this.season = 0; //Set season to 0 (spring)
 		
 	}
 	
+	@Override
+	public void tick() {
+		super.minute++;
+		if(super.minute == 60) {
+			super.hour++;
+			super.minute = 0;
+		} 
+		if(super.hour == 24) {
+			setDay(1);
+			super.hour = 0;
+		}
+	System.out.println(printDuckTime());
+	}
+	
+	private void setDay(int daySet) {
+		this.day = this.day + daySet;
+	}
 	/**
 	 * Retrieves the current day of the year
 	 * @return integer: currentDay of year
@@ -93,21 +88,22 @@ public class DuckCalendar {// implements Tickable{
 	 * Updates the duckClock time
 	 * this is called in GameLoop every loop (so every tick).
 	 */
-	public void updateTime() {
+	/*public void updateTime() {
 		duckClock.updateClock();
 		System.out.println(printDuckTime());
-	}
+	}*/
 	
 	/** Print out Time
 	 * 
 	 * @return a lame string telling the current time
 	 */
 	private String printDuckTime() {
-		int h = duckClock.hour;
-		int m = duckClock.minute;
+		int h = super.hour;
+		int m = super.minute;
+		int d = this.day;
 		
-		return "Current Time is: " + h + ":" + m;
-	}
+		return "Current Time is: " + h + ":" + m + " day: " + d;
+	} 
 	
 	/*
 	 * 

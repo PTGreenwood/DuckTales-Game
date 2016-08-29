@@ -8,8 +8,8 @@ import org.junit.Test;
 public class DuckCalendarTest {
 
 	//Instantiate Here 
-	DuckClock clock = new DuckClock();
-	DuckCalendar duckCal = new DuckCalendar(1, 1);
+	//DuckClock clock = new DuckClock();
+	//DuckCalendar duckCal = new DuckCalendar();
 	@Test // For firstTest testing (not sure yet :S)
 	public void firstTest() {
 		

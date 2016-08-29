@@ -5,7 +5,7 @@ import org.junit.Test;
 public class DuckClockTest {
 
 	//Instantiate Here 
-	DuckClock clock = new DuckClock();
+	//DuckClock clock = new DuckClock();
 	@Test // For firstTest testing (not sure yet :S)
 	public void firstTest() {
 		

@@ -1,24 +1,28 @@
 package uq.deco2800.ducktales.world;
 
 
+import uq.deco2800.ducktales.util.Tickable;
+import uq.deco2800.ducktales.world.DuckCalendar;
 /*
  * 
  * Time consists of a clock object that contains
  * hours and minutes
  */
-public class DuckClock {
+public class DuckClock{// implements Tickable{
 
 	//Instantiate a the time variables
 	int hour;
 	int minute;
-
 	
-	public DuckClock() {
-		this.hour = 0;
-		this.minute = 0;
+	
+	public DuckClock(int h, int m) {
+		this.hour = h;
+		this.minute = m;
+		//DuckCalendar duckCalendar = new DuckCalendar(h, m);
 		
 	}
 
+	/*
 	public void updateClock() {
 		this.minute++;
 		if(this.minute == 60) {
@@ -26,7 +30,7 @@ public class DuckClock {
 			this.minute = 0;
 		}
 	}
-	
+	*/
 	/*Notes/thoughts
 	*
 	*Need to somehow implement the day counter in for when it reaches 24 hours in the day
