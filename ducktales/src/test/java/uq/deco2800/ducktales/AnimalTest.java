@@ -2,6 +2,7 @@ package uq.deco2800.ducktales;
 
 import org.junit.Test;
 
+import uq.deco2800.ducktales.entities.Entity;
 import uq.deco2800.ducktales.entities.EntityManager;
 import uq.deco2800.ducktales.entities.agententities.*;
 import uq.deco2800.ducktales.resources.*;
@@ -24,7 +25,9 @@ public class AnimalTest {
 
         EntityManager entityManager = EntityManager.getInstance();
         Duck duck = new Duck(10, 10);
+        Peon opponent = new Peon(10, 10);
         entityManager.addEntity(duck);
+        entityManager.addEntity(opponent);
 
         assertNotNull("Duck cannot be null.", duck);
         assertNotNull("Health cannot be null.", duck.getHealth());
@@ -38,7 +41,7 @@ public class AnimalTest {
         assertTrue("Duck cannot drop feathers on creation.", duck.canDropFeathers() == false);
         assertTrue("Duck cannot be dead on creation.", duck.isDead() == false);
 
-        // Test attribute setting.
+        // Attribute setting tests.
         duck.setHealth(101);
         assertTrue("Duck health should be 100 if parameter is greater than 100. ", duck.getHealth() == 100);
         duck.setHealth(50);
@@ -57,6 +60,21 @@ public class AnimalTest {
         assertTrue("Duck thirst should equal the parameter.", duck.getThirst() == 50);
         duck.setThirst(-1);
         assertTrue("Duck thirst should be 0 if the parameter is less than 0.", duck.getThirst() == 0);
+        duck.setStrength(10);
+        assertTrue("Strength has an incorrect value.", duck.getStrength() == 10);
+
+        // Attack tests.
+        duck.setHealth(100);
+        duck.setStrength(20);
+        opponent.setHealth(100);
+//        opponent.setStrength(20);
+        duck.attack(opponent);
+        assertTrue("Opponent health must decrease by the animal's strength.", opponent.getHealth() == 80);
+//        duck.isAttacked();
+//        assertTrue("Duck health must decrease by the Peon's strength.", duck.getHealth() == 80);
+        duck.setHealth(0);
+        duck.setIsDead();
+        assertTrue("Duck must be dead when its health is 0;", duck.isDead() == true);
     }
 
 }

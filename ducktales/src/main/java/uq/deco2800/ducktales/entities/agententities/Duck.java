@@ -4,7 +4,7 @@ import uq.deco2800.ducktales.entities.EntityManager;
 import uq.deco2800.ducktales.resources.ResourceType;
 
 /**
- * Defines the animal Duck that lays eggs.
+ * Defines the duck animal.
  *
  * @author Josh Benavides
  */
@@ -47,10 +47,16 @@ public class Duck extends Animal {
     }
 
     /**
-     * Enables the predator to attack
+     * Tells the animal to attack.
      */
-    public void attack() {
+    public void attack(Peon opponent) {
         opponent.setHealth(opponent.getHealth() - this.getStrength());
+    }
+
+    public void setIsDead() {
+        if (this.getHealth() == 0) {
+            this.isDead = true;
+        }
     }
 
     // Getter methods below.
