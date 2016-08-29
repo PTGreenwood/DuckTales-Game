@@ -87,11 +87,13 @@ public class ResourceRegister {
 		//To be uncommented as the relevant graphics are created
 		// note from creator of ResourceType: please remember to use the enums from
 		// ResourceType enum class instead of the previous String implementation
-		//addResource(BAKERY, "/bakery.png");
+		addResource(BAKERY, "/bakery.png");
 		//addResource(CEMETERY, "/cemetery.png");
-		//addResource(FARMHOUSE, "/farmhouse.png");
+		addResource(FARMHOUSE, "/farm+barn.png");
+		addResource(BARN, "/barn.png");
 		//addResource(FORGE, "/forge.png");
-		//addResource(HOSPITAL, "/hospital.png");
+		addResource(HOSPITAL, "/hospital.png");
+		addResource(HOSPITAL, "/hospital.png");
 		//addResource(OBSERVATORY, "/observatory.png");
 
 	}
