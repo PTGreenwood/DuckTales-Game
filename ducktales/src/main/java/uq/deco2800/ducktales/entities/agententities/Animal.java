@@ -63,7 +63,7 @@ public class Animal extends AgentEntity {
     /**
      * The animal's health is decreased when attacked by another entity.
      */
-    public void animalIsAttacked() {
+    public void isAttacked() {
         this.health -= 10; // the health will be decreased by the amount of the peon's attack/strength -> replace 10
         if (this.getHealth() <= 0) {
             killAnimal();
@@ -97,6 +97,64 @@ public class Animal extends AgentEntity {
     public void attack() {
     }
 
+
+
+    /**
+     * Changes the animal's health to the provided value.
+     *
+     * @param newHealth The new health value.
+     */
+    public void setHealth(int newHealth) {
+        if (newHealth > 100) {
+            this.health = 100;
+        } else if (newHealth < 0) {
+            this.health = 0;
+        } else {
+            this.health = newHealth;
+        }
+    }
+
+    /**
+     * Changes the animal's hunger level to the provided value.
+     *
+     * @param newHunger The new hunger value.
+     */
+    public void setHunger(int newHunger) {
+        if (newHunger > 100) {
+            this.hunger = 100;
+        } else if (newHunger < 0) {
+            this.hunger = 0;
+        } else {
+            this.hunger = newHunger;
+        }
+    }
+
+    /**
+     * Changes the animal's thirst level to the provided value.
+     *
+     * @param newThirst The new thirst value.
+     */
+    public void setThirst(int newThirst) {
+        if (newThirst > 100) {
+            this.thirst = 100;
+        } else if (newThirst < 0) {
+            this.thirst = 0;
+        } else {
+            this.thirst = newThirst;
+        }
+    }
+
+    /**
+     * Changes the animal's strength level to the provided value.
+     *
+     * @param newStrength The new strength value.
+     */
+    public void setStrength(int newStrength) {
+        this.strength = newStrength;
+    }
+
+    // Getter Methods Below
+
     /**
      * Returns the animal's current point on the map.
      *
@@ -125,46 +183,12 @@ public class Animal extends AgentEntity {
     }
 
     /**
-     * Changes the animal's health to the provided value.
-     *
-     * @param newHealth The new health value.
-     */
-    public void setHealth(int newHealth) {
-        if (newHealth > 100) {
-            this.health = 100;
-        } else if (newHealth < 0) {
-            this.health = 0;
-        } else {
-            this.health = newHealth;
-        }
-    }
-
-    /**
      * Returns the animal's current state of hunger.
      *
      * @return hunger The animal's hunger.
      */
     public int getHunger() {
         return hunger;
-    }
-
-    // Getter Methods Below
-
-    /**
-     * Changes the animal's hunger level to the provided value.
-     *
-     * @param newHunger The new hunger value.
-     */
-    public void setHunger(int newHunger) {
-        if (newHunger >= 0 && newHunger <= 100) {
-            this.hunger = newHunger;
-        }
-        if (newHunger < 0) {
-            this.hunger = 0;
-        }
-        if (newHunger > 100) {
-            this.hunger = 100;
-        }
     }
 
     /**
@@ -177,38 +201,12 @@ public class Animal extends AgentEntity {
     }
 
     /**
-     * Changes the animal's thirst level to the provided value.
-     *
-     * @param newThirst The new thirst value.
-     */
-    public void setThirst(int newThirst) {
-        if (newThirst >= 0 && newThirst <= 100) {
-            this.thirst = newThirst;
-        }
-        if (newThirst < 0) {
-            this.thirst = 0;
-        }
-        if (newThirst > 100) {
-            this.thirst = 100;
-        }
-    }
-
-    /**
      * Returns the animal's strength.
      *
      * @return strength The animal's strength.
      */
     public int getStrength() {
         return strength;
-    }
-
-    /**
-     * Changes the animal's strength level to the provided value.
-     *
-     * @param newStrength The new strength value.
-     */
-    public void setStrength(int newStrength) {
-        this.strength = newStrength;
     }
 
     /**

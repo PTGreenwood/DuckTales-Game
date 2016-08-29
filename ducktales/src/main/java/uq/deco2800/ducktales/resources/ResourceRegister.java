@@ -79,7 +79,8 @@ public class ResourceRegister {
 		addResource(TREE_3, "/tree_3.png");
 		addResource(HOUSE, "/house.png");
 		addResource(DUCK, "/duck.png");
-		addResource(COW, "/cow.png"); 
+		addResource(COW, "/cow.png");
+//		addResource(SHEEP, "/sheep.png");
 
 		
 		addResource(SAWMILL, "/sawmill.png");
@@ -89,6 +90,7 @@ public class ResourceRegister {
 		addResource(BAKERY, "/bakery.png");
 		//addResource(CEMETERY, "/cemetery.png");
 		addResource(FARMHOUSE, "/farm+barn.png");
+		//addResource(BARN, "/storage_barn.png");
 		//addResource(FORGE, "/forge.png");
 		addResource(HOSPITAL, "/hospital.png");
 		//addResource(OBSERVATORY, "/observatory.png");
