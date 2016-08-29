@@ -10,13 +10,6 @@ import uq.deco2800.ducktales.resources.ResourceType;
  */
 public class Duck extends Animal {
 
-    private final static ResourceType type = ResourceType.DUCK;
-    private final static int health = (int) ((Math.random() + 0.1) * 100);
-    private final static int hunger = (int) ((Math.random() + 0.1) * 100);
-    private final static int thirst = (int) ((Math.random() + 0.1) * 100);
-    private final static int strength = (int) ((Math.random() + 0.1) * 20);
-    private final static double speed = 0.05;
-
     private boolean canLayEggs = false; // Whether the duck can lay eggs.
     private boolean canDropFeathers = false; // Whether the duck can drop feathers.
     private boolean isDead = false; // Whether the duck is dead.
@@ -24,7 +17,11 @@ public class Duck extends Animal {
     private EntityManager opponentList; // List of possible opponents.
 
     public Duck(int x, int y) {
-        super(x, y, 1, 1, type, health, hunger, thirst, strength, speed);
+        super(x, y, 1, 1, ResourceType.DUCK, 1, 1, 1, 1, 0.05);
+        setStartingHealth((int) (Math.random() * 100));
+        setStartingHunger((int) (Math.random() * 100));
+        setStartingThirst((int) (Math.random() * 100));
+        setStartingStrength((int) (Math.random() * 20));
     }
 
     /**
