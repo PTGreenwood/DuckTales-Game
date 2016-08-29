@@ -209,6 +209,15 @@ public class Animal extends AgentEntity {
         this.strength = newStrength;
     }
 
+    /**
+     * Changes the animal's image to the provided value.
+     *
+     * @param newType The new image to be rendered.
+     */
+    public void setType(ResourceType newType) {
+        this.setType(newType);
+    }
+
     // Getter Methods Below
 
     /**
