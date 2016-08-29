@@ -1,6 +1,9 @@
-package uq.deco2800.ducktales.worldBuilder;
+package uq.deco2800.ducktales.world.builder;
 
+import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.world.World;
+
+import static uq.deco2800.ducktales.resources.ResourceType.*;
 
 /**
  * Manage the interaction between the user and the World Builder
@@ -16,7 +19,8 @@ public class WorldBuilderManager {
     private static final WorldBuilderManager INSTANCE = new WorldBuilderManager();
 
     private World world;
-
+    private WorldBuilderRenderer renderer;
+    private ResourceType currentResource = NONE;
 
     /**
      * Returns the instance of {@link WorldBuilderManager}.
@@ -30,6 +34,12 @@ public class WorldBuilderManager {
      */
     private WorldBuilderManager() {
         // stub method
+
+    }
+
+    public void setRenderer(WorldBuilderRenderer renderer) {
+        this.renderer = renderer;
+        renderer.start();
     }
 
     /**
@@ -48,6 +58,24 @@ public class WorldBuilderManager {
      */
     public World getWorld() { return world; };
 
+    /**
+     * Get the current resource currently managed by the user
+     * @return the type of resource currently managed by the user
+     */
+    public ResourceType getCurrentResource() {
+        return currentResource;
+    }
+
+    /**
+     * Register the resource being managed by the user
+     * @param resource
+     *          The type of resource that is being managed
+     */
+    public void setCurrentResource(ResourceType resource) {
+        currentResource = resource;
+        renderer.setCurrentTileSelected(resource);
+        System.out.println("Current resource is: " + resource.toString());
+    }
 
 
 }
