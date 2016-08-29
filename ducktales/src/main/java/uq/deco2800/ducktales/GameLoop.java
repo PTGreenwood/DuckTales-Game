@@ -14,7 +14,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
  */
 public class GameLoop implements Runnable {
 
-	public enum SpeedControl {50, 33, 20};
+	//public enum SpeedControl {50, 33, 20};
 	
 	private World world;
 	private int tick;
