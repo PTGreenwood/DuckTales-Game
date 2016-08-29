@@ -25,7 +25,7 @@ public class Constructor {
 		// Change the following lines:
 		// Change to building clicked from constructor panel
 		WorldEntity toCreate = new Bakery(x, y);
-		// Change to resources available - wood, stone
+		// Change to resources available - wood, stone (currently arbitrary to test)
 		if (getStone(toCreate) <= 10) {
 			if (getWood(toCreate) <= 10) {
 				// Something along the lines of World.add(toCreate) ...
