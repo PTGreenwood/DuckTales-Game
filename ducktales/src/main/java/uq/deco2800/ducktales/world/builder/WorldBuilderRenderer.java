@@ -215,7 +215,7 @@ public class WorldBuilderRenderer extends AnimationTimer {
         buildingScene.getChildren().add(hoveringImage);
         buildingScene.setOnMouseMoved(event -> {
             if (!isTiledHovered) {
-                System.out.println("X Y are: " + event.getX() + ", " + event.getY());
+                //System.out.println("X Y are: " + event.getX() + ", " + event.getY());
 
                 hoveringImage.setLayoutX(event.getX());
                 hoveringImage.setLayoutY(event.getY());
