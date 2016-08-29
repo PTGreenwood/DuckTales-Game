@@ -14,13 +14,19 @@ import java.util.concurrent.atomic.AtomicBoolean;
  */
 public class GameLoop implements Runnable {
 
+	public enum SpeedControl {50, 33, 20};
+	
 	private World world;
 	private int tick;
 	private AtomicBoolean quit;
 	
 	private EntityManager entityManager = EntityManager.getInstance();
 	
-	private DuckCalendar duckCalendar = new DuckCalendar(0, 0);
+	//Makeshift time add
+	private int gameStartMinute = 0;
+	private int gameStartHour = 0;
+
+	private DuckCalendar duckCalendar = new DuckCalendar(gameStartMinute, gameStartHour);
 	public GameLoop(AtomicBoolean quit, int tick) {
 		this.world = GameManager.getInstance().getWorld();
 		this.tick = tick;
@@ -31,6 +37,7 @@ public class GameLoop implements Runnable {
 	@Override
 	public void run() {
 		while (!quit.get()) {
+			//this.tick = SpeedController();
 			world.tick();
 			entityManager.tick();
 			duckCalendar.tick();
