@@ -26,6 +26,8 @@ public class Peon extends AgentEntity {
 	private double speed;
 
 	private int health = 1000;
+	
+	private int resource= 0;
 
 	// affinity
 	private int strength;
@@ -51,6 +53,12 @@ public class Peon extends AgentEntity {
 		if (newValue > 0) {
 			this.health = newValue;
 		}
+	}
+	public void setResources(int sourceValue){
+		if (sourceValue > 0){
+			this.resource= sourceValue;
+			
+	}
 	}
 
 	public int getHealth() {

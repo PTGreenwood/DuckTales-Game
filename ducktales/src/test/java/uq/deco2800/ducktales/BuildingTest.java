@@ -59,8 +59,8 @@ public class BuildingTest {
 		assertTrue("Entity 2 incorrect!", entities.get(2).equals(entity2));
 		
 		// Check correct resources and time
-		assertTrue("Wrong returned resources", entity1.resourcesReturn() == (2));
-		assertTrue("Wrong resources to build", entity3.resourcesBuild() == 5);
+		assertTrue("Wrong returned resources", entity1.resourcesReturnWood() == (2));
+		assertTrue("Wrong resources to build", entity3.resourcesBuildStone() == 2);
 		assertTrue("Wrong time", entity2.timeToBuild() == 2);
 	}
 	
@@ -83,8 +83,8 @@ public class BuildingTest {
 		assertTrue("Entity 2 incorrect!", entities.get(2).equals(entity2));
 		
 		// Check correct resources and time
-		assertTrue("Wrong returned resources", entity1.resourcesReturn() == 5);
-		assertTrue("Wrong resources to build", entity3.resourcesBuild() == 10);
+		assertTrue("Wrong returned resources", entity1.resourcesReturnStone() == 2);
+		assertTrue("Wrong resources to build", entity3.resourcesBuildStone() == 4);
 		assertTrue("Wrong time", entity2.timeToBuild() == 3);
 	}
 	
@@ -107,8 +107,8 @@ public class BuildingTest {
 		assertTrue("Entity 2 incorrect!", entities.get(2).equals(entity2));
 		
 		// Check correct resources and time
-		assertTrue("Wrong returned resources", entity1.resourcesReturn() == 6);
-		assertTrue("Wrong resources to build", entity3.resourcesBuild() == 12);
+		assertTrue("Wrong returned resources", entity1.resourcesReturnWood() == 5);
+		assertTrue("Wrong resources to build", entity3.resourcesBuildWood() == 10);
 		assertTrue("Wrong time", entity2.timeToBuild() == 5);
 	}
 	
@@ -131,8 +131,8 @@ public class BuildingTest {
 		assertTrue("Entity 2 incorrect!", entities.get(2).equals(entity2));
 		
 		// Check correct resources and time
-		assertTrue("Wrong returned resources", entity1.resourcesReturn() == 7);
-		assertTrue("Wrong resources to build", entity3.resourcesBuild() == 14);
+		assertTrue("Wrong returned resources", entity1.resourcesReturnStone() == 2);
+		assertTrue("Wrong resources to build", entity3.resourcesBuildStone() == 4);
 		assertTrue("Wrong time", entity2.timeToBuild() == 4);
 	}
 	
@@ -155,8 +155,8 @@ public class BuildingTest {
 		assertTrue("Entity 2 incorrect!", entities.get(2).equals(entity2));
 		
 		// Check correct resources and time
-		assertTrue("Wrong returned resources", entity1.resourcesReturn() == 3);
-		assertTrue("Wrong resources to build", entity3.resourcesBuild() == 7);
+		assertTrue("Wrong returned resources", entity1.resourcesReturnStone() == 1);
+		assertTrue("Wrong resources to build", entity3.resourcesBuildWood() == 4);
 		assertTrue("Wrong time", entity2.timeToBuild() == 2);
 	}
 	
@@ -179,8 +179,8 @@ public class BuildingTest {
 		assertTrue("Entity 2 incorrect!", entities.get(2).equals(entity2));
 		
 		// Check correct resources and time
-		assertTrue("Wrong returned resources", entity1.resourcesReturn() == 9);
-		assertTrue("Wrong resources to build", entity3.resourcesBuild() == 18);
+		assertTrue("Wrong returned resources", entity1.resourcesReturnWood() == 5);
+		assertTrue("Wrong resources to build", entity3.resourcesBuildStone() == 8);
 		assertTrue("Wrong time", entity2.timeToBuild() == 9);
 	}
 	
@@ -203,8 +203,8 @@ public class BuildingTest {
 		assertTrue("Entity 2 incorrect!", entities.get(2).equals(entity2));
 		
 		// Check correct resources and time
-		assertTrue("Wrong returned resources", entity1.resourcesReturn() == 8);
-		assertTrue("Wrong resources to build", entity3.resourcesBuild() == 16);
+		assertTrue("Wrong returned resources", entity1.resourcesReturnStone() == 5);
+		assertTrue("Wrong resources to build", entity3.resourcesBuildStone() == 10);
 		assertTrue("Wrong time", entity2.timeToBuild() == 3);
 	}
 	
@@ -227,8 +227,8 @@ public class BuildingTest {
 		assertTrue("Entity 2 incorrect!", entities.get(2).equals(entity2));
 		
 		// Check correct resources and time
-		assertTrue("Wrong returned resources", entity1.resourcesReturn() == 8);
-		assertTrue("Wrong resources to build", entity3.resourcesBuild() == 17);
+		assertTrue("Wrong returned resources", entity1.resourcesReturnWood() == 4);
+		assertTrue("Wrong resources to build", entity3.resourcesBuildWood() == 8);
 		assertTrue("Wrong time", entity2.timeToBuild() == 5);
 	}
 	
