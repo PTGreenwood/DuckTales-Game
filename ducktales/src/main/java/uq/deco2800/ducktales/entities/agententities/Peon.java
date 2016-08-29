@@ -17,6 +17,8 @@ import uq.deco2800.ducktales.util.Point;
  */
 public class Peon extends AgentEntity {
 
+	private static final Random RANDOM = new Random();
+
 	private final static ResourceType TYPE = ResourceType.PEON;
 
 	private List<Point> goalPoints;
@@ -24,9 +26,25 @@ public class Peon extends AgentEntity {
 	private double speed;
 
 	private int health = 1000;
+	
+	private int resource= 0;
 
+	// affinity
+	private int strength;
+	private int intelligence;
+
+	// affinity bounds
+	private static final int DEFAULT_MAX = 10;
+	private static final int DEFAULT_MIN = 1;
+
+	/**
+	 * @param x
+	 * @param y
+	 */
 	public Peon(int x, int y) {
 		super(x, y, 1, 1, TYPE);
+		strength = RANDOM.nextInt((DEFAULT_MAX - DEFAULT_MIN) + 1) + DEFAULT_MIN;
+		intelligence = RANDOM.nextInt((DEFAULT_MAX - DEFAULT_MIN) + 1) + DEFAULT_MIN;
 		this.speed = 0.05;
 		this.goalPoints = new ArrayList<Point>();
 	}
@@ -36,9 +54,23 @@ public class Peon extends AgentEntity {
 			this.health = newValue;
 		}
 	}
+	public void setResources(int sourceValue){
+		if (sourceValue > 0){
+			this.resource= sourceValue;
+			
+	}
+	}
 
 	public int getHealth() {
 		return health;
+	}
+	
+	public int getStrength(){
+		return strength;
+	}
+	
+	public int getIntelligence(){
+		return intelligence;
 	}
 
 	@Override

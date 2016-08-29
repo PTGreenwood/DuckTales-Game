@@ -87,6 +87,7 @@ public class EntityTest {
 		
 		Collections.sort(entities);
 		
+		
 		assertTrue("Entity 1 incorrect!", entities.get(0).equals(background));
 		assertTrue("Entity 2 incorrect!", entities.get(1).equals(foreground));	
 	}

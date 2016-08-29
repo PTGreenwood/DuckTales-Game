@@ -6,6 +6,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+
 import javafx.geometry.Insets;
 import javafx.scene.layout.*;
 import uq.deco2800.ducktales.*;
@@ -24,23 +25,8 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.stage.Stage;
 
 public class DuckTalesController implements Initializable {
-	/*
-	 * CONSTANTS
-	 */
-	private double BUILDING_SCENE_H_PORTION = 85.0/100.0;
-	private double BUILDING_SCENE_V_PORTION = 80.0/100.0;
-	private double TILE_MENU_H_PORTION = 100.0 - BUILDING_SCENE_H_PORTION;
-	private double TILE_MENU_V_PORTION = BUILDING_SCENE_V_PORTION;
-	private double RESOURCE_MENU_H_PORTION = 1.0;
-	private double RESOURCE_MENU_V_PORTION = 100.0 - BUILDING_SCENE_V_PORTION;
 
 	private Canvas gameCanvas;
-
-	// The UI for world builder
-	private BorderPane worldBuilderPane;
-	private Pane buildingScene;
-	private VBox tileMenu;
-	private HBox resourceMenu;
 
 	@FXML
 	private AnchorPane gameWindow, rightPane; // rightPane is referenced in ducktales.fxml
@@ -52,8 +38,14 @@ public class DuckTalesController implements Initializable {
 	private GameManager gameManager;
 	private WorldBuilderManager worldBuilderManager;
 
+	// UI for World Builder
+	private BorderPane worldBuilderPane;
+
 	private AtomicBoolean quit;
 
+	public Stage tutorialStage;
+	
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		tileRegister = ResourceRegister.getInstance();
@@ -68,15 +60,19 @@ public class DuckTalesController implements Initializable {
 		gameWindow.setOnKeyPressed(new KeyboardHandler());
 		gameWindow.setOnKeyReleased(new KeyboardHandler());
 	}
+	
 	@FXML 
 	private void tutorial(ActionEvent event) throws Exception {
 				
+		
+		
 		URL location = getClass().getResource("/tutorial.fxml");
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(location);
 		Parent root = loader.load(location.openStream());
-		Scene tutorialScene = new Scene(root, 400, 400);		
-		Stage tutorialStage = new Stage();
+		Scene tutorialScene = new Scene(root, 400, 400);
+		
+		this.tutorialStage = new Stage();
 		tutorialStage.setTitle("Tutorial");
 		tutorialStage.setScene(tutorialScene);
 		tutorialStage.show();
@@ -112,6 +108,7 @@ public class DuckTalesController implements Initializable {
 			showCanvas(gameCanvas);
 		}
 	}
+	
 
 	/**
 	 * This method is called when "Build World" button is pressed
@@ -121,8 +118,12 @@ public class DuckTalesController implements Initializable {
 	@FXML
 	public void buildWorld(ActionEvent event) throws Exception {
 		if (worldBuilderPane == null) {
-			// Set up the UI for the world builder
-			setupWorldBuilderUI();
+			// Setup the root pane for World Builder
+			worldBuilderPane = new BorderPane();
+			worldBuilderPane.setMinSize(
+					rightPane.getWidth(),
+					rightPane.getHeight()
+			);
 
 			// Adding to right pane
 			showPane(worldBuilderPane);
@@ -132,12 +133,16 @@ public class DuckTalesController implements Initializable {
 					new World("World Builder", 20, 20));
 			// Initiate the rendering engine for WorldBuilder
 			worldBuilderManager.setRenderer(new WorldBuilderRenderer(
-					buildingScene, tileMenu, resourceMenu));
+					worldBuilderPane));
 
 		} else {
 			showPane(worldBuilderPane);
 		}
 	}
+	
+	
+	
+	
 
 	public void stopGame() {
 		if (executor != null && quit != null) {
@@ -171,51 +176,6 @@ public class DuckTalesController implements Initializable {
 		rightPane.getChildren().add(canvas);
 	}
 
-	/**
-	 * Set up the UI for WorldBuidler
-	 */
-	private void setupWorldBuilderUI() {
-		// The border pane to put all the panes into
-		worldBuilderPane = new BorderPane();
-		worldBuilderPane.setMinWidth(rightPane.getWidth());
-		worldBuilderPane.getStylesheets().add("/builderStyle.css");
 
-		// The pane where the world is rendered onto
-		buildingScene = new Pane();
-		buildingScene.setPrefWidth(
-				rightPane.getWidth() * BUILDING_SCENE_H_PORTION);
-		buildingScene.setPrefHeight(
-				rightPane.getHeight() * BUILDING_SCENE_V_PORTION);
-		buildingScene.getStyleClass().add("buildingScene");
-
-		// The pane containing the tiles
-		tileMenu = new VBox();
-		tileMenu.setPrefWidth(
-				rightPane.getWidth() * TILE_MENU_H_PORTION);
-		tileMenu.setPrefHeight(
-				rightPane.getHeight() * TILE_MENU_V_PORTION
-		);
-		tileMenu.setMaxHeight(
-				rightPane.getHeight() * TILE_MENU_V_PORTION
-		);
-		tileMenu.getStyleClass().add("tileMenu");
-		tileMenu.setPadding(new Insets(25));
-		tileMenu.setSpacing(20);
-
-		// The pane containing the resources
-		resourceMenu = new HBox();
-		resourceMenu.setPrefWidth(
-				rightPane.getWidth() * RESOURCE_MENU_H_PORTION
-		);
-		resourceMenu.setPrefHeight(
-				rightPane.getHeight() * RESOURCE_MENU_V_PORTION
-		);
-		resourceMenu.getStyleClass().add("resourceMenu");
-
-		// Add the child panes into the main pane
-		worldBuilderPane.setCenter(buildingScene);
-		worldBuilderPane.setRight(tileMenu);
-		worldBuilderPane.setBottom(resourceMenu);
-	}
 
 }

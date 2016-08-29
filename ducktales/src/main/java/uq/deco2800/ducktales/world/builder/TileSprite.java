@@ -45,7 +45,7 @@ public class TileSprite extends ImageView{
 
     private void setupMouseEventHandlers() {
         this.setOnMouseClicked(event -> {
-            manager.setCurrentResource(tileType);
+            manager.setCurrentResource(tileType, manager.TILE);
         });
     }
 
