@@ -1,6 +1,6 @@
 package uq.deco2800.ducktales.duckgods;
 
-import uq.deco2800.ducktales.util;
+import uq.deco2800.ducktales.util.*;
 
 /**
  * Base class for all duck gods and their bonuses
