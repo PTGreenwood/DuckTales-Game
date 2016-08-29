@@ -90,8 +90,9 @@ public class ResourceRegister {
 		addResource(BAKERY, "/bakery.png");
 		//addResource(CEMETERY, "/cemetery.png");
 		addResource(FARMHOUSE, "/farm+barn.png");
-		//addResource(BARN, "/storage_barn.png");
+		addResource(BARN, "/barn.png");
 		//addResource(FORGE, "/forge.png");
+		addResource(HOSPITAL, "/hospital.png");
 		addResource(HOSPITAL, "/hospital.png");
 		//addResource(OBSERVATORY, "/observatory.png");
 
