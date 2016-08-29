@@ -27,6 +27,7 @@ public class Animal extends AgentEntity {
     protected ResourceType type; // The type of the animal
     private boolean canBeKilled; // Determines whether the animal can be killed.
     private boolean outOfZone; // Determines whether the animal is out of its zone
+    private boolean isDead = false; // Whether the animal is dead.
 
 
     public Animal(int x, int y, int lengthX, int lengthY, ResourceType type, int health, int hunger, int thirst, int
@@ -40,6 +41,22 @@ public class Animal extends AgentEntity {
         this.speed = speed;
         this.currentLocation = point;
         newNextLocation();
+    }
+
+    /**
+     * Marks the animal as dead.
+     */
+    public void setIsDead() {
+        if (this.getHealth() == 0) {
+            this.isDead = true;
+        }
+    }
+
+    /**
+     * Tells the animal to attack.
+     */
+    public void attack(Peon opponent) {
+        opponent.setHealth(opponent.getHealth() - this.getStrength());
     }
 
     /**
@@ -153,62 +170,6 @@ public class Animal extends AgentEntity {
     public void attack() {
     }
 
-
-
-    /**
-     * Changes the animal's health to the provided value.
-     *
-     * @param newHealth The new health value.
-     */
-    public void setHealth(int newHealth) {
-        if (newHealth > 100) {
-            this.health = 100;
-        } else if (newHealth < 0) {
-            this.health = 0;
-        } else {
-            this.health = newHealth;
-        }
-    }
-
-    /**
-     * Changes the animal's hunger level to the provided value.
-     *
-     * @param newHunger The new hunger value.
-     */
-    public void setHunger(int newHunger) {
-        if (newHunger > 100) {
-            this.hunger = 100;
-        } else if (newHunger < 0) {
-            this.hunger = 0;
-        } else {
-            this.hunger = newHunger;
-        }
-    }
-
-    /**
-     * Changes the animal's thirst level to the provided value.
-     *
-     * @param newThirst The new thirst value.
-     */
-    public void setThirst(int newThirst) {
-        if (newThirst > 100) {
-            this.thirst = 100;
-        } else if (newThirst < 0) {
-            this.thirst = 0;
-        } else {
-            this.thirst = newThirst;
-        }
-    }
-
-    /**
-     * Changes the animal's strength level to the provided value.
-     *
-     * @param newStrength The new strength value.
-     */
-    public void setStrength(int newStrength) {
-        this.strength = newStrength;
-    }
-
     /**
      * Changes the animal's image to the provided value.
      *
@@ -217,8 +178,6 @@ public class Animal extends AgentEntity {
     public void setType(ResourceType newType) {
         this.setType(newType);
     }
-
-    // Getter Methods Below
 
     /**
      * Returns the animal's current point on the map.
@@ -248,12 +207,44 @@ public class Animal extends AgentEntity {
     }
 
     /**
+     * Changes the animal's health to the provided value.
+     *
+     * @param newHealth The new health value.
+     */
+    public void setHealth(int newHealth) {
+        if (newHealth > 100) {
+            this.health = 100;
+        } else if (newHealth < 0) {
+            this.health = 0;
+        } else {
+            this.health = newHealth;
+        }
+    }
+
+    // Getter Methods Below
+
+    /**
      * Returns the animal's current state of hunger.
      *
      * @return hunger The animal's hunger.
      */
     public int getHunger() {
         return hunger;
+    }
+
+    /**
+     * Changes the animal's hunger level to the provided value.
+     *
+     * @param newHunger The new hunger value.
+     */
+    public void setHunger(int newHunger) {
+        if (newHunger > 100) {
+            this.hunger = 100;
+        } else if (newHunger < 0) {
+            this.hunger = 0;
+        } else {
+            this.hunger = newHunger;
+        }
     }
 
     /**
@@ -266,12 +257,36 @@ public class Animal extends AgentEntity {
     }
 
     /**
+     * Changes the animal's thirst level to the provided value.
+     *
+     * @param newThirst The new thirst value.
+     */
+    public void setThirst(int newThirst) {
+        if (newThirst > 100) {
+            this.thirst = 100;
+        } else if (newThirst < 0) {
+            this.thirst = 0;
+        } else {
+            this.thirst = newThirst;
+        }
+    }
+
+    /**
      * Returns the animal's strength.
      *
      * @return strength The animal's strength.
      */
     public int getStrength() {
         return strength;
+    }
+
+    /**
+     * Changes the animal's strength level to the provided value.
+     *
+     * @param newStrength The new strength value.
+     */
+    public void setStrength(int newStrength) {
+        this.strength = newStrength;
     }
 
     /**
@@ -292,9 +307,12 @@ public class Animal extends AgentEntity {
         return canBeKilled;
     }
 
-    // ???
-    public void spawnAnimal() {
-        // animals spawned using the world class under world package?
-        // AnimalManager class?
+    /**
+     * Returns whether the duck is dead.
+     *
+     * @return isDead
+     */
+    public boolean isDead() {
+        return this.isDead;
     }
 }

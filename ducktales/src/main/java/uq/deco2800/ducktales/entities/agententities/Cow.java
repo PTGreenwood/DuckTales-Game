@@ -35,29 +35,7 @@ public class Cow extends Animal {
         }
     }
 
-    /**
-     * Enables the cow to attack
-     */
-    public void attack(Peon opponent) {
-    	opponent.setHealth(opponent.getHealth() - this.getStrength());
-    }
-    
-    public void setIsDead() {
-        if (this.getHealth() == 0) {
-            this.isDead = true;
-        }
-    }
-
-    // getter methods below
-
-    /**
-     * Returns whether the cow is dead.
-     *
-     * @return isDead;
-     */
-    public boolean isDead() {
-        return this.isDead;
-    }
+    // Getter methods below
 
     /**
      * Returns whether the cow can produce milk.

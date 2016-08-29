@@ -12,7 +12,6 @@ public class Duck extends Animal {
 
     private boolean canLayEggs = false; // Whether the duck can lay eggs.
     private boolean canDropFeathers = false; // Whether the duck can drop feathers.
-    private boolean isDead = false; // Whether the duck is dead.
     private Peon opponent; // The peon that the animal will battle.
     private EntityManager opponentList; // List of possible opponents.
 
@@ -43,29 +42,7 @@ public class Duck extends Animal {
         }
     }
 
-    /**
-     * Tells the animal to attack.
-     */
-    public void attack(Peon opponent) {
-        opponent.setHealth(opponent.getHealth() - this.getStrength());
-    }
-
-    public void setIsDead() {
-        if (this.getHealth() == 0) {
-            this.isDead = true;
-        }
-    }
-
     // Getter methods below.
-
-    /**
-     * Returns whether the duck is dead.
-     *
-     * @return isDead
-     */
-    public boolean isDead() {
-        return this.isDead;
-    }
 
     /**
      * Returns whether the duck can lay eggs.
