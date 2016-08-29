@@ -15,9 +15,9 @@ public class DuckCalendar extends DuckClock implements Tickable {
 
 
 	//Instantiate a the Calendar variables
-	int day;
-	int year;
-	int season; //0 = Spring, 1 = Summer, 2 = Autumn, 3 = Winter
+	protected int day;
+	protected int year;
+	protected int season; //0 = Spring, 1 = Summer, 2 = Autumn, 3 = Winter
 	
 	//Array to hold Dates held
 	//Still have to fully implement Date class
@@ -52,7 +52,7 @@ public class DuckCalendar extends DuckClock implements Tickable {
 			super.minute = 0;
 		} 
 		if(super.hour == 24) {
-			setDay(1);
+			this.day++;
 			super.hour = 0;
 			//Left this hear to print out the time once a day
 			System.out.println(printDuckTime());
@@ -61,8 +61,12 @@ public class DuckCalendar extends DuckClock implements Tickable {
 	//System.out.println(printDuckTime());
 	}
 	
+	/**
+	 * Sets the current day of the Calendar
+	 * @param Integer daySet: day to set the Calendar
+	 */
 	private void setDay(int daySet) {
-		this.day = this.day + daySet;
+		this.day = daySet;
 	}
 	/**
 	 * Retrieves the current day of the year
@@ -78,6 +82,16 @@ public class DuckCalendar extends DuckClock implements Tickable {
 	 */
 	public int getCurrentYear() {
 		return this.year;
+	}
+	
+	/**
+	 * Sets the current year of the Calendar
+	 * to be whatever is passed in
+	 * 
+	 * @param integer yearSet: year to set the Calendar
+	 */
+	public void setYear(int yearSet) {
+		this.year = yearSet;
 	}
 	
 	/**

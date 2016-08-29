@@ -8,8 +8,8 @@ package uq.deco2800.ducktales.world;
 public class DuckClock {
 
 	//Instantiate a the time variables
-	int hour;
-	int minute;
+	protected int hour;
+	protected int minute;
 	
 	
 	public DuckClock(int h, int m) {
