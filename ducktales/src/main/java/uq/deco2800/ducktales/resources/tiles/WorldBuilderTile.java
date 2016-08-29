@@ -3,7 +3,9 @@ package uq.deco2800.ducktales.resources.tiles;
 import javafx.scene.image.ImageView;
 import uq.deco2800.ducktales.resources.ResourceRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
+import uq.deco2800.ducktales.util.Point;
 import uq.deco2800.ducktales.world.builder.WorldBuilderManager;
+import uq.deco2800.ducktales.world.builder.WorldBuilderRenderer;
 
 import static uq.deco2800.ducktales.resources.ResourceType.*;
 
@@ -29,9 +31,12 @@ public class WorldBuilderTile extends ImageView {
 
     // The controller for the World Builder
     private WorldBuilderManager manager = WorldBuilderManager.getInstance();
+    // The rendering engine
+    private WorldBuilderRenderer renderer;
 
-    public WorldBuilderTile(int xPos, int yPos) {
+    public WorldBuilderTile(WorldBuilderRenderer renderer, int xPos, int yPos) {
         super();
+        this.renderer = renderer;
         this.xPos = xPos;
         this.yPos = yPos;
 
@@ -46,6 +51,14 @@ public class WorldBuilderTile extends ImageView {
     public void setHoverType(ResourceType type) {
         this.hoverType = type;
     }
+
+    public int getxPos() {
+        return this.xPos;
+    }
+    public int getyPos() {
+        return this.yPos;
+    }
+
     /**
      * Add mouse event handling for this class
      */
@@ -62,10 +75,22 @@ public class WorldBuilderTile extends ImageView {
          * Handlers for mouse hovering events
          */
         this.setOnMouseEntered(event -> {
-            this.setImage(hoverType);
+            if (manager.getCurrentType() == manager.TILE) {
+                // A tile is currently being managed
+                this.setImage(hoverType);
+            } else if (manager.getCurrentType() == manager.ENTITY) {
+                // An entity is currently being managed
+                renderer.notifyTileHovered(this.xPos, this.yPos);
+            }
+
         });
         this.setOnMouseExited(event -> {
-            this.setImage(currentType);
+            if (manager.getCurrentType() == manager.TILE) {
+                this.setImage(currentType);
+            } else if (manager.getCurrentType() == manager.ENTITY) {
+                renderer.notifyTileEndHovering();
+            }
+
         });
     }
 

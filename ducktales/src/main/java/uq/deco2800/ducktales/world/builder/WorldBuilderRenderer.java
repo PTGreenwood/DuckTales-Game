@@ -13,6 +13,7 @@ import uq.deco2800.ducktales.resources.ResourceRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.resources.tiles.WorldBuilderTile;
 import uq.deco2800.ducktales.util.Array2D;
+import uq.deco2800.ducktales.util.Point;
 import uq.deco2800.ducktales.world.World;
 
 import static uq.deco2800.ducktales.resources.ResourceType.*;
@@ -62,6 +63,11 @@ public class WorldBuilderRenderer extends AnimationTimer {
     WorldEntityRenderingInfo renderingEngine;
 
     /**
+     * The manager for World builder
+     */
+    WorldBuilderManager manager = WorldBuilderManager.getInstance();
+
+    /**
      * starting X and Y positions to render the tiles
      */
     private int startingX;
@@ -72,7 +78,11 @@ public class WorldBuilderRenderer extends AnimationTimer {
      */
     private Array2D<WorldBuilderTile> tiles;
 
-    private ImageView hoveringImage;
+    /**
+     * Variables to control the hovering image when managing a world entity
+     */
+    private ImageView hoveringImage; // The sprite for the image
+    private boolean isTiledHovered = false;
 
     /**
      * CONSTRUCTOR METHOD
@@ -125,6 +135,29 @@ public class WorldBuilderRenderer extends AnimationTimer {
     }
 
     /**
+     * This method will be called whenever a world entity is being managed,
+     * and a tile is hovered upon. It will adjust the hoveringImage to snap
+     * to the position of that tile
+     *
+     * @param x
+     *          The x-coordinate of the hovered upon tile
+     * @param y
+     *          The y-coordinate of the hovered upon tile
+     */
+    public void notifyTileHovered(int x, int y) {
+        // making sure the hovering image does not move elsewhere due to
+        // the setOnMouseMoved implementation
+        isTiledHovered = true;
+        WorldBuilderTile tile = tiles.get(x, y);
+
+        hoveringImage.setLayoutX(tile.getLayoutX());
+        hoveringImage.setLayoutY(tile.getLayoutY());
+    }
+    public void notifyTileEndHovering() {
+        isTiledHovered = false;
+    }
+
+    /**
      * Initialize and set up the image to be displayed at the cursor when
      * a world entity is clicked on
      */
@@ -133,9 +166,12 @@ public class WorldBuilderRenderer extends AnimationTimer {
 
         buildingScene.getChildren().add(hoveringImage);
         buildingScene.setOnMouseMoved(event -> {
-            System.out.println("X Y are: " + event.getX() + ", " + event.getY());
-            hoveringImage.setLayoutX(event.getX());
-            hoveringImage.setLayoutY(event.getY());
+            if (!isTiledHovered) {
+                System.out.println("X Y are: " + event.getX() + ", " + event.getY());
+
+                hoveringImage.setLayoutX(event.getX());
+                hoveringImage.setLayoutY(event.getY());
+            }
         });
     }
 
@@ -181,7 +217,11 @@ public class WorldBuilderRenderer extends AnimationTimer {
         // Create the array of ImageViews
         for (int i = 0; i < this.world.getWidth(); i++) {
             for (int j = 0; j < this.world.getHeight(); j++) {
-                tiles.set(i, j, new WorldBuilderTile(i, j));
+                /*
+                 * Construct a WorldBuilderTile, passing it its world-coordinates
+                  * and a handle of this rendering engine,
+                 */
+                tiles.set(i, j, new WorldBuilderTile(this, i, j));
 
                 int x = startingX + (j - i) * scaledWidth / 2;
                 int y = startingY + (j + i) * scaledHeight / 2;
@@ -244,7 +284,7 @@ public class WorldBuilderRenderer extends AnimationTimer {
 
     @Override
     public void handle(long arg0) {
-        //renderWorld();
+        // stub method
     }
 
     @Override
@@ -255,13 +295,5 @@ public class WorldBuilderRenderer extends AnimationTimer {
     @Override
     public void stop() {
         super.stop();
-    }
-
-    private class HoveringImage extends ImageView{
-        public HoveringImage() {
-            super();
-            this.setImage(null);
-
-        }
     }
 }

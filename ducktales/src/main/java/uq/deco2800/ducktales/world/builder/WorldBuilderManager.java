@@ -24,13 +24,15 @@ public class WorldBuilderManager {
     /**
      * CONSTANTS
      */
-    public final int TILE = 0;
-    public final int ENTITY = 1;
+    public final int TILE = 1;
+    public final int ENTITY = 2;
 
 
     private World world;
     private WorldBuilderRenderer renderer;
     private ResourceType currentResource = NONE;
+
+    private int currentType = 0;
 
     /**
      * Returns the instance of {@link WorldBuilderManager}.
@@ -45,6 +47,22 @@ public class WorldBuilderManager {
     private WorldBuilderManager() {
     }
 
+    /**
+     * Return the current type of resource being managed. Can either
+     * be WorldBuilderManager.TILE or WorldBuilderManager.ENTITY,
+     * or 0 if nothing has been selected
+     *
+     * @return the integer value represent the type of resource being managed
+     */
+    public int getCurrentType() {
+        return this.currentType;
+    }
+
+    /**
+     * Register the rendering engine for the world builder
+     * @param renderer
+     *          The rendering engine
+     */
     public void setRenderer(WorldBuilderRenderer renderer) {
         this.renderer = renderer;
         renderer.start();
@@ -81,6 +99,7 @@ public class WorldBuilderManager {
      */
     public void setCurrentResource(ResourceType resource, int type) {
         currentResource = resource;
+        currentType = type;
         if (type == this.TILE) {
             renderer.setCurrentTileSelected(resource);
         } else if (type == this.ENTITY) {
