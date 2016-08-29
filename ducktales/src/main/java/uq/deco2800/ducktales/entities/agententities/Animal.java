@@ -12,6 +12,10 @@ import uq.deco2800.ducktales.util.Point;
  */
 public class Animal extends AgentEntity {
 
+    private final static int minStartHealth = 20;
+    private final static int minStartHunger = 20;
+    private final static int minStartThirst = 20;
+    private final static int minStartStrength = 5;
 
     protected Point currentLocation; // The animal's current location.
     protected Point nextLocation; // The location that the animal will move to.
@@ -36,6 +40,58 @@ public class Animal extends AgentEntity {
         this.speed = speed;
         this.currentLocation = point;
         newNextLocation();
+    }
+
+    /**
+     * Sets the health that the animal is spawned with.
+     *
+     * @param startingHealth The starting health of the animal.
+     */
+    protected void setStartingHealth(int startingHealth) {
+        if (startingHealth < minStartHealth) {
+            setHealth(minStartHealth);
+        } else {
+            setHealth(startingHealth);
+        }
+    }
+
+    /**
+     * Sets the hunger state that the animal is spawned with.
+     *
+     * @param startingHunger The starting hunger state of the animal.
+     */
+    protected void setStartingHunger(int startingHunger) {
+        if (startingHunger < minStartHunger) {
+            setHunger(minStartHunger);
+        } else {
+            setHunger(startingHunger);
+        }
+    }
+
+    /**
+     * Sets the thirst state that the animal is spawned with.
+     *
+     * @param startingThirst The starting thirst state of the animal.
+     */
+    protected void setStartingThirst(int startingThirst) {
+        if (startingThirst < minStartThirst) {
+            setThirst(minStartThirst);
+        } else {
+            setThirst(startingThirst);
+        }
+    }
+
+    /**
+     * Sets the strength level that the animal is spawned with.
+     *
+     * @param startingStrength The starting strength level of the animal.
+     */
+    protected void setStartingStrength(int startingStrength) {
+        if (startingStrength < minStartStrength) {
+            setStrength(minStartStrength);
+        } else {
+            setStrength(startingStrength);
+        }
     }
 
     /**
