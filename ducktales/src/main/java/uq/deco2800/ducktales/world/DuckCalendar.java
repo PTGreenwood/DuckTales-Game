@@ -19,10 +19,6 @@ public class DuckCalendar extends DuckClock implements Tickable {
 	int year;
 	int season; //0 = Spring, 1 = Summer, 2 = Autumn, 3 = Winter
 	
-	
-	//Instantiate a clock within the calendar with variables
-	//DuckClock duckClock = new DuckClock();
-
 	//Array to hold Dates held
 	//Still have to fully implement Date class
 	//private List<Date> markedDates;
@@ -34,15 +30,20 @@ public class DuckCalendar extends DuckClock implements Tickable {
 	 * @param y
 	 * 		- Integer: Current Year (>0)
 	 */
-	public DuckCalendar(DuckClock dc, int m, int h) {
+	public DuckCalendar(int minute, int hour) {
 		
-		super(m, h); //inherit minutes and hours from DuckClock SuperClass
+		super(minute, hour); //inherit minutes and hours from DuckClock SuperClass
 		this.day = 1; //Set day of calendar at 1
 		this.year = 1; //Set year of calendar at 1
 		this.season = 0; //Set season to 0 (spring)
 		
 	}
 	
+	/**
+	 * Class implements tick method from Tickable interface
+	 * Tick method is called within GameLoop class
+	 * 
+	 */
 	@Override
 	public void tick() {
 		super.minute++;
@@ -53,8 +54,11 @@ public class DuckCalendar extends DuckClock implements Tickable {
 		if(super.hour == 24) {
 			setDay(1);
 			super.hour = 0;
+			//Left this hear to print out the time once a day
+			System.out.println(printDuckTime());
 		}
-	System.out.println(printDuckTime());
+	//Uncomment this to see a print out of the current time every minute update
+	//System.out.println(printDuckTime());
 	}
 	
 	private void setDay(int daySet) {
@@ -83,19 +87,11 @@ public class DuckCalendar extends DuckClock implements Tickable {
 	public int getCurrentSeason() {
 		return this.season;
 	}
-	
-	/**
-	 * Updates the duckClock time
-	 * this is called in GameLoop every loop (so every tick).
-	 */
-	/*public void updateTime() {
-		duckClock.updateClock();
-		System.out.println(printDuckTime());
-	}*/
-	
-	/** Print out Time
+		
+	/** Print out a String that has the 
+	 * Current Hour, Current Minute and Current Day Number
 	 * 
-	 * @return a lame string telling the current time
+	 * @return a lame string telling the current time for lame debug
 	 */
 	private String printDuckTime() {
 		int h = super.hour;
@@ -105,14 +101,22 @@ public class DuckCalendar extends DuckClock implements Tickable {
 		return "Current Time is: " + h + ":" + m + " day: " + d;
 	} 
 	
-	/*
-	 * 
+	/**
+	 * markDate Method.
 	 * To be implemented later
 	 * 
+	 * Main Point is for other groups to be able to access the game calendar
+	 * and save dates/let things happen on certain dates within the game.
+	 * 
+	 * @param date object -> to be finalised
+	 */
+	/*
 	public void markDate(int date) {
 		
 	}
 	*/
+	
+	
 	/**
 	 * 
 	 * Sets up a date event in the Calendar that records when something

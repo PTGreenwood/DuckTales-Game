@@ -3,9 +3,7 @@ package uq.deco2800.ducktales;
 import uq.deco2800.ducktales.entities.EntityManager;
 import uq.deco2800.ducktales.world.World;
 import uq.deco2800.ducktales.world.DuckCalendar;
-import uq.deco2800.ducktales.world.DuckClock;
 
-import java.util.Calendar;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
@@ -21,12 +19,12 @@ public class GameLoop implements Runnable {
 	private AtomicBoolean quit;
 	
 	private EntityManager entityManager = EntityManager.getInstance();
-	//Test adding time
-	//private DuckCalendar duckCalendar = new DuckCalendar();
-	private int m = 0;
-	private int h = 0;
-	private DuckClock duckClock = new DuckClock(m,h);
-	private DuckCalendar duckCalendar = new DuckCalendar(duckClock, m, h);
+	
+	//Makeshift time add
+	private int gameStartMinute = 0;
+	private int gameStartHour = 0;
+
+	private DuckCalendar duckCalendar = new DuckCalendar(gameStartMinute, gameStartHour);
 	public GameLoop(AtomicBoolean quit, int tick) {
 		this.world = GameManager.getInstance().getWorld();
 		this.tick = tick;
