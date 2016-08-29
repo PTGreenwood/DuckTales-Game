@@ -9,7 +9,7 @@ import uq.deco2800.ducktales.resources.ResourceType;
  * @author Leggy
  *
  */
-public abstract class Building extends Entity {
+public abstract class WorldEntity extends Entity {
 	
 	protected static int TIME;
 	
@@ -17,7 +17,7 @@ public abstract class Building extends Entity {
 
 	protected static int STONERESOURCES;
 
-	protected Building(double x, double y, int lengthX, int lengthY, 
+	protected WorldEntity(double x, double y, int lengthX, int lengthY, 
 			ResourceType type) {
 		super(x, y, lengthX, lengthY, type);
 	}

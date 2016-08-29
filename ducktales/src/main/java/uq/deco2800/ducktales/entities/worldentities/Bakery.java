@@ -9,7 +9,7 @@ import static uq.deco2800.ducktales.resources.ResourceType.*;
  * @author Gabrielle Hodge, 43590526
  *
  */
-public class Bakery extends Building{
+public class Bakery extends WorldEntity{
 	
 	// Building type, time to build, resources required to build
 
@@ -17,9 +17,9 @@ public class Bakery extends Building{
 	
 	public Bakery(double x, double y) {
 		super(x, y, 2, 2, TYPE);
-		Building.STONERESOURCES = 4;
-		Building.WOODRESOURCES = 6;
-		Building.TIME = 4;
+		WorldEntity.STONERESOURCES = 4;
+		WorldEntity.WOODRESOURCES = 6;
+		WorldEntity.TIME = 4;
 	}
 
 	@Override

@@ -8,7 +8,7 @@ import uq.deco2800.ducktales.resources.ResourceType;
  * @author Gabrielle Hodge, 43590526 
  *
  */
-public class Farmhouse extends Building{
+public class Farmhouse extends WorldEntity {
 	
 
 	// Building type, time to build, resources required to build
@@ -17,9 +17,9 @@ public class Farmhouse extends Building{
 
 	public Farmhouse(double x, double y) {
 		super(x, y, 2, 2, TYPE);
-		Building.STONERESOURCES = 8;
-		Building.WOODRESOURCES = 10;
-		Building.TIME = 9;
+		WorldEntity.STONERESOURCES = 8;
+		WorldEntity.WOODRESOURCES = 10;
+		WorldEntity.TIME = 9;
 	}
 
 	@Override

@@ -8,7 +8,7 @@ import uq.deco2800.ducktales.resources.ResourceType;
  * @author Gabrielle Hodge, 43590526 
  *
  */
-public class Cemetery extends Building{
+public class Cemetery extends WorldEntity {
 	
 
 	// Building type, time to build, resources required to build
@@ -17,9 +17,9 @@ public class Cemetery extends Building{
 
 	public Cemetery(double x, double y) {
 		super(x, y, 2, 2, TYPE);
-		Building.STONERESOURCES = 2;
-		Building.WOODRESOURCES = 4;
-		Building.TIME = 2;
+		WorldEntity.STONERESOURCES = 2;
+		WorldEntity.WOODRESOURCES = 4;
+		WorldEntity.TIME = 2;
 	}
 
 	@Override

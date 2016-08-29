@@ -8,7 +8,7 @@ import uq.deco2800.ducktales.resources.ResourceType;
  * @author Gabrielle Hodge, 43590526 
  *
  */
-public class Sawmill extends Building{
+public class Sawmill extends WorldEntity {
 	
 	// Building type, time to build, resources required to build
 
@@ -23,9 +23,9 @@ public class Sawmill extends Building{
 
 	public Sawmill(double x, double y) {
 		super(x, y, 2, 2, TYPE);
-		Building.STONERESOURCES = 4;
-		Building.WOODRESOURCES = 8;
-		Building.TIME = 3;
+		WorldEntity.STONERESOURCES = 4;
+		WorldEntity.WOODRESOURCES = 8;
+		WorldEntity.TIME = 3;
 	}
 
 	@Override

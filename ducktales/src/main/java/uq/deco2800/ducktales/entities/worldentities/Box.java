@@ -8,15 +8,15 @@ import uq.deco2800.ducktales.resources.ResourceType;
  * @author Leggy
  *
  */
-public class Box extends Building {
+public class Box extends WorldEntity {
 
 	private final static ResourceType TYPE = ResourceType.BOX;
 
 	public Box(int x, int y) {
 		super(x, y, 1, 1, TYPE);
-		Building.STONERESOURCES = 2;
-		Building.WOODRESOURCES = 2;
-		Building.TIME = 4;
+		WorldEntity.STONERESOURCES = 2;
+		WorldEntity.WOODRESOURCES = 2;
+		WorldEntity.TIME = 4;
 	}
 
 	@Override
