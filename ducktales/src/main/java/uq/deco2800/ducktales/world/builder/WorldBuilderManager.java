@@ -1,7 +1,11 @@
 package uq.deco2800.ducktales.world.builder;
 
 import uq.deco2800.ducktales.resources.ResourceType;
+import uq.deco2800.ducktales.resources.tiles.WorldBuilderTile;
+import uq.deco2800.ducktales.util.Array2D;
 import uq.deco2800.ducktales.world.World;
+
+import java.util.ArrayList;
 
 import static uq.deco2800.ducktales.resources.ResourceType.*;
 
@@ -17,10 +21,18 @@ import static uq.deco2800.ducktales.resources.ResourceType.*;
  */
 public class WorldBuilderManager {
     private static final WorldBuilderManager INSTANCE = new WorldBuilderManager();
+    /**
+     * CONSTANTS
+     */
+    public final int TILE = 1;
+    public final int ENTITY = 2;
+
 
     private World world;
     private WorldBuilderRenderer renderer;
     private ResourceType currentResource = NONE;
+
+    private int currentType = 0;
 
     /**
      * Returns the instance of {@link WorldBuilderManager}.
@@ -33,10 +45,24 @@ public class WorldBuilderManager {
      * Constructor of the WorldBuilderManager class
      */
     private WorldBuilderManager() {
-        // stub method
-
     }
 
+    /**
+     * Return the current type of resource being managed. Can either
+     * be WorldBuilderManager.TILE or WorldBuilderManager.ENTITY,
+     * or 0 if nothing has been selected
+     *
+     * @return the integer value represent the type of resource being managed
+     */
+    public int getCurrentType() {
+        return this.currentType;
+    }
+
+    /**
+     * Register the rendering engine for the world builder
+     * @param renderer
+     *          The rendering engine
+     */
     public void setRenderer(WorldBuilderRenderer renderer) {
         this.renderer = renderer;
         renderer.start();
@@ -71,9 +97,15 @@ public class WorldBuilderManager {
      * @param resource
      *          The type of resource that is being managed
      */
-    public void setCurrentResource(ResourceType resource) {
+    public void setCurrentResource(ResourceType resource, int type) {
         currentResource = resource;
-        renderer.setCurrentTileSelected(resource);
+        currentType = type;
+        if (type == this.TILE) {
+            renderer.setCurrentTileSelected(resource);
+        } else if (type == this.ENTITY) {
+            renderer.setCurrentEntitySelected(resource);
+        }
+
         System.out.println("Current resource is: " + resource.toString());
     }
 

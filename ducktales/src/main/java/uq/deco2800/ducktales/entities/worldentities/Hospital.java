@@ -3,7 +3,7 @@ package uq.deco2800.ducktales.entities.worldentities;
 import uq.deco2800.ducktales.resources.ResourceType;
 
 /**
- * A Sawmill.
+ * A Hospital.
  * 
  * @author Gabrielle Hodge, 43590526 
  *
