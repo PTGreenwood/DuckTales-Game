@@ -18,6 +18,8 @@ public class WorldEntityRenderingInfo {
      * The lowest visible points of the corresponding entities
      */
     private final int HOSPITAL_START_POINT = 40;
+    private final int BAKERY_START_POINT = 45;
+    private final int BARN_START_POINT = 40;
 
     private static WorldEntityRenderingInfo ourInstance = new WorldEntityRenderingInfo();
 
@@ -43,8 +45,23 @@ public class WorldEntityRenderingInfo {
         // HOSPITAL
         entities.put(HOSPITAL, new RenderingEntity(new int[][] {
                 {1, 1, 1},
+                {1, 1, 1},
                 {1, 1, 1}
         }, HOSPITAL_START_POINT));
+
+        // BAKERY
+        entities.put(BAKERY, new RenderingEntity(new int[][] {
+                {1, 1},
+                {1, 1},
+                {1, 1}
+        }, BAKERY_START_POINT));
+
+        // BARN
+        entities.put(BARN, new RenderingEntity(new int[][] {
+                {1, 1, 1},
+                {1, 1, 1},
+                {1, 1, 1}
+        }, BARN_START_POINT));
 
     }
 
