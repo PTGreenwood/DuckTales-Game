@@ -56,6 +56,8 @@ public class DuckCalendar extends DuckClock implements Tickable {
 			super.hour = 0;
 			//Left this hear to print out the time once a day
 			System.out.println(printDuckTime());
+		} if(this.day/this.year > 80) {
+			this.year++;
 		}
 	//Uncomment this to see a print out of the current time every minute update
 	//System.out.println(printDuckTime());

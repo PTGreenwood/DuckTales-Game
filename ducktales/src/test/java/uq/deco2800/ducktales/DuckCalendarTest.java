@@ -9,12 +9,12 @@ public class DuckCalendarTest {
 
 	//Instantiate Here 
 	//DuckClock clock = new DuckClock();
-	//DuckCalendar duckCal = new DuckCalendar();
+	DuckCalendar duckCal = new DuckCalendar(0,0);
 	@Test // For firstTest testing (not sure yet :S)
 	public void firstTest() {
 		
 		//Temp Variables
-		
+
 		//Test Here:
 		//AssertTrue("");
 
