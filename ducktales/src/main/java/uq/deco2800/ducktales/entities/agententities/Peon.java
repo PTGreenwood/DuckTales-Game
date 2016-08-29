@@ -17,15 +17,8 @@ import uq.deco2800.ducktales.util.Point;
  */
 public class Peon extends AgentEntity {
 
-<<<<<<< HEAD
 	private static final Random RANDOM = new Random();
 
-	private final static String TYPE = "peon";
-
-	private Point goalPoint;
-
-	private double speed;
-=======
 	private final static ResourceType TYPE = ResourceType.PEON;
 
 	private List<Point> goalPoints;
@@ -33,9 +26,6 @@ public class Peon extends AgentEntity {
 	private double speed;
 
 	private int health = 1000;
->>>>>>> master
-
-	private int Health = 1000;
 
 	// affinity
 	private int strength;
@@ -51,25 +41,8 @@ public class Peon extends AgentEntity {
 	 */
 	public Peon(int x, int y) {
 		super(x, y, 1, 1, TYPE);
-<<<<<<< HEAD
-		speed = 0.05;
 		strength = RANDOM.nextInt((DEFAULT_MAX - DEFAULT_MIN) + 1) + DEFAULT_MIN;
 		intelligence = RANDOM.nextInt((DEFAULT_MAX - DEFAULT_MIN) + 1) + DEFAULT_MIN;
-		newGoalPoint();
-	}
-
-	/**
-	 * @param NewValue
-	 */
-	public void ChangeHealth(int NewValue) {
-		if (NewValue > 0) {
-			this.Health = NewValue;
-		}
-	}
-
-	public int GetHealth() {
-		return Health;
-=======
 		this.speed = 0.05;
 		this.goalPoints = new ArrayList<Point>();
 	}
@@ -82,22 +55,18 @@ public class Peon extends AgentEntity {
 
 	public int getHealth() {
 		return health;
->>>>>>> master
 	}
-        public int getStrength(){
-            return strength;
-        }
-        public int getIntelligence(){
-            return intelligence;
-        }
+	
+	public int getStrength(){
+		return strength;
+	}
+	
+	public int getIntelligence(){
+		return intelligence;
+	}
 
 	@Override
 	public void tick() {
-<<<<<<< HEAD
-		if (point.distance(goalPoint) < speed) {
-			point = goalPoint;
-			newGoalPoint();
-=======
 		if (goalPoints.isEmpty()) {
 			goalPoints = newGoalPoints();
 		} else if (point.distance(goalPoints.get(0)) < speed) {
@@ -106,21 +75,13 @@ public class Peon extends AgentEntity {
 			if (goalPoints.isEmpty()) {
 				this.goalPoints = newGoalPoints();
 			}
->>>>>>> master
 		} else {
 			point.moveToward(goalPoints.get(0), speed);
 		}
 		calculateRenderingOrderValues();
-<<<<<<< HEAD
-
-	}
-
-	private void newGoalPoint() {
-=======
 	}
 
 	private List<Point> newGoalPoints() {
->>>>>>> master
 		Random random = new Random();
 		Point goalPoint = null;
 		while (goalPoint == null || !GameManager.getInstance().getWorld().getTile(goalPoint).isPassable()) {
