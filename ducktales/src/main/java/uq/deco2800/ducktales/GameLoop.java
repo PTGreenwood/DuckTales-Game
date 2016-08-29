@@ -20,11 +20,7 @@ public class GameLoop implements Runnable {
 	
 	private EntityManager entityManager = EntityManager.getInstance();
 	
-	//Makeshift time add
-	private int gameStartMinute = 0;
-	private int gameStartHour = 0;
-
-	private DuckCalendar duckCalendar = new DuckCalendar(gameStartMinute, gameStartHour);
+	private DuckCalendar duckCalendar = new DuckCalendar(0, 0);
 	public GameLoop(AtomicBoolean quit, int tick) {
 		this.world = GameManager.getInstance().getWorld();
 		this.tick = tick;

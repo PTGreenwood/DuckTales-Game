@@ -1,6 +1,7 @@
 package uq.deco2800.ducktales;
 import uq.deco2800.ducktales.world.DuckClock;
 import org.junit.Test;
+import static org.junit.Assert.*;
 
 public class DuckClockTest {
 
@@ -14,9 +15,11 @@ public class DuckClockTest {
 		
 		//Instatiate all clocks to be tested against
 		DuckClock validClock = new DuckClock(5, 30);
-		DuckClock negativeClockMinute = new DuckClock(0, -10);
-		//Test for valid time variables
+		//DuckClock negativeClockMinute = new DuckClock(0, -10);
 		
+		//Test for valid minute time variable
+		assertTrue("Minute has wrong value", validClock.getMinute() == 30);
+
 		//--- Invalid duckClock instantiation tests ---
 		//Test for negative time variables
 		
@@ -34,9 +37,10 @@ public class DuckClockTest {
 		
 		//Instatiate all clocks to be tested against
 		DuckClock validClock = new DuckClock(5, 30);
-		DuckClock negativeClockHour = new DuckClock(-4, 0);
+		//DuckClock negativeClockHour = new DuckClock(-4, 0);
 		//Test for valid time variables
-				
+		
+		assertTrue("Hour has wrong value", validClock.getHour() == 5);		
 		//--- Invalid duckClock instantiation tests ---
 		//Test for negative time variables
 			
@@ -54,9 +58,11 @@ public class DuckClockTest {
 		
 		//Instatiate all clocks to be tested against
 		DuckClock validClock = new DuckClock(5, 30);
-		DuckClock negativeClockHour = new DuckClock(-4, 0);
+		//DuckClock negativeClockHour = new DuckClock(-4, 0);
 		//Test for valid time variables
-				
+		
+		validClock.setHour(9);
+		assertTrue("Hour did not set properly", validClock.getHour() == 9);
 		//--- Invalid duckClock instantiation tests ---
 		//Test for negative time variables
 			
@@ -74,9 +80,11 @@ public class DuckClockTest {
 		
 		//Instatiate all clocks to be tested against
 		DuckClock validClock = new DuckClock(5, 30);
-		DuckClock negativeClockHour = new DuckClock(-4, 0);
+		//DuckClock negativeClockHour = new DuckClock(-4, 0);
 		//Test for valid time variables
-				
+		
+		validClock.setMinute(57);
+		assertTrue("Minute did not set properly", validClock.getMinute() == 57);
 		//--- Invalid duckClock instantiation tests ---
 		//Test for negative time variables
 			
