@@ -7,7 +7,7 @@ import uq.deco2800.ducktales.resources.ResourceType;
  * @author Leggy
  *
  */
-public class LongBox extends WorldEntity {
+public class LongBox extends Building {
 	
 	private final static ResourceType TYPE = ResourceType.LONG_BOX;
 	
@@ -18,7 +18,10 @@ public class LongBox extends WorldEntity {
 	private static final int STONERESOURCES = 2;
 
 	public LongBox(int x, int y) {
-		super(x, y, 2, 1, TYPE, TIME, WOODRESOURCES, STONERESOURCES);
+		super(x, y, 2, 1, TYPE);
+		Building.STONERESOURCES = 2;
+		Building.WOODRESOURCES = 2;
+		Building.TIME = 2;
 	}
 
 	@Override

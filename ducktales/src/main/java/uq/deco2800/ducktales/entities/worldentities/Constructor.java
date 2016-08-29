@@ -24,7 +24,7 @@ public class Constructor {
 	public Constructor(double x, double y) {
 		// Change the following lines:
 		// Change to building clicked from constructor panel
-		WorldEntity toCreate = new Bakery(x, y);
+		Building toCreate = new Bakery(x, y);
 		// Change to resources available - wood, stone (currently arbitrary to test)
 		if (getStone(toCreate) <= 10) {
 			if (getWood(toCreate) <= 10) {
@@ -45,7 +45,7 @@ public class Constructor {
 	 * 
 	 * @return the integer number of stone required to construct
 	 */
-	private int getStone(WorldEntity building) {
+	private int getStone(Building building) {
 		return building.resourcesBuildStone();
 	}
 	
@@ -57,7 +57,7 @@ public class Constructor {
 	 * 
 	 * @return the integer number of wood required for construction
 	 */
-	private int getWood(WorldEntity building) {
+	private int getWood(Building building) {
 		return building.resourcesBuildWood();
 	}
 	
@@ -70,7 +70,7 @@ public class Constructor {
 	 * @return the integer of time required to construct the selected 
 	 * building.
 	 */
-	private int getTime(WorldEntity building) {
+	private int getTime(Building building) {
 		return building.timeToBuild();
 	}
 	
@@ -85,7 +85,7 @@ public class Constructor {
 	 * @return A string detailing the error with constructing the selected 
 	 * building.
 	 */
-	public String errorBuild(String material, WorldEntity building) {
+	public String errorBuild(String material, Building building) {
 		return "Not enough " + material + " to build a " + building.toString();
 	}
 	

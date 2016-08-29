@@ -7,7 +7,7 @@ import uq.deco2800.ducktales.resources.ResourceType;
  * @author Leggy
  *
  */
-public class House extends WorldEntity{
+public class House extends Building{
 	
 	// Building type, time to build, resources required to build
 
@@ -23,7 +23,10 @@ public class House extends WorldEntity{
 
 
 	public House(double x, double y) {
-		super(x, y, 2, 2, TYPE, TIME, WOODRESOURCES, STONERESOURCES);
+		super(x, y, 2, 2, TYPE);
+		Building.STONERESOURCES = 2;
+		Building.WOODRESOURCES = 4;
+		Building.TIME = 2;
 	}
 	
 	public void ChangeHealth(int NewValue){

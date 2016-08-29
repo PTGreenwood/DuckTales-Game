@@ -16,7 +16,7 @@ public abstract class ResourceEntity extends Entity {
 	}
 
 	/**
-	 * Returns true if this {@link WorldEntity} is passable.
+	 * Returns true if this {@link Building} is passable.
 	 * 
 	 * @return Returns true if this WorldEntity is passable.
 	 */

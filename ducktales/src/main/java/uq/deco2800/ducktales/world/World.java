@@ -155,7 +155,7 @@ public class World implements Tickable {
 
 	}
 
-	public void addEntity(WorldEntity entity) {
+	public void addEntity(Building entity) {
 		int entityX = (int) entity.getX();
 		int entityY = (int) entity.getY();
 

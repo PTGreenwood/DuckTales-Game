@@ -9,6 +9,7 @@ import java.util.List;
 import org.junit.Test;
 
 import uq.deco2800.ducktales.entities.worldentities.Bakery;
+import uq.deco2800.ducktales.entities.worldentities.Barn;
 import uq.deco2800.ducktales.entities.worldentities.Box;
 import uq.deco2800.ducktales.entities.worldentities.Cemetery;
 import uq.deco2800.ducktales.entities.worldentities.Farmhouse;
@@ -62,6 +63,30 @@ public class BuildingTest {
 		assertTrue("Wrong returned resources", entity1.resourcesReturnWood() == (2));
 		assertTrue("Wrong resources to build", entity3.resourcesBuildStone() == 2);
 		assertTrue("Wrong time", entity2.timeToBuild() == 2);
+	}
+	
+	@Test
+	public void barnTest(){
+		Barn entity1 = new Barn(2, 3);
+		Barn entity2 = new Barn(4, 5);
+		Barn entity3 = new Barn(1, 1);
+		
+		List<Entity> entities = new ArrayList<Entity>();
+		entities.add(entity1);
+		entities.add(entity2);
+		entities.add(entity3);
+		
+		// Check entity functionality still works
+		Collections.sort(entities);
+		
+		assertTrue("Entity 0 incorrect!", entities.get(0).equals(entity3));
+		assertTrue("Entity 1 incorrect!", entities.get(1).equals(entity1));
+		assertTrue("Entity 2 incorrect!", entities.get(2).equals(entity2));
+		
+		// Check correct resources and time
+		assertTrue("Wrong returned resources", entity1.resourcesReturnWood() == 5);
+		assertTrue("Wrong resources to build", entity3.resourcesBuildStone() == 4);
+		assertTrue("Wrong time", entity2.timeToBuild() == 9);
 	}
 	
 	@Test
@@ -131,7 +156,7 @@ public class BuildingTest {
 		assertTrue("Entity 2 incorrect!", entities.get(2).equals(entity2));
 		
 		// Check correct resources and time
-		assertTrue("Wrong returned resources", entity1.resourcesReturnStone() == 2);
+		assertTrue(String.valueOf(entity1.resourcesReturnStone()), entity1.resourcesReturnStone() == 2);
 		assertTrue("Wrong resources to build", entity3.resourcesBuildStone() == 4);
 		assertTrue("Wrong time", entity2.timeToBuild() == 4);
 	}

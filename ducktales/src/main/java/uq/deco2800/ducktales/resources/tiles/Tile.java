@@ -1,6 +1,6 @@
 package uq.deco2800.ducktales.resources.tiles;
 
-import uq.deco2800.ducktales.entities.worldentities.WorldEntity;
+import uq.deco2800.ducktales.entities.worldentities.Building;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.Tickable;
 
@@ -20,7 +20,7 @@ public class Tile implements Tickable {
 	private ResourceType oldType = ResourceType.YELLOW;
 	private boolean path = false;
 
-	private WorldEntity worldEntity;
+	private Building worldEntity;
 
 	/**
 	 * Initialises this Tile with a specified tile type.
@@ -59,22 +59,22 @@ public class Tile implements Tickable {
 	 * 
 	 * @param worldEntity
 	 */
-	public void addWorldEntity(WorldEntity worldEntity) {
+	public void addWorldEntity(Building worldEntity) {
 		if (this.worldEntity != null) {
 			this.worldEntity = worldEntity;
 		}
 	}
 
-	public void setWorldEntity(WorldEntity entity) {
+	public void setWorldEntity(Building entity) {
 		this.worldEntity = entity;
 	}
 
 	/**
-	 * Returns the {@link WorldEntity} at this location.
+	 * Returns the {@link Building} at this location.
 	 * 
 	 * @return Returns the WorldEntity at this location.
 	 */
-	public WorldEntity getWorldEntity() {
+	public Building getWorldEntity() {
 		return worldEntity;
 	}
 
