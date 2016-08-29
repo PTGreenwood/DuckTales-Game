@@ -93,7 +93,6 @@ public class ResourceRegister {
 		addResource(BARN, "/barn.png");
 		//addResource(FORGE, "/forge.png");
 		addResource(HOSPITAL, "/hospital.png");
-		addResource(HOSPITAL, "/hospital.png");
 		//addResource(OBSERVATORY, "/observatory.png");
 
 	}
