@@ -6,8 +6,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import java.awt.Toolkit;
-import java.awt.Dimension;
 
 import java.net.URL;
 
@@ -32,13 +30,7 @@ public class DuckTalesLauncher extends Application {
 		
 		Parent root = fxmlLoader.load(location.openStream());
 		
-		Toolkit awtToolKit = Toolkit.getDefaultToolkit();
-	    Dimension screenDimensions = awtToolKit.getScreenSize(); 
-	    
-	    double screenWidth = screenDimensions.getWidth();
-	    double screenHeight = screenDimensions.getHeight(); 
-		
-		Scene scene = new Scene(root, screenWidth, screenHeight);
+		Scene scene = new Scene(root, 1200,700);
 		
 		DuckTalesController ducktalesController = fxmlLoader.getController(); // link the controller to the FXML file
 
@@ -48,9 +40,10 @@ public class DuckTalesLauncher extends Application {
 		//Apply CSS file to current scene
 	    scene.getStylesheets().add(css);
 		primaryStage.setTitle("DuckTales v" + version);
+		primaryStage.setFullScreen(true);
 		primaryStage.setScene(scene);
-		primaryStage.setMinWidth(screenWidth*0.5);
-		primaryStage.setMinHeight(screenHeight*0.5);
+		primaryStage.setMinWidth(1200);
+		primaryStage.setMinHeight(700);
 		primaryStage.setOnCloseRequest(e -> ducktalesController.stopGame());
 		primaryStage.show();	
 	}
