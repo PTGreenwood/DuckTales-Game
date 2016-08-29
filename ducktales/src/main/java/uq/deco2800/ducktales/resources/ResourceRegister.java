@@ -89,6 +89,7 @@ public class ResourceRegister {
 		// ResourceType enum class instead of the previous String implementation
 		addResource(BAKERY, "/bakery.png");
 		//addResource(CEMETERY, "/cemetery.png");
+		addResource(FARMHOUSE, "/farm+barn.png");
 		addResource(BARN, "/barn.png");
 		//addResource(FORGE, "/forge.png");
 		addResource(HOSPITAL, "/hospital.png");
