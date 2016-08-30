@@ -4,7 +4,7 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="gameWindow" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="737.0" prefWidth="1295.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uq.deco2800.ducktales.ui.DuckTalesController">
+<AnchorPane fx:id="gameWindow" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="737.0" prefWidth="1295.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uq.deco2800.ducktales.ui.DuckTalesController">
 
 	<children>
 		<SplitPane dividerPositions="0.13379737045630316" focusTraversable="true" prefHeight="737.0" prefWidth="1295.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -14,11 +14,11 @@
 
 					<children>
 
-						<Button layoutX="52.0" layoutY="321.0" mnemonicParsing="false" onAction="#tutorial" text="Tutorial" />
+						<Button layoutX="52.0" layoutY="320.0" mnemonicParsing="false" onAction="#tutorial" text="Tutorial" />
 						<Button fx:id="startGameBtn" layoutX="33.0" layoutY="226.0" mnemonicParsing="false" onAction="#startGame" text="Launch Game" />
-						<Button layoutX="40.0" layoutY="274.0" mnemonicParsing="false" onAction="#buildWorld" text="Build World" />
-                  <Button layoutX="36.0" layoutY="368.0" mnemonicParsing="false" onAction="#showMarketplace" text="Marketplace" />
-                  <Button layoutX="6.0" layoutY="375.0" mnemonicParsing="false" onAction="#missionAndAchievement" text="Mission/Achievement" />
+						<Button layoutX="40.0" layoutY="273.0" mnemonicParsing="false" onAction="#buildWorld" text="Build World" />
+                  <Button layoutX="36.0" layoutY="367.0" mnemonicParsing="false" onAction="#showMarketplace" text="Marketplace" />
+                  <Button layoutX="6.0" layoutY="414.0" mnemonicParsing="false" onAction="#missionAndAchievement" text="Mission/Achievement" />
 
 					</children>
 				</AnchorPane>
