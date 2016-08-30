@@ -78,7 +78,4 @@
       <RowConstraints maxHeight="+Infinity" minHeight="-Infinity" valignment="CENTER" vgrow="ALWAYS" />
       <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" vgrow="NEVER" />
    </rowConstraints>
-   <stylesheets>
-      <URL value="@../../AlertDialog_css/AlertDialog.css" />
-   </stylesheets>
 </GridPane>
