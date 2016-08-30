@@ -10,6 +10,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import javafx.geometry.Insets;
 import javafx.scene.layout.*;
 import uq.deco2800.ducktales.*;
+import uq.deco2800.ducktales.achievements.Achievements;
 import uq.deco2800.ducktales.resources.ResourceRegister;
 import uq.deco2800.ducktales.world.*;
 import uq.deco2800.ducktales.world.builder.WorldBuilderManager;
@@ -42,7 +43,8 @@ public class DuckTalesController implements Initializable {
 	private BorderPane worldBuilderPane;
 
 	private AtomicBoolean quit;
-
+	
+	private Achievements achievementScore; 
 	
 	
 	
@@ -51,6 +53,7 @@ public class DuckTalesController implements Initializable {
 		tileRegister = ResourceRegister.getInstance();
 		gameManager = GameManager.getInstance();
 		worldBuilderManager = WorldBuilderManager.getInstance();
+		achievementScore = Achievements.getInstance();
 
 		// Set the handlers for the game panes
 		rightPane.setOnMousePressed(new MousePressedHandler());
