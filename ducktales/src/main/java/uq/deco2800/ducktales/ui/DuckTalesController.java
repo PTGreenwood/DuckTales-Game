@@ -77,10 +77,17 @@ public class DuckTalesController implements Initializable {
 		tutorialStage.show();
 	}
 	
-	
+	/**
+	 * 
+	 * Displays the Marketplace main pop up window.
+	 * 
+	 * @param event
+	 * @throws Exception
+	 */
 	@FXML
 	private void showMarketplace(ActionEvent event) throws Exception {
 		
+		// Load in the marketplace fxml
 		URL location = getClass().getResource("/marketplace.fxml");
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(location);
