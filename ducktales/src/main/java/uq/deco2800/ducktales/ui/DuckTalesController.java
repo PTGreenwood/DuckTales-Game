@@ -22,6 +22,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class DuckTalesController implements Initializable {
@@ -44,6 +45,7 @@ public class DuckTalesController implements Initializable {
 	private AtomicBoolean quit;
 
 	public Stage tutorialStage;
+	public Stage marketplaceStage;
 	
 	
 	@Override
@@ -76,6 +78,28 @@ public class DuckTalesController implements Initializable {
 		tutorialStage.setTitle("Tutorial");
 		tutorialStage.setScene(tutorialScene);
 		tutorialStage.show();
+	}
+	
+	@FXML
+	private void showMarketplace(ActionEvent event) throws Exception {
+		
+		URL location = getClass().getResource("/marketplace.fxml");
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(location);
+		Parent root = loader.load(location.openStream());
+		Scene marketplaceScene = new Scene(root, 400, 400);
+		
+		this.marketplaceStage = new Stage();
+		marketplaceStage.initModality(Modality.APPLICATION_MODAL);
+		
+		//TODO: Determine whether to set an initOwner
+		marketplaceStage.setTitle("Marketplace");
+		marketplaceStage.setScene(marketplaceScene);
+		marketplaceStage.show();
+		
+		
+		
+		
 	}
 
 	/**
