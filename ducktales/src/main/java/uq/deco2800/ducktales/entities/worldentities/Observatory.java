@@ -8,7 +8,7 @@ import uq.deco2800.ducktales.resources.ResourceType;
  * @author Gabrielle Hodge, 43590526 
  *
  */
-public class Observatory extends WorldEntity{
+public class Observatory extends WorldEntity {
 
 	// Building type, time to build, resources required to build
 
@@ -21,7 +21,10 @@ public class Observatory extends WorldEntity{
 	private static final int STONERESOURCES = 4;
 
 	public Observatory(double x, double y) {
-		super(x, y, 2, 2, TYPE, TIME, WOODRESOURCES, STONERESOURCES);
+		super(x, y, 2, 2, TYPE);
+		WorldEntity.STONERESOURCES = 4;
+		WorldEntity.WOODRESOURCES = 10;
+		WorldEntity.TIME = 5;
 	}
 
 	@Override

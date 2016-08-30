@@ -70,7 +70,7 @@ public class Tile implements Tickable {
 	}
 
 	/**
-	 * Returns the {@link WorldEntity} at this location.
+	 * Returns the {@link Building} at this location.
 	 * 
 	 * @return Returns the WorldEntity at this location.
 	 */

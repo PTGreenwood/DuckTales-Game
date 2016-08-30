@@ -6,6 +6,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+
 import javafx.geometry.Insets;
 import javafx.scene.layout.*;
 import uq.deco2800.ducktales.*;
@@ -42,7 +43,7 @@ public class DuckTalesController implements Initializable {
 
 	private AtomicBoolean quit;
 
-	public Stage tutorialStage;
+	
 	
 	
 	@Override
@@ -71,12 +72,27 @@ public class DuckTalesController implements Initializable {
 		Parent root = loader.load(location.openStream());
 		Scene tutorialScene = new Scene(root, 400, 400);
 		
-		this.tutorialStage = new Stage();
+		Stage tutorialStage = new Stage();
 		tutorialStage.setTitle("Tutorial");
 		tutorialStage.setScene(tutorialScene);
 		tutorialStage.show();
 	}
-
+	
+	@FXML
+	private void missionAndAchievement(ActionEvent event) throws Exception{
+		
+		
+		URL location = getClass().getResource("/missionAndAchievement.fxml");
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(location);
+		Parent root = loader.load(location.openStream());
+		Scene missionAndAchievementScene = new Scene(root, 600, 600);
+		
+		Stage missionAndAchievementStage = new Stage();
+		missionAndAchievementStage.setTitle("Mission and Achievement");
+		missionAndAchievementStage.setScene(missionAndAchievementScene);
+		missionAndAchievementStage.show();
+	}
 	/**
 	 * This method will be called when the 'Launch Game' button is pressed
 	 * The code that will call this method is defined in ducktales.fxml
@@ -107,6 +123,7 @@ public class DuckTalesController implements Initializable {
 			showCanvas(gameCanvas);
 		}
 	}
+	
 
 	/**
 	 * This method is called when "Build World" button is pressed
@@ -137,6 +154,10 @@ public class DuckTalesController implements Initializable {
 			showPane(worldBuilderPane);
 		}
 	}
+	
+	
+	
+	
 
 	public void stopGame() {
 		if (executor != null && quit != null) {
