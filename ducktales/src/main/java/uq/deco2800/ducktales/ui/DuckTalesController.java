@@ -65,9 +65,6 @@ public class DuckTalesController implements Initializable {
 	
 	@FXML 
 	private void tutorial(ActionEvent event) throws Exception {
-				
-		
-		
 		URL location = getClass().getResource("/tutorial.fxml");
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(location);
@@ -80,6 +77,7 @@ public class DuckTalesController implements Initializable {
 		tutorialStage.show();
 	}
 	
+	
 	@FXML
 	private void showMarketplace(ActionEvent event) throws Exception {
 		
@@ -88,23 +86,14 @@ public class DuckTalesController implements Initializable {
 		loader.setLocation(location);
 		Parent root = loader.load(location.openStream());
 		Scene marketplaceScene = new Scene(root);
+		
 		this.marketplaceStage = new Stage();
-		//marketplaceStage.initModality(Modality.APPLICATION_MODAL);
-		
+		// To get the window to appear in front of the right pane
 		marketplaceStage.initOwner(
-		        rightPane.getScene().getWindow() );
-		
-		//TODO: Determine whether to set an initOwner
+		        rightPane.getScene().getWindow());
 		marketplaceStage.setTitle("Marketplace");
 		marketplaceStage.setScene(marketplaceScene);
-		
-		// Get the scene in the right pane
-		
 		marketplaceStage.show();
-		
-		
-		
-		
 	}
 
 	/**
