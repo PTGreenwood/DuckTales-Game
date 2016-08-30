@@ -27,6 +27,14 @@ public abstract class Job {
      */
     public Job(int requiredStrength, int requiredIntelligence, 
             int mentorStrength, int mentorIntelligence, String jobName) {
+        if (requiredStrength <= 0)
+            this.requiredStrength = 1;
+        if (requiredIntelligence <=0)
+            this.requiredIntelligence =1;
+        if (mentorStrength <= requiredStrength)
+            this.mentorStrength = requiredStrength+1;
+        if (mentorIntelligence <= requiredIntelligence)
+            this.mentorIntelligence = requiredIntelligence+1;
         this.requiredStrength = requiredStrength;
         this.requiredIntelligence = requiredIntelligence;
         this.mentorStrength = mentorStrength;
@@ -69,7 +77,7 @@ public abstract class Job {
      */
     public int [] getMentorRequirements(){
         int [] reqs = {this.getMentorStrength(), this.getMentorIntelligence()};
-        return reqs;        
+        return reqs;      
     }
     /**
      * Returns the required strength to become
