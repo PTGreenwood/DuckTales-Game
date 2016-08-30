@@ -6,6 +6,7 @@ import uq.deco2800.ducktales.util.*;
  * Base class for all duck gods and their bonuses
  * 
  * @author Alison Collins
+ * Team Fat Ducks
  *
  */
 
