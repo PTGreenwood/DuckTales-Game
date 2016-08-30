@@ -45,7 +45,7 @@ public class DuckTalesController implements Initializable {
 
 	private AtomicBoolean quit;
 	
-	private Achievements achievementScore;
+    private Achievements achievementScore;
 
 	public Stage tutorialStage;
 	public Stage marketplaceStage;
