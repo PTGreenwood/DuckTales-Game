@@ -95,6 +95,23 @@ public abstract class Job {
     public int getMentorIntelligence(){
         return mentorIntelligence;
     }
+    /** 
+     * GOING TO NEED TO REVISE THIS PART
+     * to determine picking which peons to assign to the task
+     * 
+     * Determines overall how qualified a peon is for the job
+     * @param peon
+     * @return a double determining how qualified a peon is
+     *          for this job. 
+     */
+    public double qualifiedPercent(Peon peon){
+        if(!isQualified(peon))
+            return -1;
+        double str = peon.getStrength()/this.getRequiredStrength();
+        double intel = peon.getIntelligence()/this.getRequiredIntelligence();
+        double total = (str+intel)/2;
+        return total;
+    }
     /**
      * Defines whether or not the given peon is 
      * qualified to do the job
