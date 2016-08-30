@@ -15,19 +15,12 @@ public class Tree extends ResourceEntity{
 	private int stage;
 
 	public Tree(double x, double y) {
-		super(x, y, 1, 1, TYPES[0]);
+		super(x, y, 1, 1, TYPES[0], value);
 		this.stage = 0;
 	}
 
 	@Override
-	public void tick() {
-		Random random = new Random();
-		
-		if(random.nextDouble() < 0.005 && stage < TYPES.length - 1){
-			stage++;
-			updateType(TYPES[stage]);
-		}
-		
+	public void tick() {		
 	}
 
 	@Override
