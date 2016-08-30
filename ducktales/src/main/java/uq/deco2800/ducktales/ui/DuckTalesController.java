@@ -87,14 +87,19 @@ public class DuckTalesController implements Initializable {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(location);
 		Parent root = loader.load(location.openStream());
-		Scene marketplaceScene = new Scene(root, 400, 400);
-		
+		Scene marketplaceScene = new Scene(root);
 		this.marketplaceStage = new Stage();
-		marketplaceStage.initModality(Modality.APPLICATION_MODAL);
+		//marketplaceStage.initModality(Modality.APPLICATION_MODAL);
+		
+		marketplaceStage.initOwner(
+		        rightPane.getScene().getWindow() );
 		
 		//TODO: Determine whether to set an initOwner
 		marketplaceStage.setTitle("Marketplace");
 		marketplaceStage.setScene(marketplaceScene);
+		
+		// Get the scene in the right pane
+		
 		marketplaceStage.show();
 		
 		
