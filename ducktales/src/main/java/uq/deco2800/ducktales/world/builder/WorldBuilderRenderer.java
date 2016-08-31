@@ -212,7 +212,7 @@ public class WorldBuilderRenderer extends AnimationTimer {
         System.out.println("Entities added: " + addedEntities.toString());
         
         //Achievement score will be incremented whenever any building is built
-        achievementScore.incrementAchieve();
+        achievementScore.achieveVeasy();
     }
 
     /**
@@ -340,6 +340,8 @@ public class WorldBuilderRenderer extends AnimationTimer {
         this.worldBuilderPane.setCenter(buildingScene);
         this.worldBuilderPane.setRight(tileMenu);
         this.worldBuilderPane.setBottom(resourceMenu);
+        
+        
     }
 
     @Override

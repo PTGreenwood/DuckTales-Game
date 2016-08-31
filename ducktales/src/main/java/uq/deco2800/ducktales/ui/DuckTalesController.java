@@ -7,7 +7,6 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 
-import javafx.geometry.Insets;
 import javafx.scene.layout.*;
 import uq.deco2800.ducktales.*;
 import uq.deco2800.ducktales.achievements.Achievements;
@@ -23,7 +22,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class DuckTalesController implements Initializable {
@@ -31,8 +29,8 @@ public class DuckTalesController implements Initializable {
 	private Canvas gameCanvas;
 
 	@FXML
-	//gameWindow, rightPane & mainPane are referenced in ducktales.fxml	
-	private AnchorPane gameWindow, rightPane, mainPane; 
+	//gameWindow, rightPane & mainMenuPane are referenced in ducktales.fxml
+	private AnchorPane gameWindow, contentPane, mainMenuPane;
 
 	private ExecutorService executor;
 
@@ -61,10 +59,10 @@ public class DuckTalesController implements Initializable {
 		achievementScore = Achievements.getInstance();
 
 		// Set the handlers for the game panes		
-		rightPane.setOnMousePressed(new MousePressedHandler());
-		rightPane.setOnMouseReleased(new MouseReleasedHandler());
-		rightPane.setOnMouseDragged(new MouseDraggedHandler());
-		rightPane.setOnMouseMoved(new MouseMovedHandler());
+		contentPane.setOnMousePressed(new MousePressedHandler());
+		contentPane.setOnMouseReleased(new MouseReleasedHandler());
+		contentPane.setOnMouseDragged(new MouseDraggedHandler());
+		contentPane.setOnMouseMoved(new MouseMovedHandler());
 		gameWindow.setOnKeyPressed(new KeyboardHandler());
 		gameWindow.setOnKeyReleased(new KeyboardHandler());
 	}
@@ -121,7 +119,7 @@ public class DuckTalesController implements Initializable {
 		this.marketplaceStage = new Stage();
 		// To get the window to appear in front of the right pane
 		marketplaceStage.initOwner(
-		        rightPane.getScene().getWindow());
+		        contentPane.getScene().getWindow());
 		marketplaceStage.setTitle("Marketplace");
 		marketplaceStage.setScene(marketplaceScene);
 		marketplaceStage.show();
@@ -139,8 +137,8 @@ public class DuckTalesController implements Initializable {
 			// and set the canvas to resize as the rightPane is resized			
 			toggleMenuPane();
 			gameCanvas = new Canvas();
-			gameCanvas.widthProperty().bind(rightPane.widthProperty());
-			gameCanvas.heightProperty().bind(rightPane.heightProperty());
+			gameCanvas.widthProperty().bind(contentPane.widthProperty());
+			gameCanvas.heightProperty().bind(contentPane.heightProperty());
 			
 
 			showCanvas(gameCanvas);
@@ -174,8 +172,8 @@ public class DuckTalesController implements Initializable {
 			// Setup the root pane for World Builder
 			worldBuilderPane = new BorderPane();
 			worldBuilderPane.setMinSize(
-					rightPane.getWidth(),
-					rightPane.getHeight()
+					contentPane.getWidth(),
+					contentPane.getHeight()
 			);
 
 			// Adding to right pane
@@ -216,8 +214,8 @@ public class DuckTalesController implements Initializable {
 	 * 			The pane to be shown in the right pane
 	 */
 	private void showPane(Pane pane) {
-		rightPane.getChildren().removeAll(gameCanvas, worldBuilderPane);
-		rightPane.getChildren().add(pane);
+		contentPane.getChildren().removeAll(gameCanvas, worldBuilderPane);
+		contentPane.getChildren().add(pane);
 	}
 
 	/**
@@ -225,17 +223,17 @@ public class DuckTalesController implements Initializable {
 	 * @param canvas
 	 */
 	private void showCanvas(Canvas canvas) {
-		rightPane.getChildren().removeAll(gameCanvas, worldBuilderPane);
-		rightPane.getChildren().add(canvas);
+		contentPane.getChildren().removeAll(gameCanvas, worldBuilderPane);
+		contentPane.getChildren().add(canvas);
 	}
 	
 	private void toggleMenuPane() {
-		if (mainPane.isVisible()) {
-			rightPane.setVisible(true);
-			mainPane.setVisible(false);
+		if (mainMenuPane.isVisible()) {
+			contentPane.setVisible(true);
+			mainMenuPane.setVisible(false);
 		} else {
-			rightPane.setVisible(false);
-			mainPane.setVisible(true);
+			contentPane.setVisible(false);
+			mainMenuPane.setVisible(true);
 		}
 	}
 

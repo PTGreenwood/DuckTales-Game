@@ -7,7 +7,7 @@
 
 <AnchorPane fx:id="gameWindow" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="737.0" prefWidth="1295.0" stylesheets="@ducktales.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uq.deco2800.ducktales.ui.DuckTalesController">
 	<children>
-		<AnchorPane fx:id="mainPane" layoutY="-2.0" minHeight="0.0" minWidth="0.0" prefHeight="737.0" prefWidth="1295.0">
+		<AnchorPane fx:id="mainMenuPane" layoutY="-2.0" minHeight="0.0" minWidth="0.0" prefHeight="737.0" prefWidth="1295.0">
 			<children>
 				<ImageView fx:id="mainLogo" fitHeight="134.0" fitWidth="395.0" layoutX="505.0" layoutY="108.0" pickOnBounds="true" preserveRatio="true">
 					<image>
@@ -22,6 +22,6 @@
 				<Button layoutX="442.0" layoutY="594.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="395.0" text="EXIT GAME" textAlignment="CENTER" />
 			</children>
 		</AnchorPane>
-		<AnchorPane fx:id="rightPane" prefHeight="737.0" prefWidth="1295.0" visible="false" />
+		<AnchorPane fx:id="contentPane" prefHeight="737.0" prefWidth="1295.0" visible="false" />
 	</children>
 </AnchorPane>
