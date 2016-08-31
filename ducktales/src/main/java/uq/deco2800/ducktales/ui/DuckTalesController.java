@@ -31,7 +31,8 @@ public class DuckTalesController implements Initializable {
 	private Canvas gameCanvas;
 
 	@FXML
-	private AnchorPane gameWindow, rightPane; // rightPane is referenced in ducktales.fxml
+	//gameWindow, rightPane & mainPane are referenced in ducktales.fxml	
+	private AnchorPane gameWindow, rightPane, mainPane; 
 
 	private ExecutorService executor;
 
@@ -135,10 +136,12 @@ public class DuckTalesController implements Initializable {
 	public void startGame(ActionEvent event) throws Exception {
 		if (gameCanvas == null) { // the canvas has not been initialized
 			// Initialize the gameCanvas
-			// and set the canvas to resize as the rightPane is resized
+			// and set the canvas to resize as the rightPane is resized			
+			toggleMenuPane();
 			gameCanvas = new Canvas();
 			gameCanvas.widthProperty().bind(rightPane.widthProperty());
 			gameCanvas.heightProperty().bind(rightPane.heightProperty());
+			
 
 			showCanvas(gameCanvas);
 
@@ -167,6 +170,7 @@ public class DuckTalesController implements Initializable {
 	@FXML
 	public void buildWorld(ActionEvent event) throws Exception {
 		if (worldBuilderPane == null) {
+			toggleMenuPane();
 			// Setup the root pane for World Builder
 			worldBuilderPane = new BorderPane();
 			worldBuilderPane.setMinSize(
@@ -223,6 +227,16 @@ public class DuckTalesController implements Initializable {
 	private void showCanvas(Canvas canvas) {
 		rightPane.getChildren().removeAll(gameCanvas, worldBuilderPane);
 		rightPane.getChildren().add(canvas);
+	}
+	
+	private void toggleMenuPane() {
+		if (mainPane.isVisible()) {
+			rightPane.setVisible(true);
+			mainPane.setVisible(false);
+		} else {
+			rightPane.setVisible(false);
+			mainPane.setVisible(true);
+		}
 	}
 
 
