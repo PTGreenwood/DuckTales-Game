@@ -9,10 +9,8 @@ import uq.deco2800.ducktales.resources.ResourceType;
  *
  */
 public class Barn extends WorldEntity {
-	
 
 	// Building type
-
 	private static final ResourceType TYPE = ResourceType.BARN;
 	
 	
@@ -20,6 +18,10 @@ public class Barn extends WorldEntity {
 	// for a barn
 	public Barn(double x, double y) {
 		super(x, y, 2, 2, TYPE);
+		
+	}
+	
+	protected void specifications() {
 		WorldEntity.STONERESOURCES = 4;
 		WorldEntity.WOODRESOURCES = 10;
 		WorldEntity.TIME = 9;
@@ -27,10 +29,5 @@ public class Barn extends WorldEntity {
 
 	@Override
 	public void tick() {
-	}
-
-	@Override
-	public boolean isPassable() {
-		return false;
 	}
 }

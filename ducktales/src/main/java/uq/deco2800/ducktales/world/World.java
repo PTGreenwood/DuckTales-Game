@@ -65,7 +65,7 @@ public class World implements Tickable {
 			}
 		}
 
-		addEntity(new Sawmill(13, 6));
+		addEntity(new Bakery(13, 6));
 		addEntity(new Box(4, 15));
 
 		addEntity(new Peon(3, 4));

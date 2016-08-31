@@ -17,6 +17,9 @@ public class Farmhouse extends WorldEntity {
 
 	public Farmhouse(double x, double y) {
 		super(x, y, 2, 2, TYPE);
+	}
+	
+	protected void specifications() {
 		WorldEntity.STONERESOURCES = 8;
 		WorldEntity.WOODRESOURCES = 10;
 		WorldEntity.TIME = 9;

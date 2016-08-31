@@ -45,5 +45,16 @@ public class Tree extends ResourceEntity{
 	public boolean isStump() {
 		return this.isStump;
 	}
+	
+	/**
+	 * Added a method to WorldEntity, to stop it breaking when multiple different 
+	 * buildings are intitialised.Since ResourceEntity extends WorldEntity it is now 
+	 * required here. 
+	 * 
+	 * Feel free to make changes if you do not want this method in your resources.
+	 */
+	@Override
+	protected void specifications() {
+	}
 
 }
