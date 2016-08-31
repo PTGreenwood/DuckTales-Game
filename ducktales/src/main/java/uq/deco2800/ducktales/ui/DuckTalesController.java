@@ -174,7 +174,13 @@ public class DuckTalesController implements Initializable {
 			URL location = getClass().getResource("/game.fxml");
             FXMLLoader loader = new FXMLLoader(location);
 
-			gamePane = loader.load();
+			// Load the FXML and set the size of the root Node
+			try {
+				gamePane = loader.load();
+
+			} catch (Exception e) {
+				System.err.println("exception in loading fxml");
+			}
 			gamePane.setPrefSize(
 					contentPane.getWidth(),
 					contentPane.getHeight()

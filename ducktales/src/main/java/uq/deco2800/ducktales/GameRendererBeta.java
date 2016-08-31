@@ -4,10 +4,7 @@ import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import uq.deco2800.ducktales.renderingEngine.WorldEntityRenderingInfo;
 
 import java.net.URL;
@@ -30,7 +27,7 @@ public class GameRendererBeta extends AnimationTimer {
 
     /** HUD variables */
     private Pane worldPane;
-    private VBox buttonsMenu; // This is only for testing - HUD team pls change
+    private AnchorPane buttonsMenu; // This is only for testing - HUD team pls change
     private HBox buildingsMenu; // Again, only basic implementation
 
     /** The Scale/Zoom factor */
@@ -62,7 +59,7 @@ public class GameRendererBeta extends AnimationTimer {
 
     }
 
-    public void setUIElements(Pane worldPane, VBox buttonsMenu, HBox buildingsMenu) {
+    public void setUIElements(Pane worldPane, AnchorPane buttonsMenu, HBox buildingsMenu) {
         this.worldPane = worldPane;
         this.buttonsMenu = buttonsMenu;
         this.buildingsMenu = buildingsMenu;

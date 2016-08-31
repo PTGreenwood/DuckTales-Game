@@ -1,18 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="gamePane" stylesheets="@ducktales.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uq.deco2800.ducktales.ui.GameController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" stylesheets="@ducktales.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uq.deco2800.ducktales.ui.GameController">
    <center>
       <Pane id="worldPane" fx:id="worldPane" prefHeight="200.0" prefWidth="200.0" styleClass="worldPane" BorderPane.alignment="CENTER" />
    </center>
    <bottom>
-      <HBox id="buildingsMenu" fx:id="buildingsMenu" prefHeight="100.0" prefWidth="200.0" styleClass="buildingsMenu" BorderPane.alignment="CENTER" />
+      <HBox id="buildingsMenu" fx:id="buildingsMenu" prefHeight="134.0" prefWidth="1200.0" styleClass="buildingsMenu" BorderPane.alignment="CENTER" />
    </bottom>
    <left>
-      <VBox id="buttonsMenu" fx:id="buttonsMenu" prefHeight="200.0" prefWidth="100.0" styleClass="buttonsMenu" BorderPane.alignment="CENTER" />
+      <AnchorPane id="buttonsMenu" fx:id="buttonsMenu" prefHeight="566.0" prefWidth="161.0" styleClass="buttonsMenu" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+         <children>
+            <Button layoutX="21.0" layoutY="14.0" mnemonicParsing="false" onAction="#constructBuildings" text="Construct Buildings" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="50.0" />
+            <Button layoutX="47.0" layoutY="57.0" mnemonicParsing="false" onAction="#addPeon" text="Add Peon" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="90.0" />
+         </children>
+      </AnchorPane>
    </left>
 </BorderPane>
