@@ -32,6 +32,7 @@ public class DuckTalesController implements Initializable {
 
 	@FXML
 	// gameWindow, rightPane & mainMenuPane are referenced in ducktales.fxml
+	//gameWindow, contentPane & mainMenuPane are referenced in ducktales.fxml
 	private AnchorPane gameWindow, contentPane, mainMenuPane;
 
 	private ExecutorService executor;
@@ -42,7 +43,7 @@ public class DuckTalesController implements Initializable {
 	private WorldBuilderManager worldBuilderManager;
 
 	// UI for World Builder
-	private BorderPane worldBuilderPane;
+	private BorderPane worldBuilderPane, gamePane;
 
 	private AtomicBoolean quit;
 
@@ -157,6 +158,57 @@ public class DuckTalesController implements Initializable {
 	}
 
 	/**
+	 * This will launch the game with the new rendering engine - beta version
+	 * @param event
+	 * @throws Exception
+	 */
+	@FXML
+	public void startGameBeta(ActionEvent event) throws Exception {
+		System.err.println("BETA RENDERER");
+		if (gamePane == null) {
+			toggleMenuPane();
+
+            // First implementation of using FXML for styling
+			URL location = getClass().getResource("/game.fxml");
+            FXMLLoader loader = new FXMLLoader(location);
+
+			// Load the FXML and set the size of the root Node
+			try {
+				gamePane = loader.load();
+
+			} catch (Exception e) {
+				System.err.println("exception in loading fxml");
+			}
+			gamePane.setPrefSize(
+					contentPane.getWidth(),
+					contentPane.getHeight()
+			);
+			showPane(gamePane);
+
+			// Set up the controller
+			GameController gameController = loader.getController();
+
+			// Set up the renderer
+			GameRendererBeta renderer = new GameRendererBeta();
+
+			// give the controller a handle on the renderer, for the
+			// controller to pass a handle of the UI elements
+			gameController.setRenderer(renderer);
+
+			// Setup the manager and start the game
+			GameManagerBeta manager = GameManagerBeta.getInstance();
+			// Set the world for the game
+			manager.setWorld(new World("Game World", 20, 20));
+			// Give manager a handle of the renderer to start the renderer
+			manager.setRenderer(renderer);
+
+		} else {
+			showPane(gamePane);
+		}
+
+	}
+
+	/**
 	 * This method is called when "Build World" button is pressed
 	 *
 	 * @author khoiphan21
@@ -170,14 +222,18 @@ public class DuckTalesController implements Initializable {
 			worldBuilderPane.setMinSize(contentPane.getWidth(),
 					contentPane.getHeight());
 
+			System.err.println("worldbuilderPane's width and height: "
+					+ worldBuilderPane.getWidth() + ", " + worldBuilderPane.getHeight());
+
+
 			// Adding to right pane
 			showPane(worldBuilderPane);
 
 			// Set the world for the builder
 			worldBuilderManager.setWorld(new World("World Builder", 20, 20));
 			// Initiate the rendering engine for WorldBuilder
-			worldBuilderManager
-					.setRenderer(new WorldBuilderRenderer(worldBuilderPane));
+			worldBuilderManager.setRenderer(new WorldBuilderRenderer(
+					contentPane, worldBuilderPane));
 
 		} else {
 			showPane(worldBuilderPane);
@@ -210,7 +266,7 @@ public class DuckTalesController implements Initializable {
 	 *            The pane to be shown in the right pane
 	 */
 	private void showPane(Pane pane) {
-		contentPane.getChildren().removeAll(gameCanvas, worldBuilderPane);
+		contentPane.getChildren().removeAll(gameCanvas, worldBuilderPane, gamePane);
 		contentPane.getChildren().add(pane);
 	}
 
@@ -220,7 +276,7 @@ public class DuckTalesController implements Initializable {
 	 * @param canvas
 	 */
 	private void showCanvas(Canvas canvas) {
-		contentPane.getChildren().removeAll(gameCanvas, worldBuilderPane);
+		contentPane.getChildren().removeAll(gameCanvas, worldBuilderPane, gamePane);
 		contentPane.getChildren().add(canvas);
 	}
 
