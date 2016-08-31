@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="gameWindow" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="737.0" prefWidth="1295.0" stylesheets="@ducktales.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uq.deco2800.ducktales.ui.DuckTalesController">
+	<children>
+		<AnchorPane fx:id="mainMenuPane" layoutY="-2.0" minHeight="0.0" minWidth="0.0" prefHeight="737.0" prefWidth="1295.0">
+			<children>
+				<ImageView fx:id="mainLogo" fitHeight="344.0" fitWidth="541.0" layoutX="91.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
+					<image>
+						<Image url="@ducktaleslogo.png" />
+					</image>
+				</ImageView>
+				<Button fx:id="startGameBtn" layoutX="648.0" layoutY="257.0" mnemonicParsing="false" onAction="#startGame" prefHeight="45.0" prefWidth="500" styleClass="buttonImage" textAlignment="CENTER" AnchorPane.bottomAnchor="435.0" />
+				<Button fx:id="buildWorldBtn" layoutX="648.0" layoutY="332.0" mnemonicParsing="false" onAction="#buildWorld" prefHeight="45.0" prefWidth="500" styleClass="buttonImage" textAlignment="CENTER" />
+				<Button fx:id="tutorialBtn" layoutX="648.0" layoutY="407.0" mnemonicParsing="false" onAction="#tutorial" prefHeight="45.0" prefWidth="500" styleClass="buttonImage" textAlignment="CENTER" />
+				<Button fx:id="achievementsBtn" layoutX="648.0" layoutY="557.0" mnemonicParsing="false" onAction="#missionAndAchievement" prefHeight="45.0" prefWidth="500" styleClass="buttonImage" textAlignment="CENTER" />
+				<Button fx:id="marketplaceBtn" layoutX="648.0" layoutY="482.0" mnemonicParsing="false" onAction="#showMarketplace" prefHeight="45.0" prefWidth="500" styleClass="buttonImage" textAlignment="CENTER" />
+				<Button fx:id="quitBtn" layoutX="648.0" layoutY="632.0" mnemonicParsing="false" onAction="#quitApplication" prefHeight="45.0" prefWidth="500" styleClass="buttonImage" textAlignment="CENTER" />
+			</children>
+		</AnchorPane>
+		<AnchorPane fx:id="contentPane" prefHeight="737.0" prefWidth="1295.0" visible="false" />
+	</children>
+</AnchorPane>
