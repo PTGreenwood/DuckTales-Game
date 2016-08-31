@@ -2,15 +2,9 @@ package uq.deco2800.ducktales.ui;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.layout.*;
 import uq.deco2800.ducktales.GameManagerBeta;
-import uq.deco2800.ducktales.GameRenderer;
 import uq.deco2800.ducktales.GameRendererBeta;
-import uq.deco2800.ducktales.world.WorldBeta;
-
-import java.net.URL;
-import java.util.ResourceBundle;
 
 /**
  * This is the master controller for the actual game play, while

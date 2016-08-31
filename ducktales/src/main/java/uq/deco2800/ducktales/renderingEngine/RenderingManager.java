@@ -8,7 +8,7 @@ package uq.deco2800.ducktales.renderingEngine;
  *
  * @author khoiphan21
  */
-public class WorldRenderingInfo {
+public class RenderingManager {
 
     /** The width and height of the world, in tile units */
     private int worldTileWidth;
@@ -21,7 +21,7 @@ public class WorldRenderingInfo {
     private double UIScale;
 
     /**
-     * Construct a {@link WorldRenderingInfo} class with the given initial scale
+     * Construct a {@link RenderingManager} class with the given initial scale
      * factor, width and height
      *
      * @param scaleFactor
@@ -31,7 +31,7 @@ public class WorldRenderingInfo {
      * @param height
      *          The height of the world, in number of tiles
      */
-    public WorldRenderingInfo(double scaleFactor, int width, int height) {
+    public RenderingManager(double scaleFactor, int width, int height) {
         this.worldTileWidth = width;
         this.worldTileHeight = height;
         this.mainScaleFactor = scaleFactor;

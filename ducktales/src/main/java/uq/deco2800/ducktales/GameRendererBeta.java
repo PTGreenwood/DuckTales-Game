@@ -5,13 +5,14 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import uq.deco2800.ducktales.HUD.BuildingSprite;
 import uq.deco2800.ducktales.renderingEngine.WorldEntityRenderingInfo;
-import uq.deco2800.ducktales.renderingEngine.WorldRenderingInfo;
+import uq.deco2800.ducktales.renderingEngine.RenderingManager;
 import uq.deco2800.ducktales.resources.ResourceType;
+import uq.deco2800.ducktales.resources.tiles.TileBeta;
+import uq.deco2800.ducktales.util.Array2D;
 import uq.deco2800.ducktales.world.World;
-import uq.deco2800.ducktales.world.builder.WorldEntitySprite;
+import uq.deco2800.ducktales.world.WorldBeta;
 
 import java.util.ArrayList;
-import java.util.Collection;
 
 import static uq.deco2800.ducktales.resources.ResourceType.*;
 
@@ -25,15 +26,9 @@ public class GameRendererBeta extends AnimationTimer {
     private final ResourceType[] BUILDINGS = {
         HOSPITAL, BAKERY, BARN
     };
-    private final double DEFAULT_SCALE = 0.2;
-    private final int DEFAULT_WORLD_WIDTH = 20;
-    private final int DEFAULT_WORLD_HEIGHT = 20;
 
-    /** The Root pane */
-    private Pane root;
-
-    /** The game pane where all HUD elements, and world pane will be added to */
-    private BorderPane gamePane;
+    /** The Root pane where all HUD elements, and world pane will be added to*/
+    private BorderPane root;
 
     /** HUD variables */
     private Pane worldPane; // The main area where game graphics will be rendered onto
@@ -44,14 +39,14 @@ public class GameRendererBeta extends AnimationTimer {
     /**
      * The global game variables
      */
-    private World world; // the game world
+    private WorldBeta world; // the game world
     private GameManagerBeta manager; // the game manager
 
     /**
      * VARIABLES FOR RENDERING
      */
     // Variables managing rendering information
-    private WorldRenderingInfo renderingInfo;
+    private RenderingManager renderingManager;
     private WorldEntityRenderingInfo entityRenderingInfo;
     // The very first point to start render the tiles
     private double startingX;
@@ -83,15 +78,23 @@ public class GameRendererBeta extends AnimationTimer {
         super.start();
 
         // Setting up for the initial rendering
-        setupInitialRendering();
+        setupInitialRenderingInfo();
 
         // Initialize the building sprites for buildings menu
         buildingSprites = new ArrayList<>();
         for (int i = 0; i < BUILDINGS.length; i++) {
-            buildingSprites.add(new BuildingSprite(BUILDINGS[i], this.manager));
+            BuildingSprite sprite = new BuildingSprite(BUILDINGS[i], this.manager);
+
+            buildingSprites.add(sprite);
         }
+
+        // Do the initial rendering of the world
+        renderWorld();
     }
 
+    /*---------*
+     * SETTERS *
+     *---------*/
     /**
      * Store a handle of the game manager for communication
      *
@@ -101,6 +104,31 @@ public class GameRendererBeta extends AnimationTimer {
     public void setManager(GameManagerBeta manager) {
         this.manager = manager;
     }
+
+    /**
+     * Set the game world for the renderer
+     *
+     * @param world
+     *          The current game world
+     */
+    public void setWorld(WorldBeta world) {
+        this.world = world;
+    }
+
+    /**
+     * Set the rendering manager, which will provide the renderer with rendering
+     * information such as scale factors and different sizes
+     *
+     * @param renderingManager
+     *          The rendering manager for the game
+     */
+    public void setRenderingManager(RenderingManager renderingManager) {
+        this.renderingManager = renderingManager;
+    }
+
+    /*---------*
+     * GETTERS *
+     *---------*/
 
     /**
      * Show the buildings being able to construct in the buildings menu
@@ -121,19 +149,25 @@ public class GameRendererBeta extends AnimationTimer {
      * NOTE: make sure to call this method after all UI elements have been
      * instantiated
      */
-    private void setupInitialRendering() {
+    private void setupInitialRenderingInfo() {
         this.startingX = root.getWidth() / 2;
         this.startingY = root.getHeight() * 0.2;
 
-        // Instantiate the class that manages sizing and scaling information
-        renderingInfo = new WorldRenderingInfo(
-                DEFAULT_SCALE, DEFAULT_WORLD_WIDTH, DEFAULT_WORLD_HEIGHT);
     }
 
     /**
      * Create the initial game world
      */
-    private void createWorld() {
+    private void renderWorld() {
+        Array2D<TileBeta> tiles = world.getTiles();
+
+        // Iterate over each tile and set their location to the default location
+        for (int i = 0; i < tiles.getWidth(); i++) {
+            for (int j = 0; j < tiles.getHeight(); j++) {
+
+            }
+        }
+
 
     }
 
