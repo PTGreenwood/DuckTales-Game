@@ -32,6 +32,6 @@
             </VBox>
 			</children>
 		</AnchorPane>
-		<AnchorPane fx:id="contentPane" prefHeight="737.0" prefWidth="1295.0" visible="false" />
+		<AnchorPane fx:id="contentPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="737.0" prefWidth="1295.0" visible="false" />
 	</children>
 </AnchorPane>

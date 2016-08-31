@@ -14,9 +14,14 @@ import uq.deco2800.ducktales.renderingEngine.WorldEntityRenderingInfo;
 public class GameRendererBeta extends AnimationTimer{
 
     /**
-     * The root pane where all HUD elements, and world pane will be added to
+     * The Root pane
      */
-    BorderPane root;
+    private Pane root;
+
+    /**
+     * The game pane where all HUD elements, and world pane will be added to
+     */
+    private BorderPane gamePane;
 
     /** HUD variables */
     private Pane worldPane;
@@ -25,11 +30,11 @@ public class GameRendererBeta extends AnimationTimer{
 
     // The constants to layout the HUD elements
     private double GAME_PANE_V_PORTION = 85.0/100.0;
-    private double GAME_PANE_H_PORTION = 60.0/100.0;
-    private double TILE_MENU_H_PORTION = 100.0 - GAME_PANE_V_PORTION;
-    private double TILE_MENU_V_PORTION = GAME_PANE_H_PORTION;
-    private double RESOURCE_MENU_H_PORTION = 1.0;
-    private double RESOURCE_MENU_V_PORTION = 100.0 - GAME_PANE_H_PORTION;
+    private double GAME_PANE_H_PORTION = 85.0/100.0;
+    private double BUTTONS_MENU_H_PORTION = 1.0 - GAME_PANE_H_PORTION;
+    private double BUTTONS_MENU_V_PORTION = GAME_PANE_V_PORTION;
+    private double BUILDINGS_MENU_H_PORTION = 1.0;
+    private double BUILDINGS_MENU_V_PORTION = 1.0 - GAME_PANE_V_PORTION;
 
     /** The Scale/Zoom factor */
     private double SCALE = 0.2;
@@ -46,11 +51,16 @@ public class GameRendererBeta extends AnimationTimer{
      * @param gamePane
      *          The root pane where everything will be added and rendered
      */
-    public GameRendererBeta(BorderPane gamePane) {
+    public GameRendererBeta(Pane root, BorderPane gamePane) {
         super();
 
         // Setup the HUD elements
-        this.root = gamePane;
+        this.gamePane = gamePane;
+        this.root = root;
+
+        System.err.println("root width and height is: " +
+                root.getWidth() + ", " + root.getHeight());
+
         setupHUD();
     }
 
@@ -58,42 +68,42 @@ public class GameRendererBeta extends AnimationTimer{
      * Setup the HUD for the game
      */
     private void setupHUD() {
-        double renderingWidth = root.getWidth();
-        double renderingHeight = root.getHeight();
+        double renderingWidth = this.root.getWidth();
+        double renderingHeight = this.root.getHeight();
 
         // Add styling to the root pane
         root.getStylesheets().add("/ducktales.css");
 
         // The pane where the world is rendered onto
         worldPane = new Pane();
-        worldPane.setPrefSize(
-                renderingWidth * GAME_PANE_V_PORTION,
-                renderingHeight * GAME_PANE_H_PORTION
+        worldPane.setMaxSize(
+                renderingWidth * GAME_PANE_H_PORTION,
+                renderingHeight * GAME_PANE_V_PORTION
         );
         worldPane.getStyleClass().add("worldPane");
 
-        // The pane containing the tiles
+        // The pane containing the buttons to add new peons and stuff
         buttonsMenu = new VBox();
         buttonsMenu.setPrefSize(
-                renderingWidth * TILE_MENU_H_PORTION,
-                renderingHeight * TILE_MENU_V_PORTION
+                renderingWidth * BUTTONS_MENU_H_PORTION,
+                renderingHeight * BUTTONS_MENU_V_PORTION
         );
         buttonsMenu.getStyleClass().add("buttonsMenu");
         buttonsMenu.setPadding(new Insets(25));
         buttonsMenu.setSpacing(20);
 
-        // The pane containing the resources
+        // The pane containing the buildings
         buildingsMenu = new HBox();
-        buildingsMenu.setPrefWidth(renderingWidth * RESOURCE_MENU_H_PORTION);
-        buildingsMenu.setMaxHeight(renderingHeight * RESOURCE_MENU_V_PORTION);
+        buildingsMenu.setPrefSize(
+                renderingWidth * BUILDINGS_MENU_H_PORTION,
+                renderingHeight * BUILDINGS_MENU_V_PORTION
+        );
         buildingsMenu.getStyleClass().add("buildingsMenu");
 
         // Add the child panes into the main pane
-        this.root.setCenter(worldPane);
-        this.root.setLeft(buttonsMenu);
-        this.root.setBottom(buildingsMenu);
-
-
+        this.gamePane.setCenter(worldPane);
+        this.gamePane.setLeft(buttonsMenu);
+        this.gamePane.setBottom(buildingsMenu);
     }
 
     @Override

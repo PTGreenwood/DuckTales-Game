@@ -37,7 +37,7 @@ public class WorldBuilderRenderer extends AnimationTimer {
     };
     // The constants to layout the UI elements
     private double BUILDING_SCENE_H_PORTION = 85.0/100.0;
-    private double BUILDING_SCENE_V_PORTION = 60.0/100.0;
+    private double BUILDING_SCENE_V_PORTION = 85.0/100.0;
     private double TILE_MENU_H_PORTION = 100.0 - BUILDING_SCENE_H_PORTION;
     private double TILE_MENU_V_PORTION = BUILDING_SCENE_V_PORTION;
     private double RESOURCE_MENU_H_PORTION = 1.0;
@@ -51,6 +51,7 @@ public class WorldBuilderRenderer extends AnimationTimer {
     private int tileWidth;
 
     /** UI variables */
+    private Pane root; // The root pane
     private BorderPane worldBuilderPane; // The parent pane to layout all the ui elements
     private Pane buildingScene;
     private VBox tileMenu;
@@ -103,11 +104,12 @@ public class WorldBuilderRenderer extends AnimationTimer {
      * @param root
      *          The root pane to render onto
      */
-    public WorldBuilderRenderer(BorderPane root) {
+    public WorldBuilderRenderer(Pane root, BorderPane worldBuilderPane) {
         super();
 
         // Setup the UI elements
-        this.worldBuilderPane = root;
+        this.root = root;
+        this.worldBuilderPane = worldBuilderPane;
         setupWorldBuilderUI();
 
         this.world = WorldBuilderManager.getInstance().getWorld();
@@ -306,22 +308,34 @@ public class WorldBuilderRenderer extends AnimationTimer {
      * Set up the UI for WorldBuidler
      */
     private void setupWorldBuilderUI() {
-        double renderingWidth = worldBuilderPane.getWidth();
-        double renderingHeight = worldBuilderPane.getHeight();
+        // Initialize all the UI elements
+        buildingScene = new Pane();
+        tileMenu = new VBox();
+        resourceMenu = new HBox();
+
+        // Add the UI elements into the main pane
+        this.worldBuilderPane.setCenter(buildingScene);
+        this.worldBuilderPane.setRight(tileMenu);
+        this.worldBuilderPane.setBottom(resourceMenu);
+
+
+        double renderingWidth = root.getPrefWidth();
+        double renderingHeight = root.getPrefHeight();
+
+        System.err.println("world builder pane rendered width and height: " +
+                renderingWidth + ", " + renderingHeight);
 
         // Add some styling to the root pane
         this.worldBuilderPane.getStylesheets().add("/builderStyle.css");
 
         // The pane where the world is rendered onto
-        buildingScene = new Pane();
-        buildingScene.setPrefSize(
-                renderingWidth * BUILDING_SCENE_H_PORTION,
-                renderingHeight * BUILDING_SCENE_V_PORTION
-        );
+//        buildingScene.setPrefSize(
+//                renderingWidth * BUILDING_SCENE_H_PORTION,
+//                renderingHeight * BUILDING_SCENE_V_PORTION
+//        );
         buildingScene.getStyleClass().add("buildingScene");
 
         // The pane containing the tiles
-        tileMenu = new VBox();
         tileMenu.setPrefSize(
                 renderingWidth * TILE_MENU_H_PORTION,
                 renderingHeight * TILE_MENU_V_PORTION
@@ -331,7 +345,6 @@ public class WorldBuilderRenderer extends AnimationTimer {
         tileMenu.setSpacing(20);
 
         // The pane containing the resources
-        resourceMenu = new HBox();
         resourceMenu.setPrefWidth(renderingWidth * RESOURCE_MENU_H_PORTION);
         resourceMenu.setMaxHeight(renderingHeight * RESOURCE_MENU_V_PORTION);
         resourceMenu.getStyleClass().add("resourceMenu");
