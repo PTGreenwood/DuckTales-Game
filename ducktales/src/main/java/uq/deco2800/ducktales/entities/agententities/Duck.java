@@ -17,10 +17,12 @@ public class Duck extends Animal {
 
     public Duck(int x, int y) {
         super(x, y, 1, 1, ResourceType.DUCK, 1, 1, 1, 1, 0.05);
-        setStartingHealth((int) (Math.random() * 100));
-        setStartingHunger((int) (Math.random() * 100));
-        setStartingThirst((int) (Math.random() * 100));
-        setStartingStrength((int) (Math.random() * 20));
+        int var = (int) (Math.random() * 100);
+        int var2 = (int) (Math.random() *20);
+        setStartingHealth(var);
+        setStartingHunger(var);
+        setStartingThirst(var);
+        setStartingStrength(var2);
     }
 
     /**

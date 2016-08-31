@@ -13,8 +13,7 @@ import static org.junit.Assert.*;
 /**
  * Contains tests for the animal class.
  *
- * @author Josh Benavides
- * @author Damian Maher
+ * @author Josh Benavides, Damian Maher
  */
 public class AnimalTest {
 

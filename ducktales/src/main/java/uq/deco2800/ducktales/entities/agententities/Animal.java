@@ -223,6 +223,8 @@ public class Animal extends AgentEntity {
 
     // Getter Methods Below
 
+
+
     /**
      * Returns the animal's current state of hunger.
      *

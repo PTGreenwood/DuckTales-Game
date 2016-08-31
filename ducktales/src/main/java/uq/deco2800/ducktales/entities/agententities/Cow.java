@@ -12,17 +12,17 @@ import uq.deco2800.ducktales.resources.ResourceType;
 public class Cow extends Animal {
 
     private boolean canProduceMilk = false; // Whether the cow can produce milk
-    private boolean isDead = false; // Whether the cow is dead.
     private Peon opponent; // The peon that the animal will battle.
     private EntityManager opponentList; // List of possible opponents.
 
     // Cow attributes will be set in the AnimalManagerClass
     public Cow(int x, int y) {
         super(x, y, 1, 1, ResourceType.COW, 1, 1, 1, 1, 0.05);
-        setStartingHealth((int) (Math.random() * 100));
-        setStartingHunger((int) (Math.random() * 100));
-        setStartingThirst((int) (Math.random() * 100));
-        setStartingStrength((int) (Math.random() * 20));
+        int var = (int) (Math.random() * 100);
+        setStartingHealth(var);
+        setStartingHunger(var);
+        setStartingThirst(var);
+        setStartingStrength(var);
     }
 
     /**
