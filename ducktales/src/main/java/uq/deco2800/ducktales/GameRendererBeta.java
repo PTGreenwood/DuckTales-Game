@@ -1,15 +1,16 @@
 package uq.deco2800.ducktales;
 
 import javafx.animation.AnimationTimer;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import uq.deco2800.ducktales.HUD.BuildingSprite;
 import uq.deco2800.ducktales.renderingEngine.WorldEntityRenderingInfo;
 import uq.deco2800.ducktales.renderingEngine.RenderingManager;
+import uq.deco2800.ducktales.resources.ResourceRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.resources.tiles.TileBeta;
 import uq.deco2800.ducktales.util.Array2D;
-import uq.deco2800.ducktales.world.World;
+import uq.deco2800.ducktales.util.Events.TileEvents.TileEnteredEvent;
+import uq.deco2800.ducktales.util.Events.TileEvents.TileExitedEvent;
 import uq.deco2800.ducktales.world.WorldBeta;
 
 import java.util.ArrayList;
@@ -34,13 +35,14 @@ public class GameRendererBeta extends AnimationTimer {
     private Pane worldPane; // The main area where game graphics will be rendered onto
     private AnchorPane buttonsMenu; // This is only for testing - HUD team pls change
     private HBox buildingsMenu; // Again, only basic implementation
-    private ArrayList<ImageView> buildingSprites; // The sprites of the buildings in the menu
+    private ArrayList<BuildingSprite> buildingSprites; // The sprites of the buildings in the menu
 
     /**
      * The global game variables
      */
     private WorldBeta world; // the game world
     private GameManagerBeta manager; // the game manager
+    private ResourceRegister resource;
 
     /**
      * VARIABLES FOR RENDERING
@@ -51,6 +53,8 @@ public class GameRendererBeta extends AnimationTimer {
     // The very first point to start render the tiles
     private double startingX;
     private double startingY;
+    // The scale/zoom factor
+    private double generalScale;
 
     /**
      * The class containing the info to render different types of entities
@@ -67,6 +71,8 @@ public class GameRendererBeta extends AnimationTimer {
         this.worldPane = worldPane;
         this.buttonsMenu = buttonsMenu;
         this.buildingsMenu = buildingsMenu;
+
+        resource = ResourceRegister.getInstance();
     }
 
     /**
@@ -90,6 +96,9 @@ public class GameRendererBeta extends AnimationTimer {
 
         // Do the initial rendering of the world
         renderWorld();
+
+        // Setup the CUSTOM event handlers for the game
+        setupCustomEventHandler();
     }
 
     /*---------*
@@ -136,11 +145,15 @@ public class GameRendererBeta extends AnimationTimer {
     public void showBuildingMenu() {
         buildingsMenu.getChildren().addAll(buildingSprites);
 
-        //TODO DELETE THIS EVENT HANDLER TESTING
-        buildingsMenu.setOnMouseEntered(event-> {
-            System.err.println("event target is: " + event.getTarget());
-            System.err.println("type of building is: " + event.getSource().toString());
-        });
+        // Get the officially defined scale from the rendering manager
+        double UIScale = renderingManager.getUIScale();
+
+        // adjust the size of the sprites
+        for (int i = 0; i < buildingSprites.size(); i++) {
+            BuildingSprite sprite = buildingSprites.get(i);
+            sprite.setFitHeight(sprite.getSpriteHeight() * UIScale);
+            sprite.setFitWidth(sprite.getSpriteWidth() * UIScale);
+        }
 
     }
 
@@ -156,8 +169,10 @@ public class GameRendererBeta extends AnimationTimer {
      * instantiated
      */
     private void setupInitialRenderingInfo() {
-        this.startingX = root.getWidth() / 2;
-        this.startingY = root.getHeight() * 0.2;
+        this.startingX = root.getPrefWidth() / 2;
+        this.startingY = root.getPrefHeight() * 0.1;
+
+        this.generalScale = renderingManager.getMainScaleFactor();
 
     }
 
@@ -167,14 +182,54 @@ public class GameRendererBeta extends AnimationTimer {
     private void renderWorld() {
         Array2D<TileBeta> tiles = world.getTiles();
 
+        int tileHeight = resource.TILE_HEIGHT;
+        int tileWidth = resource.TILE_WIDTH;
+
+        int scaledWidth = (int) (tileWidth * generalScale);
+        int scaledHeight = (int) (tileHeight * generalScale);
+
+        TileBeta tile;
+
         // Iterate over each tile and set their location to the default location
         for (int i = 0; i < tiles.getWidth(); i++) {
             for (int j = 0; j < tiles.getHeight(); j++) {
+                double x = startingX + (j - i) * scaledWidth / 2;
+                double y = startingY + (j + i) * scaledHeight / 2;
+
+                tile = tiles.get(i, j);
+                tile.setImage(resource.getResourceImage(tile.getType()));
+
+                tile.setFitHeight(tileHeight * generalScale);
+                tile.setFitWidth(tileWidth * generalScale);
+
+                tile.setLayoutX(x);
+                tile.setLayoutY(y);
+
+                worldPane.getChildren().add(tile);
 
             }
         }
 
 
+    }
+
+
+    /**
+     * This method will set up the handler for custom events, as defined in
+     * the util.Events package. The worldPane, as the parent node, will have handlers
+     * for those event, in order for it to notify the Game Manager or Renderer
+     * accordingly
+     */
+    private void setupCustomEventHandler() {
+        worldPane.addEventHandler(TileEnteredEvent.TILE_ENTERED, event -> {
+            TileBeta tile = world.getTiles().get(event.getxPos(), event.getyPos());
+            tile.setImage(resource.getResourceImage(BLANK));
+        });
+        worldPane.addEventHandler(TileExitedEvent.TILE_EXITED, event -> {
+            //System.err.println(event.toString());
+            TileBeta tile = world.getTiles().get(event.getxPos(), event.getyPos());
+            tile.setImage(resource.getResourceImage(tile.getType()));
+        });
     }
 
 }

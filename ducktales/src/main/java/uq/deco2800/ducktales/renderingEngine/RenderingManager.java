@@ -35,6 +35,9 @@ public class RenderingManager {
         this.worldTileWidth = width;
         this.worldTileHeight = height;
         this.mainScaleFactor = scaleFactor;
+
+        // TODO ADJUST THESE SCALE FACTORS AS DEEM FIT
+        this.UIScale = 0.3;
     }
 
     /*----------

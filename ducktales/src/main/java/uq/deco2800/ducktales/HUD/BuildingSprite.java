@@ -5,6 +5,7 @@ import javafx.scene.image.ImageView;
 import uq.deco2800.ducktales.GameManagerBeta;
 import uq.deco2800.ducktales.resources.ResourceRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
+import uq.deco2800.ducktales.util.Events.TileEvents.TileClickedEvent;
 
 /**
  * This class represents a sprite of a building, to be rendered into the game
@@ -49,12 +50,21 @@ public class BuildingSprite extends ImageView {
         return this.buildingType;
     }
 
+    public double getSpriteHeight() {
+        return this.buildingSprite.getHeight();
+    }
+
+    public double getSpriteWidth() {
+        return this.buildingSprite.getWidth();
+    }
+
     /**
      * Setup the mouse event handlers for this sprite
      */
     private void setupMouseEventHandler() {
         this.setOnMouseClicked(event -> {
-            manager.notifyBuildingMenuClicked(this.buildingType);
+            // TODO: LEARN THIS IMPLEMENTATION
+            fireEvent(new TileClickedEvent(0, 1));
         });
         this.setOnMouseEntered(event -> {
             System.err.println("mouse hovered on: " + event.getSource().toString());

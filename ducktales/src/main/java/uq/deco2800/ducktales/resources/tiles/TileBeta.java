@@ -4,6 +4,9 @@ import javafx.scene.image.ImageView;
 import uq.deco2800.ducktales.GameManagerBeta;
 import uq.deco2800.ducktales.GameRendererBeta;
 import uq.deco2800.ducktales.resources.ResourceType;
+import uq.deco2800.ducktales.util.Events.TileEvents.TileClickedEvent;
+import uq.deco2800.ducktales.util.Events.TileEvents.TileEnteredEvent;
+import uq.deco2800.ducktales.util.Events.TileEvents.TileExitedEvent;
 
 /**
  * A tile in the game. The tile will contain information on what entity is
@@ -36,6 +39,7 @@ public class TileBeta extends ImageView{
      * @param yPos
      *          The y-position in the 2D array
      */
+    @Deprecated
     public TileBeta(ResourceType type, int xPos, int yPos,
                     GameManagerBeta manager, GameRendererBeta renderer) {
         // Setup the handles for the manager and renderer
@@ -46,7 +50,7 @@ public class TileBeta extends ImageView{
         this.yPos = yPos;
         this.type = type;
 
-        setMouseEventHandlers();
+        setReferencedMouseEventHandlers();
     }
 
     public TileBeta(ResourceType type, int xPos, int yPos) {
@@ -56,21 +60,40 @@ public class TileBeta extends ImageView{
         this.type = type;
 
         // BETA VERSION OF EVENT FIRING
-        setBetaMouseEventHandlers();
-        }
+        setMouseEventHandlers();
+    }
+
+    /**
+     * Get the type of this tile
+     *
+     * @return the type of this tile
+     */
+    public ResourceType getType() {
+        return this.type;
+    }
+
+
 
     /**
      * This is a new implementation of mouse event handlers - instead of
      * calling methods from manager or renderer directly, the tile will broadcast
      * new types of event for the parent nodes to handle
      */
-    private void setBetaMouseEventHandlers() {
+    private void setMouseEventHandlers() {
         this.setOnMouseClicked(event -> {
+            fireEvent(new TileClickedEvent(this.xPos, this.yPos));
+        });
+        this.setOnMouseEntered(event -> {
+            fireEvent(new TileEnteredEvent(this.xPos, this.yPos));
+        });
+        this.setOnMouseExited(event -> {
+            fireEvent(new TileExitedEvent(this.xPos, this.yPos));
         });
     }
 
     /** Setup the mouse event handlers for this tile */
-    private void setMouseEventHandlers() {
+    @Deprecated
+    private void setReferencedMouseEventHandlers() {
         this.setOnMouseEntered(event -> {
             manager.notifyTileHovered(this.xPos, this.yPos);
         });
