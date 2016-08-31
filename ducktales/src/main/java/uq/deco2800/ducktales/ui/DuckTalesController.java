@@ -6,7 +6,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-
 import javafx.scene.layout.*;
 import uq.deco2800.ducktales.*;
 import uq.deco2800.ducktales.achievements.Achievements;
@@ -15,6 +14,7 @@ import uq.deco2800.ducktales.world.*;
 import uq.deco2800.ducktales.world.builder.WorldBuilderManager;
 import uq.deco2800.ducktales.world.builder.WorldBuilderRenderer;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -22,6 +22,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 public class DuckTalesController implements Initializable {
@@ -29,7 +31,7 @@ public class DuckTalesController implements Initializable {
 	private Canvas gameCanvas;
 
 	@FXML
-	//gameWindow, rightPane & mainMenuPane are referenced in ducktales.fxml
+	// gameWindow, rightPane & mainMenuPane are referenced in ducktales.fxml
 	private AnchorPane gameWindow, contentPane, mainMenuPane;
 
 	private ExecutorService executor;
@@ -43,14 +45,12 @@ public class DuckTalesController implements Initializable {
 	private BorderPane worldBuilderPane;
 
 	private AtomicBoolean quit;
-	
-    private Achievements achievementScore;
+
+	private Achievements achievementScore;
 
 	public Stage tutorialStage;
 	public Stage marketplaceStage;
 
-	
-	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		tileRegister = ResourceRegister.getInstance();
@@ -58,10 +58,7 @@ public class DuckTalesController implements Initializable {
 		worldBuilderManager = WorldBuilderManager.getInstance();
 		achievementScore = Achievements.getInstance();
 		
-		// Set the handlers for the scenes
-		//gameWindow.getScene().setOnKeyPressed(new KeyboardHandler());
-
-		// Set the handlers for the game panes		
+		// Set the handlers for the game panes
 		contentPane.setOnMousePressed(new MousePressedHandler());
 		contentPane.setOnMouseReleased(new MouseReleasedHandler());
 		contentPane.setOnMouseDragged(new MouseDraggedHandler());
@@ -69,39 +66,39 @@ public class DuckTalesController implements Initializable {
 		gameWindow.setOnKeyPressed(new KeyboardHandler());
 		gameWindow.setOnKeyReleased(new KeyboardHandler());
 	}
-	
-	@FXML 
+
+	@FXML
 	private void tutorial(ActionEvent event) throws Exception {
 		URL location = getClass().getResource("/tutorial.fxml");
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(location);
 		Parent root = loader.load(location.openStream());
 		Scene tutorialScene = new Scene(root, 400, 400);
+
+		
 		
 		Stage tutorialStage = new Stage();
 		tutorialStage.setTitle("Tutorial");
 		tutorialStage.setScene(tutorialScene);
 		tutorialStage.show();
+
 	}
-	
-    
+
 	@FXML
-	private void missionAndAchievement(ActionEvent event) throws Exception{
-		
-		
+	private void missionAndAchievement(ActionEvent event) throws Exception {
+
 		URL location = getClass().getResource("/missionAndAchievement.fxml");
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(location);
 		Parent root = loader.load(location.openStream());
 		Scene missionAndAchievementScene = new Scene(root, 600, 600);
-		
+
 		Stage missionAndAchievementStage = new Stage();
 		missionAndAchievementStage.setTitle("Mission and Achievement");
 		missionAndAchievementStage.setScene(missionAndAchievementScene);
 		missionAndAchievementStage.show();
 	}
 
-    
 	/**
 	 * 
 	 * Displays the Marketplace main pop up window.
@@ -111,38 +108,35 @@ public class DuckTalesController implements Initializable {
 	 */
 	@FXML
 	private void showMarketplace(ActionEvent event) throws Exception {
-		
+
 		// Load in the marketplace fxml
 		URL location = getClass().getResource("/marketplace.fxml");
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(location);
 		Parent root = loader.load(location.openStream());
 		Scene marketplaceScene = new Scene(root);
-		
+
 		this.marketplaceStage = new Stage();
 		// To get the window to appear in front of the right pane
-		marketplaceStage.initOwner(
-		        contentPane.getScene().getWindow());
+		marketplaceStage.initOwner(contentPane.getScene().getWindow());
 		marketplaceStage.setTitle("Marketplace");
 		marketplaceStage.setScene(marketplaceScene);
 		marketplaceStage.show();
 	}
 
-
 	/**
-	 * This method will be called when the 'Launch Game' button is pressed
-	 * The code that will call this method is defined in ducktales.fxml
+	 * This method will be called when the 'Launch Game' button is pressed The
+	 * code that will call this method is defined in ducktales.fxml
 	 */
 	@FXML
 	public void startGame(ActionEvent event) throws Exception {
+		toggleMenuPane();
 		if (gameCanvas == null) { // the canvas has not been initialized
 			// Initialize the gameCanvas
 			// and set the canvas to resize as the rightPane is resized			
-			toggleMenuPane();
 			gameCanvas = new Canvas();
 			gameCanvas.widthProperty().bind(contentPane.widthProperty());
 			gameCanvas.heightProperty().bind(contentPane.heightProperty());
-			
 
 			showCanvas(gameCanvas);
 
@@ -161,7 +155,6 @@ public class DuckTalesController implements Initializable {
 			showCanvas(gameCanvas);
 		}
 	}
-	
 
 	/**
 	 * This method is called when "Build World" button is pressed
@@ -170,24 +163,21 @@ public class DuckTalesController implements Initializable {
 	 */
 	@FXML
 	public void buildWorld(ActionEvent event) throws Exception {
-		if (worldBuilderPane == null) {
-			toggleMenuPane();
+		toggleMenuPane();
+		if (worldBuilderPane == null) {						
 			// Setup the root pane for World Builder
 			worldBuilderPane = new BorderPane();
-			worldBuilderPane.setMinSize(
-					contentPane.getWidth(),
-					contentPane.getHeight()
-			);
+			worldBuilderPane.setMinSize(contentPane.getWidth(),
+					contentPane.getHeight());
 
 			// Adding to right pane
 			showPane(worldBuilderPane);
 
 			// Set the world for the builder
-			worldBuilderManager.setWorld(
-					new World("World Builder", 20, 20));
+			worldBuilderManager.setWorld(new World("World Builder", 20, 20));
 			// Initiate the rendering engine for WorldBuilder
-			worldBuilderManager.setRenderer(new WorldBuilderRenderer(
-					worldBuilderPane));
+			worldBuilderManager
+					.setRenderer(new WorldBuilderRenderer(worldBuilderPane));
 
 		} else {
 			showPane(worldBuilderPane);
@@ -200,14 +190,13 @@ public class DuckTalesController implements Initializable {
 			executor.shutdown();
 		}
 	}
-	
+
 	/**
-	 * Close the application 
+	 * Close the application
 	 */
 	public void quitApplication() {
 		System.exit(0);
 	}
-
 
 	private void createWorld() {
 		gameManager.setWorld(new World("DuckTales", 20, 20));
@@ -216,8 +205,9 @@ public class DuckTalesController implements Initializable {
 
 	/**
 	 * Show the given pane in the rightPane.
+	 * 
 	 * @param pane
-	 * 			The pane to be shown in the right pane
+	 *            The pane to be shown in the right pane
 	 */
 	private void showPane(Pane pane) {
 		contentPane.getChildren().removeAll(gameCanvas, worldBuilderPane);
@@ -226,14 +216,16 @@ public class DuckTalesController implements Initializable {
 
 	/**
 	 * Show the given canvas in the rightPane
+	 * 
 	 * @param canvas
 	 */
 	private void showCanvas(Canvas canvas) {
 		contentPane.getChildren().removeAll(gameCanvas, worldBuilderPane);
 		contentPane.getChildren().add(canvas);
 	}
-	
-	private void toggleMenuPane() {
+
+	public void toggleMenuPane() {
+		System.out.println(mainMenuPane.isVisible());
 		if (mainMenuPane.isVisible()) {
 			contentPane.setVisible(true);
 			mainMenuPane.setVisible(false);
@@ -242,7 +234,6 @@ public class DuckTalesController implements Initializable {
 			mainMenuPane.setVisible(true);
 		}
 	}
-
-
+	
 
 }

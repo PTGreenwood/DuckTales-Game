@@ -1,10 +1,13 @@
 package uq.deco2800.ducktales;
 
 import uq.deco2800.ducktales.ui.DuckTalesController;
+import uq.deco2800.ducktales.ui.KeyboardHandler;
+import uq.deco2800.ducktales.ui.MenuKeyboardHandler;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -43,7 +46,8 @@ public class DuckTalesLauncher extends Application {
 	    */
 		primaryStage.setTitle("DuckTales v" + version);
 		//primaryStage.setFullScreen(true);
-		primaryStage.setScene(scene);
+		primaryStage.setScene(scene);		
+		primaryStage.addEventHandler(KeyEvent.KEY_PRESSED, new MenuKeyboardHandler(ducktalesController));
 		primaryStage.setMinWidth(1200);
 		primaryStage.setMinHeight(700);
 		primaryStage.setOnCloseRequest(e -> ducktalesController.stopGame());
