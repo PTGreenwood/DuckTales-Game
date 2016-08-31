@@ -17,6 +17,9 @@ public class Forge extends WorldEntity {
 
 	public Forge(double x, double y) {
 		super(x, y, 2, 2, TYPE);
+	}
+	
+	protected void specifications() {
 		WorldEntity.STONERESOURCES = 10;
 		WorldEntity.WOODRESOURCES = 6;
 		WorldEntity.TIME = 3;

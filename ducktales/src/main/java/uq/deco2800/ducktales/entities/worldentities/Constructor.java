@@ -1,9 +1,7 @@
 package uq.deco2800.ducktales.entities.worldentities;
 
-import uq.deco2800.ducktales.entities.worldentities.*;
-
 /**
- * A Construction Interface to select Buildings. 
+ * A Construction Interface to obtain Building information. 
  * 
  * @author Gabrielle Hodge, 43590526
  *
@@ -16,24 +14,8 @@ public class Constructor {
 	 * Constructor method. Determines whether the selected building meets 
 	 * requirements for its construction. Will check the required vs 
 	 * available resources.
-	 * 
-	 * @param x, the x location of the building
-	 * 
-	 * @param y, the y location of the building
 	 */
-	public Constructor(double x, double y) {
-		// Change the following lines:
-		// Change to building clicked from constructor panel
-		WorldEntity toCreate = new Bakery(x, y);
-		// Change to resources available - wood, stone (currently arbitrary to test)
-		if (getStone(toCreate) <= 10) {
-			if (getWood(toCreate) <= 10) {
-				// Something along the lines of World.add(toCreate) ...
-				getTime(toCreate);
-			}
-			errorBuild("wood", toCreate);
-		}
-		errorBuild("stone", toCreate);
+	public Constructor() {
 	}
 	
 	
@@ -45,7 +27,8 @@ public class Constructor {
 	 * 
 	 * @return the integer number of stone required to construct
 	 */
-	private int getStone(WorldEntity building) {
+	public int getStone(WorldEntity building) {
+		building.specifications();
 		return building.resourcesBuildStone();
 	}
 	
@@ -57,7 +40,8 @@ public class Constructor {
 	 * 
 	 * @return the integer number of wood required for construction
 	 */
-	private int getWood(WorldEntity building) {
+	public int getWood(WorldEntity building) {
+		building.specifications();
 		return building.resourcesBuildWood();
 	}
 	
@@ -70,24 +54,8 @@ public class Constructor {
 	 * @return the integer of time required to construct the selected 
 	 * building.
 	 */
-	private int getTime(WorldEntity building) {
+	public int getTime(WorldEntity building) {
+		building.specifications();
 		return building.timeToBuild();
 	}
-	
-	/**
-	 * Public method to return an error message that details which material 
-	 * requirement is not fulfilled for construction to proceed.
-	 * 
-	 * @param material, the material where the requirements are not satisfied.
-	 * 
-	 * @param building, building selected by the user for construction
-	 * 
-	 * @return A string detailing the error with constructing the selected 
-	 * building.
-	 */
-	public String errorBuild(String material, WorldEntity building) {
-		return "Not enough " + material + " to build a " + building.toString();
-	}
-	
-	
 }

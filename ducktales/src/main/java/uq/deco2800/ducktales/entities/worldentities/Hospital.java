@@ -17,6 +17,9 @@ public class Hospital extends WorldEntity {
 
 	public Hospital(double x, double y) {
 		super(x, y, 2, 2, TYPE);
+	}
+	
+	protected void specifications() {
 		WorldEntity.STONERESOURCES = 12;
 		WorldEntity.WOODRESOURCES = 8;
 		WorldEntity.TIME = 5;

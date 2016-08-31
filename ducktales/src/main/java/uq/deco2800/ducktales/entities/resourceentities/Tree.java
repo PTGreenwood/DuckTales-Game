@@ -1,11 +1,11 @@
 package uq.deco2800.ducktales.entities.resourceentities;
 
-import java.util.Random;
 import static uq.deco2800.ducktales.resources.ResourceType.*;
 
-import uq.deco2800.ducktales.resources.ResourceManager;
-import uq.deco2800.ducktales.entities.agententities.Peon;
+import java.util.Random;
 import uq.deco2800.ducktales.entities.worldentities.WorldEntity;
+import uq.deco2800.ducktales.resources.InventoryManager;
+import uq.deco2800.ducktales.entities.agententities.Peon;
 import uq.deco2800.ducktales.resources.ResourceType;
 
 public class Tree extends ResourceEntity{
@@ -36,7 +36,7 @@ public class Tree extends ResourceEntity{
 
 	// if the tree is lumbered, increase the amount of wood resources and set the tree to stump
 	public void lumber(Peon loggers){
-		ResourceManager.woodAmount += timber ;
+
 		this.isStump = true;
 	}
 
@@ -44,6 +44,17 @@ public class Tree extends ResourceEntity{
 
 	public boolean isStump() {
 		return this.isStump;
+	}
+	
+	/**
+	 * Added a method to WorldEntity, to stop it breaking when multiple different 
+	 * buildings are intitialised.Since ResourceEntity extends WorldEntity it is now 
+	 * required here. 
+	 * 
+	 * Feel free to make changes if you do not want this method in your resources.
+	 */
+	@Override
+	protected void specifications() {
 	}
 
 }

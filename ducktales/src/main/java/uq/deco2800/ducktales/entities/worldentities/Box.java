@@ -14,6 +14,9 @@ public class Box extends WorldEntity {
 
 	public Box(int x, int y) {
 		super(x, y, 1, 1, TYPE);
+	}
+	
+	protected void specifications() {
 		WorldEntity.STONERESOURCES = 2;
 		WorldEntity.WOODRESOURCES = 2;
 		WorldEntity.TIME = 4;

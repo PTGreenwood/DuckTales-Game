@@ -13,11 +13,14 @@ public class LongBox extends WorldEntity {
 
 	public LongBox(int x, int y) {
 		super(x, y, 2, 1, TYPE);
+	}
+
+	protected void specifications() {
 		WorldEntity.STONERESOURCES = 2;
 		WorldEntity.WOODRESOURCES = 2;
 		WorldEntity.TIME = 2;
 	}
-
+	
 	@Override
 	public void tick() {
 		

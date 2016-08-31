@@ -18,9 +18,6 @@ public class House extends WorldEntity {
 
 	public House(double x, double y) {
 		super(x, y, 2, 2, TYPE);
-		WorldEntity.STONERESOURCES = 2;
-		WorldEntity.WOODRESOURCES = 4;
-		WorldEntity.TIME = 2;
 	}
 	
 	public void ChangeHealth(int NewValue){
@@ -31,6 +28,12 @@ public class House extends WorldEntity {
 	
 	public int GetHealth(){
 		return Health;
+	}
+	
+	protected void specifications() {
+		WorldEntity.STONERESOURCES = 2;
+		WorldEntity.WOODRESOURCES = 4;
+		WorldEntity.TIME = 2;
 	}
 
 	@Override

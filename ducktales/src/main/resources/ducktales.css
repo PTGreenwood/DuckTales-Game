@@ -1,0 +1,59 @@
+#mainMenuPane {
+	-fx-background-color: #000;
+	-fx-background-image: url("menu/background.png");
+}
+
+#startGameBtn {
+	-fx-background-image: url("menu/play_button.png");
+}
+
+#startGameBtn:hover {
+	-fx-background-image: url("menu/play_buttonHover.png");
+}
+
+#buildWorldBtn {
+	-fx-background-image: url("menu/build_world.png");
+}
+
+#buildWorldBtn:hover {
+	-fx-background-image: url("menu/build_worldHover.png");
+}
+
+#marketplaceBtn {
+	-fx-background-image: url("menu/marketplace.png");
+}
+
+#marketplaceBtn:hover {
+	-fx-background-image: url("menu/marketplaceHover.png");
+}
+
+#achievementsBtn {
+	-fx-background-image: url("menu/achievements.png");
+}
+
+#achievementsBtn:hover {
+	-fx-background-image: url("menu/achievementsHover.png");
+}
+
+#tutorialBtn {
+	-fx-background-image: url("menu/tutorial.png");
+}
+
+#tutorialBtn:hover {
+	-fx-background-image: url("menu/tutorialHover.png");
+}
+
+#quitBtn {
+	-fx-background-image: url("menu/exit_button.png");
+}
+
+#quitBtn:hover {
+	-fx-background-image: url("menu/exit_buttonHover.png");
+}
+
+.buttonImage {	
+	-fx-background-color: transparent;
+	-fx-background-size: auto 45px;
+	-fx-background-repeat: no-repeat;
+	-fx-background-position: center;	
+}
