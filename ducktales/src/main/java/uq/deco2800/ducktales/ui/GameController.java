@@ -38,6 +38,7 @@ public class GameController implements Initializable{
     @FXML
     public void constructBuildings(ActionEvent event) {
         System.err.println("constructing buildings");
+        renderer.showBuildingMenu();
     }
 
     @FXML
