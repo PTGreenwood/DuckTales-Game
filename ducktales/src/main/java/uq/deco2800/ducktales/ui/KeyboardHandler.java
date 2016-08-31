@@ -36,6 +36,10 @@ public class KeyboardHandler implements EventHandler<KeyEvent> {
 		case S:
 			gameManager.pan(GameManager.Direction.DOWN);
 			break;
+			
+		case ESCAPE:
+			
+			break;
 
 		default:
 			break;

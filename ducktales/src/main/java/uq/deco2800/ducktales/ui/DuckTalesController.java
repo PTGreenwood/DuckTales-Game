@@ -57,6 +57,9 @@ public class DuckTalesController implements Initializable {
 		gameManager = GameManager.getInstance();
 		worldBuilderManager = WorldBuilderManager.getInstance();
 		achievementScore = Achievements.getInstance();
+		
+		// Set the handlers for the scenes
+		//gameWindow.getScene().setOnKeyPressed(new KeyboardHandler());
 
 		// Set the handlers for the game panes		
 		contentPane.setOnMousePressed(new MousePressedHandler());
@@ -190,16 +193,19 @@ public class DuckTalesController implements Initializable {
 			showPane(worldBuilderPane);
 		}
 	}
-	
-	
-	
-	
 
 	public void stopGame() {
 		if (executor != null && quit != null) {
 			quit.set(true);
 			executor.shutdown();
 		}
+	}
+	
+	/**
+	 * Close the application 
+	 */
+	public void quitApplication() {
+		System.exit(0);
 	}
 
 

@@ -9,17 +9,17 @@
 	<children>
 		<AnchorPane fx:id="mainMenuPane" layoutY="-2.0" minHeight="0.0" minWidth="0.0" prefHeight="737.0" prefWidth="1295.0">
 			<children>
-				<ImageView fx:id="mainLogo" fitHeight="134.0" fitWidth="395.0" layoutX="505.0" layoutY="108.0" pickOnBounds="true" preserveRatio="true">
+				<ImageView fx:id="mainLogo" fitHeight="344.0" fitWidth="541.0" layoutX="91.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
 					<image>
-						<Image url="@ducktales.png" />
+						<Image url="@ducktaleslogo.png" />
 					</image>
 				</ImageView>
-				<Button layoutX="442.0" layoutY="269.0" mnemonicParsing="false" onAction="#startGame" prefHeight="45.0" prefWidth="395.0" text="PLAY GAME!" textAlignment="CENTER" />
-				<Button layoutX="442.0" layoutY="334.0" mnemonicParsing="false" onAction="#buildWorld" prefHeight="45.0" prefWidth="395.0" text="BUILD WORLD" textAlignment="CENTER" />
-				<Button layoutX="443.0" layoutY="399.0" mnemonicParsing="false" onAction="#tutorial" prefHeight="45.0" prefWidth="395.0" text="TUTORIAL" textAlignment="CENTER" />
-				<Button layoutX="442.0" layoutY="529.0" mnemonicParsing="false" onAction="#missionAndAchievement" prefHeight="45.0" prefWidth="395.0" text="MISSION / ACHIEVEMENTS" textAlignment="CENTER" />
-				<Button layoutX="442.0" layoutY="464.0" mnemonicParsing="false" onAction="#showMarketplace" prefHeight="45.0" prefWidth="395.0" text="MARKETPLACE" textAlignment="CENTER" />
-				<Button layoutX="442.0" layoutY="594.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="395.0" text="EXIT GAME" textAlignment="CENTER" />
+				<Button fx:id="startGameBtn" layoutX="648.0" layoutY="257.0" mnemonicParsing="false" onAction="#startGame" prefHeight="45.0" prefWidth="500" styleClass="buttonImage" textAlignment="CENTER" AnchorPane.bottomAnchor="435.0" />
+				<Button fx:id="buildWorldBtn" layoutX="648.0" layoutY="332.0" mnemonicParsing="false" onAction="#buildWorld" prefHeight="45.0" prefWidth="500" styleClass="buttonImage" textAlignment="CENTER" />
+				<Button fx:id="tutorialBtn" layoutX="648.0" layoutY="407.0" mnemonicParsing="false" onAction="#tutorial" prefHeight="45.0" prefWidth="500" styleClass="buttonImage" textAlignment="CENTER" />
+				<Button fx:id="achievementsBtn" layoutX="648.0" layoutY="557.0" mnemonicParsing="false" onAction="#missionAndAchievement" prefHeight="45.0" prefWidth="500" styleClass="buttonImage" textAlignment="CENTER" />
+				<Button fx:id="marketplaceBtn" layoutX="648.0" layoutY="482.0" mnemonicParsing="false" onAction="#showMarketplace" prefHeight="45.0" prefWidth="500" styleClass="buttonImage" textAlignment="CENTER" />
+				<Button fx:id="quitBtn" layoutX="648.0" layoutY="632.0" mnemonicParsing="false" onAction="#quitApplication" prefHeight="45.0" prefWidth="500" styleClass="buttonImage" textAlignment="CENTER" />
 			</children>
 		</AnchorPane>
 		<AnchorPane fx:id="contentPane" prefHeight="737.0" prefWidth="1295.0" visible="false" />
