@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane fx:id="gamePane" stylesheets="@ducktales.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uq.deco2800.ducktales.ui.GameController">
+   <center>
+      <Pane id="worldPane" fx:id="worldPane" prefHeight="200.0" prefWidth="200.0" styleClass="worldPane" BorderPane.alignment="CENTER" />
+   </center>
+   <bottom>
+      <HBox id="buildingsMenu" fx:id="buildingsMenu" prefHeight="100.0" prefWidth="200.0" styleClass="buildingsMenu" BorderPane.alignment="CENTER" />
+   </bottom>
+   <left>
+      <VBox id="buttonsMenu" fx:id="buttonsMenu" prefHeight="200.0" prefWidth="100.0" styleClass="buttonsMenu" BorderPane.alignment="CENTER" />
+   </left>
+</BorderPane>

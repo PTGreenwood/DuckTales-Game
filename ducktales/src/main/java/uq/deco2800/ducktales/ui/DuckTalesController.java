@@ -170,24 +170,34 @@ public class DuckTalesController implements Initializable {
 		if (gamePane == null) {
 			toggleMenuPane();
 
-			gamePane = new BorderPane();
+            // First implementation of using FXML for styling
+			URL location = getClass().getResource("/game.fxml");
+            FXMLLoader loader = new FXMLLoader(location);
+
+			gamePane = loader.load();
 			gamePane.setPrefSize(
 					contentPane.getWidth(),
 					contentPane.getHeight()
 			);
-
 			showPane(gamePane);
 
-			System.err.println("gamePane width and height: " +
-					gamePane.getWidth() + ", " + gamePane.getHeight());
+			// Set up the controller
+			GameController gameController = loader.getController();
 
+			// Set up the renderer
+			GameRendererBeta renderer = new GameRendererBeta();
+
+			// give the controller a handle on the renderer, for the
+			// controller to pass a handle of the UI elements
+			gameController.setRenderer(renderer);
+
+			// Setup the manager and start the game
 			GameManagerBeta manager = GameManagerBeta.getInstance();
-
 			// Set the world for the game
 			manager.setWorld(new World("Game World", 20, 20));
+			// Give manager a handle of the renderer to start the renderer
+			manager.setRenderer(renderer);
 
-			// Set and initiate the renderer for the game
-			manager.setRenderer(new GameRendererBeta(contentPane, gamePane));
 		} else {
 			showPane(gamePane);
 		}
