@@ -40,7 +40,7 @@ public class DuckTalesController implements Initializable {
 	private WorldBuilderManager worldBuilderManager;
 
 	// UI for World Builder
-	private BorderPane worldBuilderPane;
+	private BorderPane worldBuilderPane, gamePane;
 
 	private AtomicBoolean quit;
 	
@@ -158,7 +158,38 @@ public class DuckTalesController implements Initializable {
 			showCanvas(gameCanvas);
 		}
 	}
-	
+
+	/**
+	 * This will launch the game with the new rendering engine - beta version
+	 * @param event
+	 * @throws Exception
+	 */
+	@FXML
+	public void startGameBeta(ActionEvent event) throws Exception {
+		toggleMenuPane();
+		
+		System.err.println("BETA RENDERER");
+		if (gamePane == null) {
+			gamePane = new BorderPane();
+			gamePane.setMinSize(
+					contentPane.getWidth(),
+					contentPane.getHeight()
+			);
+
+			showPane(gamePane);
+
+			GameManagerBeta manager = GameManagerBeta.getInstance();
+
+			// Set the world for the game
+			manager.setWorld(new World("Game World", 20, 20));
+
+			// Set and initiate the renderer for the game
+			manager.setRenderer(new GameRendererBeta(gamePane));
+		} else {
+			showPane(gamePane);
+		}
+
+	}
 
 	/**
 	 * This method is called when "Build World" button is pressed
@@ -214,7 +245,7 @@ public class DuckTalesController implements Initializable {
 	 * 			The pane to be shown in the right pane
 	 */
 	private void showPane(Pane pane) {
-		contentPane.getChildren().removeAll(gameCanvas, worldBuilderPane);
+		contentPane.getChildren().removeAll(gameCanvas, worldBuilderPane, gamePane);
 		contentPane.getChildren().add(pane);
 	}
 
@@ -223,7 +254,7 @@ public class DuckTalesController implements Initializable {
 	 * @param canvas
 	 */
 	private void showCanvas(Canvas canvas) {
-		contentPane.getChildren().removeAll(gameCanvas, worldBuilderPane);
+		contentPane.getChildren().removeAll(gameCanvas, worldBuilderPane, gamePane);
 		contentPane.getChildren().add(canvas);
 	}
 	

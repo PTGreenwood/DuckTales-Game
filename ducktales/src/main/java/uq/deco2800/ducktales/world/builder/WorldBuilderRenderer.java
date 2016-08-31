@@ -60,9 +60,9 @@ public class WorldBuilderRenderer extends AnimationTimer {
     private double SCALE = 0.2;
 
     /**
-     * The rendering engine
+     * The class containing info to render different types of entities
      */
-    WorldEntityRenderingInfo renderingEngine;
+    WorldEntityRenderingInfo renderingInfo;
 
     /**
      * The manager for World builder
@@ -114,7 +114,7 @@ public class WorldBuilderRenderer extends AnimationTimer {
         this.resourceRegister = ResourceRegister.getInstance();
         this.tileHeight = ResourceRegister.TILE_HEIGHT;
         this.tileWidth = ResourceRegister.TILE_WIDTH;
-        this.renderingEngine = WorldEntityRenderingInfo.getInstance();
+        this.renderingInfo = WorldEntityRenderingInfo.getInstance();
         this.addedEntities = new ArrayList<>();
 
         // Setup the initial point where the rendering will start from
@@ -154,7 +154,7 @@ public class WorldBuilderRenderer extends AnimationTimer {
         hoveringImage.setFitWidth(image.getWidth() * SCALE);
 
         hoveringImage.setY(-hoveringImage.getFitHeight());
-        hoveringImage.setX(-renderingEngine.getStartPoint(entityType));
+        hoveringImage.setX(-renderingInfo.getStartPoint(entityType));
     }
 
     /**
@@ -309,7 +309,7 @@ public class WorldBuilderRenderer extends AnimationTimer {
         double renderingWidth = worldBuilderPane.getWidth();
         double renderingHeight = worldBuilderPane.getHeight();
 
-        // The border pane to put all the panes into
+        // Add some styling to the root pane
         this.worldBuilderPane.getStylesheets().add("/builderStyle.css");
 
         // The pane where the world is rendered onto

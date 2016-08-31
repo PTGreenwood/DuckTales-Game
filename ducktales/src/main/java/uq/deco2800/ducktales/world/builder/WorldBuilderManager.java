@@ -42,7 +42,7 @@ public class WorldBuilderManager {
     public static WorldBuilderManager getInstance() { return INSTANCE; }
 
     /**
-     * Constructor of the WorldBuilderManager class
+     * Constructor of the {@link WorldBuilderManager} class
      */
     private WorldBuilderManager() {
     }
