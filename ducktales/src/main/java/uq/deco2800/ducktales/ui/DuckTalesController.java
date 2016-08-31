@@ -188,19 +188,8 @@ public class DuckTalesController implements Initializable {
 			// Set up the controller
 			GameController gameController = loader.getController();
 
-			// Set up the renderer
-			GameRendererBeta renderer = new GameRendererBeta();
-
-			// give the controller a handle on the renderer, for the
-			// controller to pass a handle of the UI elements
-			gameController.setRenderer(renderer);
-
-			// Setup the manager and start the game
-			GameManagerBeta manager = GameManagerBeta.getInstance();
-			// Set the world for the game
-			manager.setWorld(new World("Game World", 20, 20));
-			// Give manager a handle of the renderer to start the renderer
-			manager.setRenderer(renderer);
+			// Set up the renderer and give the controller its handle
+			gameController.setupGame();
 
 		} else {
 			showPane(gamePane);

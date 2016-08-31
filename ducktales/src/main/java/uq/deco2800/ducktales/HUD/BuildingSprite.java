@@ -20,13 +20,16 @@ public class BuildingSprite extends ImageView {
     private Image buildingSprite; // The sprite of the building
 
     /** The manager of the game */
-    private GameManagerBeta manager = GameManagerBeta.getInstance();
+    private GameManagerBeta manager;
 
     /**
-     * Create a sprite of the given building sprite
+     * Create a sprite of the given building sprite, and give it a handle of
+     * the game manager
+     *
      * @param buildingType
      */
-    public BuildingSprite(ResourceType buildingType) {
+    public BuildingSprite(ResourceType buildingType, GameManagerBeta manager) {
+        this.manager = manager;
         this.buildingSprite =
                 ResourceRegister.getInstance().getResourceImage(buildingType);
         this.buildingType = buildingType;

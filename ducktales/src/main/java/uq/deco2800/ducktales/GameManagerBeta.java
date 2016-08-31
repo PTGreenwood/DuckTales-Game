@@ -2,6 +2,7 @@ package uq.deco2800.ducktales;
 
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.world.World;
+import uq.deco2800.ducktales.world.WorldBeta;
 
 import static uq.deco2800.ducktales.resources.ResourceType.*;
 
@@ -10,8 +11,10 @@ import static uq.deco2800.ducktales.resources.ResourceType.*;
  */
 public class GameManagerBeta {
 
-    /** The global variables in the game */
-    private World world;
+    /** The game world */
+    private WorldBeta world;
+
+    /** The rendering engine */
     private GameRendererBeta renderer;
 
     /**
@@ -20,17 +23,24 @@ public class GameManagerBeta {
     // The thing the player currently wants to add to the world, eg. building
     private ResourceType currentResourceManaging = NONE;
 
-    private static GameManagerBeta ourInstance = new GameManagerBeta();
-
-    public static GameManagerBeta getInstance() {
-        return ourInstance;
-    }
-
     /**
      * Constructor of the {@link GameManagerBeta} class
      */
-    private GameManagerBeta() {
+    public GameManagerBeta() {
+        // Stub constructor
+    }
 
+    /**
+     * Officially start the game
+     */
+    public void startGame() {
+        if (world == null) {
+            // No world has been pre-loaded. Start a default world
+
+        }
+
+        // Start the rendering engine
+        this.renderer.start();
 
     }
 
@@ -40,7 +50,6 @@ public class GameManagerBeta {
      */
     public void setRenderer (GameRendererBeta renderer) {
         this.renderer = renderer;
-        this.renderer.start();
     }
 
     /**
@@ -48,7 +57,7 @@ public class GameManagerBeta {
      *
      * @param world
      */
-    public void setWorld(World world) {
+    public void setWorld(WorldBeta world) {
         this.world = world;
     }
 
@@ -58,7 +67,7 @@ public class GameManagerBeta {
      *
      * @return the current world of the game
      */
-    public World getWorld() {
+    public WorldBeta getWorld() {
         return this.world;
     }
 

@@ -4,19 +4,27 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.*;
+import uq.deco2800.ducktales.GameManagerBeta;
+import uq.deco2800.ducktales.GameRenderer;
 import uq.deco2800.ducktales.GameRendererBeta;
+import uq.deco2800.ducktales.world.WorldBeta;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * This is the controller for the actual game play, while DuckTalesController
- * controls the main menu and switches between different views
+ * This is the master controller for the actual game play, while
+ * DuckTalesController controls the main menu and switches between
+ * different views.
+ *
+ * This class will be the first class to have the handles of the UI elements
+ * created by FXML. This class will then need to pass the handles along to
+ * the renderer.
  *
  * Created  on 31/08/2016.
  * @author khoiphan21
  */
-public class GameController implements Initializable{
+public class GameController{
     /**
      * UI Elements loaded from FXML
      */
@@ -29,11 +37,29 @@ public class GameController implements Initializable{
     @FXML
     private HBox buildingsMenu;
 
+    /** The rendering engine of the game */
+    private GameRendererBeta renderer;
+
+    /** The manager of the game */
+    private GameManagerBeta manager;
 
     /**
-     * This variable gives the controller a handle of the game renderer
+     * This method sets up the GameManager, GameRenderer and other
+     * global game control classes
      */
-    private GameRendererBeta renderer;
+    public void setupGame() {
+        // Initialize the renderer and pass it the UI elements
+        renderer = new GameRendererBeta(rootPane, worldPane, buttonsMenu, buildingsMenu);
+        // Initialize the manager
+        manager = new GameManagerBeta();
+
+        // Let manager and renderer know about each other and the world
+        manager.setRenderer(renderer);
+        renderer.setManager(manager);
+
+        // Officially start the game engine
+        manager.startGame();
+    }
 
     @FXML
     public void constructBuildings(ActionEvent event) {
@@ -42,25 +68,7 @@ public class GameController implements Initializable{
     }
 
     @FXML
-    public void addPeon(ActionEvent actionEvent) {
-    }
-
-    /**
-     * Store a handle of the given renderer, and also pass it the handles
-     * of the UI elements loaded from FXML
-     *
-     * @param renderer
-     *          The renderer of the game
-     */
-    public void setRenderer(GameRendererBeta renderer) {
-        this.renderer = renderer;
-        this.renderer.setUIElements(rootPane, worldPane, buttonsMenu, buildingsMenu);
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
-
+    public void addPeon(ActionEvent event) {
     }
 
 }
