@@ -4,6 +4,8 @@ import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.resources.tiles.TileBeta;
 import uq.deco2800.ducktales.util.Array2D;
 
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
 /**
  * This is the model of the game world. It will contain information of
  * all entities in the game world
@@ -34,7 +36,6 @@ public class WorldBeta {
         initializeDefaultTiles();
     }
 
-
     /*---------*
      * GETTERS *
      *---------*/
@@ -52,6 +53,12 @@ public class WorldBeta {
      * Initialize the array of tiles to the default type
      */
     private void initializeDefaultTiles() {
+        this.tiles = new Array2D<TileBeta>(this.width, this.height);
 
+        for (int x = 0; x < this.width; x++) {
+            for (int y = 0; y < this.height; y++) {
+                tiles.set(x, y, new TileBeta(DEFAULT_TILE_TYPE, x, y));
+            }
+        }
     }
 }

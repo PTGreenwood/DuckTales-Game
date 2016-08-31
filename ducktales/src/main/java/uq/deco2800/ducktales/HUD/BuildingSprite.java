@@ -56,6 +56,10 @@ public class BuildingSprite extends ImageView {
         this.setOnMouseClicked(event -> {
             manager.notifyBuildingMenuClicked(this.buildingType);
         });
+        this.setOnMouseEntered(event -> {
+            System.err.println("mouse hovered on: " + event.getSource().toString());
+            // stub event just to trigger parent event
+        });
     }
 
 

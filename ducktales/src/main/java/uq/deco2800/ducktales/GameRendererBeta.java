@@ -136,6 +136,12 @@ public class GameRendererBeta extends AnimationTimer {
     public void showBuildingMenu() {
         buildingsMenu.getChildren().addAll(buildingSprites);
 
+        //TODO DELETE THIS EVENT HANDLER TESTING
+        buildingsMenu.setOnMouseEntered(event-> {
+            System.err.println("event target is: " + event.getTarget());
+            System.err.println("type of building is: " + event.getSource().toString());
+        });
+
     }
 
     @Override

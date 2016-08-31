@@ -52,7 +52,11 @@ public class GameController{
         renderer.setManager(manager);
 
         // Officially start the game engine
-        manager.startGame();
+        try {
+            manager.startGame();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
