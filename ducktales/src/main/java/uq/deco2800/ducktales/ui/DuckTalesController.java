@@ -225,15 +225,14 @@ public class DuckTalesController implements Initializable {
 			System.err.println("worldbuilderPane's width and height: "
 					+ worldBuilderPane.getWidth() + ", " + worldBuilderPane.getHeight());
 
-
-			// Adding to right pane
-			showPane(worldBuilderPane);
-
 			// Set the world for the builder
 			worldBuilderManager.setWorld(new World("World Builder", 20, 20));
 			// Initiate the rendering engine for WorldBuilder
 			worldBuilderManager.setRenderer(new WorldBuilderRenderer(
 					contentPane, worldBuilderPane));
+
+			// Adding to right pane
+			showPane(worldBuilderPane);
 
 		} else {
 			showPane(worldBuilderPane);

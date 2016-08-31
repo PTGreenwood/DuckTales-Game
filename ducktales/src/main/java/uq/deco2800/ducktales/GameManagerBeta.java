@@ -10,8 +10,14 @@ import static uq.deco2800.ducktales.resources.ResourceType.*;
  */
 public class GameManagerBeta {
 
+    /** The global variables in the game */
     private World world;
     private GameRendererBeta renderer;
+
+    /**
+     * Variables for managing the game
+     */
+    // The thing the player currently wants to add to the world, eg. building
     private ResourceType currentResourceManaging = NONE;
 
     private static GameManagerBeta ourInstance = new GameManagerBeta();
@@ -46,4 +52,23 @@ public class GameManagerBeta {
         this.world = world;
     }
 
+    /**
+     * Return the current game world, which contains all the information about
+     * the current game being played
+     *
+     * @return the current world of the game
+     */
+    public World getWorld() {
+        return this.world;
+    }
+
+    /**
+     * Notify itself that a building sprite in the buildings menu has been clicked
+     *
+     * @param buildingType
+     *          The type of building in the buildings menu clicked
+     */
+    public void notifyBuildingMenuClicked(ResourceType buildingType) {
+
+    }
 }

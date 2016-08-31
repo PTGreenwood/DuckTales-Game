@@ -3,9 +3,7 @@ package uq.deco2800.ducktales.ui;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.*;
 import uq.deco2800.ducktales.GameRendererBeta;
 
 import java.net.URL;
@@ -22,6 +20,8 @@ public class GameController implements Initializable{
     /**
      * UI Elements loaded from FXML
      */
+    @FXML
+    private BorderPane rootPane;
     @FXML
     private Pane worldPane;
     @FXML
@@ -54,7 +54,7 @@ public class GameController implements Initializable{
      */
     public void setRenderer(GameRendererBeta renderer) {
         this.renderer = renderer;
-        this.renderer.setUIElements(worldPane, buttonsMenu, buildingsMenu);
+        this.renderer.setUIElements(rootPane, worldPane, buttonsMenu, buildingsMenu);
     }
 
     @Override
