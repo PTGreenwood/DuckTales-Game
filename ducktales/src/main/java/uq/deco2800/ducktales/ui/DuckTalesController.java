@@ -10,6 +10,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import javafx.geometry.Insets;
 import javafx.scene.layout.*;
 import uq.deco2800.ducktales.*;
+import uq.deco2800.ducktales.achievements.Achievements;
 import uq.deco2800.ducktales.resources.ResourceRegister;
 import uq.deco2800.ducktales.world.*;
 import uq.deco2800.ducktales.world.builder.WorldBuilderManager;
@@ -22,6 +23,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class DuckTalesController implements Initializable {
@@ -42,8 +44,12 @@ public class DuckTalesController implements Initializable {
 	private BorderPane worldBuilderPane;
 
 	private AtomicBoolean quit;
-
 	
+    private Achievements achievementScore;
+
+	public Stage tutorialStage;
+	public Stage marketplaceStage;
+
 	
 	
 	@Override
@@ -51,6 +57,7 @@ public class DuckTalesController implements Initializable {
 		tileRegister = ResourceRegister.getInstance();
 		gameManager = GameManager.getInstance();
 		worldBuilderManager = WorldBuilderManager.getInstance();
+		achievementScore = Achievements.getInstance();
 
 		// Set the handlers for the game panes
 		rightPane.setOnMousePressed(new MousePressedHandler());
@@ -63,9 +70,6 @@ public class DuckTalesController implements Initializable {
 	
 	@FXML 
 	private void tutorial(ActionEvent event) throws Exception {
-				
-		
-		
 		URL location = getClass().getResource("/tutorial.fxml");
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(location);
@@ -78,6 +82,7 @@ public class DuckTalesController implements Initializable {
 		tutorialStage.show();
 	}
 	
+    
 	@FXML
 	private void missionAndAchievement(ActionEvent event) throws Exception{
 		
@@ -93,6 +98,35 @@ public class DuckTalesController implements Initializable {
 		missionAndAchievementStage.setScene(missionAndAchievementScene);
 		missionAndAchievementStage.show();
 	}
+
+    
+	/**
+	 * 
+	 * Displays the Marketplace main pop up window.
+	 * 
+	 * @param event
+	 * @throws Exception
+	 */
+	@FXML
+	private void showMarketplace(ActionEvent event) throws Exception {
+		
+		// Load in the marketplace fxml
+		URL location = getClass().getResource("/marketplace.fxml");
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(location);
+		Parent root = loader.load(location.openStream());
+		Scene marketplaceScene = new Scene(root);
+		
+		this.marketplaceStage = new Stage();
+		// To get the window to appear in front of the right pane
+		marketplaceStage.initOwner(
+		        rightPane.getScene().getWindow());
+		marketplaceStage.setTitle("Marketplace");
+		marketplaceStage.setScene(marketplaceScene);
+		marketplaceStage.show();
+	}
+
+
 	/**
 	 * This method will be called when the 'Launch Game' button is pressed
 	 * The code that will call this method is defined in ducktales.fxml
