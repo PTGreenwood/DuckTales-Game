@@ -20,14 +20,7 @@ public abstract class WorldEntity extends Entity {
 	protected WorldEntity(double x, double y, int lengthX, int lengthY, 
 			ResourceType type) {
 		super(x, y, lengthX, lengthY, type);
-	}
-
-	protected void setTime(int time) {
-		TIME = time;
-	}
-	
-	protected void setWood(int wood) {
-		WOODRESOURCES = wood;
+		specifications();
 	}
 	
 	/**
@@ -88,4 +81,9 @@ public abstract class WorldEntity extends Entity {
 		return (int) (0.5*STONERESOURCES);
 	}
 	
+	/**
+	 * Update the variables with the building specifications, when the 
+	 * building is called.
+	 */
+	protected abstract void specifications();
 }

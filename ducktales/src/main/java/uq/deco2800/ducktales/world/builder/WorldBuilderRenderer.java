@@ -8,6 +8,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import uq.deco2800.ducktales.achievements.Achievements;
 import uq.deco2800.ducktales.renderingEngine.WorldEntityRenderingInfo;
 import uq.deco2800.ducktales.resources.ResourceRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
@@ -67,7 +68,13 @@ public class WorldBuilderRenderer extends AnimationTimer {
      * The manager for World builder
      */
     WorldBuilderManager manager = WorldBuilderManager.getInstance();
-
+    
+    /*
+     * Call Achievement Class
+     */
+    Achievements achievementScore = Achievements.getInstance();
+    
+    
     /**
      * starting X and Y positions to render the tiles
      */
@@ -203,6 +210,9 @@ public class WorldBuilderRenderer extends AnimationTimer {
         buildingScene.getChildren().add(entity);
 
         System.out.println("Entities added: " + addedEntities.toString());
+        
+        //Achievement score will be incremented whenever any building is built
+        achievementScore.achieveVeasy();
     }
 
     /**
@@ -330,6 +340,8 @@ public class WorldBuilderRenderer extends AnimationTimer {
         this.worldBuilderPane.setCenter(buildingScene);
         this.worldBuilderPane.setRight(tileMenu);
         this.worldBuilderPane.setBottom(resourceMenu);
+        
+        
     }
 
     @Override

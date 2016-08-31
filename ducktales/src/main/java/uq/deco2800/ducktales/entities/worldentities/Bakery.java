@@ -16,7 +16,10 @@ public class Bakery extends WorldEntity{
 	private static final ResourceType TYPE = BAKERY;
 	
 	public Bakery(double x, double y) {
-		super(x, y, 2, 2, TYPE);
+		super(x, y, 2, 2, TYPE);	
+	}
+	
+	protected void specifications() {
 		WorldEntity.STONERESOURCES = 4;
 		WorldEntity.WOODRESOURCES = 6;
 		WorldEntity.TIME = 4;
@@ -24,11 +27,6 @@ public class Bakery extends WorldEntity{
 
 	@Override
 	public void tick() {
-	}
-
-	@Override
-	public boolean isPassable() {
-		return false;
 	}
 	
 }

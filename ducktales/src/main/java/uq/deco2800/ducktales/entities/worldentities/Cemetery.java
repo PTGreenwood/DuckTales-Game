@@ -17,6 +17,9 @@ public class Cemetery extends WorldEntity {
 
 	public Cemetery(double x, double y) {
 		super(x, y, 2, 2, TYPE);
+	}
+	
+	protected void specifications() {
 		WorldEntity.STONERESOURCES = 2;
 		WorldEntity.WOODRESOURCES = 4;
 		WorldEntity.TIME = 2;
