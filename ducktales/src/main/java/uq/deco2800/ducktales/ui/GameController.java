@@ -2,12 +2,16 @@ package uq.deco2800.ducktales.ui;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import uq.deco2800.ducktales.GameManagerBeta;
 import uq.deco2800.ducktales.GameRendererBeta;
 import uq.deco2800.ducktales.resources.InventoryManager;
+
+import java.net.URL;
 
 /**
  * This is the master controller for the actual game play, while
@@ -39,6 +43,11 @@ public class GameController{
     private ImageView woodSprite, foodSprite, oresSprite;
     @FXML
     private Label woodLabel, foodLabel, oresLabel;
+    // The button to close all info panes
+    @FXML
+    private Button closeInfoPaneButton;
+    // The Achievement window
+    private AnchorPane achievementPane;
 
     /** The rendering engine of the game */
     private GameRendererBeta renderer;
@@ -86,7 +95,56 @@ public class GameController{
     }
 
     @FXML
+    public void showMissionAndAchievement(ActionEvent event) throws Exception {
+        URL location = getClass().getResource("/missionAndAchievement.fxml");
+        FXMLLoader loader = new FXMLLoader(location);
+
+        achievementPane = loader.load();
+
+
+        showInfoPane(achievementPane);
+
+    }
+
+    @FXML
     public void addPeon(ActionEvent event) {
     }
+
+    @FXML
+    public void closeInfoPane() {
+        rootPane.getChildren().remove(this.achievementPane);
+        closeInfoPaneButton.setVisible(false);
+    }
+
+    /**
+     * Show the given info pane - must remove all other info panes first
+     *
+     * @param pane
+     *          The pane to be shown in the in-game screen
+     */
+    private void showInfoPane(Pane pane) {
+        // Remove all info panes first
+        rootPane.getChildren().remove(this.achievementPane);
+
+        // Add the given pane
+        rootPane.getChildren().add(pane);
+
+        // The anchors for the window
+        double sideAnchor = rootPane.getWidth() / 4;
+        double verticalAnchor = rootPane.getHeight() / 4;
+
+        // Set the location of the given pane to be rendered at
+        rootPane.setLeftAnchor(pane, sideAnchor);
+        rootPane.setRightAnchor(pane, sideAnchor);
+        rootPane.setTopAnchor(pane, verticalAnchor);
+        rootPane.setBottomAnchor(pane, verticalAnchor);
+
+        closeInfoPaneButton.setVisible(true);
+        rootPane.setLeftAnchor(closeInfoPaneButton, sideAnchor);
+        rootPane.setRightAnchor(closeInfoPaneButton, sideAnchor);
+        rootPane.setBottomAnchor(closeInfoPaneButton, verticalAnchor - 30);
+
+    }
+
 
 }

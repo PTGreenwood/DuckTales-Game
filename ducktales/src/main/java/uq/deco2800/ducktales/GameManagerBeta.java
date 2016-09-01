@@ -96,33 +96,13 @@ public class GameManagerBeta {
     }
 
     /**
-     * Notify itself that a building sprite in the buildings menu has been clicked
+     * Get the type of the resource being managed. For example, a building
+     * that the player is trying to add to the game world
      *
-     * @param buildingType
-     *          The type of building in the buildings menu clicked
+     * @return the type of the resource currently being managed
      */
-    public void notifyBuildingMenuClicked(ResourceType buildingType) {
-
-    }
-
-    /**
-     * Notify itself that a tile has been hovered upon
-     * @param xPos
-     *          The x-index in the 2D array of the tile hovered
-     * @param yPos
-     *          The y-index in the 2D array of the tile hovered
-     */
-    public void notifyTileHovered(int xPos, int yPos) {
-    }
-
-    /**
-     * Notify itself that a tile has been clicked
-     * @param xPos
-     *          The x-index in the 2D array of the tile clicked
-     * @param yPos
-     *          The y-index in the 2D array of the tile clicked
-     */
-    public void notifyTileClicked(int xPos, int yPos) {
+    public ResourceType getCurrentResourceManaging() {
+        return currentResourceManaging;
     }
 
     /**

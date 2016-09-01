@@ -328,10 +328,10 @@ public class Animal extends AgentEntity {
             spriteName += this.getDirection();
         }
         return spriteName; // Add more conditions when other animals are started on
-//        } else if (this.getType().toString().contains("SHEEP")) {
+//        } else if (this.getTileType().toString().contains("SHEEP")) {
 //            spriteName = ResourceType.SHEEP.toString();
 //            spriteName += this.getDirection();
-//        } else(this.getType().toString().contains("TURTLE")) {
+//        } else(this.getTileType().toString().contains("TURTLE")) {
 //            spriteName = ResourceType.TURTLE.toString();
 //            spriteName += this.getDirection();
 //        }

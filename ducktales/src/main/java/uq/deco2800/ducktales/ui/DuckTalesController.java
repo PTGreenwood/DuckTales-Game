@@ -15,7 +15,6 @@ import uq.deco2800.ducktales.world.*;
 import uq.deco2800.ducktales.world.builder.WorldBuilderManager;
 import uq.deco2800.ducktales.world.builder.WorldBuilderRenderer;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -23,8 +22,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 public class DuckTalesController implements Initializable {
@@ -181,10 +178,13 @@ public class DuckTalesController implements Initializable {
 			} catch (Exception e) {
 				System.err.println("exception in loading fxml");
 			}
-			gamePane.setPrefSize(
-					contentPane.getWidth(),
-					contentPane.getHeight()
-			);
+
+			// Set the game pane to resize with the window
+			contentPane.setLeftAnchor(gamePane, 0.0);
+			contentPane.setRightAnchor(gamePane, 0.0);
+			contentPane.setTopAnchor(gamePane, 0.0);
+			contentPane.setBottomAnchor(gamePane, 0.0);
+
 			showPane(gamePane);
 
 			// Set up the controller

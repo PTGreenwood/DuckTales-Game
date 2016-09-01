@@ -15,7 +15,7 @@ import uq.deco2800.ducktales.resources.ResourceRegister;
 import uq.deco2800.ducktales.entities.worldentities.*;
 
 import uq.deco2800.ducktales.resources.ResourceType;
-import uq.deco2800.ducktales.resources.tiles.Tile;
+import uq.deco2800.ducktales.renderingEngine.tiles.Tile;
 import uq.deco2800.ducktales.util.*;
 
 import static uq.deco2800.ducktales.resources.ResourceType.*;

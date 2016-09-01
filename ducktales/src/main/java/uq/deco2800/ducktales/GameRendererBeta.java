@@ -10,8 +10,9 @@ import uq.deco2800.ducktales.hud.BuildingSprite;
 import uq.deco2800.ducktales.renderingEngine.RenderingManager;
 import uq.deco2800.ducktales.resources.ResourceRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
-import uq.deco2800.ducktales.resources.tiles.TileBeta;
+import uq.deco2800.ducktales.renderingEngine.tiles.TileBeta;
 import uq.deco2800.ducktales.util.Array2D;
+import uq.deco2800.ducktales.util.Events.TileEvents.TileClickedEvent;
 import uq.deco2800.ducktales.util.Events.TileEvents.TileEnteredEvent;
 import uq.deco2800.ducktales.util.Events.TileEvents.TileExitedEvent;
 import uq.deco2800.ducktales.util.Events.UIEvents.BuildingMenuDeselectedEvent;
@@ -105,6 +106,7 @@ public class GameRendererBeta extends AnimationTimer {
 
         // Setup cursor image
         this.cursorImage = new ImageView();
+        this.cursorImage.setMouseTransparent(true);
         root.getChildren().add(this.cursorImage);
 
         // Initialize the building sprites for buildings menu
@@ -218,7 +220,7 @@ public class GameRendererBeta extends AnimationTimer {
                 double y = startingY + (j + i) * scaledHeight / 2;
 
                 tile = tiles.get(i, j);
-                tile.setImage(resource.getResourceImage(tile.getType()));
+                tile.setImage(resource.getResourceImage(tile.getTileType()));
 
                 tile.setFitHeight(tileHeight * generalScale);
                 tile.setFitWidth(tileWidth * generalScale);
@@ -230,8 +232,6 @@ public class GameRendererBeta extends AnimationTimer {
 
             }
         }
-
-
     }
 
 
@@ -249,7 +249,11 @@ public class GameRendererBeta extends AnimationTimer {
         worldPane.addEventHandler(TileExitedEvent.TILE_EXITED, event -> {
             //System.err.println(event.toString());
             TileBeta tile = world.getTiles().get(event.getxPos(), event.getyPos());
-            tile.setImage(resource.getResourceImage(tile.getType()));
+            tile.setImage(resource.getResourceImage(tile.getTileType()));
+        });
+        worldPane.addEventHandler(TileClickedEvent.TILE_CLICKED, event -> {
+            System.err.println("building " + manager.getCurrentResourceManaging()
+            + " to be added to: " + event.getxPos() + ", " +event.getyPos());
         });
 
         /*
@@ -274,6 +278,9 @@ public class GameRendererBeta extends AnimationTimer {
 
             // reveal the sprite
             this.cursorImage.setImage(sprite);
+
+            // notify the manager
+            manager.setCurrentResourceManaging(event.getType());
 
         });
         buildingsMenu.addEventHandler(BuildingMenuDeselectedEvent.BUILDING_MENU_DESELECTED_EVENT, event -> {
