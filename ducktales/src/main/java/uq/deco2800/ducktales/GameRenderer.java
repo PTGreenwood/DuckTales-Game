@@ -99,8 +99,11 @@ public class GameRenderer extends AnimationTimer {
 		int length;
 		// Loop over 4 sides of world.
 		for (int n = 0; n < 4; n++) {
-			if (n % 2 == 0) length = world.getWidth();
-			else length = world.getHeight();
+			if (n % 2 == 0) {
+				length = world.getWidth();
+			} else {
+				length = world.getHeight();
+			}
 			// Loop over length of side.
 			for (int i = -borderThickness; i < length + borderThickness; i++) {
 				// Loop over thickness of border.
@@ -111,8 +114,11 @@ public class GameRenderer extends AnimationTimer {
 						j = -k;
 					} else {
 						// The bottom sides.
-						if (n == 2) j = k + world.getHeight() - 1;
-						else j = k + world.getWidth() - 1;
+						if (n == 2) {
+							j = k + world.getHeight() - 1;
+						} else {
+							j = k + world.getWidth() - 1;
+						}
 					}
 					int x;
 					if (n % 2 == 0) {

@@ -7,6 +7,7 @@ import uq.deco2800.ducktales.entities.EntityManager;
 
 import uq.deco2800.ducktales.entities.agententities.*;
 import uq.deco2800.ducktales.entities.worldentities.Box;
+import uq.deco2800.ducktales.entities.resourceentities.*;
 
 import uq.deco2800.ducktales.resources.ResourceRegister;
 
@@ -64,7 +65,7 @@ public class World implements Tickable {
 			}
 		}
 
-		addEntity(new Sawmill(13, 6));
+		addEntity(new Bakery(13, 6));
 		addEntity(new Box(4, 15));
 
 		addEntity(new Peon(3, 4));
@@ -72,6 +73,7 @@ public class World implements Tickable {
 
 //		addEntity(new Duck(10,10));
 		addEntity(new Cow(8, 10));
+		addEntity(new Tree(5, 10));
 	}
 
 	/**
@@ -92,8 +94,8 @@ public class World implements Tickable {
 
 		Random random = new Random();
 
-		for (int y = 0; y < width; y++) {
-			for (int x = 0; x < height; x++) {
+		for (int x = 0; x < width; x++) {
+			for (int y = 0; y < height; y++) {
 				tiles.set(x, y, new Tile(baseTileType));
 			}
 		}
@@ -152,9 +154,8 @@ public class World implements Tickable {
 
 	public void addEntity(AgentEntity entity) {
 		entityManager.addEntity(entity);
-
 	}
-
+	
 	public void addEntity(WorldEntity entity) {
 		int entityX = (int) entity.getX();
 		int entityY = (int) entity.getY();

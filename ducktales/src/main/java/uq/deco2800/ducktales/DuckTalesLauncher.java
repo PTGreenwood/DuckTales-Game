@@ -1,13 +1,14 @@
 package uq.deco2800.ducktales;
 
 import uq.deco2800.ducktales.ui.DuckTalesController;
+import uq.deco2800.ducktales.ui.KeyboardHandler;
+import uq.deco2800.ducktales.ui.MenuKeyboardHandler;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
-import java.awt.Toolkit;
-import java.awt.Dimension;
 
 import java.net.URL;
 
@@ -32,25 +33,23 @@ public class DuckTalesLauncher extends Application {
 		
 		Parent root = fxmlLoader.load(location.openStream());
 		
-		Toolkit awtToolKit = Toolkit.getDefaultToolkit();
-	    Dimension screenDimensions = awtToolKit.getScreenSize(); 
-	    
-	    double screenWidth = screenDimensions.getWidth();
-	    double screenHeight = screenDimensions.getHeight(); 
-		
-		Scene scene = new Scene(root, screenWidth, screenHeight);
+		Scene scene = new Scene(root, 1295, 737);
 		
 		DuckTalesController ducktalesController = fxmlLoader.getController(); // link the controller to the FXML file
 
 		//Add in title screen CSS file for JavaFX
-		URL url = this.getClass().getResource("/title_screen.css");
+		/*
+		URL url = this.getClass().getResource("/titleScreen.css");
 		String css = url.toExternalForm(); 
 		//Apply CSS file to current scene
 	    scene.getStylesheets().add(css);
+	    */
 		primaryStage.setTitle("DuckTales v" + version);
-		primaryStage.setScene(scene);
-		primaryStage.setMinWidth(screenWidth*0.5);
-		primaryStage.setMinHeight(screenHeight*0.5);
+		//primaryStage.setFullScreen(true);
+		primaryStage.setScene(scene);		
+		primaryStage.addEventHandler(KeyEvent.KEY_PRESSED, new MenuKeyboardHandler(ducktalesController));
+		primaryStage.setMinWidth(1200);
+		primaryStage.setMinHeight(700);
 		primaryStage.setOnCloseRequest(e -> ducktalesController.stopGame());
 		primaryStage.show();	
 	}
