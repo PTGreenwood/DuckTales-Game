@@ -32,7 +32,8 @@ public class GameRendererBeta extends AnimationTimer {
      * CONSTANTS
      */
     private static final ResourceType[] BUILDINGS = {
-        HOSPITAL, BAKERY, BARN, CLINIC, PASTURE
+        //HOSPITAL, BAKERY, BARN, <--- these buildings are of the wrong size
+        CLINIC, PASTURE
     };
 
     /** The Root pane where all HUD elements, and world pane will be added to*/
@@ -268,7 +269,7 @@ public class GameRendererBeta extends AnimationTimer {
             this.cursorImage.setLayoutY(event.getStartingY());
 
             // Scale the cursor image by the scale given by rendering manager
-            double scale = renderingManager.getMainScaleFactor();
+            double scale = renderingManager.getBuildingScale();
             this.cursorImage.setFitHeight(sprite.getHeight() * scale);
             this.cursorImage.setFitWidth(sprite.getWidth() * scale);
 
