@@ -23,9 +23,11 @@ public class Peon extends AgentEntity {
 
 	private List<Point> goalPoints;
 
+	//Peon stats
 	private double speed;
-
 	private int health = 1000;
+	private int hunger = 100;
+	private int thirst = 100;
 	
 	private int resource= 0;
 
@@ -58,11 +60,32 @@ public class Peon extends AgentEntity {
 		if (sourceValue > 0){
 			this.resource= sourceValue;
 			
+		}
 	}
+	
+	//lower hunger/thirst would decrease the speed?
+	public void setHunger(int newValue) {
+		if (newValue > 0) {
+			this.hunger = newValue;
+		}
+	}
+	
+	public void setThirst(int newValue) {
+		if (newValue > 0) {
+			this.thirst = newValue;
+		}
 	}
 
 	public int getHealth() {
 		return health;
+	}
+	
+	public int getHunger() {
+		return hunger;
+	}
+	
+	public int getThirst() {
+		return thirst;
 	}
 	
 	public int getStrength(){
