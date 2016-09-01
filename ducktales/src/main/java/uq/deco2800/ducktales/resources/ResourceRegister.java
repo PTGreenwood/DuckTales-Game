@@ -56,7 +56,7 @@ public class ResourceRegister {
 		resourceTypeRegister = new ConcurrentHashMap<>();
 		currentCount = 0;
 
-		// Landscape resources
+		// Ground tiles
 		addResource(VOID, "/black.png");
 		addResource(CYAN, "/cyan.png");
 		addResource(CYAN_CROSSED, "/cyan_crossed.png");
@@ -70,19 +70,24 @@ public class ResourceRegister {
 		addResource(DIRT_3, "/dirt_3.png");
 		addResource(BLANK, "/blank.png");
 
+		// Landscape entities
 		addResource(BOX, "/box2.png");
 		addResource(LONG_BOX, "/longbox.png");
-		addResource(PEON, "/peon.png");
 		addResource(WOOD_BOX, "/wood_stock.png");
 		addResource(TREE_1, "/tree_1.png");
 		addResource(TREE_2, "/tree_2.png");
 		addResource(TREE_3, "/tree_3.png");
-		addResource(HOUSE, "/house.png");
+		addResource(ROCK_1, "/rock_1.png");
+		addResource(ROCK_2, "/rock_2.png");
+		
+		// Agent entities
+		addResource(PEON, "/peon.png");
 		addResource(DUCK, "/duck.png");
 		addResource(COW, "/cow.png");
 //		addResource(SHEEP, "/sheep.png");
 
-		
+		// Buildings
+		addResource(HOUSE, "/house.png");
 		addResource(SAWMILL, "/sawmill.png");
 		//To be uncommented as the relevant graphics are created
 		// note from creator of ResourceType: please remember to use the enums from
