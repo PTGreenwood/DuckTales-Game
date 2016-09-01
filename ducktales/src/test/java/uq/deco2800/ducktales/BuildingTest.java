@@ -20,6 +20,7 @@ import uq.deco2800.ducktales.entities.Entity;
 import uq.deco2800.ducktales.entities.worldentities.LongBox;
 import uq.deco2800.ducktales.entities.worldentities.Observatory;
 import uq.deco2800.ducktales.entities.worldentities.Sawmill;
+import uq.deco2800.ducktales.entities.worldentities.WorldEntity;
 
 public class BuildingTest {
 	
@@ -385,5 +386,17 @@ public class BuildingTest {
 		
 		assertTrue("Entity 1 incorrect!", entities.get(0).equals(background));
 		assertTrue("Entity 2 incorrect!", entities.get(1).equals(foreground));	
+	}
+	
+	@Test
+	public void worldEntityTest() {
+		WorldEntity entity1 = new Box(2, 3);
+		WorldEntity entity2 = new House(4, 5);
+		WorldEntity entity3 = new Observatory(1, 1);
+		
+		assertTrue("isPassable - box", false == (entity1.isPassable()));
+		assertTrue("isPassable - box", false == (entity2.isPassable()));
+		assertTrue("isPassable - box", false == (entity3.isPassable()));
+		
 	}
 }
