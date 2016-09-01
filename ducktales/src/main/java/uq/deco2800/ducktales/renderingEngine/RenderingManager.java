@@ -15,9 +15,13 @@ public class RenderingManager {
     private int worldTileHeight;
 
     /** Scaling factors */
+    // THIS IS THE MAIN SCALE FACTOR TO SCALE ALL IN-GAME SPRITES
     private double mainScaleFactor;
+    // just brainstorming. don't judge pls
     private double agentScale;
+    // another random scale... will delete if not necessary
     private double buildingScale;
+    // THE MAIN SCALE FOR UI ELEMENTS
     private double UIScale;
 
     /**

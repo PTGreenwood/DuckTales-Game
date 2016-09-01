@@ -6,6 +6,9 @@ import uq.deco2800.ducktales.GameManagerBeta;
 import uq.deco2800.ducktales.resources.ResourceRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.Events.TileEvents.TileClickedEvent;
+import uq.deco2800.ducktales.util.Events.UIEvents.BuildingMenuDeselectedEvent;
+import uq.deco2800.ducktales.util.Events.UIEvents.BuildingMenuSelectedEvent;
+import uq.deco2800.ducktales.util.Events.UIEvents.CursorMovedEvent;
 
 /**
  * This class represents a sprite of a building, to be rendered into the game
@@ -62,10 +65,18 @@ public class BuildingSprite extends ImageView {
      * Setup the mouse event handlers for this sprite
      */
     private void setupMouseEventHandler() {
-        this.setOnMouseClicked(event -> {
-            // TODO: LEARN THIS IMPLEMENTATION
-            fireEvent(new TileClickedEvent(0, 1));
+        this.setOnMousePressed(event -> {
+            fireEvent(new BuildingMenuSelectedEvent(this.buildingType));
         });
+        this.setOnMouseReleased(event -> {
+            System.err.println("Mouse released on building " + this.buildingType);
+            fireEvent(new BuildingMenuDeselectedEvent(this.buildingType));
+        });
+        this.setOnMouseDragged(event -> {
+            fireEvent(new CursorMovedEvent(event.getSceneX(), event.getSceneY()));
+        });
+
+
         this.setOnMouseEntered(event -> {
             System.err.println("mouse hovered on: " + event.getSource().toString());
             // stub event just to trigger parent event

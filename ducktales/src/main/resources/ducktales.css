@@ -59,9 +59,7 @@
 }
 .worldPane {
     -fx-background-color: #F0EDE4;
-    -fx-border-color: #574940;
-    -fx-border-insets: 0;
-    -fx-border-width: 2;
+
 }
 .buttonsMenu {
     -fx-background-color: #A7AA9F;

@@ -14,8 +14,8 @@ public class GameManagerBeta {
      * CONSTANTS
      */
     private final double DEFAULT_SCALE = 0.2;
-    private final int DEFAULT_WORLD_WIDTH = 20;
-    private final int DEFAULT_WORLD_HEIGHT = 20;
+    private final int DEFAULT_WORLD_WIDTH = 30;
+    private final int DEFAULT_WORLD_HEIGHT = 30;
 
     /** The game world */
     private WorldBeta world;
