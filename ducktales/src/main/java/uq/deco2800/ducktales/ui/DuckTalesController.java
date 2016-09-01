@@ -9,6 +9,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import javafx.scene.layout.*;
 import uq.deco2800.ducktales.*;
 import uq.deco2800.ducktales.achievements.Achievements;
+import uq.deco2800.ducktales.missions.Missions;
 import uq.deco2800.ducktales.resources.ResourceRegister;
 import uq.deco2800.ducktales.world.*;
 import uq.deco2800.ducktales.world.builder.WorldBuilderManager;
@@ -48,6 +49,7 @@ public class DuckTalesController implements Initializable {
 	private AtomicBoolean quit;
 
 	private Achievements achievementScore;
+	private Missions missions;
 
 	public Stage tutorialStage;
 	public Stage marketplaceStage;
@@ -57,7 +59,9 @@ public class DuckTalesController implements Initializable {
 		tileRegister = ResourceRegister.getInstance();
 		gameManager = GameManager.getInstance();
 		worldBuilderManager = WorldBuilderManager.getInstance();
+		
 		achievementScore = Achievements.getInstance();
+		missions = Missions.getInstance();
 		
 		// Set the handlers for the game panes
 		contentPane.setOnMousePressed(new MousePressedHandler());
@@ -74,7 +78,7 @@ public class DuckTalesController implements Initializable {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(location);
 		Parent root = loader.load(location.openStream());
-		Scene tutorialScene = new Scene(root, 400, 400);
+		Scene tutorialScene = new Scene(root, 800, 400);
 
 		
 		
@@ -92,7 +96,7 @@ public class DuckTalesController implements Initializable {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(location);
 		Parent root = loader.load(location.openStream());
-		Scene missionAndAchievementScene = new Scene(root, 600, 600);
+		Scene missionAndAchievementScene = new Scene(root, 800, 400);
 
 		Stage missionAndAchievementStage = new Stage();
 		missionAndAchievementStage.setTitle("Mission and Achievement");
