@@ -95,6 +95,14 @@ public class BuildingTest {
 		assertTrue("Wrong returned resources", entity1.resourcesReturnWood() == 5);
 		assertTrue("Wrong resources to build", entity3.resourcesBuildStone() == 4);
 		assertTrue("Wrong time", entity2.timeToBuild() == 9);
+		
+		// Check if nothing has changed after call tick()
+		entity1.tick();
+		entity2.tick();
+		entity3.tick();
+		assertTrue("Wrong returned resources", entity1.resourcesReturnWood() == 5);
+		assertTrue("Wrong resources to build", entity3.resourcesBuildStone() == 4);
+		assertTrue("Wrong time", entity2.timeToBuild() == 9);
 	}
 	
 	@Test
@@ -116,6 +124,14 @@ public class BuildingTest {
 		assertTrue("Entity 2 incorrect!", entities.get(2).equals(entity2));
 		
 		// Check correct resources and time
+		assertTrue("Wrong returned resources", entity1.resourcesReturnStone() == 2);
+		assertTrue("Wrong resources to build", entity3.resourcesBuildStone() == 4);
+		assertTrue("Wrong time", entity2.timeToBuild() == 3);
+		
+		// Check if nothing has changed after call tick()
+		entity1.tick();
+		entity2.tick();
+		entity3.tick();
 		assertTrue("Wrong returned resources", entity1.resourcesReturnStone() == 2);
 		assertTrue("Wrong resources to build", entity3.resourcesBuildStone() == 4);
 		assertTrue("Wrong time", entity2.timeToBuild() == 3);
@@ -143,6 +159,14 @@ public class BuildingTest {
 		assertTrue("Wrong returned resources", entity1.resourcesReturnWood() == 5);
 		assertTrue("Wrong resources to build", entity3.resourcesBuildWood() == 10);
 		assertTrue("Wrong time", entity2.timeToBuild() == 5);
+		
+		// Check if nothing has changed after call tick()
+		entity1.tick();
+		entity2.tick();
+		entity3.tick();
+		assertTrue("Wrong returned resources", entity1.resourcesReturnWood() == 5);
+		assertTrue("Wrong resources to build", entity3.resourcesBuildWood() == 10);
+		assertTrue("Wrong time", entity2.timeToBuild() == 5);
 	}
 	
 	@Test
@@ -164,6 +188,14 @@ public class BuildingTest {
 		assertTrue("Entity 2 incorrect!", entities.get(2).equals(entity2));
 		
 		// Check correct resources and time
+		assertTrue(String.valueOf(entity1.resourcesReturnStone()), entity1.resourcesReturnStone() == 2);
+		assertTrue("Wrong resources to build", entity3.resourcesBuildStone() == 4);
+		assertTrue("Wrong time", entity2.timeToBuild() == 4);
+		
+		// Check if nothing has changed after call tick()
+		entity1.tick();
+		entity2.tick();
+		entity3.tick();
 		assertTrue(String.valueOf(entity1.resourcesReturnStone()), entity1.resourcesReturnStone() == 2);
 		assertTrue("Wrong resources to build", entity3.resourcesBuildStone() == 4);
 		assertTrue("Wrong time", entity2.timeToBuild() == 4);
@@ -191,6 +223,14 @@ public class BuildingTest {
 		assertTrue("Wrong returned resources", entity1.resourcesReturnStone() == 1);
 		assertTrue("Wrong resources to build", entity3.resourcesBuildWood() == 4);
 		assertTrue("Wrong time", entity2.timeToBuild() == 2);
+		
+		// Check if nothing has changed after call tick()
+		entity1.tick();
+		entity2.tick();
+		entity3.tick();
+		assertTrue("Wrong returned resources", entity1.resourcesReturnStone() == 1);
+		assertTrue("Wrong resources to build", entity3.resourcesBuildWood() == 4);
+		assertTrue("Wrong time", entity2.timeToBuild() == 2);
 	}
 	
 	@Test
@@ -212,6 +252,14 @@ public class BuildingTest {
 		assertTrue("Entity 2 incorrect!", entities.get(2).equals(entity2));
 		
 		// Check correct resources and time
+		assertTrue("Wrong returned resources", entity1.resourcesReturnWood() == 5);
+		assertTrue("Wrong resources to build", entity3.resourcesBuildStone() == 8);
+		assertTrue("Wrong time", entity2.timeToBuild() == 9);
+		
+		// Check if nothing has changed after call tick()
+		entity1.tick();
+		entity2.tick();
+		entity3.tick();
 		assertTrue("Wrong returned resources", entity1.resourcesReturnWood() == 5);
 		assertTrue("Wrong resources to build", entity3.resourcesBuildStone() == 8);
 		assertTrue("Wrong time", entity2.timeToBuild() == 9);
@@ -239,6 +287,14 @@ public class BuildingTest {
 		assertTrue("Wrong returned resources", entity1.resourcesReturnStone() == 5);
 		assertTrue("Wrong resources to build", entity3.resourcesBuildStone() == 10);
 		assertTrue("Wrong time", entity2.timeToBuild() == 3);
+		
+		// Check if nothing has changed after call tick()
+		entity1.tick();
+		entity2.tick();
+		entity3.tick();
+		assertTrue("Wrong returned resources", entity1.resourcesReturnStone() == 5);
+		assertTrue("Wrong resources to build", entity3.resourcesBuildStone() == 10);
+		assertTrue("Wrong time", entity2.timeToBuild() == 3);
 	}
 	
 	@Test
@@ -260,6 +316,14 @@ public class BuildingTest {
 		assertTrue("Entity 2 incorrect!", entities.get(2).equals(entity2));
 		
 		// Check correct resources and time
+		assertTrue("Wrong returned resources", entity1.resourcesReturnWood() == 4);
+		assertTrue("Wrong resources to build", entity3.resourcesBuildWood() == 8);
+		assertTrue("Wrong time", entity2.timeToBuild() == 5);
+		
+		// Check if nothing has changed after call tick()
+		entity1.tick();
+		entity2.tick();
+		entity3.tick();
 		assertTrue("Wrong returned resources", entity1.resourcesReturnWood() == 4);
 		assertTrue("Wrong resources to build", entity3.resourcesBuildWood() == 8);
 		assertTrue("Wrong time", entity2.timeToBuild() == 5);
