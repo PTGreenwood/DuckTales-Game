@@ -11,6 +11,9 @@ import uq.deco2800.ducktales.util.Point;
 
 /**
  * Class representing the worker.
+ * Peon will have 1000 health, 100 hunger and thirst
+ * hunger and thirst will decrease (be more hungry/thirsty) over time
+ * lower hunger/thirst will affect its strength
  * 
  * @author Leggy
  *
@@ -23,9 +26,11 @@ public class Peon extends AgentEntity {
 
 	private List<Point> goalPoints;
 
+	//Peon Stats
 	private double speed;
-
 	private int health = 1000;
+	private int hunger = 100;
+	private int thirst = 100;
 	
 	private int resource= 0;
 
@@ -54,11 +59,24 @@ public class Peon extends AgentEntity {
 			this.health = newValue;
 		}
 	}
+	
 	public void setResources(int sourceValue){
 		if (sourceValue > 0){
 			this.resource= sourceValue;
 			
+		}
 	}
+	
+	public void setHunger(int newValue) {
+		if (newValue > 0) {
+			this.hunger = newValue;
+		}
+	}
+	
+	public void setThirst(int newValue) {
+		if (newValue > 0) {
+			this.thirst = newValue;
+		}
 	}
 
 	public int getHealth() {
@@ -73,6 +91,14 @@ public class Peon extends AgentEntity {
 		return intelligence;
 	}
 
+	public int getHunger() {
+		return hunger;
+	}
+	
+	public int getThirst() {
+		return thirst;
+	}
+	
 	@Override
 	public void tick() {
 		if (goalPoints.isEmpty()) {
