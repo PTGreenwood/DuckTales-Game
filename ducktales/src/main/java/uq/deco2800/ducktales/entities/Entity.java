@@ -87,6 +87,7 @@ public abstract class Entity implements Comparable<Entity>, Tickable{
 		}
 	}
 
+	@Override
 	public boolean equals(Object object) {
 		if (!(object instanceof Entity)) {
 			return false;
@@ -98,11 +99,13 @@ public abstract class Entity implements Comparable<Entity>, Tickable{
 				&& this.lengthY == entity.lengthY;
 	}
 
+	@Override
 	public int hashCode() {
 		//TODO: fix this
 		return 4;
 	}
 
+	@Override
 	public String toString() {
 		return String.format("[%f %f %f %f    %f]", point.getX(), point.getY(), lengthX, lengthY,
 				distanceInside);

@@ -27,8 +27,8 @@ public class Threat {
 		} else {
 			this.name = name;
 		}
-
-		if (!(type.equals("Enemy") || type.equals("Effect"))) {
+		
+		if (!("Enemy".equals(type) || "Effect".equals(type))) {
 			// Throw exception
 		} else {
 
@@ -128,6 +128,7 @@ public class Threat {
 		}
 	}
 	
+	@Override
 	public String toString(){
 		return this.name;
 		

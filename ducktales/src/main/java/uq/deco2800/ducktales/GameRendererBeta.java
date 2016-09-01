@@ -5,8 +5,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.*;
-import uq.deco2800.ducktales.HUD.BuildingSprite;
 import uq.deco2800.ducktales.renderingEngine.WorldEntityRenderingInfo;
+import uq.deco2800.ducktales.hud.BuildingSprite;
 import uq.deco2800.ducktales.renderingEngine.RenderingManager;
 import uq.deco2800.ducktales.resources.ResourceRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
@@ -30,7 +30,7 @@ public class GameRendererBeta extends AnimationTimer {
     /**
      * CONSTANTS
      */
-    private final ResourceType[] BUILDINGS = {
+    private static final ResourceType[] BUILDINGS = {
         HOSPITAL, BAKERY, BARN
     };
 

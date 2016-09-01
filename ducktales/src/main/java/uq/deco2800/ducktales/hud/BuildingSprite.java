@@ -1,4 +1,4 @@
-package uq.deco2800.ducktales.HUD;
+package uq.deco2800.ducktales.hud;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -21,7 +21,7 @@ public class BuildingSprite extends ImageView {
 
     /** Variables holding the information about this sprite */
     private ResourceType buildingType;
-    private Image buildingSprite; // The sprite of the building
+    private Image buildingSprites; // The sprite of the building
 
     /** The manager of the game */
     private GameManagerBeta manager;
@@ -34,12 +34,12 @@ public class BuildingSprite extends ImageView {
      */
     public BuildingSprite(ResourceType buildingType, GameManagerBeta manager) {
         this.manager = manager;
-        this.buildingSprite =
+        this.buildingSprites =
                 ResourceRegister.getInstance().getResourceImage(buildingType);
         this.buildingType = buildingType;
 
         // Load the sprite into the image view
-        this.setImage(buildingSprite);
+        this.setImage(buildingSprites);
 
         setupMouseEventHandler();
     }
@@ -54,11 +54,11 @@ public class BuildingSprite extends ImageView {
     }
 
     public double getSpriteHeight() {
-        return this.buildingSprite.getHeight();
+        return this.buildingSprites.getHeight();
     }
 
     public double getSpriteWidth() {
-        return this.buildingSprite.getWidth();
+        return this.buildingSprites.getWidth();
     }
 
     /**
