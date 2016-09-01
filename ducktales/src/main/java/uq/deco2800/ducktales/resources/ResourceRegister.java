@@ -104,6 +104,8 @@ public class ResourceRegister {
 		// note from creator of ResourceType: please remember to use the enums from
 		// ResourceType enum class instead of the previous String implementation
 		addResource(BAKERY, "/bakery.png");
+		addResource(PASTURE, "/buildings/pasture.png");
+		addResource(CLINIC, "/buildings/clinic.png");
 		//addResource(CEMETERY, "/cemetery.png");
 		addResource(FARMHOUSE, "/farm+barn.png");
 		addResource(BARN, "/barn.png");

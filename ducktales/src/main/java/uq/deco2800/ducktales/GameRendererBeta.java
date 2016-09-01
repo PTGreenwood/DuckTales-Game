@@ -32,7 +32,7 @@ public class GameRendererBeta extends AnimationTimer {
      * CONSTANTS
      */
     private static final ResourceType[] BUILDINGS = {
-        HOSPITAL, BAKERY, BARN
+        HOSPITAL, BAKERY, BARN, CLINIC, PASTURE
     };
 
     /** The Root pane where all HUD elements, and world pane will be added to*/
@@ -112,7 +112,7 @@ public class GameRendererBeta extends AnimationTimer {
         // Initialize the building sprites for buildings menu
         buildingSprites = new ArrayList<>();
         for (int i = 0; i < BUILDINGS.length; i++) {
-            BuildingSprite sprite = new BuildingSprite(BUILDINGS[i], this.manager);
+            BuildingSprite sprite = new BuildingSprite(BUILDINGS[i]);
 
             buildingSprites.add(sprite);
         }
@@ -280,6 +280,7 @@ public class GameRendererBeta extends AnimationTimer {
             this.cursorImage.setImage(sprite);
 
             // notify the manager
+            System.err.println("building clicked: " + event.getType());
             manager.setCurrentResourceManaging(event.getType());
 
         });
