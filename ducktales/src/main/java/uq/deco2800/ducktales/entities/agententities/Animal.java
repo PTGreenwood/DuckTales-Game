@@ -50,7 +50,6 @@ public class Animal extends AgentEntity {
         this.goalPoints = new ArrayList<Point>();
     }
 
-
     /**
      * Original tick
      */
@@ -76,7 +75,7 @@ public class Animal extends AgentEntity {
                 newDir += "Left";
             }
             direction = newDir;
-            this.setType(ResourceType.valueOf(this.getSprite()));
+            this.updateType(ResourceType.valueOf(this.getSprite()));
             point.moveToward(goalPoints.get(0), speed);
         }
         calculateRenderingOrderValues();
@@ -96,15 +95,6 @@ public class Animal extends AgentEntity {
             goalPoints.add(new Point(tuple.getX(), tuple.getY()));
         }
         return goalPoints;
-    }
-
-    /**
-     * Sets the direction of the animal to the new animal.
-     *
-     * @param newDirection The string new direction of the animal's movement.
-     */
-    public void setDirection(String newDirection) {
-        this.direction = newDirection;
     }
 
     /**
@@ -245,9 +235,6 @@ public class Animal extends AgentEntity {
         }
     }
 
-    // Getter Methods Below
-
-
     /**
      * Returns the animal's current state of hunger.
      *
@@ -256,6 +243,8 @@ public class Animal extends AgentEntity {
     public int getHunger() {
         return hunger;
     }
+
+    // Getter Methods Below
 
     /**
      * Changes the animal's hunger level to the provided value.
@@ -330,9 +319,22 @@ public class Animal extends AgentEntity {
      */
     public String getSprite() {
         String spriteName;
-        spriteName = ResourceType.DUCK.toString();
-        spriteName += this.getDirection();
-        return spriteName;
+        if (this.getType().toString().contains("DUCK")) {
+            spriteName = ResourceType.DUCK.toString();
+            spriteName += this.getDirection();
+        } else {
+            spriteName = ResourceType.COW.toString();
+            spriteName += this.getDirection();
+        }
+        return spriteName; // Add more conditions when other animals are started on
+//        } else if (this.getType().toString().contains("SHEEP")) {
+//            spriteName = ResourceType.SHEEP.toString();
+//            spriteName += this.getDirection();
+//        } else(this.getType().toString().contains("TURTLE")) {
+//            spriteName = ResourceType.TURTLE.toString();
+//            spriteName += this.getDirection();
+//        }
+//        return spriteName;
     }
 
     /**
@@ -360,5 +362,14 @@ public class Animal extends AgentEntity {
      */
     public String getDirection() {
         return this.direction;
+    }
+
+    /**
+     * Sets the direction of the animal to the new animal.
+     *
+     * @param newDirection The string new direction of the animal's movement.
+     */
+    public void setDirection(String newDirection) {
+        this.direction = newDirection;
     }
 }

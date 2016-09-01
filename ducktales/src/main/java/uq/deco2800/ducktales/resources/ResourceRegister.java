@@ -84,7 +84,8 @@ public class ResourceRegister {
 		addResource(DUCKDownRight, "/DUCKDownRight.png");
 		addResource(DUCKDownLeft, "/DUCKDownLeft.png");
 		addResource(COW, "/cow.png");
-//		addResource(SHEEP, "/sheep.png");
+//        addResource(SHEEP, "/sheep.png");
+//        addResource(TURTLE, "/sheep.png");
 
 		
 		addResource(SAWMILL, "/sawmill.png");

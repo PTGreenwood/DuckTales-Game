@@ -18,7 +18,7 @@ public class Duck extends Animal {
     private EntityManager opponentList; // List of possible opponents.
 
     public Duck(int x, int y) {
-        super(x, y, DUCK, 1, 1, 1, 1, 0.01);
+        super(x, y, DUCK, 1, 1, 1, 1, 0.05);
         int var = (int) (Math.random() * 100);
         int var2 = (int) (Math.random() * 20);
         setStartingHealth(var);
@@ -27,15 +27,7 @@ public class Duck extends Animal {
         setStartingStrength(var2);
     }
 
-//    @Override
-//    public void tick() {
-//        if (currentLocation.equals(nextLocation)) {
-//            newNextLocation();
-//        } else {
-//            // maybe make it stand still for a sec
-//            moveTo(nextLocation);
-//        }
-//    }
+
 
     /**
      * Checks whether the duck can lay eggs. Ducks can only lay eggs if their health, hunger, and thirst meet satisfy
