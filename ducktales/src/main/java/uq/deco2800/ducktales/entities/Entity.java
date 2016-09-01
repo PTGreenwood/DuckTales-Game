@@ -67,15 +67,12 @@ public abstract class Entity implements Comparable<Entity>, Tickable{
 
 	@Override
 	public int compareTo(Entity entity) {
-		// Change floats to double just for equality test
-		// fix bug of using floats
-		if (((double) this.distanceTop) == ((double) entity.distanceTop)) {
-			// Change floats to double just for equality test
-			// fix bug of using floats
-			if (((double) this.distanceBottom) == ((double) entity.distanceBottom)) {
-				// Change floats to double just for equality test
-				// fix bug of using floats
-				if (((double) this.distanceInside) == ((double) entity.distanceInside)) {
+		// Converting to double didn't fix
+		if (this.distanceTop == entity.distanceTop) {
+			// Converting to double didn't fix
+			if (this.distanceBottom == entity.distanceBottom) {
+				// Converting to double didn't fix
+				if (this.distanceInside == entity.distanceInside) {
 					return 0;
 				} else if (this.distanceInside < entity.distanceInside) {
 					return -1;
