@@ -44,7 +44,8 @@ public class DuckTalesController implements Initializable {
 	private WorldBuilderManager worldBuilderManager;
 
 	// UI for World Builder
-	private BorderPane worldBuilderPane, gamePane;
+	private BorderPane worldBuilderPane;
+	private AnchorPane gamePane;
 
 	private AtomicBoolean quit;
 

@@ -35,7 +35,7 @@ public class GameRendererBeta extends AnimationTimer {
     };
 
     /** The Root pane where all HUD elements, and world pane will be added to*/
-    private BorderPane root;
+    private AnchorPane root;
 
     /** HUD variables */
     private Pane worldPane; // The main area where game graphics will be rendered onto
@@ -79,7 +79,7 @@ public class GameRendererBeta extends AnimationTimer {
      * @param buttonsMenu
      * @param buildingsMenu
      */
-    public GameRendererBeta(BorderPane root, Pane worldPane,
+    public GameRendererBeta(AnchorPane root, Pane worldPane,
                             AnchorPane buttonsMenu, HBox buildingsMenu) {
         // Setup UI elements
         this.root = root;

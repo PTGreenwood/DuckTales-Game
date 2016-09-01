@@ -2,9 +2,12 @@ package uq.deco2800.ducktales.ui;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import uq.deco2800.ducktales.GameManagerBeta;
 import uq.deco2800.ducktales.GameRendererBeta;
+import uq.deco2800.ducktales.resources.InventoryManager;
 
 /**
  * This is the master controller for the actual game play, while
@@ -22,20 +25,29 @@ public class GameController{
     /**
      * UI Elements loaded from FXML
      */
+    // the mane panes
     @FXML
-    private BorderPane rootPane;
+    private AnchorPane rootPane;
     @FXML
     private Pane worldPane;
     @FXML
     private AnchorPane buttonsMenu;
     @FXML
     private HBox buildingsMenu;
+    // The Inventory menu
+    @FXML
+    private ImageView woodSprite, foodSprite, oresSprite;
+    @FXML
+    private Label woodLabel, foodLabel, oresLabel;
 
     /** The rendering engine of the game */
     private GameRendererBeta renderer;
 
     /** The manager of the game */
     private GameManagerBeta manager;
+
+    /** The Inventory manager */
+    private InventoryManager inventoryManager;
 
     /**
      * This method sets up the GameManager, GameRenderer and other
@@ -50,6 +62,14 @@ public class GameController{
         // Let manager and renderer know about each other and the world
         manager.setRenderer(renderer);
         renderer.setManager(manager);
+
+        // Setup the inventory display
+        inventoryManager = new InventoryManager(
+                woodSprite, foodSprite, oresSprite,
+                woodLabel, foodLabel, oresLabel
+        );
+        manager.setInventoryManager(inventoryManager);
+
 
         // Officially start the game engine
         try {
