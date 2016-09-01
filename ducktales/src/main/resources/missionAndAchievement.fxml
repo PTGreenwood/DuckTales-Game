@@ -4,7 +4,7 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uq.deco2800.ducktales.missions.MissionController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uq.deco2800.ducktales.missions.MissionController">
    <children>
       <SplitPane dividerPositions="0.29797979797979796" layoutX="67.0" layoutY="110.0" prefHeight="400.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
@@ -13,6 +13,7 @@
                   <Button layoutX="5.0" layoutY="61.0" mnemonicParsing="false" onAction="#startmission1" text="LaunchGame Missions" />
                   <Button layoutX="5.0" layoutY="115.0" mnemonicParsing="false" onAction="#startmission2" text="WorldBuilder Missions" />
                   <Button layoutX="14.0" layoutY="166.0" mnemonicParsing="false" onAction="#startachievement" text="Achievement" />
+                  <Button layoutX="14.0" layoutY="219.0" mnemonicParsing="false" onAction="#startlevel" text="Leveling System" />
                </children>
             </AnchorPane>
           <AnchorPane fx:id="rightPane" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />

@@ -94,8 +94,8 @@ public class World implements Tickable {
 
 		Random random = new Random();
 
-		for (int y = 0; y < width; y++) {
-			for (int x = 0; x < height; x++) {
+		for (int x = 0; x < width; x++) {
+			for (int y = 0; y < height; y++) {
 				tiles.set(x, y, new Tile(baseTileType));
 			}
 		}
