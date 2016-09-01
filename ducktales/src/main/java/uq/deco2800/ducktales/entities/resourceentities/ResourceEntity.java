@@ -1,6 +1,7 @@
 package uq.deco2800.ducktales.entities.resourceentities;
 
 import uq.deco2800.ducktales.entities.Entity;
+import uq.deco2800.ducktales.entities.worldentities.WorldEntity;
 import uq.deco2800.ducktales.resources.ResourceType;
 
 /**
@@ -9,14 +10,18 @@ import uq.deco2800.ducktales.resources.ResourceType;
  * @author Andrew 22/08/16
  *
  */
-public abstract class ResourceEntity extends Entity {
+public abstract class ResourceEntity extends WorldEntity {
 
-	protected ResourceEntity(double x, double y, int lengthX, int lengthY, ResourceType type) {
+	public static int value;
+
+
+	protected ResourceEntity(double x, double y, int lengthX, int lengthY, ResourceType type, int value) {
 		super(x, y, lengthX, lengthY, type);
+		this.value = value;
 	}
 
 	/**
-	 * Returns true if this {@link WorldEntity} is passable.
+	 * Returns true if this {@link Building} is passable.
 	 * 
 	 * @return Returns true if this WorldEntity is passable.
 	 */
@@ -24,7 +29,14 @@ public abstract class ResourceEntity extends Entity {
 	
 	
 	public int getValue(){
-		return 0;
+		return value;
+	}
+	
+	public void increaseValue(int x){
+		value += x;
 	}
 
+	public void decreaseValue(int x){
+		value -= x;
+	}
 }

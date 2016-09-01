@@ -53,14 +53,14 @@ public abstract class Entity implements Comparable<Entity>, Tickable{
 	
 	protected void calculateRenderingOrderValues(){
 		if (point.getX() > point.getY()) {
-			distanceInside = (point.getX() - point.getY() - lengthX);
+			distanceInside = point.getX() - point.getY() - lengthX;
 		} else if (point.getY() > point.getX()) {
-			distanceInside = (point.getY() - point.getX() - lengthY);
+			distanceInside = point.getY() - point.getX() - lengthY;
 		} else {
 			distanceInside = -Math.max(lengthY, lengthX);
 		}
 
-		this.distanceBottom = (point.getY() + point.getX());
+		this.distanceBottom = point.getY() + point.getX();
 		this.distanceTop = distanceBottom - (lengthX + lengthY);
 	}
 

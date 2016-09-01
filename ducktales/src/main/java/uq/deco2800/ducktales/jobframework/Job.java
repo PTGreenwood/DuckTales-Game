@@ -27,6 +27,14 @@ public abstract class Job {
      */
     public Job(int requiredStrength, int requiredIntelligence, 
             int mentorStrength, int mentorIntelligence, String jobName) {
+        if (requiredStrength <= 0)
+            this.requiredStrength = 1;
+        if (requiredIntelligence <=0)
+            this.requiredIntelligence =1;
+        if (mentorStrength <= requiredStrength)
+            this.mentorStrength = requiredStrength+1;
+        if (mentorIntelligence <= requiredIntelligence)
+            this.mentorIntelligence = requiredIntelligence+1;
         this.requiredStrength = requiredStrength;
         this.requiredIntelligence = requiredIntelligence;
         this.mentorStrength = mentorStrength;
@@ -69,7 +77,7 @@ public abstract class Job {
      */
     public int [] getMentorRequirements(){
         int [] reqs = {this.getMentorStrength(), this.getMentorIntelligence()};
-        return reqs;        
+        return reqs;      
     }
     /**
      * Returns the required strength to become
@@ -86,6 +94,23 @@ public abstract class Job {
      */
     public int getMentorIntelligence(){
         return mentorIntelligence;
+    }
+    /** 
+     * GOING TO NEED TO REVISE THIS PART
+     * to determine picking which peons to assign to the task
+     * 
+     * Determines overall how qualified a peon is for the job
+     * @param peon
+     * @return a double determining how qualified a peon is
+     *          for this job. 
+     */
+    public double qualifiedPercent(Peon peon){
+        if(!isQualified(peon))
+            return -1;
+        double str = peon.getStrength()/this.getRequiredStrength();
+        double intel = peon.getIntelligence()/this.getRequiredIntelligence();
+        double total = (str+intel)/2;
+        return total;
     }
     /**
      * Defines whether or not the given peon is 

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <Label text="Weather/ Season" BorderPane.alignment="CENTER">
+         <font>
+            <Font name="Pixel Arial 11" size="36.0" />
+         </font>
+      </Label>
+   </top>
+   <center>
+      <Label text="Ducktales follows the conventional seasons&#10;however,&#10;the weather can get extreme on both ends of the thermometer.&#10;This tutorial will teach you how to handle the heat (or cold). 8)" textAlignment="CENTER" BorderPane.alignment="CENTER">
+         <font>
+            <Font name="Pixel Arial 11" size="11.0" />
+         </font></Label>
+   </center>
+</BorderPane>

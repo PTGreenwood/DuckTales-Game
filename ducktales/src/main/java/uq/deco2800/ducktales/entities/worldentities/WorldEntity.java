@@ -10,25 +10,36 @@ import uq.deco2800.ducktales.resources.ResourceType;
  *
  */
 public abstract class WorldEntity extends Entity {
+	
+	protected static int TIME;
+	
+	protected static int WOODRESOURCES;
+
+	protected static int STONERESOURCES;
 
 	protected WorldEntity(double x, double y, int lengthX, int lengthY, 
-			ResourceType type, int time, int wood, int stone) {
+			ResourceType type) {
 		super(x, y, lengthX, lengthY, type);
+		specifications();
 	}
-
+	
 	/**
-	 * Returns true if this {@link WorldEntity} is passable.
+	 * Returns true if this {@link Building} is passable.
 	 * 
 	 * @return Returns true if this WorldEntity is passable.
 	 */
-	public abstract boolean isPassable();
+	public boolean isPassable() {
+		return false;
+	}
 	
 	/**
 	 * Returns the time to construct the building
 	 * 
 	 * @return int representing time to construct
 	 */
-	public abstract int timeToBuild();
+	public int timeToBuild() {
+		return TIME;
+	}
 	
 	/**
 	 * Returns the wood resources required to construct the 
@@ -36,7 +47,9 @@ public abstract class WorldEntity extends Entity {
 	 * 
 	 * @return the int of wood required
 	 */
-	public abstract int resourcesBuildWood();
+	public int resourcesBuildWood() {
+		return WOODRESOURCES;
+	}
 	
 	/**
 	 * Returns the stone resources required to construct the 
@@ -44,7 +57,9 @@ public abstract class WorldEntity extends Entity {
 	 * 
 	 * @return the int of stone required
 	 */
-	public abstract int resourcesBuildStone();
+	public int resourcesBuildStone() {
+		return STONERESOURCES;
+	}
 	
 	/**
 	 * Returns the wood resources returned when the 
@@ -52,7 +67,9 @@ public abstract class WorldEntity extends Entity {
 	 * 
 	 * @return the int of wood returned
 	 */
-	public abstract int resourcesReturnWood();
+	public int resourcesReturnWood() {
+		return (int) (0.5*WOODRESOURCES);
+	}
 	
 	/**
 	 * Returns the stone resources returned when the 
@@ -60,6 +77,13 @@ public abstract class WorldEntity extends Entity {
 	 * 
 	 * @return the int of stone returned
 	 */
-	public abstract int resourcesReturnStone();
+	public int resourcesReturnStone() {
+		return (int) (0.5*STONERESOURCES);
+	}
 	
+	/**
+	 * Update the variables with the building specifications, when the 
+	 * building is called.
+	 */
+	protected abstract void specifications();
 }
