@@ -13,9 +13,9 @@ public class GameManagerBeta {
     /**
      * CONSTANTS
      */
-    private final double DEFAULT_SCALE = 0.2;
-    private final int DEFAULT_WORLD_WIDTH = 30;
-    private final int DEFAULT_WORLD_HEIGHT = 30;
+    private static final double defaultScale = 0.2;
+    private static final int defaultWorldwidth = 30;
+    private static final int defaultWorldheight = 30;
 
     /** The game world */
     private WorldBeta world;
@@ -59,7 +59,7 @@ public class GameManagerBeta {
         if (renderingManager == null) {
             // No rendering info is loaded. start a default renderingManager
             renderingManager = new RenderingManager(
-                    DEFAULT_SCALE, DEFAULT_WORLD_WIDTH, DEFAULT_WORLD_HEIGHT);
+                    defaultScale, defaultWorldwidth, defaultWorldheight);
         }
         if (world == null) {
             // No world has been pre-loaded. Start a default world
