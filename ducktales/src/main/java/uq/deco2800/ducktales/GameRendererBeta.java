@@ -3,6 +3,7 @@ package uq.deco2800.ducktales;
 import javafx.animation.AnimationTimer;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.*;
 import uq.deco2800.ducktales.HUD.BuildingSprite;
 import uq.deco2800.ducktales.renderingEngine.WorldEntityRenderingInfo;
@@ -291,6 +292,21 @@ public class GameRendererBeta extends AnimationTimer {
 
             // Make the cursor image stop receiving mouse events
             cursorImage.setMouseTransparent(true);
+        });
+
+        root.setOnMouseMoved(event -> {
+            if (cursorImage != null) {
+                this.cursorImage.setLayoutX(event.getX());
+                this.cursorImage.setLayoutY(event.getY());
+            }
+        });
+
+        root.setOnMouseClicked(event -> {
+            if (event.getButton() == MouseButton.SECONDARY) {
+                // right mouse is clicked - deselect the building
+                cursorImage.setImage(null);
+                manager.setCurrentResourceManaging(ResourceType.NONE);
+            }
         });
     }
 

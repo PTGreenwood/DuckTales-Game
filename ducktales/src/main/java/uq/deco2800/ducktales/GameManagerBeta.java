@@ -99,6 +99,15 @@ public class GameManagerBeta {
     }
 
     /**
+     * Set the current resource being managed
+     *
+     * @param currentResourceManaging
+     */
+    public void setCurrentResourceManaging(ResourceType currentResourceManaging) {
+        this.currentResourceManaging = currentResourceManaging;
+    }
+
+    /**
      * Return the current game world, which contains all the information about
      * the current game being played
      *
