@@ -84,9 +84,20 @@ public class ResourceRegister {
 		addResource(DUCKDownRight, "/DUCKDownRight.png");
 		addResource(DUCKDownLeft, "/DUCKDownLeft.png");
 		addResource(COW, "/cow.png");
-//        addResource(SHEEP, "/sheep.png");
-//        addResource(TURTLE, "/sheep.png");
-
+		
+		// the following will be uncommented once the relevant resources
+		// are created and added to the game, @team pokeducks
+		
+		// addResource(COWUpRight, "/COWUpRight.png");
+		// addResource(COWUpLeft, "/COWUpLeft.png");
+		// addResource(COWDownRight, "/COWDownRight.png");
+		// addResource(COWDownLeft, "/COWDownLeft.png");
+		
+        // addResource(SHEEP, "/sheep.png");
+		// addResource(SHEEPUpRight, "/SHEEPUpRight.png");
+		// addResource(SHEEPUpLeft, "/SHEEPUpLeft.png");
+		// addResource(SHEEPDownRight, "/SHEEPDownRight.png");
+		// addResource(SHEEPDownLeft, "/SHEEPDownLeft.png");
 		
 		addResource(SAWMILL, "/sawmill.png");
 		//To be uncommented as the relevant graphics are created
