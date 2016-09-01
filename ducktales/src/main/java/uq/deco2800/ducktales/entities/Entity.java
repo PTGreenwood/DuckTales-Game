@@ -28,8 +28,9 @@ public abstract class Entity implements Comparable<Entity>, Tickable{
 
 	/**
 	 * The distance from the closest point of the entity to the line where y=x.
+	 * Changed to private to fix code smell.
 	 */
-	public double distanceInside;
+	private double distanceInside;
 
 	/**
 	 * The distance from the top most point of the entity to the point (0, 0).
@@ -66,9 +67,15 @@ public abstract class Entity implements Comparable<Entity>, Tickable{
 
 	@Override
 	public int compareTo(Entity entity) {
-		if (this.distanceTop == entity.distanceTop) {
-			if (this.distanceBottom == entity.distanceBottom) {
-				if (this.distanceInside == entity.distanceInside) {
+		// Change floats to double just for equality test
+		// fix bug of using floats
+		if (((double) this.distanceTop) == ((double) entity.distanceTop)) {
+			// Change floats to double just for equality test
+			// fix bug of using floats
+			if (((double) this.distanceBottom) == ((double) entity.distanceBottom)) {
+				// Change floats to double just for equality test
+				// fix bug of using floats
+				if (((double) this.distanceInside) == ((double) entity.distanceInside)) {
 					return 0;
 				} else if (this.distanceInside < entity.distanceInside) {
 					return -1;
@@ -133,6 +140,19 @@ public abstract class Entity implements Comparable<Entity>, Tickable{
 	
 	protected void updateType(ResourceType newType){
 		this.type = newType;
+	}
+	
+	/**
+	 * Return the double value of distanceInside.
+	 * 
+	 * To fix code smell of having distanceInside being public. Changed to 
+	 * private, and created get method to access. Checked that this does not break 
+	 * anything.
+	 * 
+	 * @return the private distanceInside variable
+	 */
+	public double getDistanceInside() {
+		return distanceInside;
 	}
 
 }
