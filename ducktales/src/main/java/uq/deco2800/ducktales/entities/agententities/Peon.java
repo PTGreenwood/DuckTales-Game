@@ -28,6 +28,8 @@ public class Peon extends AgentEntity {
 	private int health = 1000;
 	
 	private int resource= 0;
+	
+	private String jobStatus = "Jobless";
 
 	// affinity
 	private int strength;
