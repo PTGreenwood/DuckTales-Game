@@ -38,7 +38,7 @@ public class AnimalTest {
         assertNotNull("Strength cannot be null.", duck.getStrength());
 
         // Test whether Cow class methods return expected values
-//        assertTrue("Speed is incorrect.", duck.getSpeed() == 0.01);
+        // assertTrue("Speed is incorrect.", duck.getSpeed() == 0.01);
         assertTrue("type is incorrect.", duck.getType() == ResourceType.DUCK);
         assertTrue("Duck cannot be killed on creation.", duck.canBeKilled() == false);
         assertTrue("Duck cannot lay eggs on creation.", duck.canLayEggs() == false);
@@ -143,5 +143,4 @@ public class AnimalTest {
         cow.setIsDead();
         assertTrue("Cow must be dead when its health is 0;", cow.isDead() == true);
     }
-
 }

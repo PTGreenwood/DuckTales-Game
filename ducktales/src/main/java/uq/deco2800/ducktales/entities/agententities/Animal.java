@@ -81,16 +81,17 @@ public class Animal extends AgentEntity {
         calculateRenderingOrderValues();
     }
 
+    /**
+     * Method which updates the goalpoints which dictate an entities movement
+     */
     private List<Point> newGoalPoints() {
         Random random = new Random();
         Point goalPoint = null;
         while (goalPoint == null || !GameManager.getInstance().getWorld().getTile(goalPoint).isPassable()) {
             goalPoint = new Point(random.nextDouble() * 20, random.nextDouble() * 20);
         }
-
         List<AStar.Tuple> path = AStar.aStar(point, goalPoint, GameManager.getInstance().getWorld());
         List<Point> goalPoints = new ArrayList<Point>();
-
         for (AStar.Tuple tuple : path) {
             goalPoints.add(new Point(tuple.getX(), tuple.getY()));
         }
