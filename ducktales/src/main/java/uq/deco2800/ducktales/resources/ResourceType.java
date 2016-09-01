@@ -25,8 +25,8 @@ public enum ResourceType {
         // Entities
         PEON,
         DUCK, DUCKUpRight, DUCKUpLeft, DUCKDownRight, DUCKDownLeft,
-        COW,
-        SHEEP,
+        COW, COWUpRight, COWUpLeft, COWDownRight, COWDownLeft,
+        SHEEP, SHEEPUpRight, SHEEPUpLeft, SHEEPDownRight, SHEEPDownLeft,
 
         // Buildings
         HOUSE, SAWMILL, BAKERY, CEMETERY, BARN, FORGE, HOSPITAL, OBSERVATORY, FARMHOUSE,
