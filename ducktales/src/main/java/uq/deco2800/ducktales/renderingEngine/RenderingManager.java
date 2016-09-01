@@ -19,7 +19,9 @@ public class RenderingManager {
     private double mainScaleFactor;
     // just brainstorming. don't judge pls
     private double agentScale;
-    // another random scale... will delete if not necessary
+    // the scale of the buildings to be displayed in-game. technically
+    // should be the same as mainScaleFactor, but this can be fixed later
+    // when the building designers have time to fix the pixel ratio
     private double buildingScale;
     // THE MAIN SCALE FOR UI ELEMENTS
     private double UIScale;
@@ -41,7 +43,8 @@ public class RenderingManager {
         this.mainScaleFactor = scaleFactor;
 
         // TODO ADJUST THESE SCALE FACTORS AS DEEM FIT
-        this.UIScale = 0.3;
+        this.UIScale = 1;
+        this.buildingScale = 1.1;
     }
 
     /*----------

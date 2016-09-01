@@ -250,12 +250,15 @@ public class DuckTalesController implements Initializable {
 	}
 
 	/**
-	 * Show the given pane in the rightPane.
+	 * Show the given pane in the contentPane.
 	 * 
 	 * @param pane
 	 *            The pane to be shown in the right pane
 	 */
 	private void showPane(Pane pane) {
+		if (mainMenuPane.isVisible()) {
+			toggleMenuPane();
+		}
 		contentPane.getChildren().removeAll(gameCanvas, worldBuilderPane, gamePane);
 		contentPane.getChildren().add(pane);
 	}
@@ -271,7 +274,6 @@ public class DuckTalesController implements Initializable {
 	}
 
 	public void toggleMenuPane() {
-		System.out.println(mainMenuPane.isVisible());
 		if (mainMenuPane.isVisible()) {
 			contentPane.setVisible(true);
 			mainMenuPane.setVisible(false);
