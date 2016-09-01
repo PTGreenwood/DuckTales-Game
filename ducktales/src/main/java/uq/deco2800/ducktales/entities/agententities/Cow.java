@@ -17,7 +17,7 @@ public class Cow extends Animal {
 
     // Cow attributes will be set in the AnimalManagerClass
     public Cow(int x, int y) {
-        super(x, y, 1, 1, ResourceType.COW, 1, 1, 1, 1, 0.05);
+        super(x, y, ResourceType.COW, 1, 1, 1, 1, 0.05);
         int var = (int) (Math.random() * 100);
         setStartingHealth(var);
         setStartingHunger(var);

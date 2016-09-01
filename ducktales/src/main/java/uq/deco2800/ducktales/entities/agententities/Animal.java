@@ -1,8 +1,12 @@
 package uq.deco2800.ducktales.entities.agententities;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
+import uq.deco2800.ducktales.GameManager;
 import uq.deco2800.ducktales.resources.ResourceType;
+import uq.deco2800.ducktales.util.AStar;
 import uq.deco2800.ducktales.util.Point;
 
 /**
@@ -17,8 +21,6 @@ public class Animal extends AgentEntity {
     private final static int minStartThirst = 20;
     private final static int minStartStrength = 5;
 
-    protected Point currentLocation; // The animal's current location.
-    protected Point nextLocation; // The location that the animal will move to.
     protected int health; // The animal's state of health.
     protected int hunger; // The animal's state of hunger.
     protected int thirst; // The animal's state of thirst.
@@ -28,19 +30,81 @@ public class Animal extends AgentEntity {
     private boolean canBeKilled; // Determines whether the animal can be killed.
     private boolean outOfZone; // Determines whether the animal is out of its zone
     private boolean isDead = false; // Whether the animal is dead.
+    private String direction; // The direction that the animal is travelling.
+    private List<Point> goalPoints;
 
 
-    public Animal(int x, int y, int lengthX, int lengthY, ResourceType type, int health, int hunger, int thirst, int
+    public Animal(int x, int y, ResourceType type, int health, int hunger, int thirst, int
             strength, double speed) {
-        super(x, y, lengthX, lengthY, type);
+        super(x, y, 1, 1, type);
         this.type = type;
         this.health = health;
         this.hunger = hunger;
         this.thirst = thirst;
         this.strength = strength;
         this.speed = speed;
-        this.currentLocation = point;
-        newNextLocation();
+        this.canBeKilled = false;
+        this.outOfZone = false;
+        this.isDead = false;
+        this.direction = "UpRight";
+        this.goalPoints = new ArrayList<Point>();
+    }
+
+
+    /**
+     * Original tick
+     */
+    @Override
+    public void tick() {
+        if (goalPoints.isEmpty()) {
+            goalPoints = newGoalPoints();
+        } else if (point.distance(goalPoints.get(0)) < speed) {
+            point = goalPoints.remove(0);
+            if (goalPoints.isEmpty()) {
+                this.goalPoints = newGoalPoints();
+            }
+        } else {
+            String newDir;
+            if (goalPoints.get(0).getY() >= point.getY()) {
+                newDir = "Down";
+            } else {
+                newDir = "Up";
+            }
+            if (goalPoints.get(0).getX() >= point.getX()) {
+                newDir += "Right";
+            } else {
+                newDir += "Left";
+            }
+            direction = newDir;
+            this.setType(ResourceType.valueOf(this.getSprite()));
+            point.moveToward(goalPoints.get(0), speed);
+        }
+        calculateRenderingOrderValues();
+    }
+
+    private List<Point> newGoalPoints() {
+        Random random = new Random();
+        Point goalPoint = null;
+        while (goalPoint == null || !GameManager.getInstance().getWorld().getTile(goalPoint).isPassable()) {
+            goalPoint = new Point(random.nextDouble() * 20, random.nextDouble() * 20);
+        }
+
+        List<AStar.Tuple> path = AStar.aStar(point, goalPoint, GameManager.getInstance().getWorld());
+        List<Point> goalPoints = new ArrayList<Point>();
+
+        for (AStar.Tuple tuple : path) {
+            goalPoints.add(new Point(tuple.getX(), tuple.getY()));
+        }
+        return goalPoints;
+    }
+
+    /**
+     * Sets the direction of the animal to the new animal.
+     *
+     * @param newDirection The string new direction of the animal's movement.
+     */
+    public void setDirection(String newDirection) {
+        this.direction = newDirection;
     }
 
     /**
@@ -112,28 +176,6 @@ public class Animal extends AgentEntity {
     }
 
     /**
-     * Tick stuff.
-     */
-    @Override
-    public void tick() {
-        if (point.distance(nextLocation) < speed) {
-            point = nextLocation;
-            newNextLocation();
-        } else {
-            point.moveToward(nextLocation, speed);
-        }
-        calculateRenderingOrderValues();
-    }
-
-    /**
-     * Determines the Point that the animal will move to.
-     */
-    public void newNextLocation() {
-        Random random = new Random();
-        nextLocation = new Point(random.nextDouble() * 20, random.nextDouble() * 20);
-    }
-
-    /**
      * The animal's health is decreased when attacked by another entity.
      */
     public void isAttacked() {
@@ -176,25 +218,7 @@ public class Animal extends AgentEntity {
      * @param newType The new image to be rendered.
      */
     public void setType(ResourceType newType) {
-        this.setType(newType);
-    }
-
-    /**
-     * Returns the animal's current point on the map.
-     *
-     * @return currentLocation The animal's current point on the map.
-     */
-    public Point getCurrentLocation() {
-        return new Point(currentLocation);
-    }
-
-    /**
-     * Return the animal's next point on the map to move to.
-     *
-     * @return nextLocation The animal's destination point.
-     */
-    public Point getNextLocation() {
-        return new Point(nextLocation);
+        this.type = newType;
     }
 
     /**
@@ -222,7 +246,6 @@ public class Animal extends AgentEntity {
     }
 
     // Getter Methods Below
-
 
 
     /**
@@ -301,9 +324,21 @@ public class Animal extends AgentEntity {
     }
 
     /**
+     * Get the sprite string name. The sprite string name, i.e. "DuckDownLeft"
+     *
+     * @return sprite The String name of the sprite to be rendered.
+     */
+    public String getSprite() {
+        String spriteName;
+        spriteName = ResourceType.DUCK.toString();
+        spriteName += this.getDirection();
+        return spriteName;
+    }
+
+    /**
      * Returns a value saying whether the animal can be killed.
      *
-     * @return canBeKilled
+     * @return canBeKilled Flags the animal as able to be killed.
      */
     public boolean canBeKilled() {
         return canBeKilled;
@@ -312,9 +347,18 @@ public class Animal extends AgentEntity {
     /**
      * Returns whether the duck is dead.
      *
-     * @return isDead
+     * @return isDead Flags the animal as dead.
      */
     public boolean isDead() {
         return this.isDead;
+    }
+
+    /**
+     * Returns the string direction of the animal.
+     *
+     * @return direction The string direction of the animal
+     */
+    public String getDirection() {
+        return this.direction;
     }
 }

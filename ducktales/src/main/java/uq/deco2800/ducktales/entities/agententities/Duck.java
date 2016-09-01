@@ -3,6 +3,8 @@ package uq.deco2800.ducktales.entities.agententities;
 import uq.deco2800.ducktales.entities.EntityManager;
 import uq.deco2800.ducktales.resources.ResourceType;
 
+import static uq.deco2800.ducktales.resources.ResourceType.DUCK;
+
 /**
  * Defines the duck animal.
  *
@@ -16,14 +18,24 @@ public class Duck extends Animal {
     private EntityManager opponentList; // List of possible opponents.
 
     public Duck(int x, int y) {
-        super(x, y, 1, 1, ResourceType.DUCK, 1, 1, 1, 1, 0.05);
+        super(x, y, DUCK, 1, 1, 1, 1, 0.01);
         int var = (int) (Math.random() * 100);
-        int var2 = (int) (Math.random() *20);
+        int var2 = (int) (Math.random() * 20);
         setStartingHealth(var);
         setStartingHunger(var);
         setStartingThirst(var);
         setStartingStrength(var2);
     }
+
+//    @Override
+//    public void tick() {
+//        if (currentLocation.equals(nextLocation)) {
+//            newNextLocation();
+//        } else {
+//            // maybe make it stand still for a sec
+//            moveTo(nextLocation);
+//        }
+//    }
 
     /**
      * Checks whether the duck can lay eggs. Ducks can only lay eggs if their health, hunger, and thirst meet satisfy
