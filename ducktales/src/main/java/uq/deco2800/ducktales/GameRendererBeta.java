@@ -257,7 +257,10 @@ public class GameRendererBeta extends AnimationTimer {
         buildingsMenu.addEventHandler(BuildingMenuSelectedEvent.BUILDING_MENU_SELECTED_EVENT, event -> {
             // Setup the cursor image to that of the building clicked
             Image sprite = resource.getResourceImage(event.getType());
-            this.cursorImage.setImage(sprite);
+
+            // Reset the sprite's position
+            this.cursorImage.setLayoutX(event.getStartingX());
+            this.cursorImage.setLayoutY(event.getStartingY());
 
             // Scale the cursor image by the scale given by rendering manager
             double scale = renderingManager.getMainScaleFactor();
@@ -267,6 +270,9 @@ public class GameRendererBeta extends AnimationTimer {
             // Setup the offset
             this.cursorImage.setX(-cursorImage.getFitWidth()/2);
             this.cursorImage.setY(-cursorImage.getFitHeight()/2);
+
+            // reveal the sprite
+            this.cursorImage.setImage(sprite);
 
         });
         buildingsMenu.addEventHandler(BuildingMenuDeselectedEvent.BUILDING_MENU_DESELECTED_EVENT, event -> {
@@ -282,6 +288,9 @@ public class GameRendererBeta extends AnimationTimer {
             // Update the cursor image to the corresponding position
             cursorImage.setLayoutX(event.getX());
             cursorImage.setLayoutY(event.getY());
+
+            // Make the cursor image stop receiving mouse events
+            cursorImage.setMouseTransparent(true);
         });
     }
 

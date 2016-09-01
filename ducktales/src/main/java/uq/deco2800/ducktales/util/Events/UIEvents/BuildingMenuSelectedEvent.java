@@ -14,11 +14,25 @@ import uq.deco2800.ducktales.resources.ResourceType;
  */
 public class BuildingMenuSelectedEvent extends UIEvent {
 
+    // The starting point of this event
+    private double startingX;
+    private double startingY;
+
     public static final EventType<BuildingMenuSelectedEvent> BUILDING_MENU_SELECTED_EVENT =
             new EventType<>("BUILDING_MENU_SELECTED_EVENT");
 
-    public BuildingMenuSelectedEvent(ResourceType type) {
+    public BuildingMenuSelectedEvent(ResourceType type, double startingX, double startingY) {
         super(BUILDING_MENU_SELECTED_EVENT);
         this.type = type;
+        this.startingX = startingX;
+        this.startingY = startingY;
+    }
+
+    public double getStartingX() {
+        return startingX;
+    }
+
+    public double getStartingY() {
+        return startingY;
     }
 }
