@@ -60,9 +60,6 @@ public class DuckTalesController implements Initializable {
 		gameManager = GameManager.getInstance();
 		worldBuilderManager = WorldBuilderManager.getInstance();
 		
-		achievementScore = Achievements.getInstance();
-		missions = Missions.getInstance();
-		
 		// Set the handlers for the game panes
 		contentPane.setOnMousePressed(new MousePressedHandler());
 		contentPane.setOnMouseReleased(new MouseReleasedHandler());
