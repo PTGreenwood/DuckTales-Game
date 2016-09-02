@@ -102,6 +102,18 @@ public class Peon extends AgentEntity {
 	public int getIntelligence(){
 		return intelligence;
 	}
+	
+	public String getJob(){
+		return job;
+	}
+	
+	public double getQualification(){
+		return qualification;
+	}
+	
+	public boolean getMentorStatus(){
+		return mentorStatus;
+	}
 
 	@Override
 	public void tick() {
