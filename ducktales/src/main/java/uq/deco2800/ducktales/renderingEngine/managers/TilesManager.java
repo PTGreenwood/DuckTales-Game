@@ -1,4 +1,4 @@
-package uq.deco2800.ducktales.renderingEngine.managers;
+package uq.deco2800.ducktales.renderingengine.managers;
 
 import uq.deco2800.ducktales.GameManagerBeta;
 import uq.deco2800.ducktales.renderingEngine.tiles.TileBeta;

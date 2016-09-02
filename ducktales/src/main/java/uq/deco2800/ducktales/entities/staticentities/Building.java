@@ -1,4 +1,4 @@
-package uq.deco2800.ducktales.entities.StaticEntities;
+package uq.deco2800.ducktales.entities.staticentities;
 
 import javafx.scene.image.ImageView;
 import uq.deco2800.ducktales.resources.ResourceType;
