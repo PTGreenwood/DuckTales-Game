@@ -65,4 +65,25 @@ public class KeyboardHandler implements EventHandler<KeyEvent> {
 			break;
 		}
 	}
+	/*
+	//key presses alters the flow of time.
+	private void keyPressed(KeyCode code) {
+		GameLoop gameLoop = ; //change game manager for speed stuff
+		switch (code) {
+		case 1:
+			gameManager.pan(GameLoop.SpeedControl.50); //set time scale to default
+			break;
+
+		case 2:
+			gameManager.pan(GameLoop.SpeedControl.33); //set time scale to 1.5151x
+			break;
+
+		case 3:
+			gameManager.pan(GameLoop.SpeedControl.20); //set time scale to 2.5x 
+			break;
+
+		default:
+			break;
+		}
+	}*/
 }
