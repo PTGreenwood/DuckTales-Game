@@ -134,7 +134,7 @@ public class GameTime implements Tickable {
 			this.year++;
 		}
 	//Uncomment this to see a print out of the current time every minute update
-	//System.out.println(printDuckTime());
+	System.out.println(printDuckTime());
 	}
 	
 	/**
