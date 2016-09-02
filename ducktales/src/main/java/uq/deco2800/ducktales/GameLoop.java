@@ -22,11 +22,7 @@ public class GameLoop implements Runnable {
 	
 	private EntityManager entityManager = EntityManager.getInstance();
 	
-	//Makeshift time add
-	private int gameStartMinute = 0;
-	private int gameStartHour = 0;
-
-	private GameTime duckCalendar = new GameTime();
+	private GameTime gameTime = new GameTime();
 	public GameLoop(AtomicBoolean quit, int tick) {
 		this.world = GameManager.getInstance().getWorld();
 		this.tick = tick;
@@ -40,7 +36,7 @@ public class GameLoop implements Runnable {
 			//this.tick = SpeedController();
 			world.tick();
 			entityManager.tick();
-			duckCalendar.tick();
+			gameTime.tick();
 			try {
 				Thread.sleep(tick);
 			} catch (InterruptedException e) {
