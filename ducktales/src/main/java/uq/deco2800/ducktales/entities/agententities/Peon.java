@@ -32,6 +32,8 @@ public class Peon extends AgentEntity {
 	private String job = "jobless";
 	
 	private double qualification = 0;
+	
+	private boolean mentorStatus = false;
 
 	// affinity
 	private int strength;
@@ -65,12 +67,28 @@ public class Peon extends AgentEntity {
 		}
 	}
 	
+	/**
+	 * Stores what job the peon has
+	 * @param job
+	 */
 	public void setJob(String job){
 		this.job = job;
 	}
 	
+	/**
+	 * Stores the level of qualification
+	 * @param qualification
+	 */
 	public void setQualification(double qualification){
 		this.qualification = qualification;
+	}
+	
+	/**
+	 * Stores if peon is qualified to be a mentor
+	 * @param mentorStatus
+	 */
+	public void setMentorStatus(boolean mentorStatus){
+		this.mentorStatus = mentorStatus;
 	}
 
 	public int getHealth() {
