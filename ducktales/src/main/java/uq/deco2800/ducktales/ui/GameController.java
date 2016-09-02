@@ -9,6 +9,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import uq.deco2800.ducktales.GameManagerBeta;
 import uq.deco2800.ducktales.GameRendererBeta;
+import uq.deco2800.ducktales.missions.Missions;
 import uq.deco2800.ducktales.resources.InventoryManager;
 
 import java.net.URL;
@@ -107,13 +108,16 @@ public class GameController{
     }
 
     @FXML
-    public void showMarketplace(ActionEvent event) throws Exception {
+    public void showMarketplace(ActionEvent event) throws Exception {    	
         URL location = getClass().getResource("/marketplace.fxml");
         FXMLLoader loader = new FXMLLoader(location);
 
         marketplacePane = loader.load();
 
         showInfoPane(marketplacePane);
+        
+        //Untick mission2 box in Achievement window of Gamebeta when marketplace is clicked
+        Missions.getInstance().Mission4ImageCompleted();
     }
 
     @FXML

@@ -98,12 +98,35 @@ public class MissionController {
 		URL location = getClass().getResource("mission3.fxml");
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(location);
+		
+		GridPane missions = new GridPane();
+		
+		Label missions1 = new Label("1.Click a hospital in Construct Building menu :  ");
+		missions1.setFont(new Font("Arial", 24));
+		Label missions2 = new Label("2.Click marketplace :  ");
+		missions2.setFont(new Font("Arial", 24));
+		
+		ImageView mission1Box = new ImageView();
+		mission1Box = Missions.getInstance().getMission3ImageCompleted();
+		HBox mission1HBox = new HBox();
+		mission1HBox.getChildren().addAll(missions1,mission1Box);
+		ImageView mission2Box = new ImageView();
+		mission2Box = Missions.getInstance().getMission4ImageCompleted();
+		HBox mission2HBox = new HBox();
+		mission2HBox.getChildren().addAll(missions2,mission2Box);
+		
+		missions.setVgap(10);
+		missions.add(mission1HBox, 0, 1);
+		missions.add(mission2HBox, 0, 2);
+		
+		
 		Label mission3Top = new Label("World Builder Missions");
 		mission3Top.setFont(new Font("Arial", 36));
 		
 		mission3 = loader.load();
 
 		mission3.setTop(mission3Top);
+		mission3.setCenter(missions);
 		mission3.setAlignment(mission3Top, Pos.CENTER);
 		mission3.setPrefHeight(rightPane.getHeight());
 		mission3.setPrefWidth(rightPane.getWidth());		
