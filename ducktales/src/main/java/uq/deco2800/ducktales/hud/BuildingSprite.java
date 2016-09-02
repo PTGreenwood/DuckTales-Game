@@ -1,4 +1,4 @@
-package uq.deco2800.ducktales.hud;
+package uq.deco2800.ducktales.HUD;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;

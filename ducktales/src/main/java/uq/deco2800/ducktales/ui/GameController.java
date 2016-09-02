@@ -48,6 +48,8 @@ public class GameController{
     private Button closeInfoPaneButton;
     // The Achievement window
     private AnchorPane achievementPane;
+    // The Marketplace window
+    private VBox marketplacePane;
 
     /** The rendering engine of the game */
     private GameRendererBeta renderer;
@@ -101,9 +103,17 @@ public class GameController{
 
         achievementPane = loader.load();
 
-
         showInfoPane(achievementPane);
+    }
 
+    @FXML
+    public void showMarketplace(ActionEvent event) throws Exception {
+        URL location = getClass().getResource("/marketplace.fxml");
+        FXMLLoader loader = new FXMLLoader(location);
+
+        marketplacePane = loader.load();
+
+        showInfoPane(marketplacePane);
     }
 
     @FXML
@@ -112,7 +122,7 @@ public class GameController{
 
     @FXML
     public void closeInfoPane() {
-        rootPane.getChildren().remove(this.achievementPane);
+        rootPane.getChildren().removeAll(this.achievementPane, this.marketplacePane);
         closeInfoPaneButton.setVisible(false);
     }
 
@@ -123,8 +133,7 @@ public class GameController{
      *          The pane to be shown in the in-game screen
      */
     private void showInfoPane(Pane pane) {
-        // Remove all info panes first
-        rootPane.getChildren().remove(this.achievementPane);
+        // All info panes must have been removed at this point
 
         // Add the given pane
         rootPane.getChildren().add(pane);
@@ -136,10 +145,11 @@ public class GameController{
         // Set the location of the given pane to be rendered at
         rootPane.setLeftAnchor(pane, sideAnchor);
         rootPane.setRightAnchor(pane, sideAnchor);
-        rootPane.setTopAnchor(pane, verticalAnchor);
         rootPane.setBottomAnchor(pane, verticalAnchor);
 
         closeInfoPaneButton.setVisible(true);
+
+        // Re-layout the closing button
         rootPane.setLeftAnchor(closeInfoPaneButton, sideAnchor);
         rootPane.setRightAnchor(closeInfoPaneButton, sideAnchor);
         rootPane.setBottomAnchor(closeInfoPaneButton, verticalAnchor - 30);
