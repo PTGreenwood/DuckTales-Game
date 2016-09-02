@@ -110,6 +110,7 @@ public abstract class Job {
         double str = peon.getStrength()/this.getRequiredStrength();
         double intel = peon.getIntelligence()/this.getRequiredIntelligence();
         double total = (str+intel)/2;
+        peon.setQualification(total);
         return total;
     }
     /**
@@ -121,6 +122,7 @@ public abstract class Job {
     public boolean isQualified(Peon peon){
         if (peon.getStrength() >= this.getRequiredStrength() &&
                 peon.getIntelligence() >= this.getRequiredIntelligence()){
+        	peon.setJob(jobName);
             return true;
         }
         return false;

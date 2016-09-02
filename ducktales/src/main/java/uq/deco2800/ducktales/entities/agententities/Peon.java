@@ -28,6 +28,10 @@ public class Peon extends AgentEntity {
 	private int health = 1000;
 	
 	private int resource= 0;
+	
+	private String job = "jobless";
+	
+	private double qualification = 0;
 
 	// affinity
 	private int strength;
@@ -58,7 +62,15 @@ public class Peon extends AgentEntity {
 		if (sourceValue > 0){
 			this.resource= sourceValue;
 			
+		}
 	}
+	
+	public void setJob(String job){
+		this.job = job;
+	}
+	
+	public void setQualification(double qualification){
+		this.qualification = qualification;
 	}
 
 	public int getHealth() {
