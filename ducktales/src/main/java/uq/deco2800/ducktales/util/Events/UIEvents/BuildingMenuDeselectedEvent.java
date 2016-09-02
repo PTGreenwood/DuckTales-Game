@@ -18,8 +18,22 @@ public class BuildingMenuDeselectedEvent extends UIEvent{
     public static final EventType<BuildingMenuDeselectedEvent> BUILDING_MENU_DESELECTED_EVENT =
             new EventType<>("BUILDING_MENU_DESELECTED_EVENT");
 
+    /**
+     * Construct a building menu deselected event, and pass the type of
+     * building being deselected into the event object
+     *
+     * @param type
+     *          The type of the building being deselected
+     */
     public BuildingMenuDeselectedEvent(ResourceType type) {
         super(BUILDING_MENU_DESELECTED_EVENT);
         this.type = type;
+    }
+
+    /**
+     * Construct an empty deselected event just to notify the managers
+     */
+    public BuildingMenuDeselectedEvent() {
+        super(BUILDING_MENU_DESELECTED_EVENT);
     }
 }

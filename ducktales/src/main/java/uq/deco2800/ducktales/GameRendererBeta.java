@@ -255,6 +255,22 @@ public class GameRendererBeta extends AnimationTimer {
         worldPane.addEventHandler(TileClickedEvent.TILE_CLICKED, event -> {
             System.err.println("building " + manager.getCurrentResourceManaging()
             + " to be added to: " + event.getxPos() + ", " +event.getyPos());
+
+            // Check if there is any resource currently being managed
+            if (manager.getCurrentResourceManaging() != NONE) {
+                // Tell the manager to add the building to the game world
+                manager.addBuildingToWorld(
+                        manager.getCurrentResourceManaging(),
+                        event.getxPos(),
+                        event.getyPos()
+                );
+            }
+
+            // reset the cursor image
+            cursorImage.setImage(null);
+
+            // reset manager's current resource managing
+            manager.setCurrentResourceManaging(NONE);
         });
 
         /*
@@ -290,7 +306,10 @@ public class GameRendererBeta extends AnimationTimer {
             // if the mouse is released on top of a tile
             this.cursorImage.setImage(null);
 
-            System.err.println("adding building will be implemented soon");
+            // set the current resource managed to be NONE
+            manager.setCurrentResourceManaging(NONE);
+
+            System.err.println("deselected a building");
 
         });
 
