@@ -1,4 +1,4 @@
-package uq.deco2800.ducktales.HUD;
+package uq.deco2800.ducktales.hud;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -6,6 +6,9 @@ import uq.deco2800.ducktales.GameManagerBeta;
 import uq.deco2800.ducktales.resources.ResourceRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.Events.TileEvents.TileClickedEvent;
+import uq.deco2800.ducktales.util.Events.UIEvents.BuildingMenuDeselectedEvent;
+import uq.deco2800.ducktales.util.Events.UIEvents.BuildingMenuSelectedEvent;
+import uq.deco2800.ducktales.util.Events.UIEvents.CursorMovedEvent;
 
 /**
  * This class represents a sprite of a building, to be rendered into the game
@@ -18,10 +21,7 @@ public class BuildingSprite extends ImageView {
 
     /** Variables holding the information about this sprite */
     private ResourceType buildingType;
-    private Image buildingSprite; // The sprite of the building
-
-    /** The manager of the game */
-    private GameManagerBeta manager;
+    private Image buildingSprites; // The sprite of the building
 
     /**
      * Create a sprite of the given building sprite, and give it a handle of
@@ -29,14 +29,13 @@ public class BuildingSprite extends ImageView {
      *
      * @param buildingType
      */
-    public BuildingSprite(ResourceType buildingType, GameManagerBeta manager) {
-        this.manager = manager;
-        this.buildingSprite =
+    public BuildingSprite(ResourceType buildingType) {
+        this.buildingSprites =
                 ResourceRegister.getInstance().getResourceImage(buildingType);
         this.buildingType = buildingType;
 
         // Load the sprite into the image view
-        this.setImage(buildingSprite);
+        this.setImage(buildingSprites);
 
         setupMouseEventHandler();
     }
@@ -51,11 +50,11 @@ public class BuildingSprite extends ImageView {
     }
 
     public double getSpriteHeight() {
-        return this.buildingSprite.getHeight();
+        return this.buildingSprites.getHeight();
     }
 
     public double getSpriteWidth() {
-        return this.buildingSprite.getWidth();
+        return this.buildingSprites.getWidth();
     }
 
     /**
@@ -63,9 +62,19 @@ public class BuildingSprite extends ImageView {
      */
     private void setupMouseEventHandler() {
         this.setOnMouseClicked(event -> {
-            // TODO: LEARN THIS IMPLEMENTATION
-            fireEvent(new TileClickedEvent(0, 1));
+            fireEvent(new BuildingMenuSelectedEvent(
+                    this.buildingType, event.getSceneX(), event.getSceneY()));
         });
+
+        this.setOnMouseReleased(event -> {
+            System.err.println("Mouse released on building " + this.buildingType);
+            fireEvent(new BuildingMenuDeselectedEvent(this.buildingType));
+        });
+        this.setOnMouseDragged(event -> {
+            fireEvent(new CursorMovedEvent(event.getSceneX(), event.getSceneY()));
+        });
+
+
         this.setOnMouseEntered(event -> {
             System.err.println("mouse hovered on: " + event.getSource().toString());
             // stub event just to trigger parent event

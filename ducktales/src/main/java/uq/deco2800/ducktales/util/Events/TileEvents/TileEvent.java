@@ -11,7 +11,7 @@ import javafx.event.EventType;
 public class TileEvent extends Event {
 
     // Setup the type of event for this event class
-    public static final EventType<TileClickedEvent> TILE_EVENT =
+    public static final EventType<TileEvent> TILE_EVENT =
             new EventType<>("TILE_EVENT");
 
     /** The x and y index of the tile that triggered this event */

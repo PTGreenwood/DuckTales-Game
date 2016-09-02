@@ -1,8 +1,12 @@
 package uq.deco2800.ducktales.entities.agententities;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
+import uq.deco2800.ducktales.GameManager;
 import uq.deco2800.ducktales.resources.ResourceType;
+import uq.deco2800.ducktales.util.AStar;
 import uq.deco2800.ducktales.util.Point;
 
 /**
@@ -17,8 +21,6 @@ public class Animal extends AgentEntity {
     private final static int minStartThirst = 20;
     private final static int minStartStrength = 5;
 
-    protected Point currentLocation; // The animal's current location.
-    protected Point nextLocation; // The location that the animal will move to.
     protected int health; // The animal's state of health.
     protected int hunger; // The animal's state of hunger.
     protected int thirst; // The animal's state of thirst.
@@ -27,19 +29,89 @@ public class Animal extends AgentEntity {
     protected ResourceType type; // The type of the animal
     private boolean canBeKilled; // Determines whether the animal can be killed.
     private boolean outOfZone; // Determines whether the animal is out of its zone
+    private boolean isDead = false; // Whether the animal is dead.
+    private String direction; // The direction that the animal is travelling.
+    private List<Point> goalPoints;
 
 
-    public Animal(int x, int y, int lengthX, int lengthY, ResourceType type, int health, int hunger, int thirst, int
+    public Animal(int x, int y, ResourceType type, int health, int hunger, int thirst, int
             strength, double speed) {
-        super(x, y, lengthX, lengthY, type);
+        super(x, y, 1, 1, type);
         this.type = type;
         this.health = health;
         this.hunger = hunger;
         this.thirst = thirst;
         this.strength = strength;
         this.speed = speed;
-        this.currentLocation = point;
-        newNextLocation();
+        this.canBeKilled = false;
+        this.outOfZone = false;
+        this.isDead = false;
+        this.direction = "UpRight";
+        this.goalPoints = new ArrayList<Point>();
+    }
+
+    /**
+     * Original tick
+     */
+    @Override
+    public void tick() {
+        if (goalPoints.isEmpty()) {
+            goalPoints = newGoalPoints();
+        } else if (point.distance(goalPoints.get(0)) < speed) {
+            point = goalPoints.remove(0);
+            if (goalPoints.isEmpty()) {
+                this.goalPoints = newGoalPoints();
+            }
+        } else {
+            String newDir;
+            if (goalPoints.get(0).getY() >= point.getY()) {
+                newDir = "Down";
+            } else {
+                newDir = "Up";
+            }
+            if (goalPoints.get(0).getX() >= point.getX()) {
+                newDir += "Right";
+            } else {
+                newDir += "Left";
+            }
+            direction = newDir;
+            this.updateType(ResourceType.valueOf(this.getSprite()));
+            point.moveToward(goalPoints.get(0), speed);
+        }
+        calculateRenderingOrderValues();
+    }
+
+    /**
+     * Method which updates the goalpoints which dictate an entities movement
+     */
+    private List<Point> newGoalPoints() {
+        Random random = new Random();
+        Point goalPoint = null;
+        while (goalPoint == null || !GameManager.getInstance().getWorld().getTile(goalPoint).isPassable()) {
+            goalPoint = new Point(random.nextDouble() * 20, random.nextDouble() * 20);
+        }
+        List<AStar.Tuple> path = AStar.aStar(point, goalPoint, GameManager.getInstance().getWorld());
+        List<Point> goalPoints = new ArrayList<Point>();
+        for (AStar.Tuple tuple : path) {
+            goalPoints.add(new Point(tuple.getX(), tuple.getY()));
+        }
+        return goalPoints;
+    }
+
+    /**
+     * Marks the animal as dead.
+     */
+    public void setIsDead() {
+        if (this.getHealth() == 0) {
+            this.isDead = true;
+        }
+    }
+
+    /**
+     * Tells the animal to attack.
+     */
+    public void attack(Peon opponent) {
+        opponent.setHealth(opponent.getHealth() - this.getStrength());
     }
 
     /**
@@ -95,28 +167,6 @@ public class Animal extends AgentEntity {
     }
 
     /**
-     * Tick stuff.
-     */
-    @Override
-    public void tick() {
-        if (point.distance(nextLocation) < speed) {
-            point = nextLocation;
-            newNextLocation();
-        } else {
-            point.moveToward(nextLocation, speed);
-        }
-        calculateRenderingOrderValues();
-    }
-
-    /**
-     * Determines the Point that the animal will move to.
-     */
-    public void newNextLocation() {
-        Random random = new Random();
-        nextLocation = new Point(random.nextDouble() * 20, random.nextDouble() * 20);
-    }
-
-    /**
      * The animal's health is decreased when attacked by another entity.
      */
     public void isAttacked() {
@@ -153,7 +203,23 @@ public class Animal extends AgentEntity {
     public void attack() {
     }
 
+    /**
+     * Changes the animal's image to the provided value.
+     *
+     * @param newType The new image to be rendered.
+     */
+    public void setType(ResourceType newType) {
+        this.type = newType;
+    }
 
+    /**
+     * Returns the animal's current health.
+     *
+     * @return health The animal's current health.
+     */
+    public int getHealth() {
+        return health;
+    }
 
     /**
      * Changes the animal's health to the provided value.
@@ -171,6 +237,17 @@ public class Animal extends AgentEntity {
     }
 
     /**
+     * Returns the animal's current state of hunger.
+     *
+     * @return hunger The animal's hunger.
+     */
+    public int getHunger() {
+        return hunger;
+    }
+
+    // Getter Methods Below
+
+    /**
      * Changes the animal's hunger level to the provided value.
      *
      * @param newHunger The new hunger value.
@@ -183,6 +260,15 @@ public class Animal extends AgentEntity {
         } else {
             this.hunger = newHunger;
         }
+    }
+
+    /**
+     * Returns the animal's current state of thirst.
+     *
+     * @return thirst The animal's thirst.
+     */
+    public int getThirst() {
+        return thirst;
     }
 
     /**
@@ -201,77 +287,21 @@ public class Animal extends AgentEntity {
     }
 
     /**
-     * Changes the animal's strength level to the provided value.
-     *
-     * @param newStrength The new strength value.
-     */
-    public void setStrength(int newStrength) {
-        this.strength = newStrength;
-    }
-
-    /**
-     * Changes the animal's image to the provided value.
-     *
-     * @param newType The new image to be rendered.
-     */
-    public void setType(ResourceType newType) {
-        this.setType(newType);
-    }
-
-    // Getter Methods Below
-
-    /**
-     * Returns the animal's current point on the map.
-     *
-     * @return currentLocation The animal's current point on the map.
-     */
-    public Point getCurrentLocation() {
-        return new Point(currentLocation);
-    }
-
-    /**
-     * Return the animal's next point on the map to move to.
-     *
-     * @return nextLocation The animal's destination point.
-     */
-    public Point getNextLocation() {
-        return new Point(nextLocation);
-    }
-
-    /**
-     * Returns the animal's current health.
-     *
-     * @return health The animal's current health.
-     */
-    public int getHealth() {
-        return health;
-    }
-
-    /**
-     * Returns the animal's current state of hunger.
-     *
-     * @return hunger The animal's hunger.
-     */
-    public int getHunger() {
-        return hunger;
-    }
-
-    /**
-     * Returns the animal's current state of thirst.
-     *
-     * @return thirst The animal's thirst.
-     */
-    public int getThirst() {
-        return thirst;
-    }
-
-    /**
      * Returns the animal's strength.
      *
      * @return strength The animal's strength.
      */
     public int getStrength() {
         return strength;
+    }
+
+    /**
+     * Changes the animal's strength level to the provided value.
+     *
+     * @param newStrength The new strength value.
+     */
+    public void setStrength(int newStrength) {
+        this.strength = newStrength;
     }
 
     /**
@@ -284,17 +314,63 @@ public class Animal extends AgentEntity {
     }
 
     /**
+     * Get the sprite string name. The sprite string name, i.e. "DuckDownLeft"
+     *
+     * @return sprite The String name of the sprite to be rendered.
+     */
+    public String getSprite() {
+        String spriteName;
+        if (this.getType().toString().contains("DUCK")) {
+            spriteName = ResourceType.DUCK.toString();
+            spriteName += this.getDirection();
+        } else {
+            spriteName = ResourceType.COW.toString();
+            spriteName += this.getDirection();
+        }
+        return spriteName; // Add more conditions when other animals are started on
+//        } else if (this.getTileType().toString().contains("SHEEP")) {
+//            spriteName = ResourceType.SHEEP.toString();
+//            spriteName += this.getDirection();
+//        } else(this.getTileType().toString().contains("TURTLE")) {
+//            spriteName = ResourceType.TURTLE.toString();
+//            spriteName += this.getDirection();
+//        }
+//        return spriteName;
+    }
+
+    /**
      * Returns a value saying whether the animal can be killed.
      *
-     * @return canBeKilled
+     * @return canBeKilled Flags the animal as able to be killed.
      */
     public boolean canBeKilled() {
         return canBeKilled;
     }
 
-    // ???
-    public void spawnAnimal() {
-        // animals spawned using the world class under world package?
-        // AnimalManager class?
+    /**
+     * Returns whether the duck is dead.
+     *
+     * @return isDead Flags the animal as dead.
+     */
+    public boolean isDead() {
+        return this.isDead;
+    }
+
+    /**
+     * Returns the string direction of the animal.
+     *
+     * @return direction The string direction of the animal
+     */
+    public String getDirection() {
+        return this.direction;
+    }
+
+    /**
+     * Sets the direction of the animal to the new animal.
+     *
+     * @param newDirection The string new direction of the animal's movement.
+     */
+    public void setDirection(String newDirection) {
+        this.direction = newDirection;
     }
 }

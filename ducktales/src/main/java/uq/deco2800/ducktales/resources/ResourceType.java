@@ -23,10 +23,14 @@ public enum ResourceType {
         WATER,
 
         // Entities
-        PEON,DUCK,COW, SHEEP,
+        PEON,
+        DUCK, DUCKUpRight, DUCKUpLeft, DUCKDownRight, DUCKDownLeft,
+        COW, COWUpRight, COWUpLeft, COWDownRight, COWDownLeft,
+        SHEEP, SHEEPUpRight, SHEEPUpLeft, SHEEPDownRight, SHEEPDownLeft,
 
         // Buildings
         HOUSE, SAWMILL, BAKERY, CEMETERY, BARN, FORGE, HOSPITAL, OBSERVATORY, FARMHOUSE,
+        PASTURE, CLINIC,
 
         // Miscellaneous
         BOX, LONG_BOX, WOOD_BOX

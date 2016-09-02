@@ -1,4 +1,4 @@
-package uq.deco2800.ducktales.resources.tiles;
+package uq.deco2800.ducktales.renderingEngine.tiles;
 
 import uq.deco2800.ducktales.entities.worldentities.WorldEntity;
 import uq.deco2800.ducktales.resources.ResourceType;

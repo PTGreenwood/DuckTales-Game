@@ -17,7 +17,7 @@ public class GameManager {
 
 	private static final GameManager INSTANCE = new GameManager();
 	
-	public static enum Direction {UP, DOWN, LEFT, RIGHT};
+	public enum Direction {UP, DOWN, LEFT, RIGHT};
 	
 	private int yPan = 0;
 	private int xPan = 0;

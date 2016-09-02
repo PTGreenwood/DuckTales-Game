@@ -1,4 +1,4 @@
-package uq.deco2800.ducktales.resources.tiles;
+package uq.deco2800.ducktales.renderingEngine.tiles;
 
 import javafx.scene.image.ImageView;
 import uq.deco2800.ducktales.GameManagerBeta;
@@ -49,8 +49,6 @@ public class TileBeta extends ImageView{
         this.xPos = xPos;
         this.yPos = yPos;
         this.type = type;
-
-        setReferencedMouseEventHandlers();
     }
 
     public TileBeta(ResourceType type, int xPos, int yPos) {
@@ -68,11 +66,9 @@ public class TileBeta extends ImageView{
      *
      * @return the type of this tile
      */
-    public ResourceType getType() {
+    public ResourceType getTileType() {
         return this.type;
     }
-
-
 
     /**
      * This is a new implementation of mouse event handlers - instead of
@@ -88,17 +84,6 @@ public class TileBeta extends ImageView{
         });
         this.setOnMouseExited(event -> {
             fireEvent(new TileExitedEvent(this.xPos, this.yPos));
-        });
-    }
-
-    /** Setup the mouse event handlers for this tile */
-    @Deprecated
-    private void setReferencedMouseEventHandlers() {
-        this.setOnMouseEntered(event -> {
-            manager.notifyTileHovered(this.xPos, this.yPos);
-        });
-        this.setOnMouseClicked(event -> {
-            manager.notifyTileClicked(this.xPos, this.yPos);
         });
     }
 }
