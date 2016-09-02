@@ -5,10 +5,10 @@ import javafx.scene.image.ImageView;
 import uq.deco2800.ducktales.GameManagerBeta;
 import uq.deco2800.ducktales.resources.ResourceRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
-import uq.deco2800.ducktales.util.Events.TileEvents.TileClickedEvent;
-import uq.deco2800.ducktales.util.Events.UIEvents.BuildingMenuDeselectedEvent;
-import uq.deco2800.ducktales.util.Events.UIEvents.BuildingMenuSelectedEvent;
-import uq.deco2800.ducktales.util.Events.UIEvents.CursorMovedEvent;
+import uq.deco2800.ducktales.util.events.tileevents.TileClickedEvent;
+import uq.deco2800.ducktales.util.events.uievents.BuildingMenuDeselectedEvent;
+import uq.deco2800.ducktales.util.events.uievents.BuildingMenuSelectedEvent;
+import uq.deco2800.ducktales.util.events.uievents.CursorMovedEvent;
 
 /**
  * This class represents a sprite of a building, to be rendered into the game

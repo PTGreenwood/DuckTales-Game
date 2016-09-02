@@ -4,7 +4,7 @@ import uq.deco2800.ducktales.entities.Entity;
 import uq.deco2800.ducktales.entities.EntityManager;
 import uq.deco2800.ducktales.resources.ResourceRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
-import uq.deco2800.ducktales.renderingEngine.tiles.Tile;
+import uq.deco2800.ducktales.renderingengine.tiles.Tile;
 import uq.deco2800.ducktales.world.World;
 
 import java.util.Collections;
