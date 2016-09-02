@@ -34,6 +34,15 @@ public class TilesManager {
     /**
      * Add a building entity to the actual game world. from the given blueprint
      *
+     * NOTE: depending on the size of the building, the logic for adding it will
+     * be different.
+     * For (even)x(even) buildings, the tile clicked will be defined as the tile
+     *      closest but lower than the mid-point
+     * For (odd)x(odd) buildings, the tile clicked will be defined as the tile
+     *      in the middle of the building
+     *
+     * For (any)x(any)... God Bless.
+     *
      * @param buildingType
      *          The type of the building to be constructed
      * @param x
