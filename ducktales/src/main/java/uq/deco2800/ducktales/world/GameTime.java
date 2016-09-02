@@ -13,10 +13,10 @@ import uq.deco2800.ducktales.util.Tickable;
 public class GameTime implements Tickable {
 
 
-	//Instantiate a the Calendar variables
+	//Instantiate the Calendar variables
 	protected int day;
 	protected int year;
-	protected int season; //0 = Spring, 1 = Summer, 2 = Autumn, 3 = Winter
+	protected Season season;
 	
 	private int hour;
 	private int minute;
@@ -33,11 +33,15 @@ public class GameTime implements Tickable {
 		
 		this.day = 1; //Set day of calendar at 1
 		this.year = 1; //Set year of calendar at 1
-		this.season = 0; //Set season to 0 (spring)
+		
+		//As fixed variables are set for day and year
+		//So to will the season automatically start in Spring
+		this.season = Season.SPRING;
 		
 		
-		//Considering making this Just one number and mathing it to get the right time
-		//depending on day and year.
+		//Considering making this just one number and mathing it to get the right time
+		//depending on day and year. Can then also have total time in place. I spose I
+		//could just math the total time off years and days...
 		
 		this.hour = 0; //Set the hour of the time
 		this.minute = 0; //Set the minutes of the time.
@@ -149,12 +153,22 @@ public class GameTime implements Tickable {
 	
 	/**
 	 * Retrieves the current season
-	 * @return integer: currentSeason of world
+	 * @return Season: currentSeason of world
 	 */
-	public int getCurrentSeason() {
+	public Season getCurrentSeason() {
 		return this.season;
 	}
-		
+	
+	/**
+	 * Sets the current season to be a season passed in
+	 * Note: must be of type Season
+	 *  
+	 * @param Season season: Spring, Summer, Autumn or Winter
+	 */
+	public void setSeason(Season season) {
+		this.season = season;
+	}
+	
 	/**
 	 * Sets the current year of the Calendar
 	 * to be whatever is passed in
