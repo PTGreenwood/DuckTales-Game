@@ -70,11 +70,11 @@ public abstract class Entity implements Comparable<Entity>, Tickable{
 	@Override
 	public int compareTo(Entity entity) {
 		// Fix big of comparing floats by checking difference
-		if (this.distanceTop - entity.distanceTop == 0) {
+		if (this.distanceTop - entity.distanceTop <= 0.0001) {
 			// Fix big of comparing floats by checking difference
-			if (this.distanceBottom - entity.distanceBottom == 0) {
-				// Fix big of comparing floats by checking difference
-				if (this.distanceInside - entity.distanceInside == 0) {
+			if (this.distanceBottom - entity.distanceBottom <= 0.00001) {
+				// Doesn't fix bug :(
+				if (this.distanceInside - entity.distanceInside == 0.000) {
 					return 0;
 				} else if (this.distanceInside < entity.distanceInside) {
 					return -1;
