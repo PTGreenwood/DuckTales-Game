@@ -25,7 +25,12 @@ import java.util.ArrayList;
 import static uq.deco2800.ducktales.resources.ResourceType.*;
 
 /**
- * Created by Khoi on 31/08/2016.
+ * This is the rendering engine for the game. More information can be found on the
+ * wiki page called New Rendering Engine
+ *
+ * Created on 31/08/2016.
+ *
+ * @author khoiphan21
  */
 public class GameRendererBeta extends AnimationTimer {
     /**
