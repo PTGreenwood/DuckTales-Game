@@ -5,19 +5,15 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.*;
-import uq.deco2800.ducktales.renderingEngine.WorldEntityRenderingInfo;
 import uq.deco2800.ducktales.hud.BuildingSprite;
-import uq.deco2800.ducktales.renderingEngine.RenderingManager;
 import uq.deco2800.ducktales.resources.ResourceRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
-import uq.deco2800.ducktales.renderingEngine.tiles.TileBeta;
+import uq.deco2800.ducktales.renderingengine.tiles.TileBeta;
+import uq.deco2800.ducktales.renderingengine.RenderingManager;
+import uq.deco2800.ducktales.renderingengine.WorldEntityRenderingInfo;
 import uq.deco2800.ducktales.util.Array2D;
-import uq.deco2800.ducktales.util.Events.TileEvents.TileClickedEvent;
-import uq.deco2800.ducktales.util.Events.TileEvents.TileEnteredEvent;
-import uq.deco2800.ducktales.util.Events.TileEvents.TileExitedEvent;
-import uq.deco2800.ducktales.util.Events.UIEvents.BuildingMenuDeselectedEvent;
-import uq.deco2800.ducktales.util.Events.UIEvents.BuildingMenuSelectedEvent;
-import uq.deco2800.ducktales.util.Events.UIEvents.CursorMovedEvent;
+import uq.deco2800.ducktales.util.events.tileevents.*;
+import uq.deco2800.ducktales.util.events.uievents.*;
 import uq.deco2800.ducktales.world.WorldBeta;
 
 import java.util.ArrayList;
@@ -255,6 +251,22 @@ public class GameRendererBeta extends AnimationTimer {
         worldPane.addEventHandler(TileClickedEvent.TILE_CLICKED, event -> {
             System.err.println("building " + manager.getCurrentResourceManaging()
             + " to be added to: " + event.getxPos() + ", " +event.getyPos());
+
+            // Check if there is any resource currently being managed
+            if (manager.getCurrentResourceManaging() != NONE) {
+                // Tell the manager to add the building to the game world
+                manager.addBuildingToWorld(
+                        manager.getCurrentResourceManaging(),
+                        event.getxPos(),
+                        event.getyPos()
+                );
+            }
+
+            // reset the cursor image
+            cursorImage.setImage(null);
+
+            // reset manager's current resource managing
+            manager.setCurrentResourceManaging(NONE);
         });
 
         /*
@@ -290,7 +302,10 @@ public class GameRendererBeta extends AnimationTimer {
             // if the mouse is released on top of a tile
             this.cursorImage.setImage(null);
 
-            System.err.println("adding building will be implemented soon");
+            // set the current resource managed to be NONE
+            manager.setCurrentResourceManaging(NONE);
+
+            System.err.println("deselected a building");
 
         });
 
