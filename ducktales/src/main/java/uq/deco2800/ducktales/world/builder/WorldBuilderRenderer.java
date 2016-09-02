@@ -148,6 +148,8 @@ public class WorldBuilderRenderer extends AnimationTimer {
                 tiles.get(i, j).setHoverType(tileType);
             }
         }
+        //Untick the second mission box
+        missions.Mission2ImageCompleted();
     }
 
     public void setCurrentEntitySelected(ResourceType entityType) {
@@ -219,8 +221,8 @@ public class WorldBuilderRenderer extends AnimationTimer {
         
         //Achievement score will be incremented whenever any building is built
         achievementScore.achieveVeasy();
-        //If any building is built then "X" will be changed to "O"
-        missions.MissionCompleted();
+        //If any building is built then unchecked box will be changed to checked box
+        missions.Mission1ImageCompleted();       
     }
 
     /**

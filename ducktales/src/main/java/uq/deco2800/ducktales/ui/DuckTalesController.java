@@ -22,6 +22,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.ScrollBar;
 import javafx.stage.Stage;
 
 public class DuckTalesController implements Initializable {
@@ -86,14 +87,16 @@ public class DuckTalesController implements Initializable {
 
 	@FXML
 	private void missionAndAchievement(ActionEvent event) throws Exception {
-
+		
 		URL location = getClass().getResource("/missionAndAchievement.fxml");
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(location);
 		Parent root = loader.load(location.openStream());
+		
 		Scene missionAndAchievementScene = new Scene(root, 800, 400);
-
+		
 		Stage missionAndAchievementStage = new Stage();
+		
 		missionAndAchievementStage.setTitle("Mission and Achievement");
 		missionAndAchievementStage.setScene(missionAndAchievementScene);
 		missionAndAchievementStage.show();
