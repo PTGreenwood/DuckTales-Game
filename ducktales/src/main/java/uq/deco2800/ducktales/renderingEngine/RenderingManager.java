@@ -1,4 +1,4 @@
-package uq.deco2800.ducktales.renderingEngine;
+package uq.deco2800.ducktales.renderingengine;
 
 /**
  * This class contains the information about the size of the world, as well

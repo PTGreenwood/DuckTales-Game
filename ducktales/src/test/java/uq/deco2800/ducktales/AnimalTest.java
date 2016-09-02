@@ -21,7 +21,7 @@ public class AnimalTest {
      * Tests creation of duck.
      */
     @Test
-    public void duckTest() {
+    public void animalTest() {
 
     	// Create base entities for testing purposes
         EntityManager entityManager = EntityManager.getInstance();
@@ -30,22 +30,22 @@ public class AnimalTest {
         entityManager.addEntity(duck);
         entityManager.addEntity(opponent);
 
-        // Test whether the creation of each cow has no null attributes
+        // Test whether the creation of Animal has no null attributes
         assertNotNull("Duck cannot be null.", duck);
         assertNotNull("Health cannot be null.", duck.getHealth());
         assertNotNull("Hunger cannot be null.", duck.getHunger());
         assertNotNull("Thirst cannot be null.", duck.getThirst());
         assertNotNull("Strength cannot be null.", duck.getStrength());
 
-        // Test whether Cow class methods return expected values
-        // assertTrue("Speed is incorrect.", duck.getSpeed() == 0.01);
+        // Test whether Animal class methods return expected values.
+        assertTrue("Speed is incorrect.", duck.getSpeed() == 0.1);
         assertTrue("type is incorrect.", duck.getType() == ResourceType.DUCK);
         assertTrue("Duck cannot be killed on creation.", duck.canBeKilled() == false);
         assertTrue("Duck cannot lay eggs on creation.", duck.canLayEggs() == false);
         assertTrue("Duck cannot drop feathers on creation.", duck.canDropFeathers() == false);
         assertTrue("Duck cannot be dead on creation.", duck.isDead() == false);
 
-        // Attribute setting tests for the Duck class
+        // Test attribute setters from Animal class
         duck.setHealth(101);
         assertTrue("Duck health should be 100 if parameter is greater than 100. ", duck.getHealth() == 100);
         duck.setHealth(50);

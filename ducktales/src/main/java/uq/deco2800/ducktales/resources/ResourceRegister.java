@@ -79,10 +79,10 @@ public class ResourceRegister {
 		addResource(TREE_3, "/tree_3.png");
 		addResource(HOUSE, "/house.png");
 		addResource(DUCK, "/duck.png");
-		addResource(DUCKUpRight, "/DUCKUpRight.png");
-		addResource(DUCKUpLeft, "/DUCKUpLeft.png");
-		addResource(DUCKDownRight, "/DUCKDownRight.png");
-		addResource(DUCKDownLeft, "/DUCKDownLeft.png");
+		addResource(DUCKRight, "/DUCKRight.png");
+		addResource(DUCKLeft, "/DUCKLeft.png");
+		addResource(DUCKDown, "/DUCKDown.png");
+		addResource(DUCKUp, "/DUCKUp.png");
 		addResource(COW, "/cow.png");
 		
 		// the following will be uncommented once the relevant resources

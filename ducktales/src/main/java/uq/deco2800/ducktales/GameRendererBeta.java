@@ -7,7 +7,7 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.layout.*;
 import uq.deco2800.ducktales.renderingEngine.WorldEntityRenderingInfo;
 import uq.deco2800.ducktales.hud.BuildingSprite;
-import uq.deco2800.ducktales.renderingEngine.RenderingManager;
+import uq.deco2800.ducktales.renderingengine.RenderingManager;
 import uq.deco2800.ducktales.resources.ResourceRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.renderingEngine.tiles.TileBeta;

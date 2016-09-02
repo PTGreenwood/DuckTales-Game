@@ -18,7 +18,7 @@ public class Duck extends Animal {
     private EntityManager opponentList; // List of possible opponents.
 
     public Duck(int x, int y) {
-        super(x, y, DUCK, 1, 1, 1, 1, 0.05);
+        super(x, y, ResourceType.DUCK, 1, 1, 1, 1, 0.1);
         int var = (int) (Math.random() * 100);
         int var2 = (int) (Math.random() * 20);
         setStartingHealth(var);

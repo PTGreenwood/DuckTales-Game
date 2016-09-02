@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 import uq.deco2800.ducktales.GameManager;
+import uq.deco2800.ducktales.entities.EntityManager;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.AStar;
 import uq.deco2800.ducktales.util.Point;
@@ -32,6 +33,7 @@ public class Animal extends AgentEntity {
     private boolean isDead = false; // Whether the animal is dead.
     private String direction; // The direction that the animal is travelling.
     private List<Point> goalPoints;
+    private EntityManager entityManager = EntityManager.getInstance();
 
 
     public Animal(int x, int y, ResourceType type, int health, int hunger, int thirst, int
@@ -46,7 +48,6 @@ public class Animal extends AgentEntity {
         this.canBeKilled = false;
         this.outOfZone = false;
         this.isDead = false;
-        this.direction = "UpRight";
         this.goalPoints = new ArrayList<Point>();
     }
 
@@ -63,20 +64,22 @@ public class Animal extends AgentEntity {
                 this.goalPoints = newGoalPoints();
             }
         } else {
-            String newDir;
-            if (goalPoints.get(0).getY() >= point.getY()) {
+            String newDir = null;
+            if (goalPoints.get(0).getX() > point.getX()) {
+                newDir = "Left";
+            }
+            if (goalPoints.get(0).getX() < point.getX()) {
+                newDir = "Right";
+            }
+            if (goalPoints.get(0).getY() > point.getY()) {
                 newDir = "Down";
-            } else {
+            }
+            if (goalPoints.get(0).getY() < point.getY()) {
                 newDir = "Up";
             }
-            if (goalPoints.get(0).getX() >= point.getX()) {
-                newDir += "Right";
-            } else {
-                newDir += "Left";
-            }
-            direction = newDir;
-            this.updateType(ResourceType.valueOf(this.getSprite()));
-            point.moveToward(goalPoints.get(0), speed);
+            setDirection(newDir);
+            updateType(ResourceType.valueOf(getSprite()));
+            point.moveToward(goalPoints.get(0), getSpeed());
         }
         calculateRenderingOrderValues();
     }
@@ -169,8 +172,9 @@ public class Animal extends AgentEntity {
     /**
      * The animal's health is decreased when attacked by another entity.
      */
-    public void isAttacked() {
-        this.health -= 10; // the health will be decreased by the amount of the peon's attack/strength -> replace 10
+    public void isAttacked(Peon opponent) {
+        this.health -= opponent.getStrength(); // the health will be decreased by the amount of the peon's attack/strength ->
+        // replace 10
         if (this.getHealth() <= 0) {
             killAnimal();
         }
@@ -185,7 +189,7 @@ public class Animal extends AgentEntity {
 //			this.health = 0;
 //		}
 //		if(this.getHealth() <= 0) {
-//			this.canBeKilled = true; // The animal will be removed in the AnimalManager class.
+//			this.canBeKilled = true; // The animal will be removed in the class.
 //		}
     }
 
