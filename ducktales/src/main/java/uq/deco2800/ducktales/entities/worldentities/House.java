@@ -12,7 +12,7 @@ public class House extends WorldEntity {
 	// Building type
 	private static final ResourceType TYPE = ResourceType.HOUSE;
 
-	private int Health =1000;
+	private int health =1000;
 
 	/**
 	 * Initialise a new house. Requires the location of the house
@@ -26,12 +26,12 @@ public class House extends WorldEntity {
 	
 	public void ChangeHealth(int NewValue){
 		if (NewValue >0){
-			this.Health =NewValue;
+			this.health =NewValue;
 		}
 	}
 	
 	public int GetHealth(){
-		return Health;
+		return health;
 	}
 	
 	/**
