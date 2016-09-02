@@ -22,6 +22,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.ScrollBar;
 import javafx.stage.Stage;
 
 public class DuckTalesController implements Initializable {
@@ -86,14 +87,16 @@ public class DuckTalesController implements Initializable {
 
 	@FXML
 	private void missionAndAchievement(ActionEvent event) throws Exception {
-
+		
 		URL location = getClass().getResource("/missionAndAchievement.fxml");
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(location);
 		Parent root = loader.load(location.openStream());
+		
 		Scene missionAndAchievementScene = new Scene(root, 800, 400);
-
+		
 		Stage missionAndAchievementStage = new Stage();
+		
 		missionAndAchievementStage.setTitle("Mission and Achievement");
 		missionAndAchievementStage.setScene(missionAndAchievementScene);
 		missionAndAchievementStage.show();
@@ -250,12 +253,15 @@ public class DuckTalesController implements Initializable {
 	}
 
 	/**
-	 * Show the given pane in the rightPane.
+	 * Show the given pane in the contentPane.
 	 * 
 	 * @param pane
 	 *            The pane to be shown in the right pane
 	 */
 	private void showPane(Pane pane) {
+		if (mainMenuPane.isVisible()) {
+			toggleMenuPane();
+		}
 		contentPane.getChildren().removeAll(gameCanvas, worldBuilderPane, gamePane);
 		contentPane.getChildren().add(pane);
 	}
@@ -271,7 +277,6 @@ public class DuckTalesController implements Initializable {
 	}
 
 	public void toggleMenuPane() {
-		System.out.println(mainMenuPane.isVisible());
 		if (mainMenuPane.isVisible()) {
 			contentPane.setVisible(true);
 			mainMenuPane.setVisible(false);

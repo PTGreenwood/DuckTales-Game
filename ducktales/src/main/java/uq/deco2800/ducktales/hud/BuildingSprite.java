@@ -5,10 +5,10 @@ import javafx.scene.image.ImageView;
 import uq.deco2800.ducktales.GameManagerBeta;
 import uq.deco2800.ducktales.resources.ResourceRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
-import uq.deco2800.ducktales.util.Events.TileEvents.TileClickedEvent;
-import uq.deco2800.ducktales.util.Events.UIEvents.BuildingMenuDeselectedEvent;
-import uq.deco2800.ducktales.util.Events.UIEvents.BuildingMenuSelectedEvent;
-import uq.deco2800.ducktales.util.Events.UIEvents.CursorMovedEvent;
+import uq.deco2800.ducktales.util.events.tileevents.TileClickedEvent;
+import uq.deco2800.ducktales.util.events.uievents.BuildingMenuDeselectedEvent;
+import uq.deco2800.ducktales.util.events.uievents.BuildingMenuSelectedEvent;
+import uq.deco2800.ducktales.util.events.uievents.CursorMovedEvent;
 
 /**
  * This class represents a sprite of a building, to be rendered into the game
@@ -23,17 +23,13 @@ public class BuildingSprite extends ImageView {
     private ResourceType buildingType;
     private Image buildingSprites; // The sprite of the building
 
-    /** The manager of the game */
-    private GameManagerBeta manager;
-
     /**
      * Create a sprite of the given building sprite, and give it a handle of
      * the game manager
      *
      * @param buildingType
      */
-    public BuildingSprite(ResourceType buildingType, GameManagerBeta manager) {
-        this.manager = manager;
+    public BuildingSprite(ResourceType buildingType) {
         this.buildingSprites =
                 ResourceRegister.getInstance().getResourceImage(buildingType);
         this.buildingType = buildingType;

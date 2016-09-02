@@ -1,5 +1,7 @@
 package uq.deco2800.ducktales.entities;
 
+import java.math.BigDecimal;
+
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.Point;
 import uq.deco2800.ducktales.util.Tickable;
@@ -67,12 +69,12 @@ public abstract class Entity implements Comparable<Entity>, Tickable{
 
 	@Override
 	public int compareTo(Entity entity) {
-		// Converting to double didn't fix
-		if (this.distanceTop == entity.distanceTop) {
-			// Converting to double didn't fix
-			if (this.distanceBottom == entity.distanceBottom) {
-				// Converting to double didn't fix
-				if (this.distanceInside == entity.distanceInside) {
+		// Fix big of comparing floats by checking difference
+		if (this.distanceTop - entity.distanceTop == 0) {
+			// Fix big of comparing floats by checking difference
+			if (this.distanceBottom - entity.distanceBottom == 0) {
+				// Fix big of comparing floats by checking difference
+				if (this.distanceInside - entity.distanceInside == 0) {
 					return 0;
 				} else if (this.distanceInside < entity.distanceInside) {
 					return -1;

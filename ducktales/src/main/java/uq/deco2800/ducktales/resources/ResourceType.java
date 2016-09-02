@@ -30,6 +30,7 @@ public enum ResourceType {
 
         // Buildings
         HOUSE, SAWMILL, BAKERY, CEMETERY, BARN, FORGE, HOSPITAL, OBSERVATORY, FARMHOUSE,
+        PASTURE, CLINIC,
 
         // Miscellaneous
         BOX, LONG_BOX, WOOD_BOX
