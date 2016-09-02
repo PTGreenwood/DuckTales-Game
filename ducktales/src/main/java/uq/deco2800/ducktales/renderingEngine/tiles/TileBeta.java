@@ -1,14 +1,14 @@
-package uq.deco2800.ducktales.renderingEngine.tiles;
+package uq.deco2800.ducktales.renderingengine.tiles;
 
 import javafx.scene.image.ImageView;
 import uq.deco2800.ducktales.GameManagerBeta;
 import uq.deco2800.ducktales.GameRendererBeta;
 import uq.deco2800.ducktales.resources.ResourceRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
-import uq.deco2800.ducktales.util.Events.TileEvents.TileClickedEvent;
-import uq.deco2800.ducktales.util.Events.TileEvents.TileEnteredEvent;
-import uq.deco2800.ducktales.util.Events.TileEvents.TileExitedEvent;
-import uq.deco2800.ducktales.util.Events.UIEvents.BuildingMenuDeselectedEvent;
+import uq.deco2800.ducktales.util.events.tileevents.TileClickedEvent;
+import uq.deco2800.ducktales.util.events.tileevents.TileEnteredEvent;
+import uq.deco2800.ducktales.util.events.tileevents.TileExitedEvent;
+import uq.deco2800.ducktales.util.events.uievents.BuildingMenuDeselectedEvent;
 
 /**
  * A tile in the game. The tile will contain information on what entity is

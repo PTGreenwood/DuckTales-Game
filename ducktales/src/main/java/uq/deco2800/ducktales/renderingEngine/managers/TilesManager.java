@@ -1,7 +1,7 @@
-package uq.deco2800.ducktales.renderingEngine.managers;
+package uq.deco2800.ducktales.renderingengine.managers;
 
 import uq.deco2800.ducktales.GameManagerBeta;
-import uq.deco2800.ducktales.renderingEngine.tiles.TileBeta;
+import uq.deco2800.ducktales.renderingengine.tiles.TileBeta;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.Array2D;
 import uq.deco2800.ducktales.world.WorldBeta;
