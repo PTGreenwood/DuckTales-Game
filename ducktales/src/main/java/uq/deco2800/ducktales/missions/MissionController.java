@@ -5,9 +5,11 @@ import java.net.URL;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
@@ -79,11 +81,11 @@ public class MissionController {
 		missions2.setFont(new Font("Arial", 24));
 		
 		ImageView mission1Box = new ImageView();
-		mission1Box = Missions.getInstance().getMission1ImageCompleted();
+		mission1Box = Missions.getInstance().getMissionImageCompleted(0);
 		HBox mission1HBox = new HBox();
 		mission1HBox.getChildren().addAll(missions1,mission1Box);
 		ImageView mission2Box = new ImageView();
-		mission2Box = Missions.getInstance().getMission2ImageCompleted();
+		mission2Box = Missions.getInstance().getMissionImageCompleted(1);
 		HBox mission2HBox = new HBox();
 		mission2HBox.getChildren().addAll(missions2,mission2Box);
 		
@@ -115,17 +117,17 @@ public class MissionController {
 		
 		GridPane missions = new GridPane();		
 		
-		Label missions1 = new Label("1.Click a hospital in Construct Building menu :  ");
+		Label missions1 = new Label("1.Click Add peon :  ");
 		missions1.setFont(new Font("Arial", 24));
 		Label missions2 = new Label("2.Click marketplace :  ");
 		missions2.setFont(new Font("Arial", 24));
 		
 		ImageView mission1Box = new ImageView();
-		mission1Box = Missions.getInstance().getMission3ImageCompleted();
+		mission1Box = Missions.getInstance().getMissionImageCompleted(2);
 		HBox mission1HBox = new HBox();
 		mission1HBox.getChildren().addAll(missions1,mission1Box);
 		ImageView mission2Box = new ImageView();
-		mission2Box = Missions.getInstance().getMission4ImageCompleted();
+		mission2Box = Missions.getInstance().getMissionImageCompleted(3);
 		HBox mission2HBox = new HBox();
 		mission2HBox.getChildren().addAll(missions2,mission2Box);
 		
@@ -171,6 +173,7 @@ public class MissionController {
 		
 		
 		achieveGrid.setVgap(10);
+		achieveGrid.setPadding(new Insets(10, 10, 10, 10));
 		achieveGrid.add(pi1, 0, 1);
 		achieveGrid.add(pi1Label, 0, 2);
 		
@@ -194,14 +197,24 @@ public class MissionController {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(location);
 		
+		GridPane levelGrid = new GridPane();
+		
 		Label levelTop = new Label("Leveling System");
 		levelTop.setFont(new Font("Arial", 36));
 		Label levelDisplay = new Label("Level : " + levelMain.getLevel());
 		
+		ProgressBar  pb1 = new ProgressBar();
+		pb1 = levelMain.getProgressIndicator();
+		
+		levelGrid.setVgap(10);
+		levelGrid.setPadding(new Insets(10, 10, 10, 10));
+		levelGrid.add(levelDisplay, 0, 1);
+		levelGrid.add(pb1, 0, 2);
+		
 		level = loader.load();
 		level.setTop(levelTop);
 		level.setAlignment(levelTop, Pos.CENTER);
-		level.setCenter(levelDisplay);
+		level.setCenter(levelGrid);
 		level.setPrefHeight(rightPane.getHeight());
 		level.setPrefWidth(rightPane.getWidth());
 		

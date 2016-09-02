@@ -11,6 +11,7 @@ import uq.deco2800.ducktales.GameManagerBeta;
 import uq.deco2800.ducktales.GameRendererBeta;
 import uq.deco2800.ducktales.achievements.Achievements;
 import uq.deco2800.ducktales.achievements.progressIndicator;
+import uq.deco2800.ducktales.level.Level;
 import uq.deco2800.ducktales.missions.Missions;
 import uq.deco2800.ducktales.resources.InventoryManager;
 
@@ -118,14 +119,13 @@ public class GameController{
 
         showInfoPane(marketplacePane);
         
-        //Untick mission2 box in Achievement window of Gamebeta when marketplace is clicked
-        Missions.getInstance().Mission4ImageCompleted();
-        progressIndicator.getInstance().setProgressPercentage(0.5);
-        Achievements.getInstance().achieveEasy();
+        missionCompltedAction(3);
     }
 
     @FXML
     public void addPeon(ActionEvent event) {
+    	
+    	missionCompltedAction(2);
     }
 
     @FXML
@@ -163,6 +163,21 @@ public class GameController{
         rootPane.setBottomAnchor(closeInfoPaneButton, verticalAnchor - 30);
 
     }
-
+    
+    private void missionCompltedAction(int i){
+    	
+    	//Untick mission2 box in Achievement window of Gamebeta when marketplace is clicked
+        Missions.getInstance().MissionImageCompleted(i);
+        //Increment percentage of progress indicator in achievement
+        progressIndicator.getInstance().setProgressPercentage(Missions.getInstance().getMissionCount());
+        //Increment total achievement score
+        Achievements.getInstance().achieveEasy();
+        //Increment percentage of progress bar in leveling system
+        Level.getInstance().setProgressBar(0.5);
+        //if progress bar is full then level up
+        if(Level.getInstance().getBarProgress() == 1.0){
+        	Level.getInstance().LevelUp();
+        }
+    }
 
 }
