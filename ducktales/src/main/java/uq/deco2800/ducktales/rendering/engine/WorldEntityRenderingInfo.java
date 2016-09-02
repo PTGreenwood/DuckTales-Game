@@ -1,8 +1,7 @@
-package uq.deco2800.ducktales.renderingengine;
+package uq.deco2800.ducktales.rendering.engine;
 
 import uq.deco2800.ducktales.resources.ResourceType;
 
-import java.util.ArrayList;
 import java.util.concurrent.ConcurrentHashMap;
 
 import static uq.deco2800.ducktales.resources.ResourceType.*;

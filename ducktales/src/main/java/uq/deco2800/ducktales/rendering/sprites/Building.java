@@ -1,4 +1,4 @@
-package uq.deco2800.ducktales.renderingEngine.sprites;
+package uq.deco2800.ducktales.rendering.sprites;
 
 import javafx.scene.image.ImageView;
 import uq.deco2800.ducktales.resources.ResourceType;

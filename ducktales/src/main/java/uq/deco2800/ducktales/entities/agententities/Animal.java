@@ -9,8 +9,6 @@ import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.AStar;
 import uq.deco2800.ducktales.util.Point;
 
-import uq.deco2800.ducktales.renderingengine.tiles.Tile;
-
 /**
  * Base class for all animals.
  *

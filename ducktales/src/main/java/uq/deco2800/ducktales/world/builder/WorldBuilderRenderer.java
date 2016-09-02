@@ -12,8 +12,8 @@ import uq.deco2800.ducktales.achievements.Achievements;
 import uq.deco2800.ducktales.missions.Missions;
 import uq.deco2800.ducktales.resources.ResourceRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
-import uq.deco2800.ducktales.renderingengine.tiles.WorldBuilderTile;
-import uq.deco2800.ducktales.renderingengine.WorldEntityRenderingInfo;
+import uq.deco2800.ducktales.rendering.tiles.WorldBuilderTile;
+import uq.deco2800.ducktales.rendering.engine.WorldEntityRenderingInfo;
 import uq.deco2800.ducktales.util.Array2D;
 import uq.deco2800.ducktales.world.World;
 

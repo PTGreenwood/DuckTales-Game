@@ -119,13 +119,13 @@ public class GameController{
 
         showInfoPane(marketplacePane);
         
-        missionCompltedAction(3);
+        missionCompletedAction(3);
     }
 
     @FXML
     public void addPeon(ActionEvent event) {
     	
-    	missionCompltedAction(2);
+    	missionCompletedAction(2);
     }
 
     @FXML
@@ -164,7 +164,7 @@ public class GameController{
 
     }
     
-    private void missionCompltedAction(int i){
+    private void missionCompletedAction(int i){
     	
     	//Untick mission2 box in Achievement window of Gamebeta when marketplace is clicked
         Missions.getInstance().MissionImageCompleted(i);
