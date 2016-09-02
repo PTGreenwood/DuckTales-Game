@@ -9,6 +9,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import uq.deco2800.ducktales.GameManagerBeta;
 import uq.deco2800.ducktales.GameRendererBeta;
+import uq.deco2800.ducktales.achievements.Achievements;
+import uq.deco2800.ducktales.achievements.progressIndicator;
 import uq.deco2800.ducktales.missions.Missions;
 import uq.deco2800.ducktales.resources.InventoryManager;
 
@@ -118,6 +120,8 @@ public class GameController{
         
         //Untick mission2 box in Achievement window of Gamebeta when marketplace is clicked
         Missions.getInstance().Mission4ImageCompleted();
+        progressIndicator.getInstance().setProgressPercentage(0.5);
+        Achievements.getInstance().achieveEasy();
     }
 
     @FXML

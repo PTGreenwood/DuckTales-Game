@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -15,8 +16,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import uq.deco2800.ducktales.achievements.Achievements;
+import javafx.scene.control.ProgressIndicator;
+import uq.deco2800.ducktales.achievements.progressIndicator;
 import uq.deco2800.ducktales.level.Level;
 import uq.deco2800.ducktales.world.builder.WorldBuilderRenderer;
 
@@ -39,6 +43,7 @@ public class MissionController {
 	Achievements achievementMain = Achievements.getInstance();
 	Missions missionMain = Missions.getInstance();
 	Level levelMain = Level.getInstance();
+	progressIndicator piMain = progressIndicator.getInstance();
 	
 	@FXML
 	public void startmission1(ActionEvent event) throws Exception {
@@ -46,10 +51,17 @@ public class MissionController {
 		URL location = getClass().getResource("mission1.fxml");
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(location);
+		
+		Label mission1Top = new Label("LaunchGame Missions");
+		mission1Top.setFont(new Font("Arial",36));
+		
 		mission1 = loader.load();
+		mission1.setTop(mission1Top);
+		mission1.setAlignment(mission1Top, Pos.CENTER);
 		mission1.setPrefHeight(rightPane.getHeight());
 		mission1.setPrefWidth(rightPane.getWidth());		
 		rightPane.getChildren().add(mission1);
+		
 	}
 	
 	@FXML
@@ -79,13 +91,15 @@ public class MissionController {
 		missions.add(mission1HBox, 0, 1);
 		missions.add(mission2HBox, 0, 2);
 		
-		Label mission2Top = new Label("WorldBuilder Mission");
+		Label mission2Top = new Label("WorldBuilder Missions");
 		mission2Top.setFont(new Font("Arial",36));
+		
+		ScrollPane scroll = new ScrollPane(missions);
 		
 		mission2 = loader.load();
 		mission2.setAlignment(mission2Top, Pos.CENTER);
 		mission2.setTop(mission2Top);
-		mission2.setCenter(missions);		
+		mission2.setCenter(scroll);		
 		mission2.setPrefHeight(rightPane.getHeight());
 		mission2.setPrefWidth(rightPane.getWidth());		
 		
@@ -99,7 +113,7 @@ public class MissionController {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(location);
 		
-		GridPane missions = new GridPane();
+		GridPane missions = new GridPane();		
 		
 		Label missions1 = new Label("1.Click a hospital in Construct Building menu :  ");
 		missions1.setFont(new Font("Arial", 24));
@@ -119,24 +133,20 @@ public class MissionController {
 		missions.add(mission1HBox, 0, 1);
 		missions.add(mission2HBox, 0, 2);
 		
-		
 		Label mission3Top = new Label("World Builder Missions");
 		mission3Top.setFont(new Font("Arial", 36));
+		
+		ScrollPane scroll = new ScrollPane(missions);
 		
 		mission3 = loader.load();
 
 		mission3.setTop(mission3Top);
-		mission3.setCenter(missions);
+		mission3.setCenter(scroll);
 		mission3.setAlignment(mission3Top, Pos.CENTER);
 		mission3.setPrefHeight(rightPane.getHeight());
 		mission3.setPrefWidth(rightPane.getWidth());		
 		
-		rightPane.getChildren().add(mission3);
-		
-		
-		
-		
-		
+		rightPane.getChildren().add(mission3);		
 	}
 	
 	
@@ -148,15 +158,28 @@ public class MissionController {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(location);
 		
-		Label achieveLabel = new Label("Achievement : " + achievementMain.getAchieve());
+		GridPane achieveGrid = new GridPane();
+		
+		Label achieveLabel = new Label("Total Achievement : " + achievementMain.getAchieve());
 		achieveLabel.setFont(new Font("Arial", 24));
 		Label achieveTop = new Label("Achievement");
 		achieveTop.setFont(new Font("Arial", 36));
 		
+		Label pi1Label = new Label("GameBeta Mission Progress");
+		ProgressIndicator  pi1 = new ProgressIndicator();
+		pi1 = piMain.getProgressIndicator();
+		
+		
+		achieveGrid.setVgap(10);
+		achieveGrid.add(pi1, 0, 1);
+		achieveGrid.add(pi1Label, 0, 2);
+		
 		achievement = loader.load();
 		achievement.setTop(achieveTop);
 		achievement.setAlignment(achieveTop, Pos.CENTER);
-		achievement.setCenter(achieveLabel);		
+		achievement.setCenter(achieveGrid);		
+		achievement.setBottom(achieveLabel);
+		achievement.setAlignment(achieveLabel, Pos.CENTER);
 		achievement.setPrefHeight(rightPane.getHeight());
 		achievement.setPrefWidth(rightPane.getWidth());		
 		
@@ -182,8 +205,7 @@ public class MissionController {
 		level.setPrefHeight(rightPane.getHeight());
 		level.setPrefWidth(rightPane.getWidth());
 		
-		rightPane.getChildren().add(level);
-		
+		rightPane.getChildren().add(level);	
 	}
 	
 	
