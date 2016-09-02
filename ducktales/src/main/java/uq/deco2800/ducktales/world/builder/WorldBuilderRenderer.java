@@ -149,7 +149,7 @@ public class WorldBuilderRenderer extends AnimationTimer {
             }
         }
         //Untick the second mission box
-        missions.Mission2ImageCompleted();
+        missions.MissionImageCompleted(1);
     }
 
     public void setCurrentEntitySelected(ResourceType entityType) {
@@ -222,7 +222,7 @@ public class WorldBuilderRenderer extends AnimationTimer {
         //Achievement score will be incremented whenever any building is built
         achievementScore.achieveVeasy();
         //If any building is built then unchecked box will be changed to checked box
-        missions.Mission1ImageCompleted();       
+        missions.MissionImageCompleted(0);       
     }
 
     /**
