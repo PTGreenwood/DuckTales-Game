@@ -5,18 +5,15 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.*;
-import uq.deco2800.ducktales.HUD.BuildingSprite;
-import uq.deco2800.ducktales.renderingEngine.WorldEntityRenderingInfo;
-import uq.deco2800.ducktales.renderingEngine.RenderingManager;
+import uq.deco2800.ducktales.hud.BuildingSprite;
 import uq.deco2800.ducktales.resources.ResourceRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
-import uq.deco2800.ducktales.resources.tiles.TileBeta;
+import uq.deco2800.ducktales.renderingengine.tiles.TileBeta;
+import uq.deco2800.ducktales.renderingengine.RenderingManager;
+import uq.deco2800.ducktales.renderingengine.WorldEntityRenderingInfo;
 import uq.deco2800.ducktales.util.Array2D;
-import uq.deco2800.ducktales.util.Events.TileEvents.TileEnteredEvent;
-import uq.deco2800.ducktales.util.Events.TileEvents.TileExitedEvent;
-import uq.deco2800.ducktales.util.Events.UIEvents.BuildingMenuDeselectedEvent;
-import uq.deco2800.ducktales.util.Events.UIEvents.BuildingMenuSelectedEvent;
-import uq.deco2800.ducktales.util.Events.UIEvents.CursorMovedEvent;
+import uq.deco2800.ducktales.util.events.tileevents.*;
+import uq.deco2800.ducktales.util.events.uievents.*;
 import uq.deco2800.ducktales.world.WorldBeta;
 
 import java.util.ArrayList;
@@ -30,12 +27,13 @@ public class GameRendererBeta extends AnimationTimer {
     /**
      * CONSTANTS
      */
-    private final ResourceType[] BUILDINGS = {
-        HOSPITAL, BAKERY, BARN
+    private static final ResourceType[] BUILDINGS = {
+        //HOSPITAL, BAKERY, BARN, <--- these buildings are of the wrong size
+        CLINIC, PASTURE
     };
 
     /** The Root pane where all HUD elements, and world pane will be added to*/
-    private BorderPane root;
+    private AnchorPane root;
 
     /** HUD variables */
     private Pane worldPane; // The main area where game graphics will be rendered onto
@@ -79,7 +77,7 @@ public class GameRendererBeta extends AnimationTimer {
      * @param buttonsMenu
      * @param buildingsMenu
      */
-    public GameRendererBeta(BorderPane root, Pane worldPane,
+    public GameRendererBeta(AnchorPane root, Pane worldPane,
                             AnchorPane buttonsMenu, HBox buildingsMenu) {
         // Setup UI elements
         this.root = root;
@@ -105,12 +103,13 @@ public class GameRendererBeta extends AnimationTimer {
 
         // Setup cursor image
         this.cursorImage = new ImageView();
+        this.cursorImage.setMouseTransparent(true);
         root.getChildren().add(this.cursorImage);
 
         // Initialize the building sprites for buildings menu
         buildingSprites = new ArrayList<>();
         for (int i = 0; i < BUILDINGS.length; i++) {
-            BuildingSprite sprite = new BuildingSprite(BUILDINGS[i], this.manager);
+            BuildingSprite sprite = new BuildingSprite(BUILDINGS[i]);
 
             buildingSprites.add(sprite);
         }
@@ -218,7 +217,7 @@ public class GameRendererBeta extends AnimationTimer {
                 double y = startingY + (j + i) * scaledHeight / 2;
 
                 tile = tiles.get(i, j);
-                tile.setImage(resource.getResourceImage(tile.getType()));
+                tile.setImage(resource.getResourceImage(tile.getTileType()));
 
                 tile.setFitHeight(tileHeight * generalScale);
                 tile.setFitWidth(tileWidth * generalScale);
@@ -230,8 +229,6 @@ public class GameRendererBeta extends AnimationTimer {
 
             }
         }
-
-
     }
 
 
@@ -249,7 +246,27 @@ public class GameRendererBeta extends AnimationTimer {
         worldPane.addEventHandler(TileExitedEvent.TILE_EXITED, event -> {
             //System.err.println(event.toString());
             TileBeta tile = world.getTiles().get(event.getxPos(), event.getyPos());
-            tile.setImage(resource.getResourceImage(tile.getType()));
+            tile.setImage(resource.getResourceImage(tile.getTileType()));
+        });
+        worldPane.addEventHandler(TileClickedEvent.TILE_CLICKED, event -> {
+            System.err.println("building " + manager.getCurrentResourceManaging()
+            + " to be added to: " + event.getxPos() + ", " +event.getyPos());
+
+            // Check if there is any resource currently being managed
+            if (manager.getCurrentResourceManaging() != NONE) {
+                // Tell the manager to add the building to the game world
+                manager.addBuildingToWorld(
+                        manager.getCurrentResourceManaging(),
+                        event.getxPos(),
+                        event.getyPos()
+                );
+            }
+
+            // reset the cursor image
+            cursorImage.setImage(null);
+
+            // reset manager's current resource managing
+            manager.setCurrentResourceManaging(NONE);
         });
 
         /*
@@ -264,7 +281,7 @@ public class GameRendererBeta extends AnimationTimer {
             this.cursorImage.setLayoutY(event.getStartingY());
 
             // Scale the cursor image by the scale given by rendering manager
-            double scale = renderingManager.getMainScaleFactor();
+            double scale = renderingManager.getBuildingScale();
             this.cursorImage.setFitHeight(sprite.getHeight() * scale);
             this.cursorImage.setFitWidth(sprite.getWidth() * scale);
 
@@ -275,13 +292,20 @@ public class GameRendererBeta extends AnimationTimer {
             // reveal the sprite
             this.cursorImage.setImage(sprite);
 
+            // notify the manager
+            System.err.println("building clicked: " + event.getType());
+            manager.setCurrentResourceManaging(event.getType());
+
         });
         buildingsMenu.addEventHandler(BuildingMenuDeselectedEvent.BUILDING_MENU_DESELECTED_EVENT, event -> {
             // Return the cursor image to null, and perform update on the world tiles
             // if the mouse is released on top of a tile
             this.cursorImage.setImage(null);
 
-            System.err.println("adding building will be implemented soon");
+            // set the current resource managed to be NONE
+            manager.setCurrentResourceManaging(NONE);
+
+            System.err.println("deselected a building");
 
         });
 

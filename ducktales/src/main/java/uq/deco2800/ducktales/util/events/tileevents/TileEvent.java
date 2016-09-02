@@ -1,4 +1,4 @@
-package uq.deco2800.ducktales.util.Events.TileEvents;
+package uq.deco2800.ducktales.util.events.tileevents;
 
 import javafx.beans.NamedArg;
 import javafx.event.Event;

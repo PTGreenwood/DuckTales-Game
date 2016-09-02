@@ -67,3 +67,11 @@
 .buildingsMenu {
     -fx-background-color: #A7AA9F;
 }
+
+.inventoryMenu {
+    -fx-background-color: #A7AA9F;
+
+}
+.inventoryMenuItem {
+    -fx-background-color: #F0EDE4;
+}

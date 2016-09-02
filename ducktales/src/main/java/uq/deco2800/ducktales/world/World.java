@@ -15,7 +15,7 @@ import uq.deco2800.ducktales.resources.ResourceRegister;
 import uq.deco2800.ducktales.entities.worldentities.*;
 
 import uq.deco2800.ducktales.resources.ResourceType;
-import uq.deco2800.ducktales.resources.tiles.Tile;
+import uq.deco2800.ducktales.renderingengine.tiles.Tile;
 import uq.deco2800.ducktales.util.*;
 
 import static uq.deco2800.ducktales.resources.ResourceType.*;
@@ -71,8 +71,8 @@ public class World implements Tickable {
 		addEntity(new Peon(3, 4));
 		addEntity(new Peon(13, 17));
 
-//		addEntity(new Duck(10,10));
-		addEntity(new Cow(8, 10));
+		addEntity(new Duck(10,10));
+//		addEntity(new Cow(8, 10));
 		addEntity(new Tree(5, 10));
 		addEntity(new Rock(15,15));
 	}

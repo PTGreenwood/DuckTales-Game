@@ -83,8 +83,24 @@ public class ResourceRegister {
 		// Agent entities
 		addResource(PEON, "/peon.png");
 		addResource(DUCK, "/duck.png");
+		addResource(DUCKUpRight, "/DUCKUpRight.png");
+		addResource(DUCKUpLeft, "/DUCKUpLeft.png");
+		addResource(DUCKDownRight, "/DUCKDownRight.png");
+		addResource(DUCKDownLeft, "/DUCKDownLeft.png");
 		addResource(COW, "/cow.png");
-//		addResource(SHEEP, "/sheep.png");
+		// the following will be uncommented once the relevant resources
+		// are created and added to the game, @team pokeducks
+		
+		// addResource(COWUpRight, "/COWUpRight.png");
+		// addResource(COWUpLeft, "/COWUpLeft.png");
+		// addResource(COWDownRight, "/COWDownRight.png");
+		// addResource(COWDownLeft, "/COWDownLeft.png");
+		
+        // addResource(SHEEP, "/sheep.png");
+		// addResource(SHEEPUpRight, "/SHEEPUpRight.png");
+		// addResource(SHEEPUpLeft, "/SHEEPUpLeft.png");
+		// addResource(SHEEPDownRight, "/SHEEPDownRight.png");
+		// addResource(SHEEPDownLeft, "/SHEEPDownLeft.png");
 
 		// Buildings
 		addResource(HOUSE, "/house.png");
@@ -93,6 +109,8 @@ public class ResourceRegister {
 		// note from creator of ResourceType: please remember to use the enums from
 		// ResourceType enum class instead of the previous String implementation
 		addResource(BAKERY, "/bakery.png");
+		addResource(PASTURE, "/buildings/pasture.png");
+		addResource(CLINIC, "/buildings/clinic.png");
 		//addResource(CEMETERY, "/cemetery.png");
 		addResource(FARMHOUSE, "/farm+barn.png");
 		addResource(BARN, "/barn.png");

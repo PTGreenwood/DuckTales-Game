@@ -15,7 +15,6 @@ import uq.deco2800.ducktales.world.*;
 import uq.deco2800.ducktales.world.builder.WorldBuilderManager;
 import uq.deco2800.ducktales.world.builder.WorldBuilderRenderer;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -23,8 +22,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
+import javafx.scene.control.ScrollBar;
 import javafx.stage.Stage;
 
 public class DuckTalesController implements Initializable {
@@ -44,7 +42,8 @@ public class DuckTalesController implements Initializable {
 	private WorldBuilderManager worldBuilderManager;
 
 	// UI for World Builder
-	private BorderPane worldBuilderPane, gamePane;
+	private BorderPane worldBuilderPane;
+	private AnchorPane gamePane;
 
 	private AtomicBoolean quit;
 
@@ -59,9 +58,6 @@ public class DuckTalesController implements Initializable {
 		tileRegister = ResourceRegister.getInstance();
 		gameManager = GameManager.getInstance();
 		worldBuilderManager = WorldBuilderManager.getInstance();
-		
-		achievementScore = Achievements.getInstance();
-		missions = Missions.getInstance();
 		
 		// Set the handlers for the game panes
 		contentPane.setOnMousePressed(new MousePressedHandler());
@@ -91,14 +87,16 @@ public class DuckTalesController implements Initializable {
 
 	@FXML
 	private void missionAndAchievement(ActionEvent event) throws Exception {
-
+		
 		URL location = getClass().getResource("/missionAndAchievement.fxml");
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(location);
 		Parent root = loader.load(location.openStream());
+		
 		Scene missionAndAchievementScene = new Scene(root, 800, 400);
-
+		
 		Stage missionAndAchievementStage = new Stage();
+		
 		missionAndAchievementStage.setTitle("Mission and Achievement");
 		missionAndAchievementStage.setScene(missionAndAchievementScene);
 		missionAndAchievementStage.show();
@@ -183,10 +181,13 @@ public class DuckTalesController implements Initializable {
 			} catch (Exception e) {
 				System.err.println("exception in loading fxml");
 			}
-			gamePane.setPrefSize(
-					contentPane.getWidth(),
-					contentPane.getHeight()
-			);
+
+			// Set the game pane to resize with the window
+			contentPane.setLeftAnchor(gamePane, 0.0);
+			contentPane.setRightAnchor(gamePane, 0.0);
+			contentPane.setTopAnchor(gamePane, 0.0);
+			contentPane.setBottomAnchor(gamePane, 0.0);
+
 			showPane(gamePane);
 
 			// Set up the controller
@@ -252,12 +253,15 @@ public class DuckTalesController implements Initializable {
 	}
 
 	/**
-	 * Show the given pane in the rightPane.
+	 * Show the given pane in the contentPane.
 	 * 
 	 * @param pane
 	 *            The pane to be shown in the right pane
 	 */
 	private void showPane(Pane pane) {
+		if (mainMenuPane.isVisible()) {
+			toggleMenuPane();
+		}
 		contentPane.getChildren().removeAll(gameCanvas, worldBuilderPane, gamePane);
 		contentPane.getChildren().add(pane);
 	}
@@ -273,7 +277,6 @@ public class DuckTalesController implements Initializable {
 	}
 
 	public void toggleMenuPane() {
-		System.out.println(mainMenuPane.isVisible());
 		if (mainMenuPane.isVisible()) {
 			contentPane.setVisible(true);
 			mainMenuPane.setVisible(false);

@@ -1,21 +1,29 @@
 package uq.deco2800.ducktales;
 
-import uq.deco2800.ducktales.renderingEngine.RenderingManager;
+import uq.deco2800.ducktales.renderingengine.*;
+import uq.deco2800.ducktales.renderingengine.managers.TilesManager;
+import uq.deco2800.ducktales.resources.InventoryManager;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.world.WorldBeta;
 
 import static uq.deco2800.ducktales.resources.ResourceType.*;
 
 /**
+ * This is the main manager of the game. All events related to game-logic should
+ * notify this manager, and the manager will deal with the information accordingly
+ *
+ * Note: the game renderer will handle specific rendering information only, not
+ * game logic
+ *
  * Created by Khoi on 31/08/2016.
  */
 public class GameManagerBeta {
     /**
      * CONSTANTS
      */
-    private final double DEFAULT_SCALE = 0.2;
-    private final int DEFAULT_WORLD_WIDTH = 30;
-    private final int DEFAULT_WORLD_HEIGHT = 30;
+    private static final double DefaultScale = 0.4;
+    private static final int DefaultWorldWidth = 20;
+    private static final int DefaultWorldHeight = 20;
 
     /** The game world */
     private WorldBeta world;
@@ -23,8 +31,14 @@ public class GameManagerBeta {
     /** The rendering engine */
     private GameRendererBeta renderer;
 
+    /** Static HUD element managers */
+    private InventoryManager inventoryManager;
+
     /** The class holding rendering information */
     private RenderingManager renderingManager;
+
+    /** The class managing the information of all the tiles */
+    private TilesManager tilesManager;
 
     /**
      * Variables for managing the game
@@ -59,7 +73,7 @@ public class GameManagerBeta {
         if (renderingManager == null) {
             // No rendering info is loaded. start a default renderingManager
             renderingManager = new RenderingManager(
-                    DEFAULT_SCALE, DEFAULT_WORLD_WIDTH, DEFAULT_WORLD_HEIGHT);
+                    DefaultScale, DefaultWorldWidth, DefaultWorldHeight);
         }
         if (world == null) {
             // No world has been pre-loaded. Start a default world
@@ -74,14 +88,49 @@ public class GameManagerBeta {
         renderer.setWorld(this.world);
         renderer.setRenderingManager(this.renderingManager);
 
+        // Setup the Tiles Manager to manage all the tiles in the world
+        tilesManager = new TilesManager(this, world.getTiles());
+
         // Start the rendering engine
         this.renderer.start();
 
     }
 
+
+
+    /**
+     * Return the current game world, which contains all the information about
+     * the current game being played
+     *
+     * @return the current world of the game
+     */
+    public WorldBeta getWorld() {
+        return this.world;
+    }
+
+    /**
+     * Get the type of the resource being managed. For example, a building
+     * that the player is trying to add to the game world
+     *
+     * @return the type of the resource currently being managed
+     */
+    public ResourceType getCurrentResourceManaging() {
+        return currentResourceManaging;
+    }
+
+    /**
+     * Set the inventory manager for this current game
+     *
+     * @param inventoryManager
+     *          The inventory manager of the current game
+     */
+    public void setInventoryManager(InventoryManager inventoryManager) {
+        this.inventoryManager = inventoryManager;
+    }
+
     /**
      * Set the renderer for this manager
-     * 
+     *
      * @param renderer
      *          The main game rendering engine
      */
@@ -108,42 +157,27 @@ public class GameManagerBeta {
     }
 
     /**
-     * Return the current game world, which contains all the information about
-     * the current game being played
-     *
-     * @return the current world of the game
-     */
-    public WorldBeta getWorld() {
-        return this.world;
-    }
-
-    /**
-     * Notify itself that a building sprite in the buildings menu has been clicked
+     * When this method is called, the manager will attempt to add an actual game
+     * building into the game world
      *
      * @param buildingType
-     *          The type of building in the buildings menu clicked
+     *          The type of the building to be added to the game world
+     * @param x
+     *          The x-coordinate of the tile clicked - i.e. the middle tile
+     * @param y
+     *          The y-coordinate of the tile clicked
      */
-    public void notifyBuildingMenuClicked(ResourceType buildingType) {
+    public void addBuildingToWorld(ResourceType buildingType, int x, int y) {
+        /*
+         * This might seem redundant, but it is to prevent close-coupling of the
+         * other classes. Only the Game Manager should be the most complicated
+         * piece of game logic
+         *
+         * Also, in the future, more game-logic will be added to the game, so
+         * this method will grow bigger as the manager needs to do more things
+         * whenever a new building is added
+         */
+        tilesManager.addBuildingToTile(buildingType, x, y);
 
-    }
-
-    /**
-     * Notify itself that a tile has been hovered upon
-     * @param xPos
-     *          The x-index in the 2D array of the tile hovered
-     * @param yPos
-     *          The y-index in the 2D array of the tile hovered
-     */
-    public void notifyTileHovered(int xPos, int yPos) {
-    }
-
-    /**
-     * Notify itself that a tile has been clicked
-     * @param xPos
-     *          The x-index in the 2D array of the tile clicked
-     * @param yPos
-     *          The y-index in the 2D array of the tile clicked
-     */
-    public void notifyTileClicked(int xPos, int yPos) {
     }
 }
