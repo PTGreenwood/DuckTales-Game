@@ -97,8 +97,10 @@ public class GameTime implements Tickable {
 	public void setMinute(int setMinute){// throws Exception {
 		if(setMinute < 0) {
 			//throw new Exception("Minute must be >= 0");
+			//then leave as is.
 		} else if (setMinute > 59) {
 			//throw new Exception("Minute must be <= 59");
+			//then leave as is
 		} else {
 		this.minute = setMinute;
 		}
