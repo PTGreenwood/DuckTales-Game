@@ -1,15 +1,13 @@
 package uq.deco2800.ducktales;
 
-import uq.deco2800.ducktales.world.DuckCalendar;
-import uq.deco2800.ducktales.world.DuckClock;
-
+import uq.deco2800.ducktales.world.GameTime;
 import org.junit.Test;
 
-public class DuckCalendarTest {
+public class GameTimeTest {
 
 	//Instantiate Here 
 	//DuckClock clock = new DuckClock();
-	DuckCalendar duckCal = new DuckCalendar(0,0);
+	GameTime duckCal = new GameTime();
 	@Test // For firstTest testing (not sure yet :S)
 	public void firstTest() {
 		

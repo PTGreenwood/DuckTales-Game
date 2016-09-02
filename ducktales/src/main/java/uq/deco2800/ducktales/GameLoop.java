@@ -2,7 +2,7 @@ package uq.deco2800.ducktales;
 
 import uq.deco2800.ducktales.entities.EntityManager;
 import uq.deco2800.ducktales.world.World;
-import uq.deco2800.ducktales.world.DuckCalendar;
+import uq.deco2800.ducktales.world.GameTime;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -26,7 +26,7 @@ public class GameLoop implements Runnable {
 	private int gameStartMinute = 0;
 	private int gameStartHour = 0;
 
-	private DuckCalendar duckCalendar = new DuckCalendar(gameStartMinute, gameStartHour);
+	private GameTime duckCalendar = new GameTime();
 	public GameLoop(AtomicBoolean quit, int tick) {
 		this.world = GameManager.getInstance().getWorld();
 		this.tick = tick;

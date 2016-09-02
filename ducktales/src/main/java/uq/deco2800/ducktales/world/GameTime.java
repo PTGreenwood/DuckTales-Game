@@ -1,17 +1,16 @@
 package uq.deco2800.ducktales.world;
 import uq.deco2800.ducktales.util.Tickable;
-//import java.util.List;
 
 
 /*
  * 
- * Calendar consists of a Calendar object that contains
- * days and years
+ * DuckTime Encompasses all time, day and year data
+ * Each tick the time is updated and this class does
+ * things with that information to update other things with
+ * it.
  * 
- * Inherits data from DuckCLock
- * has Clock Object inside it (probably needs to be fixed)
  */
-public class DuckCalendar extends DuckClock implements Tickable {
+public class GameTime implements Tickable {
 
 
 	//Instantiate a the Calendar variables
@@ -19,9 +18,9 @@ public class DuckCalendar extends DuckClock implements Tickable {
 	protected int year;
 	protected int season; //0 = Spring, 1 = Summer, 2 = Autumn, 3 = Winter
 	
-	//Array to hold Dates held
-	//Still have to fully implement Date class
-	//private List<Date> markedDates;
+	private int hour;
+	private int minute;
+
 	
 	/**
 	 * 20 Day Seasons. 4 Seasons to 1 year.
@@ -30,14 +29,83 @@ public class DuckCalendar extends DuckClock implements Tickable {
 	 * @param y
 	 * 		- Integer: Current Year (>0)
 	 */
-	public DuckCalendar(int minute, int hour) {
+	public GameTime() {
 		
-		super(minute, hour); //inherit minutes and hours from DuckClock SuperClass
 		this.day = 1; //Set day of calendar at 1
 		this.year = 1; //Set year of calendar at 1
 		this.season = 0; //Set season to 0 (spring)
 		
+		
+		//Considering making this Just one number and mathing it to get the right time
+		//depending on day and year.
+		
+		this.hour = 0; //Set the hour of the time
+		this.minute = 0; //Set the minutes of the time.
+		
 	}
+	
+	/**
+	 * Gets the current hour of the Time
+	 * 
+	 * @return Integer - Hour
+	 * 			
+	 */
+	public int getHour() {
+		return this.hour;
+	}
+	
+	/**
+	 * Gets the current minute of the Time
+	 * 
+	 * @return Integer - Minute
+	 * 			
+	 */
+	public int getMinute() {
+		return this.minute;
+	}
+	
+	/**
+	 * Sets the Time with the specified Hour.
+	 * 
+	 * 	@param Int setHour
+	 * 			-	Integer of the given hour must be 0 >= setHour <= 23
+	 *	@throws Exception
+	 *			-	Throws Exception(Exception) if number is out of range
+	 */
+	public void setHour(int setHour){// throws Exception {
+		if(setHour < 0) {
+			//throw new Exception("Hour must be >= 0");
+		} else if (setHour > 23) {
+			//throw new Exception("Hour must be <= 23");
+		} else {
+		this.hour = setHour;
+		}
+	}
+	
+	/**
+	 * Sets the Time with the specified Minute.
+	 * 
+	 * 	@param Int setMinute
+	 * 			-	Integer of the given minute must be 0 >= setMinute <= 59
+	 *	@throws Exception
+	 *			-	Throws Exception(Exception) if number is out of range
+	 */
+	public void setMinute(int setMinute){// throws Exception {
+		if(setMinute < 0) {
+			//throw new Exception("Minute must be >= 0");
+		} else if (setMinute > 59) {
+			//throw new Exception("Minute must be <= 59");
+		} else {
+		this.minute = setMinute;
+		}
+	}
+	/*Notes/thoughts
+	*
+	*Need to somehow implement the day counter in for when it reaches 24 hours in the day
+	*This could be super.day++ but that cause's errors
+	*Maybe I'm implementing Super/implements wrong.
+	*
+	*/
 	
 	/**
 	 * Class implements tick method from Tickable interface
@@ -46,14 +114,14 @@ public class DuckCalendar extends DuckClock implements Tickable {
 	 */
 	@Override
 	public void tick() {
-		super.minute++;
-		if(super.minute == 60) {
-			super.hour++;
-			super.minute = 0;
+		minute++;
+		if(minute == 60) {
+			hour++;
+			minute = 0;
 		} 
-		if(super.hour == 24) {
-			this.day++;
-			super.hour = 0;
+		if(hour == 24) {
+			day++;
+			hour = 0;
 			//Left this hear to print out the time once a day
 			System.out.println(printDuckTime());
 		} if(this.day/this.year > 80) {
@@ -63,13 +131,6 @@ public class DuckCalendar extends DuckClock implements Tickable {
 	//System.out.println(printDuckTime());
 	}
 	
-	/**
-	 * Sets the current day of the Calendar
-	 * @param Integer daySet: day to set the Calendar
-	 */
-	private void setDay(int daySet) {
-		this.day = daySet;
-	}
 	/**
 	 * Retrieves the current day of the year
 	 * @return integer: currentDay of year
@@ -87,6 +148,14 @@ public class DuckCalendar extends DuckClock implements Tickable {
 	}
 	
 	/**
+	 * Retrieves the current season
+	 * @return integer: currentSeason of world
+	 */
+	public int getCurrentSeason() {
+		return this.season;
+	}
+		
+	/**
 	 * Sets the current year of the Calendar
 	 * to be whatever is passed in
 	 * 
@@ -97,21 +166,22 @@ public class DuckCalendar extends DuckClock implements Tickable {
 	}
 	
 	/**
-	 * Retrieves the current season
-	 * @return integer: currentSeason of world
+	 * Sets the current day of the Calendar
+	 * @param Integer daySet: day to set the Calendar
 	 */
-	public int getCurrentSeason() {
-		return this.season;
+	private void setDay(int daySet) {
+		this.day = daySet;
 	}
-		
+	
+
 	/** Print out a String that has the 
 	 * Current Hour, Current Minute and Current Day Number
 	 * 
 	 * @return a lame string telling the current time for lame debug
 	 */
 	private String printDuckTime() {
-		int h = super.hour;
-		int m = super.minute;
+		int h = hour;
+		int m = minute;
 		int d = this.day;
 		
 		return "Current Time is: " + h + ":" + m + " day: " + d;
