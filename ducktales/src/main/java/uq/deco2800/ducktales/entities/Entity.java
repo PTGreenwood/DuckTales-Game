@@ -1,5 +1,7 @@
 package uq.deco2800.ducktales.entities;
 
+import java.math.BigDecimal;
+
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.Point;
 import uq.deco2800.ducktales.util.Tickable;
@@ -28,8 +30,9 @@ public abstract class Entity implements Comparable<Entity>, Tickable{
 
 	/**
 	 * The distance from the closest point of the entity to the line where y=x.
+	 * Changed to private to fix code smell.
 	 */
-	public double distanceInside;
+	private double distanceInside;
 
 	/**
 	 * The distance from the top most point of the entity to the point (0, 0).
@@ -66,9 +69,12 @@ public abstract class Entity implements Comparable<Entity>, Tickable{
 
 	@Override
 	public int compareTo(Entity entity) {
-		if (this.distanceTop == entity.distanceTop) {
-			if (this.distanceBottom == entity.distanceBottom) {
-				if (this.distanceInside == entity.distanceInside) {
+		// Fix big of comparing floats by checking difference
+		if (this.distanceTop - entity.distanceTop <= 0.0001) {
+			// Fix big of comparing floats by checking difference
+			if (this.distanceBottom - entity.distanceBottom <= 0.00001) {
+				// Doesn't fix bug :(
+				if (this.distanceInside - entity.distanceInside == 0.000) {
 					return 0;
 				} else if (this.distanceInside < entity.distanceInside) {
 					return -1;
@@ -87,6 +93,7 @@ public abstract class Entity implements Comparable<Entity>, Tickable{
 		}
 	}
 
+	@Override
 	public boolean equals(Object object) {
 		if (!(object instanceof Entity)) {
 			return false;
@@ -98,11 +105,13 @@ public abstract class Entity implements Comparable<Entity>, Tickable{
 				&& this.lengthY == entity.lengthY;
 	}
 
+	@Override
 	public int hashCode() {
 		//TODO: fix this
 		return 4;
 	}
 
+	@Override
 	public String toString() {
 		return String.format("[%f %f %f %f    %f]", point.getX(), point.getY(), lengthX, lengthY,
 				distanceInside);
@@ -130,6 +139,19 @@ public abstract class Entity implements Comparable<Entity>, Tickable{
 	
 	protected void updateType(ResourceType newType){
 		this.type = newType;
+	}
+	
+	/**
+	 * Return the double value of distanceInside.
+	 * 
+	 * To fix code smell of having distanceInside being public. Changed to 
+	 * private, and created get method to access. Checked that this does not break 
+	 * anything.
+	 * 
+	 * @return the private distanceInside variable
+	 */
+	public double getDistanceInside() {
+		return distanceInside;
 	}
 
 }

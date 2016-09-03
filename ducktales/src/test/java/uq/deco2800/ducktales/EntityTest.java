@@ -91,4 +91,93 @@ public class EntityTest {
 		assertTrue("Entity 1 incorrect!", entities.get(0).equals(background));
 		assertTrue("Entity 2 incorrect!", entities.get(1).equals(foreground));	
 	}
+	
+	/**
+	 * Test for the compareTo() method. Will check if all the values are equal
+	 */
+	@Test
+	public void sameSpotTest() {
+		Entity foreground = new LongBox(4, 3);
+		Entity background = new LongBox(4, 3);
+		
+		List<Entity> entities = new ArrayList<Entity>();
+		entities.add(foreground);
+		entities.add(background);
+		
+		assertTrue("Entity 1 incorrect!", entities.get(0).equals(foreground));
+		assertTrue("Entity 2 incorrect!", entities.get(1).equals(background));	
+		
+		Collections.sort(entities);
+		
+		
+		assertTrue("Entity 1 incorrect!", foreground.compareTo(background) == 0);
+		assertTrue("Entity 2 incorrect!", background.compareTo(foreground) == 0);
+	}
+	
+	/**
+	 * Testing the compareTo()method. Will check if the distance to the 
+	 * top is different.
+	 */
+	@Test
+	public void diffDistanceTopTest() {
+		// Different becuase different sized buildings
+		Entity foreground = new Box(4, 3);
+		Entity background = new LongBox(4, 3);
+		
+		List<Entity> entities = new ArrayList<Entity>();
+		entities.add(foreground);
+		entities.add(background);
+		
+		assertTrue("Entity 1 incorrect!", entities.get(0).equals(foreground));
+		assertTrue("Entity 2 incorrect!", entities.get(1).equals(background));	
+		
+		Collections.sort(entities);
+		
+		
+		assertTrue("Entity 1 incorrect!", foreground.compareTo(background) == 1);
+		assertTrue("Entity 2 incorrect!", background.compareTo(foreground) == -1);
+	}
+	
+	/**
+	 * Testing the compareTo() method. Will check if the dtsance bottom is different.
+	 */
+	@Test
+	public void diffDistanceBottomTest() {
+		Entity foreground = new Box(3, 4);
+		Entity background = new LongBox(4, 3);
+		
+		List<Entity> entities = new ArrayList<Entity>();
+		entities.add(foreground);
+		entities.add(background);
+		
+		assertTrue("Entity 1 incorrect!", entities.get(0).equals(foreground));
+		assertTrue("Entity 2 incorrect!", entities.get(1).equals(background));	
+		
+		Collections.sort(entities);
+		
+		assertTrue("Entity 1 incorrect!", foreground.compareTo(background) == 1);
+		assertTrue("Entity 2 incorrect!", background.compareTo(foreground) == -1);
+	}
+	
+	/**
+	 * Testing the compareTo() method. Cecking cases when the inside distances are
+	 *  different.
+	 */
+	@Test
+	public void diffDistanceInsideTest() {
+		Entity foreground = new Box(5, 4);
+		Entity background = new LongBox(4, 3);
+		
+		List<Entity> entities = new ArrayList<Entity>();
+		entities.add(foreground);
+		entities.add(background);
+		
+		assertTrue("Entity 1 incorrect!", entities.get(0).equals(foreground));
+		assertTrue("Entity 2 incorrect!", entities.get(1).equals(background));	
+		
+		Collections.sort(entities);
+		
+		assertTrue("Entity 1 incorrect!", foreground.compareTo(background) == 1);
+		assertTrue("Entity 2 incorrect!", background.compareTo(foreground) == -1);
+	}
 }

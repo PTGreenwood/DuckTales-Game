@@ -14,19 +14,26 @@ public enum ResourceType {
         // For WorldBuilder
         NONE,
 
-        // Landscape
-        TREE_1, TREE_2, TREE_3,
+        // Tiles
         GRASS_1, GRASS_2, GRASS_3,
         DIRT_1, DIRT_2, DIRT_3,
         VOID, CYAN, CYAN_CROSSED, YELLOW,
         BLANK,
         WATER,
+        
+        // Landscape entities
+        TREE_1, TREE_2, TREE_3,
+        ROCK_1, ROCK_2,
 
-        // Entities
-        PEON,DUCK,COW, SHEEP,
+        // Agent entities
+        PEON,
+        DUCK, DUCKUpRight, DUCKUpLeft, DUCKDownRight, DUCKDownLeft,
+        COW, COWUpRight, COWUpLeft, COWDownRight, COWDownLeft,
+        SHEEP, SHEEPUpRight, SHEEPUpLeft, SHEEPDownRight, SHEEPDownLeft,
 
         // Buildings
         HOUSE, SAWMILL, BAKERY, CEMETERY, BARN, FORGE, HOSPITAL, OBSERVATORY, FARMHOUSE,
+        PASTURE, CLINIC,
 
         // Miscellaneous
         BOX, LONG_BOX, WOOD_BOX

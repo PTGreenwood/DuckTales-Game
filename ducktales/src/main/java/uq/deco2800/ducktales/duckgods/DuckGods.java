@@ -24,7 +24,7 @@ public class DuckGods {
     
     
 
-    public void DuckGod(String name, String bonus, ImageIcon image) {
+    public void duckGod(String name, String bonus, ImageIcon image) {
         this.duckName = name;
         this.bonus = bonus;
         this.image = image;
