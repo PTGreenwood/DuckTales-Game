@@ -18,8 +18,15 @@ import static uq.deco2800.ducktales.resources.ResourceType.*;
  * @author khoiphan21
  */
 public class WorldEntityInfoManager {
+    /** The instance and its getter method of this class */
+    private static final WorldEntityInfoManager INSTANCE = new WorldEntityInfoManager();
+    public static WorldEntityInfoManager getInstance() {
+        return INSTANCE;
+    }
+
     /** CONSTANTS */
-    private static final int BuildingSize = 2;
+    // The size of the array int[] holding the size of the building
+    private final int BuildingSize = 2;
 
     /** Constants to get either the x or y length of the building */
     public static final int XLength = 0;
@@ -28,7 +35,7 @@ public class WorldEntityInfoManager {
     /*
      * INVARIANTS
      *      buildingSizes.length = buildingNames.length
-     *      each int[] unit in buildingSizes only has 2 int values
+     *      each int[] unit in buildingSizes only has 2 (BuildingSize) values
      */
 
     /** The data structure holding information of all the building sizes*/
@@ -49,7 +56,7 @@ public class WorldEntityInfoManager {
     /**
      * Instantiate a world entity info manager and register all world entities
      */
-    public WorldEntityInfoManager() {
+    private WorldEntityInfoManager() {
         buildingSizeInfo = new HashMap<>();
 
         checkInvariants();
@@ -82,15 +89,26 @@ public class WorldEntityInfoManager {
         }
 
         // The building type given is in the registry. Check the requested index
-        if (index != XLength || index != YLength) {
+        if (index != XLength && index != YLength) {
             throw new Exception("The index given must be " +
-                    "WorldEntityInfoManager.XLength or YLength");
+                    "WorldEntityInfoManager.XLength or YLength. Given index" +
+                    "is: " + index);
         }
 
         // Everything should be okay at this point
         int[] size = buildingSizeInfo.get(buildingType);
 
         return size[index];
+    }
+
+    /**
+     * Check if the info manager has the information for the given building
+     * @param buildingType
+     *          The type of the building to check
+     * @return whether the manager has the information for that building type
+     */
+    public boolean containEntity(ResourceType buildingType) {
+        return buildingSizeInfo.containsKey(buildingType);
     }
 
     /**
