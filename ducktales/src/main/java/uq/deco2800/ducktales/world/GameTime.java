@@ -1,6 +1,6 @@
 package uq.deco2800.ducktales.world;
 import uq.deco2800.ducktales.util.Tickable;
-
+import uq.deco2800.ducktales.world.Season;
 
 /*
  * 

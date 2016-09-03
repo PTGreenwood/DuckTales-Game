@@ -27,7 +27,8 @@ public enum ResourceType {
 
         // Agent entities
         PEON,
-        DUCK, DUCKUpRight, DUCKUpLeft, DUCKDownRight, DUCKDownLeft,
+        DUCK, DUCKUp, DUCKLeft, DUCKRight, DUCKDown,
+        DUCKDown0, DUCKDown1, DUCKLeft0, DUCKLeft1, DUCKRight0, DUCKRight1, DUCKUp0, DUCKUp1,
         COW, COWUpRight, COWUpLeft, COWDownRight, COWDownLeft,
         SHEEP, SHEEPUpRight, SHEEPUpLeft, SHEEPDownRight, SHEEPDownLeft,
 

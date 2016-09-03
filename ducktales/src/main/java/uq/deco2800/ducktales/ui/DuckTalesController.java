@@ -14,6 +14,7 @@ import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 import uq.deco2800.ducktales.world.*;
 import uq.deco2800.ducktales.world.builder.WorldBuilderManager;
 import uq.deco2800.ducktales.world.builder.WorldBuilderRenderer;
+import uq.deco2800.ducktales.weather.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -29,10 +30,13 @@ public class DuckTalesController implements Initializable {
 	private Canvas gameCanvas;
 
 	@FXML
-	// gameWindow, rightPane & mainMenuPane are referenced in ducktales.fxml
 	//gameWindow, contentPane & mainMenuPane are referenced in ducktales.fxml
 	private AnchorPane gameWindow, contentPane, mainMenuPane;
-
+	
+	//weatherEffectPane referenced in ducktales.fxml
+	@FXML
+	private Pane weatherEffectPane;
+	
 	private ExecutorService executor;
 
 	private boolean running = false;
@@ -132,15 +136,19 @@ public class DuckTalesController implements Initializable {
 	 */
 	@FXML
 	public void startGame(ActionEvent event) throws Exception {
-		toggleMenuPane();
+		toggleMenuPane();		
+		changeWeather(new Rain());
 		if (gameCanvas == null) { // the canvas has not been initialized
 			// Initialize the gameCanvas
 			// and set the canvas to resize as the rightPane is resized			
 			gameCanvas = new Canvas();
 			gameCanvas.widthProperty().bind(contentPane.widthProperty());
-			gameCanvas.heightProperty().bind(contentPane.heightProperty());
-
-			showCanvas(gameCanvas);
+			gameCanvas.heightProperty().bind(contentPane.heightProperty());			
+			
+			showCanvas(gameCanvas);	
+			
+			
+			//addWeather(weatherImageView);
 
 			GraphicsContext graphicsContext = gameCanvas.getGraphicsContext2D();
 
@@ -264,6 +272,20 @@ public class DuckTalesController implements Initializable {
 		contentPane.getChildren().removeAll(gameCanvas, worldBuilderPane, gamePane);
 		contentPane.getChildren().add(pane);
 	}
+	
+	/**
+	 * Change the current weather of the scene to given weather.
+	 * 
+	 * @param weather
+	 * 			weather to change current scene to
+	 */
+	private void changeWeather(Weather weather) {		
+		WeatherEffect weatherEffect = weather.getWeatherEffect();
+		String sprite = weatherEffect.getSprite();
+		String weatherName = weatherEffect.toString();
+		weatherEffectPane.setStyle("-fx-background-image: url('"+sprite+"')");
+		System.out.println("Weather set to: "+weather.toString().toUpperCase());
+	}
 
 	/**
 	 * Show the given canvas in the rightPane
@@ -272,7 +294,13 @@ public class DuckTalesController implements Initializable {
 	 */
 	private void showCanvas(Canvas canvas) {
 		contentPane.getChildren().removeAll(gameCanvas, worldBuilderPane, gamePane);
-		contentPane.getChildren().add(canvas);
+		/* 
+		 * @mattyleggy
+		 * adding the content pane to the 0-th index to ensure the 
+		 * weatherEffectPane is on top of the main canvas so that the animation
+		 * is always visible.  		
+		 */
+		contentPane.getChildren().add(0,canvas);
 	}
 
 	public void toggleMenuPane() {
