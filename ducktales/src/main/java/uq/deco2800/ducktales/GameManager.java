@@ -3,6 +3,7 @@ package uq.deco2800.ducktales;
 import java.util.LinkedList;
 import java.util.List;
 
+import uq.deco2800.ducktales.resources.InventoryManager;
 import uq.deco2800.ducktales.util.Point;
 import uq.deco2800.ducktales.world.World;
 
@@ -16,7 +17,7 @@ public class GameManager {
 
 	private static final GameManager INSTANCE = new GameManager();
 	
-	public static enum Direction {UP, DOWN, LEFT, RIGHT};
+	public enum Direction {UP, DOWN, LEFT, RIGHT};
 	
 	private int yPan = 0;
 	private int xPan = 0;
@@ -178,4 +179,11 @@ public class GameManager {
 		return yPan;
 	}
 
+	//set the resources Inventory
+	public InventoryManager currentInventory;
+	{
+		currentInventory = new InventoryManager();
+	}
+
 }
+

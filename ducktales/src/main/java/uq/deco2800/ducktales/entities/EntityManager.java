@@ -8,7 +8,7 @@ import uq.deco2800.ducktales.util.Tickable;
 /**
  * Manager for all the entities in the game.
  * 
- * @author leggy
+ * @author Leggy
  *
  */
 public class EntityManager implements Tickable {
@@ -44,6 +44,7 @@ public class EntityManager implements Tickable {
 	 */
 	public void addEntity(Entity entity) {
 		entities.add(entity);
+		
 	}
 
 	/**
@@ -60,7 +61,6 @@ public class EntityManager implements Tickable {
 		for (int i = 0; i < entities.size(); i++) {
 			entities.get(i).tick();
 		}
-
 	}
 
 }

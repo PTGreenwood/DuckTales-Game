@@ -1,42 +1,47 @@
 package uq.deco2800.ducktales.entities.worldentities;
 
+import uq.deco2800.ducktales.resources.ResourceType;
+
 /**
  * A Sawmill.
- * @author 
+ * 
+ * @author Gabrielle Hodge, 43590526 
  *
  */
-public class Sawmill extends WorldEntity{
+public class Sawmill extends WorldEntity {
 	
-	private final static String TYPE = "sawmill";
-	
-	private final static int TIME = 3;
-	
-	private final static int resourcesToBuild = 10;
+	// Building type
+	private static final ResourceType TYPE = ResourceType.SAWMILL;
 
+	/**
+	 * Initialise a new sawmill. Requires the location of the sawmill
+	 *  to be passed.
+	 * @param x, x location of the building
+	 * @param y, y location of the building
+	 */
 	public Sawmill(double x, double y) {
 		super(x, y, 2, 2, TYPE);
 	}
 
+	/**
+	 * Update the WorldEntity properties with those of a bakery.
+	 */
+	protected void specifications() {
+		WorldEntity.STONERESOURCES = 4;
+		WorldEntity.WOODRESOURCES = 8;
+		WorldEntity.TIME = 3;
+	}
+	
+	/**
+	 * Method to update bakery at each discrete simulation step.
+	 * 
+	 * Note sure if any implementation will be used. To be determined later
+	 * May implement for only some of the classes (hence left in the individual 
+	 * buildings class files).
+	 */
 	@Override
 	public void tick() {
-	}
-
-	@Override
-	public boolean isPassable() {
-		return false;
-	}
-	
-	public int timeToBuild() {
-		return TIME;
-	}
-	
-	public int resourcesBuild() {
-		return resourcesToBuild;
-
-	}
-	
-	public int resourcesReturn() {
-		return (int) (0.5*resourcesToBuild);
+		// To be implemented if there is to be animation of construction
 	}
 
 }

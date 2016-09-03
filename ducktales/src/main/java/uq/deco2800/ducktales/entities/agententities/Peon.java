@@ -1,7 +1,12 @@
 package uq.deco2800.ducktales.entities.agententities;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
+import uq.deco2800.ducktales.GameManager;
+import uq.deco2800.ducktales.resources.ResourceType;
+import uq.deco2800.ducktales.util.AStar;
 import uq.deco2800.ducktales.util.Point;
 
 /**
@@ -12,44 +17,92 @@ import uq.deco2800.ducktales.util.Point;
  */
 public class Peon extends AgentEntity {
 
-	private final static String TYPE = "peon";
-	
-	private Point goalPoint;
-	
-	private double speed;
-	
-	private int Health =1000;
+	private static final Random RANDOM = new Random();
 
+	private final static ResourceType TYPE = ResourceType.PEON;
+
+	private List<Point> goalPoints;
+
+	private double speed;
+
+	private int health = 1000;
+	
+	private int resource= 0;
+
+	// affinity
+	private int strength;
+	private int intelligence;
+
+	// affinity bounds
+	private static final int DEFAULT_MAX = 10;
+	private static final int DEFAULT_MIN = 1;
+
+	/**
+	 * @param x
+	 * @param y
+	 */
 	public Peon(int x, int y) {
 		super(x, y, 1, 1, TYPE);
+		strength = RANDOM.nextInt((DEFAULT_MAX - DEFAULT_MIN) + 1) + DEFAULT_MIN;
+		intelligence = RANDOM.nextInt((DEFAULT_MAX - DEFAULT_MIN) + 1) + DEFAULT_MIN;
 		this.speed = 0.05;
-		newGoalPoint();
+		this.goalPoints = new ArrayList<Point>();
 	}
-	
-	public void ChangeHealth(int NewValue){
-		if (NewValue >0){
-			this.Health =NewValue;
+
+	public void setHealth(int newValue) {
+		if (newValue > 0) {
+			this.health = newValue;
 		}
 	}
+	public void setResources(int sourceValue){
+		if (sourceValue > 0){
+			this.resource= sourceValue;
+			
+	}
+	}
+
+	public int getHealth() {
+		return health;
+	}
 	
-	public int GetHealth(){
-		return Health;
+	public int getStrength(){
+		return strength;
+	}
+	
+	public int getIntelligence(){
+		return intelligence;
 	}
 
 	@Override
 	public void tick() {
-		if(point.distance(goalPoint) < speed) {
-			point = goalPoint;
-			newGoalPoint();
+		if (goalPoints.isEmpty()) {
+			goalPoints = newGoalPoints();
+		} else if (point.distance(goalPoints.get(0)) < speed) {
+			point = goalPoints.remove(0);
+			GameManager.getInstance().getWorld().getTile(point).reset();
+			if (goalPoints.isEmpty()) {
+				this.goalPoints = newGoalPoints();
+			}
 		} else {
-			point.moveToward(goalPoint, speed);
+			point.moveToward(goalPoints.get(0), speed);
 		}
 		calculateRenderingOrderValues();
-		
 	}
-	
-	private void newGoalPoint(){
+
+	private List<Point> newGoalPoints() {
 		Random random = new Random();
-		goalPoint = new Point(random.nextDouble() * 20, random.nextDouble() * 20);
+		Point goalPoint = null;
+		while (goalPoint == null || !GameManager.getInstance().getWorld().getTile(goalPoint).isPassable()) {
+			goalPoint = new Point(random.nextDouble() * 20, random.nextDouble() * 20);
+		}
+
+		List<AStar.Tuple> path = AStar.aStar(point, goalPoint, GameManager.getInstance().getWorld());
+		List<Point> goalPoints = new ArrayList<Point>();
+
+		for (AStar.Tuple tuple : path) {
+			goalPoints.add(new Point(tuple.getX(), tuple.getY()));
+			GameManager.getInstance().getWorld().getTile(tuple.getX(), tuple.getY()).makePath();
+		}
+		return goalPoints;
 	}
 }
