@@ -7,11 +7,19 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import uq.deco2800.ducktales.GameLoop;
 import uq.deco2800.ducktales.GameManagerBeta;
 import uq.deco2800.ducktales.GameRendererBeta;
+import uq.deco2800.ducktales.achievements.Achievements;
+import uq.deco2800.ducktales.achievements.progressIndicator;
+import uq.deco2800.ducktales.level.Level;
+import uq.deco2800.ducktales.missions.Missions;
 import uq.deco2800.ducktales.resources.InventoryManager;
 
 import java.net.URL;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * This is the master controller for the actual game play, while
@@ -23,7 +31,7 @@ import java.net.URL;
  * the renderer.
  *
  * Created  on 31/08/2016.
- * @author khoiphan21
+ * @author khoiphan21, leggy
  */
 public class GameController{
     /**
@@ -50,6 +58,11 @@ public class GameController{
     private AnchorPane achievementPane;
     // The Marketplace window
     private VBox marketplacePane;
+
+    /** Variables to control the Game Loop */
+    private AtomicBoolean quit;
+    private ExecutorService executor;
+
 
     /** The rendering engine of the game */
     private GameRendererBeta renderer;
@@ -88,6 +101,11 @@ public class GameController{
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        // Start the game loop
+        executor = Executors.newCachedThreadPool();
+        quit = new AtomicBoolean(false);
+        executor.execute(new GameLoop(quit, 50));
     }
 
     @FXML
@@ -107,17 +125,21 @@ public class GameController{
     }
 
     @FXML
-    public void showMarketplace(ActionEvent event) throws Exception {
+    public void showMarketplace(ActionEvent event) throws Exception {    	
         URL location = getClass().getResource("/marketplace.fxml");
         FXMLLoader loader = new FXMLLoader(location);
 
         marketplacePane = loader.load();
 
         showInfoPane(marketplacePane);
+        
+        missionCompletedAction(3);
     }
 
     @FXML
     public void addPeon(ActionEvent event) {
+    	
+    	missionCompletedAction(2);
     }
 
     @FXML
@@ -155,6 +177,21 @@ public class GameController{
         rootPane.setBottomAnchor(closeInfoPaneButton, verticalAnchor - 30);
 
     }
-
+    
+    private void missionCompletedAction(int i){
+    	
+    	//Untick mission2 box in Achievement window of Gamebeta when marketplace is clicked
+        Missions.getInstance().MissionImageCompleted(i);
+        //Increment percentage of progress indicator in achievement
+        progressIndicator.getInstance().setProgressPercentage(Missions.getInstance().getMissionCount());
+        //Increment total achievement score
+        Achievements.getInstance().achieveEasy();
+        //Increment percentage of progress bar in leveling system
+        Level.getInstance().setProgressBar(0.5);
+        //if progress bar is full then level up
+        if(Level.getInstance().getBarProgress() == 1.0){
+        	Level.getInstance().LevelUp();
+        }
+    }
 
 }

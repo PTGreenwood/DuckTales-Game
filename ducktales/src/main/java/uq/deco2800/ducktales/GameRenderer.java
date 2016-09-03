@@ -2,9 +2,9 @@ package uq.deco2800.ducktales;
 
 import uq.deco2800.ducktales.entities.Entity;
 import uq.deco2800.ducktales.entities.EntityManager;
-import uq.deco2800.ducktales.resources.ResourceRegister;
+import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
-import uq.deco2800.ducktales.renderingengine.tiles.Tile;
+import uq.deco2800.ducktales.rendering.tiles.Tile;
 import uq.deco2800.ducktales.world.World;
 
 import java.util.Collections;
@@ -23,7 +23,7 @@ public class GameRenderer extends AnimationTimer {
 
 	private GraphicsContext graphicsContext;
 	private World world;
-	private ResourceRegister resourceRegister;
+	private ResourceSpriteRegister resourceSpriteRegister;
 	private int tileHeight;
 	private int tileWidth;
 	
@@ -41,9 +41,9 @@ public class GameRenderer extends AnimationTimer {
 
 		this.graphicsContext = graphicsContext;
 		this.world = GameManager.getInstance().getWorld();
-		this.resourceRegister = ResourceRegister.getInstance();
-		this.tileHeight = ResourceRegister.TILE_HEIGHT;
-		this.tileWidth = ResourceRegister.TILE_WIDTH;
+		this.resourceSpriteRegister = ResourceSpriteRegister.getInstance();
+		this.tileHeight = ResourceSpriteRegister.TILE_HEIGHT;
+		this.tileWidth = ResourceSpriteRegister.TILE_WIDTH;
 		this.baseX = (int) (world.getWidth() * tileWidth * scale * 0.5);
 		this.baseY = 0;
 	}
@@ -76,7 +76,7 @@ public class GameRenderer extends AnimationTimer {
 				graphicsContext.drawImage(
 						// Draw the image at position x, y, and scaled to the box with given
 						// scaledWidth and scaledHeight
-						resourceRegister.getResourceImage(tile.getTileType()), x, y,
+						resourceSpriteRegister.getResourceImage(tile.getTileType()), x, y,
 						scaledWidth, scaledHeight);
 			}
 		}
@@ -127,7 +127,7 @@ public class GameRenderer extends AnimationTimer {
 						x = baseX + (i - j) * scaledWidth / 2;
 					}
 					int y = baseY + (j + i) * scaledHeight / 2;
-					graphicsContext.drawImage(resourceRegister.getResourceImage(
+					graphicsContext.drawImage(resourceSpriteRegister.getResourceImage(
 							ResourceType.BLANK), x, y, scaledWidth, scaledHeight);
 				}
 			}
@@ -147,7 +147,7 @@ public class GameRenderer extends AnimationTimer {
 			int scaledWidth = (int) (tileWidth * scale);
 			int scaledHeight = (int) (tileHeight * scale);
 
-			Image image = resourceRegister.getResourceImage(entity.getType());
+			Image image = resourceSpriteRegister.getResourceImage(entity.getType());
 			int x = baseX + (int)((entity.getY() - entity.getX()) * scaledWidth / 2.0);
 			int y = baseY + (int)((entity.getY() + entity.getX()) * scaledHeight / 2.0);
 

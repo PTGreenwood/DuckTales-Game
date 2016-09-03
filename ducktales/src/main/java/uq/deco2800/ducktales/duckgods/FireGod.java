@@ -3,6 +3,7 @@ package uq.deco2800.ducktales.duckgods;
 import javax.swing.ImageIcon;
 
 import uq.deco2800.ducktales.duckgods.DuckGods;
+import uq.deco2800.ducktales.entities.agententities.Peon;
 
 /**
  * Individual classes for the Fire God
@@ -16,30 +17,29 @@ public class FireGod extends DuckGods {
 	private boolean isSelected = false;
 	private boolean noConflict = true;
 	  
-	/*not this moment until
-	 * public FireGod(String name, String bonus, ImageIcon image) {
-    	super(name, bonus, image);
-    }	
-	public void giveaward(){
-		Peon.speed= Peon.speed*2;
-		//while countdown
-	}
-    public void givepenalty(){
-    	Peon.speed=Peon.speed*0.8;
-    	
+	
+	 public FireGod(String name, String bonus, ImageIcon image) {
+    	super();
     }
-    
-
-    public void isbuilt(){
-    	if(firchurch=true){
+     public boolean isbuilt(){
+    	
     		return true;
     	}
-    }
-    public void isWorshiped () {
+    
+    public boolean isWorshiped () {
     	
-		if(isbuilt=true){
-    		this.worship= true;
+		//if(isbuilt=true)
+		{
+    		return true;}}
+    		
+	public void giveaward(){
+		//Peon.speed= Peon.speed*2;
+		//while 
+	}
+    public void givepenalty()
+    {
+    	//Peon.speed=Peon.speed*0.8;
     	
-   */     
+		}  
         
 }

@@ -1,7 +1,8 @@
 package uq.deco2800.ducktales;
 
-import uq.deco2800.ducktales.renderingengine.*;
-import uq.deco2800.ducktales.renderingengine.managers.TilesManager;
+import uq.deco2800.ducktales.rendering.engine.RenderingManager;
+import uq.deco2800.ducktales.rendering.managers.TilesManager;
+
 import uq.deco2800.ducktales.resources.InventoryManager;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.world.WorldBeta;
@@ -16,6 +17,8 @@ import static uq.deco2800.ducktales.resources.ResourceType.*;
  * game logic
  *
  * Created by Khoi on 31/08/2016.
+ *
+ * @author khoiphan21
  */
 public class GameManagerBeta {
     /**
