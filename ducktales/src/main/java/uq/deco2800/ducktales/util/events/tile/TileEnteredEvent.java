@@ -1,4 +1,4 @@
-package uq.deco2800.ducktales.util.Events.TileEvents;
+package uq.deco2800.ducktales.util.events.tile;
 
 import javafx.event.EventType;
 

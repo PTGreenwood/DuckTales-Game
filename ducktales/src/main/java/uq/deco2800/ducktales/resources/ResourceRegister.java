@@ -56,7 +56,7 @@ public class ResourceRegister {
 		resourceTypeRegister = new ConcurrentHashMap<>();
 		currentCount = 0;
 
-		// Landscape resources
+		// Ground tiles
 		addResource(VOID, "/black.png");
 		addResource(CYAN, "/cyan.png");
 		addResource(CYAN_CROSSED, "/cyan_crossed.png");
@@ -70,16 +70,18 @@ public class ResourceRegister {
 		addResource(DIRT_3, "/dirt_3.png");
 		addResource(BLANK, "/blank.png");
 
+		// Landscape entities
 		addResource(BOX, "/box2.png");
 		addResource(LONG_BOX, "/longbox.png");
-		addResource(PEON, "/peon.png");
 		addResource(WOOD_BOX, "/wood_stock.png");
 		addResource(TREE_1, "/tree_1.png");
 		addResource(TREE_2, "/tree_2.png");
 		addResource(TREE_3, "/tree_3.png");
-		addResource(HOUSE, "/house.png");
-
-		// Duck resources
+		addResource(ROCK_1, "/rock_1.png");
+		addResource(ROCK_2, "/rock_2.png");
+		
+		// Agent entities
+		addResource(PEON, "/peon.png");
 		addResource(DUCK, "/duck.png");
 		addResource(DUCKDown0, "/animal/duck/DUCKDown0.png");
 		addResource(DUCKDown1, "/animal/duck/DUCKDown1.png");
@@ -91,7 +93,6 @@ public class ResourceRegister {
 		addResource(DUCKRight1, "/animal/duck/DUCKRight1.png");
 
 		addResource(COW, "/cow.png");
-		
 		// the following will be uncommented once the relevant resources
 		// are created and added to the game, @team pokeducks
 		
@@ -105,12 +106,16 @@ public class ResourceRegister {
 		// addResource(SHEEPUpLeft, "/SHEEPUpLeft.png");
 		// addResource(SHEEPDownRight, "/SHEEPDownRight.png");
 		// addResource(SHEEPDownLeft, "/SHEEPDownLeft.png");
-		
+
+		// Buildings
+		addResource(HOUSE, "/house.png");
 		addResource(SAWMILL, "/sawmill.png");
 		//To be uncommented as the relevant graphics are created
 		// note from creator of ResourceType: please remember to use the enums from
 		// ResourceType enum class instead of the previous String implementation
 		addResource(BAKERY, "/bakery.png");
+		addResource(PASTURE, "/buildings/pasture.png");
+		addResource(CLINIC, "/buildings/clinic.png");
 		//addResource(CEMETERY, "/cemetery.png");
 		addResource(FARMHOUSE, "/farm+barn.png");
 		addResource(BARN, "/barn.png");

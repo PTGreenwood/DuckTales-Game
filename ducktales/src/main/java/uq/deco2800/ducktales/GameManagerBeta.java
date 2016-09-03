@@ -1,6 +1,8 @@
 package uq.deco2800.ducktales;
 
-import uq.deco2800.ducktales.renderingengine.RenderingManager;
+import uq.deco2800.ducktales.rendering.engine.RenderingManager;
+import uq.deco2800.ducktales.rendering.managers.TilesManager;
+
 import uq.deco2800.ducktales.resources.InventoryManager;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.world.WorldBeta;
@@ -8,15 +10,21 @@ import uq.deco2800.ducktales.world.WorldBeta;
 import static uq.deco2800.ducktales.resources.ResourceType.*;
 
 /**
+ * This is the main manager of the game. All events related to game-logic should
+ * notify this manager, and the manager will deal with the information accordingly
+ *
+ * Note: the game renderer will handle specific rendering information only, not
+ * game logic
+ *
  * Created by Khoi on 31/08/2016.
  */
 public class GameManagerBeta {
     /**
      * CONSTANTS
      */
-    private static final double defaultScale = 0.2;
-    private static final int defaultWorldwidth = 30;
-    private static final int defaultWorldheight = 30;
+    private static final double DefaultScale = 0.4;
+    private static final int DefaultWorldWidth = 20;
+    private static final int DefaultWorldHeight = 20;
 
     /** The game world */
     private WorldBeta world;
@@ -29,6 +37,9 @@ public class GameManagerBeta {
 
     /** The class holding rendering information */
     private RenderingManager renderingManager;
+
+    /** The class managing the information of all the tiles */
+    private TilesManager tilesManager;
 
     /**
      * Variables for managing the game
@@ -63,7 +74,7 @@ public class GameManagerBeta {
         if (renderingManager == null) {
             // No rendering info is loaded. start a default renderingManager
             renderingManager = new RenderingManager(
-                    defaultScale, defaultWorldwidth, defaultWorldheight);
+                    DefaultScale, DefaultWorldWidth, DefaultWorldHeight);
         }
         if (world == null) {
             // No world has been pre-loaded. Start a default world
@@ -77,6 +88,9 @@ public class GameManagerBeta {
         // Setup the rendering manager and world for the renderer
         renderer.setWorld(this.world);
         renderer.setRenderingManager(this.renderingManager);
+
+        // Setup the Tiles Manager to manage all the tiles in the world
+        tilesManager = new TilesManager(this, world.getTiles());
 
         // Start the rendering engine
         this.renderer.start();
@@ -141,5 +155,30 @@ public class GameManagerBeta {
      */
     public void setCurrentResourceManaging(ResourceType currentResourceManaging) {
         this.currentResourceManaging = currentResourceManaging;
+    }
+
+    /**
+     * When this method is called, the manager will attempt to add an actual game
+     * building into the game world
+     *
+     * @param buildingType
+     *          The type of the building to be added to the game world
+     * @param x
+     *          The x-coordinate of the tile clicked - i.e. the middle tile
+     * @param y
+     *          The y-coordinate of the tile clicked
+     */
+    public void addBuildingToWorld(ResourceType buildingType, int x, int y) {
+        /*
+         * This might seem redundant, but it is to prevent close-coupling of the
+         * other classes. Only the Game Manager should be the most complicated
+         * piece of game logic
+         *
+         * Also, in the future, more game-logic will be added to the game, so
+         * this method will grow bigger as the manager needs to do more things
+         * whenever a new building is added
+         */
+        tilesManager.addBuildingToTile(buildingType, x, y);
+
     }
 }

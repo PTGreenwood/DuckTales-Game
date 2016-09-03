@@ -1,19 +1,19 @@
 package uq.deco2800.ducktales;
 
-import uq.deco2800.ducktales.world.DuckCalendar;
-import uq.deco2800.ducktales.world.DuckClock;
-
+import uq.deco2800.ducktales.world.GameTime;
+import uq.deco2800.ducktales.world.Season;
 import org.junit.Test;
 
-public class DuckCalendarTest {
+public class SeasonTest {
 
 	//Instantiate Here 
 	//DuckClock clock = new DuckClock();
-	//DuckCalendar duckCal = new DuckCalendar();
+	GameTime gameTime = new GameTime();
 	@Test // For firstTest testing (not sure yet :S)
 	public void firstTest() {
 		
 		//Temp Variables
+		Season testSeason = gameTime.getCurrentSeason();
 
 		//Test Here:
 		//AssertTrue("");
