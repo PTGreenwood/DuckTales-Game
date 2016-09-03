@@ -7,6 +7,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import javafx.scene.layout.*;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Polygon;
 import uq.deco2800.ducktales.*;
 import uq.deco2800.ducktales.achievements.Achievements;
 import uq.deco2800.ducktales.missions.Missions;
@@ -23,6 +25,7 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.ScrollBar;
+import javafx.scene.image.*;
 import javafx.stage.Stage;
 
 public class DuckTalesController implements Initializable {
@@ -33,7 +36,7 @@ public class DuckTalesController implements Initializable {
 	// gameWindow, rightPane & mainMenuPane are referenced in ducktales.fxml
 	//gameWindow, contentPane & mainMenuPane are referenced in ducktales.fxml
 	private AnchorPane gameWindow, contentPane, mainMenuPane;
-
+	
 	private ExecutorService executor;
 
 	private boolean running = false;
@@ -139,9 +142,11 @@ public class DuckTalesController implements Initializable {
 			// and set the canvas to resize as the rightPane is resized			
 			gameCanvas = new Canvas();
 			gameCanvas.widthProperty().bind(contentPane.widthProperty());
-			gameCanvas.heightProperty().bind(contentPane.heightProperty());
-
-			showCanvas(gameCanvas);
+			gameCanvas.heightProperty().bind(contentPane.heightProperty());			
+								
+			showCanvas(gameCanvas);	
+			
+			//addWeather(weatherImageView);
 
 			GraphicsContext graphicsContext = gameCanvas.getGraphicsContext2D();
 
@@ -265,6 +270,10 @@ public class DuckTalesController implements Initializable {
 		contentPane.getChildren().removeAll(gameCanvas, worldBuilderPane, gamePane);
 		contentPane.getChildren().add(pane);
 	}
+	
+	private void addWeather(AnchorPane imageView) {
+		contentPane.getChildren().add(imageView);
+	}
 
 	/**
 	 * Show the given canvas in the rightPane
@@ -273,7 +282,7 @@ public class DuckTalesController implements Initializable {
 	 */
 	private void showCanvas(Canvas canvas) {
 		contentPane.getChildren().removeAll(gameCanvas, worldBuilderPane, gamePane);
-		contentPane.getChildren().add(canvas);
+		contentPane.getChildren().add(0,canvas);
 	}
 
 	public void toggleMenuPane() {

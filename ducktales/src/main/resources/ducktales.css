@@ -1,3 +1,8 @@
+#weatherEffect {
+	-fx-background-image: url("weather/rain.png");	
+	-fx-background-repeat: repeat;
+}
+
 #mainMenuPane {
 	-fx-background-color: #000;
 	-fx-background-image: url("menu/background.png");
