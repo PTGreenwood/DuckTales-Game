@@ -29,6 +29,8 @@ public enum ResourceType {
         SHEEP, SHEEPUpRight, SHEEPUpLeft, SHEEPDownRight, SHEEPDownLeft,
 
         // Buildings
+        MINE, QUARRY, FARM, PLANTATION,
+        
         HOUSE, SAWMILL, BAKERY, CEMETERY, BARN, FORGE, HOSPITAL, OBSERVATORY, FARMHOUSE,
         PASTURE, CLINIC,
 

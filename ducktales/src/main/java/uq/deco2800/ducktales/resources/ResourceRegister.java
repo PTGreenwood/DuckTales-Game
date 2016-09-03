@@ -56,7 +56,8 @@ public class ResourceRegister {
 		resourceTypeRegister = new ConcurrentHashMap<>();
 		currentCount = 0;
 
-		// Landscape resources
+		/*---Landscape resources---*/
+		
 		addResource(VOID, "/black.png");
 		addResource(CYAN, "/cyan.png");
 		addResource(CYAN_CROSSED, "/cyan_crossed.png");
@@ -69,7 +70,8 @@ public class ResourceRegister {
 		addResource(DIRT_2, "/dirt_2.png");
 		addResource(DIRT_3, "/dirt_3.png");
 		addResource(BLANK, "/blank.png");
-
+		
+		/*---Object resources---*/
 		addResource(BOX, "/box2.png");
 		addResource(LONG_BOX, "/longbox.png");
 		addResource(PEON, "/peon.png");
@@ -99,10 +101,18 @@ public class ResourceRegister {
 		// addResource(SHEEPDownRight, "/SHEEPDownRight.png");
 		// addResource(SHEEPDownLeft, "/SHEEPDownLeft.png");
 		
-		addResource(SAWMILL, "/sawmill.png");
+		/*---Building resources---*/
+		
 		//To be uncommented as the relevant graphics are created
 		// note from creator of ResourceType: please remember to use the enums from
 		// ResourceType enum class instead of the previous String implementation
+		
+		//addResource(MINE, "/mine.png");
+		//addResource(FARM, "/farm.png");
+		//addResource(QUARRY, "/quarry.png");
+		//addResource(PLANTATION, "/plantation.png");
+		
+		addResource(SAWMILL, "/sawmill.png");
 		addResource(BAKERY, "/bakery.png");
 		addResource(PASTURE, "/buildings/pasture.png");
 		addResource(CLINIC, "/buildings/clinic.png");
