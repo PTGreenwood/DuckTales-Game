@@ -25,6 +25,11 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.stage.Stage;
 
+/**
+ * This class handles the title screen and main menu.
+ * 
+ * 
+ */
 public class DuckTalesController implements Initializable {
 
 	private Canvas gameCanvas;
@@ -56,6 +61,12 @@ public class DuckTalesController implements Initializable {
 	public Stage tutorialStage;
 	public Stage marketplaceStage;
 
+	/**
+	 * Main constructor of the {@link DuckTalesController} class.
+	 * 
+	 * @param location
+	 * @param resources
+	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		tileRegister = ResourceSpriteRegister.getInstance();
@@ -71,6 +82,12 @@ public class DuckTalesController implements Initializable {
 		gameWindow.setOnKeyReleased(new KeyboardHandler());
 	}
 
+	/**
+	 * Displays the tutorial popup window.
+	 * 
+	 * @param event
+	 * @throws Exception
+	 */
 	@FXML
 	private void tutorial(ActionEvent event) throws Exception {
 		URL location = getClass().getResource("/tutorial.fxml");
@@ -78,16 +95,18 @@ public class DuckTalesController implements Initializable {
 		loader.setLocation(location);
 		Parent root = loader.load(location.openStream());
 		Scene tutorialScene = new Scene(root, 800, 400);
-
-		
-		
 		Stage tutorialStage = new Stage();
 		tutorialStage.setTitle("Tutorial");
 		tutorialStage.setScene(tutorialScene);
 		tutorialStage.show();
-
 	}
 
+	/**
+	 * Displays the achievement and progress popup window.
+	 * 
+	 * @param event
+	 * @throws Exception
+	 */
 	@FXML
 	private void missionAndAchievement(ActionEvent event) throws Exception {
 		
@@ -106,7 +125,6 @@ public class DuckTalesController implements Initializable {
 	}
 
 	/**
-	 * 
 	 * Displays the Marketplace main pop up window.
 	 * 
 	 * @param event
@@ -133,6 +151,9 @@ public class DuckTalesController implements Initializable {
 	/**
 	 * This method will be called when the 'Launch Game' button is pressed The
 	 * code that will call this method is defined in ducktales.fxml
+	 * 
+	 * @param event
+	 * @throws Exception
 	 */
 	@FXML
 	public void startGame(ActionEvent event) throws Exception {
@@ -147,12 +168,11 @@ public class DuckTalesController implements Initializable {
 			
 			showCanvas(gameCanvas);	
 			
-			
 			//addWeather(weatherImageView);
 
 			GraphicsContext graphicsContext = gameCanvas.getGraphicsContext2D();
 
-			createWorld();
+			gameManager.setWorld(new World("DuckTales", 20, 20));
 
 			executor = Executors.newCachedThreadPool();
 
@@ -168,6 +188,7 @@ public class DuckTalesController implements Initializable {
 
 	/**
 	 * This will launch the game with the new rendering engine - beta version
+	 * 
 	 * @param event
 	 * @throws Exception
 	 */
@@ -213,6 +234,8 @@ public class DuckTalesController implements Initializable {
 	 * This method is called when "Build World" button is pressed
 	 *
 	 * @author khoiphan21
+	 * @param event
+	 * @throws Exception
 	 */
 	@FXML
 	public void buildWorld(ActionEvent event) throws Exception {
@@ -240,6 +263,9 @@ public class DuckTalesController implements Initializable {
 		}
 	}
 
+	/**
+	 * Set the {@code quit} variable to true and stop the game.
+	 */
 	public void stopGame() {
 		if (executor != null && quit != null) {
 			quit.set(true);
@@ -252,11 +278,6 @@ public class DuckTalesController implements Initializable {
 	 */
 	public void quitApplication() {
 		System.exit(0);
-	}
-
-	private void createWorld() {
-		gameManager.setWorld(new World("DuckTales", 20, 20));
-
 	}
 
 	/**
@@ -291,6 +312,7 @@ public class DuckTalesController implements Initializable {
 	 * Show the given canvas in the rightPane
 	 * 
 	 * @param canvas
+	 * 			Canvas to show.
 	 */
 	private void showCanvas(Canvas canvas) {
 		contentPane.getChildren().removeAll(gameCanvas, worldBuilderPane, gamePane);
@@ -303,6 +325,9 @@ public class DuckTalesController implements Initializable {
 		contentPane.getChildren().add(0,canvas);
 	}
 
+	/**
+	 * Toggles the menu visibility on game pause.
+	 */
 	public void toggleMenuPane() {
 		if (mainMenuPane.isVisible()) {
 			contentPane.setVisible(true);
@@ -313,5 +338,4 @@ public class DuckTalesController implements Initializable {
 		}
 	}
 	
-
 }

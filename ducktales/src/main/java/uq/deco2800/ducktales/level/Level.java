@@ -3,6 +3,11 @@ package uq.deco2800.ducktales.level;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ProgressIndicator;
 
+/**
+ * Handles player level.
+ * 
+ *
+ */
 public class Level {
 	private static Level INSTANCE = new Level();
 	
@@ -11,6 +16,10 @@ public class Level {
 	private double barProgress;
 
 
+	/**
+	 * Constructor of {@link Level}.
+	 * @return <CODE>INSTANCE</CODE>
+	 */
 	public static Level getInstance() {
 		return INSTANCE;		
 	}
@@ -31,6 +40,7 @@ public class Level {
 	public void setLevel(int level){
 		this.level = level;
 	}
+	
 	public int getLevel(){
 		return this.level;
 	}
@@ -43,9 +53,9 @@ public class Level {
 	public ProgressBar getProgressIndicator(){
 		return this.pb;
 	}
+	
 	public double getBarProgress(){
 		return this.barProgress;
 	}
-	
 	
 }

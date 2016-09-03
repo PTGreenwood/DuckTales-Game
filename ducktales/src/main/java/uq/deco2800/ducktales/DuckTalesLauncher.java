@@ -15,7 +15,6 @@ import java.net.URL;
  * Launcher class for DuckTales.
  * 
  * @author Leggy
- *
  */
 public class DuckTalesLauncher extends Application {
 	private String version = "0.1";
@@ -45,7 +44,5 @@ public class DuckTalesLauncher extends Application {
 		primaryStage.setOnCloseRequest(e -> ducktalesController.stopGame());
 		primaryStage.show();	
 	}
-	
-	
 	
 }

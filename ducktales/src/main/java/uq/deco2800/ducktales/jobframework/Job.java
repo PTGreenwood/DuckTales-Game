@@ -16,8 +16,9 @@ public abstract class Job {
     protected int mentorIntelligence;
     
     protected String jobName;
+    
     /**
-     * Constructor method for Job
+     * Main constructor of the {@link Job} class.
      * 
      * @param requiredStrength
      * @param requiredIntelligence
@@ -41,6 +42,7 @@ public abstract class Job {
         this.mentorIntelligence = mentorIntelligence;
         this.jobName = jobName;
     }
+    
     /**
      * Returns the name of the job
      * @return jobName
@@ -48,6 +50,7 @@ public abstract class Job {
     public String getJobName(){
         return jobName;
     }
+    
     /**
      * Returns the requirements for the given job
      * @return reqs, int[] of Required Values
@@ -56,6 +59,7 @@ public abstract class Job {
         int [] reqs = {this.getRequiredStrength(), this.getRequiredIntelligence()};
         return reqs;
     }
+    
     /**
      * Returns the required strength for the job
      * @return requiredStrength
@@ -63,6 +67,7 @@ public abstract class Job {
     public int getRequiredStrength(){
         return requiredStrength;
     }
+    
     /**
      * Returns the required intelligence for the job
      * @return requiredIntelligence
@@ -70,6 +75,7 @@ public abstract class Job {
     public int getRequiredIntelligence(){
         return requiredIntelligence;
     }
+    
     /**
      * Returns the requirements to become a Mentor in
      * the given job
@@ -79,6 +85,7 @@ public abstract class Job {
         int [] reqs = {this.getMentorStrength(), this.getMentorIntelligence()};
         return reqs;      
     }
+    
     /**
      * Returns the required strength to become
      * a mentor in the job
@@ -87,6 +94,7 @@ public abstract class Job {
     public int getMentorStrength(){
         return mentorStrength;
     }
+    
     /**
      * Returns the required intelligence to become
      * a mentor in the job
@@ -95,6 +103,7 @@ public abstract class Job {
     public int getMentorIntelligence(){
         return mentorIntelligence;
     }
+    
     /** 
      * GOING TO NEED TO REVISE THIS PART
      * to determine picking which peons to assign to the task
@@ -112,6 +121,7 @@ public abstract class Job {
         double total = (str+intel)/2;
         return total;
     }
+    
     /**
      * Defines whether or not the given peon is 
      * qualified to do the job
@@ -125,6 +135,7 @@ public abstract class Job {
         }
         return false;
     }
+    
     /**
      * Defines whether or not the given peon is 
      * qualified to become a mentor in the job

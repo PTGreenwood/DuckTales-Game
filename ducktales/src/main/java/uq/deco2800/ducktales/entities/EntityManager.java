@@ -20,7 +20,7 @@ public class EntityManager implements Tickable {
     private List<Entity> entities;
 
     /**
-     * Initialises the EntityManager.
+     * Main constructor of the {@link EntityManager} class
      */
     private EntityManager() {
         entities = new ArrayList<Entity>();
@@ -42,7 +42,6 @@ public class EntityManager implements Tickable {
      */
     public void addEntity(Entity entity) {
         entities.add(entity);
-
     }
 
     /**
