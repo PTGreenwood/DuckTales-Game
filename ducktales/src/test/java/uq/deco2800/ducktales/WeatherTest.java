@@ -1,5 +1,7 @@
 package uq.deco2800.ducktales;
 
+import java.util.*;
+
 import org.junit.*;
 
 import uq.deco2800.ducktales.weather.*;
@@ -35,10 +37,11 @@ public class WeatherTest {
 	
 	
 	/**
-	 * Not sure if I will need this?
+	 * 
 	 * @param weather
 	 */
-	private void testEvent(Weather weather) {
-		
+	@Test
+	public void testWeatherEvent() {
+		HashSet<WeatherChance> weatherChance = new HashSet<>();
 	}
 }
