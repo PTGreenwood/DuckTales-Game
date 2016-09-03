@@ -1,6 +1,5 @@
 package uq.deco2800.ducktales.rendering.managers;
 
-import com.sun.org.apache.bcel.internal.classfile.ClassFormatException;
 import uq.deco2800.ducktales.resources.ResourceType;
 
 import java.util.HashMap;
