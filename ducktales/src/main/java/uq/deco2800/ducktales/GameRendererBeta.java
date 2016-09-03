@@ -9,6 +9,7 @@ import uq.deco2800.ducktales.rendering.engine.WorldEntityRenderingInfo;
 import uq.deco2800.ducktales.hud.BuildingSprite;
 
 import uq.deco2800.ducktales.rendering.engine.RenderingManager;
+import uq.deco2800.ducktales.rendering.managers.WorldEntityInfoManager;
 import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.rendering.tiles.TileBeta;
@@ -50,6 +51,8 @@ public class GameRendererBeta extends AnimationTimer {
     /** UI Variables */
     // The image to be show at the cursor whenever the play is 'drag&dropping'
     private ImageView cursorImage;
+    // The variable to determine when the root must handle the cursor again
+    private boolean cursorImageFreeMoving = true;
 
     /**
      * The global game variables
@@ -57,6 +60,7 @@ public class GameRendererBeta extends AnimationTimer {
     private WorldBeta world; // the game world
     private GameManagerBeta manager; // the game manager
     private ResourceSpriteRegister resource;
+    private WorldEntityInfoManager worldEntityInfoManager; // for rendering purposes
 
     /**
      * VARIABLES FOR RENDERING
@@ -91,7 +95,7 @@ public class GameRendererBeta extends AnimationTimer {
         this.buttonsMenu = buttonsMenu;
         this.buildingsMenu = buildingsMenu;
 
-
+        worldEntityInfoManager = WorldEntityInfoManager.getInstance();
 
         resource = ResourceSpriteRegister.getInstance();
     }
@@ -110,7 +114,7 @@ public class GameRendererBeta extends AnimationTimer {
         // Setup cursor image
         this.cursorImage = new ImageView();
         this.cursorImage.setMouseTransparent(true);
-        root.getChildren().add(this.cursorImage);
+        worldPane.getChildren().add(this.cursorImage);
 
         // Initialize the building sprites for buildings menu
         buildingSprites = new ArrayList<>();
@@ -125,6 +129,12 @@ public class GameRendererBeta extends AnimationTimer {
 
         // Setup the CUSTOM event handlers for the game
         setupCustomEventHandler();
+    }
+
+
+    @Override
+    public void handle(long now) {
+
     }
 
     /*---------*
@@ -183,10 +193,6 @@ public class GameRendererBeta extends AnimationTimer {
 
     }
 
-    @Override
-    public void handle(long now) {
-
-    }
 
     /**
      * Setting up the initial rendering values for the game
@@ -250,15 +256,31 @@ public class GameRendererBeta extends AnimationTimer {
      * accordingly
      */
     private void setupCustomEventHandler() {
+        // This method is called when a tile is entered. The TileEnterEvent
+        // COMPLETELY replaces the onMouseEntered event, so worldPane will not
+        // receive onMouseEntered at all
         worldPane.addEventHandler(TileEnteredEvent.TILE_ENTERED, event -> {
             TileBeta tile = world.getTiles().get(event.getxPos(), event.getyPos());
-            tile.setImage(resource.getResourceImage(BLANK));
+
+            tile.setImage(resource.getResourceImage(BLANK)); //TODO DELETE
+
+            // Disable the root from controlling the cursor image
+            cursorImageFreeMoving = false;
+
+            // Move the cursor image to the appropriate position
+            moveCursorBuildingToTile(tile);
+        });
+        // Reset the cursor image to move with the mouse
+        worldPane.setOnMouseEntered(event -> {
+            cursorImageFreeMoving = true;
         });
         worldPane.addEventHandler(uq.deco2800.ducktales.util.events.tile.TileExitedEvent.TILE_EXITED, event -> {
             //System.err.println(event.toString());
             TileBeta tile = world.getTiles().get(event.getxPos(), event.getyPos());
             tile.setImage(resource.getResourceImage(tile.getTileType()));
         });
+        // A tile is clicked on. Right now the implementation only handles
+        // adding a building to the tile
         worldPane.addEventHandler(TileClickedEvent.TILE_CLICKED, event -> {
             System.err.println("building " + manager.getCurrentResourceManaging()
             + " to be added to: " + event.getxPos() + ", " +event.getyPos());
@@ -271,6 +293,12 @@ public class GameRendererBeta extends AnimationTimer {
                         event.getxPos(),
                         event.getyPos()
                 );
+                // Add the sprite of the building to the game world
+                addToWorld(
+                        manager.getCurrentResourceManaging(),
+                        event.getxPos(),
+                        event.getyPos()
+                );
             }
 
             // reset the cursor image
@@ -279,13 +307,26 @@ public class GameRendererBeta extends AnimationTimer {
             // reset manager's current resource managing
             manager.setCurrentResourceManaging(NONE);
         });
+        // Set the cursorImage to move together with the mouse only when
+        // it is allowed to
+        worldPane.setOnMouseMoved(event -> {
+            if (cursorImageFreeMoving) {
+                if (cursorImage != null) {
+                    this.cursorImage.setLayoutX(event.getX());
+                    this.cursorImage.setLayoutY(event.getY());
+                }
+            }
+        });
 
         /*
          * Event handlers for the buildings menu
          */
+        // This method is called when a building in the menu is clicked on
         buildingsMenu.addEventHandler(BuildingMenuSelectedEvent.BUILDING_MENU_SELECTED_EVENT, event -> {
             // Setup the cursor image to that of the building clicked
             Image sprite = resource.getResourceImage(event.getType());
+            // Allow it to move
+            cursorImageFreeMoving = true;
 
             // Reset the sprite's position
             this.cursorImage.setLayoutX(event.getStartingX());
@@ -302,6 +343,7 @@ public class GameRendererBeta extends AnimationTimer {
 
             // reveal the sprite
             this.cursorImage.setImage(sprite);
+            this.cursorImage.toFront();
 
             // notify the manager
             System.err.println("building clicked: " + event.getType());
@@ -320,21 +362,7 @@ public class GameRendererBeta extends AnimationTimer {
 
         });
 
-        root.addEventHandler(CursorMovedEvent.CURSOR_MOVED_EVENT, event -> {
-            // Update the cursor image to the corresponding position
-            cursorImage.setLayoutX(event.getX());
-            cursorImage.setLayoutY(event.getY());
 
-            // Make the cursor image stop receiving mouse events
-            cursorImage.setMouseTransparent(true);
-        });
-
-        root.setOnMouseMoved(event -> {
-            if (cursorImage != null) {
-                this.cursorImage.setLayoutX(event.getX());
-                this.cursorImage.setLayoutY(event.getY());
-            }
-        });
 
         root.setOnMouseClicked(event -> {
             if (event.getButton() == MouseButton.SECONDARY) {
@@ -343,6 +371,42 @@ public class GameRendererBeta extends AnimationTimer {
                 manager.setCurrentResourceManaging(ResourceType.NONE);
             }
         });
+    }
+
+    /**
+     * Add the given resource to the world, as well as to the array of
+     * entities to manage, when moving the world around
+     */
+    private void addToWorld(ResourceType type, int xIndex, int yIndex) {
+        // shorten the name for easier reading
+        WorldEntityInfoManager manager = this.worldEntityInfoManager;
+
+        if (manager.containEntity(type)) {
+
+        } else {
+            // later will check for agent entities
+            System.err.println("Building '" + type + "' is not yet registered");
+        }
+    }
+
+    private void moveCursorBuildingToTile(TileBeta targetTile) {
+        // Shorten the name
+        WorldEntityInfoManager manager = this.worldEntityInfoManager;
+
+        // relocate the origin of the cursor image
+        cursorImage.setX(-cursorImage.getFitWidth() / 2);
+        cursorImage.setY(-cursorImage.getFitHeight());
+//        cursorImage.setX(0.0);
+//        cursorImage.setY(0.0);
+
+        System.err.println("x and y origins are: " + cursorImage.getX() +
+                ", " + cursorImage.getY());
+
+        // Re-set the location of the cursor image
+        cursorImage.setLayoutX(
+                targetTile.getLayoutX() + targetTile.getFitWidth() / 2);
+        cursorImage.setLayoutY(
+                targetTile.getLayoutY() + targetTile.getFitHeight());
     }
 
 }
