@@ -1,5 +1,5 @@
-#weatherEffect {
-	-fx-background-image: url("weather/rain.png");	
+#weatherEffectPane {
+		
 	-fx-background-repeat: repeat;
 }
 

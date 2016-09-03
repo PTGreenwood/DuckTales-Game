@@ -33,9 +33,12 @@ public class DuckTalesController implements Initializable {
 	private Canvas gameCanvas;
 
 	@FXML
-	// gameWindow, rightPane & mainMenuPane are referenced in ducktales.fxml
 	//gameWindow, contentPane & mainMenuPane are referenced in ducktales.fxml
 	private AnchorPane gameWindow, contentPane, mainMenuPane;
+	
+	//weatherEffectPane referenced in ducktales.fxml
+	@FXML
+	private Pane weatherEffectPane;
 	
 	private ExecutorService executor;
 
@@ -143,8 +146,10 @@ public class DuckTalesController implements Initializable {
 			gameCanvas = new Canvas();
 			gameCanvas.widthProperty().bind(contentPane.widthProperty());
 			gameCanvas.heightProperty().bind(contentPane.heightProperty());			
-								
+			weatherEffectPane.setStyle("-fx-background-image: url('weather/rain.gif')");
+			
 			showCanvas(gameCanvas);	
+			
 			
 			//addWeather(weatherImageView);
 
