@@ -1,4 +1,4 @@
-package uq.deco2800.ducktales.hud;
+package uq.deco2800.ducktales.rendering.hud;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -7,7 +7,6 @@ import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.events.ui.BuildingMenuDeselectedEvent;
 import uq.deco2800.ducktales.util.events.ui.BuildingMenuSelectedEvent;
-import uq.deco2800.ducktales.util.events.ui.CursorMovedEvent;
 
 /**
  * This class represents a sprite of a building, to be rendered into the game
@@ -65,10 +64,10 @@ public class BuildingSprite extends ImageView {
                     this.buildingType, event.getSceneX(), event.getSceneY()));
         });
 
-        this.setOnMouseReleased(event -> {
-            System.err.println("Mouse released on building " + this.buildingType);
-            fireEvent(new BuildingMenuDeselectedEvent(this.buildingType));
-        });
+//        this.setOnMouseReleased(event -> {
+//            System.err.println("Mouse released on building " + this.buildingType);
+//            fireEvent(new BuildingMenuDeselectedEvent(this.buildingType));
+//        });
 //        this.setOnMouseDragged(event -> {
 //            fireEvent(new CursorMovedEvent(event.getSceneX(), event.getSceneY()));
 //        });

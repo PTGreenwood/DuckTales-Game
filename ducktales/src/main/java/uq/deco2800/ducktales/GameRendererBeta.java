@@ -6,9 +6,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.*;
 import uq.deco2800.ducktales.rendering.engine.WorldEntityRenderingInfo;
-import uq.deco2800.ducktales.hud.BuildingSprite;
+import uq.deco2800.ducktales.rendering.hud.BuildingSprite;
 
-import uq.deco2800.ducktales.rendering.engine.RenderingManager;
+import uq.deco2800.ducktales.rendering.managers.RenderingManager;
 import uq.deco2800.ducktales.rendering.managers.WorldEntityInfoManager;
 import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
@@ -73,6 +73,13 @@ public class GameRendererBeta extends AnimationTimer {
     private double startingY;
     // The scale/zoom factor
     private double generalScale;
+
+    /**
+     * List of all rendered entities. Current implementation is only ImageView,
+     * but in the future, each rendered entity will have their own respective
+     * classes, in order to handle click event more appropriately
+     */
+    private ArrayList<ImageView> renderedEntities;
 
     /**
      * Initialize a game renderer with the given UI Elements
@@ -205,6 +212,8 @@ public class GameRendererBeta extends AnimationTimer {
         this.startingY = root.getPrefHeight() * 0.05;
 
         this.generalScale = renderingManager.getMainScaleFactor();
+
+        this.renderedEntities = new ArrayList<>();
 
     }
 
@@ -382,13 +391,29 @@ public class GameRendererBeta extends AnimationTimer {
         WorldEntityInfoManager manager = this.worldEntityInfoManager;
 
         if (manager.containEntity(type)) {
+            // Create (for now) an ImageView at the position of the cursor image
+            // and add that image to the list of entities rendered
+            ImageView entity = new ImageView();
 
+            // Duplicate all properties from cursor image to entity
+            deepCloneSprite(entity, cursorImage);
+
+            // Add the entity to the world, and to the list
+            worldPane.getChildren().add(entity);
+            renderedEntities.add(entity);
         } else {
             // later will check for agent entities
             System.err.println("Building '" + type + "' is not yet registered");
         }
     }
 
+    /**
+     * Move the cursor image to the given tile, at an appropriate point to
+     * show the player where the entity would be added if mouse is clicked
+     *
+     * @param targetTile
+     *          The tile currently under the cursor
+     */
     private void moveCursorBuildingToTile(TileBeta targetTile) {
         // Shorten the name
         WorldEntityInfoManager manager = this.worldEntityInfoManager;
@@ -396,8 +421,6 @@ public class GameRendererBeta extends AnimationTimer {
         // relocate the origin of the cursor image
         cursorImage.setX(-cursorImage.getFitWidth() / 2);
         cursorImage.setY(-cursorImage.getFitHeight());
-//        cursorImage.setX(0.0);
-//        cursorImage.setY(0.0);
 
         System.err.println("x and y origins are: " + cursorImage.getX() +
                 ", " + cursorImage.getY());
@@ -407,6 +430,31 @@ public class GameRendererBeta extends AnimationTimer {
                 targetTile.getLayoutX() + targetTile.getFitWidth() / 2);
         cursorImage.setLayoutY(
                 targetTile.getLayoutY() + targetTile.getFitHeight());
+    }
+
+    /**
+     * Deep clone a sprite into the given sprite
+     *
+     * @param source
+     *          The sprite to clone from
+     * @param destination
+     *          The sprite that will store the deep clone
+     */
+    private void deepCloneSprite(ImageView destination, ImageView source) {
+        // Set the image
+        destination.setImage(source.getImage());
+
+        // Set the origin
+        destination.setX(source.getX());
+        destination.setY(source.getY());
+
+        // Set the actual position
+        destination.setLayoutX(source.getLayoutX());
+        destination.setLayoutY(source.getLayoutY());
+
+        // Set the fit height and width
+        destination.setFitHeight(source.getFitHeight());
+        destination.setFitWidth(source.getFitWidth());
     }
 
 }

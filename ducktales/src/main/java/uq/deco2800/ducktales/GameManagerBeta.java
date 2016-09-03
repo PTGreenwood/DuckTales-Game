@@ -1,6 +1,6 @@
 package uq.deco2800.ducktales;
 
-import uq.deco2800.ducktales.rendering.engine.RenderingManager;
+import uq.deco2800.ducktales.rendering.managers.RenderingManager;
 import uq.deco2800.ducktales.rendering.managers.TilesManager;
 
 import uq.deco2800.ducktales.resources.InventoryManager;

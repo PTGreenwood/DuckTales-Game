@@ -76,11 +76,6 @@ public class TilesManager {
                     buildingType,
                     worldEntityInfoManager.YLength
             );
-
-            // TODO: DELELTE THESE LINES FOR DEBUGGIN
-            System.out.println("\n ATTENTION: Trying to add:\n" +
-                    "    " + buildingType + " to tile at: " + x + ", " + y + "\n" +
-                    "    " + "Length or the building is x: " + xLength + ", y: " + yLength);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return;
@@ -89,7 +84,6 @@ public class TilesManager {
         // At this point, there should be no more problem
 
         // Set the appropriate tiles to the building type, and make them non-passable
-        // TODO: MAKE SURE TO SET PASSABLE FOR APPROPRIATE BUILDINGS AS WELL
         if (xLength == 2 && yLength == 2) {
             ResourceSpriteRegister register = ResourceSpriteRegister.getInstance();
             Image image = register.getResourceImage(ResourceType.BLANK);
@@ -107,8 +101,6 @@ public class TilesManager {
             tiles.get(x - 1, y).setWorldEntity(buildingType);
             tiles.get(x - 1, y).setPassable(false);
         }
-
-
     }
 
 
