@@ -26,7 +26,7 @@ public class GameRenderer extends AnimationTimer {
 	private ResourceSpriteRegister resourceSpriteRegister;
 	private int tileHeight;
 	private int tileWidth;
-	
+
 	private GameManager gameManager = GameManager.getInstance();
 	private EntityManager entityManager = EntityManager.getInstance();
 
@@ -58,9 +58,9 @@ public class GameRenderer extends AnimationTimer {
 	}
 
 	/**
-	 * Renders the world to the canvas.
-	 * This method also handles scaling of the world
-	 */ 
+	 * Renders the world to the canvas. This method also handles scaling of the
+	 * world
+	 */
 	private void renderWorld() {
 		Tile tile;
 
@@ -70,18 +70,18 @@ public class GameRenderer extends AnimationTimer {
 		for (int i = 0; i < world.getWidth(); i++) {
 			for (int j = 0; j < world.getHeight(); j++) {
 				tile = world.getTile(i, j);
-				
+
 				int x = baseX + (j - i) * scaledWidth / 2;
 				int y = baseY + (j + i) * scaledHeight / 2;
 				graphicsContext.drawImage(
-						// Draw the image at position x, y, and scaled to the box with given
+						// Draw the image at position x, y, and scaled to the
+						// box with given
 						// scaledWidth and scaledHeight
-						resourceSpriteRegister.getResourceImage(tile.getTileType()), x, y,
-						scaledWidth, scaledHeight);
+						resourceSpriteRegister.getResourceImage(tile.getTileType()), x, y, scaledWidth, scaledHeight);
 			}
 		}
 	}
-	
+
 	/**
 	 * Re-renders the canvas around the world to ensure that no previous world
 	 * state artifacts are visible. Only renders a border of width
@@ -90,6 +90,7 @@ public class GameRenderer extends AnimationTimer {
 	 * Note: Will most likely need to increase borderThickness to accomodate for
 	 * tall entities (eg. buildings, trees etc.) that would otherwise draw
 	 * beyond the reach of the border.
+	 * 
 	 * @author Oliver Yule
 	 */
 	private void renderCanvas() {
@@ -127,8 +128,8 @@ public class GameRenderer extends AnimationTimer {
 						x = baseX + (i - j) * scaledWidth / 2;
 					}
 					int y = baseY + (j + i) * scaledHeight / 2;
-					graphicsContext.drawImage(resourceSpriteRegister.getResourceImage(
-							ResourceType.BLANK), x, y, scaledWidth, scaledHeight);
+					graphicsContext.drawImage(resourceSpriteRegister.getResourceImage(ResourceType.BLANK), x, y,
+							scaledWidth, scaledHeight);
 				}
 			}
 		}
@@ -136,6 +137,7 @@ public class GameRenderer extends AnimationTimer {
 
 	/**
 	 * Renders entities on the canvas.
+	 * 
 	 * @author Leggy, Wondertroy
 	 */
 	private void renderEntities() {
@@ -144,13 +146,28 @@ public class GameRenderer extends AnimationTimer {
 		for (int index = 0; index < entities.size(); index++) {
 			Entity entity = entities.get(index);
 
+			/*
+			 * Scale the image.
+			 */
 			int scaledWidth = (int) (tileWidth * scale);
 			int scaledHeight = (int) (tileHeight * scale);
 
+			/*
+			 * Load image, and calculate coordinates, translating from World x-y
+			 * to Screen x-y.
+			 */
 			Image image = resourceSpriteRegister.getResourceImage(entity.getType());
-			int x = baseX + (int)((entity.getY() - entity.getX()) * scaledWidth / 2.0);
-			int y = baseY + (int)((entity.getY() + entity.getX()) * scaledHeight / 2.0);
+			int x = baseX + (int) ((entity.getY() - entity.getX()) * scaledWidth / 2.0);
+			int y = baseY + (int) ((entity.getY() + entity.getX()) * scaledHeight / 2.0);
 
+			/*
+			 * Anchor is the position of the top-left corner of the front-most
+			 * corner (the corner closest to the bottom of the screen) of the
+			 * image.
+			 * 
+			 * We calculate this so we can render with respect to the front most
+			 * corner, not the top-left of the image.
+			 */
 			int anchorY = (int) ((image.getHeight() - tileHeight) * scale);
 			int anchorX = (int) ((entity.getYLength() - 1) / 2.0 * tileWidth * scale);
 
