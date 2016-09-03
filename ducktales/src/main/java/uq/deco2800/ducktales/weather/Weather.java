@@ -5,30 +5,38 @@ package uq.deco2800.ducktales.weather;
  * 
  * @author mattyleggy
  *
- * Maybe this should be an interface instead of abstract? Something to consider.
- * Changed to an interface, still not 100% sure if I should at this stage.
  */
 public interface Weather {
 	
 	/**
+	 * Get the weather effect (sprite) details for weather
+	 * 
 	 * @return sprite effect
 	 */
 	public WeatherEffect getWeatherEffect();
 	
 	/**
+	 * Check if the weather event occurs on land
+	 * 
 	 * @return true or false depending on if it is a land 
 	 */
 	public boolean isLand();
 	
 	/**
+	 * Check if the weather even occurs on water
+	 * 
 	 * @return true if weather event occurs over water
 	 * 		   false if weather event does not occur over water
 	 */
 	public boolean isWater();
 	
 	/**
-	 * Need a better name for this...
-	 * Better name selected now. isAmphibious is more correct
+	 * Check if the weather events occurs on:
+	 * 
+	 * 	  land - isLand() 
+	 * 
+	 * && water - isWater() 
+	 * 
 	 * @return true if weather event occurs over both land && water
 	 * 		   false if weather event does not occur over both
 	 */

@@ -26,11 +26,13 @@ public class WeatherEffect {
 	 * @param fileName
 	 * 			the filename of the sprite.
 	 */
-	public WeatherEffect(String name, String fileName) {
-		this.name = name;		
+	public WeatherEffect(String fileName) {				
 		this.fileName = fileName;
 	}
 	
+	/**
+	 * @param name
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}

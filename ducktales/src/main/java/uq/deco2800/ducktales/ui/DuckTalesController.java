@@ -7,8 +7,6 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import javafx.scene.layout.*;
-import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Polygon;
 import uq.deco2800.ducktales.*;
 import uq.deco2800.ducktales.achievements.Achievements;
 import uq.deco2800.ducktales.missions.Missions;
@@ -25,7 +23,6 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.ScrollBar;
-import javafx.scene.image.*;
 import javafx.stage.Stage;
 
 public class DuckTalesController implements Initializable {
@@ -139,14 +136,14 @@ public class DuckTalesController implements Initializable {
 	 */
 	@FXML
 	public void startGame(ActionEvent event) throws Exception {
-		toggleMenuPane();
+		toggleMenuPane();		
+		weatherEffectPane.setStyle("-fx-background-image: url('weather/rain.gif')");
 		if (gameCanvas == null) { // the canvas has not been initialized
 			// Initialize the gameCanvas
 			// and set the canvas to resize as the rightPane is resized			
 			gameCanvas = new Canvas();
 			gameCanvas.widthProperty().bind(contentPane.widthProperty());
 			gameCanvas.heightProperty().bind(contentPane.heightProperty());			
-			weatherEffectPane.setStyle("-fx-background-image: url('weather/rain.gif')");
 			
 			showCanvas(gameCanvas);	
 			
@@ -287,6 +284,12 @@ public class DuckTalesController implements Initializable {
 	 */
 	private void showCanvas(Canvas canvas) {
 		contentPane.getChildren().removeAll(gameCanvas, worldBuilderPane, gamePane);
+		/* 
+		 * @mattyleggy
+		 * adding the content pane to the 0-th index to ensure the 
+		 * weatherEffectPane is on top of the main canvas so that the animation
+		 * is always visible.  		
+		 */
 		contentPane.getChildren().add(0,canvas);
 	}
 
