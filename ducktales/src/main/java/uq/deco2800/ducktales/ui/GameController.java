@@ -9,6 +9,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import uq.deco2800.ducktales.GameManagerBeta;
 import uq.deco2800.ducktales.GameRendererBeta;
+import uq.deco2800.ducktales.achievements.Achievements;
+import uq.deco2800.ducktales.achievements.progressIndicator;
+import uq.deco2800.ducktales.level.Level;
+import uq.deco2800.ducktales.missions.Missions;
 import uq.deco2800.ducktales.resources.InventoryManager;
 
 import java.net.URL;
@@ -48,6 +52,8 @@ public class GameController{
     private Button closeInfoPaneButton;
     // The Achievement window
     private AnchorPane achievementPane;
+    // The Marketplace window
+    private VBox marketplacePane;
 
     /** The rendering engine of the game */
     private GameRendererBeta renderer;
@@ -101,18 +107,30 @@ public class GameController{
 
         achievementPane = loader.load();
 
-
         showInfoPane(achievementPane);
+    }
 
+    @FXML
+    public void showMarketplace(ActionEvent event) throws Exception {    	
+        URL location = getClass().getResource("/marketplace.fxml");
+        FXMLLoader loader = new FXMLLoader(location);
+
+        marketplacePane = loader.load();
+
+        showInfoPane(marketplacePane);
+        
+        missionCompletedAction(3);
     }
 
     @FXML
     public void addPeon(ActionEvent event) {
+    	
+    	missionCompletedAction(2);
     }
 
     @FXML
     public void closeInfoPane() {
-        rootPane.getChildren().remove(this.achievementPane);
+        rootPane.getChildren().removeAll(this.achievementPane, this.marketplacePane);
         closeInfoPaneButton.setVisible(false);
     }
 
@@ -123,8 +141,7 @@ public class GameController{
      *          The pane to be shown in the in-game screen
      */
     private void showInfoPane(Pane pane) {
-        // Remove all info panes first
-        rootPane.getChildren().remove(this.achievementPane);
+        // All info panes must have been removed at this point
 
         // Add the given pane
         rootPane.getChildren().add(pane);
@@ -136,15 +153,31 @@ public class GameController{
         // Set the location of the given pane to be rendered at
         rootPane.setLeftAnchor(pane, sideAnchor);
         rootPane.setRightAnchor(pane, sideAnchor);
-        rootPane.setTopAnchor(pane, verticalAnchor);
         rootPane.setBottomAnchor(pane, verticalAnchor);
 
         closeInfoPaneButton.setVisible(true);
+
+        // Re-layout the closing button
         rootPane.setLeftAnchor(closeInfoPaneButton, sideAnchor);
         rootPane.setRightAnchor(closeInfoPaneButton, sideAnchor);
         rootPane.setBottomAnchor(closeInfoPaneButton, verticalAnchor - 30);
 
     }
-
+    
+    private void missionCompletedAction(int i){
+    	
+    	//Untick mission2 box in Achievement window of Gamebeta when marketplace is clicked
+        Missions.getInstance().MissionImageCompleted(i);
+        //Increment percentage of progress indicator in achievement
+        progressIndicator.getInstance().setProgressPercentage(Missions.getInstance().getMissionCount());
+        //Increment total achievement score
+        Achievements.getInstance().achieveEasy();
+        //Increment percentage of progress bar in leveling system
+        Level.getInstance().setProgressBar(0.5);
+        //if progress bar is full then level up
+        if(Level.getInstance().getBarProgress() == 1.0){
+        	Level.getInstance().LevelUp();
+        }
+    }
 
 }

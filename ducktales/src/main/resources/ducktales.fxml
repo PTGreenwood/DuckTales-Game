@@ -4,8 +4,9 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 
-<AnchorPane fx:id="gameWindow" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="737.0" prefWidth="1295.0" stylesheets="@ducktales.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uq.deco2800.ducktales.ui.DuckTalesController">
+<AnchorPane fx:id="gameWindow" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="737.0" prefWidth="1295.0" stylesheets="@ducktales.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uq.deco2800.ducktales.ui.DuckTalesController">
 	<children>
 		<AnchorPane fx:id="mainMenuPane" layoutY="-2.0" minHeight="0.0" minWidth="0.0" prefHeight="737.0" prefWidth="1295.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 			<children>
@@ -20,9 +21,13 @@
 				<Button fx:id="tutorialBtn" layoutX="648.0" layoutY="407.0" mnemonicParsing="false" onAction="#tutorial" prefHeight="45.0" prefWidth="500" styleClass="buttonImage" textAlignment="CENTER" />
 				<Button fx:id="achievementsBtn" layoutX="648.0" layoutY="557.0" mnemonicParsing="false" onAction="#missionAndAchievement" prefHeight="45.0" prefWidth="500" styleClass="buttonImage" textAlignment="CENTER" />
 				<Button fx:id="marketplaceBtn" layoutX="648.0" layoutY="482.0" mnemonicParsing="false" onAction="#showMarketplace" prefHeight="45.0" prefWidth="500" styleClass="buttonImage" textAlignment="CENTER" />
-				<Button fx:id="quitBtn" layoutX="648.0" layoutY="632.0" mnemonicParsing="false" onAction="#quitApplication" prefHeight="45.0" prefWidth="500" styleClass="buttonImage" textAlignment="CENTER" />
+				<Button fx:id="quitBtn" layoutX="648.0" layoutY="632.0" mnemonicParsing="false" onAction="#quitApplication" prefHeight="45.0" prefWidth="500" styleClass="buttonImage" textAlignment="CENTER" />            	
 			</children>
 		</AnchorPane>
-		<AnchorPane fx:id="contentPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="737.0" prefWidth="1295.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+		<AnchorPane fx:id="contentPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="737.0" prefWidth="1295.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+			<children>						
+            	<Pane fx:id="weatherEffectPane" mouseTransparent="true" opacity="0.7" prefHeight="744.0" prefWidth="1303.0" />            	
+			</children>
+		</AnchorPane>
 	</children>
 </AnchorPane>

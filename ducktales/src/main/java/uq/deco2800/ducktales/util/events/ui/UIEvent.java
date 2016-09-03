@@ -1,4 +1,4 @@
-package uq.deco2800.ducktales.util.Events.UIEvents;
+package uq.deco2800.ducktales.util.events.ui;
 
 import javafx.beans.NamedArg;
 import javafx.event.Event;
