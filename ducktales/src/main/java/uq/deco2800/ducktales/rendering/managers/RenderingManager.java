@@ -43,7 +43,7 @@ public class RenderingManager {
         this.mainScaleFactor = scaleFactor;
 
         // TODO ADJUST THESE SCALE FACTORS AS DEEM FIT
-        this.UIScale = 1;
+        this.UIScale = 2;
         this.buildingScale = 1.2;
     }
 

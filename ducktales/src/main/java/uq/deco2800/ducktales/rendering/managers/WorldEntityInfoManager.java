@@ -38,14 +38,23 @@ public class WorldEntityInfoManager {
      *      each int[] unit in buildingSizes only has 2 (BuildingSize) values
      */
 
-    /** The data structure holding information of all the building sizes*/
+    /**
+     * The data structure holding information of all the building sizes
+     *
+     * TODO: TO ADD NEW BUILDINGS TO THE BUILDINGS MENU, ADD THEM HERE
+     *
+     * Note: make sure the order of registering the buildings is correct!
+     */
+    // The size of the building in tile unit, in the format {x, y}
     private int[][] buildingSizes = {
             {2, 2}, // clinic
-            {5, 5} // pasture
+            {5, 5}, // pasture
+            {2, 2} // community building
     };
     private ResourceType[] buildingNames = {
             CLINIC,
-            PASTURE
+            PASTURE,
+            COMMUNITY_BUILDING
     };
 
     /**

@@ -46,6 +46,8 @@ public class GameController{
     @FXML
     private AnchorPane buttonsMenu;
     @FXML
+    private VBox secondaryButtonsMenu;
+    @FXML
     private HBox buildingsMenu;
     // The Inventory menu
     @FXML
@@ -138,7 +140,7 @@ public class GameController{
 
     @FXML
     public void addPeon(ActionEvent event) {
-    	
+    	System.err.println("adding peon");
     	missionCompletedAction(2);
     }
 

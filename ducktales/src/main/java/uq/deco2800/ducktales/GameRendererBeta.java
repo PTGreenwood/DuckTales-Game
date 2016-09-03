@@ -34,9 +34,10 @@ public class GameRendererBeta extends AnimationTimer {
     /**
      * CONSTANTS
      */
+    // TODO: TO ADD NEW BUILDINGS, REGISTER THE NAME HERE
     private static final ResourceType[] BUILDINGS = {
         //HOSPITAL, BAKERY, BARN, <--- these buildings are of the wrong size
-        CLINIC, PASTURE, BUTCHER, COMMMUNITY_BUILDING, BAKERY
+        CLINIC, PASTURE, BUTCHER, COMMUNITY_BUILDING, BAKERY
     };
 
     /** The Root pane where all HUD elements, and world pane will be added to*/
@@ -128,6 +129,13 @@ public class GameRendererBeta extends AnimationTimer {
         for (int i = 0; i < BUILDINGS.length; i++) {
             BuildingSprite sprite = new BuildingSprite(BUILDINGS[i]);
 
+            if (!worldEntityInfoManager.containEntity(sprite.getBuildingType())) {
+                // this building is not yet registered in the manager. not rendered
+                System.err.println("Building " + sprite.getBuildingType() + " is " +
+                        "not yet registered in WorldEntityInfoManager");
+                continue;
+            }
+
             buildingSprites.add(sprite);
         }
 
@@ -183,7 +191,11 @@ public class GameRendererBeta extends AnimationTimer {
      *---------*/
 
     /**
-     * Show the buildings being able to construct in the buildings menu
+     * Show the buildings that the player can construct in the buildings menu
+     *
+     * @require all buildings in buildingSprites must have been registered in
+     *          WorldEntityInfoManager
+     * @ensure each building in buildingSprites will be shown onto the buildingsMenu
      */
     public void showBuildingMenu() {
         buildingsMenu.getChildren().addAll(buildingSprites);
@@ -194,8 +206,32 @@ public class GameRendererBeta extends AnimationTimer {
         // adjust the size of the sprites
         for (int i = 0; i < buildingSprites.size(); i++) {
             BuildingSprite sprite = buildingSprites.get(i);
-            sprite.setFitHeight(sprite.getSpriteHeight() * UIScale);
-            sprite.setFitWidth(sprite.getSpriteWidth() * UIScale);
+
+            // Get the size of the building in tile-unit first
+            int xLength = 0;
+            int yLength = 0;
+            try {
+                xLength = worldEntityInfoManager.getBuildingLength(
+                        sprite.getBuildingType(), worldEntityInfoManager.XLength
+                );
+                yLength = worldEntityInfoManager.getBuildingLength(
+                        sprite.getBuildingType(), worldEntityInfoManager.YLength
+                );
+            } catch (Exception e) {
+                System.err.println(e.getMessage());
+            }
+
+            if (xLength == 0 || yLength == 0) {
+                // this building is not yet registered
+                System.err.println("Building: " + sprite.getBuildingType() + "is" +
+                        " not yet registered in WorldEntityInfoManager");
+                return;
+            }
+
+            // Now set the size of the sprite based on the length in tile unit, and
+            // the variable UIScale
+            sprite.setFitHeight((sprite.getSpriteHeight() / xLength) * UIScale);
+            sprite.setFitWidth((sprite.getSpriteWidth() / yLength) * UIScale);
         }
 
     }
