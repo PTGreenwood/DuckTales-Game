@@ -30,4 +30,9 @@ public class Rain implements Weather {
 	public boolean requiresObjectUpdate() {
 		return true;
 	}
+	
+	@Override
+	public String toString() {
+		return this.getClass().getSimpleName().toLowerCase();
+	}
 }

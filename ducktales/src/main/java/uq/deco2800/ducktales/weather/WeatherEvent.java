@@ -6,15 +6,16 @@ import java.util.*;
  * @author mattyleggy
  *
  */
-public class WeatherEvents {
+public class WeatherEvent {
 	//list of weather events
 	private HashSet<WeatherChance> weatherEvents;
 	
 	/**
-	 * @param weatherEvents
+	 * An empty list of weather events is constructed.
+	 * 	 * 
 	 */
-	public WeatherEvents(HashSet<WeatherChance> weatherEvents) {
-		this.weatherEvents = weatherEvents; 
+	public WeatherEvent() {
+		this.weatherEvents = new HashSet<>(); 
 	}
 	
 	/**
@@ -32,7 +33,7 @@ public class WeatherEvents {
 	 * 
 	 * @param weatherChance
 	 */
-	public void addWeatherChance(WeatherChance weatherChance) {
+	public void add(WeatherChance weatherChance) {
 		weatherEvents.add(weatherChance);
 	}
 	
@@ -41,7 +42,7 @@ public class WeatherEvents {
 	 * 
 	 * @param weatherChance
 	 */
-	public void removeWeatherChance(WeatherChance weatherChance) {
+	public void remove(WeatherChance weatherChance) {
 		weatherEvents.remove(weatherChance);
 	}
 	

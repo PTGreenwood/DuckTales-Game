@@ -5,6 +5,8 @@ package uq.deco2800.ducktales.weather;
  * 
  * @author mattyleggy
  *
+ * might need to convert this back into an abstract class...
+ *
  */
 public interface Weather {
 	
@@ -48,5 +50,7 @@ public interface Weather {
 	 */
 	public boolean requiresObjectUpdate();
 	
+	@Override
+	public String toString();
 	
 }

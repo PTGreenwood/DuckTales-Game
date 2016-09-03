@@ -14,6 +14,7 @@ import uq.deco2800.ducktales.resources.ResourceRegister;
 import uq.deco2800.ducktales.world.*;
 import uq.deco2800.ducktales.world.builder.WorldBuilderManager;
 import uq.deco2800.ducktales.world.builder.WorldBuilderRenderer;
+import uq.deco2800.ducktales.weather.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -137,7 +138,7 @@ public class DuckTalesController implements Initializable {
 	@FXML
 	public void startGame(ActionEvent event) throws Exception {
 		toggleMenuPane();		
-		weatherEffectPane.setStyle("-fx-background-image: url('weather/rain.gif')");
+		changeWeather(new Rain());
 		if (gameCanvas == null) { // the canvas has not been initialized
 			// Initialize the gameCanvas
 			// and set the canvas to resize as the rightPane is resized			
@@ -273,8 +274,18 @@ public class DuckTalesController implements Initializable {
 		contentPane.getChildren().add(pane);
 	}
 	
-	private void addWeather(AnchorPane imageView) {
-		contentPane.getChildren().add(imageView);
+	/**
+	 * Change the current weather of the scene to given weather.
+	 * 
+	 * @param weather
+	 * 			weather to change current scene to
+	 */
+	private void changeWeather(Weather weather) {		
+		WeatherEffect weatherEffect = weather.getWeatherEffect();
+		String sprite = weatherEffect.getSprite();
+		String weatherName = weatherEffect.toString();
+		weatherEffectPane.setStyle("-fx-background-image: url('"+sprite+"')");
+		System.out.println("Weather set to: "+weather.toString().toUpperCase());
 	}
 
 	/**

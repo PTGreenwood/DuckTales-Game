@@ -58,6 +58,11 @@ public class WeatherChance {
 	}
 	
 	@Override
+	public String toString() {
+		return ""+chance+"% of "+weather.toString();
+	}
+	
+	@Override
 	public int hashCode() {		
 		final int prime = 31; 
 		int result = 1; 

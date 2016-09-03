@@ -66,4 +66,9 @@ public class WeatherEffect {
 	public String getSprite() {
 		return LOCATION + this.fileName;
 	}
+	
+	@Override
+	public String toString() {
+		return this.name;
+	}
 }
