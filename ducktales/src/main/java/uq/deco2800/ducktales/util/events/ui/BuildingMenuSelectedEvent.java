@@ -1,4 +1,4 @@
-package uq.deco2800.ducktales.util.events.uievents;
+package uq.deco2800.ducktales.util.events.ui;
 
 import javafx.event.EventType;
 import uq.deco2800.ducktales.resources.ResourceType;

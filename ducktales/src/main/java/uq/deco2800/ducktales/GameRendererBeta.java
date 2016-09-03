@@ -5,15 +5,15 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.*;
+import uq.deco2800.ducktales.rendering.engine.WorldEntityRenderingInfo;
 import uq.deco2800.ducktales.hud.BuildingSprite;
+import uq.deco2800.ducktales.rendering.engine.RenderingManager;
 import uq.deco2800.ducktales.resources.ResourceRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
-import uq.deco2800.ducktales.renderingengine.tiles.TileBeta;
-import uq.deco2800.ducktales.renderingengine.RenderingManager;
-import uq.deco2800.ducktales.renderingengine.WorldEntityRenderingInfo;
+import uq.deco2800.ducktales.rendering.tiles.TileBeta;
 import uq.deco2800.ducktales.util.Array2D;
-import uq.deco2800.ducktales.util.events.tileevents.*;
-import uq.deco2800.ducktales.util.events.uievents.*;
+import uq.deco2800.ducktales.util.events.tile.*;
+import uq.deco2800.ducktales.util.events.ui.*;
 import uq.deco2800.ducktales.world.WorldBeta;
 
 import java.util.ArrayList;
@@ -21,7 +21,12 @@ import java.util.ArrayList;
 import static uq.deco2800.ducktales.resources.ResourceType.*;
 
 /**
- * Created by Khoi on 31/08/2016.
+ * This is the rendering engine for the game. More information can be found on the
+ * wiki page called New Rendering Engine
+ *
+ * Created on 31/08/2016.
+ *
+ * @author khoiphan21
  */
 public class GameRendererBeta extends AnimationTimer {
     /**
@@ -243,7 +248,7 @@ public class GameRendererBeta extends AnimationTimer {
             TileBeta tile = world.getTiles().get(event.getxPos(), event.getyPos());
             tile.setImage(resource.getResourceImage(BLANK));
         });
-        worldPane.addEventHandler(TileExitedEvent.TILE_EXITED, event -> {
+        worldPane.addEventHandler(uq.deco2800.ducktales.util.events.tile.TileExitedEvent.TILE_EXITED, event -> {
             //System.err.println(event.toString());
             TileBeta tile = world.getTiles().get(event.getxPos(), event.getyPos());
             tile.setImage(resource.getResourceImage(tile.getTileType()));

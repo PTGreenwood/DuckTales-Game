@@ -17,7 +17,7 @@ public abstract class ResourceEntity extends WorldEntity {
 
 	protected ResourceEntity(double x, double y, int lengthX, int lengthY, ResourceType type, int value) {
 		super(x, y, lengthX, lengthY, type);
-		this.value = value;
+		ResourceEntity.value = value;
 	}
 
 	/**
@@ -28,15 +28,15 @@ public abstract class ResourceEntity extends WorldEntity {
 	public abstract boolean isPassable();
 	
 	
-	public int getValue(){
+	public static int getValue(){
 		return value;
 	}
 	
-	public void increaseValue(int x){
+	public static void increaseValue(int x){
 		value += x;
 	}
 
-	public void decreaseValue(int x){
+	public static void decreaseValue(int x){
 		value -= x;
 	}
 }
