@@ -29,7 +29,7 @@ public class Cow extends Animal {
      * Checks whether the cow can produce milk. Cows can only produce milk if their health, hunger, and thirst meet
      * satisfy a certain threshold.
      */
-    private void produceMilk() {
+    public void produceMilk() {
         if (this.getHealth() >= 85 && this.getHunger() >= 85 && this.getThirst() >= 85) {
             this.canProduceMilk = true;
         }

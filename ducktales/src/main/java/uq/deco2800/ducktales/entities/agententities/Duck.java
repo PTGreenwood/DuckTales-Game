@@ -18,7 +18,7 @@ public class Duck extends Animal {
     private EntityManager opponentList; // List of possible opponents.
 
     public Duck(int x, int y) {
-        super(x, y, ResourceType.DUCK, 1, 1, 1, 1, 0.1);
+        super(x, y, ResourceType.DUCK, 1, 1, 1, 1, 0.05);
         int var = (int) (Math.random() * 100);
         int var2 = (int) (Math.random() * 20);
         setStartingHealth(var);
@@ -42,7 +42,7 @@ public class Duck extends Animal {
     /**
      * Enables the duck to drop feathers.
      */
-    public void DropFeathers() {
+    public void dropFeathers() {
         if (this.isDead() == true) {
             this.canDropFeathers = true;
         }
