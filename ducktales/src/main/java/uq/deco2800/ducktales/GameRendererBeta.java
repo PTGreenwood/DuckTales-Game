@@ -8,7 +8,7 @@ import javafx.scene.layout.*;
 import uq.deco2800.ducktales.rendering.engine.WorldEntityRenderingInfo;
 import uq.deco2800.ducktales.hud.BuildingSprite;
 import uq.deco2800.ducktales.rendering.engine.RenderingManager;
-import uq.deco2800.ducktales.resources.ResourceRegister;
+import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.rendering.tiles.TileBeta;
 import uq.deco2800.ducktales.util.Array2D;
@@ -55,7 +55,7 @@ public class GameRendererBeta extends AnimationTimer {
      */
     private WorldBeta world; // the game world
     private GameManagerBeta manager; // the game manager
-    private ResourceRegister resource;
+    private ResourceSpriteRegister resource;
 
     /**
      * VARIABLES FOR RENDERING
@@ -92,7 +92,7 @@ public class GameRendererBeta extends AnimationTimer {
 
 
 
-        resource = ResourceRegister.getInstance();
+        resource = ResourceSpriteRegister.getInstance();
     }
 
     /**

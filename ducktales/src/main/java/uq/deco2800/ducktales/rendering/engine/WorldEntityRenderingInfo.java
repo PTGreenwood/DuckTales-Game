@@ -34,7 +34,6 @@ public class WorldEntityRenderingInfo {
     private WorldEntityRenderingInfo() {
         this.entities = new ConcurrentHashMap<>();
 
-        addEntities();
     }
 
     /**

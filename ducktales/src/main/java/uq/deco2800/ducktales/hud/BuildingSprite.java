@@ -3,7 +3,7 @@ package uq.deco2800.ducktales.hud;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import uq.deco2800.ducktales.GameManagerBeta;
-import uq.deco2800.ducktales.resources.ResourceRegister;
+import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.events.ui.BuildingMenuDeselectedEvent;
 import uq.deco2800.ducktales.util.events.ui.BuildingMenuSelectedEvent;
@@ -30,7 +30,7 @@ public class BuildingSprite extends ImageView {
      */
     public BuildingSprite(ResourceType buildingType) {
         this.buildingSprites =
-                ResourceRegister.getInstance().getResourceImage(buildingType);
+                ResourceSpriteRegister.getInstance().getResourceImage(buildingType);
         this.buildingType = buildingType;
 
         // Load the sprite into the image view
