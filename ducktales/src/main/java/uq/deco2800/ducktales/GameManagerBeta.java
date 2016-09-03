@@ -17,6 +17,8 @@ import static uq.deco2800.ducktales.resources.ResourceType.*;
  * game logic
  *
  * Created by Khoi on 31/08/2016.
+ *
+ * @author khoiphan21
  */
 public class GameManagerBeta {
     /**

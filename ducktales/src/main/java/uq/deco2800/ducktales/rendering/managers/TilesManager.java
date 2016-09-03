@@ -17,6 +17,9 @@ public class TilesManager {
     private Array2D<TileBeta> tiles; // The array of tiles in the world
     private GameManagerBeta gameManager;
 
+    /** The managers that manage different rendering information */
+    private WorldEntityInfoManager worldEntityInfoManager;
+
     /**
      * Create a new tile manager with the given handles on the GameManager
      * and the array of tiles in the game world
@@ -28,6 +31,10 @@ public class TilesManager {
     public TilesManager(GameManagerBeta gameManager, Array2D<TileBeta> tiles) {
         this.gameManager = gameManager;
         this.tiles = tiles;
+
+        // Initiate the info manager for world entities
+        worldEntityInfoManager = new WorldEntityInfoManager();
+
     }
 
     /**
@@ -50,6 +57,27 @@ public class TilesManager {
      *          The y-coordinate in tile-unit of the tile that was clicked on
      */
     public void addBuildingToTile(ResourceType buildingType, int x, int y) {
+        int xLength, yLength;
+
+        // Get the x- and y-length of the building type given
+        try {
+            xLength = worldEntityInfoManager.getBuildingLength(
+                    buildingType,
+                    worldEntityInfoManager.XLength
+            );
+            yLength = worldEntityInfoManager.getBuildingLength(
+                    buildingType,
+                    worldEntityInfoManager.YLength
+            );
+
+            // TODO: DELELTE THESE LINES FOR DEBUGGIN
+            System.out.println("\n ATTENTION: Trying to add:\n" +
+                    "    " + buildingType + " to tile at: " + x + ", " + y + "\n" +
+                    "    " + "Length or the building is x: " + xLength + ", y: " + yLength);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
 
     }
 

@@ -9,7 +9,7 @@ import uq.deco2800.ducktales.entities.agententities.*;
 import uq.deco2800.ducktales.entities.worldentities.Box;
 import uq.deco2800.ducktales.entities.resourceentities.*;
 
-import uq.deco2800.ducktales.resources.ResourceRegister;
+import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 
 
 import uq.deco2800.ducktales.entities.worldentities.*;
@@ -29,7 +29,7 @@ import static uq.deco2800.ducktales.resources.ResourceType.*;
 public class World implements Tickable {
 	private Array2D<Tile> tiles;
 	private String name;
-	private static ResourceRegister tileRegister = ResourceRegister.getInstance();
+	private static ResourceSpriteRegister tileRegister = ResourceSpriteRegister.getInstance();
 	private static EntityManager entityManager = EntityManager.getInstance();
 
 	/**

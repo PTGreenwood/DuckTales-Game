@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import uq.deco2800.ducktales.GameLoop;
 import uq.deco2800.ducktales.GameManagerBeta;
 import uq.deco2800.ducktales.GameRendererBeta;
 import uq.deco2800.ducktales.achievements.Achievements;
@@ -16,6 +17,9 @@ import uq.deco2800.ducktales.missions.Missions;
 import uq.deco2800.ducktales.resources.InventoryManager;
 
 import java.net.URL;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * This is the master controller for the actual game play, while
@@ -27,7 +31,7 @@ import java.net.URL;
  * the renderer.
  *
  * Created  on 31/08/2016.
- * @author khoiphan21
+ * @author khoiphan21, leggy
  */
 public class GameController{
     /**
@@ -54,6 +58,11 @@ public class GameController{
     private AnchorPane achievementPane;
     // The Marketplace window
     private VBox marketplacePane;
+
+    /** Variables to control the Game Loop */
+    private AtomicBoolean quit;
+    private ExecutorService executor;
+
 
     /** The rendering engine of the game */
     private GameRendererBeta renderer;
@@ -92,6 +101,11 @@ public class GameController{
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        // Start the game loop
+        executor = Executors.newCachedThreadPool();
+        quit = new AtomicBoolean(false);
+        executor.execute(new GameLoop(quit, 50));
     }
 
     @FXML
