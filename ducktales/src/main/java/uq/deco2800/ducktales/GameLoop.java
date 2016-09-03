@@ -13,8 +13,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
  *
  */
 public class GameLoop implements Runnable {
-
-	//public enum SpeedControl {50, 33, 20};
 	
 	private World world;
 	private int tick;
@@ -33,7 +31,7 @@ public class GameLoop implements Runnable {
 	@Override
 	public void run() {
 		while (!quit.get()) {
-			//this.tick = SpeedController();
+			this.tick = SpCon;
 			world.tick();
 			entityManager.tick();
 			gameTime.tick();
@@ -45,5 +43,31 @@ public class GameLoop implements Runnable {
 		}
 
 	}
+	/**
+	 * 
+	 * continues to add time functionality
+	 * @author danl256
+	 * */
+	public static void SpeedControl(String code) {
+		switch (code) {
+		case "mallard":
+			SpCon = 50; //set time scale to default
+			break;
+
+		case "canvasback":
+			SpCon = 33; //set time scale to 1.5151x
+
+			break;
+
+		case "merganser":
+			SpCon = 20; //set time scale to 2.5x
+			break;
+
+		default:
+			break;
+		}
+		
+	}
+		private static int SpCon = 50; //default tick rate 
 
 }

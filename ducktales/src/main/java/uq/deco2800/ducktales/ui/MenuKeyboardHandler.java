@@ -3,6 +3,7 @@ package uq.deco2800.ducktales.ui;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import uq.deco2800.ducktales.GameLoop; 
 
 /**
  * Need to reconsider how I made this? I don't think it should use the
@@ -10,6 +11,10 @@ import javafx.scene.input.KeyEvent;
  * it.
  * 
  * @author mattyleggy
+ * 
+ * tagged on time control functionality begins at ///////////
+ * 
+ * @author danl256
  *
  */
 public class MenuKeyboardHandler implements EventHandler<KeyEvent> {
@@ -23,14 +28,34 @@ public class MenuKeyboardHandler implements EventHandler<KeyEvent> {
 	@Override
 	public void handle(KeyEvent event) {
 		KeyCode key = event.getCode();
+		
 		switch (key) {
 		case ESCAPE:
 			this.controller.toggleMenuPane();
 			System.out.println("Key" + key);
 			break;
+		/////////////////////////////////
+			//key presses alters the flow of time.	
+		case DIGIT1:
+			GameLoop.SpeedControl("mallard");
+			System.out.print("speed 1x"); //set time scale to default
+			break;
+
+		case DIGIT2:
+			GameLoop.SpeedControl("canvasback");
+			System.out.print("speed 1.5x");  //set time scale to 1.5151x
+			break;
+
+		case DIGIT3:
+			GameLoop.SpeedControl("merganser");
+			System.out.print("speed 2.5x");  //set time scale to 2.5x 
+			break;
+			
 		default:
 			System.out.println("Key" + key);
 			break;
 		}
 	}
+	
+	
 }
