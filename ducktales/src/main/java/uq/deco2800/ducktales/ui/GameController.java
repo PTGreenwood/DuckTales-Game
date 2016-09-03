@@ -26,12 +26,13 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * This is the master controller for the actual game play, while
  * DuckTalesController controls the main menu and switches between
  * different views.
- *
+ * <p>
  * This class will be the first class to have the handles of the UI elements
  * created by FXML. This class will then need to pass the handles along to
  * the renderer.
- *
+ * <p>
  * Created  on 31/08/2016.
+ * 
  * @author khoiphan21, leggy
  */
 public class GameController{
@@ -180,6 +181,12 @@ public class GameController{
 
     }
     
+    /**
+     * Records achievements and increases level.
+     * 
+     * @param i
+     * 			Index of achievement completed.
+     */
     private void missionCompletedAction(int i){
     	
     	//Untick mission2 box in Achievement window of Gamebeta when marketplace is clicked

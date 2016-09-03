@@ -6,13 +6,8 @@ public class Enemy extends Threat{
 	 * 
 	 * @param name
 	 */	
-	
-	
 	public Enemy(String name){
 		super(name,"Enemy");
 	}
-	
-	
-	
 	
 }

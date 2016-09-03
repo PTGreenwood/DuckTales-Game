@@ -11,6 +11,14 @@ import uq.deco2800.ducktales.resources.ResourceType;
  */
 public abstract class AgentEntity extends Entity {
 
+	/**
+	 * Main constructor of the {@link AgentEntity} class
+	 * @param x
+	 * @param y
+	 * @param lengthX
+	 * @param lengthY
+	 * @param type
+	 */
 	protected AgentEntity(double x, double y, int lengthX, int lengthY, ResourceType type) {
 		super(x, y, lengthX, lengthY, type);
 	}

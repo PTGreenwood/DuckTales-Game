@@ -45,15 +45,26 @@ public abstract class Entity implements Comparable<Entity>, Tickable{
 	 */
 	private double distanceBottom;
 
+	/**
+	 * Main constructor of the {@link Entity} class
+	 * 
+	 * @param x
+	 * @param y
+	 * @param lengthX
+	 * @param lengthY
+	 * @param type
+	 */
 	public Entity(double x, double y, int lengthX, int lengthY, ResourceType type) {
 		this.point = new Point(x, y);
 		this.lengthX = lengthX;
 		this.lengthY = lengthY;
 		this.type = type;
 		calculateRenderingOrderValues();
-		
 	}
 	
+	/**
+	 * Determines rendering order and sets {@code distanceInside, distanceBottom, distanceTop}
+	 */
 	protected void calculateRenderingOrderValues(){
 		if (point.getX() > point.getY()) {
 			distanceInside = point.getX() - point.getY() - lengthX;
@@ -117,26 +128,56 @@ public abstract class Entity implements Comparable<Entity>, Tickable{
 				distanceInside);
 	}
 
+	/**
+	 * Get x position.
+	 * 
+	 * @return {@code point.getX}
+	 */
 	public double getX() {
 		return point.getX();
 	}
 
+	/**
+	 * Get y position.
+	 * 
+	 * @return {@code point.getY}
+	 */
 	public double getY() {
 		return point.getY();
 	}
 
+	/**
+	 * Get y length.
+	 * 
+	 * @return {@code lengthY}
+	 */
 	public int getYLength() {
 		return lengthY;
 	}
 
+	/**
+	 * Get x length.
+	 * 
+	 * @return {@code lengthX}
+	 */
 	public int getXLength() {
 		return lengthX;
 	}
 	
+	/**
+	 * Get entity type.
+	 * 
+	 * @return {@code this.type}
+	 */
 	public ResourceType getType(){
 		return type;
 	}
 	
+	/**
+	 * Set entity type.
+	 * 
+	 * @param newType New entity type.
+	 */
 	protected void updateType(ResourceType newType){
 		this.type = newType;
 	}

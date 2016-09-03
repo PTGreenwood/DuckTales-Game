@@ -24,8 +24,8 @@ import static uq.deco2800.ducktales.resources.ResourceType.*;
 
 /**
  * This is the rendering engine for the game. More information can be found on the
- * wiki page called New Rendering Engine
- *
+ * wiki page called New Rendering Engine.
+ * <p>
  * Created on 31/08/2016.
  *
  * @author khoiphan21
@@ -146,7 +146,6 @@ public class GameRendererBeta extends AnimationTimer {
         setupCustomEventHandler();
     }
 
-
     @Override
     public void handle(long now) {
 
@@ -236,7 +235,6 @@ public class GameRendererBeta extends AnimationTimer {
 
     }
 
-
     /**
      * Setting up the initial rendering values for the game
      *
@@ -250,7 +248,6 @@ public class GameRendererBeta extends AnimationTimer {
         this.generalScale = renderingManager.getMainScaleFactor();
 
         this.renderedEntities = new ArrayList<>();
-
     }
 
     /**
@@ -292,7 +289,6 @@ public class GameRendererBeta extends AnimationTimer {
             }
         }
     }
-
 
     /**
      * This method will set up the handler for custom events, as defined in
@@ -395,6 +391,7 @@ public class GameRendererBeta extends AnimationTimer {
             manager.setCurrentResourceManaging(event.getType());
 
         });
+        
         buildingsMenu.addEventHandler(BuildingMenuDeselectedEvent.BUILDING_MENU_DESELECTED_EVENT, event -> {
             // Return the cursor image to null, and perform update on the world tiles
             // if the mouse is released on top of a tile
@@ -404,10 +401,7 @@ public class GameRendererBeta extends AnimationTimer {
             manager.setCurrentResourceManaging(NONE);
 
             System.err.println("deselected a building");
-
         });
-
-
 
         root.setOnMouseClicked(event -> {
             if (event.getButton() == MouseButton.SECONDARY) {

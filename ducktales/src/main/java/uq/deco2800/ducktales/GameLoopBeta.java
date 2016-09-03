@@ -17,12 +17,19 @@ public class GameLoopBeta implements Runnable {
     /** Variable controlling how fast the game time is */
     private int tickTime;
     private GameTime gameTime;
-
+    
+    /**
+     * Main constructor for the {@link GameLoopBeta} class.
+     * 
+     * @param quit Controls the running state of the game.
+     * @param tickTime Controls the game tick interval.
+     */
     public GameLoopBeta(AtomicBoolean quit, int tickTime) {
         this.tickTime = tickTime;
         this.quit = quit;
         this.gameTime = new GameTime();
     }
+    
     @Override
     public void run() {
         while (!quit.get()) {
@@ -34,6 +41,6 @@ public class GameLoopBeta implements Runnable {
                 e.printStackTrace();
             }
         }
-
     }
+    
 }
