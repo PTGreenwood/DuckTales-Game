@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import uq.deco2800.ducktales.GameLoop;
+import uq.deco2800.ducktales.GameLoopBeta;
 import uq.deco2800.ducktales.GameManagerBeta;
 import uq.deco2800.ducktales.GameRendererBeta;
 import uq.deco2800.ducktales.achievements.Achievements;
@@ -63,7 +64,6 @@ public class GameController{
     private AtomicBoolean quit;
     private ExecutorService executor;
 
-
     /** The rendering engine of the game */
     private GameRendererBeta renderer;
 
@@ -105,7 +105,7 @@ public class GameController{
         // Start the game loop
         executor = Executors.newCachedThreadPool();
         quit = new AtomicBoolean(false);
-        executor.execute(new GameLoop(quit, 50));
+        executor.execute(new GameLoopBeta(quit, 50));
     }
 
     @FXML

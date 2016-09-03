@@ -108,14 +108,15 @@ public class ResourceSpriteRegister {
 		// addResource(SHEEPDownLeft, "/SHEEPDownLeft.png");
 
 		// Buildings
-		addResource(HOUSE, "/house.png");
-		addResource(SAWMILL, "/sawmill.png");
-		//To be uncommented as the relevant graphics are created
-		// note from creator of ResourceType: please remember to use the enums from
-		// ResourceType enum class instead of the previous String implementation
-		addResource(BAKERY, "/bakery.png");
 		addResource(PASTURE, "/buildings/pasture.png");
 		addResource(CLINIC, "/buildings/clinic.png");
+		addResource(BUTCHER, "/buildings/butcher.png");
+		addResource(BAKERY, "/buildings/bakery.png");
+		addResource(COMMMUNITY_BUILDING, "/buildings/community_building.png");
+
+		addResource(HOUSE, "/house.png");
+		addResource(SAWMILL, "/sawmill.png");
+
 		//addResource(CEMETERY, "/cemetery.png");
 		addResource(FARMHOUSE, "/farm+barn.png");
 		addResource(BARN, "/barn.png");
