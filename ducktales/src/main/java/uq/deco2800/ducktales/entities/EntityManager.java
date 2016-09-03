@@ -7,60 +7,67 @@ import uq.deco2800.ducktales.util.Tickable;
 
 /**
  * Manager for all the entities in the game.
- * 
- * @author Leggy
  *
+ * @author Leggy
  */
 public class EntityManager implements Tickable {
 
-	private static final EntityManager INSTANCE = new EntityManager();
+    private static final EntityManager INSTANCE = new EntityManager();
 
-	/**
-	 * List of all entities in the game.
-	 */
-	private List<Entity> entities;
+    /**
+     * List of all entities in the game.
+     */
+    private List<Entity> entities;
 
-	/**
-	 * Gets the instance of the EntityManager.
-	 * 
-	 * @return Returns the EntityManager instance.
-	 */
-	public static EntityManager getInstance() {
-		return INSTANCE;
-	}
+    /**
+     * Initialises the EntityManager.
+     */
+    private EntityManager() {
+        entities = new ArrayList<Entity>();
+    }
 
-	/**
-	 * Initialises the EntityManager.
-	 */
-	private EntityManager() {
-		entities = new ArrayList<Entity>();
-	}
+    /**
+     * Gets the instance of the EntityManager.
+     *
+     * @return Returns the EntityManager instance.
+     */
+    public static EntityManager getInstance() {
+        return INSTANCE;
+    }
 
-	/**
-	 * Adds a new entity to the game.
-	 * 
-	 * @param entity
-	 *            The entity to add.
-	 */
-	public void addEntity(Entity entity) {
-		entities.add(entity);
-		
-	}
+    /**
+     * Adds a new entity to the game.
+     *
+     * @param entity The entity to add.
+     */
+    public void addEntity(Entity entity) {
+        entities.add(entity);
 
-	/**
-	 * Returns a list of all the entities.
-	 * 
-	 * @return Returns a list of all entities.
-	 */
-	public List<Entity> getEntities() {
-		return entities;
-	}
+    }
 
-	@Override
-	public void tick() {
-		for (int i = 0; i < entities.size(); i++) {
-			entities.get(i).tick();
-		}
-	}
+    /**
+     * Removes an entity from the game.
+     *
+     * @param entity The entity to be removed.
+     */
+    public void removeEntity(Entity entity) {
+        entities.remove(entity);
+    }
+
+    /**
+     * Returns a list of all the entities.
+     *
+     * @return Returns a list of all entities.
+     */
+    public List<Entity> getEntities() {
+        return entities;
+    }
+
+    @Override
+    public void tick() {
+        for (int i = 0; i < entities.size(); i++) {
+            entities.get(i).tick();
+        }
+    }
 
 }

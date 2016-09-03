@@ -10,7 +10,7 @@ import javafx.scene.layout.*;
 import uq.deco2800.ducktales.*;
 import uq.deco2800.ducktales.achievements.Achievements;
 import uq.deco2800.ducktales.missions.Missions;
-import uq.deco2800.ducktales.resources.ResourceRegister;
+import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 import uq.deco2800.ducktales.world.*;
 import uq.deco2800.ducktales.world.builder.WorldBuilderManager;
 import uq.deco2800.ducktales.world.builder.WorldBuilderRenderer;
@@ -23,7 +23,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.ScrollBar;
 import javafx.stage.Stage;
 
 public class DuckTalesController implements Initializable {
@@ -41,7 +40,7 @@ public class DuckTalesController implements Initializable {
 	private ExecutorService executor;
 
 	private boolean running = false;
-	private ResourceRegister tileRegister;
+	private ResourceSpriteRegister tileRegister;
 	private GameManager gameManager;
 	private WorldBuilderManager worldBuilderManager;
 
@@ -59,7 +58,7 @@ public class DuckTalesController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		tileRegister = ResourceRegister.getInstance();
+		tileRegister = ResourceSpriteRegister.getInstance();
 		gameManager = GameManager.getInstance();
 		worldBuilderManager = WorldBuilderManager.getInstance();
 		

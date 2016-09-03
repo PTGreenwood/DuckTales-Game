@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 import uq.deco2800.ducktales.GameManager;
+import uq.deco2800.ducktales.entities.EntityManager;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.AStar;
 import uq.deco2800.ducktales.util.Point;
@@ -32,6 +33,11 @@ public class Animal extends AgentEntity {
     private boolean isDead = false; // Whether the animal is dead.
     private String direction; // The direction that the animal is travelling.
     private List<Point> goalPoints;
+    private EntityManager entityManager = EntityManager.getInstance();
+    // The variables below are used to alternate images for animation.
+    private int animationStage; // Determines which of the two images per direction is rendered.
+    private int currentAnimationTick;
+    private int animationSpeed;
 
 
     public Animal(int x, int y, ResourceType type, int health, int hunger, int thirst, int
@@ -46,8 +52,10 @@ public class Animal extends AgentEntity {
         this.canBeKilled = false;
         this.outOfZone = false;
         this.isDead = false;
-        this.direction = "UpRight";
         this.goalPoints = new ArrayList<Point>();
+        this.animationStage = 0;
+        this.currentAnimationTick = 0;
+        this.animationSpeed = 1;
     }
 
     /**
@@ -63,31 +71,34 @@ public class Animal extends AgentEntity {
                 this.goalPoints = newGoalPoints();
             }
         } else {
-            String newDir;
-            if (goalPoints.get(0).getY() >= point.getY()) {
+            String newDir = null;
+            if (goalPoints.get(0).getX() > point.getX()) {
+                newDir = "Left";
+            }
+            if (goalPoints.get(0).getX() < point.getX()) {
+                newDir = "Right";
+            }
+            if (goalPoints.get(0).getY() > point.getY()) {
                 newDir = "Down";
-            } else {
+            }
+            if (goalPoints.get(0).getY() < point.getY()) {
                 newDir = "Up";
             }
-            if (goalPoints.get(0).getX() >= point.getX()) {
-                newDir += "Right";
-            } else {
-                newDir += "Left";
-            }
-            direction = newDir;
-            this.updateType(ResourceType.valueOf(this.getSprite()));
-            point.moveToward(goalPoints.get(0), speed);
+            setDirection(newDir);
+            updateType(ResourceType.valueOf(getSprite()));
+            point.moveToward(goalPoints.get(0), getSpeed());
         }
         calculateRenderingOrderValues();
     }
 
     /**
-     * Method which updates the goalpoints which dictate an entities movement
+     * Determines the destination of the animal as well as the pathing to get to the destination.
      */
     private List<Point> newGoalPoints() {
         Random random = new Random();
         Point goalPoint = null;
-        while (goalPoint == null || !GameManager.getInstance().getWorld().getTile(goalPoint).isPassable()) {
+        while (goalPoint == null || !GameManager.getInstance().getWorld().getTile(goalPoint).isPassable() &&
+                !GameManager.getInstance().getWorld().getTile(goalPoint).getTileType().equals(ResourceType.WATER)) {
             goalPoint = new Point(random.nextDouble() * 20, random.nextDouble() * 20);
         }
         List<AStar.Tuple> path = AStar.aStar(point, goalPoint, GameManager.getInstance().getWorld());
@@ -102,16 +113,24 @@ public class Animal extends AgentEntity {
      * Marks the animal as dead.
      */
     public void setIsDead() {
-        if (this.getHealth() == 0) {
+        if (this.getHealth() <= 0) {
             this.isDead = true;
+            entityManager.removeEntity(this);
         }
     }
 
     /**
-     * Tells the animal to attack.
+     * Tells the animal to attack a Peon.
+     *
+     * @param opponent The peon to be attacked.
      */
     public void attack(Peon opponent) {
-        opponent.setHealth(opponent.getHealth() - this.getStrength());
+        if (this.getOutOfZone() == true) {
+            opponent.setHealth(opponent.getHealth() - this.getStrength());
+        }
+        if (opponent.getHealth() <= 0) {
+            entityManager.removeEntity(opponent);
+        }
     }
 
     /**
@@ -167,40 +186,11 @@ public class Animal extends AgentEntity {
     }
 
     /**
-     * The animal's health is decreased when attacked by another entity.
-     */
-    public void isAttacked() {
-        this.health -= 10; // the health will be decreased by the amount of the peon's attack/strength -> replace 10
-        if (this.getHealth() <= 0) {
-            killAnimal();
-        }
-    }
-
-    /**
      * Enables the animal to be killed.
      */
     public void killAnimal() {
         this.canBeKilled = true;
-//		if(this.getHunger() <= 0 && this.getThirst() <= 0) {
-//			this.health = 0;
-//		}
-//		if(this.getHealth() <= 0) {
-//			this.canBeKilled = true; // The animal will be removed in the AnimalManager class.
-//		}
-    }
-
-    /**
-     * Identifies whether the animal is out of its zone.
-     */
-    public void isOutOfZone() {
-        // if animal location is out of zone limit:
-        this.outOfZone = true;
-    }
-
-    /**
-     * Tells the animal to attack another entity.
-     */
-    public void attack() {
+        entityManager.removeEntity(this);
     }
 
     /**
@@ -213,30 +203,6 @@ public class Animal extends AgentEntity {
     }
 
     /**
-     * Returns the animal's current health.
-     *
-     * @return health The animal's current health.
-     */
-    public int getHealth() {
-        return health;
-    }
-
-    /**
-     * Changes the animal's health to the provided value.
-     *
-     * @param newHealth The new health value.
-     */
-    public void setHealth(int newHealth) {
-        if (newHealth > 100) {
-            this.health = 100;
-        } else if (newHealth < 0) {
-            this.health = 0;
-        } else {
-            this.health = newHealth;
-        }
-    }
-
-    /**
      * Returns the animal's current state of hunger.
      *
      * @return hunger The animal's hunger.
@@ -244,8 +210,6 @@ public class Animal extends AgentEntity {
     public int getHunger() {
         return hunger;
     }
-
-    // Getter Methods Below
 
     /**
      * Changes the animal's hunger level to the provided value.
@@ -287,6 +251,32 @@ public class Animal extends AgentEntity {
     }
 
     /**
+     * Returns the animal's current health.
+     *
+     * @return health The animal's current health.
+     */
+    public int getHealth() {
+        return health;
+    }
+
+    /**
+     * Changes the animal's health to the provided value.
+     *
+     * @param newHealth The new health value.
+     */
+    public void setHealth(int newHealth) {
+        if (newHealth > 100) {
+            this.health = 100;
+        } else if (newHealth < 0) {
+            this.health = 0;
+        } else {
+            this.health = newHealth;
+        }
+    }
+
+    // Getter Methods Below
+
+    /**
      * Returns the animal's strength.
      *
      * @return strength The animal's strength.
@@ -305,15 +295,6 @@ public class Animal extends AgentEntity {
     }
 
     /**
-     * Returns the animal's speed.
-     *
-     * @return speed The animal's speed.
-     */
-    public double getSpeed() {
-        return speed;
-    }
-
-    /**
      * Get the sprite string name. The sprite string name, i.e. "DuckDownLeft"
      *
      * @return sprite The String name of the sprite to be rendered.
@@ -327,15 +308,18 @@ public class Animal extends AgentEntity {
             spriteName = ResourceType.COW.toString();
             spriteName += this.getDirection();
         }
-        return spriteName; // Add more conditions when other animals are started on
-//        } else if (this.getTileType().toString().contains("SHEEP")) {
-//            spriteName = ResourceType.SHEEP.toString();
-//            spriteName += this.getDirection();
-//        } else(this.getTileType().toString().contains("TURTLE")) {
-//            spriteName = ResourceType.TURTLE.toString();
-//            spriteName += this.getDirection();
-//        }
-//        return spriteName;
+        if (currentAnimationTick == animationSpeed) {
+            if (animationStage > 0) {
+                animationStage = 0;
+            } else {
+                animationStage = 1;
+            }
+            currentAnimationTick = 0;
+        } else {
+            currentAnimationTick++;
+        }
+        spriteName += Integer.toString(animationStage);
+        return spriteName;
     }
 
     /**
@@ -344,11 +328,11 @@ public class Animal extends AgentEntity {
      * @return canBeKilled Flags the animal as able to be killed.
      */
     public boolean canBeKilled() {
-        return canBeKilled;
+        return this.canBeKilled;
     }
 
     /**
-     * Returns whether the duck is dead.
+     * Returns whether the animal is dead.
      *
      * @return isDead Flags the animal as dead.
      */
@@ -372,5 +356,31 @@ public class Animal extends AgentEntity {
      */
     public void setDirection(String newDirection) {
         this.direction = newDirection;
+    }
+
+    /**
+     * Returns the animal's speed.
+     *
+     * @return speed The animal's speed.
+     */
+    public double getSpeed() {
+        return this.speed;
+    }
+
+    /**
+     * Identifies whether the animal is out of its zone.
+     */
+    public boolean getOutOfZone() {
+        // if animal location is out of zone limit:
+        return outOfZone;
+    }
+
+    /**
+     * Set status of animal's out of zone state.
+     *
+     * @param x The status of the animal's out of zone state.
+     */
+    public void setOutOfZone(boolean x) {
+        this.outOfZone = x;
     }
 }

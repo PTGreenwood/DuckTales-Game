@@ -1,7 +1,7 @@
 package uq.deco2800.ducktales.rendering.tiles;
 
 import javafx.scene.image.ImageView;
-import uq.deco2800.ducktales.resources.ResourceRegister;
+import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.world.builder.WorldBuilderManager;
 import uq.deco2800.ducktales.world.builder.WorldBuilderRenderer;
@@ -20,7 +20,7 @@ public class WorldBuilderTile extends ImageView {
     private int xPos;
     private int yPos;
 
-    final ResourceRegister resource = ResourceRegister.getInstance();
+    final ResourceSpriteRegister resource = ResourceSpriteRegister.getInstance();
 
     // Variable storing the current type of the tile
     private ResourceType currentType = GRASS_1;
