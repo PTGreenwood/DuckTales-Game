@@ -2,7 +2,7 @@ package uq.deco2800.ducktales.weather;
 
 public class Rain implements Weather {
 	public WeatherEffect getWeatherEffect() {
-		WeatherEffect weatherEffect = new WeatherEffect();
+		WeatherEffect weatherEffect = new WeatherEffect("rain","rain.png");		
 		return weatherEffect;
 	}
 	
