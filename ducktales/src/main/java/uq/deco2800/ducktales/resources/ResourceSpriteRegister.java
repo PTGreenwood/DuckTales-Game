@@ -20,20 +20,20 @@ import static uq.deco2800.ducktales.resources.ResourceType.*;
  * tile type which can be retrieved from the instance method Tile.getResourceType().
  *
  * This class is a singleton -- to get an instance of this class, you must call
- * ResourceRegister.getInstance(); you cannot instantiate it.
+ * ResourceSpriteRegister.getInstance(); you cannot instantiate it.
  * 
  * @author Anonymousthing, khoiphan21
  */
-public class ResourceRegister {
+public class ResourceSpriteRegister {
 
-	private static final ResourceRegister INSTANCE = new ResourceRegister();
+	private static final ResourceSpriteRegister INSTANCE = new ResourceSpriteRegister();
 
 	/**
-	 * Returns the instance of {@link ResourceRegister}.
+	 * Returns the instance of {@link ResourceSpriteRegister}.
 	 * 
-	 * @return Returns an instance of ResourceRegister.
+	 * @return Returns an instance of ResourceSpriteRegister.
 	 */
-	public static ResourceRegister getInstance() {
+	public static ResourceSpriteRegister getInstance() {
 		return INSTANCE;
 	}
 
@@ -52,7 +52,7 @@ public class ResourceRegister {
 	private ConcurrentHashMap<ResourceType, Image> resourceTypeRegister;
 	private int currentCount;
 
-	private ResourceRegister() {
+	private ResourceSpriteRegister() {
 		resourceTypeRegister = new ConcurrentHashMap<>();
 		currentCount = 0;
 
@@ -79,7 +79,7 @@ public class ResourceRegister {
 		addResource(TREE_3, "/tree_3.png");
 		addResource(ROCK_1, "/rock_1.png");
 		addResource(ROCK_2, "/rock_2.png");
-		
+
 		// Agent entities
 		addResource(PEON, "/peon.png");
 		addResource(DUCK, "/duck.png");
@@ -95,27 +95,28 @@ public class ResourceRegister {
 		addResource(COW, "/cow.png");
 		// the following will be uncommented once the relevant resources
 		// are created and added to the game, @team pokeducks
-		
+
 		// addResource(COWUpRight, "/COWUpRight.png");
 		// addResource(COWUpLeft, "/COWUpLeft.png");
 		// addResource(COWDownRight, "/COWDownRight.png");
 		// addResource(COWDownLeft, "/COWDownLeft.png");
-		
-        // addResource(SHEEP, "/sheep.png");
+
+		// addResource(SHEEP, "/sheep.png");
 		// addResource(SHEEPUpRight, "/SHEEPUpRight.png");
 		// addResource(SHEEPUpLeft, "/SHEEPUpLeft.png");
 		// addResource(SHEEPDownRight, "/SHEEPDownRight.png");
 		// addResource(SHEEPDownLeft, "/SHEEPDownLeft.png");
 
 		// Buildings
-		addResource(HOUSE, "/house.png");
-		addResource(SAWMILL, "/sawmill.png");
-		//To be uncommented as the relevant graphics are created
-		// note from creator of ResourceType: please remember to use the enums from
-		// ResourceType enum class instead of the previous String implementation
-		addResource(BAKERY, "/bakery.png");
 		addResource(PASTURE, "/buildings/pasture.png");
 		addResource(CLINIC, "/buildings/clinic.png");
+		addResource(BUTCHER, "/buildings/butcher.png");
+		addResource(BAKERY, "/buildings/bakery.png");
+		addResource(COMMMUNITY_BUILDING, "/buildings/community_building.png");
+
+		addResource(HOUSE, "/house.png");
+		addResource(SAWMILL, "/sawmill.png");
+
 		//addResource(CEMETERY, "/cemetery.png");
 		addResource(FARMHOUSE, "/farm+barn.png");
 		addResource(BARN, "/barn.png");
@@ -137,7 +138,7 @@ public class ResourceRegister {
 		if (resourceTypeRegister.containsKey(type)) {
 			throw new RuntimeException(
 					"Attempted to add an already registered ResourceTypeInfo \""
-							+ type + "\" to a ResourceRegister");
+							+ type + "\" to a ResourceSpriteRegister");
 		}
 		resourceTypeRegister.put(type,
 				new Image(getClass().getResource(imageName).toString()));
@@ -154,7 +155,7 @@ public class ResourceRegister {
 		if (!resourceTypeRegister.containsKey(resourceType))
 			throw new RuntimeException(
 					"Attempted to access non-registered ResourceTypeInfo of tile type \""
-							+ resourceType + "\" from a ResourceRegister");
+							+ resourceType + "\" from a ResourceSpriteRegister");
 		return resourceTypeRegister.get(resourceType);
 	}
 

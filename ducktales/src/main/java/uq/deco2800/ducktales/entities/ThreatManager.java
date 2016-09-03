@@ -1,6 +1,7 @@
 package uq.deco2800.ducktales.entities;
 import java.util.*;
 
+
 /** Creates enemies and effects and manages when they are deployed
  * 
  * 
@@ -12,6 +13,7 @@ import java.util.*;
 public class ThreatManager {
  private ArrayList<Effect> effectsList = new ArrayList<Effect>();
  private ArrayList<Enemy> enemiesList = new ArrayList<Enemy>();
+ 
  
  //Temp variables
  private Effect tempEffect;
@@ -54,6 +56,7 @@ public class ThreatManager {
 	 	tempEnemy.setEndTimer(50);
 	 	//Add temp variable to list
 	 	enemiesList.add(tempEnemy);
+	 	
 	 	
 	 	//Create Temp variable
 	 	tempEnemy = new Enemy("Ducktron");
@@ -241,6 +244,12 @@ public class ThreatManager {
  public ArrayList<Effect> returnEffects(){
 	 return this.effectsList;
  }
+ 
+ 
+ 
+ 
+ 
+ 
  
  
  

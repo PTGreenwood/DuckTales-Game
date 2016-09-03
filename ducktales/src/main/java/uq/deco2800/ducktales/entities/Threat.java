@@ -1,5 +1,7 @@
 package uq.deco2800.ducktales.entities;
 
+import java.util.ArrayList;
+
 public class Threat {
 	String name;
 	String type;
@@ -9,6 +11,19 @@ public class Threat {
 	private float startTimer = 0;
 	private float endTimer = 0;
 	private float currentTime;
+	
+	private int x;
+	private int y;
+	
+	private int xCord; //value to assign x coordinate
+	private int yCord; //vlaue to assign y coordinate
+	
+	//private HashMap<Image> enemyTypeRegister;
+	private ArrayList<String> imageStore;
+	
+	int speed;
+	
+	boolean isPassable; //detects whether a tile is passable
 
 	/**
 	 * Enemy takes a string name and a type of enemy which is or Creature or
@@ -133,5 +148,37 @@ public class Threat {
 		return this.name;
 		
 	}
+	
+	public int getX(){
+		return x;
+	}
+	
+	public int getY() {
+		return y;
+	}
+	
+	public void setXCord(int tempX) {
+		this.xCord = x; 
+	}
+	
+	public void setYCord(int tempY) {
+		this.yCord = y;
+	}
+	
+	public void setRandomX(){
+		//return x value within range of possible plot points
+	}
+	
+	public void setRandomY(){
+		
+	}
+	
+	public void addImage(String imageName) {
+		 
+		imageStore.add(imageName);
+		//imageStore.add(imageName);
+		//getClass()
+		//new Image(getClass().getResource(imageName).toString()));
+	 }
 
 }

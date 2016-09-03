@@ -9,7 +9,7 @@ import uq.deco2800.ducktales.rendering.engine.WorldEntityRenderingInfo;
 import uq.deco2800.ducktales.hud.BuildingSprite;
 
 import uq.deco2800.ducktales.rendering.engine.RenderingManager;
-import uq.deco2800.ducktales.resources.ResourceRegister;
+import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.rendering.tiles.TileBeta;
 import uq.deco2800.ducktales.util.Array2D;
@@ -35,7 +35,7 @@ public class GameRendererBeta extends AnimationTimer {
      */
     private static final ResourceType[] BUILDINGS = {
         //HOSPITAL, BAKERY, BARN, <--- these buildings are of the wrong size
-        CLINIC, PASTURE
+        CLINIC, PASTURE, BUTCHER, COMMMUNITY_BUILDING, BAKERY
     };
 
     /** The Root pane where all HUD elements, and world pane will be added to*/
@@ -56,7 +56,7 @@ public class GameRendererBeta extends AnimationTimer {
      */
     private WorldBeta world; // the game world
     private GameManagerBeta manager; // the game manager
-    private ResourceRegister resource;
+    private ResourceSpriteRegister resource;
 
     /**
      * VARIABLES FOR RENDERING
@@ -93,7 +93,7 @@ public class GameRendererBeta extends AnimationTimer {
 
 
 
-        resource = ResourceRegister.getInstance();
+        resource = ResourceSpriteRegister.getInstance();
     }
 
     /**
@@ -219,18 +219,23 @@ public class GameRendererBeta extends AnimationTimer {
         // Iterate over each tile and set their location to the default location
         for (int i = 0; i < tiles.getWidth(); i++) {
             for (int j = 0; j < tiles.getHeight(); j++) {
+                // Okay tbh, this is a bit of math - draw it out and it makes
+                // more sense. Essentially (x, y) is where to put the tile
                 double x = startingX + (j - i) * scaledWidth / 2;
                 double y = startingY + (j + i) * scaledHeight / 2;
 
                 tile = tiles.get(i, j);
                 tile.setImage(resource.getResourceImage(tile.getTileType()));
 
+                // Adjust the height of the sprite to the given scale
                 tile.setFitHeight(tileHeight * generalScale);
                 tile.setFitWidth(tileWidth * generalScale);
 
+                // Set the position of the tile - where it actually appears
                 tile.setLayoutX(x);
                 tile.setLayoutY(y);
 
+                // Add the tile onto the screen
                 worldPane.getChildren().add(tile);
 
             }
