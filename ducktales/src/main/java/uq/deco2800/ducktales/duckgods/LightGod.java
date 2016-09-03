@@ -37,7 +37,7 @@ public class LightGod extends DuckGods {
 	}
     public void givepenalty()
     {
-    	/
+    	
     	
 		}  
         
