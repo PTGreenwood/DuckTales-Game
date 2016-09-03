@@ -2,9 +2,9 @@ package uq.deco2800.ducktales.world;
 
 /**
  * Holds the initial enum data set.
- * Utilised by SeasonData
+ * 
  */
-enum Season {
+public enum Season {
 	SPRING("Spring", 1.0f, 13, 20),//HumidityLevel, MinTemperature, MaxTemperature, TimeNightFall, TimeDayBreak), 
 	SUMMER("Summer", 0.7f, 16, 26),
 	AUTUMN("Autumn", 0.2f, 10, 15),
@@ -29,5 +29,25 @@ enum Season {
 		//If you've added things above then you have to add them here with a this.whateverItIs = whateverItIs;
 
 }
+	/**
+	 * Public methods for getting each value within the season
+	 * 
+	 */
+	public String getName() {
+		return this.name;
+		
+	}
+	
+	public float getHumidity() {
+		return this.humidityLevel;
+	}
+	
+	public int getMinTemp() {
+		return this.minTemperature;
+	}
+	
+	public int getMaxTemp() {
+		return this.maxTemperature;
+	}
 	
 }
