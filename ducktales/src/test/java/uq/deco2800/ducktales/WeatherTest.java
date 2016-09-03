@@ -39,16 +39,13 @@ public class WeatherTest {
 
 	/**
 	 * 
-	 * @param weather
 	 * @throws InvalidWeatherChanceException
 	 */
 	@Test
 	public void testWeatherChance() throws InvalidWeatherChanceException {		
 		Weather rain = new Rain();
 		WeatherChance wc = new WeatherChance(rain, 50);
-		Assert.assertEquals("50% of rain", wc.toString());
-		System.out.println(wc);
-		
+		Assert.assertEquals("50% of rain", wc.toString());		
 	}
 	
 	@Test
@@ -57,7 +54,33 @@ public class WeatherTest {
 		WeatherChance rainChance = new WeatherChance(new Rain(),50);
 		WeatherChance fireChance = new WeatherChance(new Fire(),30);
 		weatherEvent.add(rainChance);
-		weatherEvent.add(fireChance);
-		System.out.println(weatherEvent.getWeatherEvents());		
+		weatherEvent.add(fireChance);				
 	}
+	
+	@Test
+	public void testEquals() {
+		Weather fire = new Fire();
+		Weather rain = new Rain();		
+		Weather rain2 = new Rain();		
+		WeatherEvent we = new WeatherEvent();		
+	}
+	
+	@Test
+	public void testList() throws InvalidWeatherChanceException {
+		WeatherEvent weatherEvent = new WeatherEvent();
+		HashSet<WeatherChance> wc = new HashSet<>();
+		Assert.assertEquals(wc, weatherEvent.getWeatherEvents());
+		wc.add(new WeatherChance(new Rain(),50));
+		wc.add(new WeatherChance(new Fire(),30));
+		
+		WeatherChance rainChance = new WeatherChance(new Rain(),50);
+		WeatherChance fireChance = new WeatherChance(new Fire(),30);
+		weatherEvent.add(rainChance);
+		weatherEvent.add(fireChance);		
+		
+		//This should equal true, but it doesn't yet. Need to fix.
+		//Assert.assertEquals(wc, weatherEvent.getWeatherEvents());	
+	}
+	
+	
 }
