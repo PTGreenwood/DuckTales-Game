@@ -135,7 +135,7 @@ public class MissionController {
 		missions.add(mission1HBox, 0, 1);
 		missions.add(mission2HBox, 0, 2);
 		
-		Label mission3Top = new Label("World Builder Missions");
+		Label mission3Top = new Label("GameBeta Missions");
 		mission3Top.setFont(new Font("Arial", 36));
 		
 		ScrollPane scroll = new ScrollPane(missions);
@@ -166,6 +166,7 @@ public class MissionController {
 		achieveLabel.setFont(new Font("Arial", 24));
 		Label achieveTop = new Label("Achievement");
 		achieveTop.setFont(new Font("Arial", 36));
+		
 		
 		Label pi1Label = new Label("GameBeta Mission Progress");
 		ProgressIndicator  pi1 = new ProgressIndicator();
@@ -201,15 +202,18 @@ public class MissionController {
 		
 		Label levelTop = new Label("Leveling System");
 		levelTop.setFont(new Font("Arial", 36));
-		Label levelDisplay = new Label("Level : " + levelMain.getLevel());
-		
+		Label levelDisplay = new Label("Level : " + levelMain.getLevel());		
+
+		Label pbExplanation = new Label("2 missions done ==> level up");
 		ProgressBar  pb1 = new ProgressBar();
 		pb1 = levelMain.getProgressIndicator();
+		
 		
 		levelGrid.setVgap(10);
 		levelGrid.setPadding(new Insets(10, 10, 10, 10));
 		levelGrid.add(levelDisplay, 0, 1);
 		levelGrid.add(pb1, 0, 2);
+		levelGrid.add(pbExplanation, 0, 3);
 		
 		level = loader.load();
 		level.setTop(levelTop);
