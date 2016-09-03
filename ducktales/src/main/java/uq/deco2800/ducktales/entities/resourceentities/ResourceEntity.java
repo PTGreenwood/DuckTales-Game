@@ -1,6 +1,7 @@
 package uq.deco2800.ducktales.entities.resourceentities;
 
-import uq.deco2800.ducktales.entities.Entity;
+import java.util.Random;
+
 import uq.deco2800.ducktales.entities.worldentities.WorldEntity;
 import uq.deco2800.ducktales.resources.ResourceType;
 
@@ -12,7 +13,8 @@ import uq.deco2800.ducktales.resources.ResourceType;
  */
 public abstract class ResourceEntity extends WorldEntity {
 
-	public static int value;
+	public static int defValue = 100;
+	public int value;
 
 
 	protected ResourceEntity(double x, double y, int lengthX, int lengthY, ResourceType type, int value) {
@@ -27,6 +29,23 @@ public abstract class ResourceEntity extends WorldEntity {
 	 */
 	public abstract boolean isPassable();
 	
+	protected static ResourceType rare(ResourceType[] TYPES){
+		Random randomGenerator = new Random();
+		int randomInt = randomGenerator.nextInt(100);
+		if(randomInt < 5){
+			return TYPES[1];
+		} else{
+			return TYPES[0];
+		}
+	}
+	
+	protected void setValue(int x){
+		this.value = x;
+	}	
+	
+	protected void setResourceType(ResourceType R){
+		
+	}
 	
 	public int getValue(){
 		return value;
