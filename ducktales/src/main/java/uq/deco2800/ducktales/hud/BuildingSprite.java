@@ -69,9 +69,9 @@ public class BuildingSprite extends ImageView {
             System.err.println("Mouse released on building " + this.buildingType);
             fireEvent(new BuildingMenuDeselectedEvent(this.buildingType));
         });
-        this.setOnMouseDragged(event -> {
-            fireEvent(new CursorMovedEvent(event.getSceneX(), event.getSceneY()));
-        });
+//        this.setOnMouseDragged(event -> {
+//            fireEvent(new CursorMovedEvent(event.getSceneX(), event.getSceneY()));
+//        });
 
 
         this.setOnMouseEntered(event -> {

@@ -28,7 +28,7 @@ public class TileBeta extends ImageView{
      *
      * NOTE: there can only be one type of static entity on any tile
      */
-    private ResourceType staticEntityType;
+    private ResourceType worldEntity;
 
     /** A boolean value determining whether this tile is passable */
     private boolean isPassable;
@@ -81,6 +81,7 @@ public class TileBeta extends ImageView{
         return this.type;
     }
 
+
     /**
      * This is a new implementation of mouse event handlers - instead of
      * calling methods from manager or renderer directly, the tile will broadcast
@@ -96,6 +97,9 @@ public class TileBeta extends ImageView{
         });
         this.setOnMouseEntered(event -> {
             fireEvent(new TileEnteredEvent(this.xPos, this.yPos));
+
+            // prevent the worldPane from handling this event
+            event.consume();
         });
         this.setOnMouseExited(event -> {
             fireEvent(new TileExitedEvent(this.xPos, this.yPos));
@@ -107,17 +111,17 @@ public class TileBeta extends ImageView{
      *
      * @return the type of the static entity on this tile
      */
-    public ResourceType getStaticEntityType() {
-        return staticEntityType;
+    public ResourceType getWorldEntity() {
+        return worldEntity;
     }
 
     /**
      * Set the type of the static entity on this tile
-     * @param staticEntityType
+     * @param worldEntity
      *          The type of the static entity on this tile
      */
-    public void setStaticEntityType(ResourceType staticEntityType) {
-        this.staticEntityType = staticEntityType;
+    public void setWorldEntity(ResourceType worldEntity) {
+        this.worldEntity = worldEntity;
     }
 
     /**

@@ -92,7 +92,7 @@ public class GameManagerBeta {
         renderer.setRenderingManager(this.renderingManager);
 
         // Setup the Tiles Manager to manage all the tiles in the world
-        tilesManager = new TilesManager(this, world.getTiles());
+        tilesManager = new TilesManager(this, world.getTiles(), this.renderer);
 
         // Start the rendering engine
         this.renderer.start();

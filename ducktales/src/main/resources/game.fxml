@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.Pane?>
 
 <AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" stylesheets="@ducktales.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uq.deco2800.ducktales.ui.GameController">
-      <Pane id="worldPane" fx:id="worldPane" styleClass="worldPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" BorderPane.alignment="CENTER" />
+      <Pane id="worldPane" fx:id="worldPane" styleClass="worldPane" AnchorPane.bottomAnchor="154.0" AnchorPane.leftAnchor="161.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" BorderPane.alignment="CENTER" />
       <HBox id="buildingsMenu" fx:id="buildingsMenu" alignment="BOTTOM_CENTER" layoutY="545.0" prefHeight="154.0" styleClass="buildingsMenu" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" BorderPane.alignment="CENTER" />
       <AnchorPane id="buttonsMenu" fx:id="buttonsMenu" prefHeight="546.0" prefWidth="161.0" styleClass="buttonsMenu" AnchorPane.bottomAnchor="154.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" BorderPane.alignment="CENTER">
          <BorderPane.margin>
