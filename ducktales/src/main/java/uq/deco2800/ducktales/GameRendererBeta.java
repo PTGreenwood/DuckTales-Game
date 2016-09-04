@@ -6,6 +6,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.*;
 import uq.deco2800.ducktales.rendering.engine.WorldEntityRenderingInfo;
+import uq.deco2800.ducktales.rendering.hud.AnimalSprite;
 import uq.deco2800.ducktales.rendering.hud.BuildingSprite;
 
 import uq.deco2800.ducktales.rendering.managers.RenderingManager;
@@ -34,10 +35,14 @@ public class GameRendererBeta extends AnimationTimer {
     /**
      * CONSTANTS
      */
-    // TODO: TO ADD NEW BUILDINGS, REGISTER THE NAME HERE
+    // TODO: TO ADD NEW BUILDINGS, REGISTER THEIR NAMES HERE
     private static final ResourceType[] BUILDINGS = {
         //HOSPITAL, BAKERY, BARN, <--- these buildings are of the wrong size
         CLINIC, PASTURE, BUTCHER, COMMUNITY_BUILDING, BAKERY
+    };
+    // TODO: TO ADD NEW ANIMALS, REGISTER THEIR NAMES HERE
+    private static final ResourceType[] ANIMALS = {
+        DUCK
     };
 
     /** The Root pane where all HUD elements, and world pane will be added to*/
@@ -47,7 +52,9 @@ public class GameRendererBeta extends AnimationTimer {
     private Pane worldPane; // The main area where game graphics will be rendered onto
     private AnchorPane buttonsMenu; // This is only for testing - HUD team pls change
     private HBox buildingsMenu; // Again, only basic implementation
+    private HBox animalsMenu; // Where animals can be added to the world
     private ArrayList<BuildingSprite> buildingSprites; // The sprites of the buildings in the menu
+    private ArrayList<AnimalSprite> animalSprites; // The sprites of the animals
 
     /** UI Variables */
     // The image to be show at the cursor whenever the play is 'drag&dropping'
@@ -95,13 +102,14 @@ public class GameRendererBeta extends AnimationTimer {
      * @param buttonsMenu
      * @param buildingsMenu
      */
-    public GameRendererBeta(AnchorPane root, Pane worldPane,
-                            AnchorPane buttonsMenu, HBox buildingsMenu) {
+    public GameRendererBeta(AnchorPane root, Pane worldPane, AnchorPane buttonsMenu,
+                            HBox buildingsMenu, HBox animalsMenu) {
         // Setup UI elements
         this.root = root;
         this.worldPane = worldPane;
         this.buttonsMenu = buttonsMenu;
         this.buildingsMenu = buildingsMenu;
+        this.animalsMenu = animalsMenu;
 
         worldEntityInfoManager = WorldEntityInfoManager.getInstance();
 
@@ -124,20 +132,10 @@ public class GameRendererBeta extends AnimationTimer {
         this.cursorImage.setMouseTransparent(true);
         worldPane.getChildren().add(this.cursorImage);
 
-        // Initialize the building sprites for buildings menu
+        // Initialize the sprites for the buildings and animals menu
         buildingSprites = new ArrayList<>();
-        for (int i = 0; i < BUILDINGS.length; i++) {
-            BuildingSprite sprite = new BuildingSprite(BUILDINGS[i]);
-
-            if (!worldEntityInfoManager.containEntity(sprite.getBuildingType())) {
-                // this building is not yet registered in the manager. not rendered
-                System.err.println("Building " + sprite.getBuildingType() + " is " +
-                        "not yet registered in WorldEntityInfoManager");
-                continue;
-            }
-
-            buildingSprites.add(sprite);
-        }
+        animalSprites = new ArrayList<>();
+        addSpritesToMenuList();
 
         // Do the initial rendering of the world
         renderWorld();
@@ -190,6 +188,24 @@ public class GameRendererBeta extends AnimationTimer {
      *---------*/
 
     /**
+     * Show the animals that the player can add in the animals menu
+     */
+    public void showAnimalsMenu() {
+        if (animalsMenu.getChildren().size() == 0) {
+            /*
+             * Firstly add all animal sprites to the menu first
+             */
+            animalsMenu.getChildren().addAll(animalSprites);
+
+            /*
+             * Then adjust the size of the sprites accordingly
+             */
+            // TODO IMPLEMENT THIS
+
+        }
+    }
+
+    /**
      * Show the buildings that the player can construct in the buildings menu
      *
      * @require all buildings in buildingSprites must have been registered in
@@ -197,42 +213,53 @@ public class GameRendererBeta extends AnimationTimer {
      * @ensure each building in buildingSprites will be shown onto the buildingsMenu
      */
     public void showBuildingMenu() {
-        buildingsMenu.getChildren().addAll(buildingSprites);
+        // Check if the buildings menu has been instantiated before
+        if (buildingsMenu.getChildren().size() == 0) {
+            /*
+             * Firstly add all building sprites to the menu first
+             */
+            buildingsMenu.getChildren().addAll(buildingSprites);
 
-        // Get the officially defined scale from the rendering manager
-        double UIScale = renderingManager.getUIScale();
+            /*
+             * Then adjust the size of the sprites accordingly
+             */
+            // Get the officially defined scale from the rendering manager
+            double UIScale = renderingManager.getUIScale();
 
-        // adjust the size of the sprites
-        for (int i = 0; i < buildingSprites.size(); i++) {
-            BuildingSprite sprite = buildingSprites.get(i);
+            // adjust the size of the sprites
+            for (int i = 0; i < buildingSprites.size(); i++) {
+                BuildingSprite sprite = buildingSprites.get(i);
 
-            // Get the size of the building in tile-unit first
-            int xLength = 0;
-            int yLength = 0;
-            try {
-                xLength = worldEntityInfoManager.getBuildingLength(
-                        sprite.getBuildingType(), worldEntityInfoManager.XLength
-                );
-                yLength = worldEntityInfoManager.getBuildingLength(
-                        sprite.getBuildingType(), worldEntityInfoManager.YLength
-                );
-            } catch (Exception e) {
-                System.err.println(e.getMessage());
+                // Get the size of the building in tile-unit first
+                int xLength = 0;
+                int yLength = 0;
+                try {
+                    xLength = worldEntityInfoManager.getBuildingLength(
+                            sprite.getSpriteType(), worldEntityInfoManager.XLength
+                    );
+                    yLength = worldEntityInfoManager.getBuildingLength(
+                            sprite.getSpriteType(), worldEntityInfoManager.YLength
+                    );
+                } catch (Exception e) {
+                    System.err.println(e.getMessage());
+                }
+
+                if (xLength == 0 || yLength == 0) {
+                    // this building is not yet registered
+                    System.err.println("Building: " + sprite.getSpriteType() + "is" +
+                            " not yet registered in WorldEntityInfoManager");
+                    return;
+                }
+
+                // Now set the size of the sprite based on the length in tile unit, and
+                // the variable UIScale
+                sprite.setFitHeight((sprite.getSpriteHeight() / xLength) * UIScale);
+                sprite.setFitWidth((sprite.getSpriteWidth() / yLength) * UIScale);
             }
-
-            if (xLength == 0 || yLength == 0) {
-                // this building is not yet registered
-                System.err.println("Building: " + sprite.getBuildingType() + "is" +
-                        " not yet registered in WorldEntityInfoManager");
-                return;
-            }
-
-            // Now set the size of the sprite based on the length in tile unit, and
-            // the variable UIScale
-            sprite.setFitHeight((sprite.getSpriteHeight() / xLength) * UIScale);
-            sprite.setFitWidth((sprite.getSpriteWidth() / yLength) * UIScale);
         }
 
+        buildingsMenu.setVisible(true);
+        animalsMenu.setVisible(false);
     }
 
     /**
@@ -392,7 +419,7 @@ public class GameRendererBeta extends AnimationTimer {
 
         });
         
-        buildingsMenu.addEventHandler(BuildingMenuDeselectedEvent.BUILDING_MENU_DESELECTED_EVENT, event -> {
+        buildingsMenu.addEventHandler(HUDDeselectedEvent.HUDDeselectedEvent, event -> {
             // Return the cursor image to null, and perform update on the world tiles
             // if the mouse is released on top of a tile
             this.cursorImage.setImage(null);
@@ -460,6 +487,32 @@ public class GameRendererBeta extends AnimationTimer {
                 targetTile.getLayoutX() + targetTile.getFitWidth() / 2);
         cursorImage.setLayoutY(
                 targetTile.getLayoutY() + targetTile.getFitHeight());
+    }
+
+    /**
+     * Add the building sprites to the list of buildings in the menu
+     */
+    private void addSpritesToMenuList() {
+        // Add the building sprites
+        for (int i = 0; i < BUILDINGS.length; i++) {
+            BuildingSprite sprite = new BuildingSprite(BUILDINGS[i]);
+
+            if (!worldEntityInfoManager.containEntity(sprite.getSpriteType())) {
+                // this building is not yet registered in the manager. not rendered
+                System.err.println("Building " + sprite.getSpriteType() + " is " +
+                        "not yet registered in WorldEntityInfoManager");
+                continue;
+            }
+
+            buildingSprites.add(sprite);
+        }
+
+        // Add the animal sprites
+        for (int i = 0; i < ANIMALS.length; i++) {
+            AnimalSprite sprite = new AnimalSprite(ANIMALS[i]);
+
+            animalSprites.add(sprite);
+        }
     }
 
     /**

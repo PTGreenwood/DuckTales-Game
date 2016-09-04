@@ -16,20 +16,25 @@
       <Pane id="worldPane" fx:id="worldPane" styleClass="worldPane" AnchorPane.bottomAnchor="154.0" AnchorPane.leftAnchor="161.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" BorderPane.alignment="CENTER" />
    <AnchorPane prefHeight="154.0" styleClass="lowerSection" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
       <children>
-         <HBox fx:id="buildingsMenu" alignment="CENTER_LEFT" maxHeight="154.0" prefHeight="154.0" spacing="20.0" styleClass="buildingsMenu" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="166.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
-            <padding>
-               <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-            </padding>
-         </HBox>
          <VBox fx:id="secondaryButtonsMenu" alignment="CENTER" prefWidth="156.0" spacing="20.0" styleClass="secondaryButtonsMenu" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0">
             <children>
-               <Button mnemonicParsing="false" onAction="#addPeon" prefHeight="40.0" prefWidth="90.0" text="Peons" />
+               <Button mnemonicParsing="false" onAction="#addAnimal" prefHeight="40.0" prefWidth="90.0" text="Peons" />
                <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#constructBuildings" prefHeight="40.0" prefWidth="90.0" text="Buildings" />
             </children>
             <padding>
                <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
             </padding>
          </VBox>
+         <HBox fx:id="buildingsMenu" alignment="CENTER_LEFT" maxHeight="154.0" prefHeight="154.0" spacing="20.0" styleClass="buildingsMenu" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="166.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+            <padding>
+               <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </padding>
+         </HBox>
+         <HBox fx:id="animalsMenu" alignment="CENTER_LEFT" layoutX="176.0" layoutY="15.0" maxHeight="154.0" prefHeight="154.0" spacing="20.0" styleClass="buildingsMenu">
+            <padding>
+               <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </padding>
+         </HBox>
       </children>
    </AnchorPane>
       <AnchorPane id="buttonsMenu" fx:id="buttonsMenu" prefHeight="546.0" prefWidth="161.0" styleClass="buttonsMenu" AnchorPane.bottomAnchor="154.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" BorderPane.alignment="CENTER">
@@ -37,7 +42,7 @@
             <Insets />
          </BorderPane.margin>
          <children>
-            <Button layoutX="21.0" layoutY="14.0" mnemonicParsing="false" onAction="#constructBuildings" text="Add Entities" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="50.0" />
+            <Button layoutX="21.0" layoutY="14.0" mnemonicParsing="false" text="Add Entities" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="50.0" />
          <Button layoutX="30.0" layoutY="100.0" mnemonicParsing="false" onAction="#showMissionAndAchievement" text="Achievements" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="90.0" />
          <Button layoutX="30.0" layoutY="140.0" mnemonicParsing="false" onAction="#showMarketplace" text="Marketplace" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="130.0" />
          </children>

@@ -1,25 +1,16 @@
 package uq.deco2800.ducktales.rendering.hud;
 
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import uq.deco2800.ducktales.GameManagerBeta;
-import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
-import uq.deco2800.ducktales.util.events.ui.BuildingMenuDeselectedEvent;
 import uq.deco2800.ducktales.util.events.ui.BuildingMenuSelectedEvent;
 
 /**
- * This class represents a sprite of a building, to be rendered into the game
- * It will contain event handlers which will notify the {@link GameManagerBeta}
- * when it is clicked on
+ * This class represents a sprite of a building, to be displayed in the
+ * buildings menu
  *
- * Created by Khoi on 31/08/2016.
+ * Created on 31/08/2016.
+ * @author khoiphan21
  */
-public class BuildingSprite extends ImageView {
-
-    /** Variables holding the information about this sprite */
-    private ResourceType buildingType;
-    private Image buildingSprites; // The sprite of the building
+public class BuildingSprite extends HUDSprite {
 
     /**
      * Create a sprite of the given building sprite, and give it a handle of
@@ -28,45 +19,23 @@ public class BuildingSprite extends ImageView {
      * @param buildingType
      */
     public BuildingSprite(ResourceType buildingType) {
-        this.buildingSprites =
-                ResourceSpriteRegister.getInstance().getResourceImage(buildingType);
-        this.buildingType = buildingType;
+        super(buildingType);
 
-        // Load the sprite into the image view
-        this.setImage(buildingSprites);
-
-        setupMouseEventHandler();
-    }
-
-    /**
-     * Get the type of the building represented by this sprite
-     *
-     * @return the type of this sprite's building
-     */
-    public ResourceType getBuildingType() {
-        return this.buildingType;
-    }
-
-    public double getSpriteHeight() {
-        return this.buildingSprites.getHeight();
-    }
-
-    public double getSpriteWidth() {
-        return this.buildingSprites.getWidth();
+        setupMouseEventHandlers();
     }
 
     /**
      * Setup the mouse event handlers for this sprite
      */
-    private void setupMouseEventHandler() {
+    private void setupMouseEventHandlers() {
         this.setOnMouseClicked(event -> {
             fireEvent(new BuildingMenuSelectedEvent(
-                    this.buildingType, event.getSceneX(), event.getSceneY()));
+                    this.getSpriteType(), event.getSceneX(), event.getSceneY()));
         });
 
 //        this.setOnMouseReleased(event -> {
 //            System.err.println("Mouse released on building " + this.buildingType);
-//            fireEvent(new BuildingMenuDeselectedEvent(this.buildingType));
+//            fireEvent(new HUDDeselectedEvent(this.buildingType));
 //        });
 //        this.setOnMouseDragged(event -> {
 //            fireEvent(new CursorMovedEvent(event.getSceneX(), event.getSceneY()));

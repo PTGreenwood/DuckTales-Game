@@ -50,6 +50,8 @@ public class GameController{
     private VBox secondaryButtonsMenu;
     @FXML
     private HBox buildingsMenu;
+    @FXML
+    private HBox animalsMenu;
     // The Inventory menu
     @FXML
     private ImageView woodSprite, foodSprite, oresSprite;
@@ -82,7 +84,10 @@ public class GameController{
      */
     public void setupGame() {
         // Initialize the renderer and pass it the UI elements
-        renderer = new GameRendererBeta(rootPane, worldPane, buttonsMenu, buildingsMenu);
+        renderer = new GameRendererBeta(
+                rootPane, worldPane, buttonsMenu, // Main sections
+                buildingsMenu, animalsMenu // To add buildings and animals
+        );
         // Initialize the manager
         manager = new GameManagerBeta();
 
@@ -118,6 +123,14 @@ public class GameController{
     }
 
     @FXML
+    public void addAnimal(ActionEvent event) {
+        System.err.println("adding peon");
+        renderer.showAnimalsMenu();
+
+        missionCompletedAction(2);
+    }
+
+    @FXML
     public void showMissionAndAchievement(ActionEvent event) throws Exception {
         URL location = getClass().getResource("/missionAndAchievement.fxml");
         FXMLLoader loader = new FXMLLoader(location);
@@ -137,12 +150,6 @@ public class GameController{
         showInfoPane(marketplacePane);
         
         missionCompletedAction(3);
-    }
-
-    @FXML
-    public void addPeon(ActionEvent event) {
-    	System.err.println("adding peon");
-    	missionCompletedAction(2);
     }
 
     @FXML

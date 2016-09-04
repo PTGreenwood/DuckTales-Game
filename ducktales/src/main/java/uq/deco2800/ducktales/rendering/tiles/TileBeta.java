@@ -7,7 +7,7 @@ import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.events.tile.TileClickedEvent;
 import uq.deco2800.ducktales.util.events.tile.TileEnteredEvent;
 import uq.deco2800.ducktales.util.events.tile.TileExitedEvent;
-import uq.deco2800.ducktales.util.events.ui.BuildingMenuDeselectedEvent;
+import uq.deco2800.ducktales.util.events.ui.HUDDeselectedEvent;
 
 /**
  * A tile in the game. The tile will contain information on what entity is
@@ -93,7 +93,7 @@ public class TileBeta extends ImageView{
 
             // This additional event is handled by GameRenderer when
             // a building is currently being managed
-            fireEvent(new BuildingMenuDeselectedEvent());
+            fireEvent(new HUDDeselectedEvent());
         });
         this.setOnMouseEntered(event -> {
             fireEvent(new TileEnteredEvent(this.xPos, this.yPos));

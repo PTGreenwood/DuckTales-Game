@@ -5,34 +5,32 @@ import uq.deco2800.ducktales.resources.ResourceType;
 
 /**
  * This event is fired whenever a building in the buildings menu is clicked
- * on. There is another event that will be fired when the mouse is released,
- * which is {@link BuildingMenuDeselectedEvent}
+ * on. There is another event that will be fired when the building is de-focused,
+ * which is {@link HUDDeselectedEvent}
  *
  * Created on 1/09/2016.
- *
  * @author khoiphan21
  */
-public class BuildingMenuSelectedEvent extends UIEvent {
+public class BuildingMenuSelectedEvent extends HUDSelectedEvent {
 
-    // The starting point of this event
-    private double startingX;
-    private double startingY;
-
+    /**
+     * The type of this event
+     */
     public static final EventType<BuildingMenuSelectedEvent> BUILDING_MENU_SELECTED_EVENT =
             new EventType<>("BUILDING_MENU_SELECTED_EVENT");
 
+    /**
+     * Instantiate an event for when a building sprite in the buildings menu is
+     * clicked upon
+     *
+     * @param type
+     *          The type of the sprite
+     * @param startingX
+     *          The x-coordinate of the point when the event is started from
+     * @param startingY
+     *          The y-coordinate of the point when the event is started from
+     */
     public BuildingMenuSelectedEvent(ResourceType type, double startingX, double startingY) {
-        super(BUILDING_MENU_SELECTED_EVENT);
-        this.type = type;
-        this.startingX = startingX;
-        this.startingY = startingY;
-    }
-
-    public double getStartingX() {
-        return startingX;
-    }
-
-    public double getStartingY() {
-        return startingY;
+        super(type, startingX, startingY, BUILDING_MENU_SELECTED_EVENT);
     }
 }
