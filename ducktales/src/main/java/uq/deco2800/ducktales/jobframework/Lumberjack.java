@@ -17,9 +17,12 @@ public class Lumberjack extends Job {
     protected static int mentorStrength = 12;
     protected static int mentorIntelligence = 2;
     protected static String jobName = "Lumberjack";
+    protected static JobType JOBTYPE = JobType.LUMBJERJACK;
     public Lumberjack(int requiredStrength, int requiredIntelligence, int mentorStrength, 
-            int mentorIntelligence, String jobName) {
-		super(requiredStrength, requiredIntelligence, mentorStrength, mentorIntelligence, jobName);
+            int mentorIntelligence, String jobName, JobType JOBTYPE) {
+		super(requiredStrength, requiredIntelligence, 
+                        mentorStrength, mentorIntelligence, 
+                        jobName, JOBTYPE);
     }
     // chops a tree
     public void chop(Peon peon, Tree tree){

@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Random;
 
 import uq.deco2800.ducktales.GameManager;
+import uq.deco2800.ducktales.jobframework.Job;
+import uq.deco2800.ducktales.jobframework.JobType;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.AStar;
 import uq.deco2800.ducktales.util.Point;
@@ -30,7 +32,7 @@ public class Peon extends AgentEntity {
 	private int resource= 0;
 	
         // Job related information
-	private String job = "jobless";
+	private String job = "Jobless";
 	private double qualification = 0;
 	private boolean mentorStatus = false;
         
@@ -85,6 +87,23 @@ public class Peon extends AgentEntity {
         public String getJob(){
 		return job;
 	}
+        /**
+         * Peon applies for job. 
+         * If peon is qualified, it gets the job. Doesn't get it otherwise.
+         * @param job 
+         */
+        public void applyForJob(Job job){
+            if(job.isQualified(this))
+                this.setJob(job.toString());
+        }
+        /**
+         * Peon quits job if it has one
+         * @param job 
+         */
+        public void quitJob(Job job){
+            if(this.getJob()!="Jobless")
+                this.setJob("Jobless");
+        }
 	/**
 	 * Stores the level of qualification
 	 * @param qualification
@@ -138,16 +157,7 @@ public class Peon extends AgentEntity {
         public int getTreesChopped(){
             return this.treesChopped;
         }
-
-	
-
-	
-	
-	
-
-	
-
-	
+        
 
 
 	@Override

@@ -16,6 +16,7 @@ public abstract class Job {
     protected int mentorIntelligence;
     
     protected String jobName;
+    protected JobType JOBTYPE;
     /**
      * Constructor method for Job
      * 
@@ -26,7 +27,7 @@ public abstract class Job {
      * @param jobName 
      */
     public Job(int requiredStrength, int requiredIntelligence, 
-            int mentorStrength, int mentorIntelligence, String jobName) {
+            int mentorStrength, int mentorIntelligence, String jobName, JobType JOBTYPE) {
         if (requiredStrength <= 0)
             this.requiredStrength = 1;
         if (requiredIntelligence <=0)
@@ -40,6 +41,7 @@ public abstract class Job {
         this.mentorStrength = mentorStrength;
         this.mentorIntelligence = mentorIntelligence;
         this.jobName = jobName;
+        this.JOBTYPE = JOBTYPE;
     }
     /**
      * Returns the name of the job
@@ -140,5 +142,13 @@ public abstract class Job {
             return true;
         }
         return false;
+    }
+    /**
+     * 
+     * @return 
+     */
+    @Override
+    public String toString(){
+        return this.jobName;
     }
 }
