@@ -157,6 +157,30 @@ public class GameRendererBeta extends AnimationTimer {
         renderWorld();
     }
 
+    /**
+     * Update the information of each sprite accordingly
+     */
+    private void renderWorld() {
+        // Update the position of each sprite based on what the direction variable is
+        switch (this.direction) {
+            case NONE:
+                break;
+            case UP:
+                moveAllEntities(0.0, -panSpeed);
+                break;
+            case LEFT:
+                moveAllEntities(-panSpeed, 0.0);
+                break;
+            case RIGHT:
+                moveAllEntities(panSpeed, 0.0);
+                break;
+            case DOWN:
+                moveAllEntities(0.0, panSpeed);
+                break;
+        }
+
+    }
+
     /*---------*
      * SETTERS *
      *---------*/
@@ -333,30 +357,6 @@ public class GameRendererBeta extends AnimationTimer {
 
             }
         }
-    }
-
-    /**
-     * Update the information of each sprite accordingly
-     */
-    private void renderWorld() {
-        // Update the position of each sprite based on what the direction variable is
-        switch (this.direction) {
-            case NONE:
-                break;
-            case UP:
-                moveAllEntities(0.0, -panSpeed);
-                break;
-            case LEFT:
-                moveAllEntities(-panSpeed, 0.0);
-                break;
-            case RIGHT:
-                moveAllEntities(panSpeed, 0.0);
-                break;
-            case DOWN:
-                moveAllEntities(0.0, panSpeed);
-                break;
-        }
-
     }
 
     /**
