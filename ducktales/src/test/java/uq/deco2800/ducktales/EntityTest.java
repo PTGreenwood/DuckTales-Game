@@ -120,8 +120,9 @@ public class EntityTest {
 	 */
 	@Test
 	public void diffDistanceTopTest() {
-		// Different becuase different sized buildings
+		// Different because different sized buildings
 		Entity foreground = new Box(4, 3);
+		//Entity background2 = new LongBox(6, 7);
 		Entity background = new LongBox(4, 3);
 		
 		List<Entity> entities = new ArrayList<Entity>();
@@ -135,6 +136,7 @@ public class EntityTest {
 		
 		
 		assertTrue("Entity 1 incorrect!", foreground.compareTo(background) == 1);
+		//assertTrue("background2 incorrect!", background2.compareTo(foreground) == 1);
 		assertTrue("Entity 2 incorrect!", background.compareTo(foreground) == -1);
 	}
 	
@@ -166,6 +168,7 @@ public class EntityTest {
 	@Test
 	public void diffDistanceInsideTest() {
 		Entity foreground = new Box(5, 4);
+		Entity foreground2 = new Box(1, 2);
 		Entity background = new LongBox(4, 3);
 		
 		List<Entity> entities = new ArrayList<Entity>();
@@ -178,6 +181,7 @@ public class EntityTest {
 		Collections.sort(entities);
 		
 		assertTrue("Entity 1 incorrect!", foreground.compareTo(background) == 1);
+		assertTrue("forground2 incorrect", foreground2.compareTo(foreground) == 0);
 		assertTrue("Entity 2 incorrect!", background.compareTo(foreground) == -1);
 	}
 }
