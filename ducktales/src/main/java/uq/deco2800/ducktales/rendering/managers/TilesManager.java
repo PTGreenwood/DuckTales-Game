@@ -1,7 +1,10 @@
 package uq.deco2800.ducktales.rendering.managers;
 
+import javafx.scene.image.Image;
 import uq.deco2800.ducktales.GameManagerBeta;
+import uq.deco2800.ducktales.GameRendererBeta;
 import uq.deco2800.ducktales.rendering.tiles.TileBeta;
+import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.Array2D;
 
@@ -16,6 +19,10 @@ public class TilesManager {
     /** The global game variables */
     private Array2D<TileBeta> tiles; // The array of tiles in the world
     private GameManagerBeta gameManager;
+    private GameRendererBeta renderer;
+
+    /** The managers that manage different rendering information */
+    private WorldEntityInfoManager worldEntityInfoManager;
 
     /**
      * Create a new tile manager with the given handles on the GameManager
@@ -25,9 +32,15 @@ public class TilesManager {
      *          The manager of the game
      * @param tiles
      */
-    public TilesManager(GameManagerBeta gameManager, Array2D<TileBeta> tiles) {
+    public TilesManager(GameManagerBeta gameManager,
+                        Array2D<TileBeta> tiles, GameRendererBeta renderer) {
         this.gameManager = gameManager;
         this.tiles = tiles;
+        this.renderer = renderer;
+
+        // Initiate the info manager for world entities
+        worldEntityInfoManager = WorldEntityInfoManager.getInstance();
+
     }
 
     /**
@@ -50,7 +63,44 @@ public class TilesManager {
      *          The y-coordinate in tile-unit of the tile that was clicked on
      */
     public void addBuildingToTile(ResourceType buildingType, int x, int y) {
+        int xLength = 0;
+        int yLength = 0;
 
+        // Get the x- and y-length of the building type given
+        try {
+            xLength = worldEntityInfoManager.getBuildingLength(
+                    buildingType,
+                    worldEntityInfoManager.XLength
+            );
+            yLength = worldEntityInfoManager.getBuildingLength(
+                    buildingType,
+                    worldEntityInfoManager.YLength
+            );
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return;
+        }
+
+        // At this point, there should be no more problem
+
+        // Set the appropriate tiles to the building type, and make them non-passable
+        if (xLength == 2 && yLength == 2) {
+            ResourceSpriteRegister register = ResourceSpriteRegister.getInstance();
+            Image image = register.getResourceImage(ResourceType.BLANK);
+            // 2 x 2 building
+            // Set the bottom tile
+            tiles.get(x, y).setWorldEntity(buildingType);
+            tiles.get(x, y).setPassable(false);
+            // Set the top tile
+            tiles.get(x - 1, y - 1).setWorldEntity(buildingType);
+            tiles.get(x - 1, y - 1).setPassable(false);
+            // Set the left tile
+            tiles.get(x, y - 1).setWorldEntity(buildingType);
+            tiles.get(x, y - 1).setPassable(false);
+            // Set the right tile
+            tiles.get(x - 1, y).setWorldEntity(buildingType);
+            tiles.get(x - 1, y).setPassable(false);
+        }
     }
 
 

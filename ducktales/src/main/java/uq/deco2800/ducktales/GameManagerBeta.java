@@ -1,7 +1,8 @@
 package uq.deco2800.ducktales;
 
-import uq.deco2800.ducktales.rendering.engine.RenderingManager;
+import uq.deco2800.ducktales.rendering.managers.RenderingManager;
 import uq.deco2800.ducktales.rendering.managers.TilesManager;
+
 import uq.deco2800.ducktales.resources.InventoryManager;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.world.WorldBeta;
@@ -11,11 +12,13 @@ import static uq.deco2800.ducktales.resources.ResourceType.*;
 /**
  * This is the main manager of the game. All events related to game-logic should
  * notify this manager, and the manager will deal with the information accordingly
- *
+ * <p>
  * Note: the game renderer will handle specific rendering information only, not
  * game logic
- *
+ * <p>
  * Created by Khoi on 31/08/2016.
+ *
+ * @author khoiphan21
  */
 public class GameManagerBeta {
     /**
@@ -89,14 +92,11 @@ public class GameManagerBeta {
         renderer.setRenderingManager(this.renderingManager);
 
         // Setup the Tiles Manager to manage all the tiles in the world
-        tilesManager = new TilesManager(this, world.getTiles());
+        tilesManager = new TilesManager(this, world.getTiles(), this.renderer);
 
         // Start the rendering engine
         this.renderer.start();
-
     }
-
-
 
     /**
      * Return the current game world, which contains all the information about
@@ -178,6 +178,6 @@ public class GameManagerBeta {
          * whenever a new building is added
          */
         tilesManager.addBuildingToTile(buildingType, x, y);
-
     }
+    
 }

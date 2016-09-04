@@ -15,7 +15,6 @@ import java.net.URL;
  * Launcher class for DuckTales.
  * 
  * @author Leggy
- *
  */
 public class DuckTalesLauncher extends Application {
 	private String version = "0.1";
@@ -39,13 +38,11 @@ public class DuckTalesLauncher extends Application {
 		primaryStage.setTitle("DuckTales v" + version);
 		//primaryStage.setFullScreen(true);
 		primaryStage.setScene(scene);		
-		primaryStage.addEventHandler(KeyEvent.KEY_PRESSED, new MenuKeyboardHandler(ducktalesController));
+		scene.addEventHandler(KeyEvent.KEY_PRESSED, new MenuKeyboardHandler(ducktalesController));
 		primaryStage.setMinWidth(1200);
 		primaryStage.setMinHeight(700);
 		primaryStage.setOnCloseRequest(e -> ducktalesController.stopGame());
 		primaryStage.show();	
 	}
-	
-	
 	
 }

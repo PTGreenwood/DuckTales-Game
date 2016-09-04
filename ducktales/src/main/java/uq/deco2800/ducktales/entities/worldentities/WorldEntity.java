@@ -17,6 +17,14 @@ public abstract class WorldEntity extends Entity {
 
 	protected static int STONERESOURCES;
 
+	/**
+	 * Main constructor of the {@link WorldEntity} class.
+	 * @param x
+	 * @param y
+	 * @param lengthX
+	 * @param lengthY
+	 * @param type
+	 */
 	protected WorldEntity(double x, double y, int lengthX, int lengthY, 
 			ResourceType type) {
 		super(x, y, lengthX, lengthY, type);

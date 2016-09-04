@@ -1,4 +1,4 @@
-package uq.deco2800.ducktales.rendering.engine;
+package uq.deco2800.ducktales.rendering.managers;
 
 /**
  * This class contains the information about the size of the world, as well
@@ -43,8 +43,8 @@ public class RenderingManager {
         this.mainScaleFactor = scaleFactor;
 
         // TODO ADJUST THESE SCALE FACTORS AS DEEM FIT
-        this.UIScale = 1;
-        this.buildingScale = 1.1;
+        this.UIScale = 2;
+        this.buildingScale = 1.2;
     }
 
     /*----------

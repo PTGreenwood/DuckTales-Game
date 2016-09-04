@@ -16,8 +16,9 @@ public abstract class Job {
     protected int mentorIntelligence;
     
     protected String jobName;
+    protected JobType JOBTYPE;
     /**
-     * Constructor method for Job
+     * Main constructor of the {@link Job} class.
      * 
      * @param requiredStrength
      * @param requiredIntelligence
@@ -26,7 +27,7 @@ public abstract class Job {
      * @param jobName 
      */
     public Job(int requiredStrength, int requiredIntelligence, 
-            int mentorStrength, int mentorIntelligence, String jobName) {
+            int mentorStrength, int mentorIntelligence, String jobName, JobType JOBTYPE) {
         if (requiredStrength <= 0)
             this.requiredStrength = 1;
         if (requiredIntelligence <=0)
@@ -40,7 +41,9 @@ public abstract class Job {
         this.mentorStrength = mentorStrength;
         this.mentorIntelligence = mentorIntelligence;
         this.jobName = jobName;
+        this.JOBTYPE = JOBTYPE;
     }
+    
     /**
      * Returns the name of the job
      * @return jobName
@@ -48,6 +51,7 @@ public abstract class Job {
     public String getJobName(){
         return jobName;
     }
+    
     /**
      * Returns the requirements for the given job
      * @return reqs, int[] of Required Values
@@ -56,6 +60,7 @@ public abstract class Job {
         int [] reqs = {this.getRequiredStrength(), this.getRequiredIntelligence()};
         return reqs;
     }
+    
     /**
      * Returns the required strength for the job
      * @return requiredStrength
@@ -63,6 +68,7 @@ public abstract class Job {
     public int getRequiredStrength(){
         return requiredStrength;
     }
+    
     /**
      * Returns the required intelligence for the job
      * @return requiredIntelligence
@@ -70,6 +76,7 @@ public abstract class Job {
     public int getRequiredIntelligence(){
         return requiredIntelligence;
     }
+    
     /**
      * Returns the requirements to become a Mentor in
      * the given job
@@ -79,6 +86,7 @@ public abstract class Job {
         int [] reqs = {this.getMentorStrength(), this.getMentorIntelligence()};
         return reqs;      
     }
+    
     /**
      * Returns the required strength to become
      * a mentor in the job
@@ -87,6 +95,7 @@ public abstract class Job {
     public int getMentorStrength(){
         return mentorStrength;
     }
+    
     /**
      * Returns the required intelligence to become
      * a mentor in the job
@@ -95,6 +104,7 @@ public abstract class Job {
     public int getMentorIntelligence(){
         return mentorIntelligence;
     }
+    
     /** 
      * GOING TO NEED TO REVISE THIS PART
      * to determine picking which peons to assign to the task
@@ -110,8 +120,10 @@ public abstract class Job {
         double str = peon.getStrength()/this.getRequiredStrength();
         double intel = peon.getIntelligence()/this.getRequiredIntelligence();
         double total = (str+intel)/2;
+        peon.setQualification(total);
         return total;
     }
+    
     /**
      * Defines whether or not the given peon is 
      * qualified to do the job
@@ -121,10 +133,12 @@ public abstract class Job {
     public boolean isQualified(Peon peon){
         if (peon.getStrength() >= this.getRequiredStrength() &&
                 peon.getIntelligence() >= this.getRequiredIntelligence()){
+        	peon.setJob(jobName);
             return true;
         }
         return false;
     }
+    
     /**
      * Defines whether or not the given peon is 
      * qualified to become a mentor in the job
@@ -138,5 +152,13 @@ public abstract class Job {
             return true;
         }
         return false;
+    }
+    /**
+     * 
+     * @return 
+     */
+    @Override
+    public String toString(){
+        return this.jobName;
     }
 }

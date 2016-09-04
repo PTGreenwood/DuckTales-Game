@@ -5,6 +5,11 @@ import java.util.ArrayList;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+/**
+ * Handles in-game missions.
+ * 
+ *
+ */
 public class Missions {
 	
 	private ImageView mission1ImageCompleted;
@@ -23,6 +28,9 @@ public class Missions {
 		return INSTANCE;		
 	}
 	
+	/**
+	 * Main constructor of {@link Missions} class.
+	 */
 	public Missions(){
 		this.missionsArray = new ArrayList<ImageView>();
 		this.mission1ImageCompleted = new ImageView();
@@ -39,13 +47,29 @@ public class Missions {
 			this.missionsArray.get(i).setImage(uncheckedBox);
 		}
 	}	
+	
+	/**
+	 * Checks checkbox on mission complete.
+	 * @param i
+	 */
 	public void MissionImageCompleted(int i){
 		this.missionsArray.get(i).setImage(checkedBox);
 		this.missionCount = this.missionCount + 0.5;
 	}
+	
+	/**
+	 * 
+	 * @param i
+	 * @return Returns {@code missionsArray}
+	 */
 	public ImageView getMissionImageCompleted(int i){
 		return this.missionsArray.get(i);
 	}
+	
+	/**
+	 * 
+	 * @return Returns {@code missionCount}
+	 */
 	public double getMissionCount(){
 		return this.missionCount;
 	}

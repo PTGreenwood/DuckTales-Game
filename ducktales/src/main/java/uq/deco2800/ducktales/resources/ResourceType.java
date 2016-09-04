@@ -15,7 +15,7 @@ public enum ResourceType {
         NONE,
 
         // Tiles
-        GRASS_1, GRASS_2, GRASS_3,
+        GRASS_1, GRASS_2, GRASS_3, GRASS_4,
         DIRT_1, DIRT_2, DIRT_3,
         VOID, CYAN, CYAN_CROSSED, YELLOW,
         BLANK,
@@ -27,13 +27,15 @@ public enum ResourceType {
 
         // Agent entities
         PEON,
-        DUCK, DUCKUpRight, DUCKUpLeft, DUCKDownRight, DUCKDownLeft,
+        DUCK, DUCKUp, DUCKLeft, DUCKRight, DUCKDown,
+        DUCKDown0, DUCKDown1, DUCKLeft0, DUCKLeft1, DUCKRight0, DUCKRight1, DUCKUp0, DUCKUp1,
         COW, COWUpRight, COWUpLeft, COWDownRight, COWDownLeft,
         SHEEP, SHEEPUpRight, SHEEPUpLeft, SHEEPDownRight, SHEEPDownLeft,
 
         // Buildings
-        HOUSE, SAWMILL, BAKERY, CEMETERY, BARN, FORGE, HOSPITAL, OBSERVATORY, FARMHOUSE,
-        PASTURE, CLINIC,
+        PASTURE, CLINIC, BUTCHER, BAKERY, COMMUNITY_BUILDING, CONSTRUCTION,
+        HOUSE, SAWMILL, CEMETERY, BARN, FORGE, HOSPITAL, OBSERVATORY, FARMHOUSE,
+
 
         // Miscellaneous
         BOX, LONG_BOX, WOOD_BOX

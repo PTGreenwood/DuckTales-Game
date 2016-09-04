@@ -26,16 +26,18 @@ import uq.deco2800.ducktales.achievements.progressIndicator;
 import uq.deco2800.ducktales.level.Level;
 import uq.deco2800.ducktales.world.builder.WorldBuilderRenderer;
 
+/**
+ * Handles in-game mission methods.
+ * 
+ *
+ */
 public class MissionController {
-	
 	
 	private BorderPane mission1;
 	private BorderPane mission2;
 	private BorderPane mission3;
 	private BorderPane achievement;
 	private BorderPane level;
-	
-	
 	
 	@FXML	
 	private AnchorPane missionWindow, rightPane;	
@@ -47,6 +49,12 @@ public class MissionController {
 	Level levelMain = Level.getInstance();
 	progressIndicator piMain = progressIndicator.getInstance();
 	
+	/**
+	 * Starts mission 1.
+	 * 
+	 * @param event
+	 * @throws Exception
+	 */
 	@FXML
 	public void startmission1(ActionEvent event) throws Exception {
 		rightPane.getChildren().removeAll(mission1,mission2,mission3,achievement,level);
@@ -63,9 +71,13 @@ public class MissionController {
 		mission1.setPrefHeight(rightPane.getHeight());
 		mission1.setPrefWidth(rightPane.getWidth());		
 		rightPane.getChildren().add(mission1);
-		
 	}
 	
+	/**
+	 * Starts mission 2.
+	 * @param event
+	 * @throws Exception
+	 */
 	@FXML
 	public void startmission2(ActionEvent event) throws Exception {
 		rightPane.getChildren().removeAll(mission1,mission2,mission3,achievement,level);
@@ -108,6 +120,12 @@ public class MissionController {
 		rightPane.getChildren().add(mission2);
 	}
 	
+	/**
+	 * Starts mission 3.
+	 * 
+	 * @param event
+	 * @throws Exception
+	 */
 	@FXML
 	public void startmission3(ActionEvent event) throws Exception {
 		rightPane.getChildren().removeAll(mission1,mission2,mission3,achievement,level);
@@ -151,7 +169,11 @@ public class MissionController {
 		rightPane.getChildren().add(mission3);		
 	}
 	
-	
+	/**
+	 * Starts achievement.
+	 * @param event
+	 * @throws Exception
+	 */
 	@FXML
 	public void startachievement(ActionEvent event) throws Exception {
 		
@@ -190,6 +212,12 @@ public class MissionController {
 		rightPane.getChildren().add(achievement);
 	}
 	
+	/**
+	 * Starts level.
+	 * 
+	 * @param event
+	 * @throws Exception
+	 */
 	@FXML
 	public void startlevel(ActionEvent event) throws Exception {
 		
@@ -224,6 +252,5 @@ public class MissionController {
 		
 		rightPane.getChildren().add(level);	
 	}
-	
 	
 }

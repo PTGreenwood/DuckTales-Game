@@ -1,13 +1,14 @@
 package uq.deco2800.ducktales.rendering.tiles;
 
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
 import uq.deco2800.ducktales.GameManagerBeta;
 import uq.deco2800.ducktales.GameRendererBeta;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.events.tile.TileClickedEvent;
 import uq.deco2800.ducktales.util.events.tile.TileEnteredEvent;
 import uq.deco2800.ducktales.util.events.tile.TileExitedEvent;
-import uq.deco2800.ducktales.util.events.ui.BuildingMenuDeselectedEvent;
+import uq.deco2800.ducktales.util.events.ui.HUDDeselectedEvent;
 
 /**
  * A tile in the game. The tile will contain information on what entity is
@@ -28,7 +29,7 @@ public class TileBeta extends ImageView{
      *
      * NOTE: there can only be one type of static entity on any tile
      */
-    private ResourceType staticEntityType;
+    private ResourceType worldEntity;
 
     /** A boolean value determining whether this tile is passable */
     private boolean isPassable;
@@ -81,6 +82,7 @@ public class TileBeta extends ImageView{
         return this.type;
     }
 
+
     /**
      * This is a new implementation of mouse event handlers - instead of
      * calling methods from manager or renderer directly, the tile will broadcast
@@ -88,14 +90,24 @@ public class TileBeta extends ImageView{
      */
     private void setMouseEventHandlers() {
         this.setOnMouseClicked(event -> {
-            fireEvent(new TileClickedEvent(this.xPos, this.yPos));
+            if (event.getButton() == MouseButton.PRIMARY) {
+                // Left mouse clicked on tile
+                fireEvent(new TileClickedEvent(this.xPos, this.yPos));
 
-            // This additional event is handled by GameRenderer when
-            // a building is currently being managed
-            fireEvent(new BuildingMenuDeselectedEvent());
+                // This additional event is handled by GameRenderer when
+                // a building is currently being managed
+                fireEvent(new HUDDeselectedEvent());
+            } else if (event.getButton() == MouseButton.SECONDARY) {
+                // Right mouse clicked - deselect the HUD
+                fireEvent(new HUDDeselectedEvent());
+            }
+
         });
         this.setOnMouseEntered(event -> {
             fireEvent(new TileEnteredEvent(this.xPos, this.yPos));
+
+            // prevent the worldPane from handling this event
+            event.consume();
         });
         this.setOnMouseExited(event -> {
             fireEvent(new TileExitedEvent(this.xPos, this.yPos));
@@ -107,17 +119,17 @@ public class TileBeta extends ImageView{
      *
      * @return the type of the static entity on this tile
      */
-    public ResourceType getStaticEntityType() {
-        return staticEntityType;
+    public ResourceType getWorldEntity() {
+        return worldEntity;
     }
 
     /**
      * Set the type of the static entity on this tile
-     * @param staticEntityType
+     * @param worldEntity
      *          The type of the static entity on this tile
      */
-    public void setStaticEntityType(ResourceType staticEntityType) {
-        this.staticEntityType = staticEntityType;
+    public void setWorldEntity(ResourceType worldEntity) {
+        this.worldEntity = worldEntity;
     }
 
     /**
