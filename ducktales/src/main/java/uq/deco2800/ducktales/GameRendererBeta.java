@@ -357,6 +357,9 @@ public class GameRendererBeta extends AnimationTimer {
 
             }
         }
+
+        // Now that everything is in place, move the world up 1/2 of the world's height
+        this.moveAllEntities(-80.0, -350.0); // MAGIC NUMBER. CHANGE LATER.
     }
 
     /**
