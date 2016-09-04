@@ -11,7 +11,7 @@ public class MarketVistaNavigator {
      * Convenience constants for fxml layouts managed by the navigator.
      */
     public static final String MAIN = "/marketplace.fxml";
-    public static final String CURRENTTRADES = "/mpplacetradeoffervista.fxml";
+    public static final String CURRENT_TRADES = "/mpcurrenttradevista.fxml";
     public static final String VISTA_2 = "vista2.fxml";
 
     /** The main application layout controller. */

@@ -142,11 +142,19 @@ public class DuckTalesController implements Initializable {
 		loader.setLocation(location);
 		Parent root = loader.load(location.openStream());
 		Scene marketplaceScene = new Scene(root);
+		
+		// Set the MarketController
+		MarketController marketController = loader.getController();
+		
+		MarketVistaNavigator.setMainController(marketController);
+		
 
 		this.marketplaceStage = new Stage();
 		// To get the window to appear in front of the right pane
 		marketplaceStage.initOwner(contentPane.getScene().getWindow());
 		marketplaceStage.setTitle("Marketplace");
+		MarketVistaNavigator.loadVista(MarketVistaNavigator.CURRENT_TRADES);
+		
 		marketplaceStage.setScene(marketplaceScene);
 		marketplaceStage.show();
 	}
