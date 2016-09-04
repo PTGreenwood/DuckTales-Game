@@ -14,9 +14,9 @@ public class RenderingManager {
     private int worldTileWidth;
     private int worldTileHeight;
 
-    /** The actual pixel width and height of a tile */
-    public static final int TileHeight = 104;
-    public static final int TileWidth = 170;
+//    /** The actual pixel width and height of a tile */
+//    public static final int TileHeight = 104;
+//    public static final int TileWidth = 170;
 
 
     /** Scaling factors */

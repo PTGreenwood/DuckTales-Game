@@ -3,11 +3,11 @@ package uq.deco2800.ducktales;
 import javafx.animation.AnimationTimer;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseButton;
 import javafx.scene.layout.*;
 import uq.deco2800.ducktales.rendering.engine.WorldEntityRenderingInfo;
-import uq.deco2800.ducktales.rendering.hud.AnimalMenuSprite;
-import uq.deco2800.ducktales.rendering.hud.BuildingMenuSprite;
+import uq.deco2800.ducktales.rendering.managers.AgentEntityInfoManager;
+import uq.deco2800.ducktales.rendering.sprites.hud.AnimalMenuSprite;
+import uq.deco2800.ducktales.rendering.sprites.hud.BuildingMenuSprite;
 
 import uq.deco2800.ducktales.rendering.managers.RenderingManager;
 import uq.deco2800.ducktales.rendering.managers.WorldEntityInfoManager;
@@ -42,7 +42,7 @@ public class GameRendererBeta extends AnimationTimer {
     };
     // TODO: TO ADD NEW ANIMALS, REGISTER THEIR NAMES HERE
     private static final ResourceType[] ANIMALS = {
-        DUCK
+        SHEEP
     };
 
     /** Variables to control movement of the world scene */
@@ -237,7 +237,7 @@ public class GameRendererBeta extends AnimationTimer {
                 AnimalMenuSprite sprite = animalMenuSprites.get(i);
 
                 // STUB METHOD - set max height for the sprites
-                sprite.setFitHeight(animalsMenu.getHeight());
+//                sprite.setFitHeight(animalsMenu.getHeight());
             }
         }
 
@@ -381,7 +381,7 @@ public class GameRendererBeta extends AnimationTimer {
             cursorImageFreeMoving = false;
 
             // Move the cursor image to the appropriate position
-            moveCursorBuildingToTile(tile);
+            moveCursorImageToTile(tile);
         });
         // Reset the cursor image to move with the mouse
         worldPane.setOnMouseEntered(event -> {
@@ -392,11 +392,11 @@ public class GameRendererBeta extends AnimationTimer {
             TileBeta tile = world.getTiles().get(event.getxPos(), event.getyPos());
             tile.setImage(resource.getResourceImage(tile.getTileType()));
         });
-        // A tile is clicked on. Right now the implementation only handles
-        // adding a building to the tile
+        // A tile is clicked on. Attempt to add either the building, or the animal
+        // to the world
         worldPane.addEventHandler(TileClickedEvent.TILE_CLICKED, event -> {
-            System.err.println("building " + manager.getCurrentResourceManaging()
-            + " to be added to: " + event.getxPos() + ", " +event.getyPos());
+//            System.err.println("building " + manager.getCurrentResourceManaging()
+//            + " to be added to: " + event.getxPos() + ", " +event.getyPos());
 
             // Check if there is any resource currently being managed
             if (manager.getCurrentResourceManaging() != NONE) {
@@ -432,10 +432,41 @@ public class GameRendererBeta extends AnimationTimer {
         });
 
         /*
+         * Event handlers for the animals menu
+         * // TODO: USE THE HUD MANAGER TO MANAGE THIS INSTEAD, TO PREVENT DUPLICATE CODE
+         */
+        animalsMenu.addEventHandler(AnimalsMenuSelectedEvent.ANIMALS_MENU_SELECTED_EVENT, event -> {
+            // Setup the cursor image to that of the building clicked
+            Image sprite = resource.getResourceImage(event.getType());
+            // Allow it to move
+            cursorImageFreeMoving = true;
+
+            // Reset the sprite's position
+            this.cursorImage.setLayoutX(event.getStartingX());
+            this.cursorImage.setLayoutY(event.getStartingY());
+
+            // Scale the cursor image by the scale given by rendering manager
+            double scale = renderingManager.getBuildingScale();
+            this.cursorImage.setFitHeight(sprite.getHeight() * scale);
+            this.cursorImage.setFitWidth(sprite.getWidth() * scale);
+
+            // Setup the offset
+            this.cursorImage.setX(-cursorImage.getFitWidth()/2);
+            this.cursorImage.setY(-cursorImage.getFitHeight()/2);
+
+            // reveal the sprite
+            this.cursorImage.setImage(sprite);
+            this.cursorImage.toFront();
+
+            // Notify the manager
+            manager.setCurrentResourceManaging(event.getType());
+        });
+
+        /*
          * Event handlers for the buildings menu
          */
         // This method is called when a building in the menu is clicked on
-        buildingsMenu.addEventHandler(BuildingMenuSelectedEvent.BUILDING_MENU_SELECTED_EVENT, event -> {
+        buildingsMenu.addEventHandler(BuildingsMenuSelectedEvent.BUILDING_MENU_SELECTED_EVENT, event -> {
             // Setup the cursor image to that of the building clicked
             Image sprite = resource.getResourceImage(event.getType());
             // Allow it to move
@@ -459,7 +490,6 @@ public class GameRendererBeta extends AnimationTimer {
             this.cursorImage.toFront();
 
             // notify the manager
-            System.err.println("building clicked: " + event.getType());
             manager.setCurrentResourceManaging(event.getType());
 
         });
@@ -474,14 +504,14 @@ public class GameRendererBeta extends AnimationTimer {
 
             System.err.println("deselected a building");
         });
-
-        root.setOnMouseClicked(event -> {
-            if (event.getButton() == MouseButton.SECONDARY) {
-                // right mouse is clicked - deselect the building
-                cursorImage.setImage(null);
-                manager.setCurrentResourceManaging(ResourceType.NONE);
-            }
-        });
+//
+//        root.setOnMouseClicked(event -> {
+//            if (event.getButton() == MouseButton.SECONDARY) {
+//                // right mouse is clicked - deselect the building
+//                cursorImage.setImage(null);
+//                manager.setCurrentResourceManaging(ResourceType.NONE);
+//            }
+//        });
     }
 
     /**
@@ -490,9 +520,21 @@ public class GameRendererBeta extends AnimationTimer {
      */
     private void addToWorld(ResourceType type, int xIndex, int yIndex) {
         // shorten the name for easier reading
-        WorldEntityInfoManager manager = this.worldEntityInfoManager;
+        WorldEntityInfoManager worldEntityManager = this.worldEntityInfoManager;
+        AgentEntityInfoManager agentManager = AgentEntityInfoManager.getInstance();
 
-        if (manager.containEntity(type)) {
+        if (worldEntityManager.containEntity(type)) {
+            // Create (for now) an ImageView at the position of the cursor image
+            // and add that image to the list of entities rendered
+            ImageView entity = new ImageView();
+
+            // Duplicate all properties from cursor image to entity
+            deepCloneSprite(entity, cursorImage);
+
+            // Add the entity to the world, and to the list
+            worldPane.getChildren().add(entity);
+            renderedEntities.add(entity);
+        } else if (agentManager.containEntity(type)) {
             // Create (for now) an ImageView at the position of the cursor image
             // and add that image to the list of entities rendered
             ImageView entity = new ImageView();
@@ -504,8 +546,7 @@ public class GameRendererBeta extends AnimationTimer {
             worldPane.getChildren().add(entity);
             renderedEntities.add(entity);
         } else {
-            // later will check for agent entities
-            System.err.println("BuildingMenuSprite '" + type + "' is not yet registered");
+            System.err.println("Sprite '" + type + "' is not yet registered");
         }
     }
 
@@ -516,7 +557,7 @@ public class GameRendererBeta extends AnimationTimer {
      * @param targetTile
      *          The tile currently under the cursor
      */
-    private void moveCursorBuildingToTile(TileBeta targetTile) {
+    private void moveCursorImageToTile(TileBeta targetTile) {
         // Shorten the name
         WorldEntityInfoManager manager = this.worldEntityInfoManager;
 
@@ -524,8 +565,8 @@ public class GameRendererBeta extends AnimationTimer {
         cursorImage.setX(-cursorImage.getFitWidth() / 2);
         cursorImage.setY(-cursorImage.getFitHeight());
 
-        System.err.println("x and y origins are: " + cursorImage.getX() +
-                ", " + cursorImage.getY());
+//        System.err.println("x and y origins are: " + cursorImage.getX() +
+//                ", " + cursorImage.getY());
 
         // Re-set the location of the cursor image
         cursorImage.setLayoutX(

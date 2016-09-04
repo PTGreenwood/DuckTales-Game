@@ -158,16 +158,14 @@ public class WorldEntityInfoManager {
                         "y-length");
             }
 
-            // increment size array size
             sizeArraySize++;
         }
 
         for (int i = 0; i < buildingNames.length; i++) {
-            // increment name array size
             nameArraySize++;
         }
 
-        // Check if size of name array is equal to that of the size array
+        // name array's size MUST be equal to size array's size
         if (nameArraySize != sizeArraySize) {
             throw new ClassFormatError("Size of buildingSizes must be the same" +
                     "as size of buildingNames");

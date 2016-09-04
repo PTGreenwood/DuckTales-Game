@@ -98,6 +98,7 @@ public class ResourceSpriteRegister {
 		addResource(DUCKLeft1, "/animal/duck/DUCKLeft1.png");
 		addResource(DUCKRight0, "/animal/duck/DUCKRight0.png");
 		addResource(DUCKRight1, "/animal/duck/DUCKRight1.png");
+        addResource(SHEEP, "/animal/sheep_with_wool.png");
 
 		addResource(COW, "/cow.png");
 		// the following will be uncommented once the relevant resources
