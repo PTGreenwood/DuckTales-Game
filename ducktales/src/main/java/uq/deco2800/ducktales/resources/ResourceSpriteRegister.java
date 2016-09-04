@@ -56,12 +56,14 @@ public class ResourceSpriteRegister {
 		resourceTypeRegister = new ConcurrentHashMap<>();
 		currentCount = 0;
 
-		// Ground tiles
+		// GROUND TILES
+		addResource(GRASS_1, "/tiles/grass_1_tile.png");
+
+		// OLD Ground tiles
 		addResource(VOID, "/black.png");
 		addResource(CYAN, "/cyan.png");
 		addResource(CYAN_CROSSED, "/cyan_crossed.png");
 		addResource(YELLOW, "/yellow.png");
-		addResource(GRASS_1, "/grass_1.png");
 		addResource(GRASS_2, "/grass_2.png");
 		addResource(GRASS_3, "/grass_3.png");
 		addResource(WATER, "/water.png");
@@ -70,7 +72,7 @@ public class ResourceSpriteRegister {
 		addResource(DIRT_3, "/dirt_3.png");
 		addResource(BLANK, "/blank.png");
 
-		// Landscape entities
+		// OLD Landscape entities
 		addResource(BOX, "/box2.png");
 		addResource(LONG_BOX, "/longbox.png");
 		addResource(WOOD_BOX, "/wood_stock.png");
