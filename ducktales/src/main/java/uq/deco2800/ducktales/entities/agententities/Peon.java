@@ -72,7 +72,7 @@ public class Peon extends AgentEntity {
 	}
 	
 	/**
-	 * Store how many resource does peon have
+	 * Keep update how many resource does peon have
 	 * @param sourceValue
 	 */	
 	public void setResources(int sourceValue){
@@ -80,7 +80,10 @@ public class Peon extends AgentEntity {
 			this.resource= sourceValue;	
 		}
 	}
-	
+	/**
+	 * Return the Peon's resource value
+	 * @return
+	 */
 	public int getResources(){
 		return resource;
 	}	
