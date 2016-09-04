@@ -135,7 +135,9 @@ public class DuckTalesController implements Initializable {
 	private void showMarketplace(ActionEvent event) throws Exception {
 
 		// Load in the marketplace fxml
-		URL location = getClass().getResource("/marketplace.fxml");
+		// URL location = getClass().getResource("/marketplace.fxml");
+		URL location = getClass().getResource(MarketVistaNavigator.MAIN);
+		
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(location);
 		Parent root = loader.load(location.openStream());
