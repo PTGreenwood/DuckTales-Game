@@ -22,7 +22,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import uq.deco2800.ducktales.achievements.Achievements;
 import javafx.scene.control.ProgressIndicator;
-import uq.deco2800.ducktales.achievements.progressIndicator;
+import uq.deco2800.ducktales.achievements.AchievementProgressIndicator;
 import uq.deco2800.ducktales.level.Level;
 import uq.deco2800.ducktales.world.builder.WorldBuilderRenderer;
 
@@ -47,7 +47,7 @@ public class MissionController {
 	Achievements achievementMain = Achievements.getInstance();
 	Missions missionMain = Missions.getInstance();
 	Level levelMain = Level.getInstance();
-	progressIndicator piMain = progressIndicator.getInstance();
+	AchievementProgressIndicator piMain = AchievementProgressIndicator.getInstance();
 	
 	/**
 	 * Starts mission 1.

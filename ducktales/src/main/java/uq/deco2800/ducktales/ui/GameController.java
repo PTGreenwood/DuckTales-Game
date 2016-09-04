@@ -11,7 +11,7 @@ import uq.deco2800.ducktales.GameLoopBeta;
 import uq.deco2800.ducktales.GameManagerBeta;
 import uq.deco2800.ducktales.GameRendererBeta;
 import uq.deco2800.ducktales.achievements.Achievements;
-import uq.deco2800.ducktales.achievements.progressIndicator;
+import uq.deco2800.ducktales.achievements.AchievementProgressIndicator;
 import uq.deco2800.ducktales.level.Level;
 import uq.deco2800.ducktales.missions.Missions;
 import uq.deco2800.ducktales.resources.InventoryManager;
@@ -201,7 +201,7 @@ public class GameController{
     	//Untick mission2 box in Achievement window of Gamebeta when marketplace is clicked
         Missions.getInstance().MissionImageCompleted(i);
         //Increment percentage of progress indicator in achievement
-        progressIndicator.getInstance().setProgressPercentage(Missions.getInstance().getMissionCount());
+        AchievementProgressIndicator.getInstance().setProgressPercentage(Missions.getInstance().getMissionCount());
         //Increment total achievement score
         Achievements.getInstance().achieveEasy();
         //Increment percentage of progress bar in leveling system
