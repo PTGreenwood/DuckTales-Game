@@ -40,8 +40,8 @@
                   <Font name="Helvetica Neue Bold" size="20.0" />
                </font>
             </Button>
-            <AnchorPane layoutX="206.0" prefHeight="400.0" prefWidth="434.0" style="-fx-background-color: #85C1BE;" />
-            <StackPane fx:id="vistaHolder" layoutX="208.0" layoutY="15.0" prefHeight="372.0" prefWidth="410.0" style="-fx-background-color: #0C8F8F;" />
+            <AnchorPane layoutX="206.0" prefHeight="400.0" prefWidth="564.0" style="-fx-background-color: #85C1BE;" />
+            <StackPane fx:id="vistaHolder" layoutX="208.0" layoutY="15.0" prefHeight="372.0" prefWidth="550.0" style="-fx-background-color: #0C8F8F;" />
       </children>
     </AnchorPane>
   </children>

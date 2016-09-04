@@ -32,12 +32,12 @@ public class MarketController {
     
     @FXML
     void viewOffersTrades(ActionEvent event) {
-    	//MarketVistaNavigator.loadVista(MarketVistaNavigator.VISTA_2);
+    	MarketVistaNavigator.loadVista(MarketVistaNavigator.YOUR_OFFERS);
     }
     
     @FXML
     void viewPlaceATrade(ActionEvent event) {
-    	//MarketVistaNavigator.loadVista(MarketVistaNavigator.VISTA_2);
+    	MarketVistaNavigator.loadVista(MarketVistaNavigator.PLACE_A_TRADE);
     }
     
     
