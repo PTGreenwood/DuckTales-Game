@@ -54,4 +54,16 @@ public class Lumberjack extends Job {
         }
         return false;
     }
+    /**
+     * If peon lumber the tree, peon will get the 
+     * value of resources
+     * @param peon
+     */    
+    public void treeResources(Peon peon){
+		if (peon.getTreesChopped()>0){
+    		for (int i=1; i>0; i++){
+    			peon.getResources();
+    		}
+    	}	   		   		
+	}
 }

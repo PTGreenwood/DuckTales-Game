@@ -70,13 +70,20 @@ public class Peon extends AgentEntity {
 	public int getHealth() {
 		return health;
 	}
+	
+	/**
+	 * Store how many resource does peon have
+	 * @param sourceValue
+	 */	
 	public void setResources(int sourceValue){
 		if (sourceValue > 0){
-			this.resource= sourceValue;
-			
+			this.resource= sourceValue;	
 		}
 	}
 	
+	public int getResources(){
+		return resource;
+	}	
 	/**
 	 * Stores what job the peon has
 	 * @param job
