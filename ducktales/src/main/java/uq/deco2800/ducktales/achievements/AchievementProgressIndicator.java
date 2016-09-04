@@ -8,16 +8,16 @@ import uq.deco2800.ducktales.missions.Missions;
  *
  *
  */
-public class progressIndicator {
+public class AchievementProgressIndicator {
 	private ProgressIndicator pi;	
 	
-	private static progressIndicator INSTANCE = new progressIndicator();
+	private static AchievementProgressIndicator INSTANCE = new AchievementProgressIndicator();
 	
-	public static progressIndicator getInstance() {
+	public static AchievementProgressIndicator getInstance() {
 		return INSTANCE;		
 	}
 	
-	public progressIndicator(){
+	public AchievementProgressIndicator(){
 		this.pi = new ProgressIndicator();	
 		this.pi.setProgress(0.0);
 		this.pi.setPrefSize(100.0, 100.0);

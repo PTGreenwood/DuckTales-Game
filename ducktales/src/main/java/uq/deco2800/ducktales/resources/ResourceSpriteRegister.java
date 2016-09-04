@@ -141,10 +141,10 @@ public class ResourceSpriteRegister {
 		addResource(SAWMILL, "/sawmill.png");
 
 		//addResource(CEMETERY, "/cemetery.png");
-		addResource(FARMHOUSE, "/farm+barn.png");
-		addResource(BARN, "/barn.png");
+		//addResource(FARMHOUSE, "/farm+barn.png");
+		//addResource(BARN, "/barn.png");
 		//addResource(FORGE, "/forge.png");
-		addResource(HOSPITAL, "/hospital.png");
+		//addResource(HOSPITAL, "/hospital.png");
 		//addResource(OBSERVATORY, "/observatory.png");
 
 	}
