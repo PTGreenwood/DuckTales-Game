@@ -2,20 +2,23 @@ package uq.deco2800.ducktales.entities.resourceentities;
 
 import static uq.deco2800.ducktales.resources.ResourceType.*;
 import java.util.concurrent.*;
+
+import uq.deco2800.ducktales.entities.worldentities.WorldEntity;
+import uq.deco2800.ducktales.entities.agententities.Peon;
 import uq.deco2800.ducktales.resources.ResourceType;
 
 public class Tree extends ResourceEntity{
 	
 	private static ResourceType[] TYPES = {TREE_1, TREE_2, TREE_3};
+	/*Scheduler for growing trees. Currently will grow every minute.	
+	 *  
+	 * (Can be changed to fit with the methods in Time class when implemented)
+	 */
 	private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 	
 	public Tree(double x, double y) {
-		super(x, y, 1, 1, rare(TYPES), defValue);
-		/*Scheduler for growing trees. Currently will grow every minute.	
-		 *  
-		 * (Can be changed to fit with the methods in Time class when implemented)
-		 */
-		
+		super(x, y, 1, 1, rare(TYPES), defValue);		
+		//Scheduling the runnable to run every minute in real time.
 		scheduler.scheduleAtFixedRate(createRunnable(this), 60, 60, TimeUnit.SECONDS);
 		/*If the tree is the last type in the list, which will always be the rare,
 		 * set the value of the Resource to be double.
@@ -44,5 +47,20 @@ public class Tree extends ResourceEntity{
 	@Override
 	public boolean isPassable() {
 		return false;
-	}	
+	}
+	/*private boolean isStump = false;        // Whether the tree was lumbered and Leave a stump
+
+	public int timber = 20;                 //define how many timber peon can get from this tree
+
+	// if the tree is lumbered, increase the amount of wood resources and set the tree to stump
+	public void lumber(Peon loggers){
+
+		this.isStump = true;
+	}
+
+	//* Returns whether the tree is stump.
+
+	public boolean isStump() {
+		return this.isStump;
+	}*/
 }
