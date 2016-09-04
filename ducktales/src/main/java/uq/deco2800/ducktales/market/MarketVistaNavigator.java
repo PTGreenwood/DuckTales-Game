@@ -36,6 +36,15 @@ public class MarketVistaNavigator {
     public static void setMainController(MarketController marketController) {
     	MarketVistaNavigator.mainController = marketController;
     }
+    
+    /**
+     * Returns the mainController.
+     * 
+     * @return
+     */
+    public static MarketController getMainController() {
+    	return mainController;
+    }
 
     /**
      * Loads the vista with the given fxml file into the vistaHolder pane.
