@@ -114,6 +114,16 @@ public class ThreatManager {
 		 	tempEnemy.setEndTimer(50);
 		 	//Add temp variable to list
 		 	enemiesList.add(tempEnemy);
+		 	
+		 	//Create Temp variable
+		 	tempEnemy = new Enemy("Evil Duck");
+		 	//Add parameters to temp variable
+		 	//------- parameters here will move evil 
+		 	//duck and reduce health of any 
+		 	//peons it collides with
+		 	tempEnemy.setStartTimer(20, "Timer");
+		 	tempEnemy.setEndTimer(50);
+		 	enemiesList.add(tempEnemy);
 	}
 	 
 	/**
