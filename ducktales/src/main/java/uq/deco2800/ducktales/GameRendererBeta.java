@@ -165,16 +165,16 @@ public class GameRendererBeta extends AnimationTimer {
         switch (this.direction) {
             case NONE:
                 break;
-            case UP:
+            case DOWN:
                 moveAllEntities(0.0, -panSpeed);
                 break;
-            case LEFT:
+            case RIGHT:
                 moveAllEntities(-panSpeed, 0.0);
                 break;
-            case RIGHT:
+            case LEFT:
                 moveAllEntities(panSpeed, 0.0);
                 break;
-            case DOWN:
+            case UP:
                 moveAllEntities(0.0, panSpeed);
                 break;
         }
