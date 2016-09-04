@@ -32,17 +32,22 @@ import static uq.deco2800.ducktales.resources.ResourceType.*;
  * @author khoiphan21
  */
 public class GameRendererBeta extends AnimationTimer {
-    /**
+    /*
      * CONSTANTS
      */
     // TODO: TO ADD NEW BUILDINGS, REGISTER THEIR NAMES HERE
     private static final ResourceType[] BUILDINGS = {
         //HOSPITAL, BAKERY, BARN, <--- these buildings are of the wrong size
-        PASTURE, BUTCHER, COMMUNITY_BUILDING, BAKERY, CONSTRUCTION
+        BUTCHER, COMMUNITY_BUILDING, BAKERY, PASTURE, CONSTRUCTION
     };
     // TODO: TO ADD NEW ANIMALS, REGISTER THEIR NAMES HERE
     private static final ResourceType[] ANIMALS = {
         DUCK
+    };
+
+    /** Variables to control movement of the world scene */
+    public enum Direction {
+        UP, DOWN, LEFT, RIGHT, NONE
     };
 
     /** The Root pane where all HUD elements, and world pane will be added to*/
@@ -81,6 +86,10 @@ public class GameRendererBeta extends AnimationTimer {
     private double startingY;
     // The scale/zoom factor
     private double generalScale;
+    // The speed of moving the world around
+    private double panSpeed = 5.0;
+    // The direction that the world should be moving towards
+    private Direction direction;
 
     /**
      * List of all rendered entities. Current implementation is only ImageView,
@@ -137,7 +146,7 @@ public class GameRendererBeta extends AnimationTimer {
         addSpritesToMenuList();
 
         // Do the initial rendering of the world
-        renderWorld();
+        createInitialWorld();
 
         // Setup the CUSTOM event handlers for the game
         setupCustomEventHandler();
@@ -145,7 +154,7 @@ public class GameRendererBeta extends AnimationTimer {
 
     @Override
     public void handle(long now) {
-
+        renderWorld();
     }
 
     /*---------*
@@ -282,12 +291,14 @@ public class GameRendererBeta extends AnimationTimer {
         this.generalScale = renderingManager.getMainScaleFactor();
 
         this.renderedEntities = new ArrayList<>();
+
+        this.direction = Direction.NONE;
     }
 
     /**
      * Create the initial game world
      */
-    private void renderWorld() {
+    private void createInitialWorld() {
         Array2D<TileBeta> tiles = world.getTiles();
 
         int tileHeight = resource.TILE_HEIGHT;
@@ -322,6 +333,30 @@ public class GameRendererBeta extends AnimationTimer {
 
             }
         }
+    }
+
+    /**
+     * Update the information of each sprite accordingly
+     */
+    private void renderWorld() {
+        // Update the position of each sprite based on what the direction variable is
+        switch (this.direction) {
+            case NONE:
+                break;
+            case UP:
+                moveAllEntities(0.0, -panSpeed);
+                break;
+            case LEFT:
+                moveAllEntities(-panSpeed, 0.0);
+                break;
+            case RIGHT:
+                moveAllEntities(panSpeed, 0.0);
+                break;
+            case DOWN:
+                moveAllEntities(0.0, panSpeed);
+                break;
+        }
+
     }
 
     /**
@@ -545,6 +580,57 @@ public class GameRendererBeta extends AnimationTimer {
         // Set the fit height and width
         destination.setFitHeight(source.getFitHeight());
         destination.setFitWidth(source.getFitWidth());
+    }
+
+    /*
+     * These methods are to move the world around
+     */
+    public void moveWorld(Direction direction) {
+        // Set the moving direction to the given direction
+        this.direction = direction;
+    }
+
+    public void stopMoveWorld() {
+        direction = Direction.NONE;
+    }
+
+    /**
+     * Move all the entity sprites, including tiles, a certain amount of direction
+     * @param xDirection
+     * @param yDirection
+     */
+    private void moveAllEntities(double xDirection, double yDirection) {
+        // The array of world tiles
+        Array2D<TileBeta> tiles = manager.getWorld().getTiles();
+
+        // temporary variable to hold all the sprites later
+        ImageView entity;
+
+        // move the tiles first
+        for (int x = 0; x < tiles.getWidth(); x++) {
+            for (int y = 0; y < tiles.getHeight(); y++) {
+                entity = tiles.get(x, y);
+                if (entity != null) {
+                    entity.setLayoutX(entity.getLayoutX() + xDirection);
+                    entity.setLayoutY(entity.getLayoutY() + yDirection);
+                } else {
+                    System.err.println("Failed to move world");
+                }
+            }
+        }
+
+        // move all entities in the game
+        for (int i = 0; i < renderedEntities.size(); i++) {
+            entity = renderedEntities.get(i);
+            if (entity != null) {
+                entity.setLayoutX(entity.getLayoutX() + xDirection);
+                entity.setLayoutY(entity.getLayoutY() + yDirection);
+            } else {
+                System.err.println("Failed to move entities");
+            }
+        }
+
+
     }
 
 }

@@ -7,7 +7,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import uq.deco2800.ducktales.GameLoop;
 import uq.deco2800.ducktales.GameLoopBeta;
 import uq.deco2800.ducktales.GameManagerBeta;
 import uq.deco2800.ducktales.GameRendererBeta;
@@ -16,6 +15,7 @@ import uq.deco2800.ducktales.achievements.progressIndicator;
 import uq.deco2800.ducktales.level.Level;
 import uq.deco2800.ducktales.missions.Missions;
 import uq.deco2800.ducktales.resources.InventoryManager;
+import uq.deco2800.ducktales.util.events.handlers.KeyboardEventHandlerBeta;
 
 import java.net.URL;
 import java.util.concurrent.ExecutorService;
@@ -114,10 +114,8 @@ public class GameController{
         quit = new AtomicBoolean(false);
         executor.execute(new GameLoopBeta(quit, 50));
 
-        // TODO DELETE THIS. THIS IS TO TEST KEYBOARD HANDLERS
-        rootPane.setOnKeyPressed(event -> {
-            System.out.println(""+ event.getCode().toString());
-        });
+        // Setup keyboard event handlers
+        setupKeyboardEventHandlers();
     }
 
     @FXML
@@ -212,6 +210,13 @@ public class GameController{
         if(Level.getInstance().getBarProgress() == 1.0){
         	Level.getInstance().LevelUp();
         }
+    }
+
+    private void setupKeyboardEventHandlers() {
+        KeyboardEventHandlerBeta keyboardHandler = new KeyboardEventHandlerBeta(this.renderer);
+
+        rootPane.setOnKeyPressed(keyboardHandler);
+        rootPane.setOnKeyReleased(keyboardHandler);
     }
 
 }

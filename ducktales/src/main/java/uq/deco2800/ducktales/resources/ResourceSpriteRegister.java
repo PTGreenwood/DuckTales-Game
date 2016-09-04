@@ -69,9 +69,6 @@ public class ResourceSpriteRegister {
 		addResource(YELLOW, "/yellow.png");
 
 		addResource(WATER, "/water.png");
-		addResource(DIRT_1, "/dirt_1.png");
-		addResource(DIRT_2, "/dirt_2.png");
-		addResource(DIRT_3, "/dirt_3.png");
 		addResource(BLANK, "/blank.png");
 
 		// OLD Landscape entities
