@@ -82,7 +82,7 @@ public abstract class ResourceEntity extends WorldEntity {
 	 * @throws exception if x is negative.
 	 */
 	public void increaseValue(int x){
-		if(x < 0){
+		if(x > 0){
 			value += x;
 		}else{
 			//throw new exception
@@ -97,7 +97,7 @@ public abstract class ResourceEntity extends WorldEntity {
 	 * @throws exception if x is negative.
 	 */
 	public void decreaseValue(int x){
-		if(x < 0){
+		if(x > 0){
 			value -= x;
 		}else{
 			//throw new exception
