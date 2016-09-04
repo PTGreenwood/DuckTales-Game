@@ -1,4 +1,4 @@
-package uq.deco2800.ducktales;
+package uq.deco2800.ducktales.entities.worldentities;
 
 import static org.junit.Assert.assertTrue;
 
