@@ -24,6 +24,7 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.stage.Stage;
+import uq.deco2800.ducktales.market.*;
 
 /**
  * This class handles the title screen and main menu.
