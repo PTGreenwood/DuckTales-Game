@@ -63,6 +63,9 @@ public class ResourceSpriteRegister {
 		addResource(GRASS_4, "/tiles/grass_4.png");
 
 		// OLD Ground tiles
+
+		/*---Landscape resources---*/
+		
 		addResource(VOID, "/black.png");
 		addResource(CYAN, "/cyan.png");
 		addResource(CYAN_CROSSED, "/cyan_crossed.png");
@@ -72,6 +75,9 @@ public class ResourceSpriteRegister {
 		addResource(BLANK, "/blank.png");
 
 		// OLD Landscape entities
+
+		
+		/*---Object resources---*/
 		addResource(BOX, "/box2.png");
 		addResource(LONG_BOX, "/longbox.png");
 		addResource(WOOD_BOX, "/wood_stock.png");
@@ -109,6 +115,21 @@ public class ResourceSpriteRegister {
 		// addResource(SHEEPDownLeft, "/SHEEPDownLeft.png");
 
 		// Buildings
+
+		
+		/*---Building resources---*/
+		
+		//To be uncommented as the relevant graphics are created
+		// note from creator of ResourceType: please remember to use the enums from
+		// ResourceType enum class instead of the previous String implementation
+		
+		//addResource(MINE, "/mine.png");
+		//addResource(FARM, "/farm.png");
+		//addResource(QUARRY, "/quarry.png");
+		//addResource(PLANTATION, "/plantation.png");
+		
+		addResource(SAWMILL, "/sawmill.png");
+		addResource(BAKERY, "/bakery.png");
 		addResource(PASTURE, "/buildings/pasture.png");
 		addResource(CLINIC, "/buildings/clinic.png");
 		addResource(BUTCHER, "/buildings/butcher.png");
