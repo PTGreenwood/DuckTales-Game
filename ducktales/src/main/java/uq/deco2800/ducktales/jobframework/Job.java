@@ -16,7 +16,7 @@ public abstract class Job {
     protected int mentorIntelligence;
     
     protected String jobName;
-    
+    protected JobType JOBTYPE;
     /**
      * Main constructor of the {@link Job} class.
      * 
@@ -27,7 +27,7 @@ public abstract class Job {
      * @param jobName 
      */
     public Job(int requiredStrength, int requiredIntelligence, 
-            int mentorStrength, int mentorIntelligence, String jobName) {
+            int mentorStrength, int mentorIntelligence, String jobName, JobType JOBTYPE) {
         if (requiredStrength <= 0)
             this.requiredStrength = 1;
         if (requiredIntelligence <=0)
@@ -41,6 +41,7 @@ public abstract class Job {
         this.mentorStrength = mentorStrength;
         this.mentorIntelligence = mentorIntelligence;
         this.jobName = jobName;
+        this.JOBTYPE = JOBTYPE;
     }
     
     /**
@@ -119,6 +120,7 @@ public abstract class Job {
         double str = peon.getStrength()/this.getRequiredStrength();
         double intel = peon.getIntelligence()/this.getRequiredIntelligence();
         double total = (str+intel)/2;
+        peon.setQualification(total);
         return total;
     }
     
@@ -131,6 +133,7 @@ public abstract class Job {
     public boolean isQualified(Peon peon){
         if (peon.getStrength() >= this.getRequiredStrength() &&
                 peon.getIntelligence() >= this.getRequiredIntelligence()){
+        	peon.setJob(jobName);
             return true;
         }
         return false;
@@ -149,5 +152,13 @@ public abstract class Job {
             return true;
         }
         return false;
+    }
+    /**
+     * 
+     * @return 
+     */
+    @Override
+    public String toString(){
+        return this.jobName;
     }
 }
