@@ -47,14 +47,19 @@ public class WorldEntityInfoManager {
      */
     // The size of the building in tile unit, in the format {x, y}
     private int[][] buildingSizes = {
-            {2, 2}, // clinic
             {5, 5}, // pasture
-            {2, 2} // community building
+            {2, 2}, // butcher
+            {2, 2}, // community building
+            {2, 2}, // bakery
+            {2, 2} // construction
+
     };
     private ResourceType[] buildingNames = {
-            CLINIC,
             PASTURE,
-            COMMUNITY_BUILDING
+            BUTCHER,
+            COMMUNITY_BUILDING,
+            BAKERY,
+            CONSTRUCTION
     };
 
     /**
