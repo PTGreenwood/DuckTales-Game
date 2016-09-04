@@ -1,5 +1,6 @@
 package uq.deco2800.ducktales.market;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.layout.StackPane;
@@ -18,5 +19,27 @@ public class MarketController {
     public void setVista(Node node) {
         vistaHolder.getChildren().setAll(node);
     }
+    
+    @FXML
+    void viewCurrentTrades(ActionEvent event) {
+    	MarketVistaNavigator.loadVista(MarketVistaNavigator.CURRENT_TRADES);
+    }
+    
+    @FXML
+    void viewYourTrades(ActionEvent event) {
+        MarketVistaNavigator.loadVista(MarketVistaNavigator.YOUR_TRADES);
+    }
+    
+    @FXML
+    void viewOffersTrades(ActionEvent event) {
+    	//MarketVistaNavigator.loadVista(MarketVistaNavigator.VISTA_2);
+    }
+    
+    @FXML
+    void viewPlaceATrade(ActionEvent event) {
+    	//MarketVistaNavigator.loadVista(MarketVistaNavigator.VISTA_2);
+    }
+    
+    
 
 }

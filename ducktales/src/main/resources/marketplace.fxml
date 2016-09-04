@@ -18,24 +18,24 @@
         </Label>
             <AnchorPane prefHeight="400.0" prefWidth="206.0" style="-fx-background-color: #85C1BE;">
                <children>
-                  <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="180.0" style="-fx-background-color: #0C8F8F; -fx-background-radius: 0px;" styleClass="menu" text="Current Trades" textFill="#edd75a">
+                  <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#viewCurrentTrades" prefHeight="75.0" prefWidth="180.0" style="-fx-background-color: #0C8F8F; -fx-background-radius: 0px;" styleClass="menu" text="Current Trades" textFill="#edd75a">
                      <font>
                         <Font name="Helvetica Neue Bold" size="20.0" />
                      </font>
                   </Button>
-                  <Button layoutX="14.0" layoutY="114.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="180.0" style="-fx-background-color: #73B06F; -fx-background-radius: 0px;" text="Your Trades" textFill="#edd75a">
+                  <Button layoutX="14.0" layoutY="114.0" mnemonicParsing="false" onAction="#viewYourTrades" prefHeight="75.0" prefWidth="180.0" style="-fx-background-color: #73B06F; -fx-background-radius: 0px;" text="Your Trades" textFill="#edd75a">
                      <font>
                         <Font name="Helvetica Neue Bold" size="20.0" />
                      </font>
                   </Button>
-                  <Button layoutX="14.0" layoutY="214.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="180.0" style="-fx-background-radius: 0px; -fx-background-color: #73B06F;" text="Your Offers" textFill="#edd75a">
+                  <Button layoutX="14.0" layoutY="214.0" mnemonicParsing="false" onAction="#viewOffersTrades" prefHeight="75.0" prefWidth="180.0" style="-fx-background-radius: 0px; -fx-background-color: #73B06F;" text="Your Offers" textFill="#edd75a">
                      <font>
                         <Font name="Helvetica Neue Bold" size="20.0" />
                      </font>
                   </Button>
                </children>
             </AnchorPane>
-            <Button layoutX="14.0" layoutY="311.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="180.0" style="-fx-background-radius: 0px; -fx-background-color: #73B06F;" text="Place a Trade" textFill="#edd75a">
+            <Button layoutX="14.0" layoutY="311.0" mnemonicParsing="false" onAction="#viewPlaceATrade" prefHeight="75.0" prefWidth="180.0" style="-fx-background-radius: 0px; -fx-background-color: #73B06F;" text="Place a Trade" textFill="#edd75a">
                <font>
                   <Font name="Helvetica Neue Bold" size="20.0" />
                </font>
