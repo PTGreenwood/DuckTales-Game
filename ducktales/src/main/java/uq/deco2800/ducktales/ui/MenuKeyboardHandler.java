@@ -38,17 +38,17 @@ public class MenuKeyboardHandler implements EventHandler<KeyEvent> {
 			//key presses alters the flow of time.	
 		case DIGIT1:
 			GameLoop.SpeedControl("mallard");
-			System.out.print("speed 1x"); //set time scale to default
+			System.out.println("speed 1x"); //set time scale to default
 			break;
 
 		case DIGIT2:
 			GameLoop.SpeedControl("canvasback");
-			System.out.print("speed 1.5x");  //set time scale to 1.5151x
+			System.out.println("speed 1.5x");  //set time scale to 1.5151x
 			break;
-
+			
 		case DIGIT3:
 			GameLoop.SpeedControl("merganser");
-			System.out.print("speed 2.5x");  //set time scale to 2.5x 
+			System.out.println("speed 2.5x");  //set time scale to 2.5x 
 			break;
 			
 		default:

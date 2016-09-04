@@ -35,30 +35,62 @@ public enum Season {
 
 }
 	/**
-	 * Public methods for getting each value within the season
+	 * Getter Method: getName();
+	 * returns the name of the season in string format
 	 * 
+	 * @return String: Name
 	 */
 	public String getName() {
 		return this.name;
 		
 	}
 	
+	/**
+	 * Getter Method: getHumidity()
+	 * gets the Humidity value of the current season
+	 * 
+	 * @return Float: Humidity
+	 */
 	public float getHumidity() {
 		return this.humidityLevel;
 	}
 	
+	/**
+	 * Getter Method: getMinTemp()
+	 * gets the minimum temperature value of the current season
+	 * 
+	 * @return Int: Minimum Temperature
+	 */
 	public int getMinTemp() {
 		return this.minTemperature;
 	}
 	
+	/**
+	 * Getter Method: getMaxTemp()
+	 * gets the maximum temperature value of the current season
+	 * 
+	 * @return Int: Maximum Temperature
+	 */
 	public int getMaxTemp() {
 		return this.maxTemperature;
 	}
 	
+	/**
+	 * Getter Method: getTimeNightFall()
+	 * gets the time that nightfall happens for the current season
+	 * 
+	 * @return Int: Hour value for when Nightfall begins
+	 */
 	public int getTimeNightFall() {
 		return this.timeNightFall;
 	}
 	
+	/**
+	 * Getter Method: getTimeDayBreak()
+	 * gets the time that daybreak happens for the current season
+	 * 
+	 * @return Int: Hour value for when DayBreak begins
+	 */
 	public int getTimeDayBreak() {
 		return this.timeDayBreak;
 	}

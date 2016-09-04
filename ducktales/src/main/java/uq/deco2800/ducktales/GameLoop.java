@@ -18,6 +18,8 @@ public class GameLoop implements Runnable {
 	private int tick;
 	private AtomicBoolean quit;
 	
+	private static int SpCon = 50; //default tick rate 
+	
 	private EntityManager entityManager = EntityManager.getInstance();
 	
 	private GameTime gameTime = new GameTime();
@@ -27,7 +29,7 @@ public class GameLoop implements Runnable {
 		this.quit = quit;  
 
 	}
-
+	
 	@Override
 	public void run() {
 		while (!quit.get()) {
@@ -43,31 +45,21 @@ public class GameLoop implements Runnable {
 		}
 
 	}
+	
 	/**
-	 * 
 	 * continues to add time functionality
 	 * @author danl256
 	 * */
 	public static void SpeedControl(String code) {
-		switch (code) {
-		case "mallard":
-			SpCon = 50; //set time scale to default
-			break;
-
-		case "canvasback":
-			SpCon = 33; //set time scale to 1.5151x
-
-			break;
-
-		case "merganser":
-			SpCon = 20; //set time scale to 2.5x
-			break;
-
-		default:
-			break;
+		if(code == "canvasback") {
+			SpCon = 33; //1.5x
+		} else if(code == "merganser") {
+			SpCon = 20; //2.5x
+		} else {
+			SpCon = 50; //1x (Normal)
 		}
-		
+	
 	}
-		private static int SpCon = 50; //default tick rate 
+		
 
 }
