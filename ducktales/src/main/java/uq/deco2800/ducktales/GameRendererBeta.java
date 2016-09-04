@@ -201,8 +201,16 @@ public class GameRendererBeta extends AnimationTimer {
              * Then adjust the size of the sprites accordingly
              */
             // TODO IMPLEMENT THIS
+            for (int i = 0; i < animalSprites.size(); i++) {
+                AnimalSprite sprite = animalSprites.get(i);
 
+                // STUB METHOD - set max height for the sprites
+                sprite.setFitHeight(animalsMenu.getHeight());
+            }
         }
+
+        animalsMenu.setVisible(true);
+        buildingsMenu.setVisible(false);
     }
 
     /**
