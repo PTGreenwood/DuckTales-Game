@@ -6,14 +6,16 @@ import uq.deco2800.ducktales.entities.worldentities.WorldEntity;
 import uq.deco2800.ducktales.resources.ResourceType;
 
 /**
- * Abstract representation of all static world entities.
+ * Abstract representation of all static Resource entities.
  * 
  * @author Andrew 22/08/16
  *
  */
 public abstract class ResourceEntity extends WorldEntity {
 
+	//Default starting value of Resource nodes, subject to change pending further discussion
 	public static int defValue = 100;
+	//Actual, editable value the Resources nodes will take
 	public int value;
 
 
@@ -54,9 +56,15 @@ public abstract class ResourceEntity extends WorldEntity {
 	 * 
 	 * @param x
 	 * 		   The new value of the Resource
+	 * 
+	 * @throws exception if value is < 0
 	 */	
 	protected void setValue(int x){
-		this.value = x;
+		if(x > 0){
+			this.value = x;
+		}else{
+			//throw new exception
+		}
 	}	
 	
 	/**
@@ -70,17 +78,29 @@ public abstract class ResourceEntity extends WorldEntity {
 	 * 
 	 * @param x
 	 * 		   The amount to add to the Resource value.
+	 * 
+	 * @throws exception if x is negative.
 	 */
 	public void increaseValue(int x){
-		value += x;
+		if(x < 0){
+			value += x;
+		}else{
+			//throw new exception
+		}
 	}
 	/**
 	 * Decrease the value of the Resource by a specified amount
 	 * 
 	 * @param x
 	 * 		   The amount to remove from the Resource value.
+	 * 
+	 * @throws exception if x is negative.
 	 */
 	public void decreaseValue(int x){
-		value -= x;
+		if(x < 0){
+			value -= x;
+		}else{
+			//throw new exception
+		}
 	}
 }
