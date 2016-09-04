@@ -10,7 +10,7 @@ import uq.deco2800.ducktales.util.events.ui.BuildingMenuSelectedEvent;
  * Created on 31/08/2016.
  * @author khoiphan21
  */
-public class BuildingSprite extends HUDSprite {
+public class BuildingMenuSprite extends HUDSprite {
 
     /**
      * Create a sprite of the given building sprite, and give it a handle of
@@ -18,7 +18,7 @@ public class BuildingSprite extends HUDSprite {
      *
      * @param buildingType
      */
-    public BuildingSprite(ResourceType buildingType) {
+    public BuildingMenuSprite(ResourceType buildingType) {
         super(buildingType);
 
         setupMouseEventHandlers();

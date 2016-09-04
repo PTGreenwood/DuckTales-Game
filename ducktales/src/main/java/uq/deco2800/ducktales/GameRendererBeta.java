@@ -6,8 +6,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.*;
 import uq.deco2800.ducktales.rendering.engine.WorldEntityRenderingInfo;
-import uq.deco2800.ducktales.rendering.hud.AnimalSprite;
-import uq.deco2800.ducktales.rendering.hud.BuildingSprite;
+import uq.deco2800.ducktales.rendering.hud.AnimalMenuSprite;
+import uq.deco2800.ducktales.rendering.hud.BuildingMenuSprite;
 
 import uq.deco2800.ducktales.rendering.managers.RenderingManager;
 import uq.deco2800.ducktales.rendering.managers.WorldEntityInfoManager;
@@ -58,8 +58,8 @@ public class GameRendererBeta extends AnimationTimer {
     private AnchorPane buttonsMenu; // This is only for testing - HUD team pls change
     private HBox buildingsMenu; // Again, only basic implementation
     private HBox animalsMenu; // Where animals can be added to the world
-    private ArrayList<BuildingSprite> buildingSprites; // The sprites of the buildings in the menu
-    private ArrayList<AnimalSprite> animalSprites; // The sprites of the animals
+    private ArrayList<BuildingMenuSprite> buildingMenuSprites; // The sprites of the buildings in the menu
+    private ArrayList<AnimalMenuSprite> animalMenuSprites; // The sprites of the animals
 
     /** UI Variables */
     // The image to be show at the cursor whenever the play is 'drag&dropping'
@@ -141,8 +141,8 @@ public class GameRendererBeta extends AnimationTimer {
         worldPane.getChildren().add(this.cursorImage);
 
         // Initialize the sprites for the buildings and animals menu
-        buildingSprites = new ArrayList<>();
-        animalSprites = new ArrayList<>();
+        buildingMenuSprites = new ArrayList<>();
+        animalMenuSprites = new ArrayList<>();
         addSpritesToMenuList();
 
         // Do the initial rendering of the world
@@ -227,14 +227,14 @@ public class GameRendererBeta extends AnimationTimer {
             /*
              * Firstly add all animal sprites to the menu first
              */
-            animalsMenu.getChildren().addAll(animalSprites);
+            animalsMenu.getChildren().addAll(animalMenuSprites);
 
             /*
              * Then adjust the size of the sprites accordingly
              */
             // TODO IMPLEMENT THIS
-            for (int i = 0; i < animalSprites.size(); i++) {
-                AnimalSprite sprite = animalSprites.get(i);
+            for (int i = 0; i < animalMenuSprites.size(); i++) {
+                AnimalMenuSprite sprite = animalMenuSprites.get(i);
 
                 // STUB METHOD - set max height for the sprites
                 sprite.setFitHeight(animalsMenu.getHeight());
@@ -248,9 +248,9 @@ public class GameRendererBeta extends AnimationTimer {
     /**
      * Show the buildings that the player can construct in the buildings menu
      *
-     * @require all buildings in buildingSprites must have been registered in
+     * @require all buildings in buildingMenuSprites must have been registered in
      *          WorldEntityInfoManager
-     * @ensure each building in buildingSprites will be shown onto the buildingsMenu
+     * @ensure each building in buildingMenuSprites will be shown onto the buildingsMenu
      */
     public void showBuildingMenu() {
         // Check if the buildings menu has been instantiated before
@@ -258,7 +258,7 @@ public class GameRendererBeta extends AnimationTimer {
             /*
              * Firstly add all building sprites to the menu first
              */
-            buildingsMenu.getChildren().addAll(buildingSprites);
+            buildingsMenu.getChildren().addAll(buildingMenuSprites);
 
             /*
              * Then adjust the size of the sprites accordingly
@@ -267,8 +267,8 @@ public class GameRendererBeta extends AnimationTimer {
             double UIScale = renderingManager.getUIScale();
 
             // adjust the size of the sprites
-            for (int i = 0; i < buildingSprites.size(); i++) {
-                BuildingSprite sprite = buildingSprites.get(i);
+            for (int i = 0; i < buildingMenuSprites.size(); i++) {
+                BuildingMenuSprite sprite = buildingMenuSprites.get(i);
 
                 // Get the size of the building in tile-unit first
                 int xLength = 0;
@@ -286,7 +286,7 @@ public class GameRendererBeta extends AnimationTimer {
 
                 if (xLength == 0 || yLength == 0) {
                     // this building is not yet registered
-                    System.err.println("Building: " + sprite.getSpriteType() + "is" +
+                    System.err.println("BuildingMenuSprite: " + sprite.getSpriteType() + "is" +
                             " not yet registered in WorldEntityInfoManager");
                     return;
                 }
@@ -502,7 +502,7 @@ public class GameRendererBeta extends AnimationTimer {
             renderedEntities.add(entity);
         } else {
             // later will check for agent entities
-            System.err.println("Building '" + type + "' is not yet registered");
+            System.err.println("BuildingMenuSprite '" + type + "' is not yet registered");
         }
     }
 
@@ -537,23 +537,23 @@ public class GameRendererBeta extends AnimationTimer {
     private void addSpritesToMenuList() {
         // Add the building sprites
         for (int i = 0; i < BUILDINGS.length; i++) {
-            BuildingSprite sprite = new BuildingSprite(BUILDINGS[i]);
+            BuildingMenuSprite sprite = new BuildingMenuSprite(BUILDINGS[i]);
 
             if (!worldEntityInfoManager.containEntity(sprite.getSpriteType())) {
                 // this building is not yet registered in the manager. not rendered
-                System.err.println("Building " + sprite.getSpriteType() + " is " +
+                System.err.println("BuildingMenuSprite " + sprite.getSpriteType() + " is " +
                         "not yet registered in WorldEntityInfoManager");
                 continue;
             }
 
-            buildingSprites.add(sprite);
+            buildingMenuSprites.add(sprite);
         }
 
         // Add the animal sprites
         for (int i = 0; i < ANIMALS.length; i++) {
-            AnimalSprite sprite = new AnimalSprite(ANIMALS[i]);
+            AnimalMenuSprite sprite = new AnimalMenuSprite(ANIMALS[i]);
 
-            animalSprites.add(sprite);
+            animalMenuSprites.add(sprite);
         }
     }
 

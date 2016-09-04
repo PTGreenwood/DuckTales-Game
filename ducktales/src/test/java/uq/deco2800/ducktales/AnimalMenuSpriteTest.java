@@ -15,7 +15,7 @@ import static org.junit.Assert.*;
  *
  * @author Josh Benavides, Damian Maher
  */
-public class AnimalTest {
+public class AnimalMenuSpriteTest {
 
     /**
      * Tests creation of duck.
@@ -30,7 +30,7 @@ public class AnimalTest {
         entityManager.addEntity(duck);
         entityManager.addEntity(opponent);
 
-        // Test whether the creation of Animal has no null attributes
+        // Test whether the creation of AnimalMenuSprite has no null attributes
         assertNotNull("Duck cannot be null.", duck);
         assertNotNull("X coordinate cannot be null.", duck.getX());
         assertNotNull("Y coordinate cannot be null.", duck.getY());
@@ -41,7 +41,7 @@ public class AnimalTest {
         assertNotNull("Strength cannot be null.", duck.getStrength());
         assertNotNull("Speed cannot be null.", duck.getSpeed());
 
-        // Test whether Animal class methods return expected values.
+        // Test whether AnimalMenuSprite class methods return expected values.
         assertTrue("Speed is incorrect.", duck.getSpeed() == 0.05);
         assertTrue("Type is incorrect.", duck.getType() == ResourceType.DUCK);
         assertTrue("Duck cannot be killed on creation.", duck.canBeKilled() == false);
@@ -51,7 +51,7 @@ public class AnimalTest {
 
 
 
-        // Test attribute setters from Animal class
+        // Test attribute setters from AnimalMenuSprite class
         duck.setHealth(101);
         assertTrue("Duck health should be 100 if parameter is greater than 100. ", duck.getHealth() == 100);
         duck.setHealth(50);

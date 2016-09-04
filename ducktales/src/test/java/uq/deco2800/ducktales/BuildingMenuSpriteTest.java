@@ -22,7 +22,7 @@ import uq.deco2800.ducktales.entities.worldentities.Observatory;
 import uq.deco2800.ducktales.entities.worldentities.Sawmill;
 import uq.deco2800.ducktales.entities.worldentities.WorldEntity;
 
-public class BuildingTest {
+public class BuildingMenuSpriteTest {
 	
 	@Test
 	public void basicTest(){

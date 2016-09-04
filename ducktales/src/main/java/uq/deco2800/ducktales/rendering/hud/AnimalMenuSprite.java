@@ -8,9 +8,9 @@ import uq.deco2800.ducktales.resources.ResourceType;
  * Created on 4/09/2016.
  * @author khoiphan21
  */
-public class AnimalSprite extends HUDSprite {
+public class AnimalMenuSprite extends HUDSprite {
 
-    public AnimalSprite(ResourceType animalType) {
+    public AnimalMenuSprite(ResourceType animalType) {
         super(animalType);
 
         setupMouseEventHandlers();

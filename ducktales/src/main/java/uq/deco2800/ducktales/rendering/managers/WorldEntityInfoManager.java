@@ -99,7 +99,7 @@ public class WorldEntityInfoManager {
     throws Exception {
         // Check if the registry has the building type given
         if (!buildingSizeInfo.containsKey(buildingType)) {
-            throw new Exception("Building type requested is not yet registered.");
+            throw new Exception("BuildingMenuSprite type requested is not yet registered.");
         }
 
         // The building type given is in the registry. Check the requested index

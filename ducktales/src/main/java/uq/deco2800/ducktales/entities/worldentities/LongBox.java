@@ -9,7 +9,7 @@ import uq.deco2800.ducktales.resources.ResourceType;
  */
 public class LongBox extends WorldEntity {
 	
-	// Building type
+	// BuildingMenuSprite type
 	private final static ResourceType TYPE = ResourceType.LONG_BOX;
 
 	/**

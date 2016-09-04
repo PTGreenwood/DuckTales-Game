@@ -12,7 +12,7 @@ import uq.deco2800.ducktales.resources.ResourceType;
  *
  * @author khoiphan21
  */
-public class Building extends ImageView{
+public class BuildingSprite extends ImageView{
     /** The type of this building */
     protected ResourceType buildingType;
 
@@ -20,7 +20,7 @@ public class Building extends ImageView{
     protected int xLength;
     protected int yLength;
 
-    public Building(ResourceType type) {
+    public BuildingSprite(ResourceType type) {
         super();
         this.buildingType = type;
     }
