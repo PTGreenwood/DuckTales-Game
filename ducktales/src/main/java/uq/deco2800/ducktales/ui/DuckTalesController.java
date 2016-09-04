@@ -24,6 +24,7 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.stage.Stage;
+import uq.deco2800.ducktales.market.*;
 
 /**
  * This class handles the title screen and main menu.
@@ -134,16 +135,26 @@ public class DuckTalesController implements Initializable {
 	private void showMarketplace(ActionEvent event) throws Exception {
 
 		// Load in the marketplace fxml
-		URL location = getClass().getResource("/marketplace.fxml");
+		// URL location = getClass().getResource("/marketplace.fxml");
+		URL location = getClass().getResource(MarketVistaNavigator.MAIN);
+		
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(location);
 		Parent root = loader.load(location.openStream());
 		Scene marketplaceScene = new Scene(root);
+		
+		// Set the MarketController
+		MarketController marketController = loader.getController();
+		
+		MarketVistaNavigator.setMainController(marketController);
+		
 
 		this.marketplaceStage = new Stage();
 		// To get the window to appear in front of the right pane
 		marketplaceStage.initOwner(contentPane.getScene().getWindow());
 		marketplaceStage.setTitle("Marketplace");
+		MarketVistaNavigator.loadVista(MarketVistaNavigator.CURRENT_TRADES);
+		
 		marketplaceStage.setScene(marketplaceScene);
 		marketplaceStage.show();
 	}
