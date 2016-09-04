@@ -38,7 +38,7 @@ public class GameRendererBeta extends AnimationTimer {
     // TODO: TO ADD NEW BUILDINGS, REGISTER THEIR NAMES HERE
     private static final ResourceType[] BUILDINGS = {
         //HOSPITAL, BAKERY, BARN, <--- these buildings are of the wrong size
-        CLINIC, PASTURE, BUTCHER, COMMUNITY_BUILDING, BAKERY
+        PASTURE, BUTCHER, COMMUNITY_BUILDING, BAKERY, CONSTRUCTION
     };
     // TODO: TO ADD NEW ANIMALS, REGISTER THEIR NAMES HERE
     private static final ResourceType[] ANIMALS = {
@@ -201,8 +201,16 @@ public class GameRendererBeta extends AnimationTimer {
              * Then adjust the size of the sprites accordingly
              */
             // TODO IMPLEMENT THIS
+            for (int i = 0; i < animalSprites.size(); i++) {
+                AnimalSprite sprite = animalSprites.get(i);
 
+                // STUB METHOD - set max height for the sprites
+                sprite.setFitHeight(animalsMenu.getHeight());
+            }
         }
+
+        animalsMenu.setVisible(true);
+        buildingsMenu.setVisible(false);
     }
 
     /**

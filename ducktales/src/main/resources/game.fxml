@@ -30,7 +30,7 @@
                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
             </padding>
          </HBox>
-         <HBox fx:id="animalsMenu" alignment="CENTER_LEFT" layoutX="176.0" layoutY="15.0" maxHeight="154.0" prefHeight="154.0" spacing="20.0" styleClass="buildingsMenu">
+         <HBox fx:id="animalsMenu" alignment="CENTER_LEFT" layoutX="176.0" layoutY="15.0" maxHeight="154.0" prefHeight="154.0" spacing="20.0" styleClass="buildingsMenu" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="166.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
             <padding>
                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
             </padding>
