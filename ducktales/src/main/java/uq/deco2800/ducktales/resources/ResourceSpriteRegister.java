@@ -57,15 +57,17 @@ public class ResourceSpriteRegister {
 		currentCount = 0;
 
 		// GROUND TILES
-		addResource(GRASS_1, "/tiles/grass_1_tile.png");
+		addResource(GRASS_1, "/tiles/grass_1.png");
+		addResource(GRASS_2, "/tiles/grass_2.png");
+		addResource(GRASS_3, "/tiles/grass_3.png");
+		addResource(GRASS_4, "/tiles/grass_4.png");
 
 		// OLD Ground tiles
 		addResource(VOID, "/black.png");
 		addResource(CYAN, "/cyan.png");
 		addResource(CYAN_CROSSED, "/cyan_crossed.png");
 		addResource(YELLOW, "/yellow.png");
-		addResource(GRASS_2, "/grass_2.png");
-		addResource(GRASS_3, "/grass_3.png");
+
 		addResource(WATER, "/water.png");
 		addResource(DIRT_1, "/dirt_1.png");
 		addResource(DIRT_2, "/dirt_2.png");

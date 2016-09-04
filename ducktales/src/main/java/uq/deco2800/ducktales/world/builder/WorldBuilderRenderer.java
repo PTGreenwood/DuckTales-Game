@@ -31,7 +31,7 @@ public class WorldBuilderRenderer extends AnimationTimer {
      */
     private final double TRANSPARENCY = 0.5;
     private final ResourceType[] TILE_TYPES = {
-        GRASS_1, GRASS_2, GRASS_3, DIRT_1, DIRT_2, DIRT_3
+        GRASS_1, GRASS_2, GRASS_3, GRASS_4
     };
     private final ResourceType[] RESOURCE_TYPES = {
         HOSPITAL, BAKERY, BARN

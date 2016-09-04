@@ -120,7 +120,6 @@ public class GameRendererBeta extends AnimationTimer {
      * This method is where most of the setup will be done, since when this is
      * called, it is made sure that all UI elements have already been instantiated
      */
-    @Override
     public void start() {
         super.start();
 

@@ -102,7 +102,6 @@ public class GameController{
         );
         manager.setInventoryManager(inventoryManager);
 
-
         // Officially start the game engine
         try {
             manager.startGame();
@@ -114,6 +113,11 @@ public class GameController{
         executor = Executors.newCachedThreadPool();
         quit = new AtomicBoolean(false);
         executor.execute(new GameLoopBeta(quit, 50));
+
+        // TODO DELETE THIS. THIS IS TO TEST KEYBOARD HANDLERS
+        rootPane.setOnKeyPressed(event -> {
+            System.out.println(""+ event.getCode().toString());
+        });
     }
 
     @FXML

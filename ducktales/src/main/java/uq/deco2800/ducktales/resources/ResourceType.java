@@ -15,7 +15,7 @@ public enum ResourceType {
         NONE,
 
         // Tiles
-        GRASS_1, GRASS_2, GRASS_3,
+        GRASS_1, GRASS_2, GRASS_3, GRASS_4,
         DIRT_1, DIRT_2, DIRT_3,
         VOID, CYAN, CYAN_CROSSED, YELLOW,
         BLANK,
