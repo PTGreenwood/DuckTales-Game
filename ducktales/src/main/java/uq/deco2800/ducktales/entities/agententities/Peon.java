@@ -29,11 +29,15 @@ public class Peon extends AgentEntity {
 	
 	private int resource= 0;
 	
+        // Job related information
 	private String job = "jobless";
-	
 	private double qualification = 0;
-	
 	private boolean mentorStatus = false;
+        
+        /**
+         * how many trees the Peon has chopped (used in Lumberjack.java)
+         */
+        private int treesChopped;
 
 	// affinity
 	private int strength;
@@ -53,12 +57,16 @@ public class Peon extends AgentEntity {
 		intelligence = RANDOM.nextInt((DEFAULT_MAX - DEFAULT_MIN) + 1) + DEFAULT_MIN;
 		this.speed = 0.05;
 		this.goalPoints = new ArrayList<Point>();
+                this.treesChopped = 0;
 	}
 
 	public void setHealth(int newValue) {
 		if (newValue > 0) {
 			this.health = newValue;
 		}
+	}
+	public int getHealth() {
+		return health;
 	}
 	public void setResources(int sourceValue){
 		if (sourceValue > 0){
@@ -74,7 +82,9 @@ public class Peon extends AgentEntity {
 	public void setJob(String job){
 		this.job = job;
 	}
-	
+        public String getJob(){
+		return job;
+	}
 	/**
 	 * Stores the level of qualification
 	 * @param qualification
@@ -82,7 +92,9 @@ public class Peon extends AgentEntity {
 	public void setQualification(double qualification){
 		this.qualification = qualification;
 	}
-	
+	public double getQualification(){
+		return qualification;
+	}
 	/**
 	 * Stores if peon is qualified to be a mentor
 	 * @param mentorStatus
@@ -90,30 +102,53 @@ public class Peon extends AgentEntity {
 	public void setMentorStatus(boolean mentorStatus){
 		this.mentorStatus = mentorStatus;
 	}
-
-	public int getHealth() {
-		return health;
-	}
-	
-	public int getStrength(){
-		return strength;
-	}
-	
-	public int getIntelligence(){
-		return intelligence;
-	}
-	
-	public String getJob(){
-		return job;
-	}
-	
-	public double getQualification(){
-		return qualification;
-	}
-	
-	public boolean getMentorStatus(){
+        public boolean getMentorStatus(){
 		return mentorStatus;
 	}
+        /**
+         * Increase the peon's strength through experience
+         * @param strength 
+         */
+        public void StrengthExp(int strength){
+            this.strength += strength;
+        }
+        public int getStrength(){
+		return strength;
+	}
+        /**
+         * Increase the peon's intelligence through experience
+         * @param intell 
+         */
+        public void IntelligenceExp(int intell){
+            this.intelligence += intell;
+        }
+        public int getIntelligence(){
+		return intelligence;
+	}
+        /**
+         * Add one to treesChopped
+         */
+        public void choppedATree(){
+            this.treesChopped++;
+        }
+        /**
+         * How many trees the peon has chopped
+         * @return current amount of trees chopped by this peon
+         */
+        public int getTreesChopped(){
+            return this.treesChopped;
+        }
+
+	
+
+	
+	
+	
+
+	
+
+	
+
 
 	@Override
 	public void tick() {
