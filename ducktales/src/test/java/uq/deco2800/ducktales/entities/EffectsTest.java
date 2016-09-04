@@ -1,10 +1,10 @@
-package uq.deco2800.ducktales;
+package uq.deco2800.ducktales.entities;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class EnemiesTest {
+public class EffectsTest {
 
 	@Test
 	public void test() {

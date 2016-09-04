@@ -22,7 +22,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import uq.deco2800.ducktales.achievements.Achievements;
 import javafx.scene.control.ProgressIndicator;
-import uq.deco2800.ducktales.achievements.progressIndicator;
+import uq.deco2800.ducktales.achievements.AchievementProgressIndicator;
 import uq.deco2800.ducktales.level.Level;
 import uq.deco2800.ducktales.world.builder.WorldBuilderRenderer;
 
@@ -47,7 +47,7 @@ public class MissionController {
 	Achievements achievementMain = Achievements.getInstance();
 	Missions missionMain = Missions.getInstance();
 	Level levelMain = Level.getInstance();
-	progressIndicator piMain = progressIndicator.getInstance();
+	AchievementProgressIndicator piMain = AchievementProgressIndicator.getInstance();
 	
 	/**
 	 * Starts mission 1.
@@ -58,7 +58,7 @@ public class MissionController {
 	@FXML
 	public void startmission1(ActionEvent event) throws Exception {
 		rightPane.getChildren().removeAll(mission1,mission2,mission3,achievement,level);
-		URL location = getClass().getResource("mission1.fxml");
+		URL location = getClass().getResource("/missions/mission1.fxml");
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(location);
 		
@@ -81,7 +81,7 @@ public class MissionController {
 	@FXML
 	public void startmission2(ActionEvent event) throws Exception {
 		rightPane.getChildren().removeAll(mission1,mission2,mission3,achievement,level);
-		URL location = getClass().getResource("mission2.fxml");
+		URL location = getClass().getResource("/missions/mission2.fxml");
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(location);
 		
@@ -129,7 +129,7 @@ public class MissionController {
 	@FXML
 	public void startmission3(ActionEvent event) throws Exception {
 		rightPane.getChildren().removeAll(mission1,mission2,mission3,achievement,level);
-		URL location = getClass().getResource("mission3.fxml");
+		URL location = getClass().getResource("/missions/mission3.fxml");
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(location);
 		
@@ -178,7 +178,7 @@ public class MissionController {
 	public void startachievement(ActionEvent event) throws Exception {
 		
 		rightPane.getChildren().removeAll(mission1,mission2,mission3,achievement,level);
-		URL location = getClass().getResource("achievement.fxml");
+		URL location = getClass().getResource("/missions/achievement.fxml");
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(location);
 		
@@ -222,7 +222,7 @@ public class MissionController {
 	public void startlevel(ActionEvent event) throws Exception {
 		
 		rightPane.getChildren().removeAll(mission1,mission2,mission3,achievement,level);
-		URL location = getClass().getResource("level.fxml");
+		URL location = getClass().getResource("/missions/level.fxml");
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(location);
 		
