@@ -12,6 +12,7 @@ import static uq.deco2800.ducktales.resources.ResourceType.*;
  *
  * Created by Khoi on 28/08/2016.
  */
+@Deprecated
 public class WorldEntityRenderingInfo {
     /**
      * The lowest visible points of the corresponding entities
