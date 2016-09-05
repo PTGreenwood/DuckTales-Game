@@ -1,7 +1,6 @@
 package uq.deco2800.ducktales.resources;
 
 import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
 
 /**
  * Created by Benson on 30/8/16.]
@@ -14,24 +13,18 @@ public class InventoryManager {
     private int foodAmount = 0;
 
     /** Variable for the UI elements */
-    private ImageView woodSprite, rockSprite, foodSprite, oresSprite;
     private Label woodLabel, rockLabel, foodLabel, oresLabel;
 
     public InventoryManager() {
 
     }
 
-    public InventoryManager(
-            ImageView woodSprite, ImageView foodSprite, ImageView oresSprite,
-            Label woodLabel, Label foodLabel, Label oresLabel) {
-        // Wire up the UI elements
-        this.woodLabel = woodLabel;
-        this.woodSprite = woodSprite;
-        this.foodLabel = foodLabel;
-        this.foodSprite = foodSprite;
-        this.oresLabel = oresLabel;
-        this.oresSprite = oresSprite;
-    }
+	public InventoryManager(Label woodLabel, Label foodLabel, Label oresLabel) {
+		// Wire up the UI elements
+		this.woodLabel = woodLabel;
+		this.foodLabel = foodLabel;
+		this.oresLabel = oresLabel;
+	}
 
     //define methods to retrieve and update amount of wood
     public int getWoodAmount(){
