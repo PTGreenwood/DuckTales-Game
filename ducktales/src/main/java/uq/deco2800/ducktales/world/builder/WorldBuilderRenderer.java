@@ -10,10 +10,10 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import uq.deco2800.ducktales.achievements.Achievements;
 import uq.deco2800.ducktales.missions.Missions;
-import uq.deco2800.ducktales.renderingEngine.WorldEntityRenderingInfo;
-import uq.deco2800.ducktales.resources.ResourceRegister;
+import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
-import uq.deco2800.ducktales.resources.tiles.WorldBuilderTile;
+import uq.deco2800.ducktales.rendering.tiles.WorldBuilderTile;
+import uq.deco2800.ducktales.rendering.engine.WorldEntityRenderingInfo;
 import uq.deco2800.ducktales.util.Array2D;
 import uq.deco2800.ducktales.world.World;
 
@@ -31,7 +31,7 @@ public class WorldBuilderRenderer extends AnimationTimer {
      */
     private final double TRANSPARENCY = 0.5;
     private final ResourceType[] TILE_TYPES = {
-        GRASS_1, GRASS_2, GRASS_3, DIRT_1, DIRT_2, DIRT_3
+        GRASS_1, GRASS_2, GRASS_3, GRASS_4
     };
     private final ResourceType[] RESOURCE_TYPES = {
         HOSPITAL, BAKERY, BARN
@@ -47,7 +47,7 @@ public class WorldBuilderRenderer extends AnimationTimer {
 
     /** General rendering variables */
     private World world;
-    private ResourceRegister resourceRegister;
+    private ResourceSpriteRegister resourceSpriteRegister;
     private int tileHeight;
     private int tileWidth;
 
@@ -117,9 +117,9 @@ public class WorldBuilderRenderer extends AnimationTimer {
         setupWorldBuilderUI();
 
         this.world = WorldBuilderManager.getInstance().getWorld();
-        this.resourceRegister = ResourceRegister.getInstance();
-        this.tileHeight = ResourceRegister.TILE_HEIGHT;
-        this.tileWidth = ResourceRegister.TILE_WIDTH;
+        this.resourceSpriteRegister = ResourceSpriteRegister.getInstance();
+        this.tileHeight = ResourceSpriteRegister.TILE_HEIGHT;
+        this.tileWidth = ResourceSpriteRegister.TILE_WIDTH;
         this.renderingInfo = WorldEntityRenderingInfo.getInstance();
         this.addedEntities = new ArrayList<>();
 
@@ -148,11 +148,13 @@ public class WorldBuilderRenderer extends AnimationTimer {
                 tiles.get(i, j).setHoverType(tileType);
             }
         }
+        //Untick the second mission box
+        missions.MissionImageCompleted(1);
     }
 
     public void setCurrentEntitySelected(ResourceType entityType) {
         // Set the image that will follow the mouse
-        Image image = resourceRegister.getResourceImage(entityType);
+        Image image = resourceSpriteRegister.getResourceImage(entityType);
         hoveringImage.setImage(image);
 
         // setup the size of the rendered image
@@ -219,8 +221,8 @@ public class WorldBuilderRenderer extends AnimationTimer {
         
         //Achievement score will be incremented whenever any building is built
         achievementScore.achieveVeasy();
-        //If any building is built then "X" will be changed to "O"
-        missions.MissionCompleted();
+        //If any building is built then unchecked box will be changed to checked box
+        missions.MissionImageCompleted(0);       
     }
 
     /**
@@ -295,10 +297,10 @@ public class WorldBuilderRenderer extends AnimationTimer {
                 int y = startingY + (j + i) * scaledHeight / 2;
 
                 tile = tiles.get(i, j);
-                tile.setImage(resourceRegister.getResourceImage(GRASS_1));
+                tile.setImage(resourceSpriteRegister.getResourceImage(GRASS_1));
 
-                tile.setFitHeight(resourceRegister.TILE_HEIGHT* SCALE);
-                tile.setFitWidth(resourceRegister.TILE_WIDTH* SCALE);
+                tile.setFitHeight(resourceSpriteRegister.TILE_HEIGHT* SCALE);
+                tile.setFitWidth(resourceSpriteRegister.TILE_WIDTH* SCALE);
 
                 tile.setLayoutX(x);
                 tile.setLayoutY(y);

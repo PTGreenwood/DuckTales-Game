@@ -9,13 +9,13 @@ import uq.deco2800.ducktales.entities.agententities.*;
 import uq.deco2800.ducktales.entities.worldentities.Box;
 import uq.deco2800.ducktales.entities.resourceentities.*;
 
-import uq.deco2800.ducktales.resources.ResourceRegister;
+import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 
 
 import uq.deco2800.ducktales.entities.worldentities.*;
 
 import uq.deco2800.ducktales.resources.ResourceType;
-import uq.deco2800.ducktales.resources.tiles.Tile;
+import uq.deco2800.ducktales.rendering.tiles.Tile;
 import uq.deco2800.ducktales.util.*;
 
 import static uq.deco2800.ducktales.resources.ResourceType.*;
@@ -29,7 +29,7 @@ import static uq.deco2800.ducktales.resources.ResourceType.*;
 public class World implements Tickable {
 	private Array2D<Tile> tiles;
 	private String name;
-	private static ResourceRegister tileRegister = ResourceRegister.getInstance();
+	private static ResourceSpriteRegister tileRegister = ResourceSpriteRegister.getInstance();
 	private static EntityManager entityManager = EntityManager.getInstance();
 
 	/**
@@ -71,9 +71,13 @@ public class World implements Tickable {
 		addEntity(new Peon(3, 4));
 		addEntity(new Peon(13, 17));
 
-//		addEntity(new Duck(10,10));
-		addEntity(new Cow(8, 10));
+		addEntity(new Duck(0, 10));
+
+
+//		addEntity(new Cow(8, 10));
 		addEntity(new Tree(5, 10));
+		addEntity(new Rock(15,15));
+		addEntity(new Tree(10, 10));
 	}
 
 	/**

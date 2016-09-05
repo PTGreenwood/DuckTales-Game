@@ -1,9 +1,6 @@
 package uq.deco2800.ducktales;
 
 import org.junit.Test;
-import uq.deco2800.ducktales.resources.ResourceRegister;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by Khoi on 29/08/2016.

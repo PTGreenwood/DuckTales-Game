@@ -13,9 +13,13 @@ public class KeyboardHandler implements EventHandler<KeyEvent> {
 		EventType<KeyEvent> eventType = event.getEventType();
 		if (eventType == KeyEvent.KEY_PRESSED) {
 			keyPressed(event.getCode());
-		} else if (eventType == KeyEvent.KEY_RELEASED) {
+		} 
+		
+		else if (eventType == KeyEvent.KEY_RELEASED) {
 			keyReleased(event.getCode());
 		}
+		
+		
 	}
 
 	private void keyPressed(KeyCode code) {
@@ -65,4 +69,5 @@ public class KeyboardHandler implements EventHandler<KeyEvent> {
 			break;
 		}
 	}
+	
 }

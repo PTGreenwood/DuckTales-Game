@@ -1,7 +1,6 @@
 package uq.deco2800.ducktales;
 
 import uq.deco2800.ducktales.ui.DuckTalesController;
-import uq.deco2800.ducktales.ui.KeyboardHandler;
 import uq.deco2800.ducktales.ui.MenuKeyboardHandler;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -16,7 +15,6 @@ import java.net.URL;
  * Launcher class for DuckTales.
  * 
  * @author Leggy
- *
  */
 public class DuckTalesLauncher extends Application {
 	private String version = "0.1";
@@ -37,23 +35,14 @@ public class DuckTalesLauncher extends Application {
 		
 		DuckTalesController ducktalesController = fxmlLoader.getController(); // link the controller to the FXML file
 
-		//Add in title screen CSS file for JavaFX
-		/*
-		URL url = this.getClass().getResource("/titleScreen.css");
-		String css = url.toExternalForm(); 
-		//Apply CSS file to current scene
-	    scene.getStylesheets().add(css);
-	    */
 		primaryStage.setTitle("DuckTales v" + version);
 		//primaryStage.setFullScreen(true);
 		primaryStage.setScene(scene);		
-		primaryStage.addEventHandler(KeyEvent.KEY_PRESSED, new MenuKeyboardHandler(ducktalesController));
+		scene.addEventHandler(KeyEvent.KEY_PRESSED, new MenuKeyboardHandler(ducktalesController));
 		primaryStage.setMinWidth(1200);
 		primaryStage.setMinHeight(700);
 		primaryStage.setOnCloseRequest(e -> ducktalesController.stopGame());
 		primaryStage.show();	
 	}
-	
-	
 	
 }

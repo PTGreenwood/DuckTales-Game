@@ -1,3 +1,8 @@
+#weatherEffectPane {
+		
+	-fx-background-repeat: repeat;
+}
+
 #mainMenuPane {
 	-fx-background-color: #000;
 	-fx-background-image: url("menu/background.png");
@@ -62,8 +67,24 @@
 
 }
 .buttonsMenu {
-    -fx-background-color: #A7AA9F;
+    -fx-background-color: #735032;
+}
+.secondaryButtonsMenu {
+    -fx-background-color: #BF834E;
+    -fx-background-radius: 20;
+}
+.lowerSection {
+    -fx-background-color: #735032;
 }
 .buildingsMenu {
+    -fx-background-color: #F2D6A2;
+    -fx-background-radius: 20;
+}
+
+.inventoryMenu {
     -fx-background-color: #A7AA9F;
+
+}
+.inventoryMenuItem {
+    -fx-background-color: #F0EDE4;
 }

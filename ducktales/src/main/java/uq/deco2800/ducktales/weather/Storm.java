@@ -17,9 +17,7 @@ public class Storm implements Weather {
 	}
 	
 	public boolean isLand() {
-		if (type.equals(StormType.WHIRLPOOL))
-			return false;
-		return true;
+		return (!type.equals(StormType.WHIRLPOOL));			
 	}
 	
 	public boolean isWater() {

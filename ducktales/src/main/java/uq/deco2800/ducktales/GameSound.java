@@ -11,10 +11,18 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.Mixer;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
+/**
+ * Handles all application audio.
+ */
 public class GameSound {
 	private Mixer mixer;
 	private Clip clip;
 
+	/**
+	 * Loads and plays audio file.
+	 * 
+	 * @param location Directory of audio file to be played.
+	 */
 	public void playThisSound(String location){
 		Mixer.Info[] mixInfos	=AudioSystem.getMixerInfo();
 		/**for(Mixer.Info info: mixInfos){
@@ -26,9 +34,7 @@ public class GameSound {
 		try { clip =(Clip)mixer.getLine(dataInfo);}
 		catch(LineUnavailableException lue){ lue.printStackTrace();}
 		
-		
-		
-		try{
+		try {
 			URL soundURL = GameSound.class.getResource(location);
 			AudioInputStream audioStream = AudioSystem.getAudioInputStream(soundURL);
 			clip.open(audioStream);			
@@ -44,10 +50,13 @@ public class GameSound {
 			catch(InterruptedException ie){ie.printStackTrace();}
 			
 		} while(clip.isActive());
-
 	}
 	
-	
+	/**
+	 * Overlay sounds.
+	 * 
+	 * @param location Directory of audio file to be overlaid.
+	 */
 	public void overlayThisSound(String location){
 		Mixer.Info[] mixInfos	=AudioSystem.getMixerInfo();
 		/**for(Mixer.Info info: mixInfos){
@@ -59,8 +68,6 @@ public class GameSound {
 		try { clip =(Clip)mixer.getLine(dataInfo);}
 		catch(LineUnavailableException lue){ lue.printStackTrace();}
 		
-		
-		
 		try{
 			URL soundURL = GameSound.class.getResource(location);
 			AudioInputStream audioStream = AudioSystem.getAudioInputStream(soundURL);
@@ -80,6 +87,11 @@ public class GameSound {
 
 	}
 	
+	/**
+	 * Ends playback of current sound.
+	 * 
+	 * 
+	 */
 	public void stopSound(){
 		
 	}

@@ -21,14 +21,16 @@ public class DuckGods {
     // The image to be rendered of the duck god.
     protected ImageIcon image;
     
-    
-    
-
-    public void DuckGod(String name, String bonus, ImageIcon image) {
+    /**
+     * Main constructor of {@link DuckGods}.
+     * @param name
+     * @param bonus
+     * @param image
+     */
+    public void duckGod(String name, String bonus, ImageIcon image) {
         this.duckName = name;
         this.bonus = bonus;
         this.image = image;
-        //this.selectedDuckGod = ;
-                
+        //this.selectedDuckGod = ;  
     }
 }

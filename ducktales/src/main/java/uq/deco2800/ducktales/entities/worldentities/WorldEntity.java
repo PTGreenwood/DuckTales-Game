@@ -16,7 +16,23 @@ public abstract class WorldEntity extends Entity {
 	protected static int WOODRESOURCES;
 
 	protected static int STONERESOURCES;
+	
+	protected static enum production {
+		WOOD, STONE, ORE, FOOD, NULL
+	}
+	
+	protected static production PRODUCTIONTYPE;
+	
+	protected static int PRODUCTIONAMOUNT;
 
+	/**
+	 * Main constructor of the {@link WorldEntity} class.
+	 * @param x
+	 * @param y
+	 * @param lengthX
+	 * @param lengthY
+	 * @param type
+	 */
 	protected WorldEntity(double x, double y, int lengthX, int lengthY, 
 			ResourceType type) {
 		super(x, y, lengthX, lengthY, type);
@@ -79,6 +95,26 @@ public abstract class WorldEntity extends Entity {
 	 */
 	public int resourcesReturnStone() {
 		return (int) (0.5*STONERESOURCES);
+	}
+	
+	/**
+	 * Returns the type of resource the building generates 
+	 * or null if it does not
+	 * 
+	 * @return the enum of the resource type
+	 */
+	public production resourcesProductionType() {
+		return PRODUCTIONTYPE;
+	}
+	
+	/**
+	 * Returns the amount of resource the building generates over 
+	 * time or null if it does not
+	 * 
+	 * @return the int of the resource amount
+	 */
+	public int resourcesProductionAmount() {
+		return PRODUCTIONAMOUNT;
 	}
 	
 	/**

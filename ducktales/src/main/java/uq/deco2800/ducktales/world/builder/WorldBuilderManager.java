@@ -1,11 +1,7 @@
 package uq.deco2800.ducktales.world.builder;
 
 import uq.deco2800.ducktales.resources.ResourceType;
-import uq.deco2800.ducktales.resources.tiles.WorldBuilderTile;
-import uq.deco2800.ducktales.util.Array2D;
 import uq.deco2800.ducktales.world.World;
-
-import java.util.ArrayList;
 
 import static uq.deco2800.ducktales.resources.ResourceType.*;
 
