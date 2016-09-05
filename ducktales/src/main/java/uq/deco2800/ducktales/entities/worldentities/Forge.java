@@ -11,7 +11,7 @@ import uq.deco2800.ducktales.resources.ResourceType;
 public class Forge extends WorldEntity {
 	
 
-	// Building type
+	// BuildingMenuSprite type
 	private static final ResourceType TYPE = ResourceType.FORGE;
 
 	/**

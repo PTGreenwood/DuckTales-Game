@@ -14,6 +14,11 @@ public class RenderingManager {
     private int worldTileWidth;
     private int worldTileHeight;
 
+//    /** The actual pixel width and height of a tile */
+//    public static final int TileHeight = 104;
+//    public static final int TileWidth = 170;
+
+
     /** Scaling factors */
     // THIS IS THE MAIN SCALE FACTOR TO SCALE ALL IN-GAME SPRITES
     private double mainScaleFactor;
@@ -23,6 +28,9 @@ public class RenderingManager {
     // should be the same as mainScaleFactor, but this can be fixed later
     // when the building designers have time to fix the pixel ratio
     private double buildingScale;
+    // the scale for the animals, optimally 1, but for now this will make sure
+    // the sprites look alright first
+    private double animalScale;
     // THE MAIN SCALE FOR UI ELEMENTS
     private double UIScale;
 
@@ -45,6 +53,7 @@ public class RenderingManager {
         // TODO ADJUST THESE SCALE FACTORS AS DEEM FIT
         this.UIScale = 2;
         this.buildingScale = 1.2;
+        this.animalScale = 0.8;
     }
 
     /*----------
@@ -110,5 +119,9 @@ public class RenderingManager {
 
     public void setUIScale(double UIScale) {
         this.UIScale = UIScale;
+    }
+
+    public double getAnimalScale() {
+        return animalScale;
     }
 }

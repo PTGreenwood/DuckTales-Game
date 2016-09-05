@@ -1,7 +1,7 @@
 package uq.deco2800.ducktales.entities.worldentities;
 
 /**
- * A Construction Interface to obtain Building information. 
+ * A Construction Interface to obtain BuildingMenuSprite information.
  * 
  * @author Gabrielle Hodge, 43590526
  *

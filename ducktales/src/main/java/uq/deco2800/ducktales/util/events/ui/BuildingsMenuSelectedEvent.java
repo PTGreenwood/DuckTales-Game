@@ -11,12 +11,12 @@ import uq.deco2800.ducktales.resources.ResourceType;
  * Created on 1/09/2016.
  * @author khoiphan21
  */
-public class BuildingMenuSelectedEvent extends HUDSelectedEvent {
+public class BuildingsMenuSelectedEvent extends HUDSelectedEvent {
 
     /**
      * The type of this event
      */
-    public static final EventType<BuildingMenuSelectedEvent> BUILDING_MENU_SELECTED_EVENT =
+    public static final EventType<BuildingsMenuSelectedEvent> BUILDING_MENU_SELECTED_EVENT =
             new EventType<>("BUILDING_MENU_SELECTED_EVENT");
 
     /**
@@ -30,7 +30,7 @@ public class BuildingMenuSelectedEvent extends HUDSelectedEvent {
      * @param startingY
      *          The y-coordinate of the point when the event is started from
      */
-    public BuildingMenuSelectedEvent(ResourceType type, double startingX, double startingY) {
+    public BuildingsMenuSelectedEvent(ResourceType type, double startingX, double startingY) {
         super(type, startingX, startingY, BUILDING_MENU_SELECTED_EVENT);
     }
 }

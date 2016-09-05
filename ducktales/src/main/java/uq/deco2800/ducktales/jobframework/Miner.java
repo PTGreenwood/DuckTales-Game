@@ -7,7 +7,7 @@ package uq.deco2800.ducktales.jobframework;
  *
  *I think this is the correct way of doing things. Will need to be checked.
  */
-public class miner extends Job {
+public class Miner extends Job {
 
 	protected static int requiredStrength = 6;
     protected static int requiredIntelligence = 1;
@@ -18,7 +18,7 @@ public class miner extends Job {
     protected static String jobName = "Miner";	
     protected static JobType JOBTYPE = JobType.MINER;
 
-	public miner(int requiredStrength, int requiredIntelligence, int mentorStrength, int mentorIntelligence, String jobName, JobType JOBTYPE) {
+	public Miner(int requiredStrength, int requiredIntelligence, int mentorStrength, int mentorIntelligence, String jobName, JobType JOBTYPE) {
 		super(requiredStrength, requiredIntelligence, 
                         mentorStrength, mentorIntelligence, 
                         jobName, JOBTYPE);

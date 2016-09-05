@@ -37,6 +37,37 @@ public class WorldBeta {
     /*---------*
      * GETTERS *
      *---------*/
+    /**
+     * Get the width of the world, in tile-unit
+     *
+     * @return The width of the world
+     */
+    public int getWidth() {
+        return width;
+    }
+
+    /**
+     * Get the height of the world, in tile-unit
+     *
+     * @return The height of the world
+     */
+    public int getHeight() {
+        return height;
+    }
+
+    /**
+     * Get the tile at position x and y given
+     *
+     * @param x
+     *          The x-coordinate of the tile
+     * @param y
+     *          The y-coordinate of the tile
+     *
+     * @return The tile at the given coordinate
+     */
+    public TileBeta getTile(int x, int y) {
+        return tiles.get(x, y);
+    }
 
     /**
      * Return a handle on the array containing the tiles in the current world
