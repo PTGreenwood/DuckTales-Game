@@ -34,6 +34,7 @@ public class GameManager {
 	private int movedY = -1;
 
 	private World world;
+	private InventoryManager inventory;
 
 	/**
 	 * Returns the instance of {@link GameManager}.
@@ -46,6 +47,7 @@ public class GameManager {
 
 	private GameManager() {
 		selection = new LinkedList<Point>();
+		inventory = new InventoryManager();
 	}
 
 	public void setPressed(int x, int y) {
@@ -167,7 +169,6 @@ public class GameManager {
 			break;
 		default:
 			break;
-		
 		}
 	}
 	
@@ -178,12 +179,5 @@ public class GameManager {
 	public int getYPan(){
 		return yPan;
 	}
-
-	//set the resources Inventory
-	public InventoryManager currentInventory;
-	{
-		currentInventory = new InventoryManager();
-	}
-
 }
 
