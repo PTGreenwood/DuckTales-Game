@@ -28,6 +28,7 @@ public class Peon extends AgentEntity {
 	private List<Point> goalPoints;
 
 	//Peon stats
+	private int time = 0;
 	private double speed;
 	private int health = 1000;
 	private int hunger = 100;
@@ -232,6 +233,8 @@ public class Peon extends AgentEntity {
 			point.moveToward(goalPoints.get(0), speed);
 		}
 		calculateRenderingOrderValues();
+
+		autoDecrease();
 	}
 
 	private List<Point> newGoalPoints() {
@@ -249,5 +252,28 @@ public class Peon extends AgentEntity {
 			GameManager.getInstance().getWorld().getTile(tuple.getX(), tuple.getY()).makePath();
 		}
 		return goalPoints;
+	}
+
+	/**
+	 * function that auto decrease the Peon's hunger and thirst
+	 * every 3 minutes
+	 */
+	private void autoDecrease() {
+		++time;
+		if (time == 180) {
+			hunger -= 3;
+			thirst -= 2;
+			time = 0;
+
+			//System.out.println("Peon hunger: " + hunger + ". thirst: " + thirst);
+		}
+	}
+
+	/**
+   * function that decrease the Peon's stats according to the weather
+	 * different weather will have different effect on peon's stats.
+	 */
+	private void weatherEffect() {
+
 	}
 }
