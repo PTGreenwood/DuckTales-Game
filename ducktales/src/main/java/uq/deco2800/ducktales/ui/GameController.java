@@ -54,8 +54,6 @@ public class GameController{
     private HBox animalsMenu;
     // The Inventory menu
     @FXML
-    private ImageView woodSprite, foodSprite, oresSprite;
-    @FXML
     private Label woodLabel, foodLabel, oresLabel;
     // The button to close all info panes
     @FXML
@@ -97,7 +95,6 @@ public class GameController{
 
         // Setup the inventory display
         inventoryManager = new InventoryManager(
-                woodSprite, foodSprite, oresSprite,
                 woodLabel, foodLabel, oresLabel
         );
         manager.setInventoryManager(inventoryManager);
