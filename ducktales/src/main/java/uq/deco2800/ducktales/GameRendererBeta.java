@@ -3,6 +3,7 @@ package uq.deco2800.ducktales;
 import javafx.animation.AnimationTimer;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.*;
 import uq.deco2800.ducktales.rendering.engine.WorldEntityRenderingInfo;
 import uq.deco2800.ducktales.rendering.managers.AgentEntityInfoManager;
@@ -42,7 +43,7 @@ public class GameRendererBeta extends AnimationTimer {
     };
     // TODO: TO ADD NEW ANIMALS, REGISTER THEIR NAMES HERE
     private static final ResourceType[] ANIMALS = {
-        SHEEP
+        SHEEP, COW_FRONT_RIGHT, DUCK_1_1
     };
 
     /** Variables to control movement of the world scene */
@@ -446,7 +447,7 @@ public class GameRendererBeta extends AnimationTimer {
             this.cursorImage.setLayoutY(event.getStartingY());
 
             // Scale the cursor image by the scale given by rendering manager
-            double scale = renderingManager.getBuildingScale();
+            double scale = renderingManager.getAnimalScale();
             this.cursorImage.setFitHeight(sprite.getHeight() * scale);
             this.cursorImage.setFitWidth(sprite.getWidth() * scale);
 
@@ -504,14 +505,14 @@ public class GameRendererBeta extends AnimationTimer {
 
             System.err.println("deselected a building");
         });
-//
-//        root.setOnMouseClicked(event -> {
-//            if (event.getButton() == MouseButton.SECONDARY) {
-//                // right mouse is clicked - deselect the building
-//                cursorImage.setImage(null);
-//                manager.setCurrentResourceManaging(ResourceType.NONE);
-//            }
-//        });
+
+        root.setOnMouseClicked(event -> {
+            if (event.getButton() == MouseButton.SECONDARY) {
+                // right mouse is clicked - deselect the building
+                cursorImage.setImage(null);
+                manager.setCurrentResourceManaging(ResourceType.NONE);
+            }
+        });
     }
 
     /**

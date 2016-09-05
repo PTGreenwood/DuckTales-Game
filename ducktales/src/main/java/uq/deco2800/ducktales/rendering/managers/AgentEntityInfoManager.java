@@ -16,11 +16,12 @@ import static uq.deco2800.ducktales.resources.ResourceType.*;
 public class AgentEntityInfoManager {
     /** The instance and its getter method of this class */
     private static final AgentEntityInfoManager INSTANCE = new AgentEntityInfoManager();
+
     public static AgentEntityInfoManager getInstance() { return INSTANCE; }
 
     /** REGISTERED AGENT TYPES */
     private final ResourceType[] agentTypes = {
-        SHEEP
+        SHEEP, COW_FRONT_RIGHT, DUCK_1_1
     };
 
     /** The variable containing the information of each agent type */
