@@ -99,7 +99,7 @@ public class WorldEntityInfoManager {
     throws Exception {
         // Check if the registry has the building type given
         if (!buildingSizeInfo.containsKey(buildingType)) {
-            throw new Exception("Building type requested is not yet registered.");
+            throw new Exception("BuildingMenuSprite type requested is not yet registered.");
         }
 
         // The building type given is in the registry. Check the requested index
@@ -158,16 +158,14 @@ public class WorldEntityInfoManager {
                         "y-length");
             }
 
-            // increment size array size
             sizeArraySize++;
         }
 
         for (int i = 0; i < buildingNames.length; i++) {
-            // increment name array size
             nameArraySize++;
         }
 
-        // Check if size of name array is equal to that of the size array
+        // name array's size MUST be equal to size array's size
         if (nameArraySize != sizeArraySize) {
             throw new ClassFormatError("Size of buildingSizes must be the same" +
                     "as size of buildingNames");

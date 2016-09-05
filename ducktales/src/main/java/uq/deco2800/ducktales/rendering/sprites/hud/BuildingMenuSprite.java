@@ -1,7 +1,7 @@
-package uq.deco2800.ducktales.rendering.hud;
+package uq.deco2800.ducktales.rendering.sprites.hud;
 
 import uq.deco2800.ducktales.resources.ResourceType;
-import uq.deco2800.ducktales.util.events.ui.BuildingMenuSelectedEvent;
+import uq.deco2800.ducktales.util.events.ui.BuildingsMenuSelectedEvent;
 
 /**
  * This class represents a sprite of a building, to be displayed in the
@@ -10,15 +10,15 @@ import uq.deco2800.ducktales.util.events.ui.BuildingMenuSelectedEvent;
  * Created on 31/08/2016.
  * @author khoiphan21
  */
-public class BuildingSprite extends HUDSprite {
+public class BuildingMenuSprite extends HUDSprite {
 
     /**
-     * Create a sprite of the given building sprite, and give it a handle of
-     * the game manager
+     * Create a sprite of the given building sprite, and set up its
+     * event handlers
      *
      * @param buildingType
      */
-    public BuildingSprite(ResourceType buildingType) {
+    public BuildingMenuSprite(ResourceType buildingType) {
         super(buildingType);
 
         setupMouseEventHandlers();
@@ -29,7 +29,7 @@ public class BuildingSprite extends HUDSprite {
      */
     private void setupMouseEventHandlers() {
         this.setOnMouseClicked(event -> {
-            fireEvent(new BuildingMenuSelectedEvent(
+            fireEvent(new BuildingsMenuSelectedEvent(
                     this.getSpriteType(), event.getSceneX(), event.getSceneY()));
         });
 

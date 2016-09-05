@@ -63,6 +63,9 @@ public class ResourceSpriteRegister {
 		addResource(GRASS_4, "/tiles/grass_4.png");
 
 		// OLD Ground tiles
+
+		/*---Landscape resources---*/
+		
 		addResource(VOID, "/black.png");
 		addResource(CYAN, "/cyan.png");
 		addResource(CYAN_CROSSED, "/cyan_crossed.png");
@@ -72,6 +75,9 @@ public class ResourceSpriteRegister {
 		addResource(BLANK, "/blank.png");
 
 		// OLD Landscape entities
+
+		
+		/*---Object resources---*/
 		addResource(BOX, "/box2.png");
 		addResource(LONG_BOX, "/longbox.png");
 		addResource(WOOD_BOX, "/wood_stock.png");
@@ -84,6 +90,7 @@ public class ResourceSpriteRegister {
 		// Agent entities
 		addResource(PEON, "/peon.png");
 		addResource(DUCK, "/duck.png");
+		addResource(DUCK_1_1, "/animal/duck_1_1.png");
 		addResource(DUCKDown0, "/animal/duck/DUCKDown0.png");
 		addResource(DUCKDown1, "/animal/duck/DUCKDown1.png");
 		addResource(DUCKUp0, "/animal/duck/DUCKUp0.png");
@@ -92,8 +99,10 @@ public class ResourceSpriteRegister {
 		addResource(DUCKLeft1, "/animal/duck/DUCKLeft1.png");
 		addResource(DUCKRight0, "/animal/duck/DUCKRight0.png");
 		addResource(DUCKRight1, "/animal/duck/DUCKRight1.png");
+        addResource(SHEEP, "/animal/sheep_with_wool.png");
 
 		addResource(COW, "/cow.png");
+		addResource(COW_FRONT_RIGHT, "/animal/cow_front_right.png");
 		// the following will be uncommented once the relevant resources
 		// are created and added to the game, @team pokeducks
 
@@ -109,6 +118,19 @@ public class ResourceSpriteRegister {
 		// addResource(SHEEPDownLeft, "/SHEEPDownLeft.png");
 
 		// Buildings
+
+		
+		/*---Building resources---*/
+		
+		//To be uncommented as the relevant graphics are created
+		// note from creator of ResourceType: please remember to use the enums from
+		// ResourceType enum class instead of the previous String implementation
+		
+		//addResource(MINE, "/mine.png");
+		//addResource(FARM, "/farm.png");
+		//addResource(QUARRY, "/quarry.png");
+		//addResource(PLANTATION, "/plantation.png");
+		
 		addResource(PASTURE, "/buildings/pasture.png");
 		addResource(CLINIC, "/buildings/clinic.png");
 		addResource(BUTCHER, "/buildings/butcher.png");

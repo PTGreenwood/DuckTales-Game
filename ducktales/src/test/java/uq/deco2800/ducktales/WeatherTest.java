@@ -4,7 +4,8 @@ import java.util.*;
 
 import org.junit.*;
 
-import ch.qos.logback.core.net.SyslogOutputStream;
+// Dunno but the ch. was causing errors 
+//import ch.qos.logback.core.net.SyslogOutputStream;
 import uq.deco2800.ducktales.weather.*;
 
 /**

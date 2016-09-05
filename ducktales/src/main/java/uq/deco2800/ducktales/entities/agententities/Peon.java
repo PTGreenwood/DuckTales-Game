@@ -12,7 +12,10 @@ import uq.deco2800.ducktales.util.Point;
 
 /**
  * Class representing the worker.
- * 
+ * Peon will have 1000 health, 100 hunger and thirst
+ * hunger and thirst will decrease (be more hungry/thirsty) over time
+ * lower hunger/thirst will affect its strength
+ *
  * @author Leggy
  *
  */
@@ -24,11 +27,16 @@ public class Peon extends AgentEntity {
 
 	private List<Point> goalPoints;
 
+	//Peon stats
 	private double speed;
-
 	private int health = 1000;
+	private int hunger = 100;
+	private int thirst = 100;
+	private int resource= 0;
 
-	private int resource = 0;
+	// affinity
+	private int strength;
+	private int intelligence;
 
 	// Job related information
 	private String job = "Jobless";
@@ -39,10 +47,6 @@ public class Peon extends AgentEntity {
 	 * how many trees the Peon has chopped (used in Lumberjack.java)
 	 */
 	private int treesChopped;
-
-	// affinity
-	private int strength;
-	private int intelligence;
 
 	// affinity bounds
 	private static final int DEFAULT_MAX = 10;
@@ -67,13 +71,34 @@ public class Peon extends AgentEntity {
 		}
 	}
 
+	//lower hunger/thirst would decrease the speed?
+	public void setHunger(int newValue) {
+		if (newValue > 0) {
+			this.hunger = newValue;
+		}
+	}
+
+	public void setThirst(int newValue) {
+		if (newValue > 0) {
+			this.thirst = newValue;
+		}
+	}
+
 	public int getHealth() {
 		return health;
 	}
 
+	public int getHunger() {
+		return hunger;
+	}
+
+	public int getThirst() {
+		return thirst;
+	}
+
 	/**
 	 * Keep update how many resource does peon have
-	 * 
+	 *
 	 * @param sourceValue
 	 */
 	public void setResources(int sourceValue) {
@@ -84,7 +109,7 @@ public class Peon extends AgentEntity {
 
 	/**
 	 * Return the Peon's resource value
-	 * 
+	 *
 	 * @return
 	 */
 	public int getResources() {
@@ -93,7 +118,7 @@ public class Peon extends AgentEntity {
 
 	/**
 	 * Stores what job the peon has
-	 * 
+	 *
 	 * @param job
 	 */
 	public void setJob(String job) {
@@ -107,7 +132,7 @@ public class Peon extends AgentEntity {
 	/**
 	 * Peon applies for job. If peon is qualified, it gets the job. Doesn't get
 	 * it otherwise.
-	 * 
+	 *
 	 * @param job
 	 */
 	public void applyForJob(Job job) {
@@ -117,7 +142,7 @@ public class Peon extends AgentEntity {
 
 	/**
 	 * Peon quits job if it has one
-	 * 
+	 *
 	 * @param job
 	 */
 	public void quitJob(Job job) {
@@ -127,7 +152,7 @@ public class Peon extends AgentEntity {
 
 	/**
 	 * Stores the level of qualification
-	 * 
+	 *
 	 * @param qualification
 	 */
 	public void setQualification(double qualification) {
@@ -140,7 +165,7 @@ public class Peon extends AgentEntity {
 
 	/**
 	 * Stores if peon is qualified to be a mentor
-	 * 
+	 *
 	 * @param mentorStatus
 	 */
 	public void setMentorStatus(boolean mentorStatus) {
@@ -153,7 +178,7 @@ public class Peon extends AgentEntity {
 
 	/**
 	 * Increase the peon's strength through experience
-	 * 
+	 *
 	 * @param strength
 	 */
 	public void StrengthExp(int strength) {
@@ -166,7 +191,7 @@ public class Peon extends AgentEntity {
 
 	/**
 	 * Increase the peon's intelligence through experience
-	 * 
+	 *
 	 * @param intell
 	 */
 	public void IntelligenceExp(int intell) {
@@ -186,7 +211,7 @@ public class Peon extends AgentEntity {
 
 	/**
 	 * How many trees the peon has chopped
-	 * 
+	 *
 	 * @return current amount of trees chopped by this peon
 	 */
 	public int getTreesChopped() {

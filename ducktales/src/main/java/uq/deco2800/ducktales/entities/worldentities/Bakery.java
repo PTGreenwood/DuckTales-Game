@@ -11,7 +11,7 @@ import static uq.deco2800.ducktales.resources.ResourceType.*;
  */
 public class Bakery extends WorldEntity{
 	
-	// Building type
+	// BuildingMenuSprite type
 	private static final ResourceType TYPE = BAKERY;
 	
 	/**
