@@ -8,9 +8,8 @@ import uq.deco2800.ducktales.resources.ResourceType;
  * @author Gabrielle Hodge, 43590526 
  *
  */
-public class Forge extends WorldEntity {
+public class Forge extends Building {
 	
-
 	// BuildingMenuSprite type
 	private static final ResourceType TYPE = ResourceType.FORGE;
 
@@ -28,9 +27,9 @@ public class Forge extends WorldEntity {
 	 * Update the WorldEntity properties with those of a bakery.
 	 */
 	protected void specifications() {
-		WorldEntity.STONERESOURCES = 10;
-		WorldEntity.WOODRESOURCES = 6;
-		WorldEntity.TIME = 3;
+		Building.STONERESOURCES = 10;
+		Building.WOODRESOURCES = 6;
+		Building.TIME = 3;
 	}
 
 	/**

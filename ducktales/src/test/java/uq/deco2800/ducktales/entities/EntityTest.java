@@ -163,7 +163,7 @@ public class EntityTest {
 	}
 	
 	/**
-	 * Testing the compareTo() method. Cecking cases when the inside distances are
+	 * Testing the compareTo() method. Checking cases when the inside distances are
 	 *  different.
 	 */
 	@Test

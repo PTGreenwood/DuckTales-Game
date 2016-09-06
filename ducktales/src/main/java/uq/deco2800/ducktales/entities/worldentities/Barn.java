@@ -8,7 +8,7 @@ import uq.deco2800.ducktales.resources.ResourceType;
  * @author Gabrielle Hodge, 43590526 
  *
  */
-public class Barn extends WorldEntity {
+public class Barn extends Building {
 
 	// BuildingMenuSprite type
 	private static final ResourceType TYPE = ResourceType.BARN;
@@ -29,9 +29,9 @@ public class Barn extends WorldEntity {
 	 * Update the WorldEntity properties with those of a barn.
 	 */
 	protected void specifications() {
-		WorldEntity.STONERESOURCES = 4;
-		WorldEntity.WOODRESOURCES = 10;
-		WorldEntity.TIME = 9;
+		Building.STONERESOURCES = 4;
+		Building.WOODRESOURCES = 10;
+		Building.TIME = 9;
 	}
 	
 	/**

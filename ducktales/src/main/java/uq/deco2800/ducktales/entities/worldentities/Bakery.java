@@ -9,7 +9,7 @@ import static uq.deco2800.ducktales.resources.ResourceType.*;
  * @author Gabrielle Hodge, 43590526
  *
  */
-public class Bakery extends WorldEntity{
+public class Bakery extends Building {
 	
 	// BuildingMenuSprite type
 	private static final ResourceType TYPE = BAKERY;
@@ -28,9 +28,9 @@ public class Bakery extends WorldEntity{
 	 * Update the WorldEntity properties with those of a bakery.
 	 */
 	protected void specifications() {
-		WorldEntity.STONERESOURCES = 4;
-		WorldEntity.WOODRESOURCES = 6;
-		WorldEntity.TIME = 4;
+		Building.STONERESOURCES = 4;
+		Building.WOODRESOURCES = 6;
+		Building.TIME = 4;
 	}
 
 	/**

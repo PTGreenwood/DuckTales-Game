@@ -8,7 +8,7 @@ import uq.deco2800.ducktales.resources.ResourceType;
  * @author Gabrielle Hodge, 43590526 
  *
  */
-public class Hospital extends WorldEntity {
+public class Hospital extends Building {
 	
 
 	// BuildingMenuSprite type
@@ -28,9 +28,9 @@ public class Hospital extends WorldEntity {
 	 * Update the WorldEntity properties with those of a bakery.
 	 */
 	protected void specifications() {
-		WorldEntity.STONERESOURCES = 12;
-		WorldEntity.WOODRESOURCES = 8;
-		WorldEntity.TIME = 5;
+		Building.STONERESOURCES = 12;
+		Building.WOODRESOURCES = 8;
+		Building.TIME = 5;
 	}
 
 	/**

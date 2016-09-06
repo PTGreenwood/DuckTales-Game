@@ -21,9 +21,4 @@ public class Rock extends ResourceEntity{
 	public boolean isPassable() {
 		return false;
 	}
-
-	@Override
-	protected void specifications() {		
-	}
-
 }

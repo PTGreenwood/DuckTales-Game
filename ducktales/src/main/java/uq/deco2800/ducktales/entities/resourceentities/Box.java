@@ -20,9 +20,4 @@ public class Box extends ResourceEntity{
 	public boolean isPassable() {
 		return false;
 	}
-
-	@Override
-	protected void specifications() {		
-	}
-
 }
