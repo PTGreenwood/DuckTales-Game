@@ -7,7 +7,7 @@ import uq.deco2800.ducktales.resources.ResourceType;
  * @author Leggy
  *
  */
-public class LongBox extends WorldEntity {
+public class LongBox extends Building {
 	
 	// BuildingMenuSprite type
 	private final static ResourceType TYPE = ResourceType.LONG_BOX;
@@ -26,9 +26,9 @@ public class LongBox extends WorldEntity {
 	 * Update the WorldEntity properties with those of a bakery.
 	 */
 	protected void specifications() {
-		WorldEntity.STONERESOURCES = 2;
-		WorldEntity.WOODRESOURCES = 2;
-		WorldEntity.TIME = 2;
+		Building.STONERESOURCES = 2;
+		Building.WOODRESOURCES = 2;
+		Building.TIME = 2;
 	}
 	
 	/**

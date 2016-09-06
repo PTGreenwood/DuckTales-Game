@@ -27,7 +27,7 @@ public class Constructor {
 	 * 
 	 * @return the integer number of stone required to construct
 	 */
-	public int getStone(WorldEntity building) {
+	public int getStone(Building building) {
 		building.specifications();
 		return building.resourcesBuildStone();
 	}
@@ -40,7 +40,7 @@ public class Constructor {
 	 * 
 	 * @return the integer number of wood required for construction
 	 */
-	public int getWood(WorldEntity building) {
+	public int getWood(Building building) {
 		building.specifications();
 		return building.resourcesBuildWood();
 	}
@@ -54,7 +54,7 @@ public class Constructor {
 	 * @return the integer of time required to construct the selected 
 	 * building.
 	 */
-	public int getTime(WorldEntity building) {
+	public int getTime(Building building) {
 		building.specifications();
 		return building.timeToBuild();
 	}

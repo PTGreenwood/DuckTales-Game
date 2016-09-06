@@ -8,7 +8,7 @@ import uq.deco2800.ducktales.resources.ResourceType;
  * @author Gabrielle Hodge, 43590526 
  *
  */
-public class Farmhouse extends WorldEntity {
+public class Farmhouse extends Building {
 	
 
 	// BuildingMenuSprite type
@@ -28,9 +28,9 @@ public class Farmhouse extends WorldEntity {
 	 * Update the WorldEntity properties with those of a farmhouse.
 	 */
 	protected void specifications() {
-		WorldEntity.STONERESOURCES = 8;
-		WorldEntity.WOODRESOURCES = 10;
-		WorldEntity.TIME = 9;
+		Building.STONERESOURCES = 8;
+		Building.WOODRESOURCES = 10;
+		Building.TIME = 9;
 	}
 
 	/**

@@ -8,7 +8,7 @@ import uq.deco2800.ducktales.resources.ResourceType;
  * @author Gabrielle Hodge, 43590526 
  *
  */
-public class Sawmill extends WorldEntity {
+public class Sawmill extends Building {
 	
 	// BuildingMenuSprite type
 	private static final ResourceType TYPE = ResourceType.SAWMILL;
@@ -27,9 +27,9 @@ public class Sawmill extends WorldEntity {
 	 * Update the WorldEntity properties with those of a bakery.
 	 */
 	protected void specifications() {
-		WorldEntity.STONERESOURCES = 4;
-		WorldEntity.WOODRESOURCES = 8;
-		WorldEntity.TIME = 3;
+		Building.STONERESOURCES = 4;
+		Building.WOODRESOURCES = 8;
+		Building.TIME = 3;
 	}
 	
 	/**

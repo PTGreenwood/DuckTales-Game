@@ -8,7 +8,7 @@ import uq.deco2800.ducktales.resources.ResourceType;
  * @author Gabrielle Hodge, 43590526 
  *
  */
-public class Observatory extends WorldEntity {
+public class Observatory extends Building {
 
 	// BuildingMenuSprite type
 	private static final ResourceType TYPE = ResourceType.OBSERVATORY;
@@ -27,9 +27,9 @@ public class Observatory extends WorldEntity {
 	 * Update the WorldEntity properties with those of a bakery.
 	 */
 	protected void specifications() {
-		WorldEntity.STONERESOURCES = 4;
-		WorldEntity.WOODRESOURCES = 10;
-		WorldEntity.TIME = 5;
+		Building.STONERESOURCES = 4;
+		Building.WOODRESOURCES = 10;
+		Building.TIME = 5;
 	}
 
 	/**
