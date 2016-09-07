@@ -30,6 +30,8 @@ public class Sawmill extends Building {
 		Building.STONERESOURCES = 4;
 		Building.WOODRESOURCES = 8;
 		Building.TIME = 3;
+		Building.PRODUCTIONAMOUNT = 5;
+		Building.PRODUCTIONTYPE = production.WOOD;
 	}
 	
 	/**

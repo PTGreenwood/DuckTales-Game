@@ -16,7 +16,8 @@ public abstract class Building extends WorldEntity {
 
 	protected static int STONERESOURCES;
 	
-	protected enum production {
+	// Otherwise external classes cannot access type (even using method below)
+	public enum production {
 		WOOD, STONE, ORE, FOOD, NULL
 	}
 	
@@ -99,7 +100,7 @@ public abstract class Building extends WorldEntity {
 	
 	/**
 	 * Returns the amount of resource the building generates over 
-	 * time or null if it does not
+	 * time or 0 (cannot return null from an int method) if it does not
 	 * 
 	 * @return the int of the resource amount
 	 */

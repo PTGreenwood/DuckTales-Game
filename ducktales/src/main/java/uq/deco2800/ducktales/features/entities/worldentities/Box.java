@@ -1,5 +1,6 @@
 package uq.deco2800.ducktales.features.entities.worldentities;
 
+import uq.deco2800.ducktales.features.entities.worldentities.Building.production;
 import uq.deco2800.ducktales.resources.ResourceType;
 
 /**
@@ -30,6 +31,8 @@ public class Box extends Building {
 		Building.STONERESOURCES = 2;
 		Building.WOODRESOURCES = 2;
 		Building.TIME = 4;
+		Building.PRODUCTIONAMOUNT = 0;
+		Building.PRODUCTIONTYPE = production.NULL;
 	}
 
 	/**
