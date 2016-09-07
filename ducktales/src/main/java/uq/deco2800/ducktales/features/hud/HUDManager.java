@@ -55,10 +55,10 @@ public class HUDManager implements SecondaryManager {
 
             // Add and style the menu pane to the bottom pane
             bottomPane.getChildren().add(menuPane);
-            bottomPane.setBottomAnchor(menuPane, 0.0);
-            bottomPane.setLeftAnchor(menuPane, 0.0);
-            bottomPane.setRightAnchor(menuPane, 0.0);
-            bottomPane.setTopAnchor(menuPane, 0.0);
+            AnchorPane.setBottomAnchor(menuPane, 0.0);
+            AnchorPane.setLeftAnchor(menuPane, 0.0);
+            AnchorPane.setRightAnchor(menuPane, 0.0);
+            AnchorPane.setTopAnchor(menuPane, 0.0);
         } catch (IOException e) {
             System.err.println("unable to load menu");
             e.printStackTrace();

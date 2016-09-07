@@ -1,6 +1,5 @@
 package uq.deco2800.ducktales;
 
-import javafx.scene.Cursor;
 import javafx.scene.layout.Pane;
 import uq.deco2800.ducktales.features.achievements.AchievementManager;
 import uq.deco2800.ducktales.features.hud.HUDManager;
@@ -10,8 +9,9 @@ import uq.deco2800.ducktales.rendering.worlddisplay.CursorManager;
 import uq.deco2800.ducktales.rendering.worlddisplay.WorldDisplayManager;
 import uq.deco2800.ducktales.features.missions.MissionManager;
 import uq.deco2800.ducktales.resources.ResourceType;
-import uq.deco2800.ducktales.util.events.handlers.InGameMouseMovedHandler;
-import uq.deco2800.ducktales.util.events.handlers.MenuSelectedEventHandler;
+import uq.deco2800.ducktales.util.events.handlers.*;
+import uq.deco2800.ducktales.util.events.tile.TileEnteredEvent;
+import uq.deco2800.ducktales.util.events.ui.HUDDeselectedEvent;
 import uq.deco2800.ducktales.util.events.ui.MenuSelectedEvent;
 
 import static uq.deco2800.ducktales.resources.ResourceType.*;
@@ -79,6 +79,15 @@ public class GameManager {
     public GameManager(Pane root, World world) {
         this.root = root;
         this.world = world;
+    }
+
+    /**
+     * Get the root pane where everything is rendered onto
+     *
+     * @return the root pane
+     */
+    public Pane getRoot() {
+        return this.root;
     }
 
     /**
@@ -215,6 +224,13 @@ public class GameManager {
     	this.achievementManager = achievementManager;
     }
 
+    public CursorManager getCursorManager() {
+        return cursorManager;
+    }
+
+    public void setCursorManager(CursorManager cursorManager) {
+        this.cursorManager = cursorManager;
+    }
 
     /**
      * Set up the event handlers for the root pane of the game. The current
@@ -222,16 +238,29 @@ public class GameManager {
      *      1. A menu sprite is clicked on -> update cursor image
      */
     private void setupEventHandlers() {
-        // Initialize the handlers
+        // Initialize the custom handlers
         MenuSelectedEventHandler menuSelectedEventHandler =
-                new MenuSelectedEventHandler(this, this.cursorManager);
+                new MenuSelectedEventHandler(this);
         InGameMouseMovedHandler mouseMovedHandler =
                 new InGameMouseMovedHandler(this.cursorManager);
+        InGameMouseClickedHandler mouseClickedHandler =
+                new InGameMouseClickedHandler(this);
+        TileEnteredHandler tileEnteredHandler =
+                new TileEnteredHandler(this);
+        HUDDeselectedHandler hudDeselectedHandler =
+                new HUDDeselectedHandler(this);
+
 
         // Handler for when a sprite in the menu is selected
         root.addEventHandler(MenuSelectedEvent.MENU_SELECTED_EVENT, menuSelectedEventHandler );
         // Handler for when the mouse is moved in-game
         root.setOnMouseMoved(mouseMovedHandler);
+        // Handler for when the mouse is clicked
+        root.setOnMouseClicked(mouseClickedHandler);
+        // Handler for when a tile is entered
+        root.addEventHandler(TileEnteredEvent.TILE_ENTERED, tileEnteredHandler);
+        // Handler for the HUD Deselected Event
+        root.addEventHandler(HUDDeselectedEvent.HUD_DESELECTED_EVENT, hudDeselectedHandler);
     }
 
 }

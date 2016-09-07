@@ -37,7 +37,7 @@ public class BuildingMenuSprite extends HUDSprite {
 
 //        this.setOnMouseReleased(event -> {
 //            System.err.println("Mouse released on building " + this.buildingType);
-//            fireEvent(new HUDDeselectedEvent(this.buildingType));
+//            fireEvent(new HUD_DESELECTED_EVENT(this.buildingType));
 //        });
 //        this.setOnMouseDragged(event -> {
 //            fireEvent(new CursorMovedEvent(event.getSceneX(), event.getSceneY()));

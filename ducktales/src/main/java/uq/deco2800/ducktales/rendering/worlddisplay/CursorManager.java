@@ -34,6 +34,7 @@ public class CursorManager {
         // Set initial values for the cursor image
         cursorImage = new ImageView();
         cursorImageFreeMoving = true;
+        cursorImage.setMouseTransparent(true);
 
         // Retrieve the sprite register
         resource = ResourceSpriteRegister.getInstance();
@@ -46,8 +47,18 @@ public class CursorManager {
      * Get the Node representing the cursor image
      * @return the ImageView cursor image
      */
-    public ImageView getCursorImage() {
+    public ImageView getCursorImageSprite() {
         return this.cursorImage;
+    }
+
+    /**
+     * Set the value to control whether the cursor image can move freely
+     *
+     * @param value
+     *          Whether the cursor image can move freely
+     */
+    public void setCursorImageFreeMoving(boolean value) {
+        cursorImageFreeMoving = value;
     }
 
     /**
@@ -88,17 +99,45 @@ public class CursorManager {
     }
 
     /**
-     * Move the cursor image to the given point on the world display
+     * Hide the cursor image
+     */
+    public void hideCursorImage() {
+        this.cursorImage.setVisible(false);
+    }
+
+    /**
+     * Show the cursor image
+     */
+    public void showCursorImage() {
+        this.cursorImage.setVisible(true);
+    }
+
+    /**
+     * Move the cursor image to the given point on the scene
      *
      * @param x
-     *          The x-coordinate on the world display to move to
+     *          The x-coordinate on the game scene to move to
      * @param y
-     *          The y-coordinate on the world display to move to
+     *          The y-coordinate on the game scene to move to
      */
     public void moveCursorImage(double x, double y) {
         if (cursorImageFreeMoving) {
             cursorImage.setLayoutX(x);
             cursorImage.setLayoutY(y);
         }
+    }
+
+    /**
+     * Move the cursor image to the given point on the scene
+     * The difference is that this method is not regulated by the freeMoving variable
+     *
+     * @param x
+     *          The x-coordinate on the game scene to move to
+     * @param y
+     *          The y-coordinate on the game scene to move to
+     */
+    public void relocateCursorImage(double x, double y) {
+        cursorImage.setLayoutX(x);
+        cursorImage.setLayoutY(y);
     }
 }

@@ -57,6 +57,15 @@ public class WorldDisplayManager implements Initializable, SecondaryManager {
         this.world = world;
     }
 
+    /**
+     * Get the tiles manager
+     *
+     * @return the tiles manager
+     */
+    public TilesManager getTilesManager() {
+        return this.tilesManager;
+    }
+
     @Override
     public void reload() {
 

@@ -498,7 +498,7 @@ public class GameRendererBeta extends AnimationTimer {
 
         });
         
-        buildingsMenu.addEventHandler(HUDDeselectedEvent.HUDDeselectedEvent, event -> {
+        buildingsMenu.addEventHandler(HUDDeselectedEvent.HUD_DESELECTED_EVENT, event -> {
             // Return the cursor image to null, and perform update on the world tiles
             // if the mouse is released on top of a tile
             this.cursorImage.setImage(null);
@@ -561,6 +561,7 @@ public class GameRendererBeta extends AnimationTimer {
      * @param targetTile
      *          The tile currently under the cursor
      */
+    @Deprecated
     private void moveCursorImageToTile(TileSprite targetTile) {
         // Shorten the name
         WorldEntityInfo manager = this.worldEntityInfo;

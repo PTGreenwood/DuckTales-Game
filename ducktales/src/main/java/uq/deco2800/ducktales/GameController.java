@@ -178,10 +178,10 @@ public class GameController implements Initializable{
             rootPane.getChildren().add(worldPane);
 
             // Set the sizing for world pane
-            AnchorPane.setLeftAnchor(worldPane, 150.0);
+            AnchorPane.setLeftAnchor(worldPane, 0.0);
             AnchorPane.setRightAnchor(worldPane, 0.0);
             AnchorPane.setTopAnchor(worldPane, 0.0);
-            AnchorPane.setBottomAnchor(worldPane, 180.0);
+            AnchorPane.setBottomAnchor(worldPane, 0.0);
 
         } catch (IOException e) {
             System.err.println("unable to load world display");

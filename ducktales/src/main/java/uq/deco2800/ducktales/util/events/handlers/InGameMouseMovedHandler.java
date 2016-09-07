@@ -25,6 +25,7 @@ public class InGameMouseMovedHandler implements EventHandler<MouseEvent> {
 
     @Override
     public void handle(MouseEvent event) {
+        // Move the cursor image to the mouse
         cursorManager.moveCursorImage(event.getSceneX(), event.getSceneY());
     }
 }

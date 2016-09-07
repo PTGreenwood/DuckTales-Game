@@ -55,6 +55,30 @@ public class TilesManager implements SecondaryManager {
     }
 
     /**
+     * Get the tile at the position x and y in the 2D array
+     * @param x
+     *          The x-coordinate of the tile
+     * @param y
+     *          The y-coordinate of the tile
+     * @return the tile at the given coordinates
+     */
+    public Tile getTile(int x, int y) {
+        return tiles.get(x, y);
+    }
+
+    /**
+     * Get the sprite for the tile at positions x and y in the 2D array
+     * @param x
+     *          The x-coordinate of the tile
+     * @param y
+     *          The y-coordinate of the tile
+     * @return the sprite of the tileat the given coordinates
+     */
+    public TileSprite getTileSprite(int x, int y) {
+        return tileSprites.get(x, y);
+    }
+
+    /**
      * Render the initial world onto the root pane given
      */
     public void renderInitialWorld() {
