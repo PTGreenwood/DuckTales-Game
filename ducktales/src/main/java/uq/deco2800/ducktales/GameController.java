@@ -70,16 +70,18 @@ public class GameController implements Initializable{
 
         // Load each FXML element into the root pane on by one, and retrieve
         // their respective controllers
+        loadWorldDisplay();
         loadHUD();
         loadMarketPlace();
         loadTimeDisplay();
-        loadWorldDisplay();
 
         // Now pass all handles for the secondary managers to the GameManager
         gameManager.setHudManager(this.hudManager);
         gameManager.setMarketManager(this.marketManager);
+        gameManager.setWorldDisplayManager(this.worldDisplayManager);
 
         // Set the temporary button to be invisible
+        closeButton.toFront();
         closeButton.setVisible(false);
 
         // Game Controller's job of setting up the UI is done.
@@ -108,6 +110,7 @@ public class GameController implements Initializable{
      * Load and show the game world
      */
     private void loadWorldDisplay() {
+        // The typical thing.
         URL location = getClass().getResource("/worlddisplay/worldDisplay.fxml");
         FXMLLoader loader = new FXMLLoader(location);
 
@@ -119,10 +122,10 @@ public class GameController implements Initializable{
             rootPane.getChildren().add(worldPane);
 
             // Set the sizing for world pane
-            rootPane.setLeftAnchor(worldPane, 150.0);
-            rootPane.setRightAnchor(worldPane, 0.0);
-            rootPane.setTopAnchor(worldPane, 0.0);
-            rootPane.setBottomAnchor(worldPane, 180.0);
+            AnchorPane.setLeftAnchor(worldPane, 150.0);
+            AnchorPane.setRightAnchor(worldPane, 0.0);
+            AnchorPane.setTopAnchor(worldPane, 0.0);
+            AnchorPane.setBottomAnchor(worldPane, 180.0);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -162,8 +165,8 @@ public class GameController implements Initializable{
             rootPane.getChildren().add(root);
 
             // Position the marketplace pane
-            rootPane.setTopAnchor(root, 0.0);
-            rootPane.setRightAnchor(root, 30.0);
+            AnchorPane.setTopAnchor(root, 0.0);
+            AnchorPane.setRightAnchor(root, 30.0);
 
             // Initially hide it first
             marketManager.hideMarketPlace();

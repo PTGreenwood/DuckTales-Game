@@ -10,6 +10,7 @@ import uq.deco2800.ducktales.features.hud.menu.building.BuildingMenuSprite;
 import uq.deco2800.ducktales.rendering.RenderingInformation;
 import uq.deco2800.ducktales.rendering.info.WorldEntityInfo;
 import uq.deco2800.ducktales.resources.ResourceType;
+import uq.deco2800.ducktales.util.SecondaryManager;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -22,7 +23,7 @@ import static uq.deco2800.ducktales.resources.ResourceType.*;
  *
  * Created on 7/09/2016.
  */
-public class MenuManager implements Initializable{
+public class MenuManager implements Initializable, SecondaryManager{
     /**
      * CONSTANTS
      */
@@ -195,4 +196,8 @@ public class MenuManager implements Initializable{
     }
 
 
+    @Override
+    public void reload() {
+
+    }
 }

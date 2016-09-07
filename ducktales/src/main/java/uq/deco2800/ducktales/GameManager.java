@@ -2,6 +2,7 @@ package uq.deco2800.ducktales;
 
 import uq.deco2800.ducktales.features.hud.HUDManager;
 import uq.deco2800.ducktales.features.market.MarketManager;
+import uq.deco2800.ducktales.rendering.worlddisplay.WorldDisplayManager;
 import uq.deco2800.ducktales.resources.ResourceType;
 
 import static uq.deco2800.ducktales.resources.ResourceType.*;
@@ -33,6 +34,7 @@ public class GameManager {
     /** The Secondary Managers */
     private HUDManager hudManager;
     private MarketManager marketManager;
+    private WorldDisplayManager worldDisplayManager;
 
     public GameManager() {
         // Instantiate an empty game manager without a pre-loaded world.
@@ -89,24 +91,60 @@ public class GameManager {
      * Set the world for the current game
      *
      * @param world
+     *          The world of the game
      */
     public void setWorld(World world) {
         this.world = world;
     }
 
+    /**
+     * Get the HUD Manager of the game
+     * @return the HUD Manager
+     */
     public HUDManager getHudManager() {
         return hudManager;
     }
 
+    /**
+     * Pass the handle for the HUD Manager to Game Manager
+     * @param hudManager
+     *          The HUD Manager of the game
+     */
     public void setHudManager(HUDManager hudManager) {
         this.hudManager = hudManager;
     }
 
+    /**
+     * Get the Market Manager of the game
+     * @return the Market Manager
+     */
     public MarketManager getMarketManager() {
         return marketManager;
     }
 
+    /**
+     * Pass the handle for the Market Manager to the Game Manager
+     * @param marketManager
+     *          The Market Manager of the game
+     */
     public void setMarketManager(MarketManager marketManager) {
         this.marketManager = marketManager;
+    }
+
+    /**
+     * Get the World Display Manager of the game
+     * @return The World Display Manager
+     */
+    public WorldDisplayManager getWorldDisplayManager() {
+        return worldDisplayManager;
+    }
+
+    /**
+     * Pass the handle for the World Display Manager of the game to the Game Manager
+     * @param worldDisplayManager
+     *          The World Display Manager of the game
+     */
+    public void setWorldDisplayManager(WorldDisplayManager worldDisplayManager) {
+        this.worldDisplayManager = worldDisplayManager;
     }
 }

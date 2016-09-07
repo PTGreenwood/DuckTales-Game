@@ -4,6 +4,7 @@ package uq.deco2800.ducktales.features.hud;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import uq.deco2800.ducktales.features.hud.menu.MenuManager;
+import uq.deco2800.ducktales.util.SecondaryManager;
 
 import java.io.IOException;
 import java.net.URL;
@@ -18,7 +19,7 @@ import java.net.URL;
  * Created on 7/09/2016.
  * @author khoiphan21
  */
-public class HUDManager {
+public class HUDManager implements SecondaryManager {
     /** the root pane to add all panes into */
     private AnchorPane rootPane;
     /** FXML variables - this implementation should be changed later to use FXML */
@@ -60,5 +61,10 @@ public class HUDManager {
             System.err.println("unable to load menu");
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void reload() {
+
     }
 }
