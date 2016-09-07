@@ -36,7 +36,6 @@ public class HUDManager {
 
         // Instantiates the helper managers
         loadMenus();
-
     }
 
     /**

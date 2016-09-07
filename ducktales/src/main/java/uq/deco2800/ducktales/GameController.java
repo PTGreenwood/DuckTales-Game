@@ -5,10 +5,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import uq.deco2800.ducktales.features.hud.HUDManager;
 import uq.deco2800.ducktales.features.market.MarketManager;
 import uq.deco2800.ducktales.features.market.MarketVistaNavigator;
+import uq.deco2800.ducktales.rendering.worlddisplay.WorldDisplayManager;
 
 import java.io.IOException;
 import java.net.URL;
@@ -50,6 +52,7 @@ public class GameController implements Initializable{
     /** The Secondary Managers of the game, each managing an FXML loader */
     private MarketManager marketManager;
     private HUDManager hudManager;
+    private WorldDisplayManager worldDisplayManager;
 
 
     /**
@@ -70,13 +73,18 @@ public class GameController implements Initializable{
         loadHUD();
         loadMarketPlace();
         loadTimeDisplay();
+        loadWorldDisplay();
 
         // Now pass all handles for the secondary managers to the GameManager
         gameManager.setHudManager(this.hudManager);
         gameManager.setMarketManager(this.marketManager);
 
+        // Set the temporary button to be invisible
+        closeButton.setVisible(false);
+
         // Game Controller's job of setting up the UI is done.
     }
+
 
     /**
      * Show the Market Place pane
@@ -97,10 +105,32 @@ public class GameController implements Initializable{
     }
 
     /**
+     * Load and show the game world
+     */
+    private void loadWorldDisplay() {
+        URL location = getClass().getResource("/worlddisplay/worldDisplay.fxml");
+        FXMLLoader loader = new FXMLLoader(location);
+
+        try {
+            Pane worldPane = loader.load();
+            worldDisplayManager = loader.getController();
+
+            // add the world pane to the root pane
+            rootPane.getChildren().add(worldPane);
+
+            // Set the sizing for world pane
+            rootPane.setLeftAnchor(worldPane, 150.0);
+            rootPane.setRightAnchor(worldPane, 0.0);
+            rootPane.setTopAnchor(worldPane, 0.0);
+            rootPane.setBottomAnchor(worldPane, 180.0);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
      * Load the HUD Information into the current panes
-     * TODO: For HUD Team: you guys can change this later to make it the
-     *       controller for the loaded FXML instead of just passing the HUD
-     *       Manager a handle of leftPane and bottomPane. Sorry for dodgy-ness...
      */
     private void loadHUD() {
         hudManager = new HUDManager(this.rootPane, this.bottomPane);

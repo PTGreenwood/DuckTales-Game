@@ -62,13 +62,8 @@
 	-fx-background-repeat: no-repeat;
 	-fx-background-position: center;	
 }
-.worldPane {
-    -fx-background-color: #F0EDE4;
 
-}
-.buttonsMenu {
-    -fx-background-color: #735032;
-}
+
 
 
 .inventoryMenu {
