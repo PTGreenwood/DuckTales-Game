@@ -1,5 +1,6 @@
 package uq.deco2800.ducktales;
 
+import uq.deco2800.ducktales.features.achievements.AchievementManager;
 import uq.deco2800.ducktales.features.hud.HUDManager;
 import uq.deco2800.ducktales.features.level.LevelManager;
 import uq.deco2800.ducktales.features.market.MarketManager;
@@ -37,6 +38,7 @@ public class GameManager {
     private MarketManager marketManager;
     private MissionManager missionManager;
     private LevelManager levelManager;
+    private AchievementManager achievementManager;
 
     public GameManager() {
         // Instantiate an empty game manager without a pre-loaded world.
@@ -128,6 +130,14 @@ public class GameManager {
 
     public void setLevelManager(LevelManager levelManager) {
     	this.levelManager = levelManager;
+    }
+    
+    public AchievementManager getAchievementManager() {
+    	return achievementManager;
+    }
+    
+    public void setAchievementManager(AchievementManager achievementManager){
+    	this.achievementManager = achievementManager;
     }
     
 }

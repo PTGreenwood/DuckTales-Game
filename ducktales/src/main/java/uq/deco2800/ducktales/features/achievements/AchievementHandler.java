@@ -5,16 +5,16 @@ package uq.deco2800.ducktales.features.achievements;
  * 
  * 
  */
-public class Achievements {
-	private static Achievements INSTANCE = new Achievements();
+public class AchievementHandler {
+	private static AchievementHandler INSTANCE = new AchievementHandler();
 	
 	private int intAchieve;
 	
-	public static Achievements getInstance() {
+	public static AchievementHandler getInstance() {
 		return INSTANCE;
 	}
 	
-	public Achievements(){
+	public AchievementHandler(){
 		this.intAchieve = 0;		
 	}
 	public int getAchieve(){

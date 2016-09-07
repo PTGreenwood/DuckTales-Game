@@ -19,8 +19,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
-import uq.deco2800.ducktales.features.achievements.Achievements;
 import javafx.scene.control.ProgressIndicator;
+import uq.deco2800.ducktales.features.achievements.AchievementHandler;
 import uq.deco2800.ducktales.features.achievements.AchievementProgressIndicator;
 import uq.deco2800.ducktales.features.level.LevelHandler;
 
@@ -40,10 +40,10 @@ public class MissionManager {
 	private BorderPane gameMission1;
 	private BorderPane achievement;
 	
-	Achievements achievementMain = Achievements.getInstance();
+	AchievementHandler achievementMain = AchievementHandler.getInstance();
 	MissionHandler missionMain = MissionHandler.getInstance();
 	LevelHandler levelMain = LevelHandler.getInstance();
-	AchievementProgressIndicator piMain = AchievementProgressIndicator.getInstance();	
+	MissionProgressIndicator piMain = MissionProgressIndicator.getInstance();	
 		
 	/**
 	 * Starts gameMission1.
@@ -182,7 +182,7 @@ public class MissionManager {
         //Increment percentage of progress indicator in achievement
         AchievementProgressIndicator.getInstance().setProgressPercentage(MissionHandler.getInstance().getMissionCount());
         //Increment total achievement score
-        Achievements.getInstance().achieveEasy();
+        AchievementHandler.getInstance().achieveEasy();
         //Increment percentage of progress bar in leveling system
         LevelHandler.getInstance().setProgressBar(0.5);
         //if progress bar is full then level up

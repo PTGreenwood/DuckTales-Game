@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import uq.deco2800.ducktales.features.achievements.AchievementManager;
 import uq.deco2800.ducktales.features.hud.HUDManager;
 import uq.deco2800.ducktales.features.level.LevelManager;
 import uq.deco2800.ducktales.features.market.MarketManager;
@@ -55,6 +56,7 @@ public class GameController implements Initializable{
     
     private MissionManager missionManager;
     private LevelManager levelManager;
+    private AchievementManager achievementManager;
     
     private HUDManager hudManager;
 
@@ -78,6 +80,7 @@ public class GameController implements Initializable{
         loadMarketPlace();
         loadMissions();
         loadLevel();
+        loadAchievement();
         loadTimeDisplay();
         
         // Now pass all handles for the secondary managers to the GameManager
@@ -85,6 +88,7 @@ public class GameController implements Initializable{
         gameManager.setMarketManager(this.marketManager);
         gameManager.setMissionManager(this.missionManager);
         gameManager.setLevelManager(this.levelManager);
+        gameManager.setAchievementManager(this.achievementManager);
 
         // Game Controller's job of setting up the UI is done.
     }
@@ -117,6 +121,15 @@ public class GameController implements Initializable{
     }
     
     /**
+     * Show the achievement pane
+     */
+    @FXML
+    public void showAchievement() {
+    	achievementManager.showAchievement();
+    	closeButton.setVisible(true);
+    }
+    
+    /**
      * Hide all information windows
      */
     @FXML
@@ -124,6 +137,7 @@ public class GameController implements Initializable{
         marketManager.hideMarketPlace();
         missionManager.hideMission();
         levelManager.hideLevel();
+        achievementManager.hideAchievement();
         closeButton.setVisible(false);
     }
 
@@ -228,6 +242,33 @@ public class GameController implements Initializable{
 
         } catch (IOException e) {
             System.err.println("Unable to load Level");
+            e.printStackTrace();
+        }
+    }
+    
+    @FXML
+    private void loadAchievement() {
+
+        URL location = getClass().getResource("/achievements/achievementMain.fxml");
+
+        FXMLLoader loader = new FXMLLoader(location);
+        
+
+        try {
+            // load the FXML
+            AnchorPane root = loader.load();
+            
+            achievementManager = loader.getController();
+            
+            rootPane.getChildren().add(root);
+
+            rootPane.setTopAnchor(root, 0.0);
+            rootPane.setRightAnchor(root, 30.0);
+
+            achievementManager.hideAchievement();
+
+        } catch (IOException e) {
+            System.err.println("Unable to load Achievement");
             e.printStackTrace();
         }
     }
