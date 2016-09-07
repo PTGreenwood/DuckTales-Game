@@ -16,12 +16,13 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import uq.deco2800.ducktales.features.achievements.Achievements;
 import javafx.scene.control.ProgressIndicator;
 import uq.deco2800.ducktales.features.achievements.AchievementProgressIndicator;
-import uq.deco2800.ducktales.features.level.Level;
+import uq.deco2800.ducktales.features.level.LevelHandler;
 
 /**
  * Handles in-game mission methods.
@@ -32,16 +33,16 @@ public class MissionManager {
 	
 	@FXML	
 	private AnchorPane missionWindow;
+	
 	@FXML
 	private AnchorPane rightPane;
 	
 	private BorderPane gameMission1;
 	private BorderPane achievement;
-	private BorderPane level;		
 	
 	Achievements achievementMain = Achievements.getInstance();
 	MissionHandler missionMain = MissionHandler.getInstance();
-	Level levelMain = Level.getInstance();
+	LevelHandler levelMain = LevelHandler.getInstance();
 	AchievementProgressIndicator piMain = AchievementProgressIndicator.getInstance();	
 		
 	/**
@@ -64,32 +65,19 @@ public class MissionManager {
 		
 		missions.setVgap(10);
 		missions.add(createMission("1.Click Add peon :  ", 0), 0, 1);
-		missions.add(createMission("2.Click marketplace :  ", 1), 0, 2);
-		
-		Label mission3Top = new Label("GameBeta Missions");
-		mission3Top.setFont(new Font("Arial", 36));
+		missions.add(createMission("2.Click marketplace :  ", 1), 0, 2);		
 		
 		ScrollPane scroll = new ScrollPane(missions);
 		
-		gameMission1.setTop(mission3Top);
-		gameMission1.setCenter(scroll);
-		gameMission1.setAlignment(mission3Top, Pos.CENTER);
+		setTitleOnTop(gameMission1,"Missions");
+		
+		gameMission1.setCenter(scroll);		
 		gameMission1.setPrefHeight(rightPane.getHeight());
 		gameMission1.setPrefWidth(rightPane.getWidth());		
 		
 		rightPane.getChildren().add(gameMission1);		
 	}
-	
-	private HBox createMission(String string, int missionNumber){
-		Label mission = new Label(string);
-		mission.setFont(new Font("Arial", 24));
-		ImageView missionBox = new ImageView();
-		missionBox = MissionHandler.getInstance().getMissionImageCompleted(missionNumber);
-		HBox missionHBox = new HBox();
-		missionHBox.getChildren().addAll(mission,missionBox);
-		return missionHBox;
-	}
-	
+		
 	/**
 	 * Starts achievement.
 	 * @param event
@@ -104,30 +92,21 @@ public class MissionManager {
 		loader.setLocation(location);
 		achievement = loader.load();
 		
-		GridPane achieveGrid = new GridPane();
-		
-		Label achieveLabel = new Label("Total Achievement : " + achievementMain.getAchieve());
-		achieveLabel.setFont(new Font("Arial", 24));
-		Label achieveTop = new Label("Achievement");
-		achieveTop.setFont(new Font("Arial", 36));
+		//GridPane achieveGrid = new GridPane();		
 				
-		Label pi1Label = new Label("GameBeta Mission Progress");
+		//Label pi1Label = new Label("Mission Progress");
 		ProgressIndicator  pi1 = new ProgressIndicator();
 		pi1 = piMain.getProgressIndicator();
-		VBox achieveVBox1 = new VBox();
-		achieveVBox1.getChildren().addAll(pi1,pi1Label);	
+		//VBox achieveVBox1 = new VBox();
+		//achieveVBox1.getChildren().addAll(pi1,pi1Label);	
 		
-		achieveGrid.setVgap(10);
+		/*achieveGrid.setVgap(10);
 		achieveGrid.setPadding(new Insets(10, 10, 10, 10));
 		achieveGrid.add(achieveVBox1, 0, 1);
-		//achieveGrid.add(pi1, 0, 1);
-		//achieveGrid.add(pi1Label, 0, 2);
+		*/
+		setTitleOnTop(achievement,"Mission Progress");
 		
-		achievement.setTop(achieveTop);
-		achievement.setAlignment(achieveTop, Pos.CENTER);
-		achievement.setCenter(achieveGrid);		
-		achievement.setBottom(achieveLabel);
-		achievement.setAlignment(achieveLabel, Pos.CENTER);
+		achievement.setCenter(pi1);		
 		achievement.setPrefHeight(rightPane.getHeight());
 		achievement.setPrefWidth(rightPane.getWidth());		
 		
@@ -140,6 +119,8 @@ public class MissionManager {
 	 * @param event
 	 * @throws Exception
 	 */
+	
+	/*
 	@FXML
 	public void startlevel(ActionEvent event) throws Exception {
 		
@@ -151,8 +132,7 @@ public class MissionManager {
 		
 		GridPane levelGrid = new GridPane();
 		
-		Label levelTop = new Label("Leveling System");
-		levelTop.setFont(new Font("Arial", 36));
+		
 		Label levelDisplay = new Label("Level : " + levelMain.getLevel());		
 
 		Label pbExplanation = new Label("2 missions done ==> level up");
@@ -165,16 +145,34 @@ public class MissionManager {
 		levelGrid.add(pb1, 0, 2);
 		levelGrid.add(pbExplanation, 0, 3);
 		
-		level.setTop(levelTop);
-		level.setAlignment(levelTop, Pos.CENTER);
+		setTitleOnTop(level,"Leveling System");
+		
 		level.setCenter(levelGrid);
 		level.setPrefHeight(rightPane.getHeight());
 		level.setPrefWidth(rightPane.getWidth());
 		
 		rightPane.getChildren().add(level);	
 	}
+	*/
+	private HBox createMission(String missionName, int missionNumber){
+		Label mission = new Label(missionName);
+		mission.setFont(new Font("Arial", 24));
+		ImageView missionBox = new ImageView();
+		missionBox = MissionHandler.getInstance().getMissionImageCompleted(missionNumber);
+		HBox missionHBox = new HBox();
+		missionHBox.getChildren().addAll(mission,missionBox);
+		return missionHBox;
+	}
+	
+	private void setTitleOnTop(BorderPane borderPane, String title){
+		Label titleLabel = new Label(title);
+		titleLabel.setFont(new Font("Arial", 36));
+		borderPane.setTop(titleLabel);
+		borderPane.setAlignment(titleLabel, Pos.CENTER);
+	}
+	
 	private void removeAllPane(){
-		rightPane.getChildren().removeAll(gameMission1,achievement,level);
+		rightPane.getChildren().removeAll(gameMission1,achievement);
 	}
 	
 	public void missionCompletedAction(int missionNumber){
@@ -186,10 +184,10 @@ public class MissionManager {
         //Increment total achievement score
         Achievements.getInstance().achieveEasy();
         //Increment percentage of progress bar in leveling system
-        Level.getInstance().setProgressBar(0.5);
+        LevelHandler.getInstance().setProgressBar(0.5);
         //if progress bar is full then level up
-        if(Level.getInstance().getBarProgress() == 1.0){
-        	Level.getInstance().LevelUp();
+        if(LevelHandler.getInstance().getBarProgress() == 1.0){
+        	LevelHandler.getInstance().LevelUp();
         }
     }
 	

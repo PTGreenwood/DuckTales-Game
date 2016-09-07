@@ -5,8 +5,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import uq.deco2800.ducktales.features.hud.HUDManager;
+import uq.deco2800.ducktales.features.level.LevelManager;
 import uq.deco2800.ducktales.features.market.MarketManager;
 import uq.deco2800.ducktales.features.market.MarketVistaNavigator;
 import uq.deco2800.ducktales.features.missions.MissionManager;
@@ -52,6 +54,8 @@ public class GameController implements Initializable{
     private MarketManager marketManager;
     
     private MissionManager missionManager;
+    private LevelManager levelManager;
+    
     private HUDManager hudManager;
 
 
@@ -73,12 +77,14 @@ public class GameController implements Initializable{
         loadHUD();
         loadMarketPlace();
         loadMissions();
+        loadLevel();
         loadTimeDisplay();
-
+        
         // Now pass all handles for the secondary managers to the GameManager
         gameManager.setHudManager(this.hudManager);
         gameManager.setMarketManager(this.marketManager);
         gameManager.setMissionManager(this.missionManager);
+        gameManager.setLevelManager(this.levelManager);
 
         // Game Controller's job of setting up the UI is done.
     }
@@ -102,12 +108,22 @@ public class GameController implements Initializable{
     }    
     
     /**
+     * Show the Level pane
+     */
+    @FXML
+    public void showLevel() {
+    	levelManager.showLevel();
+    	closeButton.setVisible(true);
+    }
+    
+    /**
      * Hide all information windows
      */
     @FXML
     public void hideAllInfoWindows() {
         marketManager.hideMarketPlace();
         missionManager.hideMission();
+        levelManager.hideLevel();
         closeButton.setVisible(false);
     }
 
@@ -159,10 +175,13 @@ public class GameController implements Initializable{
         }
     }
     
+    /**
+     * Load the missions FXML into the game
+     */
     @FXML
     private void loadMissions() {
 
-        URL location = getClass().getResource(("/missions/missionAndAchievement.fxml"));
+        URL location = getClass().getResource("/missions/missionAndAchievement.fxml");
 
         FXMLLoader loader = new FXMLLoader(location);
 
@@ -181,6 +200,34 @@ public class GameController implements Initializable{
 
         } catch (IOException e) {
             System.err.println("Unable to load Missions");
+            e.printStackTrace();
+        }
+    }
+    
+    @FXML
+    private void loadLevel() {
+
+        URL location = getClass().getResource("/level/level.fxml");
+
+        FXMLLoader loader = new FXMLLoader(location);
+        
+
+        try {
+            // load the FXML
+            AnchorPane root = loader.load();
+            
+            levelManager = loader.getController();
+            levelManager.startLevel();
+            
+            rootPane.getChildren().add(root);
+
+            rootPane.setTopAnchor(root, 0.0);
+            rootPane.setLeftAnchor(root, 170.0);
+
+            levelManager.hideLevel();
+
+        } catch (IOException e) {
+            System.err.println("Unable to load Level");
             e.printStackTrace();
         }
     }

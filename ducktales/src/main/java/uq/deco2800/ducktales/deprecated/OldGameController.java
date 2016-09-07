@@ -9,7 +9,6 @@ import javafx.scene.layout.*;
 import uq.deco2800.ducktales.GameLoopBeta;
 import uq.deco2800.ducktales.features.achievements.Achievements;
 import uq.deco2800.ducktales.features.achievements.AchievementProgressIndicator;
-import uq.deco2800.ducktales.features.level.Level;
 import uq.deco2800.ducktales.features.missions.MissionHandler;
 import uq.deco2800.ducktales.features.inventory.InventoryManager;
 import uq.deco2800.ducktales.util.events.handlers.KeyboardEventHandlerBeta;
