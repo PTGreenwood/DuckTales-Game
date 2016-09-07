@@ -7,13 +7,13 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.layout.*;
 import uq.deco2800.ducktales.rendering.managers.AgentEntityInfoManager;
 import uq.deco2800.ducktales.rendering.RenderingInformation;
-import uq.deco2800.ducktales.rendering.sprites.hud.AnimalMenuSprite;
-import uq.deco2800.ducktales.rendering.sprites.hud.BuildingMenuSprite;
+import uq.deco2800.ducktales.features.hud.AnimalMenuSprite;
+import uq.deco2800.ducktales.features.hud.BuildingMenuSprite;
 
 import uq.deco2800.ducktales.rendering.managers.WorldEntityInfoManager;
 import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
-import uq.deco2800.ducktales.rendering.tiles.TileBeta;
+import uq.deco2800.ducktales.features.landscape.tiles.TileBeta;
 import uq.deco2800.ducktales.util.Array2D;
 import uq.deco2800.ducktales.util.events.tile.*;
 import uq.deco2800.ducktales.util.events.ui.*;

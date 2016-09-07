@@ -6,7 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
-import uq.deco2800.ducktales.core.GameLoopBeta;
+import uq.deco2800.ducktales.GameLoopBeta;
 import uq.deco2800.ducktales.features.achievements.Achievements;
 import uq.deco2800.ducktales.features.achievements.AchievementProgressIndicator;
 import uq.deco2800.ducktales.features.level.Level;

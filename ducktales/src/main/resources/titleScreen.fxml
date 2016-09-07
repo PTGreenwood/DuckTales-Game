@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="gameWindow" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="737.0" prefWidth="1295.0" xmlns="http://javafx.com/javafx/8.0.65" fx:controller="uq.deco2800.ducktales.core.DuckTalesController" stylesheets="@titleScreen.css" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="gameWindow" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="737.0" prefWidth="1295.0" xmlns="http://javafx.com/javafx/8.0.65" fx:controller="uq.deco2800.ducktales.DuckTalesController" stylesheets="@titleScreen.css" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Button fx:id="playGame0" layoutX="204.0" layoutY="213.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="395.0" text="PLAY GAME" textAlignment="CENTER" onAction="#startGame">
          <font>

@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import uq.deco2800.ducktales.core.World;
+import uq.deco2800.ducktales.World;
 
 public class AStar {
 

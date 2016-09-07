@@ -1,4 +1,4 @@
-package uq.deco2800.ducktales.core;
+package uq.deco2800.ducktales;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -92,7 +92,11 @@ public class GameController implements Initializable{
         closeButton.setVisible(false);
     }
 
+    /**
+     * Load the display for time into the game
+     */
     private void loadTimeDisplay() {
+
     }
 
     /**

@@ -1,4 +1,4 @@
-package uq.deco2800.ducktales.rendering.sprites.hud;
+package uq.deco2800.ducktales.features.hud;
 
 import javafx.scene.input.MouseButton;
 import uq.deco2800.ducktales.resources.ResourceType;

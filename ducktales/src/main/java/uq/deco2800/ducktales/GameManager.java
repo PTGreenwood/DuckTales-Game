@@ -1,4 +1,4 @@
-package uq.deco2800.ducktales.core;
+package uq.deco2800.ducktales;
 
 import uq.deco2800.ducktales.resources.ResourceType;
 

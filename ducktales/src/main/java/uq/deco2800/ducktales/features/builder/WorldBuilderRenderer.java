@@ -12,9 +12,9 @@ import uq.deco2800.ducktales.features.achievements.Achievements;
 import uq.deco2800.ducktales.features.missions.Missions;
 import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
-import uq.deco2800.ducktales.rendering.tiles.WorldBuilderTile;
+import uq.deco2800.ducktales.features.landscape.tiles.WorldBuilderTile;
 import uq.deco2800.ducktales.util.Array2D;
-import uq.deco2800.ducktales.core.World;
+import uq.deco2800.ducktales.World;
 
 import java.util.ArrayList;
 

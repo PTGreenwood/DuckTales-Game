@@ -1,7 +1,7 @@
 package uq.deco2800.ducktales.features.builder;
 
 import uq.deco2800.ducktales.resources.ResourceType;
-import uq.deco2800.ducktales.core.World;
+import uq.deco2800.ducktales.World;
 
 import static uq.deco2800.ducktales.resources.ResourceType.*;
 

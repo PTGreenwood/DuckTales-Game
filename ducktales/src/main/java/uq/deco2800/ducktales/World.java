@@ -1,26 +1,19 @@
-package uq.deco2800.ducktales.core;
+package uq.deco2800.ducktales;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 import uq.deco2800.ducktales.features.entities.Entity;
 import uq.deco2800.ducktales.features.entities.EntityManager;
 
 
 import uq.deco2800.ducktales.features.entities.agententities.AgentEntity;
-import uq.deco2800.ducktales.features.entities.agententities.Duck;
-import uq.deco2800.ducktales.features.entities.agententities.Peon;
-import uq.deco2800.ducktales.features.entities.resourceentities.Rock;
-import uq.deco2800.ducktales.features.entities.resourceentities.Tree;
-import uq.deco2800.ducktales.features.entities.worldentities.Bakery;
-import uq.deco2800.ducktales.features.entities.worldentities.Box;
 
 import uq.deco2800.ducktales.features.entities.worldentities.WorldEntity;
 import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 
 
 import uq.deco2800.ducktales.resources.ResourceType;
-import uq.deco2800.ducktales.rendering.tiles.Tile;
+import uq.deco2800.ducktales.features.landscape.tiles.Tile;
 import uq.deco2800.ducktales.util.*;
 
 import static uq.deco2800.ducktales.resources.ResourceType.*;

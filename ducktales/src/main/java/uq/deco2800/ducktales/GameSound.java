@@ -1,4 +1,4 @@
-package uq.deco2800.ducktales.core;
+package uq.deco2800.ducktales;
 
 import java.io.IOException;
 import java.net.URL;

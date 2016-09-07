@@ -1,7 +1,7 @@
 package uq.deco2800.ducktales.deprecated.world;
 
 import uq.deco2800.ducktales.resources.ResourceType;
-import uq.deco2800.ducktales.rendering.tiles.TileBeta;
+import uq.deco2800.ducktales.features.landscape.tiles.TileBeta;
 import uq.deco2800.ducktales.util.Array2D;
 
 /**

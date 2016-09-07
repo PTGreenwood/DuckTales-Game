@@ -3,7 +3,7 @@ package uq.deco2800.ducktales.deprecated.ui;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import uq.deco2800.ducktales.core.DuckTalesController;
+import uq.deco2800.ducktales.DuckTalesController;
 import uq.deco2800.ducktales.deprecated.OldGameLoop;
 
 /**

@@ -1,9 +1,10 @@
-package uq.deco2800.ducktales.rendering.managers;
+package uq.deco2800.ducktales.features.landscape;
 
 import javafx.scene.image.Image;
 import uq.deco2800.ducktales.deprecated.GameManagerBeta;
 import uq.deco2800.ducktales.deprecated.GameRendererBeta;
-import uq.deco2800.ducktales.rendering.tiles.TileBeta;
+import uq.deco2800.ducktales.features.landscape.tiles.TileBeta;
+import uq.deco2800.ducktales.rendering.managers.WorldEntityInfoManager;
 import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.Array2D;

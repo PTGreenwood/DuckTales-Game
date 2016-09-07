@@ -1,4 +1,4 @@
-package uq.deco2800.ducktales.core;
+package uq.deco2800.ducktales;
 
 import java.net.URL;
 import java.util.ResourceBundle;

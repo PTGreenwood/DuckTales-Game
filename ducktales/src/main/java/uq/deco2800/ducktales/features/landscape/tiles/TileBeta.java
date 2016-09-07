@@ -1,4 +1,4 @@
-package uq.deco2800.ducktales.rendering.tiles;
+package uq.deco2800.ducktales.features.landscape.tiles;
 
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;

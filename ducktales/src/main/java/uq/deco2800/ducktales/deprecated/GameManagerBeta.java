@@ -1,8 +1,8 @@
 package uq.deco2800.ducktales.deprecated;
 
-import uq.deco2800.ducktales.core.World;
+import uq.deco2800.ducktales.World;
 import uq.deco2800.ducktales.rendering.RenderingInformation;
-import uq.deco2800.ducktales.rendering.managers.TilesManager;
+import uq.deco2800.ducktales.features.landscape.TilesManager;
 
 import uq.deco2800.ducktales.features.inventory.InventoryManager;
 import uq.deco2800.ducktales.resources.ResourceType;
