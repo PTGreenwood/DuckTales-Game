@@ -177,6 +177,8 @@ public class GameRendererBeta extends AnimationTimer {
             case UP:
                 moveAllEntities(0.0, panSpeed);
                 break;
+            default:
+            	break;
         }
 
     }
@@ -264,7 +266,7 @@ public class GameRendererBeta extends AnimationTimer {
              * Then adjust the size of the sprites accordingly
              */
             // Get the officially defined scale from the rendering manager
-            double UIScale = renderingInformation.getUIScale();
+            double uiScale = renderingInformation.getUIScale();
 
             // adjust the size of the sprites
             for (int i = 0; i < buildingMenuSprites.size(); i++) {
@@ -293,8 +295,8 @@ public class GameRendererBeta extends AnimationTimer {
 
                 // Now set the size of the sprite based on the length in tile unit, and
                 // the variable UIScale
-                sprite.setFitHeight((sprite.getSpriteHeight() / xLength) * UIScale);
-                sprite.setFitWidth((sprite.getSpriteWidth() / yLength) * UIScale);
+                sprite.setFitHeight((sprite.getSpriteHeight() / xLength) * uiScale);
+                sprite.setFitWidth((sprite.getSpriteWidth() / yLength) * uiScale);
             }
         }
 
@@ -423,11 +425,9 @@ public class GameRendererBeta extends AnimationTimer {
         // Set the cursorImage to move together with the mouse only when
         // it is allowed to
         worldPane.setOnMouseMoved(event -> {
-            if (cursorImageFreeMoving) {
-                if (cursorImage != null) {
+            if (cursorImageFreeMoving && cursorImage != null) {
                     this.cursorImage.setLayoutX(event.getX());
                     this.cursorImage.setLayoutY(event.getY());
-                }
             }
         });
 

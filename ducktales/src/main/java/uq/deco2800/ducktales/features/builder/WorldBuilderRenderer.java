@@ -28,20 +28,20 @@ public class WorldBuilderRenderer extends AnimationTimer {
     /**
      * CONSTANTS
      */
-    private final double TRANSPARENCY = 0.5;
-    private final ResourceType[] TILE_TYPES = {
+    private static final double TRANSPARENCY = 0.5;
+    private static final ResourceType[] TILE_TYPES = {
         GRASS_1, GRASS_2, GRASS_3, GRASS_4
     };
-    private final ResourceType[] RESOURCE_TYPES = {
+    private static final ResourceType[] RESOURCE_TYPES = {
         HOSPITAL, BAKERY, BARN
     };
     // The constants to layout the UI elements
-    private double BUILDING_SCENE_H_PORTION = 85.0/100.0;
-    private double BUILDING_SCENE_V_PORTION = 85.0/100.0;
-    private double TILE_MENU_H_PORTION = 100.0 - BUILDING_SCENE_H_PORTION;
-    private double TILE_MENU_V_PORTION = BUILDING_SCENE_V_PORTION;
-    private double RESOURCE_MENU_H_PORTION = 1.0;
-    private double RESOURCE_MENU_V_PORTION = 100.0 - BUILDING_SCENE_V_PORTION;
+    private static double BUILDING_SCENE_H_PORTION = 85.0/100.0;
+    private static double BUILDING_SCENE_V_PORTION = 85.0/100.0;
+    private static double TILE_MENU_H_PORTION = 100.0 - BUILDING_SCENE_H_PORTION;
+    private static double TILE_MENU_V_PORTION = BUILDING_SCENE_V_PORTION;
+    private static double RESOURCE_MENU_H_PORTION = 1.0;
+    private static double RESOURCE_MENU_V_PORTION = 100.0 - BUILDING_SCENE_V_PORTION;
 
 
     /** General rendering variables */
@@ -58,7 +58,7 @@ public class WorldBuilderRenderer extends AnimationTimer {
     private HBox resourceMenu;
 
     /** The SCALE/zoom factor */
-    private double SCALE = 0.2;
+    private static double SCALE = 0.2;
 
     /**
      * The manager for World builder

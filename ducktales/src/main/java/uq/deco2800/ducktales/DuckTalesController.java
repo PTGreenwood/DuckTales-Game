@@ -34,7 +34,9 @@ public class DuckTalesController implements Initializable {
 
 	@FXML
 	//gameWindow, contentPane & mainMenuPane are referenced in ducktales.fxml
-	private AnchorPane gameWindow, contentPane, mainMenuPane;
+	private AnchorPane gameWindow;
+	private AnchorPane contentPane;
+	private AnchorPane mainMenuPane;
 
 
 
@@ -47,8 +49,13 @@ public class DuckTalesController implements Initializable {
 
 
 
-	@Deprecated
+	
 	//weatherEffectPane referenced in ducktales.fxml
+	/**
+	 * TO BE REMOVED EVENTUALLY
+	 * @deprecated
+	 */
+	@Deprecated
 	@FXML
 	private Pane weatherEffectPane;
 
