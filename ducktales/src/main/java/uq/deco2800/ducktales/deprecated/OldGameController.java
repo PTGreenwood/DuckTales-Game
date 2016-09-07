@@ -187,13 +187,13 @@ public class OldGameController {
     /**
      * Records achievements and increases level.
      * 
-     * @param i
+     * @param mission number
      * 			Index of achievement completed.
      */
-    private void missionCompletedAction(int i){
+    private void missionCompletedAction(int missionNumber){
     	
     	//Untick mission2 box in Achievement window of Gamebeta when marketplace is clicked
-        Missions.getInstance().MissionImageCompleted(i);
+        Missions.getInstance().MissionImageCompleted(missionNumber);
         //Increment percentage of progress indicator in achievement
         AchievementProgressIndicator.getInstance().setProgressPercentage(Missions.getInstance().getMissionCount());
         //Increment total achievement score

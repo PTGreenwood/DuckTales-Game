@@ -16,6 +16,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import uq.deco2800.ducktales.features.achievements.Achievements;
 import javafx.scene.control.ProgressIndicator;
@@ -184,17 +185,19 @@ public class MissionController {
 		achieveLabel.setFont(new Font("Arial", 24));
 		Label achieveTop = new Label("Achievement");
 		achieveTop.setFont(new Font("Arial", 36));
-		
-		
+				
 		Label pi1Label = new Label("GameBeta Mission Progress");
 		ProgressIndicator  pi1 = new ProgressIndicator();
 		pi1 = piMain.getProgressIndicator();
+		VBox achieveVBox1 = new VBox();
+		achieveVBox1.getChildren().addAll(pi1,pi1Label);
 		
 		
 		achieveGrid.setVgap(10);
 		achieveGrid.setPadding(new Insets(10, 10, 10, 10));
-		achieveGrid.add(pi1, 0, 1);
-		achieveGrid.add(pi1Label, 0, 2);
+		achieveGrid.add(achieveVBox1, 0, 1);
+		//achieveGrid.add(pi1, 0, 1);
+		//achieveGrid.add(pi1Label, 0, 2);
 		
 		achievement = loader.load();
 		achievement.setTop(achieveTop);
