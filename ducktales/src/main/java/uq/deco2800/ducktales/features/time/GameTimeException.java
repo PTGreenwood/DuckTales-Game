@@ -1,4 +1,4 @@
-package uq.deco2800.ducktales.core.world;
+package uq.deco2800.ducktales.features.time;
 
 public class GameTimeException extends RuntimeException {
       //Parameterless Constructor

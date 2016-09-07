@@ -15,13 +15,9 @@ import uq.deco2800.ducktales.features.missions.Missions;
 import uq.deco2800.ducktales.deprecated.OldGameManager;
 import uq.deco2800.ducktales.features.weather.Weather;
 import uq.deco2800.ducktales.features.weather.WeatherEffect;
-import uq.deco2800.ducktales.core.world.World;
 import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
-import uq.deco2800.ducktales.ui.*;
-import uq.deco2800.ducktales.world.*;
 import uq.deco2800.ducktales.features.builder.WorldBuilderManager;
 import uq.deco2800.ducktales.features.builder.WorldBuilderRenderer;
-import uq.deco2800.ducktales.weather.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -30,7 +26,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.stage.Stage;
-import uq.deco2800.ducktales.market.*;
 
 /**
  * This class handles the title screen and main menu.

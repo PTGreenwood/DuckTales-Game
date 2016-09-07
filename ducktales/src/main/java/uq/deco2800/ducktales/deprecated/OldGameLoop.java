@@ -1,8 +1,8 @@
 package uq.deco2800.ducktales.deprecated;
 
 import uq.deco2800.ducktales.features.entities.EntityManager;
-import uq.deco2800.ducktales.core.world.World;
-import uq.deco2800.ducktales.core.world.GameTime;
+import uq.deco2800.ducktales.core.World;
+import uq.deco2800.ducktales.features.time.GameTime;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 

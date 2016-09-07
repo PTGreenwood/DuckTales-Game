@@ -1,6 +1,6 @@
 package uq.deco2800.ducktales.features.builder;
 
-import uq.deco2800.ducktales.core.world.World;
+import uq.deco2800.ducktales.core.World;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 

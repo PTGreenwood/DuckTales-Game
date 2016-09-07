@@ -1,11 +1,11 @@
-package uq.deco2800.ducktales.core;
+package uq.deco2800.ducktales.deprecated;
 
-import uq.deco2800.ducktales.rendering.managers.RenderingManager;
+import uq.deco2800.ducktales.core.World;
+import uq.deco2800.ducktales.rendering.RenderingInformation;
 import uq.deco2800.ducktales.rendering.managers.TilesManager;
 
 import uq.deco2800.ducktales.resources.InventoryManager;
 import uq.deco2800.ducktales.resources.ResourceType;
-import uq.deco2800.ducktales.core.world.WorldBeta;
 
 import static uq.deco2800.ducktales.resources.ResourceType.*;
 
@@ -29,7 +29,7 @@ public class GameManagerBeta {
     private static final int DEFAULT_WORLD_HEIGHT = 30;
 
     /** The game world */
-    private WorldBeta world;
+    private World world;
 
     /** The rendering engine */
     private GameRendererBeta renderer;
@@ -38,7 +38,7 @@ public class GameManagerBeta {
     private InventoryManager inventoryManager;
 
     /** The class holding rendering information */
-    private RenderingManager renderingManager;
+    private RenderingInformation renderingInformation;
 
     /** The class managing the information of all the tiles */
     private TilesManager tilesManager;
@@ -64,7 +64,7 @@ public class GameManagerBeta {
      * @param preloadedWorld
      *          The world to be loaded into the game
      */
-    public GameManagerBeta(WorldBeta preloadedWorld) {
+    public GameManagerBeta(World preloadedWorld) {
         this.world = preloadedWorld;
     }
 
@@ -72,27 +72,27 @@ public class GameManagerBeta {
      * Officially start the game
      */
     public void startGame() {
-        // Initialize the renderingManager and the world
-        if (renderingManager == null) {
-            // No rendering info is loaded. start a default renderingManager
-            renderingManager = new RenderingManager(
+        // Initialize the renderingInformation and the world
+        if (renderingInformation == null) {
+            // No rendering info is loaded. start a default renderingInformation
+            renderingInformation = new RenderingInformation(
                     DEFAULT_SCALE, DEFAULT_WORLD_WIDTH, DEFAULT_WORLD_HEIGHT);
         }
         if (world == null) {
             // No world has been pre-loaded. Start a default world
-            this.world = new WorldBeta(
+            this.world = new World(
                     "New World",
-                    renderingManager.getWorldTileWidth(),
-                    renderingManager.getWorldTileHeight()
+                    renderingInformation.getWorldTileWidth(),
+                    renderingInformation.getWorldTileHeight()
             );
         }
 
         // Setup the rendering manager and world for the renderer
-        renderer.setWorld(this.world);
-        renderer.setRenderingManager(this.renderingManager);
+//        renderer.setWorld(this.world);
+        renderer.setRenderingInformation(this.renderingInformation);
 
         // Setup the Tiles Manager to manage all the tiles in the world
-        tilesManager = new TilesManager(this, world.getTiles(), this.renderer);
+//        tilesManager = new TilesManager(this, world.getTiles(), this.renderer);
 
         // Start the rendering engine
         this.renderer.start();
@@ -104,7 +104,7 @@ public class GameManagerBeta {
      *
      * @return the current world of the game
      */
-    public WorldBeta getWorld() {
+    public World getWorld() {
         return this.world;
     }
 
@@ -143,7 +143,7 @@ public class GameManagerBeta {
      *
      * @param world
      */
-    public void setWorld(WorldBeta world) {
+    public void setWorld(World world) {
         this.world = world;
     }
 

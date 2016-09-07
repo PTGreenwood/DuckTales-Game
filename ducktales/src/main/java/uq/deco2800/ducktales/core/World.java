@@ -1,4 +1,4 @@
-package uq.deco2800.ducktales.core.world;
+package uq.deco2800.ducktales.core;
 
 import java.util.ArrayList;
 import java.util.Random;

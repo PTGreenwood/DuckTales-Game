@@ -1,6 +1,6 @@
 package uq.deco2800.ducktales.core;
 
-import uq.deco2800.ducktales.core.world.GameTime;
+import uq.deco2800.ducktales.features.time.GameTime;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 

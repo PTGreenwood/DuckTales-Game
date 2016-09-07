@@ -4,7 +4,7 @@ import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import uq.deco2800.ducktales.core.GameRendererBeta;
+import uq.deco2800.ducktales.deprecated.GameRendererBeta;
 
 /**
  * Created by Khoi on 4/09/2016.

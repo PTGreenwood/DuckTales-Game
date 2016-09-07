@@ -1,16 +1,15 @@
-package uq.deco2800.ducktales.core;
+package uq.deco2800.ducktales.deprecated;
 
 import javafx.animation.AnimationTimer;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.*;
-import uq.deco2800.ducktales.rendering.engine.WorldEntityRenderingInfo;
 import uq.deco2800.ducktales.rendering.managers.AgentEntityInfoManager;
+import uq.deco2800.ducktales.rendering.RenderingInformation;
 import uq.deco2800.ducktales.rendering.sprites.hud.AnimalMenuSprite;
 import uq.deco2800.ducktales.rendering.sprites.hud.BuildingMenuSprite;
 
-import uq.deco2800.ducktales.rendering.managers.RenderingManager;
 import uq.deco2800.ducktales.rendering.managers.WorldEntityInfoManager;
 import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
@@ -80,8 +79,8 @@ public class GameRendererBeta extends AnimationTimer {
      * VARIABLES FOR RENDERING
      */
     // Variables managing rendering information
-    private RenderingManager renderingManager;
-    private WorldEntityRenderingInfo entityRenderingInfo;
+    private RenderingInformation renderingInformation;
+//    private WorldEntityRenderingInfo entityRenderingInfo;
     // The very first point to start render the tiles
     private double startingX;
     private double startingY;
@@ -209,11 +208,11 @@ public class GameRendererBeta extends AnimationTimer {
      * Set the rendering manager, which will provide the renderer with rendering
      * information such as scale factors and different sizes
      *
-     * @param renderingManager
+     * @param renderingInformation
      *          The rendering manager for the game
      */
-    public void setRenderingManager(RenderingManager renderingManager) {
-        this.renderingManager = renderingManager;
+    public void setRenderingInformation(RenderingInformation renderingInformation) {
+        this.renderingInformation = renderingInformation;
     }
 
     /*---------*
@@ -265,7 +264,7 @@ public class GameRendererBeta extends AnimationTimer {
              * Then adjust the size of the sprites accordingly
              */
             // Get the officially defined scale from the rendering manager
-            double UIScale = renderingManager.getUIScale();
+            double UIScale = renderingInformation.getUIScale();
 
             // adjust the size of the sprites
             for (int i = 0; i < buildingMenuSprites.size(); i++) {
@@ -313,7 +312,7 @@ public class GameRendererBeta extends AnimationTimer {
         this.startingX = root.getPrefWidth() / 2;
         this.startingY = root.getPrefHeight() * 0.05;
 
-        this.generalScale = renderingManager.getMainScaleFactor();
+        this.generalScale = renderingInformation.getMainScaleFactor();
 
         this.renderedEntities = new ArrayList<>();
 
@@ -447,7 +446,7 @@ public class GameRendererBeta extends AnimationTimer {
             this.cursorImage.setLayoutY(event.getStartingY());
 
             // Scale the cursor image by the scale given by rendering manager
-            double scale = renderingManager.getAnimalScale();
+            double scale = renderingInformation.getAnimalScale();
             this.cursorImage.setFitHeight(sprite.getHeight() * scale);
             this.cursorImage.setFitWidth(sprite.getWidth() * scale);
 
@@ -478,7 +477,7 @@ public class GameRendererBeta extends AnimationTimer {
             this.cursorImage.setLayoutY(event.getStartingY());
 
             // Scale the cursor image by the scale given by rendering manager
-            double scale = renderingManager.getBuildingScale();
+            double scale = renderingInformation.getBuildingScale();
             this.cursorImage.setFitHeight(sprite.getHeight() * scale);
             this.cursorImage.setFitWidth(sprite.getWidth() * scale);
 
@@ -646,8 +645,8 @@ public class GameRendererBeta extends AnimationTimer {
      */
     private void moveAllEntities(double xDirection, double yDirection) {
         // The array of world tiles
-        Array2D<TileBeta> tiles = manager.getWorld().getTiles();
-
+//        Array2D<TileBeta> tiles = manager.getWorld().getTiles();
+        Array2D<TileBeta> tiles = new Array2D<>(0, 0);
         // temporary variable to hold all the sprites later
         ImageView entity;
 

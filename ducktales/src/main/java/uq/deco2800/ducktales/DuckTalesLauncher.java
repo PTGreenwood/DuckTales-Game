@@ -1,5 +1,6 @@
-package uq.deco2800.ducktales.core;
+package uq.deco2800.ducktales;
 
+import uq.deco2800.ducktales.core.DuckTalesController;
 import uq.deco2800.ducktales.deprecated.ui.MenuKeyboardHandler;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

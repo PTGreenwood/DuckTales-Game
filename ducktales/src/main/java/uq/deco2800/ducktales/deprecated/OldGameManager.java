@@ -5,7 +5,7 @@ import java.util.List;
 
 import uq.deco2800.ducktales.resources.InventoryManager;
 import uq.deco2800.ducktales.util.Point;
-import uq.deco2800.ducktales.core.world.World;
+import uq.deco2800.ducktales.core.World;
 
 /**
  * Manages the interaction between the user and the game.

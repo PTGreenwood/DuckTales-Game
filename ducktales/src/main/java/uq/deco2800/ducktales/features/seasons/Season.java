@@ -1,4 +1,4 @@
-package uq.deco2800.ducktales.core.world;
+package uq.deco2800.ducktales.features.seasons;
 
 /**
  * Holds the initial enum data set.

@@ -13,9 +13,8 @@ import uq.deco2800.ducktales.features.missions.Missions;
 import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.rendering.tiles.WorldBuilderTile;
-import uq.deco2800.ducktales.rendering.engine.WorldEntityRenderingInfo;
 import uq.deco2800.ducktales.util.Array2D;
-import uq.deco2800.ducktales.core.world.World;
+import uq.deco2800.ducktales.core.World;
 
 import java.util.ArrayList;
 
@@ -60,11 +59,6 @@ public class WorldBuilderRenderer extends AnimationTimer {
 
     /** The SCALE/zoom factor */
     private double SCALE = 0.2;
-
-    /**
-     * The class containing info to render different types of entities
-     */
-    WorldEntityRenderingInfo renderingInfo;
 
     /**
      * The manager for World builder
@@ -120,7 +114,6 @@ public class WorldBuilderRenderer extends AnimationTimer {
         this.resourceSpriteRegister = ResourceSpriteRegister.getInstance();
         this.tileHeight = ResourceSpriteRegister.TILE_HEIGHT;
         this.tileWidth = ResourceSpriteRegister.TILE_WIDTH;
-        this.renderingInfo = WorldEntityRenderingInfo.getInstance();
         this.addedEntities = new ArrayList<>();
 
         // Setup the initial point where the rendering will start from
@@ -162,7 +155,6 @@ public class WorldBuilderRenderer extends AnimationTimer {
         hoveringImage.setFitWidth(image.getWidth() * SCALE);
 
         hoveringImage.setY(-hoveringImage.getFitHeight());
-        hoveringImage.setX(-renderingInfo.getStartPoint(entityType));
     }
 
     /**

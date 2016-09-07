@@ -1,7 +1,5 @@
 package uq.deco2800.ducktales.core;
 
-import uq.deco2800.ducktales.core.world.World;
-
 /**
  * <p>
  *     This class is responsible for controlling GUI logic - it will  have a
@@ -16,7 +14,7 @@ public class GameManager {
     /**
      * CONSTANTS
      */
-    
+
 
     /** The model of the game */
     private World world;

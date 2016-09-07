@@ -1,8 +1,8 @@
 package uq.deco2800.ducktales.rendering.managers;
 
 import javafx.scene.image.Image;
-import uq.deco2800.ducktales.core.GameManagerBeta;
-import uq.deco2800.ducktales.core.GameRendererBeta;
+import uq.deco2800.ducktales.deprecated.GameManagerBeta;
+import uq.deco2800.ducktales.deprecated.GameRendererBeta;
 import uq.deco2800.ducktales.rendering.tiles.TileBeta;
 import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 import uq.deco2800.ducktales.resources.ResourceType;

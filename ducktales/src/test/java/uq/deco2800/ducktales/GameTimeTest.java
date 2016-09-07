@@ -1,8 +1,8 @@
 package uq.deco2800.ducktales;
 
-import uq.deco2800.ducktales.core.world.GameTime;
-import uq.deco2800.ducktales.core.world.Season;
-import uq.deco2800.ducktales.core.world.GameTimeException;
+import uq.deco2800.ducktales.features.time.GameTime;
+import uq.deco2800.ducktales.features.seasons.Season;
+import uq.deco2800.ducktales.features.time.GameTimeException;
 
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;

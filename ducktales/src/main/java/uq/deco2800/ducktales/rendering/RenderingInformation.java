@@ -1,4 +1,4 @@
-package uq.deco2800.ducktales.rendering.managers;
+package uq.deco2800.ducktales.rendering;
 
 /**
  * This class contains the information about the size of the world, as well
@@ -8,7 +8,7 @@ package uq.deco2800.ducktales.rendering.managers;
  *
  * @author khoiphan21
  */
-public class RenderingManager {
+public class RenderingInformation {
 
     /** The width and height of the world, in tile units */
     private int worldTileWidth;
@@ -35,7 +35,7 @@ public class RenderingManager {
     private double UIScale;
 
     /**
-     * Construct a {@link RenderingManager} class with the given initial scale
+     * Construct a {@link RenderingInformation} class with the given initial scale
      * factor, width and height
      *
      * @param scaleFactor
@@ -45,7 +45,7 @@ public class RenderingManager {
      * @param height
      *          The height of the world, in number of tiles
      */
-    public RenderingManager(double scaleFactor, int width, int height) {
+    public RenderingInformation(double scaleFactor, int width, int height) {
         this.worldTileWidth = width;
         this.worldTileHeight = height;
         this.mainScaleFactor = scaleFactor;
