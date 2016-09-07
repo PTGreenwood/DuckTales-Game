@@ -40,6 +40,14 @@ public class BuildingTest {
 		assertTrue("Entity 0 incorrect!", entities.get(0).equals(entity3));
 		assertTrue("Entity 1 incorrect!", entities.get(1).equals(entity1));
 		assertTrue("Entity 2 incorrect!", entities.get(2).equals(entity2));
+		
+		entity1.tick();
+		entity2.tick();
+		entity3.tick();
+		
+		assertTrue("Entity 0 incorrect!", entities.get(0).equals(entity3));
+		assertTrue("Entity 1 incorrect!", entities.get(1).equals(entity1));
+		assertTrue("Entity 2 incorrect!", entities.get(2).equals(entity2));
 	}
 	
 	@Test
@@ -72,6 +80,18 @@ public class BuildingTest {
 		assertTrue("Wrong returned resources", entity1.resourcesReturnWood() == (2));
 		assertTrue("Wrong resources to build", entity3.resourcesBuildStone() == 2);
 		assertTrue("Wrong time", entity2.timeToBuild() == 2);
+		
+		assertTrue("Correct Health", entity3.GetHealth() == 1000);
+		
+		// Check update health
+		entity3.ChangeHealth(10);
+		assertTrue("Correct Health", entity3.GetHealth() == 10);
+		entity3.ChangeHealth(0);
+		assertTrue("Correct Health", entity3.GetHealth() == 10);
+		entity3.ChangeHealth(978000);
+		assertTrue("Correct Health", entity3.GetHealth() == 978000);
+		entity3.ChangeHealth(-10);
+		assertTrue("Correct Health", entity3.GetHealth() == 978000);
 	}
 	
 	@Test
@@ -524,9 +544,13 @@ public class BuildingTest {
 		
 		Collections.sort(entities);
 
+		foreground.tick();
+		background.tick();
 		
 		assertTrue("Entity 1 incorrect!", entities.get(0).equals(background));
-		assertTrue("Entity 2 incorrect!", entities.get(1).equals(foreground));	
+		assertTrue("Entity 2 incorrect!", entities.get(1).equals(foreground));
+		
+		
 	}
 
 	

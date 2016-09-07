@@ -16,7 +16,7 @@ public abstract class Building extends WorldEntity {
 
 	protected static int STONERESOURCES;
 	
-	protected static enum production {
+	protected enum production {
 		WOOD, STONE, ORE, FOOD, NULL
 	}
 	
