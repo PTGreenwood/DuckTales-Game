@@ -14,25 +14,20 @@ public class RenderingInformation {
     private int worldTileWidth;
     private int worldTileHeight;
 
-//    /** The actual pixel width and height of a tile */
-//    public static final int TileHeight = 104;
-//    public static final int TileWidth = 170;
-
-
     /** Scaling factors */
     // THIS IS THE MAIN SCALE FACTOR TO SCALE ALL IN-GAME SPRITES
-    private double mainScaleFactor;
+    public static double mainScaleFactor = 0.4;
     // just brainstorming. don't judge pls
-    private double agentScale;
+    public static double agentScale = 1.0;
     // the scale of the buildings to be displayed in-game. technically
     // should be the same as mainScaleFactor, but this can be fixed later
     // when the building designers have time to fix the pixel ratio
-    private double buildingScale;
+    public static double buildingScale = 1.2;
     // the scale for the animals, optimally 1, but for now this will make sure
     // the sprites look alright first
-    private double animalScale;
+    public static double animalScale = 0.8;
     // THE MAIN SCALE FOR UI ELEMENTS
-    private double UIScale;
+    public static double UIScale = 2.0;
 
     /**
      * Construct a {@link RenderingInformation} class with the given initial scale
@@ -45,15 +40,11 @@ public class RenderingInformation {
      * @param height
      *          The height of the world, in number of tiles
      */
+    @Deprecated
     public RenderingInformation(double scaleFactor, int width, int height) {
         this.worldTileWidth = width;
         this.worldTileHeight = height;
         this.mainScaleFactor = scaleFactor;
-
-        // TODO ADJUST THESE SCALE FACTORS AS DEEM FIT
-        this.UIScale = 2;
-        this.buildingScale = 1.2;
-        this.animalScale = 0.8;
     }
 
     /*----------

@@ -1,4 +1,4 @@
-package uq.deco2800.ducktales.rendering.managers;
+package uq.deco2800.ducktales.rendering.info;
 
 import uq.deco2800.ducktales.resources.ResourceType;
 
@@ -17,10 +17,10 @@ import static uq.deco2800.ducktales.resources.ResourceType.*;
  * Created on 3/09/2016.
  * @author khoiphan21
  */
-public class WorldEntityInfoManager {
+public class WorldEntityInfo {
     /** The instance and its getter method of this class */
-    private static final WorldEntityInfoManager INSTANCE = new WorldEntityInfoManager();
-    public static WorldEntityInfoManager getInstance() {
+    private static final WorldEntityInfo INSTANCE = new WorldEntityInfo();
+    public static WorldEntityInfo getInstance() {
         return INSTANCE;
     }
 
@@ -70,7 +70,7 @@ public class WorldEntityInfoManager {
     /**
      * Instantiate a world entity info manager and register all world entities
      */
-    private WorldEntityInfoManager() {
+    private WorldEntityInfo() {
         buildingSizeInfo = new HashMap<>();
 
         checkInvariants();
@@ -105,7 +105,7 @@ public class WorldEntityInfoManager {
         // The building type given is in the registry. Check the requested index
         if (index != XLength && index != YLength) {
             throw new Exception("The index given must be " +
-                    "WorldEntityInfoManager.XLength or YLength. Given index" +
+                    "WorldEntityInfo.XLength or YLength. Given index" +
                     "is: " + index);
         }
 

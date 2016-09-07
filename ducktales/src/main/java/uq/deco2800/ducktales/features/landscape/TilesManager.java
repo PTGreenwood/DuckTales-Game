@@ -4,7 +4,7 @@ import javafx.scene.image.Image;
 import uq.deco2800.ducktales.deprecated.GameManagerBeta;
 import uq.deco2800.ducktales.deprecated.GameRendererBeta;
 import uq.deco2800.ducktales.features.landscape.tiles.TileBeta;
-import uq.deco2800.ducktales.rendering.managers.WorldEntityInfoManager;
+import uq.deco2800.ducktales.rendering.info.WorldEntityInfo;
 import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.Array2D;
@@ -23,7 +23,7 @@ public class TilesManager {
     private GameRendererBeta renderer;
 
     /** The managers that manage different rendering information */
-    private WorldEntityInfoManager worldEntityInfoManager;
+    private WorldEntityInfo worldEntityInfo;
 
     /**
      * Create a new tile manager with the given handles on the OldGameManager
@@ -40,7 +40,7 @@ public class TilesManager {
         this.renderer = renderer;
 
         // Initiate the info manager for world entities
-        worldEntityInfoManager = WorldEntityInfoManager.getInstance();
+        worldEntityInfo = WorldEntityInfo.getInstance();
 
     }
 
@@ -69,13 +69,13 @@ public class TilesManager {
 
         // Get the x- and y-length of the building type given
         try {
-            xLength = worldEntityInfoManager.getBuildingLength(
+            xLength = worldEntityInfo.getBuildingLength(
                     buildingType,
-                    worldEntityInfoManager.XLength
+                    worldEntityInfo.XLength
             );
-            yLength = worldEntityInfoManager.getBuildingLength(
+            yLength = worldEntityInfo.getBuildingLength(
                     buildingType,
-                    worldEntityInfoManager.YLength
+                    worldEntityInfo.YLength
             );
         } catch (Exception e) {
             System.out.println(e.getMessage());

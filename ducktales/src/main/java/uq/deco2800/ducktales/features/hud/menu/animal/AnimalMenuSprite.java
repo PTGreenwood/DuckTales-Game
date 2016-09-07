@@ -1,6 +1,7 @@
-package uq.deco2800.ducktales.features.hud;
+package uq.deco2800.ducktales.features.hud.menu.animal;
 
 import javafx.scene.input.MouseButton;
+import uq.deco2800.ducktales.features.hud.HUDSprite;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.events.ui.AnimalsMenuSelectedEvent;
 
