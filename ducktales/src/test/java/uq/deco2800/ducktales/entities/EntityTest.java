@@ -2,18 +2,20 @@ package uq.deco2800.ducktales.entities;
 
 import static org.junit.Assert.assertTrue;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import org.junit.Test;
 
-import uq.deco2800.ducktales.entities.Entity;
-import uq.deco2800.ducktales.entities.worldentities.Bakery;
-import uq.deco2800.ducktales.entities.worldentities.Box;
-import uq.deco2800.ducktales.entities.worldentities.House;
-import uq.deco2800.ducktales.entities.worldentities.LongBox;
-import uq.deco2800.ducktales.entities.worldentities.Observatory;
+import uq.deco2800.ducktales.features.entities.Entity;
+import uq.deco2800.ducktales.features.entities.worldentities.Bakery;
+import uq.deco2800.ducktales.features.entities.worldentities.Box;
+import uq.deco2800.ducktales.features.entities.worldentities.House;
+import uq.deco2800.ducktales.features.entities.worldentities.LongBox;
+import uq.deco2800.ducktales.features.entities.worldentities.Observatory;
 import uq.deco2800.ducktales.resources.ResourceType;
 
 public class EntityTest {
@@ -248,8 +250,24 @@ public class EntityTest {
 		Entity box = new Box(5, 4);
 		Entity background = new House(4, 3);
 			
-		box.updateType(ResourceType.HOUSE);
-		background.updateType(ResourceType.FARMHOUSE);
+		// Use reflection to test protected method
+		Method test;
+		try {
+			test = Entity.class.getDeclaredMethod("updateType", ResourceType.class);
+			test.setAccessible(true);
+			test.invoke(box, ResourceType.HOUSE);
+			test.invoke(background, ResourceType.FARMHOUSE);
+		} catch (NoSuchMethodException e) {
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			e.printStackTrace();
+		}
 		
 		assertTrue("box incorrect!", box.getType().toString().equals("HOUSE"));
 		assertTrue("background incorrect", background.getType().toString().equals("FARMHOUSE"));

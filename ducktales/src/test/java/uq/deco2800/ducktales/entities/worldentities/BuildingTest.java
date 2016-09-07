@@ -8,19 +8,8 @@ import java.util.List;
 
 import org.junit.Test;
 
-import uq.deco2800.ducktales.entities.worldentities.Bakery;
-import uq.deco2800.ducktales.entities.worldentities.Barn;
-import uq.deco2800.ducktales.entities.worldentities.Box;
-import uq.deco2800.ducktales.entities.worldentities.Cemetery;
-import uq.deco2800.ducktales.entities.worldentities.Farmhouse;
-import uq.deco2800.ducktales.entities.worldentities.Forge;
-import uq.deco2800.ducktales.entities.worldentities.Hospital;
-import uq.deco2800.ducktales.entities.worldentities.House;
-import uq.deco2800.ducktales.entities.Entity;
-import uq.deco2800.ducktales.entities.worldentities.LongBox;
-import uq.deco2800.ducktales.entities.worldentities.Observatory;
-import uq.deco2800.ducktales.entities.worldentities.Sawmill;
-import uq.deco2800.ducktales.entities.worldentities.WorldEntity;
+import uq.deco2800.ducktales.features.entities.worldentities.*;
+import uq.deco2800.ducktales.features.entities.Entity;
 
 public class BuildingTest {
 	

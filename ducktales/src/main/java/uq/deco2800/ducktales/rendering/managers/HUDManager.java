@@ -1,6 +1,6 @@
 package uq.deco2800.ducktales.rendering.managers;
 
-import uq.deco2800.ducktales.GameRendererBeta;
+import uq.deco2800.ducktales.deprecated.GameRendererBeta;
 
 /**
  * This class manages all the UI components of the HUD for the {@link GameRendererBeta}
