@@ -1,8 +1,10 @@
 package uq.deco2800.ducktales.features.hud.menu;
 
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import uq.deco2800.ducktales.features.hud.menu.animal.AnimalMenuSprite;
 import uq.deco2800.ducktales.features.hud.menu.building.BuildingMenuSprite;
 import uq.deco2800.ducktales.rendering.RenderingInformation;
@@ -14,7 +16,6 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import static uq.deco2800.ducktales.resources.ResourceType.*;
-import static uq.deco2800.ducktales.resources.ResourceType.DUCK_1_1;
 
 /**
  * This manager manages the menu section of the HUD
@@ -35,12 +36,13 @@ public class MenuManager implements Initializable{
             SHEEP, COW_FRONT_RIGHT, DUCK_1_1
     };
 
-    /** The root pane to add all menu items into */
-    private AnchorPane rootPane;
-
     /** GUI containers */
-    private HBox buildingsMenu;
-    private HBox animalsMenu;
+    @FXML
+    private AnchorPane menuPane; // The parent Node for all menus
+    @FXML
+    private HBox buildingsMenu, animalsMenu;
+    @FXML
+    private VBox menuButtons;
 
     /** The lists of menu sprites */
     private ArrayList<BuildingMenuSprite> buildingMenuSprites;
@@ -50,20 +52,36 @@ public class MenuManager implements Initializable{
     private WorldEntityInfo worldEntityInfo;
 
     /**
-     * Instantiating a helper manager to help manage the menu section of the HUD
-     * @param rootPane
-     *          The pane to add all menu sprites into
+     * This method is called when FXML Loader instantiates this class
+     *
+     * @param location
+     * @param resources
      */
-    public MenuManager(AnchorPane rootPane) {
-        this.rootPane = rootPane;
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
         this.worldEntityInfo = WorldEntityInfo.getInstance();
 
         // Instantiating and set up the menus
         setupMenus();
 
-        // Add the menus to the root pane
-        rootPane.getChildren().addAll(this.buildingsMenu, this.animalsMenu);
+    }
 
+    /**
+     * Show the buildings menu
+     */
+    @FXML
+    public void showBuildingsMenu() {
+        buildingsMenu.setVisible(true);
+        animalsMenu.setVisible(false);
+    }
+
+    /**
+     * Show the animals menu
+     */
+    @FXML
+    public void showAnimalsMenu() {
+        buildingsMenu.setVisible(false);
+        animalsMenu.setVisible(true);
     }
 
     /**
@@ -72,8 +90,6 @@ public class MenuManager implements Initializable{
     private void setupMenus() {
         this.animalMenuSprites = new ArrayList<>();
         this.buildingMenuSprites = new ArrayList<>();
-        this.animalsMenu = new HBox();
-        this.buildingsMenu = new HBox();
 
         // Add the building sprites
         for (int i = 0; i < BUILDINGS.length; i++) {
@@ -100,6 +116,9 @@ public class MenuManager implements Initializable{
         setupBuildingsMenu();
         setupAnimalsMenu();
 
+        // Initially hide all the menus
+        buildingsMenu.setVisible(false);
+        animalsMenu.setVisible(false);
     }
 
     /**
@@ -175,15 +194,5 @@ public class MenuManager implements Initializable{
         }
     }
 
-    /**
-     * This method is called when FXML Loader instantiates this class
-     *
-     * TODO: constructor logic will be moved to this method later
-     * @param location
-     * @param resources
-     */
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
 
-    }
 }

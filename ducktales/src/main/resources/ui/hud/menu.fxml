@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane fx:id="menuPane" prefHeight="180.0" prefWidth="1200.0" stylesheets="@menu.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uq.deco2800.ducktales.features.hud.menu.MenuManager">
+   <children>
+      <VBox fx:id="menuButtons" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="150.0" spacing="20.0" styleClass="menuButtons" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#showBuildingsMenu" prefWidth="90.0" text="Buildings" />
+            <Button mnemonicParsing="false" onAction="#showAnimalsMenu" prefWidth="90.0" text="Animals" />
+         </children>
+      </VBox>
+      <HBox fx:id="buildingsMenu" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" styleClass="menu" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <HBox fx:id="animalsMenu" alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" styleClass="menu" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+   </children>
+</AnchorPane>
