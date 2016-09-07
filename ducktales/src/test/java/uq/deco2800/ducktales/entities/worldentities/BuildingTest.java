@@ -9,6 +9,7 @@ import java.util.List;
 import org.junit.Test;
 
 import uq.deco2800.ducktales.features.entities.worldentities.*;
+import uq.deco2800.ducktales.features.entities.worldentities.Building.production;
 import uq.deco2800.ducktales.features.entities.Entity;
 
 public class BuildingTest {

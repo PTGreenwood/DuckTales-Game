@@ -5,9 +5,11 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import uq.deco2800.ducktales.features.entities.worldentities.Bakery;
+import uq.deco2800.ducktales.features.entities.worldentities.Building.production;
 import uq.deco2800.ducktales.features.entities.worldentities.Constructor;
 import uq.deco2800.ducktales.features.entities.worldentities.Forge;
 import uq.deco2800.ducktales.features.entities.worldentities.House;
+import uq.deco2800.ducktales.features.entities.worldentities.Sawmill;
 
 public class ConstructorTest {
 	
@@ -46,9 +48,18 @@ public class ConstructorTest {
 		Constructor constructor = new Constructor();
 		Bakery bakery = new Bakery(2,2);
 		House house = new House(4,7);
+		Sawmill sawmill = new Sawmill(7, 1);
 		
 		assertTrue("Bakery getStone incorrect!", constructor.getStone(bakery) == (4));
 		assertTrue("House getWood incorrect!", constructor.getWood(house) == (4));
 		assertTrue("House getTime incorrect!", constructor.getTime(house) == (2));
+		assertTrue("House getproductionType incorrect", 
+				constructor.getResourcesProductionAmount(house) == 0);
+		assertTrue("House getproductionType incorrect", 
+				constructor.getResourcesProductionType(house) == production.NULL);
+		assertTrue("House getproductionType incorrect", 
+				constructor.getResourcesProductionAmount(sawmill) == 5);
+		assertTrue("House getproductionType incorrect", 
+				constructor.getResourcesProductionType(sawmill) == production.WOOD);
 	}
 }
