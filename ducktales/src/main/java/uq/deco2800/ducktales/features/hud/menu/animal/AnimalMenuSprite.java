@@ -3,7 +3,7 @@ package uq.deco2800.ducktales.features.hud.menu.animal;
 import javafx.scene.input.MouseButton;
 import uq.deco2800.ducktales.features.hud.HUDSprite;
 import uq.deco2800.ducktales.resources.ResourceType;
-import uq.deco2800.ducktales.util.events.ui.AnimalsMenuSelectedEvent;
+import uq.deco2800.ducktales.util.events.ui.MenuSelectedEvent;
 
 /**
  * The sprite holding the animals to be displayed in the Animals Menu
@@ -31,7 +31,7 @@ public class AnimalMenuSprite extends HUDSprite {
         this.setOnMouseClicked(event -> {
             // Check if it's a left mouse click
             if (event.getButton() == MouseButton.PRIMARY) {
-                fireEvent(new AnimalsMenuSelectedEvent(
+                fireEvent(new MenuSelectedEvent(
                         this.getSpriteType(), event.getSceneX(), event.getSceneY()
                 ));
             }

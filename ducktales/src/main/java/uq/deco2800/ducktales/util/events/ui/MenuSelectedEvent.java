@@ -10,13 +10,13 @@ import uq.deco2800.ducktales.resources.ResourceType;
  *
  * Created by Khoi on 4/09/2016.
  */
-public class AnimalsMenuSelectedEvent extends HUDSelectedEvent {
+public class MenuSelectedEvent extends HUDSelectedEvent {
 
     /**
      * The type of this event
      */
-    public static final EventType<AnimalsMenuSelectedEvent> ANIMALS_MENU_SELECTED_EVENT =
-            new EventType<>("ANIMALS_MENU_SELECTED_EVENT");
+    public static final EventType<MenuSelectedEvent> MENU_SELECTED_EVENT =
+            new EventType<>("MENU_SELECTED_EVENT");
 
     /**
      * Instantiate an event for when the animals sprite in the animals menu is
@@ -29,7 +29,7 @@ public class AnimalsMenuSelectedEvent extends HUDSelectedEvent {
      * @param startingY
      *          The y-coordinate of the point when the event is started from
      */
-    public AnimalsMenuSelectedEvent(ResourceType type, double startingX, double startingY) {
-        super(type, startingX, startingY, ANIMALS_MENU_SELECTED_EVENT);
+    public MenuSelectedEvent(ResourceType type, double startingX, double startingY) {
+        super(type, startingX, startingY, MENU_SELECTED_EVENT);
     }
 }

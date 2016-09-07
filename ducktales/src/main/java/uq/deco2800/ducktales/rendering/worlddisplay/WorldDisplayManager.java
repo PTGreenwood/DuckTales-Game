@@ -5,6 +5,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.layout.Pane;
 import uq.deco2800.ducktales.World;
 import uq.deco2800.ducktales.features.landscape.tiles.TilesManager;
+import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.SecondaryManager;
 
 import java.net.URL;
@@ -43,7 +44,6 @@ public class WorldDisplayManager implements Initializable, SecondaryManager {
 
         // render the tiles
         tilesManager.renderInitialWorld();
-
 
     }
 

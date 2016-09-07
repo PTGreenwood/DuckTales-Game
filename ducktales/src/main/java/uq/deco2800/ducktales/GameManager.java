@@ -1,12 +1,18 @@
 package uq.deco2800.ducktales;
 
+import javafx.scene.Cursor;
+import javafx.scene.layout.Pane;
 import uq.deco2800.ducktales.features.achievements.AchievementManager;
 import uq.deco2800.ducktales.features.hud.HUDManager;
 import uq.deco2800.ducktales.features.level.LevelManager;
 import uq.deco2800.ducktales.features.market.MarketManager;
+import uq.deco2800.ducktales.rendering.worlddisplay.CursorManager;
 import uq.deco2800.ducktales.rendering.worlddisplay.WorldDisplayManager;
 import uq.deco2800.ducktales.features.missions.MissionManager;
 import uq.deco2800.ducktales.resources.ResourceType;
+import uq.deco2800.ducktales.util.events.handlers.InGameMouseMovedHandler;
+import uq.deco2800.ducktales.util.events.handlers.MenuSelectedEventHandler;
+import uq.deco2800.ducktales.util.events.ui.MenuSelectedEvent;
 
 import static uq.deco2800.ducktales.resources.ResourceType.*;
 
@@ -24,9 +30,11 @@ public class GameManager {
     /**
      * CONSTANTS
      */
-    private static final double DEFAULT_SCALE = 0.4;
     private static final int DEFAULT_WORLD_WIDTH = 30;
     private static final int DEFAULT_WORLD_HEIGHT = 30;
+
+    /** The root of everything. */
+    private Pane root;
 
     /** Variables to control GUI logic */
     private ResourceType currentResourceManaging;
@@ -41,11 +49,19 @@ public class GameManager {
     private MissionManager missionManager;
     private LevelManager levelManager;
     private AchievementManager achievementManager;
+    private CursorManager cursorManager;
 
-    public GameManager() {
+    /**
+     * Instantiate an empty game manager and create a new default world
+     */
+    public GameManager(Pane root) {
         // Instantiate an empty game manager without a pre-loaded world.
         // Setup initial variables
+        this.root = root;
         currentResourceManaging = NONE;
+
+        // Set up the secondary managers that are not linked to FXML
+        cursorManager = new CursorManager(this.root);
 
         // Create a new world model for the game
         world = new World(
@@ -60,7 +76,8 @@ public class GameManager {
      * @param world
      *          The world to be loaded into the game
      */
-    public GameManager(World world) {
+    public GameManager(Pane root, World world) {
+        this.root = root;
         this.world = world;
     }
 
@@ -73,18 +90,15 @@ public class GameManager {
         System.err.println("\n worldDisplayManager is: " + worldDisplayManager);
         // Pass the world model to the display manager, and initialize the display
         worldDisplayManager.setWorld(this.world);
+        worldDisplayManager.initializeWorld();
 
-        try {
-            worldDisplayManager.initializeWorld();
+        // This is needed since rendered tiles will be on top of HUD :(
+        hudManager.bringGUIToFront();
 
-            // This is needed since rendered tiles will be on top of HUD :(
-            hudManager.bringGUIToFront();
-        } catch (Exception e) {
-            System.err.println("failure to initialize world");
-            e.printStackTrace();
-        }
+        setupEventHandlers();
 
     }
+
 
     /**
      * Get the type of the resource being managed. For example, a building
@@ -201,5 +215,23 @@ public class GameManager {
     	this.achievementManager = achievementManager;
     }
 
+
+    /**
+     * Set up the event handlers for the root pane of the game. The current
+     * events being handled:
+     *      1. A menu sprite is clicked on -> update cursor image
+     */
+    private void setupEventHandlers() {
+        // Initialize the handlers
+        MenuSelectedEventHandler menuSelectedEventHandler =
+                new MenuSelectedEventHandler(this, this.cursorManager);
+        InGameMouseMovedHandler mouseMovedHandler =
+                new InGameMouseMovedHandler(this.cursorManager);
+
+        // Handler for when a sprite in the menu is selected
+        root.addEventHandler(MenuSelectedEvent.MENU_SELECTED_EVENT, menuSelectedEventHandler );
+        // Handler for when the mouse is moved in-game
+        root.setOnMouseMoved(mouseMovedHandler);
+    }
 
 }

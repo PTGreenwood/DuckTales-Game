@@ -76,7 +76,7 @@ public class GameController implements Initializable{
     public void initialize(URL location, ResourceBundle resources) {
         // Create the Game Manager, which will start the game model
         // Note: in the future, to load a game, just pass a World object to constructor
-        gameManager = new GameManager(); // = new GameManager(loadedWorld) for later
+        gameManager = new GameManager(this.rootPane); // = new GameManager(loadedWorld) for later
 
         // Load each FXML element into the root pane on by one, and retrieve
         // their respective controllers

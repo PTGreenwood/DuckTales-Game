@@ -3,6 +3,7 @@ package uq.deco2800.ducktales.features.hud.menu.building;
 import uq.deco2800.ducktales.features.hud.HUDSprite;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.events.ui.BuildingsMenuSelectedEvent;
+import uq.deco2800.ducktales.util.events.ui.MenuSelectedEvent;
 
 /**
  * This class represents a sprite of a building, to be displayed in the
@@ -30,7 +31,7 @@ public class BuildingMenuSprite extends HUDSprite {
      */
     private void setupMouseEventHandlers() {
         this.setOnMouseClicked(event -> {
-            fireEvent(new BuildingsMenuSelectedEvent(
+            fireEvent(new MenuSelectedEvent(
                     this.getSpriteType(), event.getSceneX(), event.getSceneY()));
         });
 

@@ -327,6 +327,7 @@ public class GameRendererBeta extends AnimationTimer {
     /**
      * Create the initial game world
      */
+    @Deprecated
     private void createInitialWorld() {
         Array2D<TileSprite> tiles = world.getTiles();
 
@@ -434,36 +435,36 @@ public class GameRendererBeta extends AnimationTimer {
             }
         });
 
-        /*
-         * Event handlers for the animals menu
-         * // TODO: USE THE HUD MANAGER TO MANAGE THIS INSTEAD, TO PREVENT DUPLICATE CODE
-         */
-        animalsMenu.addEventHandler(AnimalsMenuSelectedEvent.ANIMALS_MENU_SELECTED_EVENT, event -> {
-            // Setup the cursor image to that of the building clicked
-            Image sprite = resource.getResourceImage(event.getType());
-            // Allow it to move
-            cursorImageFreeMoving = true;
-
-            // Reset the sprite's position
-            this.cursorImage.setLayoutX(event.getStartingX());
-            this.cursorImage.setLayoutY(event.getStartingY());
-
-            // Scale the cursor image by the scale given by rendering manager
-            double scale = RenderingInformation.ANIMAL_SCALE;
-            this.cursorImage.setFitHeight(sprite.getHeight() * scale);
-            this.cursorImage.setFitWidth(sprite.getWidth() * scale);
-
-            // Setup the offset
-            this.cursorImage.setX(-cursorImage.getFitWidth()/2);
-            this.cursorImage.setY(-cursorImage.getFitHeight()/2);
-
-            // reveal the sprite
-            this.cursorImage.setImage(sprite);
-            this.cursorImage.toFront();
-
-            // Notify the manager
-            manager.setCurrentResourceManaging(event.getType());
-        });
+//        /*
+//         * Event handlers for the animals menu
+//         * // TODO: USE THE HUD MANAGER TO MANAGE THIS INSTEAD, TO PREVENT DUPLICATE CODE
+//         */
+//        animalsMenu.addEventHandler(MenuSelectedEvent.ANIMALS_MENU_SELECTED_EVENT, event -> {
+//            // Setup the cursor image to that of the building clicked
+//            Image sprite = resource.getResourceImage(event.getType());
+//            // Allow it to move
+//            cursorImageFreeMoving = true;
+//
+//            // Reset the sprite's position
+//            this.cursorImage.setLayoutX(event.getStartingX());
+//            this.cursorImage.setLayoutY(event.getStartingY());
+//
+//            // Scale the cursor image by the scale given by rendering manager
+//            double scale = RenderingInformation.ANIMAL_SCALE;
+//            this.cursorImage.setFitHeight(sprite.getHeight() * scale);
+//            this.cursorImage.setFitWidth(sprite.getWidth() * scale);
+//
+//            // Setup the offset
+//            this.cursorImage.setX(-cursorImage.getFitWidth()/2);
+//            this.cursorImage.setY(-cursorImage.getFitHeight()/2);
+//
+//            // reveal the sprite
+//            this.cursorImage.setImage(sprite);
+//            this.cursorImage.toFront();
+//
+//            // Notify the manager
+//            manager.setCurrentResourceManaging(event.getType());
+//        });
 
         /*
          * Event handlers for the buildings menu
@@ -581,6 +582,7 @@ public class GameRendererBeta extends AnimationTimer {
     /**
      * Add the building sprites to the list of buildings in the menu
      */
+    @Deprecated
     private void addSpritesToMenuList() {
         // Add the building sprites
         for (int i = 0; i < BUILDINGS.length; i++) {

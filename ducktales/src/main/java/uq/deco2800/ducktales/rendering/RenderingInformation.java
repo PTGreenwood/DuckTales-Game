@@ -27,7 +27,7 @@ public class RenderingInformation {
     // the sprites look alright first
     public static final double ANIMAL_SCALE = 0.8;
     // THE MAIN SCALE FOR UI ELEMENTS
-    public static final double UI_SCALE = 2.0;
+    public static final double UI_SCALE = 1.0;
 
     /**
      * Construct a {@link RenderingInformation} class with the given initial scale
