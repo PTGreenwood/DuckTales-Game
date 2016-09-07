@@ -3,6 +3,7 @@ package uq.deco2800.ducktales.core;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import uq.deco2800.ducktales.features.market.MarketManager;
@@ -39,6 +40,8 @@ public class GameController implements Initializable{
     /** The main UI elements */
     @FXML
     private AnchorPane leftPane, bottomPane, worldPane;
+    @FXML
+    private Button closeButton;
 
     /** The Primary Manager of the game, that manages game GUI logic */
     private GameManager gameManager;
@@ -63,9 +66,33 @@ public class GameController implements Initializable{
         // Load each FXML element into the root pane on by one, and retrieve
         // their respective controllers
         loadMarketPlace();
+        loadTimeDisplay();
 
 
         System.err.println("GameController Initialized");
+    }
+
+
+    /**
+     * Show the Market Place pane
+     */
+    @FXML
+    public void showMarketPlace() {
+        marketManager.showMarketPlace();
+        closeButton.setVisible(true);
+
+    }
+
+    /**
+     * Hide all information windows
+     */
+    @FXML
+    public void hideAllInfoWindows() {
+        marketManager.hideMarketPlace();
+        closeButton.setVisible(false);
+    }
+
+    private void loadTimeDisplay() {
     }
 
     /**
@@ -91,8 +118,11 @@ public class GameController implements Initializable{
             rootPane.getChildren().add(root);
 
             // Position the marketplace pane
-            rootPane.setTopAnchor(root, 200.0);
-            rootPane.setRightAnchor(root, 200.0);
+            rootPane.setTopAnchor(root, 0.0);
+            rootPane.setRightAnchor(root, 30.0);
+
+            // Initially hide it first
+            marketManager.hideMarketPlace();
 
         } catch (IOException e) {
             System.err.println("Unable to load Marketplace");

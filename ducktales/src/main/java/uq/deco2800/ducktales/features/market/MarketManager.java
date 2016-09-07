@@ -178,5 +178,14 @@ public class MarketManager {
     	}
     	
     }
-    
+
+	/**
+	 * Show and hide the marketplace pane
+	 */
+	public void showMarketPlace() {
+    	this.marketplacePane.setVisible(true);
+	}
+	public void hideMarketPlace() {
+		this.marketplacePane.setVisible(false);
+	}
 }
