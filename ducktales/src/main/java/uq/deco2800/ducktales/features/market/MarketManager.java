@@ -50,6 +50,16 @@ public class MarketManager {
     /** The enum of the currently selected navigation button.**/
     private Vista selectedVista = Vista.CURRENTTRADES;
     
+    /**
+     * Constructor for the MarketManager. Sets the Main Controller for the
+     * MarketVistaNavigator and the initial vista to display.
+     */
+    public MarketManager() {
+    	
+    	// Set the controller that displays the vistas as child elements.
+        MarketVistaNavigator.setMainController(this);
+    	
+    }
 
     /**
      * Replaces the vista displayed in the vista holder with a new vista.
