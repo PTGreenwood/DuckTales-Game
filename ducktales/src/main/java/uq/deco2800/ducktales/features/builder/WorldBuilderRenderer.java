@@ -9,7 +9,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import uq.deco2800.ducktales.features.achievements.Achievements;
-import uq.deco2800.ducktales.features.missions.Missions;
+import uq.deco2800.ducktales.features.missions.MissionHandler;
 import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.features.landscape.tiles.WorldBuilderTile;
@@ -72,7 +72,7 @@ public class WorldBuilderRenderer extends AnimationTimer {
     /*
      * Call Missions Class
      */
-    Missions missions = Missions.getInstance();
+    MissionHandler missions = MissionHandler.getInstance();
     
     /**
      * starting X and Y positions to render the tiles

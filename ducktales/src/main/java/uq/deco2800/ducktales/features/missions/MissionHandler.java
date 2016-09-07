@@ -10,28 +10,28 @@ import javafx.scene.image.ImageView;
  * 
  *
  */
-public class Missions {
+public class MissionHandler {
 	
 	private ImageView mission1ImageCompleted;
 	private ImageView mission2ImageCompleted;
 	private ImageView mission3ImageCompleted;
 	private ImageView mission4ImageCompleted;
 	private ArrayList<ImageView> missionsArray;
-	private Image uncheckedBox = new Image("/boxUnchecked.png");
-	private Image checkedBox = new Image("/boxChecked.png");
+	private Image uncheckedBox = new Image("/missions/boxUnchecked.png");
+	private Image checkedBox = new Image("/missions/boxChecked.png");
 	
 	private double missionCount = 0;
 	
-	private static Missions INSTANCE = new Missions();
+	private static MissionHandler INSTANCE = new MissionHandler();
 	
-	public static Missions getInstance() {
+	public static MissionHandler getInstance() {
 		return INSTANCE;		
 	}
 	
 	/**
 	 * Main constructor of {@link Missions} class.
 	 */
-	public Missions(){
+	public MissionHandler(){
 		this.missionsArray = new ArrayList<ImageView>();
 		this.mission1ImageCompleted = new ImageView();
 		this.mission2ImageCompleted = new ImageView();

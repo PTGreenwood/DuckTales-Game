@@ -9,6 +9,7 @@ import javafx.scene.layout.VBox;
 import uq.deco2800.ducktales.features.hud.HUDManager;
 import uq.deco2800.ducktales.features.market.MarketManager;
 import uq.deco2800.ducktales.features.market.MarketVistaNavigator;
+import uq.deco2800.ducktales.features.missions.MissionManager;
 
 import java.io.IOException;
 import java.net.URL;
@@ -49,6 +50,8 @@ public class GameController implements Initializable{
 
     /** The Secondary Managers of the game, each managing an FXML loader */
     private MarketManager marketManager;
+    
+    private MissionManager missionManager;
     private HUDManager hudManager;
 
 
@@ -69,15 +72,17 @@ public class GameController implements Initializable{
         // their respective controllers
         loadHUD();
         loadMarketPlace();
+        loadMissions();
         loadTimeDisplay();
 
         // Now pass all handles for the secondary managers to the GameManager
         gameManager.setHudManager(this.hudManager);
         gameManager.setMarketManager(this.marketManager);
+        gameManager.setMissionManager(this.missionManager);
 
         // Game Controller's job of setting up the UI is done.
     }
-
+    
     /**
      * Show the Market Place pane
      */
@@ -86,13 +91,23 @@ public class GameController implements Initializable{
         marketManager.showMarketPlace();
         closeButton.setVisible(true);
     }
-
+    
+    /**
+     * Show the Mission pane
+     */
+    @FXML
+    public void showMissions() {
+        missionManager.showMission();
+        closeButton.setVisible(true);
+    }    
+    
     /**
      * Hide all information windows
      */
     @FXML
     public void hideAllInfoWindows() {
         marketManager.hideMarketPlace();
+        missionManager.hideMission();
         closeButton.setVisible(false);
     }
 
@@ -143,4 +158,31 @@ public class GameController implements Initializable{
             e.printStackTrace();
         }
     }
+    
+    @FXML
+    private void loadMissions() {
+
+        URL location = getClass().getResource(("/missions/missionAndAchievement.fxml"));
+
+        FXMLLoader loader = new FXMLLoader(location);
+
+        try {
+            // load the FXML
+            AnchorPane root = loader.load();
+            
+            missionManager = loader.getController();
+
+            rootPane.getChildren().add(root);
+
+            rootPane.setTopAnchor(root, 0.0);
+            rootPane.setRightAnchor(root, 30.0);
+
+            missionManager.hideMission();
+
+        } catch (IOException e) {
+            System.err.println("Unable to load Missions");
+            e.printStackTrace();
+        }
+    }
+      
 }

@@ -10,7 +10,7 @@ import uq.deco2800.ducktales.GameLoopBeta;
 import uq.deco2800.ducktales.features.achievements.Achievements;
 import uq.deco2800.ducktales.features.achievements.AchievementProgressIndicator;
 import uq.deco2800.ducktales.features.level.Level;
-import uq.deco2800.ducktales.features.missions.Missions;
+import uq.deco2800.ducktales.features.missions.MissionHandler;
 import uq.deco2800.ducktales.features.inventory.InventoryManager;
 import uq.deco2800.ducktales.util.events.handlers.KeyboardEventHandlerBeta;
 
@@ -123,7 +123,6 @@ public class OldGameController {
         System.err.println("adding peon");
         renderer.showAnimalsMenu();
 
-        missionCompletedAction(2);
     }
 
     @FXML
@@ -144,8 +143,6 @@ public class OldGameController {
         marketplacePane = loader.load();
 
         showInfoPane(marketplacePane);
-        
-        missionCompletedAction(3);
     }
 
     @FXML
@@ -190,21 +187,7 @@ public class OldGameController {
      * @param mission number
      * 			Index of achievement completed.
      */
-    private void missionCompletedAction(int missionNumber){
-    	
-    	//Untick mission2 box in Achievement window of Gamebeta when marketplace is clicked
-        Missions.getInstance().MissionImageCompleted(missionNumber);
-        //Increment percentage of progress indicator in achievement
-        AchievementProgressIndicator.getInstance().setProgressPercentage(Missions.getInstance().getMissionCount());
-        //Increment total achievement score
-        Achievements.getInstance().achieveEasy();
-        //Increment percentage of progress bar in leveling system
-        Level.getInstance().setProgressBar(0.5);
-        //if progress bar is full then level up
-        if(Level.getInstance().getBarProgress() == 1.0){
-        	Level.getInstance().LevelUp();
-        }
-    }
+    
 
     private void setupKeyboardEventHandlers() {
         KeyboardEventHandlerBeta keyboardHandler = new KeyboardEventHandlerBeta(this.renderer);
