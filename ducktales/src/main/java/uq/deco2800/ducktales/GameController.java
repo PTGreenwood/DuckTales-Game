@@ -126,10 +126,6 @@ public class GameController implements Initializable{
             // Retrieve the controller;
             marketManager = loader.getController();
 
-            // Setup the market place GUI
-            MarketVistaNavigator.setMainController(marketManager);
-            MarketVistaNavigator.loadVista(MarketVistaNavigator.CURRENT_TRADES);
-
             // add the marketplace pane to the GUI
             rootPane.getChildren().add(root);
 

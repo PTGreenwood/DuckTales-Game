@@ -123,7 +123,8 @@ public abstract class Entity implements Comparable<Entity>, Tickable{
 
 	@Override
 	public String toString() {
-		return String.format("[%f %f %f %f    %f]", point.getX(), point.getY(), lengthX, lengthY,
+		// Note the lengths of buildings are integers, hence %d not %f
+		return String.format("[%f %f %d %d    %f]", point.getX(), point.getY(), lengthX, lengthY,
 				distanceInside);
 	}
 
