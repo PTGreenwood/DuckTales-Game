@@ -2,9 +2,10 @@ package uq.deco2800.ducktales.entities.agententities;
 
 import org.junit.Test;
 
-import uq.deco2800.ducktales.entities.Entity;
-import uq.deco2800.ducktales.entities.EntityManager;
-import uq.deco2800.ducktales.entities.agententities.*;
+import uq.deco2800.ducktales.features.entities.EntityManager;
+import uq.deco2800.ducktales.features.entities.agententities.Cow;
+import uq.deco2800.ducktales.features.entities.agententities.Duck;
+import uq.deco2800.ducktales.features.entities.agententities.Peon;
 import uq.deco2800.ducktales.resources.*;
 
 import static org.junit.Assert.*;

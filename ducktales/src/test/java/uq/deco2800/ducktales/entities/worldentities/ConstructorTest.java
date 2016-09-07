@@ -2,16 +2,12 @@ package uq.deco2800.ducktales.entities.worldentities;
 
 import static org.junit.Assert.assertTrue;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 import org.junit.Test;
 
-import uq.deco2800.ducktales.entities.worldentities.Bakery;
-import uq.deco2800.ducktales.entities.worldentities.Constructor;
-import uq.deco2800.ducktales.entities.worldentities.Forge;
-import uq.deco2800.ducktales.entities.worldentities.House;
+import uq.deco2800.ducktales.features.entities.worldentities.Bakery;
+import uq.deco2800.ducktales.features.entities.worldentities.Constructor;
+import uq.deco2800.ducktales.features.entities.worldentities.Forge;
+import uq.deco2800.ducktales.features.entities.worldentities.House;
 
 public class ConstructorTest {
 	

@@ -10,6 +10,9 @@ import javax.sound.sampled.DataLine;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.Mixer;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import org.slf4j.Logger; 
+import org.slf4j.LoggerFactory;
+import uq.deco2800.ducktales.deprecated.OldGameLoop;
 
 /**
  * Handles all application audio.
@@ -17,7 +20,8 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 public class GameSound {
 	private Mixer mixer;
 	private Clip clip;
-
+	//add a logger to fix code vulnerability 
+	private static Logger logger = LoggerFactory.getLogger(OldGameLoop.class);
 	/**
 	 * Loads and plays audio file.
 	 * 
@@ -32,7 +36,7 @@ public class GameSound {
 		mixer = AudioSystem.getMixer(mixInfos[0]);
 		DataLine.Info dataInfo = new DataLine.Info(Clip.class, null);
 		try { clip =(Clip)mixer.getLine(dataInfo);}
-		catch(LineUnavailableException lue){ lue.printStackTrace();}
+		catch(LineUnavailableException lue){ logger.info("Line Unavailable", lue);}
 		
 		try {
 			URL soundURL = GameSound.class.getResource(location);
@@ -40,8 +44,8 @@ public class GameSound {
 			clip.open(audioStream);			
 		}
 		
-		catch(LineUnavailableException lue){lue.printStackTrace();}
-		catch(UnsupportedAudioFileException uafe){uafe.printStackTrace();}
+		catch(LineUnavailableException lue){logger.info("Line Unavailable", lue);}
+		catch(UnsupportedAudioFileException uafe){logger.info("Unsupported Audio File", uafe);}
 		catch(IOException ioe){ ioe.printStackTrace();}
 		clip.start();
 		
@@ -66,7 +70,7 @@ public class GameSound {
 		mixer = AudioSystem.getMixer(mixInfos[0]);
 		DataLine.Info dataInfo = new DataLine.Info(Clip.class, null);
 		try { clip =(Clip)mixer.getLine(dataInfo);}
-		catch(LineUnavailableException lue){ lue.printStackTrace();}
+		catch(LineUnavailableException lue){ logger.info("Line Unavailable", lue);}
 		
 		try{
 			URL soundURL = GameSound.class.getResource(location);
