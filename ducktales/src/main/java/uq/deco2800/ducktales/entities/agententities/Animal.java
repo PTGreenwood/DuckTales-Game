@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import uq.deco2800.ducktales.GameManager;
+import uq.deco2800.ducktales.OldGameManager;
 import uq.deco2800.ducktales.entities.EntityManager;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.AStar;
@@ -97,11 +97,11 @@ public class Animal extends AgentEntity {
     private List<Point> newGoalPoints() {
         Random random = new Random();
         Point goalPoint = null;
-        while (goalPoint == null || !GameManager.getInstance().getWorld().getTile(goalPoint).isPassable() &&
-                !GameManager.getInstance().getWorld().getTile(goalPoint).getTileType().equals(ResourceType.WATER)) {
+        while (goalPoint == null || !OldGameManager.getInstance().getWorld().getTile(goalPoint).isPassable() &&
+                !OldGameManager.getInstance().getWorld().getTile(goalPoint).getTileType().equals(ResourceType.WATER)) {
             goalPoint = new Point(random.nextDouble() * 20, random.nextDouble() * 20);
         }
-        List<AStar.Tuple> path = AStar.aStar(point, goalPoint, GameManager.getInstance().getWorld());
+        List<AStar.Tuple> path = AStar.aStar(point, goalPoint, OldGameManager.getInstance().getWorld());
         List<Point> goalPoints = new ArrayList<Point>();
         for (AStar.Tuple tuple : path) {
             goalPoints.add(new Point(tuple.getX(), tuple.getY()));

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import uq.deco2800.ducktales.GameManager;
+import uq.deco2800.ducktales.OldGameManager;
 import uq.deco2800.ducktales.jobframework.Job;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.AStar;
@@ -225,7 +225,7 @@ public class Peon extends AgentEntity {
 			goalPoints = newGoalPoints();
 		} else if (point.distance(goalPoints.get(0)) < speed) {
 			point = goalPoints.remove(0);
-			GameManager.getInstance().getWorld().getTile(point).reset();
+			OldGameManager.getInstance().getWorld().getTile(point).reset();
 			if (goalPoints.isEmpty()) {
 				this.goalPoints = newGoalPoints();
 			}
@@ -240,16 +240,16 @@ public class Peon extends AgentEntity {
 	private List<Point> newGoalPoints() {
 		Random random = new Random();
 		Point goalPoint = null;
-		while (goalPoint == null || !GameManager.getInstance().getWorld().getTile(goalPoint).isPassable()) {
+		while (goalPoint == null || !OldGameManager.getInstance().getWorld().getTile(goalPoint).isPassable()) {
 			goalPoint = new Point(random.nextDouble() * 20, random.nextDouble() * 20);
 		}
 
-		List<AStar.Tuple> path = AStar.aStar(point, goalPoint, GameManager.getInstance().getWorld());
+		List<AStar.Tuple> path = AStar.aStar(point, goalPoint, OldGameManager.getInstance().getWorld());
 		List<Point> goalPoints = new ArrayList<Point>();
 
 		for (AStar.Tuple tuple : path) {
 			goalPoints.add(new Point(tuple.getX(), tuple.getY()));
-			GameManager.getInstance().getWorld().getTile(tuple.getX(), tuple.getY()).makePath();
+			OldGameManager.getInstance().getWorld().getTile(tuple.getX(), tuple.getY()).makePath();
 		}
 		return goalPoints;
 	}

@@ -27,7 +27,7 @@ public class GameRenderer extends AnimationTimer {
 	private int tileHeight;
 	private int tileWidth;
 
-	private GameManager gameManager = GameManager.getInstance();
+	private OldGameManager oldGameManager = OldGameManager.getInstance();
 	private EntityManager entityManager = EntityManager.getInstance();
 
 	/** The scale/zoom factor */
@@ -40,7 +40,7 @@ public class GameRenderer extends AnimationTimer {
 		super();
 
 		this.graphicsContext = graphicsContext;
-		this.world = GameManager.getInstance().getWorld();
+		this.world = OldGameManager.getInstance().getWorld();
 		this.resourceSpriteRegister = ResourceSpriteRegister.getInstance();
 		this.tileHeight = ResourceSpriteRegister.TILE_HEIGHT;
 		this.tileWidth = ResourceSpriteRegister.TILE_WIDTH;
@@ -50,8 +50,8 @@ public class GameRenderer extends AnimationTimer {
 
 	@Override
 	public void handle(long arg0) {
-		baseX += gameManager.getXPan();
-		baseY += gameManager.getYPan();
+		baseX += oldGameManager.getXPan();
+		baseY += oldGameManager.getYPan();
 		renderWorld();
 		renderCanvas();
 		renderEntities();

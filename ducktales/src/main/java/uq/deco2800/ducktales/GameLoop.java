@@ -28,7 +28,7 @@ public class GameLoop implements Runnable {
 	private GameTime gameTime = new GameTime();
 
 	public GameLoop(AtomicBoolean quit, int tick) {
-		this.world = GameManager.getInstance().getWorld();
+		this.world = OldGameManager.getInstance().getWorld();
 		GameLoop.baseTick = tick;
 		GameLoop.tick = tick;
 		this.quit = quit;

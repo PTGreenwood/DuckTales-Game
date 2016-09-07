@@ -1,7 +1,5 @@
 package uq.deco2800.ducktales.achievements;
 
-import uq.deco2800.ducktales.GameManager;
-
 /**
  * Contains all achievement methods.
  * 

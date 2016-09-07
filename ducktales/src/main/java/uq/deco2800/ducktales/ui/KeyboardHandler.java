@@ -4,7 +4,7 @@ import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import uq.deco2800.ducktales.GameManager;
+import uq.deco2800.ducktales.OldGameManager;
 
 public class KeyboardHandler implements EventHandler<KeyEvent> {
 
@@ -23,22 +23,22 @@ public class KeyboardHandler implements EventHandler<KeyEvent> {
 	}
 
 	private void keyPressed(KeyCode code) {
-		GameManager gameManager = GameManager.getInstance();
+		OldGameManager oldGameManager = OldGameManager.getInstance();
 		switch (code) {
 		case A:
-			gameManager.pan(GameManager.Direction.LEFT);
+			oldGameManager.pan(OldGameManager.Direction.LEFT);
 			break;
 
 		case D:
-			gameManager.pan(GameManager.Direction.RIGHT);
+			oldGameManager.pan(OldGameManager.Direction.RIGHT);
 			break;
 
 		case W:
-			gameManager.pan(GameManager.Direction.UP);
+			oldGameManager.pan(OldGameManager.Direction.UP);
 			break;
 
 		case S:
-			gameManager.pan(GameManager.Direction.DOWN);
+			oldGameManager.pan(OldGameManager.Direction.DOWN);
 			break;
 
 		default:
@@ -47,22 +47,22 @@ public class KeyboardHandler implements EventHandler<KeyEvent> {
 	}
 
 	private void keyReleased(KeyCode code) {
-		GameManager gameManager = GameManager.getInstance();
+		OldGameManager oldGameManager = OldGameManager.getInstance();
 		switch (code) {
 		case A:
-			gameManager.stopPan(GameManager.Direction.LEFT);
+			oldGameManager.stopPan(OldGameManager.Direction.LEFT);
 			break;
 
 		case D:
-			gameManager.stopPan(GameManager.Direction.RIGHT);
+			oldGameManager.stopPan(OldGameManager.Direction.RIGHT);
 			break;
 
 		case W:
-			gameManager.stopPan(GameManager.Direction.UP);
+			oldGameManager.stopPan(OldGameManager.Direction.UP);
 			break;
 
 		case S:
-			gameManager.stopPan(GameManager.Direction.DOWN);
+			oldGameManager.stopPan(OldGameManager.Direction.DOWN);
 			break;
 
 		default:

@@ -25,7 +25,7 @@ public class TilesManager {
     private WorldEntityInfoManager worldEntityInfoManager;
 
     /**
-     * Create a new tile manager with the given handles on the GameManager
+     * Create a new tile manager with the given handles on the OldGameManager
      * and the array of tiles in the game world
      *
      * @param gameManager

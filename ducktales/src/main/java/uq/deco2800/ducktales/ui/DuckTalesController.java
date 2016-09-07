@@ -3,7 +3,6 @@ package uq.deco2800.ducktales.ui;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import javafx.scene.layout.*;
@@ -22,32 +21,40 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.stage.Stage;
 import uq.deco2800.ducktales.market.*;
 
 /**
  * This class handles the title screen and main menu.
- * 
- * 
  */
 public class DuckTalesController implements Initializable {
-
-	private Canvas gameCanvas;
 
 	@FXML
 	//gameWindow, contentPane & mainMenuPane are referenced in ducktales.fxml
 	private AnchorPane gameWindow, contentPane, mainMenuPane;
-	
+
+
+
+
+
+
+
+
+
+
+
+
+	@Deprecated
 	//weatherEffectPane referenced in ducktales.fxml
 	@FXML
 	private Pane weatherEffectPane;
+
 	
 	private ExecutorService executor;
 
 	private boolean running = false;
 	private ResourceSpriteRegister tileRegister;
-	private GameManager gameManager;
+	private OldGameManager oldGameManager;
 	private WorldBuilderManager worldBuilderManager;
 
 	// UI for World Builder
@@ -71,7 +78,7 @@ public class DuckTalesController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		tileRegister = ResourceSpriteRegister.getInstance();
-		gameManager = GameManager.getInstance();
+		oldGameManager = OldGameManager.getInstance();
 		worldBuilderManager = WorldBuilderManager.getInstance();
 		
 		// Set the handlers for the game panes
@@ -160,42 +167,82 @@ public class DuckTalesController implements Initializable {
 	}
 
 	/**
-	 * This method will be called when the 'Launch Game' button is pressed The
-	 * code that will call this method is defined in ducktales.fxml
-	 * 
+	 * This is the method that will launch the game from the main menu
 	 * @param event
 	 * @throws Exception
 	 */
 	@FXML
 	public void startGame(ActionEvent event) throws Exception {
-		toggleMenuPane();		
-		changeWeather(new Rain());
-		if (gameCanvas == null) { // the canvas has not been initialized
-			// Initialize the gameCanvas
-			// and set the canvas to resize as the rightPane is resized			
-			gameCanvas = new Canvas();
-			gameCanvas.widthProperty().bind(contentPane.widthProperty());
-			gameCanvas.heightProperty().bind(contentPane.heightProperty());			
-			
-			showCanvas(gameCanvas);	
-			
-			//addWeather(weatherImageView);
+		// Change between the mainMenuPane and the contentPane
+		toggleMenuPane();
 
-			GraphicsContext graphicsContext = gameCanvas.getGraphicsContext2D();
+		// Use FXML Loader to load the FXML file as well as instantiate the controller
+		// for the main UI
+		URL location = getClass().getResource("/ui/main/mainUI.fxml");
+		FXMLLoader mainUILoader = new FXMLLoader(location);
+		// Setup the main UI
+		setupMainUI(mainUILoader);
+		// Show the main UI
+		showPane(gamePane);
 
-			gameManager.setWorld(new World("DuckTales", 20, 20));
-
-			executor = Executors.newCachedThreadPool();
-
-			quit = new AtomicBoolean(false);
-			executor.execute(new GameLoop(quit, 50));
-			new GameRenderer(graphicsContext).start();
-			running = true;
-		} else {
-			// just show the canvas
-			showCanvas(gameCanvas);
-		}
 	}
+
+	/**
+	 * This is a helper method that helps set
+	 */
+	private void setupMainUI(FXMLLoader loader) throws Exception {
+		// Load the FXML
+		try {
+			gamePane = loader.load();
+		} catch(Exception e) {
+			System.err.println("Exception in trying to load main UI");
+		}
+
+		// Set the layout for the gamePane
+		contentPane.setLeftAnchor(gamePane, 0.0);
+		contentPane.setRightAnchor(gamePane, 0.0);
+		contentPane.setTopAnchor(gamePane, 0.0);
+		contentPane.setBottomAnchor(gamePane, 0.0);
+	}
+
+	//	/**
+//	 * This method will be called when the 'Launch Game' button is pressed The
+//	 * code that will call this method is defined in ducktales.fxml
+//	 *
+//	 * @param event
+//	 * @throws Exception
+//	 */
+//	@FXML
+	@Deprecated
+//	public void startGame(ActionEvent event) throws Exception {
+//		toggleMenuPane();
+//		changeWeather(new Rain());
+//		if (gameCanvas == null) { // the canvas has not been initialized
+//			// Initialize the gameCanvas
+//			// and set the canvas to resize as the rightPane is resized
+//			gameCanvas = new Canvas();
+//			gameCanvas.widthProperty().bind(contentPane.widthProperty());
+//			gameCanvas.heightProperty().bind(contentPane.heightProperty());
+//
+//			showCanvas(gameCanvas);
+//
+//			//addWeather(weatherImageView);
+//
+//			GraphicsContext graphicsContext = gameCanvas.getGraphicsContext2D();
+//
+//			oldGameManager.setWorld(new World("DuckTales", 20, 20));
+//
+//			executor = Executors.newCachedThreadPool();
+//
+//			quit = new AtomicBoolean(false);
+//			executor.execute(new GameLoop(quit, 50));
+//			new GameRenderer(graphicsContext).start();
+//			running = true;
+//		} else {
+//			// just show the canvas
+//			showCanvas(gameCanvas);
+//		}
+//	}
 
 	/**
 	 * This will launch the game with the new rendering engine - beta version
@@ -230,10 +277,10 @@ public class DuckTalesController implements Initializable {
 			showPane(gamePane);
 
 			// Set up the controller
-			GameController gameController = loader.getController();
+			OldGameController oldGameController = loader.getController();
 
 			// Set up the renderer and give the controller its handle
-			gameController.setupGame();
+			oldGameController.setupGame();
 
 		} else {
 			showPane(gamePane);
@@ -301,7 +348,7 @@ public class DuckTalesController implements Initializable {
 		if (mainMenuPane.isVisible()) {
 			toggleMenuPane();
 		}
-		contentPane.getChildren().removeAll(gameCanvas, worldBuilderPane, gamePane);
+		contentPane.getChildren().removeAll(worldBuilderPane, gamePane);
 		contentPane.getChildren().add(pane);
 	}
 	
@@ -326,7 +373,7 @@ public class DuckTalesController implements Initializable {
 	 * 			Canvas to show.
 	 */
 	private void showCanvas(Canvas canvas) {
-		contentPane.getChildren().removeAll(gameCanvas, worldBuilderPane, gamePane);
+		contentPane.getChildren().removeAll(worldBuilderPane, gamePane);
 		/* 
 		 * @mattyleggy
 		 * adding the content pane to the 0-th index to ensure the 
