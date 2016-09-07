@@ -3,8 +3,8 @@ package uq.deco2800.ducktales;
 import org.junit.Assert;
 import org.junit.Test;
 
-import uq.deco2800.ducktales.market.MarketController;
-import uq.deco2800.ducktales.market.MarketVistaNavigator;
+import uq.deco2800.ducktales.features.market.MarketManager;
+import uq.deco2800.ducktales.features.market.MarketVistaNavigator;
 
 public class MarketTest {
 	
@@ -15,14 +15,14 @@ public class MarketTest {
 	@Test
     public void testMainView() {
 		
-		MarketController marketController = new MarketController();
+		MarketManager marketManager = new MarketManager();
 		
-		MarketVistaNavigator.setMainController(marketController);
+		MarketVistaNavigator.setMainController(marketManager);
 		
 		Assert.assertTrue("The mainController in " + 
 		"MarketVistaNavigator is not equal to the assigned instance", 
 		MarketVistaNavigator.getMainController() 
-		== marketController);
+		== marketManager);
 		
 	}
 

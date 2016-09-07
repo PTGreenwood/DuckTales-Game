@@ -11,7 +11,8 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.Mixer;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import org.slf4j.Logger; 
-import org.slf4j.LoggerFactory; 
+import org.slf4j.LoggerFactory;
+import uq.deco2800.ducktales.deprecated.OldGameLoop;
 
 /**
  * Handles all application audio.
@@ -20,7 +21,7 @@ public class GameSound {
 	private Mixer mixer;
 	private Clip clip;
 	//add a logger to fix code vulnerability 
-	private static Logger logger = LoggerFactory.getLogger(GameLoop.class);
+	private static Logger logger = LoggerFactory.getLogger(OldGameLoop.class);
 	/**
 	 * Loads and plays audio file.
 	 * 
