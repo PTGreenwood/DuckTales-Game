@@ -9,7 +9,7 @@ import javafx.scene.layout.*;
 import uq.deco2800.ducktales.deprecated.OldGameController;
 import uq.deco2800.ducktales.deprecated.ui.*;
 import uq.deco2800.ducktales.features.achievements.Achievements;
-import uq.deco2800.ducktales.features.market.MarketController;
+import uq.deco2800.ducktales.features.market.MarketManager;
 import uq.deco2800.ducktales.features.market.MarketVistaNavigator;
 import uq.deco2800.ducktales.features.missions.Missions;
 import uq.deco2800.ducktales.deprecated.OldGameManager;
@@ -153,10 +153,10 @@ public class DuckTalesController implements Initializable {
 		Parent root = loader.load(location.openStream());
 		Scene marketplaceScene = new Scene(root);
 		
-		// Set the MarketController
-		MarketController marketController = loader.getController();
+		// Set the MarketManager
+		MarketManager marketManager = loader.getController();
 		
-		MarketVistaNavigator.setMainController(marketController);
+		MarketVistaNavigator.setMainController(marketManager);
 		
 
 		this.marketplaceStage = new Stage();

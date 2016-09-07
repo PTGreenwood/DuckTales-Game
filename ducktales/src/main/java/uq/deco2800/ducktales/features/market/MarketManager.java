@@ -4,7 +4,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 
 /**
  * The main layout controller for the marketplace view.
@@ -14,8 +16,12 @@ import javafx.scene.layout.StackPane;
  * @author jewelsea, Mark Belonogoff
  *
  */
-public class MarketController {
-	
+public class MarketManager {
+
+	/** The root pane where everything else is added onto */
+	@FXML
+	private VBox marketplacePane;
+
 	/** Holder of a switchable vista. */
     @FXML
     private StackPane vistaHolder;

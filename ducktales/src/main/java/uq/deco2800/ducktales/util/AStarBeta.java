@@ -1,6 +1,6 @@
 package uq.deco2800.ducktales.util;
 
-import uq.deco2800.ducktales.core.world.WorldBeta;
+import uq.deco2800.ducktales.deprecated.world.WorldBeta;
 
 import java.util.*;
 

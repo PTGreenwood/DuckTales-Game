@@ -17,7 +17,7 @@ import uq.deco2800.ducktales.rendering.tiles.TileBeta;
 import uq.deco2800.ducktales.util.Array2D;
 import uq.deco2800.ducktales.util.events.tile.*;
 import uq.deco2800.ducktales.util.events.ui.*;
-import uq.deco2800.ducktales.core.world.WorldBeta;
+import uq.deco2800.ducktales.deprecated.world.WorldBeta;
 
 import java.util.ArrayList;
 

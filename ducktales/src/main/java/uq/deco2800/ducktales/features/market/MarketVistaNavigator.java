@@ -19,22 +19,22 @@ public class MarketVistaNavigator {
 	/**
      * fxml layouts managed by the navigator.
      */
-    public static final String MAIN = "/marketplace.fxml";
-    public static final String CURRENT_TRADES = "/mpcurrenttradevista.fxml";
-    public static final String YOUR_TRADES = "/mpyourtradesvista.fxml";
-    public static final String YOUR_OFFERS = "/mpyouroffersvista.fxml";
-    public static final String PLACE_A_TRADE = "/mpplacetradeoffervista.fxml";
+    public static final String MAIN = "/market/marketplace.fxml";
+    public static final String CURRENT_TRADES = "/market/mpcurrenttradevista.fxml";
+    public static final String YOUR_TRADES = "/market/mpyourtradesvista.fxml";
+    public static final String YOUR_OFFERS = "/market/mpyouroffersvista.fxml";
+    public static final String PLACE_A_TRADE = "/market/mpplacetradeoffervista.fxml";
 
     /** The main market layout controller. */
-    private static MarketController mainController;
+    private static MarketManager mainController;
 
     /**
      * Stores the main market controller for later use in navigation tasks.
      *
-     * @param mainController the main market layout controller.
+     * @param marketManager the main market layout controller.
      */
-    public static void setMainController(MarketController marketController) {
-    	MarketVistaNavigator.mainController = marketController;
+    public static void setMainController(MarketManager marketManager) {
+    	MarketVistaNavigator.mainController = marketManager;
     }
     
     /**
@@ -42,7 +42,7 @@ public class MarketVistaNavigator {
      * 
      * @return
      */
-    public static MarketController getMainController() {
+    public static MarketManager getMainController() {
     	return mainController;
     }
 

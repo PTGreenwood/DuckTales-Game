@@ -1,4 +1,4 @@
-package uq.deco2800.ducktales.core.world;
+package uq.deco2800.ducktales.deprecated.world;
 
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.rendering.tiles.TileBeta;

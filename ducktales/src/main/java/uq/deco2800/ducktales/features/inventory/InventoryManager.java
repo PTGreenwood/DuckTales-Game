@@ -1,4 +1,4 @@
-package uq.deco2800.ducktales.resources;
+package uq.deco2800.ducktales.features.inventory;
 
 import javafx.scene.control.Label;
 

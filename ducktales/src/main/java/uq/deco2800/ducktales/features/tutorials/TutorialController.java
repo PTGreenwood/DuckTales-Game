@@ -1,4 +1,4 @@
-package uq.deco2800.ducktales.tutorials;
+package uq.deco2800.ducktales.features.tutorials;
 
 import java.net.URL;
 

@@ -3,7 +3,7 @@ package uq.deco2800.ducktales.deprecated;
 import java.util.LinkedList;
 import java.util.List;
 
-import uq.deco2800.ducktales.resources.InventoryManager;
+import uq.deco2800.ducktales.features.inventory.InventoryManager;
 import uq.deco2800.ducktales.util.Point;
 import uq.deco2800.ducktales.core.World;
 

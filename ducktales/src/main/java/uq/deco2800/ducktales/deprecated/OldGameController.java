@@ -11,7 +11,7 @@ import uq.deco2800.ducktales.features.achievements.Achievements;
 import uq.deco2800.ducktales.features.achievements.AchievementProgressIndicator;
 import uq.deco2800.ducktales.features.level.Level;
 import uq.deco2800.ducktales.features.missions.Missions;
-import uq.deco2800.ducktales.resources.InventoryManager;
+import uq.deco2800.ducktales.features.inventory.InventoryManager;
 import uq.deco2800.ducktales.util.events.handlers.KeyboardEventHandlerBeta;
 
 import java.net.URL;
@@ -138,7 +138,7 @@ public class OldGameController {
 
     @FXML
     public void showMarketplace(ActionEvent event) throws Exception {    	
-        URL location = getClass().getResource("/marketplace.fxml");
+        URL location = getClass().getResource("/market/marketplace.fxml");
         FXMLLoader loader = new FXMLLoader(location);
 
         marketplacePane = loader.load();
