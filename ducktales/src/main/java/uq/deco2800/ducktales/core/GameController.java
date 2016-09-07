@@ -90,6 +90,10 @@ public class GameController implements Initializable{
             // add the marketplace pane to the GUI
             rootPane.getChildren().add(root);
 
+            // Position the marketplace pane
+            rootPane.setTopAnchor(root, 200.0);
+            rootPane.setRightAnchor(root, 200.0);
+
         } catch (IOException e) {
             System.err.println("Unable to load Marketplace");
             e.printStackTrace();
