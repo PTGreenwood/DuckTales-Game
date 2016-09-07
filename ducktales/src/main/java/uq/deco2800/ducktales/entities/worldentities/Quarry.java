@@ -29,9 +29,9 @@ public class Quarry extends Building {
 	 * Update the WorldEntity properties with those of a quarry.
 	 */
 	protected void specifications() {
-		Building.STONERESOURCES = 4;
-		Building.WOODRESOURCES = 10;
-		Building.TIME = 9;
+		Building.STONERESOURCES = 8;
+		Building.WOODRESOURCES = 6;
+		Building.TIME = 5;
 	}
 	
 	/**

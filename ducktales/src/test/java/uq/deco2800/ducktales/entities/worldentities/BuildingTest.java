@@ -330,6 +330,166 @@ public class BuildingTest {
 		assertTrue("Wrong time", entity2.timeToBuild() == 5);
 	}
 	
+	@Test
+	public void butcherTest(){
+		Butcher entity1 = new Butcher(2, 3);
+		Butcher entity2 = new Butcher(4, 5);
+		Butcher entity3 = new Butcher(1, 1);
+		
+		List<Entity> entities = new ArrayList<Entity>();
+		entities.add(entity1);
+		entities.add(entity2);
+		entities.add(entity3);
+		
+		// Check entity functionality still works
+		Collections.sort(entities);
+		
+		assertTrue("Entity 0 incorrect!", entities.get(0).equals(entity3));
+		assertTrue("Entity 1 incorrect!", entities.get(1).equals(entity1));
+		assertTrue("Entity 2 incorrect!", entities.get(2).equals(entity2));
+		
+		// Check correct resources and time
+		assertTrue("Wrong returned resources", entity1.resourcesReturnWood() == 4);
+		assertTrue("Wrong resources to build", entity3.resourcesBuildWood() == 8);
+		assertTrue("Wrong time", entity2.timeToBuild() == 7);
+		
+		// Check if nothing has changed after call tick()
+		entity1.tick();
+		entity2.tick();
+		entity3.tick();
+		assertTrue("Wrong returned resources", entity1.resourcesReturnStone() == 2);
+		assertTrue("Wrong resources to build", entity3.resourcesBuildStone() == 4);
+		assertTrue("Wrong time", entity2.timeToBuild() == 7);
+	}
+	
+	@Test
+	public void churchTest(){
+		Church entity1 = new Church(2, 3);
+		Church entity2 = new Church(4, 5);
+		Church entity3 = new Church(1, 1);
+		
+		List<Entity> entities = new ArrayList<Entity>();
+		entities.add(entity1);
+		entities.add(entity2);
+		entities.add(entity3);
+		
+		// Check entity functionality still works
+		Collections.sort(entities);
+		
+		assertTrue("Entity 0 incorrect!", entities.get(0).equals(entity3));
+		assertTrue("Entity 1 incorrect!", entities.get(1).equals(entity1));
+		assertTrue("Entity 2 incorrect!", entities.get(2).equals(entity2));
+		
+		// Check correct resources and time
+		assertTrue("Wrong returned resources", entity1.resourcesReturnWood() == 5);
+		assertTrue("Wrong resources to build", entity3.resourcesBuildWood() == 10);
+		assertTrue("Wrong time", entity2.timeToBuild() == 9);
+		
+		// Check if nothing has changed after call tick()
+		entity1.tick();
+		entity2.tick();
+		entity3.tick();
+		assertTrue("Wrong returned resources", entity1.resourcesReturnStone() == 4);
+		assertTrue("Wrong resources to build", entity3.resourcesBuildStone() == 8);
+		assertTrue("Wrong time", entity2.timeToBuild() == 9);
+	}
+	
+	@Test
+	public void communityBuildingTest(){
+		CommunityBuilding entity1 = new CommunityBuilding(2, 3);
+		CommunityBuilding entity2 = new CommunityBuilding(4, 5);
+		CommunityBuilding entity3 = new CommunityBuilding(1, 1);
+		
+		List<Entity> entities = new ArrayList<Entity>();
+		entities.add(entity1);
+		entities.add(entity2);
+		entities.add(entity3);
+		
+		// Check entity functionality still works
+		Collections.sort(entities);
+		
+		assertTrue("Entity 0 incorrect!", entities.get(0).equals(entity3));
+		assertTrue("Entity 1 incorrect!", entities.get(1).equals(entity1));
+		assertTrue("Entity 2 incorrect!", entities.get(2).equals(entity2));
+		
+		// Check correct resources and time
+		assertTrue("Wrong returned resources", entity1.resourcesReturnWood() == 4);
+		assertTrue("Wrong resources to build", entity3.resourcesBuildWood() == 8);
+		assertTrue("Wrong time", entity2.timeToBuild() == 8);
+		
+		// Check if nothing has changed after call tick()
+		entity1.tick();
+		entity2.tick();
+		entity3.tick();
+		assertTrue("Wrong returned resources", entity1.resourcesReturnStone() == 3);
+		assertTrue("Wrong resources to build", entity3.resourcesBuildStone() == 6);
+		assertTrue("Wrong time", entity2.timeToBuild() == 8);
+	}
+	
+	@Test
+	public void pastureTest(){
+		Pasture entity1 = new Pasture(2, 3);
+		Pasture entity2 = new Pasture(4, 5);
+		Pasture entity3 = new Pasture(1, 1);
+		
+		List<Entity> entities = new ArrayList<Entity>();
+		entities.add(entity1);
+		entities.add(entity2);
+		entities.add(entity3);
+		
+		// Check entity functionality still works
+		Collections.sort(entities);
+		
+		assertTrue("Entity 0 incorrect!", entities.get(0).equals(entity3));
+		assertTrue("Entity 1 incorrect!", entities.get(1).equals(entity1));
+		assertTrue("Entity 2 incorrect!", entities.get(2).equals(entity2));
+		
+		// Check correct resources and time
+		assertTrue("Wrong returned resources", entity1.resourcesReturnWood() == 5);
+		assertTrue("Wrong resources to build", entity3.resourcesBuildWood() == 10);
+		assertTrue("Wrong time", entity2.timeToBuild() == 4);
+		
+		// Check if nothing has changed after call tick()
+		entity1.tick();
+		entity2.tick();
+		entity3.tick();
+		assertTrue("Wrong returned resources", entity1.resourcesReturnStone() == 1);
+		assertTrue("Wrong resources to build", entity3.resourcesBuildStone() == 2);
+		assertTrue("Wrong time", entity2.timeToBuild() == 4);
+	}
+	
+	@Test
+	public void quarryTest(){
+		Quarry entity1 = new Quarry(2, 3);
+		Quarry entity2 = new Quarry(4, 5);
+		Quarry entity3 = new Quarry(1, 1);
+		
+		List<Entity> entities = new ArrayList<Entity>();
+		entities.add(entity1);
+		entities.add(entity2);
+		entities.add(entity3);
+		
+		// Check entity functionality still works
+		Collections.sort(entities);
+		
+		assertTrue("Entity 0 incorrect!", entities.get(0).equals(entity3));
+		assertTrue("Entity 1 incorrect!", entities.get(1).equals(entity1));
+		assertTrue("Entity 2 incorrect!", entities.get(2).equals(entity2));
+		
+		// Check correct resources and time
+		assertTrue("Wrong returned resources", entity1.resourcesReturnWood() == 3);
+		assertTrue("Wrong resources to build", entity3.resourcesBuildWood() == 6);
+		assertTrue("Wrong time", entity2.timeToBuild() == 5);
+		
+		// Check if nothing has changed after call tick()
+		entity1.tick();
+		entity2.tick();
+		entity3.tick();
+		assertTrue("Wrong returned resources", entity1.resourcesReturnStone() == 4);
+		assertTrue("Wrong resources to build", entity3.resourcesBuildStone() == 8);
+		assertTrue("Wrong time", entity2.timeToBuild() == 5);
+	}
+	
 //	@Test
 //	public void adjacentTest1(){
 //		Entity entity1 = new Entity(3, 7, 1, 2);

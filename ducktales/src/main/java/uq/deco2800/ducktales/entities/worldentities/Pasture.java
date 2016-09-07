@@ -21,7 +21,7 @@ public class Pasture extends Building {
 	 * @param y, y location of the building
 	 */
 	public Pasture(double x, double y) {
-		super(x, y, 2, 2, TYPE);
+		super(x, y, 5, 5, TYPE);
 		
 	}
 	
