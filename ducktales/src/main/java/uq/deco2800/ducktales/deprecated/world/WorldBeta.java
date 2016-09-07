@@ -1,7 +1,7 @@
 package uq.deco2800.ducktales.deprecated.world;
 
+import uq.deco2800.ducktales.features.landscape.tiles.TileSprite;
 import uq.deco2800.ducktales.resources.ResourceType;
-import uq.deco2800.ducktales.features.landscape.tiles.TileBeta;
 import uq.deco2800.ducktales.util.Array2D;
 
 /**
@@ -24,7 +24,7 @@ public class WorldBeta {
     private int height; // in tile-unit
 
     /** The landscape of the world */
-    private Array2D<TileBeta> tiles;
+    private Array2D<TileSprite> tiles;
 
     public WorldBeta(String name, int widthTileUnit, int heightTileUnit) {
         this.name = name;
@@ -65,7 +65,7 @@ public class WorldBeta {
      *
      * @return The tile at the given coordinate
      */
-    public TileBeta getTile(int x, int y) {
+    public TileSprite getTile(int x, int y) {
         return tiles.get(x, y);
     }
 
@@ -74,7 +74,7 @@ public class WorldBeta {
      *
      * @return  The set of tiles in the current world
      */
-    public Array2D<TileBeta> getTiles() {
+    public Array2D<TileSprite> getTiles() {
         return tiles;
     }
 
@@ -82,11 +82,11 @@ public class WorldBeta {
      * Initialize the array of tiles to the default type
      */
     private void initializeDefaultTiles() {
-        this.tiles = new Array2D<TileBeta>(this.width, this.height);
+        this.tiles = new Array2D<TileSprite>(this.width, this.height);
 
         for (int x = 0; x < this.width; x++) {
             for (int y = 0; y < this.height; y++) {
-                tiles.set(x, y, new TileBeta(DefaultTileType, x, y));
+                tiles.set(x, y, new TileSprite(DefaultTileType, x, y));
             }
         }
     }

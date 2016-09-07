@@ -4,6 +4,8 @@ import uq.deco2800.ducktales.features.entities.worldentities.WorldEntity;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.Tickable;
 
+import static uq.deco2800.ducktales.resources.ResourceType.NONE;
+
 /**
  * Represents a square unit of the world.
  * 
@@ -11,16 +13,19 @@ import uq.deco2800.ducktales.util.Tickable;
  *
  */
 public class Tile implements Tickable {
-	/**
-	 * The type of this tile.
-	 */
+	/**The type of this tile. */
 	private ResourceType tileType;
+
+	/** The type of the world entity on this tile */
+	private ResourceType worldEntityType;
+
+	/** Variable to control whether this tile is passable */
+	private boolean isPassable;
+
 
 	// TODO REMOVE THESE
 	private ResourceType oldType = ResourceType.YELLOW;
 	private boolean path = false;
-
-	private WorldEntity worldEntity;
 
 	/**
 	 * Initialises this Tile with a specified tile type.
@@ -30,6 +35,10 @@ public class Tile implements Tickable {
 	 */
 	public Tile(ResourceType tileType) {
 		this.tileType = tileType;
+
+		// Set up initial info
+		worldEntityType = NONE;
+		isPassable = true;
 	}
 
 	/**
@@ -55,39 +64,38 @@ public class Tile implements Tickable {
 	}
 
 	/**
-	 * Adds a world entity to this tile.
-	 * 
-	 * @param worldEntity
+	 * Set the type of world entity on this tile
+	 * @param worldEntityType
+	 * 			The type of the world entity on this tile
+	 *
+	 * 	TODO: ALSO CHECK FOR PASSABILITY HERE TOO
 	 */
-	public void addWorldEntity(WorldEntity worldEntity) {
-		if (this.worldEntity != null) {
-			this.worldEntity = worldEntity;
-		}
+	public void setWorldEntityType(ResourceType worldEntityType) {
+		this.worldEntityType = worldEntityType;
 	}
 
-	public void setWorldEntity(WorldEntity entity) {
-		this.worldEntity = entity;
+
+	/**
+	 * Set the passability of this tile
+	 * @param newValue
+	 * 			The new passability value of this tile
+	 */
+	public void setPassable(boolean newValue) {
+		this.isPassable = newValue;
 	}
 
 	/**
-	 * Returns the {@link Building} at this location.
-	 * 
-	 * @return Returns the WorldEntity at this location.
+	 * Check if this tile is passable
+	 * @return the passability of this tile
 	 */
-	public WorldEntity getWorldEntity() {
-		return worldEntity;
+	public boolean isPassable() {
+		return isPassable;
 	}
 
 	@Override
 	public void tick() {
 	}
 
-	public boolean isPassable() {
-		if (worldEntity == null) {
-			return true;
-		}
-		return worldEntity.isPassable();
-	}
 
 	public void reset() {
 		path = false;

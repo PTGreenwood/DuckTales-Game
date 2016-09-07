@@ -230,11 +230,6 @@ public class World implements Tickable {
 			System.out.println("CANNOT ADD WORLD ENTITY");
 			return;
 		}
-		for (int x = xMin; x <= entityX; x++) {
-			for (int y = yMin; y <= entityY; y++) {
-				tiles.get(x, y).setWorldEntity(entity);
-			}
-		}
 		entityManager.addEntity(entity);
 
 	}

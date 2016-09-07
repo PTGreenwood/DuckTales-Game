@@ -24,6 +24,7 @@ public class HUDManager implements SecondaryManager {
     private AnchorPane rootPane;
     /** FXML variables - this implementation should be changed later to use FXML */
     private AnchorPane bottomPane;
+    private AnchorPane leftPane;
 
     /** Helper managers */
     private MenuManager menuManager;
@@ -31,8 +32,9 @@ public class HUDManager implements SecondaryManager {
     /**
      * Creates a manager for the HUD. Setup the HUD by instantiating helper managers
      */
-    public HUDManager(AnchorPane rootPane, AnchorPane bottomPane) {
+    public HUDManager(AnchorPane rootPane, AnchorPane leftPane, AnchorPane bottomPane) {
         this.rootPane = rootPane;
+        this.leftPane = leftPane;
         this.bottomPane = bottomPane;
 
         // Instantiates the helper managers
@@ -66,5 +68,13 @@ public class HUDManager implements SecondaryManager {
     @Override
     public void reload() {
 
+    }
+
+    /**
+     * Bring the left pane and bottom pane to the front
+     */
+    public void bringGUIToFront() {
+        this.leftPane.toFront();
+        this.bottomPane.toFront();
     }
 }

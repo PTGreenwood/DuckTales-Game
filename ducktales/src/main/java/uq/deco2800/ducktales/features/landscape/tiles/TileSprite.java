@@ -11,12 +11,12 @@ import uq.deco2800.ducktales.util.events.tile.TileExitedEvent;
 import uq.deco2800.ducktales.util.events.ui.HUDDeselectedEvent;
 
 /**
- * A tile in the game. The tile will contain information on what entity is
- * currently on it, as well as whether an agent can pass over it
+ * A tile seen by the player in the game. It is purely a sprite to be rendered onto
+ * the screen and contains no game logic
  *
- * Created by Khoi on 31/08/2016.
+ * Created on 31/08/2016.
  */
-public class TileBeta extends ImageView{
+public class TileSprite extends ImageView{
     // The position of this tile in the 2D array of the game world
     private int xPos;
     private int yPos;
@@ -25,45 +25,16 @@ public class TileBeta extends ImageView{
     private ResourceType type;
 
     /**
-     * The type of the static entity currently on this tile
+     * Create a sprite for a tile with the given tile info
      *
-     * NOTE: there can only be one type of static entity on any tile
-     */
-    private ResourceType worldEntity;
-
-    /** A boolean value determining whether this tile is passable */
-    private boolean isPassable;
-
-    // The manager and renderer of the game
-    private GameManagerBeta manager;
-    private GameRendererBeta renderer;
-
-    /**
-     * Initialize a tile with the given manager, renderer and its x and y positions
-     * in the 2D array
-     *
-     * @param manager
-     *          The manager of the game
-     * @param renderer
-     *          The renderer of the game
+     * @param type
+     *          The type of this tile sprite
      * @param xPos
      *          The x-position in the 2D array
      * @param yPos
      *          The y-position in the 2D array
      */
-    @Deprecated
-    public TileBeta(ResourceType type, int xPos, int yPos,
-                    GameManagerBeta manager, GameRendererBeta renderer) {
-        // Setup the handles for the manager and renderer
-        this.manager = manager;
-        this.renderer = renderer;
-        // Setup the index of the tile
-        this.xPos = xPos;
-        this.yPos = yPos;
-        this.type = type;
-    }
-
-    public TileBeta(ResourceType type, int xPos, int yPos) {
+    public TileSprite(ResourceType type, int xPos, int yPos) {
         // Setup the index of the tile
         this.xPos = xPos;
         this.yPos = yPos;
@@ -112,42 +83,5 @@ public class TileBeta extends ImageView{
         this.setOnMouseExited(event -> {
             fireEvent(new TileExitedEvent(this.xPos, this.yPos));
         });
-    }
-
-    /**
-     * Get the type of the static entity currently on this tile
-     *
-     * @return the type of the static entity on this tile
-     */
-    public ResourceType getWorldEntity() {
-        return worldEntity;
-    }
-
-    /**
-     * Set the type of the static entity on this tile
-     * @param worldEntity
-     *          The type of the static entity on this tile
-     */
-    public void setWorldEntity(ResourceType worldEntity) {
-        this.worldEntity = worldEntity;
-    }
-
-    /**
-     * Check if this tile is passable
-     *
-     * @return {@code true} if this tile is passable
-     */
-    public boolean isPassable() {
-        return isPassable;
-    }
-
-    /**
-     * Set this tile's passability
-     *
-     * @param passable
-     *          the boolean value to determine whether the tiles is passable
-     */
-    public void setPassable(boolean passable) {
-        isPassable = passable;
     }
 }

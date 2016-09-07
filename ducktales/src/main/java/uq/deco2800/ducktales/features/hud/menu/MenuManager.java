@@ -160,7 +160,7 @@ public class MenuManager implements Initializable, SecondaryManager{
              * Then adjust the size of the sprites accordingly
              */
             // Get the officially defined scale from the rendering manager
-            double UIScale = RenderingInformation.UIScale;
+            double UIScale = RenderingInformation.UI_SCALE;
 
             // adjust the size of the sprites
             for (int i = 0; i < buildingMenuSprites.size(); i++) {
@@ -188,7 +188,7 @@ public class MenuManager implements Initializable, SecondaryManager{
                 }
 
                 // Now set the size of the sprite based on the length in tile unit, and
-                // the variable UIScale
+                // the variable UI_SCALE
                 sprite.setFitHeight((sprite.getSpriteHeight() / xLength) * UIScale);
                 sprite.setFitWidth((sprite.getSpriteWidth() / yLength) * UIScale);
             }

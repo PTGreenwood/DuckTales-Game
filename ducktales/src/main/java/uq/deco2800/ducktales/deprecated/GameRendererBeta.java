@@ -5,6 +5,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.*;
+import uq.deco2800.ducktales.features.landscape.tiles.TileSprite;
 import uq.deco2800.ducktales.rendering.info.AgentEntityInfo;
 import uq.deco2800.ducktales.rendering.RenderingInformation;
 import uq.deco2800.ducktales.features.hud.menu.animal.AnimalMenuSprite;
@@ -13,7 +14,6 @@ import uq.deco2800.ducktales.features.hud.menu.building.BuildingMenuSprite;
 import uq.deco2800.ducktales.rendering.info.WorldEntityInfo;
 import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
-import uq.deco2800.ducktales.features.landscape.tiles.TileBeta;
 import uq.deco2800.ducktales.util.Array2D;
 import uq.deco2800.ducktales.util.events.tile.*;
 import uq.deco2800.ducktales.util.events.ui.*;
@@ -213,6 +213,7 @@ public class GameRendererBeta extends AnimationTimer {
      * @param renderingInformation
      *          The rendering manager for the game
      */
+    @Deprecated
     public void setRenderingInformation(RenderingInformation renderingInformation) {
         this.renderingInformation = renderingInformation;
     }
@@ -224,6 +225,7 @@ public class GameRendererBeta extends AnimationTimer {
     /**
      * Show the animals that the player can add in the animals menu
      */
+    @Deprecated
     public void showAnimalsMenu() {
         if (animalsMenu.getChildren().size() == 0) {
             /*
@@ -254,54 +256,55 @@ public class GameRendererBeta extends AnimationTimer {
      *          WorldEntityInfo
      * @ensure each building in buildingMenuSprites will be shown onto the buildingsMenu
      */
+    @Deprecated
     public void showBuildingMenu() {
-        // Check if the buildings menu has been instantiated before
-        if (buildingsMenu.getChildren().size() == 0) {
-            /*
-             * Firstly add all building sprites to the menu first
-             */
-            buildingsMenu.getChildren().addAll(buildingMenuSprites);
-
-            /*
-             * Then adjust the size of the sprites accordingly
-             */
-            // Get the officially defined scale from the rendering manager
-            double uiScale = renderingInformation.getUIScale();
-
-            // adjust the size of the sprites
-            for (int i = 0; i < buildingMenuSprites.size(); i++) {
-                BuildingMenuSprite sprite = buildingMenuSprites.get(i);
-
-                // Get the size of the building in tile-unit first
-                int xLength = 0;
-                int yLength = 0;
-                try {
-                    xLength = worldEntityInfo.getBuildingLength(
-                            sprite.getSpriteType(), worldEntityInfo.XLength
-                    );
-                    yLength = worldEntityInfo.getBuildingLength(
-                            sprite.getSpriteType(), worldEntityInfo.YLength
-                    );
-                } catch (Exception e) {
-                    System.err.println(e.getMessage());
-                }
-
-                if (xLength == 0 || yLength == 0) {
-                    // this building is not yet registered
-                    System.err.println("BuildingMenuSprite: " + sprite.getSpriteType() + "is" +
-                            " not yet registered in WorldEntityInfo");
-                    return;
-                }
-
-                // Now set the size of the sprite based on the length in tile unit, and
-                // the variable UIScale
-                sprite.setFitHeight((sprite.getSpriteHeight() / xLength) * uiScale);
-                sprite.setFitWidth((sprite.getSpriteWidth() / yLength) * uiScale);
-            }
-        }
-
-        buildingsMenu.setVisible(true);
-        animalsMenu.setVisible(false);
+//        // Check if the buildings menu has been instantiated before
+//        if (buildingsMenu.getChildren().size() == 0) {
+//            /*
+//             * Firstly add all building sprites to the menu first
+//             */
+//            buildingsMenu.getChildren().addAll(buildingMenuSprites);
+//
+//            /*
+//             * Then adjust the size of the sprites accordingly
+//             */
+//            // Get the officially defined scale from the rendering manager
+//            double uiScale = renderingInformation.getUIScale();
+//
+//            // adjust the size of the sprites
+//            for (int i = 0; i < buildingMenuSprites.size(); i++) {
+//                BuildingMenuSprite sprite = buildingMenuSprites.get(i);
+//
+//                // Get the size of the building in tile-unit first
+//                int xLength = 0;
+//                int yLength = 0;
+//                try {
+//                    xLength = worldEntityInfo.getBuildingLength(
+//                            sprite.getSpriteType(), worldEntityInfo.XLength
+//                    );
+//                    yLength = worldEntityInfo.getBuildingLength(
+//                            sprite.getSpriteType(), worldEntityInfo.YLength
+//                    );
+//                } catch (Exception e) {
+//                    System.err.println(e.getMessage());
+//                }
+//
+//                if (xLength == 0 || yLength == 0) {
+//                    // this building is not yet registered
+//                    System.err.println("BuildingMenuSprite: " + sprite.getSpriteType() + "is" +
+//                            " not yet registered in WorldEntityInfo");
+//                    return;
+//                }
+//
+//                // Now set the size of the sprite based on the length in tile unit, and
+//                // the variable UI_SCALE
+//                sprite.setFitHeight((sprite.getSpriteHeight() / xLength) * uiScale);
+//                sprite.setFitWidth((sprite.getSpriteWidth() / yLength) * uiScale);
+//            }
+//        }
+//
+//        buildingsMenu.setVisible(true);
+//        animalsMenu.setVisible(false);
     }
 
     /**
@@ -314,7 +317,7 @@ public class GameRendererBeta extends AnimationTimer {
         this.startingX = root.getPrefWidth() / 2;
         this.startingY = root.getPrefHeight() * 0.05;
 
-        this.generalScale = renderingInformation.getMainScaleFactor();
+        this.generalScale = renderingInformation.MAIN_SCALE_FACTOR;
 
         this.renderedEntities = new ArrayList<>();
 
@@ -325,7 +328,7 @@ public class GameRendererBeta extends AnimationTimer {
      * Create the initial game world
      */
     private void createInitialWorld() {
-        Array2D<TileBeta> tiles = world.getTiles();
+        Array2D<TileSprite> tiles = world.getTiles();
 
         int tileHeight = resource.TILE_HEIGHT;
         int tileWidth = resource.TILE_WIDTH;
@@ -333,7 +336,7 @@ public class GameRendererBeta extends AnimationTimer {
         int scaledWidth = (int) (tileWidth * generalScale);
         int scaledHeight = (int) (tileHeight * generalScale);
 
-        TileBeta tile;
+        TileSprite tile;
 
         // Iterate over each tile and set their location to the default location
         for (int i = 0; i < tiles.getWidth(); i++) {
@@ -375,7 +378,7 @@ public class GameRendererBeta extends AnimationTimer {
         // COMPLETELY replaces the onMouseEntered event, so worldPane will not
         // receive onMouseEntered at all
         worldPane.addEventHandler(TileEnteredEvent.TILE_ENTERED, event -> {
-            TileBeta tile = world.getTiles().get(event.getxPos(), event.getyPos());
+            TileSprite tile = world.getTiles().get(event.getxPos(), event.getyPos());
 
             tile.setImage(resource.getResourceImage(BLANK)); //TODO DELETE
 
@@ -391,7 +394,7 @@ public class GameRendererBeta extends AnimationTimer {
         });
         worldPane.addEventHandler(uq.deco2800.ducktales.util.events.tile.TileExitedEvent.TILE_EXITED, event -> {
             //System.err.println(event.toString());
-            TileBeta tile = world.getTiles().get(event.getxPos(), event.getyPos());
+            TileSprite tile = world.getTiles().get(event.getxPos(), event.getyPos());
             tile.setImage(resource.getResourceImage(tile.getTileType()));
         });
         // A tile is clicked on. Attempt to add either the building, or the animal
@@ -446,7 +449,7 @@ public class GameRendererBeta extends AnimationTimer {
             this.cursorImage.setLayoutY(event.getStartingY());
 
             // Scale the cursor image by the scale given by rendering manager
-            double scale = renderingInformation.getAnimalScale();
+            double scale = RenderingInformation.ANIMAL_SCALE;
             this.cursorImage.setFitHeight(sprite.getHeight() * scale);
             this.cursorImage.setFitWidth(sprite.getWidth() * scale);
 
@@ -477,7 +480,7 @@ public class GameRendererBeta extends AnimationTimer {
             this.cursorImage.setLayoutY(event.getStartingY());
 
             // Scale the cursor image by the scale given by rendering manager
-            double scale = renderingInformation.getBuildingScale();
+            double scale = RenderingInformation.BUILDING_SCALE;
             this.cursorImage.setFitHeight(sprite.getHeight() * scale);
             this.cursorImage.setFitWidth(sprite.getWidth() * scale);
 
@@ -557,7 +560,7 @@ public class GameRendererBeta extends AnimationTimer {
      * @param targetTile
      *          The tile currently under the cursor
      */
-    private void moveCursorImageToTile(TileBeta targetTile) {
+    private void moveCursorImageToTile(TileSprite targetTile) {
         // Shorten the name
         WorldEntityInfo manager = this.worldEntityInfo;
 
@@ -645,8 +648,8 @@ public class GameRendererBeta extends AnimationTimer {
      */
     private void moveAllEntities(double xDirection, double yDirection) {
         // The array of world tiles
-//        Array2D<TileBeta> tiles = manager.getWorld().getTiles();
-        Array2D<TileBeta> tiles = new Array2D<>(0, 0);
+//        Array2D<TileSprite> tiles = manager.getWorld().getTiles();
+        Array2D<TileSprite> tiles = new Array2D<>(0, 0);
         // temporary variable to hold all the sprites later
         ImageView entity;
 

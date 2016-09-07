@@ -65,6 +65,28 @@ public class GameManager {
     }
 
     /**
+     * This method is called by {@link GameController} when all the managers have
+     * been set up. It will officially start the game by initiating all view logic
+     * such as: tell {@link WorldDisplayManager} to render the initial world
+     */
+    public void startGame() {
+        System.err.println("\n worldDisplayManager is: " + worldDisplayManager);
+        // Pass the world model to the display manager, and initialize the display
+        worldDisplayManager.setWorld(this.world);
+
+        try {
+            worldDisplayManager.initializeWorld();
+
+            // This is needed since rendered tiles will be on top of HUD :(
+            hudManager.bringGUIToFront();
+        } catch (Exception e) {
+            System.err.println("failure to initialize world");
+            e.printStackTrace();
+        }
+
+    }
+
+    /**
      * Get the type of the resource being managed. For example, a building
      * that the player is trying to add to the game world
      *
@@ -152,6 +174,7 @@ public class GameManager {
      */
     public void setWorldDisplayManager(WorldDisplayManager worldDisplayManager) {
         this.worldDisplayManager = worldDisplayManager;
+
     }
 
     public MissionManager getMissionManager() {
@@ -177,5 +200,6 @@ public class GameManager {
     public void setAchievementManager(AchievementManager achievementManager){
     	this.achievementManager = achievementManager;
     }
-    
+
+
 }

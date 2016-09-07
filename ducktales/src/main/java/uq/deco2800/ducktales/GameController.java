@@ -68,7 +68,9 @@ public class GameController implements Initializable{
      * in DuckTalesController
      *
      * @param location
+     *          The location of this FXML
      * @param resources
+     *          The resources passed to FXML
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -85,7 +87,7 @@ public class GameController implements Initializable{
         loadLevel();
         loadAchievement();
         loadTimeDisplay();
-        
+
         // Now pass all handles for the secondary managers to the GameManager
         gameManager.setHudManager(this.hudManager);
         gameManager.setMarketManager(this.marketManager);
@@ -94,12 +96,8 @@ public class GameController implements Initializable{
         gameManager.setLevelManager(this.levelManager);
         gameManager.setAchievementManager(this.achievementManager);
 
-        // Set the temporary button to be invisible
-        closeButton.toFront();
-        closeButton.setVisible(false);
-
-
-
+        // Now officially call the game starting method from Game Manager
+        gameManager.startGame();
 
         // Game Controller's job of setting up the UI is done.
     }
@@ -109,6 +107,9 @@ public class GameController implements Initializable{
      */
     @FXML
     public void showMarketPlace() {
+        // Hide all other panes first
+        hideAllInfoWindows();
+
         marketManager.showMarketPlace();
         closeButton.setVisible(true);
     }
@@ -118,6 +119,9 @@ public class GameController implements Initializable{
      */
     @FXML
     public void showMissions() {
+        // Hide all other panes first
+        hideAllInfoWindows();
+
         missionManager.showMission();
         closeButton.setVisible(true);
     }    
@@ -127,6 +131,9 @@ public class GameController implements Initializable{
      */
     @FXML
     public void showLevel() {
+        // Hide all other panes first
+        hideAllInfoWindows();
+
     	levelManager.showLevel();
     	closeButton.setVisible(true);
     }
@@ -136,6 +143,9 @@ public class GameController implements Initializable{
      */
     @FXML
     public void showAchievement() {
+        // Hide all other panes first
+        hideAllInfoWindows();
+
     	achievementManager.showAchievement();
     	closeButton.setVisible(true);
     }
@@ -162,7 +172,7 @@ public class GameController implements Initializable{
 
         try {
             Pane worldPane = loader.load();
-            worldDisplayManager = loader.getController();
+            this.worldDisplayManager = loader.getController();
 
             // add the world pane to the root pane
             rootPane.getChildren().add(worldPane);
@@ -174,7 +184,8 @@ public class GameController implements Initializable{
             AnchorPane.setBottomAnchor(worldPane, 180.0);
 
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println("unable to load world display");
+            //e.printStackTrace();
         }
     }
 
@@ -182,7 +193,11 @@ public class GameController implements Initializable{
      * Load the HUD Information into the current panes
      */
     private void loadHUD() {
-        hudManager = new HUDManager(this.rootPane, this.bottomPane);
+        hudManager = new HUDManager(this.rootPane, this.leftPane, this.bottomPane);
+
+        // Set the temporary button to be invisible
+        closeButton.toFront();
+        closeButton.setVisible(false);
     }
 
     /**
@@ -241,8 +256,8 @@ public class GameController implements Initializable{
 
             rootPane.getChildren().add(root);
 
-            rootPane.setTopAnchor(root, 0.0);
-            rootPane.setRightAnchor(root, 30.0);
+            AnchorPane.setTopAnchor(root, 0.0);
+            AnchorPane.setRightAnchor(root, 30.0);
 
             missionManager.hideMission();
 
@@ -269,8 +284,8 @@ public class GameController implements Initializable{
             
             rootPane.getChildren().add(root);
 
-            rootPane.setTopAnchor(root, 0.0);
-            rootPane.setLeftAnchor(root, 170.0);
+            AnchorPane.setTopAnchor(root, 0.0);
+            AnchorPane.setLeftAnchor(root, 170.0);
 
             levelManager.hideLevel();
 
@@ -296,8 +311,8 @@ public class GameController implements Initializable{
             
             rootPane.getChildren().add(root);
 
-            rootPane.setTopAnchor(root, 0.0);
-            rootPane.setRightAnchor(root, 30.0);
+            AnchorPane.setTopAnchor(root, 0.0);
+            AnchorPane.setRightAnchor(root, 30.0);
 
             achievementManager.hideAchievement();
 
