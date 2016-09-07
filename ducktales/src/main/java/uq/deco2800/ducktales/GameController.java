@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import uq.deco2800.ducktales.features.hud.HUDManager;
 import uq.deco2800.ducktales.features.market.MarketManager;
 import uq.deco2800.ducktales.features.market.MarketVistaNavigator;
 
@@ -48,6 +49,7 @@ public class GameController implements Initializable{
 
     /** The Secondary Managers of the game, each managing an FXML loader */
     private MarketManager marketManager;
+    private HUDManager hudManager;
 
 
     /**
@@ -65,11 +67,22 @@ public class GameController implements Initializable{
 
         // Load each FXML element into the root pane on by one, and retrieve
         // their respective controllers
+        loadHUD();
         loadMarketPlace();
         loadTimeDisplay();
 
 
         System.err.println("GameController Initialized");
+    }
+
+    /**
+     * Load the HUD Information into the current panes
+     * TODO: For HUD Team: you guys can change this later to make it the
+     *       controller for the loaded FXML instead of just passing the HUD
+     *       Manager a handle of leftPane and bottomPane. Sorry for dodgy-ness...
+     */
+    private void loadHUD() {
+        hudManager = new HUDManager(this.rootPane, this.bottomPane);
     }
 
 
@@ -80,7 +93,6 @@ public class GameController implements Initializable{
     public void showMarketPlace() {
         marketManager.showMarketPlace();
         closeButton.setVisible(true);
-
     }
 
     /**

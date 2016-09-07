@@ -1,4 +1,4 @@
-package uq.deco2800.ducktales.rendering.managers;
+package uq.deco2800.ducktales.rendering.info;
 
 import uq.deco2800.ducktales.resources.ResourceType;
 
@@ -13,11 +13,11 @@ import static uq.deco2800.ducktales.resources.ResourceType.*;
  * Created on 5/09/2016.
  * @author khoiphan21
  */
-public class AgentEntityInfoManager {
+public class AgentEntityInfo {
     /** The instance and its getter method of this class */
-    private static final AgentEntityInfoManager INSTANCE = new AgentEntityInfoManager();
+    private static final AgentEntityInfo INSTANCE = new AgentEntityInfo();
 
-    public static AgentEntityInfoManager getInstance() { return INSTANCE; }
+    public static AgentEntityInfo getInstance() { return INSTANCE; }
 
     /** REGISTERED AGENT TYPES */
     private final ResourceType[] agentTypes = {
@@ -27,7 +27,7 @@ public class AgentEntityInfoManager {
     /** The variable containing the information of each agent type */
     private ArrayList<ResourceType> agentRenderingInfo;
 
-    private AgentEntityInfoManager() {
+    private AgentEntityInfo() {
         agentRenderingInfo = new ArrayList<>();
 
         // register all agent types

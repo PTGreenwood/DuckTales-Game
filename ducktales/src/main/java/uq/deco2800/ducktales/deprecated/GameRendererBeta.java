@@ -5,12 +5,12 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.*;
-import uq.deco2800.ducktales.rendering.managers.AgentEntityInfoManager;
+import uq.deco2800.ducktales.rendering.info.AgentEntityInfo;
 import uq.deco2800.ducktales.rendering.RenderingInformation;
-import uq.deco2800.ducktales.features.hud.AnimalMenuSprite;
-import uq.deco2800.ducktales.features.hud.BuildingMenuSprite;
+import uq.deco2800.ducktales.features.hud.menu.animal.AnimalMenuSprite;
+import uq.deco2800.ducktales.features.hud.menu.building.BuildingMenuSprite;
 
-import uq.deco2800.ducktales.rendering.managers.WorldEntityInfoManager;
+import uq.deco2800.ducktales.rendering.info.WorldEntityInfo;
 import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.features.landscape.tiles.TileBeta;
@@ -73,7 +73,7 @@ public class GameRendererBeta extends AnimationTimer {
     private WorldBeta world; // the game world
     private GameManagerBeta manager; // the game manager
     private ResourceSpriteRegister resource;
-    private WorldEntityInfoManager worldEntityInfoManager; // for rendering purposes
+    private WorldEntityInfo worldEntityInfo; // for rendering purposes
 
     /**
      * VARIABLES FOR RENDERING
@@ -120,7 +120,7 @@ public class GameRendererBeta extends AnimationTimer {
         this.buildingsMenu = buildingsMenu;
         this.animalsMenu = animalsMenu;
 
-        worldEntityInfoManager = WorldEntityInfoManager.getInstance();
+        worldEntityInfo = WorldEntityInfo.getInstance();
 
         resource = ResourceSpriteRegister.getInstance();
     }
@@ -249,7 +249,7 @@ public class GameRendererBeta extends AnimationTimer {
      * Show the buildings that the player can construct in the buildings menu
      *
      * @require all buildings in buildingMenuSprites must have been registered in
-     *          WorldEntityInfoManager
+     *          WorldEntityInfo
      * @ensure each building in buildingMenuSprites will be shown onto the buildingsMenu
      */
     public void showBuildingMenu() {
@@ -274,11 +274,11 @@ public class GameRendererBeta extends AnimationTimer {
                 int xLength = 0;
                 int yLength = 0;
                 try {
-                    xLength = worldEntityInfoManager.getBuildingLength(
-                            sprite.getSpriteType(), worldEntityInfoManager.XLength
+                    xLength = worldEntityInfo.getBuildingLength(
+                            sprite.getSpriteType(), worldEntityInfo.XLength
                     );
-                    yLength = worldEntityInfoManager.getBuildingLength(
-                            sprite.getSpriteType(), worldEntityInfoManager.YLength
+                    yLength = worldEntityInfo.getBuildingLength(
+                            sprite.getSpriteType(), worldEntityInfo.YLength
                     );
                 } catch (Exception e) {
                     System.err.println(e.getMessage());
@@ -287,7 +287,7 @@ public class GameRendererBeta extends AnimationTimer {
                 if (xLength == 0 || yLength == 0) {
                     // this building is not yet registered
                     System.err.println("BuildingMenuSprite: " + sprite.getSpriteType() + "is" +
-                            " not yet registered in WorldEntityInfoManager");
+                            " not yet registered in WorldEntityInfo");
                     return;
                 }
 
@@ -520,8 +520,8 @@ public class GameRendererBeta extends AnimationTimer {
      */
     private void addToWorld(ResourceType type, int xIndex, int yIndex) {
         // shorten the name for easier reading
-        WorldEntityInfoManager worldEntityManager = this.worldEntityInfoManager;
-        AgentEntityInfoManager agentManager = AgentEntityInfoManager.getInstance();
+        WorldEntityInfo worldEntityManager = this.worldEntityInfo;
+        AgentEntityInfo agentManager = AgentEntityInfo.getInstance();
 
         if (worldEntityManager.containEntity(type)) {
             // Create (for now) an ImageView at the position of the cursor image
@@ -559,7 +559,7 @@ public class GameRendererBeta extends AnimationTimer {
      */
     private void moveCursorImageToTile(TileBeta targetTile) {
         // Shorten the name
-        WorldEntityInfoManager manager = this.worldEntityInfoManager;
+        WorldEntityInfo manager = this.worldEntityInfo;
 
         // relocate the origin of the cursor image
         cursorImage.setX(-cursorImage.getFitWidth() / 2);
@@ -583,10 +583,10 @@ public class GameRendererBeta extends AnimationTimer {
         for (int i = 0; i < BUILDINGS.length; i++) {
             BuildingMenuSprite sprite = new BuildingMenuSprite(BUILDINGS[i]);
 
-            if (!worldEntityInfoManager.containEntity(sprite.getSpriteType())) {
+            if (!worldEntityInfo.containEntity(sprite.getSpriteType())) {
                 // this building is not yet registered in the manager. not rendered
                 System.err.println("BuildingMenuSprite " + sprite.getSpriteType() + " is " +
-                        "not yet registered in WorldEntityInfoManager");
+                        "not yet registered in WorldEntityInfo");
                 continue;
             }
 
