@@ -35,7 +35,9 @@ public class DuckTalesController implements Initializable {
 	@FXML
 	//gameWindow, contentPane & mainMenuPane are referenced in ducktales.fxml
 	private AnchorPane gameWindow;
+	@FXML
 	private AnchorPane contentPane;
+	@FXML
 	private AnchorPane mainMenuPane;
 
 
@@ -149,6 +151,7 @@ public class DuckTalesController implements Initializable {
 	 * @throws Exception
 	 */
 	@FXML
+	@Deprecated
 	private void showMarketplace(ActionEvent event) throws Exception {
 
 		// Load in the marketplace fxml
