@@ -35,7 +35,6 @@ public class Level {
 		this.barProgress = 0;
 		this.pb.setProgress(0);
 	}
-	//later in levelController if isBarFull == true then levelup;
 	
 	public void setLevel(int level){
 		this.level = level;
