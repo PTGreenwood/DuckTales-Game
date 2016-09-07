@@ -3,7 +3,8 @@ package uq.deco2800.ducktales;
 import uq.deco2800.ducktales.entities.EntityManager;
 import uq.deco2800.ducktales.world.World;
 import uq.deco2800.ducktales.world.GameTime;
-
+import org.slf4j.Logger; 
+import org.slf4j.LoggerFactory; 
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
@@ -14,6 +15,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
  */
 public class GameLoop implements Runnable {
 
+	private static Logger logger = LoggerFactory.getLogger(GameLoop.class);
 	private World world;
 	private AtomicBoolean quit;
 	
@@ -44,7 +46,7 @@ public class GameLoop implements Runnable {
 			try {
 				Thread.sleep(tick);
 			} catch (InterruptedException e) {
-				e.printStackTrace();
+				 logger.info("context", e);
 			}
 		}
 
