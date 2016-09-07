@@ -8,10 +8,9 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import javafx.scene.layout.*;
 import uq.deco2800.ducktales.deprecated.OldGameController;
 import uq.deco2800.ducktales.deprecated.ui.*;
-import uq.deco2800.ducktales.features.achievements.Achievements;
 import uq.deco2800.ducktales.features.market.MarketManager;
 import uq.deco2800.ducktales.features.market.MarketVistaNavigator;
-import uq.deco2800.ducktales.features.missions.Missions;
+import uq.deco2800.ducktales.features.missions.MissionHandler;
 import uq.deco2800.ducktales.deprecated.OldGameManager;
 import uq.deco2800.ducktales.features.weather.Weather;
 import uq.deco2800.ducktales.features.weather.WeatherEffect;
@@ -74,9 +73,6 @@ public class DuckTalesController implements Initializable {
 	private AnchorPane gamePane;
 
 	private AtomicBoolean quit;
-
-	private Achievements achievementScore;
-	private Missions missions;
 
 	public Stage tutorialStage;
 	public Stage marketplaceStage;

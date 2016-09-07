@@ -8,8 +8,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import uq.deco2800.ducktales.features.achievements.Achievements;
-import uq.deco2800.ducktales.features.missions.Missions;
+import uq.deco2800.ducktales.features.missions.MissionHandler;
 import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.features.landscape.tiles.WorldBuilderTile;
@@ -65,14 +64,11 @@ public class WorldBuilderRenderer extends AnimationTimer {
      */
     WorldBuilderManager manager = WorldBuilderManager.getInstance();
     
-    /*
-     * Call Achievements Class     
-     */
-    Achievements achievementScore = Achievements.getInstance();
+    
     /*
      * Call Missions Class
      */
-    Missions missions = Missions.getInstance();
+    MissionHandler missions = MissionHandler.getInstance();
     
     /**
      * starting X and Y positions to render the tiles
@@ -210,11 +206,7 @@ public class WorldBuilderRenderer extends AnimationTimer {
         buildingScene.getChildren().add(entity);
 
         System.out.println("Entities added: " + addedEntities.toString());
-        
-        //Achievement score will be incremented whenever any building is built
-        achievementScore.achieveVeasy();
-        //If any building is built then unchecked box will be changed to checked box
-        missions.MissionImageCompleted(0);       
+              
     }
 
     /**
