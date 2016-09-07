@@ -9,9 +9,12 @@ import java.util.List;
 import org.junit.Test;
 
 import uq.deco2800.ducktales.entities.Entity;
+import uq.deco2800.ducktales.entities.worldentities.Bakery;
 import uq.deco2800.ducktales.entities.worldentities.Box;
 import uq.deco2800.ducktales.entities.worldentities.House;
 import uq.deco2800.ducktales.entities.worldentities.LongBox;
+import uq.deco2800.ducktales.entities.worldentities.Observatory;
+import uq.deco2800.ducktales.resources.ResourceType;
 
 public class EntityTest {
 	
@@ -236,4 +239,50 @@ public class EntityTest {
 		assertTrue("box incorrect!", box.getType().toString().equals("BOX"));
 		assertTrue("background incorrect", background.getType().toString().equals("HOUSE"));
 	}
+	
+	/**
+	 * Test updateType
+	 */
+	@Test
+	public void getUpdateTest() {
+		Entity box = new Box(5, 4);
+		Entity background = new House(4, 3);
+			
+		box.updateType(ResourceType.HOUSE);
+		background.updateType(ResourceType.FARMHOUSE);
+		
+		assertTrue("box incorrect!", box.getType().toString().equals("HOUSE"));
+		assertTrue("background incorrect", background.getType().toString().equals("FARMHOUSE"));
+	}
+	
+	/**
+	 * Test getDistanceInside
+	 */
+	@Test
+	public void getDistanceInsideTest() {
+		Entity box = new Box(5, 4);
+		Entity background = new House(4, 4);
+			
+		assertTrue("box incorrect!", box.getDistanceInside() == 0);
+		assertTrue("background incorrect", background.getDistanceInside() == -2);
+	}
+	
+	/**
+	 * Test toString
+	 */
+	@Test
+	public void toStringTest() {
+		Entity box = new Box(5, 4);
+		Entity background = new House(4, 4);
+		Entity bakery = new Bakery(1, 2);
+		Entity observatory = new Observatory(5, 8); 
+			
+		assertTrue(box.toString(), box.toString().equals("[5.000000 4.000000 1 1    0.000000]"));
+		assertTrue("background incorrect", background.toString().equals("[4.000000 4.000000 2 2    -2.000000]"));
+		assertTrue(bakery.toString(), bakery.toString().equals("[1.000000 2.000000 2 2    -1.000000]"));
+		assertTrue(observatory.toString(), observatory.toString().equals("[5.000000 8.000000 2 2    1.000000]"));
+	}
+	
+	
+	
 }
