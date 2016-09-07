@@ -14,7 +14,8 @@ import uq.deco2800.ducktales.resources.ResourceType;
 public abstract class ResourceEntity extends WorldEntity {
 
 	//Default starting value of Resource nodes, subject to change pending further discussion
-	public static int defValue = 100;
+	//made public static to final, to fix code vulnerability 
+	public static final int defValue = 100;
 	//Actual, editable value the Resources nodes will take
 	public int value;
 
