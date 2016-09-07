@@ -35,7 +35,7 @@ public class GameSound {
 		mixer = AudioSystem.getMixer(mixInfos[0]);
 		DataLine.Info dataInfo = new DataLine.Info(Clip.class, null);
 		try { clip =(Clip)mixer.getLine(dataInfo);}
-		catch(LineUnavailableException lue){ lue.printStackTrace();}
+		catch(LineUnavailableException lue){ logger.info("Line Unavailable", lue);}
 		
 		try {
 			URL soundURL = GameSound.class.getResource(location);
@@ -43,8 +43,8 @@ public class GameSound {
 			clip.open(audioStream);			
 		}
 		
-		catch(LineUnavailableException lue){lue.printStackTrace();}
-		catch(UnsupportedAudioFileException uafe){uafe.printStackTrace();}
+		catch(LineUnavailableException lue){logger.info("Line Unavailable", lue);}
+		catch(UnsupportedAudioFileException uafe){logger.info("Unsupported Audio File", uafe);}
 		catch(IOException ioe){ ioe.printStackTrace();}
 		clip.start();
 		
@@ -69,7 +69,7 @@ public class GameSound {
 		mixer = AudioSystem.getMixer(mixInfos[0]);
 		DataLine.Info dataInfo = new DataLine.Info(Clip.class, null);
 		try { clip =(Clip)mixer.getLine(dataInfo);}
-		catch(LineUnavailableException lue){ logger.info("context", lue);}
+		catch(LineUnavailableException lue){ logger.info("Line Unavailable", lue);}
 		
 		try{
 			URL soundURL = GameSound.class.getResource(location);
