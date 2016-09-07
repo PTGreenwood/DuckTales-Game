@@ -8,10 +8,10 @@ import java.util.List;
 
 import org.junit.Test;
 
-import uq.deco2800.ducktales.entities.Entity;
-import uq.deco2800.ducktales.entities.worldentities.Box;
-import uq.deco2800.ducktales.entities.worldentities.House;
-import uq.deco2800.ducktales.entities.worldentities.LongBox;
+import uq.deco2800.ducktales.features.entities.Entity;
+import uq.deco2800.ducktales.features.entities.worldentities.Box;
+import uq.deco2800.ducktales.features.entities.worldentities.House;
+import uq.deco2800.ducktales.features.entities.worldentities.LongBox;
 
 public class EntityTest {
 	

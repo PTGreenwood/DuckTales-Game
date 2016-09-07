@@ -1,7 +1,7 @@
 package uq.deco2800.ducktales;
 
-import uq.deco2800.ducktales.world.GameTime;
-import uq.deco2800.ducktales.world.Season;
+import uq.deco2800.ducktales.core.world.GameTime;
+import uq.deco2800.ducktales.core.world.Season;
 import org.junit.Test;
 
 public class SeasonTest {

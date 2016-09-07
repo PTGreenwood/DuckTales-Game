@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane fx:id="vista1" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uq.deco2800.ducktales.market.CurrentTradeController">
+<StackPane fx:id="vista1" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uq.deco2800.ducktales.features.market.CurrentTradeController">
    <children>
       <GridPane prefHeight="372.0" prefWidth="410.0" style="-fx-background-color: #0C8F8F;">
          <columnConstraints>

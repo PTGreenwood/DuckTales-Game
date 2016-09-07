@@ -2,8 +2,8 @@ package uq.deco2800.ducktales.rendering.tiles;
 
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
-import uq.deco2800.ducktales.GameManagerBeta;
-import uq.deco2800.ducktales.GameRendererBeta;
+import uq.deco2800.ducktales.core.GameManagerBeta;
+import uq.deco2800.ducktales.core.GameRendererBeta;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.events.tile.TileClickedEvent;
 import uq.deco2800.ducktales.util.events.tile.TileEnteredEvent;
@@ -94,7 +94,7 @@ public class TileBeta extends ImageView{
                 // Left mouse clicked on tile
                 fireEvent(new TileClickedEvent(this.xPos, this.yPos));
 
-                // This additional event is handled by GameRenderer when
+                // This additional event is handled by OldGameRenderer when
                 // a building is currently being managed
                 fireEvent(new HUDDeselectedEvent());
             } else if (event.getButton() == MouseButton.SECONDARY) {
