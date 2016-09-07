@@ -71,20 +71,12 @@ public class GameController implements Initializable{
         loadMarketPlace();
         loadTimeDisplay();
 
+        // Now pass all handles for the secondary managers to the GameManager
+        gameManager.setHudManager(this.hudManager);
+        gameManager.setMarketManager(this.marketManager);
 
-        System.err.println("GameController Initialized");
+        // Game Controller's job of setting up the UI is done.
     }
-
-    /**
-     * Load the HUD Information into the current panes
-     * TODO: For HUD Team: you guys can change this later to make it the
-     *       controller for the loaded FXML instead of just passing the HUD
-     *       Manager a handle of leftPane and bottomPane. Sorry for dodgy-ness...
-     */
-    private void loadHUD() {
-        hudManager = new HUDManager(this.rootPane, this.bottomPane);
-    }
-
 
     /**
      * Show the Market Place pane
@@ -102,6 +94,16 @@ public class GameController implements Initializable{
     public void hideAllInfoWindows() {
         marketManager.hideMarketPlace();
         closeButton.setVisible(false);
+    }
+
+    /**
+     * Load the HUD Information into the current panes
+     * TODO: For HUD Team: you guys can change this later to make it the
+     *       controller for the loaded FXML instead of just passing the HUD
+     *       Manager a handle of leftPane and bottomPane. Sorry for dodgy-ness...
+     */
+    private void loadHUD() {
+        hudManager = new HUDManager(this.rootPane, this.bottomPane);
     }
 
     /**

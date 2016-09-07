@@ -1,5 +1,7 @@
 package uq.deco2800.ducktales;
 
+import uq.deco2800.ducktales.features.hud.HUDManager;
+import uq.deco2800.ducktales.features.market.MarketManager;
 import uq.deco2800.ducktales.resources.ResourceType;
 
 import static uq.deco2800.ducktales.resources.ResourceType.*;
@@ -27,6 +29,10 @@ public class GameManager {
 
     /** The model of the game */
     private World world;
+
+    /** The Secondary Managers */
+    private HUDManager hudManager;
+    private MarketManager marketManager;
 
     public GameManager() {
         // Instantiate an empty game manager without a pre-loaded world.
@@ -86,5 +92,21 @@ public class GameManager {
      */
     public void setWorld(World world) {
         this.world = world;
+    }
+
+    public HUDManager getHudManager() {
+        return hudManager;
+    }
+
+    public void setHudManager(HUDManager hudManager) {
+        this.hudManager = hudManager;
+    }
+
+    public MarketManager getMarketManager() {
+        return marketManager;
+    }
+
+    public void setMarketManager(MarketManager marketManager) {
+        this.marketManager = marketManager;
     }
 }
