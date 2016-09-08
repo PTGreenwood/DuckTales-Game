@@ -270,7 +270,7 @@ public class EntityTest {
 		}
 		
 		assertTrue("box incorrect!", box.getType().toString().equals("HOUSE"));
-		assertTrue("background incorrect", background.getType().toString().equals("FARMHOUSE"));
+		assertTrue("background incorrect", background.getType().toString().equals("FARM"));
 	}
 	
 	/**

@@ -26,11 +26,11 @@ public class WorldEntityInfo {
 
     /** CONSTANTS */
     // The size of the array int[] holding the size of the building
-    private final int BuildingSize = 2;
+    private static final int buildingSize = 2;
 
     /** Constants to get either the x or y length of the building */
-    public static final int XLength = 0;
-    public static final int YLength = 1;
+    public static final int xLength = 0;
+    public static final int yLength = 1;
 
     /*
      * INVARIANTS
@@ -103,7 +103,7 @@ public class WorldEntityInfo {
         }
 
         // The building type given is in the registry. Check the requested index
-        if (index != XLength && index != YLength) {
+        if (index != xLength && index != yLength) {
             throw new Exception("The index given must be " +
                     "WorldEntityInfo.XLength or YLength. Given index" +
                     "is: " + index);
@@ -134,7 +134,7 @@ public class WorldEntityInfo {
      */
     private void registerBuilding(ResourceType buildingType, int[] size) {
 
-        if (size.length != BuildingSize) {
+        if (size.length != buildingSize) {
             throw new IndexOutOfBoundsException("size of a building must be an" +
                     "array of 2 integers, the first is the x-length and the " +
                     "second is the y-length");
@@ -152,7 +152,7 @@ public class WorldEntityInfo {
 
         for (int i = 0; i < buildingSizes.length; i++) {
             // Check that the length of each item is 2
-            if (buildingSizes[i].length != BuildingSize) {
+            if (buildingSizes[i].length != buildingSize) {
                 throw new ClassFormatError("Size of each building must be a 1x2" +
                         "array, with size[0] is the x-length and size[1] is the" +
                         "y-length");
