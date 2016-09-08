@@ -171,10 +171,10 @@ public class MenuManager implements Initializable, SecondaryManager{
                 int yLength = 0;
                 try {
                     xLength = worldEntityInfo.getBuildingLength(
-                            sprite.getSpriteType(), worldEntityInfo.XLength
+                            sprite.getSpriteType(), worldEntityInfo.xLength
                     );
                     yLength = worldEntityInfo.getBuildingLength(
-                            sprite.getSpriteType(), worldEntityInfo.YLength
+                            sprite.getSpriteType(), worldEntityInfo.yLength
                     );
                 } catch (Exception e) {
                     System.err.println(e.getMessage());

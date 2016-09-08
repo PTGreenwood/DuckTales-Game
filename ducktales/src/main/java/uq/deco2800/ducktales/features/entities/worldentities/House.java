@@ -42,8 +42,8 @@ public class House extends Building {
 		Building.STONERESOURCES = 2;
 		Building.WOODRESOURCES = 4;
 		Building.TIME = 2;
-		Building.PRODUCTIONAMOUNT = 0;
 		Building.PRODUCTIONTYPE = production.NULL;
+		Building.PRODUCTIONAMOUNT = 0;
 	}
 
 	/**

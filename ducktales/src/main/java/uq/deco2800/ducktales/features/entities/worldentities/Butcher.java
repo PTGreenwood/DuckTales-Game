@@ -1,5 +1,6 @@
 package uq.deco2800.ducktales.features.entities.worldentities;
 
+import uq.deco2800.ducktales.features.entities.worldentities.Building.production;
 import uq.deco2800.ducktales.resources.ResourceType;
 
 /**
@@ -29,9 +30,11 @@ public class Butcher extends Building {
 	 * Update the WorldEntity properties with those of a butcher.
 	 */
 	protected void specifications() {
-		STONERESOURCES = 4;
-		WOODRESOURCES = 8;
-		TIME = 7;
+		Building.STONERESOURCES = 4;
+		Building.WOODRESOURCES = 8;
+		Building.TIME = 7;
+		Building.PRODUCTIONTYPE = production.NULL;
+		Building.PRODUCTIONAMOUNT = 0;
 	}
 	
 	/**

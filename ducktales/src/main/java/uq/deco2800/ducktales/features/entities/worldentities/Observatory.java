@@ -1,5 +1,6 @@
 package uq.deco2800.ducktales.features.entities.worldentities;
 
+import uq.deco2800.ducktales.features.entities.worldentities.Building.production;
 import uq.deco2800.ducktales.resources.ResourceType;
 
 /**
@@ -30,6 +31,8 @@ public class Observatory extends Building {
 		Building.STONERESOURCES = 4;
 		Building.WOODRESOURCES = 10;
 		Building.TIME = 5;
+		Building.PRODUCTIONTYPE = production.NULL;
+		Building.PRODUCTIONAMOUNT = 0;
 	}
 
 	/**

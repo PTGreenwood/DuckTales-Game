@@ -18,7 +18,7 @@ public abstract class Building extends WorldEntity {
 	
 	// Otherwise external classes cannot access type (even using method below)
 	public enum production {
-		WOOD, STONE, ORE, FOOD, NULL
+		NULL, WOOD, STONE, ORE, FOOD
 	}
 	
 	protected static production PRODUCTIONTYPE;

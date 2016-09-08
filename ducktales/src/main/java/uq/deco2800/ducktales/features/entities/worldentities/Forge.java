@@ -30,6 +30,8 @@ public class Forge extends Building {
 		Building.STONERESOURCES = 10;
 		Building.WOODRESOURCES = 6;
 		Building.TIME = 3;
+		Building.PRODUCTIONTYPE = production.NULL;
+		Building.PRODUCTIONAMOUNT = 0;
 	}
 
 	/**
