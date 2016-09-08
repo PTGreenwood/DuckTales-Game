@@ -1,5 +1,6 @@
 package uq.deco2800.ducktales.features.entities.worldentities;
 
+import uq.deco2800.ducktales.features.entities.worldentities.Building.production;
 import uq.deco2800.ducktales.resources.ResourceType;
 
 /**
@@ -29,9 +30,11 @@ public class Pasture extends Building {
 	 * Update the WorldEntity properties with those of a pasture.
 	 */
 	protected void specifications() {
-		STONERESOURCES = 2;
-		WOODRESOURCES = 10;
-		TIME = 4;
+		Building.STONERESOURCES = 2;
+		Building.WOODRESOURCES = 10;
+		Building.TIME = 4;
+		Building.PRODUCTIONTYPE = production.NULL;
+		Building.PRODUCTIONAMOUNT = 0;
 	}
 	
 	/**

@@ -1,43 +1,41 @@
 package uq.deco2800.ducktales.features.entities.worldentities;
 
-import uq.deco2800.ducktales.features.entities.worldentities.Building.production;
 import uq.deco2800.ducktales.resources.ResourceType;
 
 /**
- * A Hospital.
+ * A Mine. Creates Ore
  * 
  * @author Gabrielle Hodge, 43590526 
  *
  */
-public class Hospital extends Building {
+public class Mine extends Building {
 	
-
 	// BuildingMenuSprite type
-	private static final ResourceType TYPE = ResourceType.HOSPITAL;
+	private static final ResourceType TYPE = ResourceType.MINE;
 
 	/**
-	 * Initialise a new hospital. Requires the location of the hospital
+	 * Initialise a new mine. Requires the location of the mine
 	 *  to be passed.
 	 * @param x, x location of the building
 	 * @param y, y location of the building
 	 */
-	public Hospital(double x, double y) {
-		super(x, y, 2, 2, TYPE);
+	public Mine(double x, double y) {
+		super(x, y, 5, 5, TYPE);
 	}
 	
 	/**
-	 * Update the WorldEntity properties with those of a bakery.
+	 * Update the WorldEntity properties with those of a mine.
 	 */
 	protected void specifications() {
-		Building.STONERESOURCES = 12;
-		Building.WOODRESOURCES = 8;
-		Building.TIME = 5;
-		Building.PRODUCTIONTYPE = production.NULL;
-		Building.PRODUCTIONAMOUNT = 0;
+		Building.STONERESOURCES = 10;
+		Building.WOODRESOURCES = 6;
+		Building.TIME = 3;
+		Building.PRODUCTIONTYPE = production.ORE;
+		Building.PRODUCTIONAMOUNT = 5;
 	}
 
 	/**
-	 * Method to update bakery at each discrete simulation step.
+	 * Method to update mine at each discrete simulation step.
 	 * 
 	 * Note sure if any implementation will be used. To be determined later
 	 * May implement for only some of the classes (hence left in the individual 
@@ -47,5 +45,4 @@ public class Hospital extends Building {
 	public void tick() {
 		// To be implemented if there is to be animation of construction
 	}
-
 }

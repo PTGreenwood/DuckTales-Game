@@ -3,6 +3,8 @@ package uq.deco2800.ducktales.features.entities.worldentities;
 import uq.deco2800.ducktales.resources.ResourceType;
 import static uq.deco2800.ducktales.resources.ResourceType.*;
 
+import uq.deco2800.ducktales.features.entities.worldentities.Building.production;
+
 /**
  * A Bakery.
  * 
@@ -31,6 +33,8 @@ public class Bakery extends Building {
 		Building.STONERESOURCES = 4;
 		Building.WOODRESOURCES = 6;
 		Building.TIME = 4;
+		Building.PRODUCTIONTYPE = production.NULL;
+		Building.PRODUCTIONAMOUNT = 0;
 	}
 
 	/**

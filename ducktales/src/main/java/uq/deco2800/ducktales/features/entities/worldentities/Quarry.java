@@ -15,13 +15,13 @@ public class Quarry extends Building {
 	
 	
 	/**
-	 * Initialise a new barn. Requires the location of the quarry
+	 * Initialise a new quarry. Requires the location of the quarry
 	 *  to be passed.
 	 * @param x, x location of the building
 	 * @param y, y location of the building
 	 */
 	public Quarry(double x, double y) {
-		super(x, y, 2, 2, TYPE);
+		super(x, y, 5, 5, TYPE);
 		
 	}
 	
@@ -29,9 +29,11 @@ public class Quarry extends Building {
 	 * Update the WorldEntity properties with those of a quarry.
 	 */
 	protected void specifications() {
-		STONERESOURCES = 8;
-		WOODRESOURCES = 6;
-		TIME = 5;
+		Building.STONERESOURCES = 8;
+		Building.WOODRESOURCES = 6;
+		Building.TIME = 5;
+		Building.PRODUCTIONTYPE = production.STONE;
+		Building.PRODUCTIONAMOUNT = 5;
 	}
 	
 	/**

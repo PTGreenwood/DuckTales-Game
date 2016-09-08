@@ -1,5 +1,6 @@
 package uq.deco2800.ducktales.features.entities.worldentities;
 
+import uq.deco2800.ducktales.features.entities.worldentities.Building.production;
 import uq.deco2800.ducktales.resources.ResourceType;
 
 /**
@@ -29,9 +30,11 @@ public class CommunityBuilding extends Building {
 	 * Update the WorldEntity properties with those of a community building.
 	 */
 	protected void specifications() {
-		STONERESOURCES = 6;
-		WOODRESOURCES = 8;
-		TIME = 8;
+		Building.STONERESOURCES = 6;
+		Building.WOODRESOURCES = 8;
+		Building.TIME = 8;
+		Building.PRODUCTIONTYPE = production.NULL;
+		Building.PRODUCTIONAMOUNT = 0;
 	}
 	
 	/**

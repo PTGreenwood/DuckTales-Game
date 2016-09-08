@@ -1,5 +1,6 @@
 package uq.deco2800.ducktales.features.entities.worldentities;
 
+import uq.deco2800.ducktales.features.entities.worldentities.Building.production;
 import uq.deco2800.ducktales.resources.ResourceType;
 
 /**
@@ -29,9 +30,11 @@ public class Church extends Building {
 	 * Update the WorldEntity properties with those of a church.
 	 */
 	protected void specifications() {
-		STONERESOURCES = 8;
-		WOODRESOURCES = 10;
-		TIME = 9;
+		Building.STONERESOURCES = 8;
+		Building.WOODRESOURCES = 10;
+		Building.TIME = 9;
+		Building.PRODUCTIONTYPE = production.NULL;
+		Building.PRODUCTIONAMOUNT = 0;
 	}
 	
 	/**
