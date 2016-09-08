@@ -141,40 +141,40 @@ public class OldGameRenderer extends AnimationTimer {
 	 * @author Leggy, Wondertroy
 	 */
 	private void renderEntities() {
-		List<Entity> entities = entityManager.getEntities();
-		Collections.sort(entities);
-		for (int index = 0; index < entities.size(); index++) {
-			Entity entity = entities.get(index);
-
-			/*
-			 * Scale the image.
-			 */
-			int scaledWidth = (int) (tileWidth * scale);
-			int scaledHeight = (int) (tileHeight * scale);
-
-			/*
-			 * Load image, and calculate coordinates, translating from World x-y
-			 * to Screen x-y.
-			 */
-			Image image = resourceSpriteRegister.getResourceImage(entity.getType());
-			int x = baseX + (int) ((entity.getY() - entity.getX()) * scaledWidth / 2.0);
-			int y = baseY + (int) ((entity.getY() + entity.getX()) * scaledHeight / 2.0);
-
-			/*
-			 * Anchor is the position of the top-left corner of the front-most
-			 * corner (the corner closest to the bottom of the screen) of the
-			 * image.
-			 * 
-			 * We calculate this so we can render with respect to the front most
-			 * corner, not the top-left of the image.
-			 */
-			int anchorY = (int) ((image.getHeight() - tileHeight) * scale);
-			int anchorX = (int) ((entity.getYLength() - 1) / 2.0 * tileWidth * scale);
-
-			graphicsContext.drawImage(image, x - anchorX, y - anchorY,
-					(int) (scaledWidth * image.getWidth() / tileWidth),
-					(int) (scaledHeight * image.getHeight() / tileHeight));
-		}
+//		List<Entity> entities = entityManager.getEntities();
+//		Collections.sort(entities);
+//		for (int index = 0; index < entities.size(); index++) {
+//			Entity entity = entities.get(index);
+//
+//			/*
+//			 * Scale the image.
+//			 */
+//			int scaledWidth = (int) (tileWidth * scale);
+//			int scaledHeight = (int) (tileHeight * scale);
+//
+//			/*
+//			 * Load image, and calculate coordinates, translating from World x-y
+//			 * to Screen x-y.
+//			 */
+//			Image image = resourceSpriteRegister.getResourceImage(entity.getType());
+//			int x = baseX + (int) ((entity.getY() - entity.getX()) * scaledWidth / 2.0);
+//			int y = baseY + (int) ((entity.getY() + entity.getX()) * scaledHeight / 2.0);
+//
+//			/*
+//			 * Anchor is the position of the top-left corner of the front-most
+//			 * corner (the corner closest to the bottom of the screen) of the
+//			 * image.
+//			 *
+//			 * We calculate this so we can render with respect to the front most
+//			 * corner, not the top-left of the image.
+//			 */
+//			int anchorY = (int) ((image.getHeight() - tileHeight) * scale);
+//			int anchorX = (int) ((entity.getYLength() - 1) / 2.0 * tileWidth * scale);
+//
+//			graphicsContext.drawImage(image, x - anchorX, y - anchorY,
+//					(int) (scaledWidth * image.getWidth() / tileWidth),
+//					(int) (scaledHeight * image.getHeight() / tileHeight));
+//		}
 
 	}
 }
