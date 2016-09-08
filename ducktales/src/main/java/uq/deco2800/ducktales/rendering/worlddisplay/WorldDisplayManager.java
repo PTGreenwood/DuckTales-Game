@@ -67,6 +67,7 @@ public class WorldDisplayManager implements Initializable, SecondaryManager {
 
         // Load the rendering engine
         renderer.setTilesManager(tilesManager);
+        renderer.setEntityManager(gameManager.getEntityManager());
 
     }
 

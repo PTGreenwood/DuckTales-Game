@@ -140,6 +140,24 @@ public class EntityManager implements Tickable {
         sprite.setLayoutY(tileSprite.getLayoutY() + tileSprite.getFitHeight());
     }
 
+    /**
+     * Get the number of entity sprites currently rendered into the world
+     *
+     * @return the number of entity sprites rendered into the world
+     */
+    public int getSpriteAmount() {
+        return entitySprites.size();
+    }
+
+    /**
+     * Get the sprite of the entity at the given index
+     *
+     * @param index
+     *          The index of the sprite
+     */
+    public EntitySprite getEntitySprite(int index) {
+        return entitySprites.get(index);
+    }
 
     /**
      * Adds a new entity to the game.
