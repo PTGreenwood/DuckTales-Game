@@ -6,7 +6,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
-import uq.deco2800.ducktales.GameLoopBeta;
 import uq.deco2800.ducktales.features.inventory.InventoryManager;
 
 import java.net.URL;

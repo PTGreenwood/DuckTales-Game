@@ -4,7 +4,7 @@ import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import uq.deco2800.ducktales.DuckTalesController;
-import uq.deco2800.ducktales.deprecated.OldGameLoop;
+import uq.deco2800.ducktales.GameLoop;
 
 /**
  * Need to reconsider how I made this? I don't think it should use the
@@ -38,20 +38,20 @@ public class MenuKeyboardHandler implements EventHandler<KeyEvent> {
 		/////////////////////////////////
 			//key presses alters the flow of time.	
 		case DIGIT1:
-			//OldGameLoop.SpeedControl("mallard");
-			OldGameLoop.setTickModifier(1);
+			//GameLoop.SpeedControl("mallard");
+			GameLoop.setSpeedModifier(1);
 			System.out.println("speed 1x"); //set time scale to default
 			break;
 
 		case DIGIT2:
-			//OldGameLoop.SpeedControl("canvasback");
-			OldGameLoop.setTickModifier(1.5);
+			//GameLoop.SpeedControl("canvasback");
+			GameLoop.setSpeedModifier(1.5);
 			System.out.println("speed 1.5x");  //set time scale to 1.5151x
 			break;
 			
 		case DIGIT3:
-			//OldGameLoop.SpeedControl("merganser");
-			OldGameLoop.setTickModifier(2.5);
+			//GameLoop.SpeedControl("merganser");
+			GameLoop.setSpeedModifier(2.5);
 			System.out.println("speed 2.5x");  //set time scale to 2.5x 
 			break;
 			

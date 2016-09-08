@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import uq.deco2800.ducktales.features.achievements.AchievementManager;
@@ -13,6 +14,7 @@ import uq.deco2800.ducktales.features.hud.HUDManager;
 import uq.deco2800.ducktales.features.level.LevelManager;
 import uq.deco2800.ducktales.features.market.MarketManager;
 import uq.deco2800.ducktales.features.market.MarketVistaNavigator;
+import uq.deco2800.ducktales.features.time.TimeManager;
 import uq.deco2800.ducktales.rendering.worlddisplay.WorldDisplayManager;
 import uq.deco2800.ducktales.features.missions.MissionManager;
 
@@ -65,6 +67,8 @@ public class GameController implements Initializable{
 
     private EntityManager entityManager;
 
+    private TimeManager timeManager;
+
 
     /**
      * This method will be called when this controller is initialized by FXMLLoader
@@ -102,6 +106,7 @@ public class GameController implements Initializable{
         gameManager.setLevelManager(this.levelManager);
         gameManager.setAchievementManager(this.achievementManager);
         gameManager.setEntityManager(this.entityManager);
+        gameManager.setTimeManager(this.timeManager);
 
         // Now officially call the game starting method from Game Manager
         gameManager.startGame();
@@ -221,6 +226,28 @@ public class GameController implements Initializable{
      * Load the display for time into the game
      */
     private void loadTimeDisplay() {
+        URL location = getClass().getResource("/time/timeDisplay.fxml");
+
+        FXMLLoader loader = new FXMLLoader(location);
+
+        try {
+            // load the FXML
+            HBox timeDisplay = loader.load();
+
+            // Retrieve the controller
+            timeManager = loader.getController();
+
+            // Add the time display to the GUI
+            rootPane.getChildren().add(timeDisplay);
+
+            // Position the time display
+            AnchorPane.setTopAnchor(timeDisplay, 0.0);
+            AnchorPane.setRightAnchor(timeDisplay, 100.0);
+
+        } catch (IOException e) {
+            System.err.println("unable to load time display");
+            e.printStackTrace();
+        }
 
     }
 

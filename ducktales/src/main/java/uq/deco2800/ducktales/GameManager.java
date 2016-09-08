@@ -7,6 +7,7 @@ import uq.deco2800.ducktales.features.entities.EntityManager;
 import uq.deco2800.ducktales.features.hud.HUDManager;
 import uq.deco2800.ducktales.features.level.LevelManager;
 import uq.deco2800.ducktales.features.market.MarketManager;
+import uq.deco2800.ducktales.features.time.TimeManager;
 import uq.deco2800.ducktales.rendering.worlddisplay.CursorManager;
 import uq.deco2800.ducktales.rendering.worlddisplay.WorldDisplayManager;
 import uq.deco2800.ducktales.features.missions.MissionManager;
@@ -22,6 +23,10 @@ import uq.deco2800.ducktales.util.events.tile.TileClickedEvent;
 import uq.deco2800.ducktales.util.events.tile.TileEnteredEvent;
 import uq.deco2800.ducktales.util.events.ui.HUDDeselectedEvent;
 import uq.deco2800.ducktales.util.events.ui.MenuSelectedEvent;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import static uq.deco2800.ducktales.resources.ResourceType.*;
 
@@ -41,6 +46,7 @@ public class GameManager {
      */
     private static final int DEFAULT_WORLD_WIDTH = 30;
     private static final int DEFAULT_WORLD_HEIGHT = 30;
+    private static final int DEFAULT_GAME_SPEED = 10;
 
     /** The root of everything. */
     private Pane root;
@@ -51,6 +57,11 @@ public class GameManager {
     /** The model of the game */
     private World world;
 
+    /** The main game loop control variables*/
+    private ExecutorService executor; // I still don't know what this thing does...
+    private GameLoop gameLoop; // The main loop of the game
+    private AtomicBoolean quit; // Control ending the game
+
     /** The Secondary Managers */
     private HUDManager hudManager;
     private MarketManager marketManager;
@@ -60,6 +71,7 @@ public class GameManager {
     private AchievementManager achievementManager;
     private CursorManager cursorManager;
     private EntityManager entityManager;
+    private TimeManager timeManager;
 
     /**
      * Instantiate an empty game manager and create a new default world
@@ -118,6 +130,9 @@ public class GameManager {
 
         // This is needed since rendered tiles will be on top of HUD :(
         hudManager.bringGUIToFront();
+
+        // Set up the main game loop. This is done after rendering is set up
+        setupGameLoop();
 
         setupEventHandlers();
     }
@@ -215,23 +230,23 @@ public class GameManager {
     }
 
     public MissionManager getMissionManager() {
-    	return missionManager;
+        return missionManager;
     }
     
     public void setMissionManager(MissionManager missionManager) {
-    	this.missionManager = missionManager;
+        this.missionManager = missionManager;
     }
     
     public LevelManager getLevelManager() {
-    	return levelManager;
+        return levelManager;
     }
 
     public void setLevelManager(LevelManager levelManager) {
-    	this.levelManager = levelManager;
+        this.levelManager = levelManager;
     }
     
     public AchievementManager getAchievementManager() {
-    	return achievementManager;
+        return achievementManager;
     }
     
     public void setAchievementManager(AchievementManager achievementManager){
@@ -252,6 +267,14 @@ public class GameManager {
 
     public void setEntityManager(EntityManager entityManager) {
         this.entityManager = entityManager;
+    }
+
+    public TimeManager getTimeManager() {
+        return timeManager;
+    }
+
+    public void setTimeManager(TimeManager timeManager) {
+        this.timeManager = timeManager;
     }
 
     /**
@@ -292,6 +315,21 @@ public class GameManager {
         root.addEventHandler(HUDDeselectedEvent.HUD_DESELECTED_EVENT, hudDeselectedHandler);
         // Handler for all keyboard events
         root.addEventHandler(KeyEvent.ANY, keyboardHandler);
+    }
+
+    /**
+     * Set up the game loop for the game
+     */
+    private void setupGameLoop() {
+        // NOTE: THESE METHODS SHOULD BE CALLED AFTER RENDERING IS SET UP
+        executor = Executors.newCachedThreadPool();
+        quit = new AtomicBoolean(false);
+        this.gameLoop = new GameLoop(quit, DEFAULT_GAME_SPEED); // Initiate the game loop
+        executor.execute(this.gameLoop); // Start the game loop
+
+        // Pass the managers to the game loop
+        gameLoop.setEntityManager(this.entityManager);
+        gameLoop.setTimeManager(this.timeManager);
     }
 
 }

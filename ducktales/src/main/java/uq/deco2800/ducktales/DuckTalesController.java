@@ -244,7 +244,7 @@ public class DuckTalesController implements Initializable {
 //			executor = Executors.newCachedThreadPool();
 //
 //			quit = new AtomicBoolean(false);
-//			executor.execute(new OldGameLoop(quit, 50));
+//			executor.execute(new GameLoop(quit, 50));
 //			new OldGameRenderer(graphicsContext).start();
 //			running = true;
 //		} else {

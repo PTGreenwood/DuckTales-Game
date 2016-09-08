@@ -1,7 +1,10 @@
 package uq.deco2800.ducktales.util;
 
 /**
- * Created by Khoi on 7/09/2016.
+ * This class should be the interface for most secondary managers
+ *
+ * Created on 7/09/2016.
+ * @author khoiphan21
  */
 public interface SecondaryManager {
 
