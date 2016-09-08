@@ -1,9 +1,10 @@
-package uq.deco2800.ducktales.util.events.handlers;
+package uq.deco2800.ducktales.util.events.handlers.custom;
 
 import javafx.event.EventHandler;
 import uq.deco2800.ducktales.GameManager;
 import uq.deco2800.ducktales.rendering.worlddisplay.CursorManager;
 import uq.deco2800.ducktales.resources.ResourceType;
+import uq.deco2800.ducktales.util.events.handlers.GameEventHandler;
 import uq.deco2800.ducktales.util.events.ui.HUDDeselectedEvent;
 
 /**
@@ -14,10 +15,8 @@ import uq.deco2800.ducktales.util.events.ui.HUDDeselectedEvent;
  * Created on 8/09/2016.
  * @author khoiphan21
  */
-public class HUDDeselectedHandler implements EventHandler<HUDDeselectedEvent> {
-
-    /** The game manager */
-    private GameManager gameManager;
+public class HUDDeselectedHandler extends GameEventHandler
+        implements EventHandler<HUDDeselectedEvent> {
 
     /** The secondary managers */
     private CursorManager cursorManager;
@@ -29,6 +28,7 @@ public class HUDDeselectedHandler implements EventHandler<HUDDeselectedEvent> {
      *          The game manager
      */
     public HUDDeselectedHandler(GameManager gameManager) {
+        super(gameManager);
         this.gameManager = gameManager;
         cursorManager = gameManager.getCursorManager();
     }

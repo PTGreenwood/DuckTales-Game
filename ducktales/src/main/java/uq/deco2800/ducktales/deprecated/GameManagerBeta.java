@@ -177,7 +177,6 @@ public class GameManagerBeta {
          * this method will grow bigger as the manager needs to do more things
          * whenever a new building is added
          */
-        tilesManager.addBuildingToTile(buildingType, x, y);
     }
     
 }

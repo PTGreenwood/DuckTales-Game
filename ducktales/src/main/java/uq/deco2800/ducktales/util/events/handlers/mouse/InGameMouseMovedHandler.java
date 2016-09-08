@@ -1,4 +1,4 @@
-package uq.deco2800.ducktales.util.events.handlers;
+package uq.deco2800.ducktales.util.events.handlers.mouse;
 
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;

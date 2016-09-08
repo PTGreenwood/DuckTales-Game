@@ -72,18 +72,36 @@ public class TilesManager implements SecondaryManager {
      *          The x-coordinate of the tile
      * @param y
      *          The y-coordinate of the tile
-     * @return the sprite of the tileat the given coordinates
+     * @return the sprite of the tile at the given coordinates
      */
     public TileSprite getTileSprite(int x, int y) {
         return tileSprites.get(x, y);
     }
 
     /**
+     * Get the width of the 2D tiles array of the world
+     *
+     * @return the width of the world
+     */
+    public int getWorldWidth() {
+        return tiles.getWidth();
+    }
+
+    /**
+     * Get the height of the 2D tiles array of the world
+     *
+     * @return the height of the world
+     */
+    public int getWorldHeight() {
+        return tiles.getHeight();
+    }
+
+    /**
      * Render the initial world onto the root pane given
      */
     public void renderInitialWorld() {
-        int tileHeight = resource.TILE_HEIGHT;
-        int tileWidth = resource.TILE_WIDTH;
+        int tileHeight = ResourceSpriteRegister.TILE_HEIGHT;
+        int tileWidth = ResourceSpriteRegister.TILE_WIDTH;
 
         double generalScale = RenderingInformation.MAIN_SCALE_FACTOR;
 

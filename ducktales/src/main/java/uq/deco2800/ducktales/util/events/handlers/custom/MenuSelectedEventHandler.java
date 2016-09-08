@@ -1,10 +1,11 @@
-package uq.deco2800.ducktales.util.events.handlers;
+package uq.deco2800.ducktales.util.events.handlers.custom;
 
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import uq.deco2800.ducktales.GameManager;
 import uq.deco2800.ducktales.rendering.RenderingInformation;
 import uq.deco2800.ducktales.rendering.worlddisplay.CursorManager;
+import uq.deco2800.ducktales.util.events.handlers.GameEventHandler;
 import uq.deco2800.ducktales.util.events.ui.MenuSelectedEvent;
 
 /**
@@ -17,10 +18,10 @@ import uq.deco2800.ducktales.util.events.ui.MenuSelectedEvent;
  * Created on 5/09/2016.
  * @author khoiphan21
  */
-public class MenuSelectedEventHandler implements EventHandler<MenuSelectedEvent> {
+public class MenuSelectedEventHandler extends GameEventHandler
+        implements EventHandler<MenuSelectedEvent> {
 
-    /** The managers of the game */
-    private GameManager gameManager;
+    /** The secondary managers */
     private CursorManager cursorManager;
 
     /**
@@ -30,7 +31,7 @@ public class MenuSelectedEventHandler implements EventHandler<MenuSelectedEvent>
      *          The manager of the game
      */
     public MenuSelectedEventHandler(GameManager gameManager) {
-        this.gameManager = gameManager;
+        super(gameManager);
         this.cursorManager = gameManager.getCursorManager();
     }
 

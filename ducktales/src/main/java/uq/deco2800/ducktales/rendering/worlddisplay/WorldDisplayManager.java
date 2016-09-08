@@ -5,8 +5,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.layout.Pane;
 import uq.deco2800.ducktales.World;
 import uq.deco2800.ducktales.features.landscape.tiles.TilesManager;
-import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.SecondaryManager;
+import uq.deco2800.ducktales.rendering.worlddisplay.WorldDisplayRenderer.*;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -29,8 +29,24 @@ public class WorldDisplayManager implements Initializable, SecondaryManager {
     /** Helper managers */
     private TilesManager tilesManager;
 
+    /** The rendering engine for the world display */
+    private WorldDisplayRenderer renderer;
+
+    /** The directions to move the world */
+    public enum Direction {
+        UP, DOWN, LEFT, RIGHT
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        // Create and start the renderer
+        renderer = new WorldDisplayRenderer();
+        renderer.start();
+
+    }
+
+    @Override
+    public void reload() {
 
     }
 
@@ -44,6 +60,9 @@ public class WorldDisplayManager implements Initializable, SecondaryManager {
 
         // render the tiles
         tilesManager.renderInitialWorld();
+
+        // Load the rendering engine
+        renderer.setTilesManager(tilesManager);
 
     }
 
@@ -66,8 +85,43 @@ public class WorldDisplayManager implements Initializable, SecondaryManager {
         return this.tilesManager;
     }
 
-    @Override
-    public void reload() {
+    /**
+     * Move the whole world in the given direction
+     *
+     * @param direction
+     *          The direction to move the whole world towards
+     */
+    public void moveWorld(Direction direction) {
+        switch (direction) {
+            case UP:
+                renderer.setMovingDirectionV(VDirection.UP);
+                break;
+            case DOWN:
+                renderer.setMovingDirectionV(VDirection.DOWN);
+                break;
+            case LEFT:
+                renderer.setMovingDirectionH(HDirection.LEFT);
+                break;
+            case RIGHT:
+                renderer.setMovingDirectionH(HDirection.RIGHT);
+                break;
+        }
+    }
 
+    /**
+     * Stop moving the world in the given direction
+     *
+     * @param direction
+     *          The direction that the world should stop moving towards
+     */
+    public void stopMoveWorld(Direction direction) {
+        switch (direction) {
+            case UP:case DOWN:
+                renderer.setMovingDirectionV(VDirection.NONE);
+                break;
+            case LEFT:case RIGHT:
+                renderer.setMovingDirectionH(HDirection.NONE);
+                break;
+        }
     }
 }

@@ -1,9 +1,10 @@
-package uq.deco2800.ducktales.util.events.handlers;
+package uq.deco2800.ducktales.util.events.handlers.mouse;
 
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import uq.deco2800.ducktales.GameManager;
+import uq.deco2800.ducktales.util.events.handlers.GameEventHandler;
 import uq.deco2800.ducktales.util.events.ui.HUDDeselectedEvent;
 
 /**
@@ -13,10 +14,7 @@ import uq.deco2800.ducktales.util.events.ui.HUDDeselectedEvent;
  * Created on 8/09/2016.
  * @author khoiphan21
  */
-public class InGameMouseClickedHandler implements EventHandler<MouseEvent> {
-
-    /** The manager of the game */
-    private GameManager gameManager;
+public class InGameMouseClickedHandler extends GameEventHandler implements EventHandler<MouseEvent> {
 
     /**
      * Instantiate a handler for high level mouse click events
@@ -25,6 +23,7 @@ public class InGameMouseClickedHandler implements EventHandler<MouseEvent> {
      *          The manager of the game
      */
     public InGameMouseClickedHandler(GameManager gameManager) {
+        super(gameManager);
         this.gameManager = gameManager;
     }
 

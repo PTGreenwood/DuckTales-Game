@@ -1,5 +1,6 @@
 package uq.deco2800.ducktales;
 
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import uq.deco2800.ducktales.features.achievements.AchievementManager;
 import uq.deco2800.ducktales.features.hud.HUDManager;
@@ -9,7 +10,12 @@ import uq.deco2800.ducktales.rendering.worlddisplay.CursorManager;
 import uq.deco2800.ducktales.rendering.worlddisplay.WorldDisplayManager;
 import uq.deco2800.ducktales.features.missions.MissionManager;
 import uq.deco2800.ducktales.resources.ResourceType;
-import uq.deco2800.ducktales.util.events.handlers.*;
+import uq.deco2800.ducktales.util.events.handlers.custom.HUDDeselectedHandler;
+import uq.deco2800.ducktales.util.events.handlers.custom.MenuSelectedEventHandler;
+import uq.deco2800.ducktales.util.events.handlers.custom.TileEnteredHandler;
+import uq.deco2800.ducktales.util.events.handlers.keyboard.InGameKeyboardHandler;
+import uq.deco2800.ducktales.util.events.handlers.mouse.InGameMouseClickedHandler;
+import uq.deco2800.ducktales.util.events.handlers.mouse.InGameMouseMovedHandler;
 import uq.deco2800.ducktales.util.events.tile.TileEnteredEvent;
 import uq.deco2800.ducktales.util.events.ui.HUDDeselectedEvent;
 import uq.deco2800.ducktales.util.events.ui.MenuSelectedEvent;
@@ -249,6 +255,9 @@ public class GameManager {
                 new TileEnteredHandler(this);
         HUDDeselectedHandler hudDeselectedHandler =
                 new HUDDeselectedHandler(this);
+        InGameKeyboardHandler keyboardHandler =
+                new InGameKeyboardHandler(this);
+
 
 
         // Handler for when a sprite in the menu is selected
@@ -261,6 +270,8 @@ public class GameManager {
         root.addEventHandler(TileEnteredEvent.TILE_ENTERED, tileEnteredHandler);
         // Handler for the HUD Deselected Event
         root.addEventHandler(HUDDeselectedEvent.HUD_DESELECTED_EVENT, hudDeselectedHandler);
+        // Handler for all keyboard events
+        root.addEventHandler(KeyEvent.ANY, keyboardHandler);
     }
 
 }
