@@ -20,18 +20,18 @@ public class Sawmill extends Building {
 	 * @param y, y location of the building
 	 */
 	public Sawmill(double x, double y) {
-		super(x, y, 2, 2, TYPE);
+		super(x, y, 5, 5, TYPE);
 	}
 
 	/**
-	 * Update the WorldEntity properties with those of a bakery.
+	 * Update the WorldEntity properties with those of a sawmill.
 	 */
 	protected void specifications() {
 		Building.STONERESOURCES = 4;
 		Building.WOODRESOURCES = 8;
 		Building.TIME = 3;
-		Building.PRODUCTIONAMOUNT = 5;
 		Building.PRODUCTIONTYPE = production.WOOD;
+		Building.PRODUCTIONAMOUNT = 5;
 	}
 	
 	/**

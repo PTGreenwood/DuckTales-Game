@@ -63,6 +63,10 @@ public class BuildingTest {
 		assertTrue("Wrong resources to build", entity3.resourcesBuildStone() == 2);
 		assertTrue("Wrong time", entity2.timeToBuild() == 2);
 		
+		// Check correct production type and amount
+		assertTrue("Wrong production type", entity1.resourcesProductionType() == production.NULL);
+		assertTrue("Wrong production amount", entity3.resourcesProductionAmount() == 0);
+		
 		// Check if nothing has changed after call tick()
 		entity1.tick();
 		entity2.tick();
@@ -107,6 +111,10 @@ public class BuildingTest {
 		assertTrue("Wrong resources to build", entity3.resourcesBuildStone() == 4);
 		assertTrue("Wrong time", entity2.timeToBuild() == 9);
 		
+		// Check correct production type and amount
+		assertTrue("Wrong production type", entity1.resourcesProductionType() == production.NULL);
+		assertTrue("Wrong production amount", entity3.resourcesProductionAmount() == 0);
+		
 		// Check if nothing has changed after call tick()
 		entity1.tick();
 		entity2.tick();
@@ -138,6 +146,10 @@ public class BuildingTest {
 		assertTrue("Wrong returned resources", entity1.resourcesReturnStone() == 2);
 		assertTrue("Wrong resources to build", entity3.resourcesBuildStone() == 4);
 		assertTrue("Wrong time", entity2.timeToBuild() == 3);
+		
+		// Check correct production type and amount
+		assertTrue("Wrong production type", entity1.resourcesProductionType() == production.WOOD);
+		assertTrue("Wrong production amount", entity3.resourcesProductionAmount() == 5);
 		
 		// Check if nothing has changed after call tick()
 		entity1.tick();
@@ -171,6 +183,10 @@ public class BuildingTest {
 		assertTrue("Wrong resources to build", entity3.resourcesBuildWood() == 10);
 		assertTrue("Wrong time", entity2.timeToBuild() == 5);
 		
+		// Check correct production type and amount
+		assertTrue("Wrong production type", entity1.resourcesProductionType() == production.NULL);
+		assertTrue("Wrong production amount", entity3.resourcesProductionAmount() == 0);
+		
 		// Check if nothing has changed after call tick()
 		entity1.tick();
 		entity2.tick();
@@ -202,6 +218,10 @@ public class BuildingTest {
 		assertTrue(String.valueOf(entity1.resourcesReturnStone()), entity1.resourcesReturnStone() == 2);
 		assertTrue("Wrong resources to build", entity3.resourcesBuildStone() == 4);
 		assertTrue("Wrong time", entity2.timeToBuild() == 4);
+		
+		// Check correct production type and amount
+		assertTrue("Wrong production type", entity1.resourcesProductionType() == production.NULL);
+		assertTrue("Wrong production amount", entity3.resourcesProductionAmount() == 0);
 		
 		// Check if nothing has changed after call tick()
 		entity1.tick();
@@ -235,6 +255,10 @@ public class BuildingTest {
 		assertTrue("Wrong resources to build", entity3.resourcesBuildWood() == 4);
 		assertTrue("Wrong time", entity2.timeToBuild() == 2);
 		
+		// Check correct production type and amount
+		assertTrue("Wrong production type", entity1.resourcesProductionType() == production.NULL);
+		assertTrue("Wrong production amount", entity3.resourcesProductionAmount() == 0);
+		
 		// Check if nothing has changed after call tick()
 		entity1.tick();
 		entity2.tick();
@@ -245,10 +269,10 @@ public class BuildingTest {
 	}
 	
 	@Test
-	public void farmhouseTest(){
-		Farmhouse entity1 = new Farmhouse(2, 3);
-		Farmhouse entity2 = new Farmhouse(4, 5);
-		Farmhouse entity3 = new Farmhouse(1, 1);
+	public void farmTest(){
+		Farm entity1 = new Farm(2, 3);
+		Farm entity2 = new Farm(4, 5);
+		Farm entity3 = new Farm(1, 1);
 		
 		List<Entity> entities = new ArrayList<Entity>();
 		entities.add(entity1);
@@ -266,6 +290,10 @@ public class BuildingTest {
 		assertTrue("Wrong returned resources", entity1.resourcesReturnWood() == 5);
 		assertTrue("Wrong resources to build", entity3.resourcesBuildStone() == 8);
 		assertTrue("Wrong time", entity2.timeToBuild() == 9);
+		
+		// Check correct production type and amount
+		assertTrue("Wrong production type", entity1.resourcesProductionType() == production.FOOD);
+		assertTrue("Wrong production amount", entity3.resourcesProductionAmount() == 5);
 		
 		// Check if nothing has changed after call tick()
 		entity1.tick();
@@ -299,6 +327,10 @@ public class BuildingTest {
 		assertTrue("Wrong resources to build", entity3.resourcesBuildStone() == 10);
 		assertTrue("Wrong time", entity2.timeToBuild() == 3);
 		
+		// Check correct production type and amount
+		assertTrue("Wrong production type", entity1.resourcesProductionType() == production.NULL);
+		assertTrue("Wrong production amount", entity3.resourcesProductionAmount() == 0);
+		
 		// Check if nothing has changed after call tick()
 		entity1.tick();
 		entity2.tick();
@@ -330,6 +362,10 @@ public class BuildingTest {
 		assertTrue("Wrong returned resources", entity1.resourcesReturnWood() == 4);
 		assertTrue("Wrong resources to build", entity3.resourcesBuildWood() == 8);
 		assertTrue("Wrong time", entity2.timeToBuild() == 5);
+		
+		// Check correct production type and amount
+		assertTrue("Wrong production type", entity1.resourcesProductionType() == production.NULL);
+		assertTrue("Wrong production amount", entity3.resourcesProductionAmount() == 0);
 		
 		// Check if nothing has changed after call tick()
 		entity1.tick();
@@ -363,6 +399,10 @@ public class BuildingTest {
 		assertTrue("Wrong resources to build", entity3.resourcesBuildWood() == 8);
 		assertTrue("Wrong time", entity2.timeToBuild() == 7);
 		
+		// Check correct production type and amount
+		assertTrue("Wrong production type", entity1.resourcesProductionType() == production.NULL);
+		assertTrue("Wrong production amount", entity3.resourcesProductionAmount() == 0);
+		
 		// Check if nothing has changed after call tick()
 		entity1.tick();
 		entity2.tick();
@@ -394,6 +434,10 @@ public class BuildingTest {
 		assertTrue("Wrong returned resources", entity1.resourcesReturnWood() == 5);
 		assertTrue("Wrong resources to build", entity3.resourcesBuildWood() == 10);
 		assertTrue("Wrong time", entity2.timeToBuild() == 9);
+		
+		// Check correct production type and amount
+		assertTrue("Wrong production type", entity1.resourcesProductionType() == production.NULL);
+		assertTrue("Wrong production amount", entity3.resourcesProductionAmount() == 0);
 		
 		// Check if nothing has changed after call tick()
 		entity1.tick();
@@ -427,6 +471,10 @@ public class BuildingTest {
 		assertTrue("Wrong resources to build", entity3.resourcesBuildWood() == 8);
 		assertTrue("Wrong time", entity2.timeToBuild() == 8);
 		
+		// Check correct production type and amount
+		assertTrue("Wrong production type", entity1.resourcesProductionType() == production.NULL);
+		assertTrue("Wrong production amount", entity3.resourcesProductionAmount() == 0);
+		
 		// Check if nothing has changed after call tick()
 		entity1.tick();
 		entity2.tick();
@@ -459,6 +507,10 @@ public class BuildingTest {
 		assertTrue("Wrong resources to build", entity3.resourcesBuildWood() == 10);
 		assertTrue("Wrong time", entity2.timeToBuild() == 4);
 		
+		// Check correct production type and amount
+		assertTrue("Wrong production type", entity1.resourcesProductionType() == production.NULL);
+		assertTrue("Wrong production amount", entity3.resourcesProductionAmount() == 0);
+		
 		// Check if nothing has changed after call tick()
 		entity1.tick();
 		entity2.tick();
@@ -490,6 +542,10 @@ public class BuildingTest {
 		assertTrue("Wrong returned resources", entity1.resourcesReturnWood() == 3);
 		assertTrue("Wrong resources to build", entity3.resourcesBuildWood() == 6);
 		assertTrue("Wrong time", entity2.timeToBuild() == 5);
+		
+		// Check correct production type and amount
+		assertTrue("Wrong production type", entity1.resourcesProductionType() == production.STONE);
+		assertTrue("Wrong production amount", entity3.resourcesProductionAmount() == 5);
 		
 		// Check if nothing has changed after call tick()
 		entity1.tick();

@@ -12,7 +12,7 @@ import uq.deco2800.ducktales.features.entities.worldentities.Bakery;
 import uq.deco2800.ducktales.features.entities.worldentities.Barn;
 import uq.deco2800.ducktales.features.entities.worldentities.Box;
 import uq.deco2800.ducktales.features.entities.worldentities.Cemetery;
-import uq.deco2800.ducktales.features.entities.worldentities.Farmhouse;
+import uq.deco2800.ducktales.features.entities.worldentities.Farm;
 import uq.deco2800.ducktales.features.entities.worldentities.Forge;
 import uq.deco2800.ducktales.features.entities.worldentities.Hospital;
 import uq.deco2800.ducktales.features.entities.worldentities.House;
@@ -235,10 +235,10 @@ public class BuildingMenuSpriteTest {
 	}
 	
 	@Test
-	public void farmhouseTest(){
-		Farmhouse entity1 = new Farmhouse(2, 3);
-		Farmhouse entity2 = new Farmhouse(4, 5);
-		Farmhouse entity3 = new Farmhouse(1, 1);
+	public void farmTest(){
+		Farm entity1 = new Farm(2, 3);
+		Farm entity2 = new Farm(4, 5);
+		Farm entity3 = new Farm(1, 1);
 		
 		List<Entity> entities = new ArrayList<Entity>();
 		entities.add(entity1);
