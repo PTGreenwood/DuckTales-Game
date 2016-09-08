@@ -34,7 +34,7 @@ public class MenuManager implements Initializable, SecondaryManager{
     };
     // TODO: TO ADD NEW ANIMALS, REGISTER THEIR NAMES HERE
     private static final ResourceType[] ANIMALS = {
-            SHEEP, COW_FRONT_RIGHT, DUCK_1_1
+            SHEEP
     };
 
     /** GUI containers */

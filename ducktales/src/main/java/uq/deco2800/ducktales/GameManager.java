@@ -111,15 +111,15 @@ public class GameManager {
         worldDisplayManager.setWorld(this.world);
         worldDisplayManager.initializeWorld();
 
-        // Now start the entity manager's routine
+        // Now set up the entity manager and start its routine
         entityManager.setTilesManager(worldDisplayManager.getTilesManager());
+        entityManager.setWorldDisplay(worldDisplayManager.getWorldDisplay());
         entityManager.startRoutine();
 
         // This is needed since rendered tiles will be on top of HUD :(
         hudManager.bringGUIToFront();
 
         setupEventHandlers();
-
     }
 
 

@@ -103,7 +103,7 @@ public class TilesManager implements SecondaryManager {
         int tileHeight = ResourceSpriteRegister.TILE_HEIGHT;
         int tileWidth = ResourceSpriteRegister.TILE_WIDTH;
 
-        double generalScale = RenderingInformation.MAIN_SCALE_FACTOR;
+        double generalScale = RenderingInformation.TILE_SCALE;
 
         // The scaled width and height of the tile to be rendered
         int scaledWidth = (int) (tileWidth * generalScale);

@@ -20,9 +20,9 @@ import java.util.ResourceBundle;
  * @author khoiphan21
  */
 public class WorldDisplayManager implements Initializable, SecondaryManager {
-    /** The root pane where all world objects will be added to */
+    /** The pane where all world objects will be added to */
     @FXML
-    private Pane rootPane;
+    private Pane worldDisplay;
 
     /** The main model of the game */
     private World world;
@@ -60,7 +60,7 @@ public class WorldDisplayManager implements Initializable, SecondaryManager {
      */
     public void initializeWorld() {
         // Instantiate the helper managers
-        tilesManager = new TilesManager(this.world, this.rootPane);
+        tilesManager = new TilesManager(this.world, this.worldDisplay);
 
         // render the tiles
         tilesManager.renderInitialWorld();
@@ -88,6 +88,16 @@ public class WorldDisplayManager implements Initializable, SecondaryManager {
      */
     public void setGameManager(GameManager gameManager) {
         this.gameManager = gameManager;
+    }
+
+    /**
+     * Get the world display pane, which is the pane that all world objects will
+     * be rendered onto
+     *
+     * @return the world display pane
+     */
+    public Pane getWorldDisplay() {
+        return worldDisplay;
     }
 
     /**

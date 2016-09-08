@@ -1,6 +1,8 @@
 package uq.deco2800.ducktales.features.entities;
 
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
 
 /**
@@ -18,9 +20,18 @@ public class EntitySprite extends ImageView {
     /** The type of the entity this sprite represents */
     private ResourceType entityType;
 
+    /** The sprite register */
+    private ResourceSpriteRegister resource;
+
     public EntitySprite(int index, ResourceType entityType) {
         this.index = index;
         this.entityType = entityType;
+        this.resource = ResourceSpriteRegister.getInstance();
+
+        // Now load the image of the given entity type into this sprite
+        Image image = resource.getResourceImage(entityType);
+        this.setImage(image);
+
     }
 
 }
