@@ -375,29 +375,29 @@ public class GameRendererBeta extends AnimationTimer {
      * accordingly
      */
     private void setupCustomEventHandler() {
-        // This method is called when a tile is entered. The TileEnterEvent
-        // COMPLETELY replaces the onMouseEntered event, so worldPane will not
-        // receive onMouseEntered at all
-        worldPane.addEventHandler(TileEnteredEvent.TILE_ENTERED, event -> {
-            TileSprite tile = world.getTiles().get(event.getxPos(), event.getyPos());
-
-            tile.setImage(resource.getResourceImage(BLANK)); //TODO DELETE
-
-            // Disable the root from controlling the cursor image
-            cursorImageFreeMoving = false;
-
-            // Move the cursor image to the appropriate position
-            moveCursorImageToTile(tile);
-        });
-        // Reset the cursor image to move with the mouse
-        worldPane.setOnMouseEntered(event -> {
-            cursorImageFreeMoving = true;
-        });
-        worldPane.addEventHandler(uq.deco2800.ducktales.util.events.tile.TileExitedEvent.TILE_EXITED, event -> {
-            //System.err.println(event.toString());
-            TileSprite tile = world.getTiles().get(event.getxPos(), event.getyPos());
-            tile.setImage(resource.getResourceImage(tile.getTileType()));
-        });
+//        // This method is called when a tile is entered. The TileEnterEvent
+//        // COMPLETELY replaces the onMouseEntered event, so worldPane will not
+//        // receive onMouseEntered at all
+//        worldPane.addEventHandler(TileEnteredEvent.TILE_ENTERED, event -> {
+//            TileSprite tile = world.getTiles().get(event.getxPos(), event.getyPos());
+//
+//            tile.setImage(resource.getResourceImage(BLANK)); //TODO DELETE
+//
+//            // Disable the root from controlling the cursor image
+//            cursorImageFreeMoving = false;
+//
+//            // Move the cursor image to the appropriate position
+//            moveCursorImageToTile(tile);
+//        });
+//        // Reset the cursor image to move with the mouse
+//        worldPane.setOnMouseEntered(event -> {
+//            cursorImageFreeMoving = true;
+//        });
+//        worldPane.addEventHandler(uq.deco2800.ducktales.util.events.tile.TileExitedEvent.TILE_EXITED, event -> {
+//            //System.err.println(event.toString());
+//            TileSprite tile = world.getTiles().get(event.getxPos(), event.getyPos());
+//            tile.setImage(resource.getResourceImage(tile.getTileType()));
+//        });
         // A tile is clicked on. Attempt to add either the building, or the animal
         // to the world
         worldPane.addEventHandler(TileClickedEvent.TILE_CLICKED, event -> {
@@ -466,56 +466,38 @@ public class GameRendererBeta extends AnimationTimer {
 //            manager.setCurrentResourceManaging(event.getType());
 //        });
 
-        /*
-         * Event handlers for the buildings menu
-         */
-        // This method is called when a building in the menu is clicked on
-        buildingsMenu.addEventHandler(BuildingsMenuSelectedEvent.BUILDING_MENU_SELECTED_EVENT, event -> {
-            // Setup the cursor image to that of the building clicked
-            Image sprite = resource.getResourceImage(event.getType());
-            // Allow it to move
-            cursorImageFreeMoving = true;
-
-            // Reset the sprite's position
-            this.cursorImage.setLayoutX(event.getStartingX());
-            this.cursorImage.setLayoutY(event.getStartingY());
-
-            // Scale the cursor image by the scale given by rendering manager
-            double scale = RenderingInformation.BUILDING_SCALE;
-            this.cursorImage.setFitHeight(sprite.getHeight() * scale);
-            this.cursorImage.setFitWidth(sprite.getWidth() * scale);
-
-            // Setup the offset
-            this.cursorImage.setX(-cursorImage.getFitWidth()/2);
-            this.cursorImage.setY(-cursorImage.getFitHeight()/2);
-
-            // reveal the sprite
-            this.cursorImage.setImage(sprite);
-            this.cursorImage.toFront();
-
-            // notify the manager
-            manager.setCurrentResourceManaging(event.getType());
-
-        });
+//        /*
+//         * Event handlers for the buildings menu
+//         */
+//        // This method is called when a building in the menu is clicked on
+//        buildingsMenu.addEventHandler(BuildingsMenuSelectedEvent.BUILDING_MENU_SELECTED_EVENT, event -> {
+//            // Setup the cursor image to that of the building clicked
+//            Image sprite = resource.getResourceImage(event.getType());
+//            // Allow it to move
+//            cursorImageFreeMoving = true;
+//
+//            // Reset the sprite's position
+//            this.cursorImage.setLayoutX(event.getStartingX());
+//            this.cursorImage.setLayoutY(event.getStartingY());
+//
+//            // Scale the cursor image by the scale given by rendering manager
+//            double scale = RenderingInformation.BUILDING_SCALE;
+//            this.cursorImage.setFitHeight(sprite.getHeight() * scale);
+//            this.cursorImage.setFitWidth(sprite.getWidth() * scale);
+//
+//            // Setup the offset
+//            this.cursorImage.setX(-cursorImage.getFitWidth()/2);
+//            this.cursorImage.setY(-cursorImage.getFitHeight()/2);
+//
+//            // reveal the sprite
+//            this.cursorImage.setImage(sprite);
+//            this.cursorImage.toFront();
+//
+//            // notify the manager
+//            manager.setCurrentResourceManaging(event.getType());
+//
+//        });
         
-        buildingsMenu.addEventHandler(HUDDeselectedEvent.HUD_DESELECTED_EVENT, event -> {
-            // Return the cursor image to null, and perform update on the world tiles
-            // if the mouse is released on top of a tile
-            this.cursorImage.setImage(null);
-
-            // set the current resource managed to be NONE
-            manager.setCurrentResourceManaging(NONE);
-
-            System.err.println("deselected a building");
-        });
-
-        root.setOnMouseClicked(event -> {
-            if (event.getButton() == MouseButton.SECONDARY) {
-                // right mouse is clicked - deselect the building
-                cursorImage.setImage(null);
-                manager.setCurrentResourceManaging(ResourceType.NONE);
-            }
-        });
     }
 
     /**
@@ -649,6 +631,7 @@ public class GameRendererBeta extends AnimationTimer {
      * @param xDirection
      * @param yDirection
      */
+    @Deprecated
     private void moveAllEntities(double xDirection, double yDirection) {
         // The array of world tiles
 //        Array2D<TileSprite> tiles = manager.getWorld().getTiles();
