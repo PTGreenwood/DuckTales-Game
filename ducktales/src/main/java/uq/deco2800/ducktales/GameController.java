@@ -8,6 +8,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import uq.deco2800.ducktales.features.achievements.AchievementManager;
+import uq.deco2800.ducktales.features.entities.EntityManager;
 import uq.deco2800.ducktales.features.hud.HUDManager;
 import uq.deco2800.ducktales.features.level.LevelManager;
 import uq.deco2800.ducktales.features.market.MarketManager;
@@ -62,6 +63,8 @@ public class GameController implements Initializable{
     private HUDManager hudManager;
     private WorldDisplayManager worldDisplayManager;
 
+    private EntityManager entityManager;
+
 
     /**
      * This method will be called when this controller is initialized by FXMLLoader
@@ -88,6 +91,9 @@ public class GameController implements Initializable{
         loadAchievement();
         loadTimeDisplay();
 
+        loadEntities(); // Note: this 'loader method' should be called LAST
+
+
         // Now pass all handles for the secondary managers to the GameManager
         gameManager.setHudManager(this.hudManager);
         gameManager.setMarketManager(this.marketManager);
@@ -95,13 +101,15 @@ public class GameController implements Initializable{
         gameManager.setMissionManager(this.missionManager);
         gameManager.setLevelManager(this.levelManager);
         gameManager.setAchievementManager(this.achievementManager);
+        gameManager.setEntityManager(this.entityManager);
 
         // Now officially call the game starting method from Game Manager
         gameManager.startGame();
 
         // Game Controller's job of setting up the UI is done.
     }
-    
+
+
     /**
      * Show the Market Place pane
      */
@@ -198,6 +206,15 @@ public class GameController implements Initializable{
         // Set the temporary button to be invisible
         closeButton.toFront();
         closeButton.setVisible(false);
+    }
+
+    /**
+     * Initializes the entity manager and setting it up
+     */
+    private void loadEntities() {
+        entityManager = EntityManager.getInstance();
+        entityManager.setGameManager(gameManager);
+        entityManager.setWorld(gameManager.getWorld());
     }
 
     /**

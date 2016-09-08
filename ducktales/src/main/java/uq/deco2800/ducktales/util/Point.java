@@ -1,5 +1,13 @@
 package uq.deco2800.ducktales.util;
 
+/**
+ * This class will hold the information of the position of a tile, in tile-unit.
+ * however, the stored value for each coordinate is a double, since this class
+ * is also used for moving the entities around on the screen
+ *
+ * For example, if Point.getX() and getY() returns (1, 3), this means the entity
+ * is supposed to be on the tile at x-coordinate 1, and y-coordinate 3
+ */
 public class Point implements Comparable<Point> {
 
 	private double x;

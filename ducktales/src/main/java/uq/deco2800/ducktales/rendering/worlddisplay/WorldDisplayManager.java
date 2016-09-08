@@ -3,6 +3,7 @@ package uq.deco2800.ducktales.rendering.worlddisplay;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.Pane;
+import uq.deco2800.ducktales.GameManager;
 import uq.deco2800.ducktales.World;
 import uq.deco2800.ducktales.features.landscape.tiles.TilesManager;
 import uq.deco2800.ducktales.util.SecondaryManager;
@@ -25,6 +26,9 @@ public class WorldDisplayManager implements Initializable, SecondaryManager {
 
     /** The main model of the game */
     private World world;
+
+    /** The main manager of the game */
+    private GameManager gameManager;
 
     /** Helper managers */
     private TilesManager tilesManager;
@@ -74,6 +78,16 @@ public class WorldDisplayManager implements Initializable, SecondaryManager {
      */
     public void setWorld(World world) {
         this.world = world;
+    }
+
+    /**
+     * Pass the handle of the game manager to this manager
+     *
+     * @param gameManager
+     *
+     */
+    public void setGameManager(GameManager gameManager) {
+        this.gameManager = gameManager;
     }
 
     /**

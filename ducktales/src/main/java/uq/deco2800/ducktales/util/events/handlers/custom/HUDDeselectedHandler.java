@@ -39,7 +39,7 @@ public class HUDDeselectedHandler extends GameEventHandler
         cursorManager.hideCursorImage();
 
         // do task 2
-        gameManager.setCurrentResourceManaging(ResourceType.NONE);
+        gameManager.setCurrentEntityManaging(ResourceType.NONE);
 
     }
 }

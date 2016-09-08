@@ -3,9 +3,12 @@ package uq.deco2800.ducktales.features.entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.scene.layout.Pane;
+import uq.deco2800.ducktales.GameManager;
 import uq.deco2800.ducktales.World;
 import uq.deco2800.ducktales.features.entities.agententities.Duck;
 import uq.deco2800.ducktales.features.entities.agententities.Peon;
+import uq.deco2800.ducktales.features.landscape.tiles.TilesManager;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.Tickable;
 
@@ -16,6 +19,9 @@ import uq.deco2800.ducktales.util.Tickable;
  */
 public class EntityManager implements Tickable {
 
+    /** The world pane to add entities onto */
+    private Pane worldPane;
+
     /** The Instance of this object */
     private static final EntityManager INSTANCE = new EntityManager();
 
@@ -24,6 +30,12 @@ public class EntityManager implements Tickable {
 
     /** The game world */
     private World world;
+
+    /** The game manager */
+    private GameManager gameManager;
+
+    /** The other secondary managers */
+    private TilesManager tilesManager;
 
     /**
      * Main constructor of the {@link EntityManager} class
@@ -41,6 +53,19 @@ public class EntityManager implements Tickable {
         return INSTANCE;
     }
 
+    /**
+     * Start the entity manager's cycles. First task is to check world for
+     * entities, and create the corresponding sprites
+     */
+    public void startRoutine() {
+        if (this.world != null) {
+            // Check the world for existing entities, and load them into the game
+            loadExistingEntities(world);
+
+        } else {
+            System.err.println("Entity Manager has not received a handle on World");
+        }
+    }
 
     /**
      * Adds a new entity from the given type to the game, by creating a new
@@ -98,6 +123,26 @@ public class EntityManager implements Tickable {
         this.world = world;
     }
 
+    /**
+     * Pass this manager a handle on the Game Manager
+     *
+     * @param gameManager
+     *          The manager of the game
+     */
+    public void setGameManager(GameManager gameManager) {
+        this.gameManager = gameManager;
+    }
+
+    /**
+     * Pass this manager a handle on the Tiles Manager
+     *
+     * @param tilesManager
+     *          The tiles manager of the game
+     */
+    public void setTilesManager(TilesManager tilesManager) {
+        this.tilesManager = tilesManager;
+    }
+
     @Override
     public void tick() {
 
@@ -119,6 +164,20 @@ public class EntityManager implements Tickable {
                 return new Duck(x, y);
             default:
                 return new Peon(x, y);
+        }
+    }
+
+
+    /**
+     * Check the given world for any existing entities, and create sprites for
+     * each of them, and add the sprites to the world pane accordingly
+     *
+     * @param world
+     *
+     */
+    private void loadExistingEntities(World world) {
+        if (world.getEntitiesNumber() != 0) {
+            // There are some entities to make sprites for
         }
     }
 

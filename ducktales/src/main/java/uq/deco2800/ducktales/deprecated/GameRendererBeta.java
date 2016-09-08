@@ -401,7 +401,7 @@ public class GameRendererBeta extends AnimationTimer {
         // A tile is clicked on. Attempt to add either the building, or the animal
         // to the world
         worldPane.addEventHandler(TileClickedEvent.TILE_CLICKED, event -> {
-//            System.err.println("building " + manager.getCurrentResourceManaging()
+//            System.err.println("building " + manager.getCurrentEntityManaging()
 //            + " to be added to: " + event.getxPos() + ", " +event.getyPos());
 
             // Check if there is any resource currently being managed
@@ -463,7 +463,7 @@ public class GameRendererBeta extends AnimationTimer {
 //            this.cursorImage.toFront();
 //
 //            // Notify the manager
-//            manager.setCurrentResourceManaging(event.getType());
+//            manager.setCurrentEntityManaging(event.getType());
 //        });
 
 //        /*
@@ -494,7 +494,7 @@ public class GameRendererBeta extends AnimationTimer {
 //            this.cursorImage.toFront();
 //
 //            // notify the manager
-//            manager.setCurrentResourceManaging(event.getType());
+//            manager.setCurrentEntityManaging(event.getType());
 //
 //        });
         

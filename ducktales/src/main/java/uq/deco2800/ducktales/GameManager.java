@@ -3,6 +3,7 @@ package uq.deco2800.ducktales;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import uq.deco2800.ducktales.features.achievements.AchievementManager;
+import uq.deco2800.ducktales.features.entities.EntityManager;
 import uq.deco2800.ducktales.features.hud.HUDManager;
 import uq.deco2800.ducktales.features.level.LevelManager;
 import uq.deco2800.ducktales.features.market.MarketManager;
@@ -12,10 +13,12 @@ import uq.deco2800.ducktales.features.missions.MissionManager;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.events.handlers.custom.HUDDeselectedHandler;
 import uq.deco2800.ducktales.util.events.handlers.custom.MenuSelectedEventHandler;
+import uq.deco2800.ducktales.util.events.handlers.custom.TileClickedHandler;
 import uq.deco2800.ducktales.util.events.handlers.custom.TileEnteredHandler;
 import uq.deco2800.ducktales.util.events.handlers.keyboard.InGameKeyboardHandler;
 import uq.deco2800.ducktales.util.events.handlers.mouse.InGameMouseClickedHandler;
 import uq.deco2800.ducktales.util.events.handlers.mouse.InGameMouseMovedHandler;
+import uq.deco2800.ducktales.util.events.tile.TileClickedEvent;
 import uq.deco2800.ducktales.util.events.tile.TileEnteredEvent;
 import uq.deco2800.ducktales.util.events.ui.HUDDeselectedEvent;
 import uq.deco2800.ducktales.util.events.ui.MenuSelectedEvent;
@@ -43,7 +46,7 @@ public class GameManager {
     private Pane root;
 
     /** Variables to control GUI logic */
-    private ResourceType currentResourceManaging;
+    private ResourceType currentEntityManaging;
 
     /** The model of the game */
     private World world;
@@ -56,6 +59,7 @@ public class GameManager {
     private LevelManager levelManager;
     private AchievementManager achievementManager;
     private CursorManager cursorManager;
+    private EntityManager entityManager;
 
     /**
      * Instantiate an empty game manager and create a new default world
@@ -64,7 +68,7 @@ public class GameManager {
         // Instantiate an empty game manager without a pre-loaded world.
         // Setup initial variables
         this.root = root;
-        currentResourceManaging = NONE;
+        currentEntityManaging = NONE;
 
         // Set up the secondary managers that are not linked to FXML
         cursorManager = new CursorManager(this.root);
@@ -107,6 +111,10 @@ public class GameManager {
         worldDisplayManager.setWorld(this.world);
         worldDisplayManager.initializeWorld();
 
+        // Now start the entity manager's routine
+        entityManager.setTilesManager(worldDisplayManager.getTilesManager());
+        entityManager.startRoutine();
+
         // This is needed since rendered tiles will be on top of HUD :(
         hudManager.bringGUIToFront();
 
@@ -121,17 +129,17 @@ public class GameManager {
      *
      * @return the type of the resource currently being managed
      */
-    public ResourceType getCurrentResourceManaging() {
-        return currentResourceManaging;
+    public ResourceType getCurrentEntityManaging() {
+        return currentEntityManaging;
     }
 
     /**
      * Set the current resource being managed
      *
-     * @param currentResourceManaging
+     * @param currentEntityManaging
      */
-    public void setCurrentResourceManaging(ResourceType currentResourceManaging) {
-        this.currentResourceManaging = currentResourceManaging;
+    public void setCurrentEntityManaging(ResourceType currentEntityManaging) {
+        this.currentEntityManaging = currentEntityManaging;
     }
 
     /**
@@ -203,7 +211,7 @@ public class GameManager {
      */
     public void setWorldDisplayManager(WorldDisplayManager worldDisplayManager) {
         this.worldDisplayManager = worldDisplayManager;
-
+        this.worldDisplayManager.setGameManager(this);
     }
 
     public MissionManager getMissionManager() {
@@ -238,6 +246,14 @@ public class GameManager {
         this.cursorManager = cursorManager;
     }
 
+    public EntityManager getEntityManager() {
+        return entityManager;
+    }
+
+    public void setEntityManager(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
+
     /**
      * Set up the event handlers for the root pane of the game. The current
      * events being handled:
@@ -253,6 +269,8 @@ public class GameManager {
                 new InGameMouseClickedHandler(this);
         TileEnteredHandler tileEnteredHandler =
                 new TileEnteredHandler(this);
+        TileClickedHandler tileClickedHandler =
+                new TileClickedHandler(this);
         HUDDeselectedHandler hudDeselectedHandler =
                 new HUDDeselectedHandler(this);
         InGameKeyboardHandler keyboardHandler =
@@ -268,6 +286,8 @@ public class GameManager {
         root.setOnMouseClicked(mouseClickedHandler);
         // Handler for when a tile is entered
         root.addEventHandler(TileEnteredEvent.TILE_ENTERED, tileEnteredHandler);
+        // Handler for when a tile is clicked on
+        root.addEventHandler(TileClickedEvent.TILE_CLICKED, tileClickedHandler);
         // Handler for the HUD Deselected Event
         root.addEventHandler(HUDDeselectedEvent.HUD_DESELECTED_EVENT, hudDeselectedHandler);
         // Handler for all keyboard events

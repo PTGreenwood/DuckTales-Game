@@ -124,13 +124,12 @@ public class World implements Tickable {
 	}
 
 	/**
-	 * Return the list of entities. This is dangerous, but necessary since
-	 * Entity Manager need a handle to the list of entities
+	 * Return the number of entities currently in the world
 	 *
-	 * @return the list of entities in the world
+	 * @return the number of entities in the world
 	 */
-	public ArrayList<Entity> getEntities() {
-		return this.entities;
+	public int getEntitiesNumber() {
+		return this.entities.size();
 	}
 
 	@Override
