@@ -115,7 +115,7 @@ public class Animal extends AgentEntity {
     public void setIsDead() {
         if (this.getHealth() <= 0) {
             this.isDead = true;
-            entityManager.removeEntity(this);
+//            entityManager.removeEntity(this);
         }
     }
 
@@ -129,7 +129,7 @@ public class Animal extends AgentEntity {
             opponent.setHealth(opponent.getHealth() - this.getStrength());
         }
         if (opponent.getHealth() <= 0) {
-            entityManager.removeEntity(opponent);
+//            entityManager.removeEntity(opponent);
         }
     }
 
@@ -190,7 +190,7 @@ public class Animal extends AgentEntity {
      */
     public void killAnimal() {
         this.canBeKilled = true;
-        entityManager.removeEntity(this);
+//        entityManager.removeEntity(this);
     }
 
     /**

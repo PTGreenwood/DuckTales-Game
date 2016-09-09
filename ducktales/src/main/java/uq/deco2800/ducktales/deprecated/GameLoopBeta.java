@@ -1,4 +1,4 @@
-package uq.deco2800.ducktales;
+package uq.deco2800.ducktales.deprecated;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory; 

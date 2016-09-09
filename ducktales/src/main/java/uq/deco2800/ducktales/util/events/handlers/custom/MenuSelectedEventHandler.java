@@ -1,7 +1,6 @@
 package uq.deco2800.ducktales.util.events.handlers.custom;
 
 import javafx.event.EventHandler;
-import javafx.scene.input.MouseEvent;
 import uq.deco2800.ducktales.GameManager;
 import uq.deco2800.ducktales.rendering.RenderingInformation;
 import uq.deco2800.ducktales.rendering.worlddisplay.CursorManager;
@@ -72,6 +71,6 @@ public class MenuSelectedEventHandler extends GameEventHandler
      *          The event fired
      */
     private void doTask2(MenuSelectedEvent event) {
-        gameManager.setCurrentResourceManaging(event.getType());
+        gameManager.setCurrentEntityManaging(event.getType());
     }
 }

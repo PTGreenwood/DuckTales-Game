@@ -28,8 +28,8 @@ public class AnimalMenuSpriteTest {
         EntityManager entityManager = EntityManager.getInstance();
         Duck duck = new Duck(10, 10);
         Peon opponent = new Peon(10, 10);
-        entityManager.addEntity(duck);
-        entityManager.addEntity(opponent);
+//        entityManager.addEntity(duck);
+//        entityManager.addEntity(opponent);
 
         // Test whether the creation of AnimalMenuSprite has no null attributes
         assertNotNull("Duck cannot be null.", duck);
@@ -95,8 +95,8 @@ public class AnimalMenuSpriteTest {
         EntityManager entityManager = EntityManager.getInstance();
         Duck duck = new Duck(10, 10);
         Peon opponent = new Peon(10, 10);
-        entityManager.addEntity(duck);
-        entityManager.addEntity(opponent);
+//        entityManager.addEntity(duck);
+//        entityManager.addEntity(opponent);
 
         // Test if duck can drop resources appropriately.
         duck.setHealth(100); // Set attributes to pass attribute threshold for laying eggs.
@@ -122,8 +122,8 @@ public class AnimalMenuSpriteTest {
     	EntityManager entityManager = EntityManager.getInstance();
         Cow cow = new Cow(10, 10);
         Peon opponent = new Peon(10, 10);
-        entityManager.addEntity(cow);
-        entityManager.addEntity(opponent);
+//        entityManager.addEntity(cow);
+//        entityManager.addEntity(opponent);
 
         // Test if cows drop resources appropriately.
         cow.setHealth(100); // Set attributes to pass attribute threshold for producing milk.

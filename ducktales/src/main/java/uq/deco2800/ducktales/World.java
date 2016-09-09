@@ -41,7 +41,6 @@ public class World implements Tickable {
 
 
 	private static ResourceSpriteRegister tileRegister = ResourceSpriteRegister.getInstance();
-	private static EntityManager entityManager = EntityManager.getInstance();
 
 	/**
 	 * Instantiates a World with the given specified parameters, with the tiles
@@ -113,6 +112,24 @@ public class World implements Tickable {
 			return;
 		}
 		entities.add(entity);
+	}
+
+	/**
+	 * Remove the given entity from the world
+	 *
+	 * @param entity
+	 */
+	public void removeEntity(Entity entity) {
+		entities.remove(entity);
+	}
+
+	/**
+	 * Return the number of entities currently in the world
+	 *
+	 * @return the number of entities in the world
+	 */
+	public int getEntitiesNumber() {
+		return this.entities.size();
 	}
 
 	@Override
@@ -211,26 +228,26 @@ public class World implements Tickable {
 
 
 
-	public void setTile(int x, int y, ResourceType tileType) {
-		getTile(x, y).setTileType(tileType);
-	}
-
-	public void addEntity(AgentEntity entity) {
-		entityManager.addEntity(entity);
-	}
-	
-	public void addEntity(WorldEntity entity) {
-		int entityX = (int) entity.getX();
-		int entityY = (int) entity.getY();
-
-		int xMin = (int) (entity.getX() - entity.getXLength()) + 1;
-		int yMin = (int) (entity.getY() - entity.getYLength()) + 1;
-
-		if (!(xMin >= 0 && entityX < getWidth() && yMin >= 0 && entityY < getHeight())) {
-			System.out.println("CANNOT ADD WORLD ENTITY");
-			return;
-		}
-		entityManager.addEntity(entity);
-
-	}
+//	public void setTile(int x, int y, ResourceType tileType) {
+//		getTile(x, y).setTileType(tileType);
+//	}
+//
+//	public void addEntity(AgentEntity entity) {
+//		entityManager.addEntity(entity);
+//	}
+//
+//	public void addEntity(WorldEntity entity) {
+//		int entityX = (int) entity.getX();
+//		int entityY = (int) entity.getY();
+//
+//		int xMin = (int) (entity.getX() - entity.getXLength()) + 1;
+//		int yMin = (int) (entity.getY() - entity.getYLength()) + 1;
+//
+//		if (!(xMin >= 0 && entityX < getWidth() && yMin >= 0 && entityY < getHeight())) {
+//			System.out.println("CANNOT ADD WORLD ENTITY");
+//			return;
+//		}
+//		entityManager.addEntity(entity);
+//
+//	}
 }

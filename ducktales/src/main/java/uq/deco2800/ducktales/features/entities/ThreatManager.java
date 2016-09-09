@@ -49,7 +49,8 @@ public class ThreatManager {
 		 	
 		 //-------Enemies--------
 		 	//Create Temp variable
-		 	tempEnemy = new Enemy("SCV");
+		 	tempEnemy = new Enemy("Raccoon");
+		 	// affects people and animals
 		 	//Add parameters to temp variable
 		 	//------------
 		 	tempEnemy.setStartTimer(20,"Timer");
@@ -58,10 +59,21 @@ public class ThreatManager {
 		 	enemiesList.add(tempEnemy);
 		 	
 		 	//Create Temp variable
-		 	tempEnemy = new Enemy("Ducktron");
+		 	tempEnemy = new Enemy("Beetle");
+		 	// affects resources
 		 	//Add parameters to temp variable
 		 	//------------
 		 	tempEnemy.setStartTimer(20,"Timer");
+		 	tempEnemy.setEndTimer(50);
+		 	//Add temp variable to list
+		 	enemiesList.add(tempEnemy);
+		 	
+		 	//Create Temp variable
+		 	tempEnemy = new Enemy("Wild Villager");
+		 	// affects buildings
+		 	//Add parameters to temp variable
+		 	//------------		 	
+		 	tempEnemy.setStartTimer(20, "Timer");
 		 	tempEnemy.setEndTimer(50);
 		 	//Add temp variable to list
 		 	enemiesList.add(tempEnemy);
@@ -98,7 +110,8 @@ public class ThreatManager {
 		 	
 		 //-------Enemies--------
 		 	//Create Temp variable
-		 	tempEnemy = new Enemy("Mutalisk");
+		 	tempEnemy = new Enemy("Wolf");
+		 	// affects people and animals
 		 	//Add parameters to temp variable
 		 	//------------
 		 	tempEnemy.setStartTimer(20,"Timer");
@@ -107,10 +120,21 @@ public class ThreatManager {
 		 	enemiesList.add(tempEnemy);
 		 	
 		 	//Create Temp variable
-		 	tempEnemy = new Enemy("Brutalisk");
+		 	tempEnemy = new Enemy("Crow");
+		 	// affects resources
 		 	//Add parameters to temp variable
 		 	//------------
 		 	tempEnemy.setStartTimer(20,"Timer");
+		 	tempEnemy.setEndTimer(50);
+		 	//Add temp variable to list
+		 	enemiesList.add(tempEnemy);
+		 	
+		 	//Create Temp variable
+		 	tempEnemy = new Enemy("Gorilla");
+		 	// affects buildings
+		 	//Add parameters to temp variable
+		 	//------------		 	
+		 	tempEnemy.setStartTimer(20, "Timer");
 		 	tempEnemy.setEndTimer(50);
 		 	//Add temp variable to list
 		 	enemiesList.add(tempEnemy);
@@ -147,7 +171,8 @@ public class ThreatManager {
 		 	
 		 //-------Enemies--------
 		 	//Create Temp variable
-		 	tempEnemy = new Enemy("Deathclaw");
+		 	tempEnemy = new Enemy("Lion");
+		 	// affects people and animals
 		 	//Add parameters to temp variable
 		 	//------------
 		 	tempEnemy.setStartTimer(20,"Timer");
@@ -156,10 +181,21 @@ public class ThreatManager {
 		 	enemiesList.add(tempEnemy);
 		 	
 		 	//Create Temp variable
-		 	tempEnemy = new Enemy("Cartman");
+		 	tempEnemy = new Enemy("Chimp");
+		 	// affects resources
 		 	//Add parameters to temp variable
 		 	//------------
 		 	tempEnemy.setStartTimer(20,"Timer");
+		 	tempEnemy.setEndTimer(50);
+		 	//Add temp variable to list
+		 	enemiesList.add(tempEnemy);
+		 	
+		 	//Create Temp variable
+		 	tempEnemy = new Enemy("Bear");
+		 	// affects buildings
+		 	//Add parameters to temp variable
+		 	//------------		 	
+		 	tempEnemy.setStartTimer(20, "Timer");
 		 	tempEnemy.setEndTimer(50);
 		 	//Add temp variable to list
 		 	enemiesList.add(tempEnemy);
@@ -196,7 +232,8 @@ public class ThreatManager {
 		 	
 		 //-------Enemies--------
 		 	//Create Temp variable
-		 	tempEnemy = new Enemy("Deathwing");
+		 	tempEnemy = new Enemy("Zombie Duck");
+		 	// affects people and animals
 		 	//Add parameters to temp variable
 		 	//------------
 		 	tempEnemy.setStartTimer(20,"Timer");
@@ -205,10 +242,21 @@ public class ThreatManager {
 		 	enemiesList.add(tempEnemy);
 		 	
 		 	//Create Temp variable
-		 	tempEnemy = new Enemy("Lich - King");
+		 	tempEnemy = new Enemy("Robber");
+		 	// affects resources
 		 	//Add parameters to temp variable
 		 	//------------
 		 	tempEnemy.setStartTimer(20,"Timer");
+		 	tempEnemy.setEndTimer(50);
+		 	//Add temp variable to list
+		 	enemiesList.add(tempEnemy);
+		 	
+		 	//Create Temp variable
+		 	tempEnemy = new Enemy("Elephant");
+		 	// affects buildings
+		 	//Add parameters to temp variable
+		 	//------------		 	
+		 	tempEnemy.setStartTimer(20, "Timer");
 		 	tempEnemy.setEndTimer(50);
 		 	//Add temp variable to list
 		 	enemiesList.add(tempEnemy);

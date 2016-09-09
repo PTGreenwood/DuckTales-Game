@@ -16,7 +16,9 @@ public class RenderingInformation {
 
     /** Scaling factors */
     // THIS IS THE MAIN SCALE FACTOR TO SCALE ALL IN-GAME SPRITES
-    public static final double MAIN_SCALE_FACTOR = 0.4;
+    public static final double MAIN_SCALE_FACTOR = 1;
+    // This is the scale of the tiles. Ideally 1, but can be fixed later
+    public static final double TILE_SCALE = 0.4;
     // just brainstorming. don't judge pls
     public static final double AGENT_SCALE = 1.0;
     // the scale of the buildings to be displayed in-game. technically

@@ -3,22 +3,30 @@ package uq.deco2800.ducktales;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import uq.deco2800.ducktales.features.achievements.AchievementManager;
+import uq.deco2800.ducktales.features.entities.EntityManager;
 import uq.deco2800.ducktales.features.hud.HUDManager;
 import uq.deco2800.ducktales.features.level.LevelManager;
 import uq.deco2800.ducktales.features.market.MarketManager;
+import uq.deco2800.ducktales.features.time.TimeManager;
 import uq.deco2800.ducktales.rendering.worlddisplay.CursorManager;
 import uq.deco2800.ducktales.rendering.worlddisplay.WorldDisplayManager;
 import uq.deco2800.ducktales.features.missions.MissionManager;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.events.handlers.custom.HUDDeselectedHandler;
 import uq.deco2800.ducktales.util.events.handlers.custom.MenuSelectedEventHandler;
+import uq.deco2800.ducktales.util.events.handlers.custom.TileClickedHandler;
 import uq.deco2800.ducktales.util.events.handlers.custom.TileEnteredHandler;
 import uq.deco2800.ducktales.util.events.handlers.keyboard.InGameKeyboardHandler;
 import uq.deco2800.ducktales.util.events.handlers.mouse.InGameMouseClickedHandler;
 import uq.deco2800.ducktales.util.events.handlers.mouse.InGameMouseMovedHandler;
+import uq.deco2800.ducktales.util.events.tile.TileClickedEvent;
 import uq.deco2800.ducktales.util.events.tile.TileEnteredEvent;
 import uq.deco2800.ducktales.util.events.ui.HUDDeselectedEvent;
 import uq.deco2800.ducktales.util.events.ui.MenuSelectedEvent;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import static uq.deco2800.ducktales.resources.ResourceType.*;
 
@@ -38,15 +46,21 @@ public class GameManager {
      */
     private static final int DEFAULT_WORLD_WIDTH = 30;
     private static final int DEFAULT_WORLD_HEIGHT = 30;
+    private static final int DEFAULT_GAME_SPEED = 10;
 
     /** The root of everything. */
     private Pane root;
 
     /** Variables to control GUI logic */
-    private ResourceType currentResourceManaging;
+    private ResourceType currentEntityManaging;
 
     /** The model of the game */
     private World world;
+
+    /** The main game loop control variables*/
+    private ExecutorService executor; // I still don't know what this thing does...
+    private GameLoop gameLoop; // The main loop of the game
+    private AtomicBoolean quit; // Control ending the game
 
     /** The Secondary Managers */
     private HUDManager hudManager;
@@ -56,6 +70,8 @@ public class GameManager {
     private LevelManager levelManager;
     private AchievementManager achievementManager;
     private CursorManager cursorManager;
+    private EntityManager entityManager;
+    private TimeManager timeManager;
 
     /**
      * Instantiate an empty game manager and create a new default world
@@ -64,7 +80,7 @@ public class GameManager {
         // Instantiate an empty game manager without a pre-loaded world.
         // Setup initial variables
         this.root = root;
-        currentResourceManaging = NONE;
+        currentEntityManaging = NONE;
 
         // Set up the secondary managers that are not linked to FXML
         cursorManager = new CursorManager(this.root);
@@ -107,11 +123,18 @@ public class GameManager {
         worldDisplayManager.setWorld(this.world);
         worldDisplayManager.initializeWorld();
 
+        // Now set up the entity manager and start its routine
+        entityManager.setTilesManager(worldDisplayManager.getTilesManager());
+        entityManager.setWorldDisplay(worldDisplayManager.getWorldDisplay());
+        entityManager.startRoutine();
+
         // This is needed since rendered tiles will be on top of HUD :(
         hudManager.bringGUIToFront();
 
-        setupEventHandlers();
+        // Set up the main game loop. This is done after rendering is set up
+        setupGameLoop();
 
+        setupEventHandlers();
     }
 
 
@@ -121,17 +144,17 @@ public class GameManager {
      *
      * @return the type of the resource currently being managed
      */
-    public ResourceType getCurrentResourceManaging() {
-        return currentResourceManaging;
+    public ResourceType getCurrentEntityManaging() {
+        return currentEntityManaging;
     }
 
     /**
      * Set the current resource being managed
      *
-     * @param currentResourceManaging
+     * @param currentEntityManaging
      */
-    public void setCurrentResourceManaging(ResourceType currentResourceManaging) {
-        this.currentResourceManaging = currentResourceManaging;
+    public void setCurrentEntityManaging(ResourceType currentEntityManaging) {
+        this.currentEntityManaging = currentEntityManaging;
     }
 
     /**
@@ -203,27 +226,27 @@ public class GameManager {
      */
     public void setWorldDisplayManager(WorldDisplayManager worldDisplayManager) {
         this.worldDisplayManager = worldDisplayManager;
-
+        this.worldDisplayManager.setGameManager(this);
     }
 
     public MissionManager getMissionManager() {
-    	return missionManager;
+        return missionManager;
     }
     
     public void setMissionManager(MissionManager missionManager) {
-    	this.missionManager = missionManager;
+        this.missionManager = missionManager;
     }
     
     public LevelManager getLevelManager() {
-    	return levelManager;
+        return levelManager;
     }
 
     public void setLevelManager(LevelManager levelManager) {
-    	this.levelManager = levelManager;
+        this.levelManager = levelManager;
     }
     
     public AchievementManager getAchievementManager() {
-    	return achievementManager;
+        return achievementManager;
     }
     
     public void setAchievementManager(AchievementManager achievementManager){
@@ -236,6 +259,22 @@ public class GameManager {
 
     public void setCursorManager(CursorManager cursorManager) {
         this.cursorManager = cursorManager;
+    }
+
+    public EntityManager getEntityManager() {
+        return entityManager;
+    }
+
+    public void setEntityManager(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
+
+    public TimeManager getTimeManager() {
+        return timeManager;
+    }
+
+    public void setTimeManager(TimeManager timeManager) {
+        this.timeManager = timeManager;
     }
 
     /**
@@ -253,6 +292,8 @@ public class GameManager {
                 new InGameMouseClickedHandler(this);
         TileEnteredHandler tileEnteredHandler =
                 new TileEnteredHandler(this);
+        TileClickedHandler tileClickedHandler =
+                new TileClickedHandler(this);
         HUDDeselectedHandler hudDeselectedHandler =
                 new HUDDeselectedHandler(this);
         InGameKeyboardHandler keyboardHandler =
@@ -268,10 +309,27 @@ public class GameManager {
         root.setOnMouseClicked(mouseClickedHandler);
         // Handler for when a tile is entered
         root.addEventHandler(TileEnteredEvent.TILE_ENTERED, tileEnteredHandler);
+        // Handler for when a tile is clicked on
+        root.addEventHandler(TileClickedEvent.TILE_CLICKED, tileClickedHandler);
         // Handler for the HUD Deselected Event
         root.addEventHandler(HUDDeselectedEvent.HUD_DESELECTED_EVENT, hudDeselectedHandler);
         // Handler for all keyboard events
         root.addEventHandler(KeyEvent.ANY, keyboardHandler);
+    }
+
+    /**
+     * Set up the game loop for the game
+     */
+    private void setupGameLoop() {
+        // NOTE: THESE METHODS SHOULD BE CALLED AFTER RENDERING IS SET UP
+        executor = Executors.newCachedThreadPool();
+        quit = new AtomicBoolean(false);
+        this.gameLoop = new GameLoop(quit, DEFAULT_GAME_SPEED); // Initiate the game loop
+        executor.execute(this.gameLoop); // Start the game loop
+
+        // Pass the managers to the game loop
+        gameLoop.setEntityManager(this.entityManager);
+        gameLoop.setTimeManager(this.timeManager);
     }
 
 }

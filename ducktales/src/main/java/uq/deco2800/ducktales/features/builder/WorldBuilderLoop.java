@@ -21,6 +21,6 @@ public class WorldBuilderLoop implements Runnable {
 
     @Override
     public void run() {
-
+    	// Method currently overridden, comment to just remove code smell
     }
 }

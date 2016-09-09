@@ -256,7 +256,7 @@ public class EntityTest {
 			test = Entity.class.getDeclaredMethod("updateType", ResourceType.class);
 			test.setAccessible(true);
 			test.invoke(box, ResourceType.HOUSE);
-			test.invoke(background, ResourceType.FARMHOUSE);
+			test.invoke(background, ResourceType.FARM);
 		} catch (NoSuchMethodException e) {
 			e.printStackTrace();
 		} catch (SecurityException e) {
@@ -270,7 +270,7 @@ public class EntityTest {
 		}
 		
 		assertTrue("box incorrect!", box.getType().toString().equals("HOUSE"));
-		assertTrue("background incorrect", background.getType().toString().equals("FARMHOUSE"));
+		assertTrue("background incorrect", background.getType().toString().equals("FARM"));
 	}
 	
 	/**

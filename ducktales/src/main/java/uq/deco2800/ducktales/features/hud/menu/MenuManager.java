@@ -34,7 +34,7 @@ public class MenuManager implements Initializable, SecondaryManager{
     };
     // TODO: TO ADD NEW ANIMALS, REGISTER THEIR NAMES HERE
     private static final ResourceType[] ANIMALS = {
-            SHEEP, COW_FRONT_RIGHT, DUCK_1_1
+            SHEEP
     };
 
     /** GUI containers */
@@ -171,10 +171,10 @@ public class MenuManager implements Initializable, SecondaryManager{
                 int yLength = 0;
                 try {
                     xLength = worldEntityInfo.getBuildingLength(
-                            sprite.getSpriteType(), worldEntityInfo.XLength
+                            sprite.getSpriteType(), worldEntityInfo.xLength
                     );
                     yLength = worldEntityInfo.getBuildingLength(
-                            sprite.getSpriteType(), worldEntityInfo.YLength
+                            sprite.getSpriteType(), worldEntityInfo.yLength
                     );
                 } catch (Exception e) {
                     System.err.println(e.getMessage());

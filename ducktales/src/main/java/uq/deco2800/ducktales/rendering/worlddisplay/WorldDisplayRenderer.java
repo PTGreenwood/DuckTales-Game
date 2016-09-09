@@ -2,10 +2,15 @@ package uq.deco2800.ducktales.rendering.worlddisplay;
 
 import javafx.animation.AnimationTimer;
 import javafx.scene.image.ImageView;
+import uq.deco2800.ducktales.features.entities.EntityManager;
 import uq.deco2800.ducktales.features.landscape.tiles.TilesManager;
 
 /**
- * Created by Khoi on 8/09/2016.
+ * The rendering engine for the world display. Currently handle:
+ *      1. Moving the visible world around
+ *
+ * Created on 8/09/2016.
+ * @author khoiphan21
  */
 public class WorldDisplayRenderer extends AnimationTimer {
     /** Variable to control how fast the world moves */
@@ -19,16 +24,17 @@ public class WorldDisplayRenderer extends AnimationTimer {
     public enum HDirection {
         LEFT, RIGHT, NONE
     }
-    HDirection hDirection = HDirection.NONE; // control horizontal movement
-    VDirection vDirection = VDirection.NONE; // control vertical movement
+    private HDirection hDirection = HDirection.NONE; // control horizontal movement
+    private VDirection vDirection = VDirection.NONE; // control vertical movement
 
     /** The secondary managers of the game */
     private TilesManager tilesManager;
+    private EntityManager entityManager;
 
     @Override
     public void handle(long now) {
         // First check if the tiles manager has been instantiated
-        if (tilesManager != null) {
+        if (tilesManager != null && entityManager != null) {
             // Check if the world should be moved around
             if (hDirection != HDirection.NONE || vDirection != VDirection.NONE) {
                 moveWorld();
@@ -44,6 +50,16 @@ public class WorldDisplayRenderer extends AnimationTimer {
      */
     public void setTilesManager(TilesManager tilesManager) {
         this.tilesManager = tilesManager;
+    }
+
+    /**
+     * Pass the handle of the entity manager to this renderer
+     *
+     * @param entityManager
+     *          The entity manager of the game
+     */
+    public void setEntityManager(EntityManager entityManager) {
+        this.entityManager = entityManager;
     }
 
     /**
@@ -84,6 +100,21 @@ public class WorldDisplayRenderer extends AnimationTimer {
                 }
             }
         }
+
+        // move all the entities
+        for (int i = 0; i < entityManager.getSpriteAmount(); i++) {
+            sprite = entityManager.getEntitySprite(i);
+
+            if (sprite != null) {
+                // Move the sprite in the given direction
+                sprite.setLayoutX(sprite.getLayoutX() + xAmount);
+                sprite.setLayoutY(sprite.getLayoutY() + yAmount);
+            } else {
+                System.err.println("Failed to move entity sprites. Sprite not" +
+                        "yet initiated");
+            }
+        }
+
     }
 
     /**

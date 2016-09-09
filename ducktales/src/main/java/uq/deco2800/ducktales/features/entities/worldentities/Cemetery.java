@@ -1,5 +1,6 @@
 package uq.deco2800.ducktales.features.entities.worldentities;
 
+import uq.deco2800.ducktales.features.entities.worldentities.Building.production;
 import uq.deco2800.ducktales.resources.ResourceType;
 
 /**
@@ -31,6 +32,8 @@ public class Cemetery extends Building {
 		Building.STONERESOURCES = 2;
 		Building.WOODRESOURCES = 4;
 		Building.TIME = 2;
+		Building.PRODUCTIONTYPE = production.NULL;
+		Building.PRODUCTIONAMOUNT = 0;
 	}
 
 	/**

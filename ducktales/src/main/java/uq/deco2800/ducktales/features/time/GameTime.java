@@ -101,7 +101,7 @@ public class GameTime implements Tickable {
 
 	/**
 	 * Class implements tick method from Tickable interface
-	 * Tick method is called within OldGameLoop class
+	 * Tick method is called within GameLoop class
 	 *
 	 */
 	@Override
