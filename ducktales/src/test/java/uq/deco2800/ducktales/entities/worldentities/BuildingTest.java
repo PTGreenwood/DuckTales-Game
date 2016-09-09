@@ -86,6 +86,10 @@ public class BuildingTest {
 		assertTrue("Correct Health", entity3.GetHealth() == 978000);
 		entity3.ChangeHealth(-10);
 		assertTrue("Correct Health", entity3.GetHealth() == 978000);
+		
+		// Test getx/gety
+		assertTrue("Correct xLength", entity3.getXLength() == 2);
+		assertTrue("Correct xLength", entity3.getYLength() == 2);
 	}
 	
 	@Test

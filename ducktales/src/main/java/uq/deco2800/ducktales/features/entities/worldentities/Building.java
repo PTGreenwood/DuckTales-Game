@@ -24,6 +24,10 @@ public abstract class Building extends WorldEntity {
 	protected static production PRODUCTIONTYPE;
 	
 	protected static int PRODUCTIONAMOUNT;
+	
+	protected int xLength;
+	
+	protected int yLength;
 
 	/**
 	 * Main constructor of the class.
@@ -36,6 +40,8 @@ public abstract class Building extends WorldEntity {
 	protected Building(double x, double y, int lengthX, int lengthY, 
 			ResourceType type) {
 		super(x, y, lengthX, lengthY, type);
+		this.xLength = lengthX;
+		this.yLength = lengthY;
 		specifications();
 	}
 		
@@ -113,4 +119,18 @@ public abstract class Building extends WorldEntity {
 	 * building is called.
 	 */
 	protected abstract void specifications();
+	
+	/**
+	 * Get xLength
+	 */
+	public int getXLength() {
+		return this.xLength;
+	}
+	
+	/**
+	 * Get yLength
+	 */
+	public int getYLength() {
+		return this.yLength;
+	}
 }
