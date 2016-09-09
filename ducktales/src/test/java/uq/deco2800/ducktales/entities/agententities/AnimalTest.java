@@ -122,15 +122,17 @@ public class AnimalTest {
     	EntityManager entityManager = EntityManager.getInstance();
         Cow cow = new Cow(10, 10);
         Peon opponent = new Peon(10, 10);
-//        entityManager.addEntity(cow);
-//        entityManager.addEntity(opponent);
-
+        // entityManager.addEntity(cow);
+        // entityManager.addEntity(opponent);
         // Test if cows drop resources appropriately.
-        cow.setHealth(100); // Set attributes to pass attribute threshold for producing milk.
+        cow.setHealth(100); // Set attributes to pass attribute threshold for producing milk and beef.
         cow.setHunger(100);
         cow.setThirst(100);
         cow.produceMilk();
         assertTrue("Cow can only produce milk if the health, hunger, and thirst thresholds are met.", cow
                 .canProduceMilk() == true);
+        cow.produceBeef();
+        assertTrue("Cow can only produce beef if the health, hunger, and thirst thresholds are met.", cow
+                .canProduceBeef() == true);
     }
 }

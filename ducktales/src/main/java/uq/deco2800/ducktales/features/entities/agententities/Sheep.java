@@ -6,7 +6,7 @@ import uq.deco2800.ducktales.resources.ResourceType;
 /**
  * Class which defines the animal 'Sheep' that produces milk
  *
- * @author 
+ * @author Damian Maher
  */
 
 public class Sheep extends Animal {
