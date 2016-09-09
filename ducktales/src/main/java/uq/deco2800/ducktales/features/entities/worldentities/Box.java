@@ -14,8 +14,9 @@ public class Box extends Building {
 	// BuildingMenuSprite type
 	private final static ResourceType TYPE = ResourceType.BOX;
 
-	private static final int X_LENGTH = 1;
-	private static final int Y_LENGTH = 1;
+	public static final int X_LENGTH = 1;
+	public static final int Y_LENGTH = 1;
+	public static final boolean PASSABILITY = false;
 	
 	/**
 	 * Initialise a new box. Requires the location of the box

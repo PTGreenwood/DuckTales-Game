@@ -15,8 +15,9 @@ public class Cemetery extends Building {
 	// BuildingMenuSprite type
 	private static final ResourceType TYPE = ResourceType.CEMETERY;
 
-	private static final int X_LENGTH = 2;
-	private static final int Y_LENGTH = 2;
+	public static final int X_LENGTH = 2;
+	public static final int Y_LENGTH = 2;
+	public static final boolean PASSABILITY = false;
 	
 	/**
 	 * Initialise a new cemetery. Requires the location of the cemetery

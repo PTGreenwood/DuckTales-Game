@@ -14,8 +14,9 @@ public class Church extends Building {
 	// BuildingMenuSprite type
 	private static final ResourceType TYPE = ResourceType.CHURCH;
 	
-	private static final int X_LENGTH = 2;
-	private static final int Y_LENGTH = 2;
+	public static final int X_LENGTH = 2;
+	public static final int Y_LENGTH = 2;
+	public static final boolean PASSABILITY = false;
 	
 	/**
 	 * Initialise a new barn. Requires the location of the church

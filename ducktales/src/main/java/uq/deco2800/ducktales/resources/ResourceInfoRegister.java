@@ -49,6 +49,9 @@ public class ResourceInfoRegister {
 
         // Start registering entity sizes here
         register(BAKERY, Bakery.X_LENGTH, Bakery.Y_LENGTH, Bakery.PASSABLILITY);
+        register (BUTCHER, Butcher.X_LENGTH, Butcher.Y_LENGTH, Butcher.PASSABILITY);
+        register (COMMUNITY_BUILDING, CommunityBuilding.X_LENGTH, CommunityBuilding.Y_LENGTH, CommunityBuilding.PASSABILITY);
+        register (PASTURE, Pasture.X_LENGTH, Pasture.Y_LENGTH, Pasture.PASSABILITY);
 
     }
 
@@ -80,6 +83,16 @@ public class ResourceInfoRegister {
                     break;
             }
             return size;
+        } else {
+            throw new ResourceRegisterException("Entity type " + entityType + "'s " +
+                    " size is not yet registered in ResourceInfoRegister");
+        }
+    }
+
+    public boolean getPassability(ResourceType entityType)
+            throws ResourceRegisterException {
+        if (entityInformation.containsKey(entityType)) {
+            return entityInformation.get(entityType).isPassable();
         } else {
             throw new ResourceRegisterException("Entity type " + entityType + "'s " +
                     " size is not yet registered in ResourceInfoRegister");

@@ -14,8 +14,9 @@ public class Pasture extends Building {
 	// BuildingMenuSprite type
 	private static final ResourceType TYPE = ResourceType.PASTURE;
 	
-	private static final int X_LENGTH = 5;
-	private static final int Y_LENGTH = 5;
+	public static final int X_LENGTH = 5;
+	public static final int Y_LENGTH = 5;
+	public static final boolean PASSABILITY = true;
 	
 	/**
 	 * Initialise a new barn. Requires the location of the pasture

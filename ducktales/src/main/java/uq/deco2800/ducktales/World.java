@@ -11,6 +11,7 @@ import uq.deco2800.ducktales.features.entities.agententities.AgentEntity;
 import uq.deco2800.ducktales.features.entities.worldentities.Bakery;
 import uq.deco2800.ducktales.features.entities.worldentities.Building;
 import uq.deco2800.ducktales.features.entities.worldentities.WorldEntity;
+import uq.deco2800.ducktales.resources.ResourceInfoRegister;
 import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 
 
@@ -41,8 +42,9 @@ public class World implements Tickable {
 	/** The model for the actual game */
 	private ArrayList<Entity> entities; // All the entities in the game
 
-
-	private static ResourceSpriteRegister tileRegister = ResourceSpriteRegister.getInstance();
+	/** The registers */
+	private ResourceSpriteRegister tileRegister = ResourceSpriteRegister.getInstance();
+	private ResourceInfoRegister infoRegister = ResourceInfoRegister.getInstance();
 
 	/**
 	 * Instantiates a World with the given specified parameters, with the tiles
@@ -116,13 +118,40 @@ public class World implements Tickable {
 		entities.add(entity);
 	}
 
+	/**
+	 * Add the given world entity to the list of entities, and set the tiles that
+	 * it is on to its type, and its passability
+	 *
+	 * @param entity
+	 * 			The entity to be added
+	 * @param startX
+	 * 			The x-coordinate of the lead tile
+	 * @param startY
+	 * 			The y-coordinate of the lead tile
+	 * @param xLength
+	 * 			The x-length of the world entity
+	 * @param yLength
+	 * 			The y-length of the world entity
+	 */
 	public void addWorldEntity(Entity entity, int startX, int startY,
 							   int xLength, int yLength) {
-		if (entities.contains(entity)) {
+		if (!entities.contains(entity)) {
 			// Add the entity
 			entities.add(entity);
 
 			// Set the tiles' worldEntity value and passability value
+			for (int x = 0; x < xLength; x++) {
+				for (int y = 0; y < yLength; y++) {
+					// this is a bit of math. write it down and it will make more sense
+					Tile tile = tiles.get(startX - x, startY - y); // Get the tile
+
+					// Set world entity
+					tile.setWorldEntityType(entity.getType());
+					// Set passability
+					tile.setPassable(infoRegister.getPassability(entity.getType()));
+
+				}
+			}
 		}
 	}
 
@@ -170,8 +199,11 @@ public class World implements Tickable {
 	public boolean checkTileAvailability(int startX, int startY, int xLength, int yLength) {
 		for (int x = 0; x < xLength; x++) {
 			for (int y = 0; y < yLength; y++) {
+
 				// this is a bit of math. write it down and it will make more sense
-				if (tiles.get(startX - x, startY - y).isPassable()) {
+				Tile tile = tiles.get(startX - x, startY - y);
+
+				if (tile.isPassable()) {
 					continue;
 				} else {
 					// This tile has something in it

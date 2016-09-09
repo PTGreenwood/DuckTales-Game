@@ -17,8 +17,8 @@ public class Bakery extends Building {
 	private static final ResourceType TYPE = BAKERY;
 
 	/** The length of this building */
-	private static final int X_LENGTH = 2;
-	private static final int Y_LENGTH = 2;
+	public static final int X_LENGTH = 2;
+	public static final int Y_LENGTH = 2;
 
 	/** The passability of this building */
 	public static final boolean PASSABLILITY = false;
