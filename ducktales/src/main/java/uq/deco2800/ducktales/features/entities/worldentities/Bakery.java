@@ -20,6 +20,9 @@ public class Bakery extends Building {
 	public static final int X_LENGTH = 2;
 	public static final int Y_LENGTH = 2;
 
+	/** The passability of this building */
+	public static final boolean PASSABLILITY = false;
+
 	/**
 	 * Initialise a new bakery. Requires the location of the bakery
 	 *  to be passed.

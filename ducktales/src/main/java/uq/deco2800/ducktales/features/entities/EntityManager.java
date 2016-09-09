@@ -5,17 +5,10 @@ import java.util.ArrayList;
 import javafx.scene.layout.Pane;
 import uq.deco2800.ducktales.GameManager;
 import uq.deco2800.ducktales.World;
-import uq.deco2800.ducktales.features.entities.agententities.Cow;
-import uq.deco2800.ducktales.features.entities.agententities.Duck;
-import uq.deco2800.ducktales.features.entities.agententities.Peon;
-import uq.deco2800.ducktales.features.entities.agententities.Sheep;
-import uq.deco2800.ducktales.features.entities.worldentities.Bakery;
-import uq.deco2800.ducktales.features.entities.worldentities.Butcher;
-import uq.deco2800.ducktales.features.entities.worldentities.CommunityBuilding;
-import uq.deco2800.ducktales.features.entities.worldentities.Pasture;
 import uq.deco2800.ducktales.features.landscape.tiles.TileSprite;
 import uq.deco2800.ducktales.features.landscape.tiles.TilesManager;
 import uq.deco2800.ducktales.rendering.RenderingInformation;
+import uq.deco2800.ducktales.resources.ResourceInfoRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.Tickable;
 
@@ -44,6 +37,9 @@ public class EntityManager implements Tickable {
     /** The other secondary managers */
     private TilesManager tilesManager;
 
+    /** The registers */
+    ResourceInfoRegister infoRegister;
+
     /**
      * Main constructor of the {@link EntityManager} class
      */
@@ -65,6 +61,9 @@ public class EntityManager implements Tickable {
      * entities, and create the corresponding sprites
      */
     public void startRoutine() {
+        // Load the size register
+        infoRegister = ResourceInfoRegister.getInstance();
+
         if (this.world != null) {
             // Check the world for existing entities, and load them into the game
             loadExistingEntities(world);
@@ -86,15 +85,13 @@ public class EntityManager implements Tickable {
      *          The y-coordinate of the tile to add the entity to
      */
     public void addEntity(ResourceType entityType, int x, int y) {
-        // TODO DELETE THIS DEBUGGING SHIT
-        System.err.println("entity " + entityType + " is to be added to" +
-                ": " + x + ", " +y);
-
         // Constructs a new entity from the given type
-        Entity entity = getNewEntity(entityType, x, y);
+        Entity entity = ResourceInfoRegister.getEntity(entityType, x, y);
 
         // check if the entity has been registered
         if (entity != null) {
+            // Check if the entity is of
+
             // Add that entity to the entities list
             world.addEntity(entity);
 
@@ -104,6 +101,49 @@ public class EntityManager implements Tickable {
             entitySprites.add(sprite);
             setupSprite(sprite, x, y);
             worldDisplay.getChildren().add(sprite);
+        } else {
+            System.err.println("Entity type: " + entityType + " is not yet" +
+                    "registered in EntityManager");
+        }
+    }
+
+
+    /**
+     * Add the type of the given world entity to the world map, after checking
+     * the validity of the addition
+     *
+     * @param entityType
+     *          The type of world entity to be added
+     * @param x
+     *          The x-coordinate of the lead tile
+     * @param y
+     *          The y-coordinate of the lead tile
+     */
+    public void addWorldEntity(ResourceType entityType, int x, int y) {
+        Entity entity = ResourceInfoRegister.getEntity(entityType, x, y);
+
+        // Check if the entity has been registered
+        if (entity != null) {
+            // Get the size of the given entity
+            int xLength = infoRegister.getEntitySize(entityType, ResourceInfoRegister.X);
+            int yLength = infoRegister.getEntitySize(entityType, ResourceInfoRegister.Y);
+
+            // Check validity of that building
+            if (world.checkTileAvailability(x, y, xLength, yLength)) {
+                // It is valid to add this tile
+
+                // Add that entity to the entities list
+                world.addWorldEntity(entity, x, y, xLength, yLength);
+
+                // Add the sprite of the entity to the sprites list, and set the
+                // position of that sprite
+                EntitySprite sprite = new EntitySprite(entitySprites.size(), entity.getType());
+                entitySprites.add(sprite);
+                setupSprite(sprite, x, y);
+                worldDisplay.getChildren().add(sprite);
+            } else {
+                System.err.println("location is not valid");
+            }
         } else {
             System.err.println("Entity type: " + entityType + " is not yet" +
                     "registered in EntityManager");
@@ -160,19 +200,6 @@ public class EntityManager implements Tickable {
     }
 
     /**
-     * Adds a new entity to the game.
-     *
-     * @param entity The entity to add.
-     */
-    public void addEntity(Entity entity) {
-        // Add the given entity to the world
-        world.addEntity(entity);
-
-        // Add the given sprite to the sprites list
-        entitySprites.add(new EntitySprite(entitySprites.size(), entity.getType()));
-    }
-
-    /**
      * Removes an entity from the game.
      *
      * @param entity The entity to be removed.
@@ -226,54 +253,6 @@ public class EntityManager implements Tickable {
 
     }
 
-    /**
-     * Construct and return a new entity from the given entity type
-     *
-     * TODO FOR ENTITIES TEAM, IMPLEMENT THIS TO ADD ALL YOUR ENTITIES IN
-     *
-     * @param entityType
-     *          The type of the entity to be constructed
-     *
-     * @return the entity constructed from the given type
-     *          null if the entity is not yet registered
-     */
-    private Entity getNewEntity(ResourceType entityType, int x, int y) {
-        Entity entity = null;
-
-        // Check for all world entities here
-        switch (entityType) {
-            case BUTCHER:
-                entity = new Butcher(x, y);
-                break;
-            case COMMUNITY_BUILDING:
-                entity = new CommunityBuilding(x, y);
-                break;
-            case BAKERY:
-                entity = new Bakery(x, y);
-                break;
-            case PASTURE:
-                entity = new Pasture(x, y);
-                break;
-            case CONSTRUCTION:
-                break;
-        }
-
-        // Check for all agent entities here
-        switch(entityType) {
-            case SHEEP:
-                entity = new Sheep(x, y);
-                break;
-            case COW:
-                entity = new Cow(x, y);
-                break;
-            case DUCK:
-                entity = new Duck(x, y);
-                break;
-        }
-
-        return entity;
-    }
-
 
     /**
      * Check the given world for any existing entities, and create sprites for
@@ -287,5 +266,6 @@ public class EntityManager implements Tickable {
             // There are some entities to make sprites for
         }
     }
+
 
 }

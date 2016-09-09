@@ -36,6 +36,10 @@ public class MenuManager implements Initializable, SecondaryManager{
     private static final ResourceType[] ANIMALS = {
             SHEEP
     };
+    // enum to check which is selected, a BUILDING or an ANIMAL
+    public enum MenuType {
+        BUILDING, ANIMAL
+    }
 
     /** GUI containers */
     @FXML

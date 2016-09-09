@@ -116,6 +116,16 @@ public class World implements Tickable {
 		entities.add(entity);
 	}
 
+	public void addWorldEntity(Entity entity, int startX, int startY,
+							   int xLength, int yLength) {
+		if (entities.contains(entity)) {
+			// Add the entity
+			entities.add(entity);
+
+			// Set the tiles' worldEntity value and passability value
+		}
+	}
+
 	/**
 	 * Remove the given entity from the world
 	 *
@@ -144,9 +154,9 @@ public class World implements Tickable {
 	 *  .   o   .
 	 *       The lead tile is 'o', and the tiles checked will are 'x' tiles
 	 *
-	 * @param x
+	 * @param startX
 	 * 		The x-coordinate of the lead tile
-	 * @param y
+	 * @param startY
 	 * 		The y-coordinate of the lead tile
 	 * @param xLength
 	 * 		The length x of the building - define how many tiles to the upper right
@@ -157,9 +167,20 @@ public class World implements Tickable {
 	 *
 	 * @return Whether the building can be added to this tile
 	 */
-	public boolean checkTileAvailability(int x, int y, int xLength, int yLength) {
+	public boolean checkTileAvailability(int startX, int startY, int xLength, int yLength) {
+		for (int x = 0; x < xLength; x++) {
+			for (int y = 0; y < yLength; y++) {
+				// this is a bit of math. write it down and it will make more sense
+				if (tiles.get(startX - x, startY - y).isPassable()) {
+					continue;
+				} else {
+					// This tile has something in it
+					return false;
+				}
+			}
+		}
 
-		;
+		// Everything should be okay at this point
 		return true;
 	}
 
