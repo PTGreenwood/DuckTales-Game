@@ -9,9 +9,13 @@ import java.util.concurrent.atomic.AtomicBoolean;
  */
 public class WorldBuilderLoop implements Runnable {
 
-    private World world;
-    private int tick;
-    private AtomicBoolean quit;
+	// remove code smell due to 'unused'
+    @SuppressWarnings("unused")
+	private World world;
+    @SuppressWarnings("unused")
+	private int tick;
+    @SuppressWarnings("unused")
+	private AtomicBoolean quit;
 
     public WorldBuilderLoop(AtomicBoolean quit, int tick) {
         this.world = WorldBuilderManager.getInstance().getWorld();
