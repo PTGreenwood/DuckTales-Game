@@ -13,9 +13,13 @@ import uq.deco2800.ducktales.features.entities.worldentities.Building.production
  */
 public class Bakery extends Building {
 	
-	// BuildingMenuSprite type
+	/** The type of this building */
 	private static final ResourceType TYPE = BAKERY;
-	
+
+	/** The length of this building */
+	public static final int X_LENGTH = 2;
+	public static final int Y_LENGTH = 2;
+
 	/**
 	 * Initialise a new bakery. Requires the location of the bakery
 	 *  to be passed.
@@ -23,7 +27,7 @@ public class Bakery extends Building {
 	 * @param y, y location of the building
 	 */
 	public Bakery(double x, double y) {
-		super(x, y, 2, 2, TYPE);	
+		super(x, y, X_LENGTH, Y_LENGTH, TYPE);
 	}
 	
 	/**
