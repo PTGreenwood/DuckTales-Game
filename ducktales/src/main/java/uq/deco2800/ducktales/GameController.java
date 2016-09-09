@@ -136,6 +136,7 @@ public class GameController implements Initializable{
 
     	levelManager.showLevel();
     	closeButton.setVisible(true);
+    	missionManager.missionCompletedAction(0);
     }
     
     /**
@@ -148,6 +149,7 @@ public class GameController implements Initializable{
 
     	achievementManager.showAchievement();
     	closeButton.setVisible(true);
+    	missionManager.missionCompletedAction(1);
     }
     
     /**

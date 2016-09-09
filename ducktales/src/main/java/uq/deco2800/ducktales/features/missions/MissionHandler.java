@@ -1,6 +1,7 @@
 package uq.deco2800.ducktales.features.missions;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -8,7 +9,7 @@ import javafx.scene.image.ImageView;
 /**
  * Handles in-game missions.
  * 
- *
+ * @author Naehyung Nate Kim
  */
 public class MissionHandler {
 	
@@ -17,13 +18,14 @@ public class MissionHandler {
 	private ImageView mission3ImageCompleted;
 	private ImageView mission4ImageCompleted;
 	private ArrayList<ImageView> missionsArray;
+	private int[] countCompletedMissions;	
+	
 	private Image uncheckedBox = new Image("/missions/boxUnchecked.png");
 	private Image checkedBox = new Image("/missions/boxChecked.png");
 	
-	private double missionCount = 0;
-	
+	MissionProgressIndicator piMain = MissionProgressIndicator.getInstance();	
+		
 	private static MissionHandler INSTANCE = new MissionHandler();
-	
 	public static MissionHandler getInstance() {
 		return INSTANCE;		
 	}
@@ -32,6 +34,8 @@ public class MissionHandler {
 	 * Main constructor of {@link Missions} class.
 	 */
 	public MissionHandler(){
+		this.countCompletedMissions = new int[4];
+		Arrays.fill(this.countCompletedMissions, 0);
 		this.missionsArray = new ArrayList<ImageView>();
 		this.mission1ImageCompleted = new ImageView();
 		this.mission2ImageCompleted = new ImageView();
@@ -42,6 +46,7 @@ public class MissionHandler {
 		this.missionsArray.add(1, this.mission2ImageCompleted);
 		this.missionsArray.add(2, this.mission3ImageCompleted);
 		this.missionsArray.add(3, this.mission4ImageCompleted);
+		
 		
 		for(int i =0; i<4; i++){
 			this.missionsArray.get(i).setImage(uncheckedBox);
@@ -54,7 +59,7 @@ public class MissionHandler {
 	 */
 	public void MissionImageCompleted(int i){
 		this.missionsArray.get(i).setImage(checkedBox);
-		this.missionCount = this.missionCount + 0.5;
+		this.countCompletedMissions[i] = 1;
 	}
 	
 	/**
@@ -67,10 +72,15 @@ public class MissionHandler {
 	}
 	
 	/**
-	 * 
-	 * @return Returns {@code missionCount}
-	 */
-	public double getMissionCount(){
-		return this.missionCount;
+	 * Check number of missions completed
+	 */	
+	public void countNumberOfCompletedMissions(){
+		double numberOfCompletedMissions = 0.0;
+		for(int i =0; i<4; i++){
+			if(this.countCompletedMissions[i] == 1){
+				numberOfCompletedMissions += 1;
+			}						
+		}
+		piMain.setProgressPercentage(numberOfCompletedMissions/2);		
 	}
 }
