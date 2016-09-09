@@ -89,6 +89,7 @@ public class ResourceSpriteRegister {
 
 		// Agent entities
 		addResource(PEON, "/peon.png");
+		
 		addResource(DUCK, "/duck.png");
 		addResource(DUCK_1_1, "/animal/duck_1_1.png");
 		addResource(DUCKDown0, "/animal/duck/DUCKDown0.png");
@@ -99,14 +100,12 @@ public class ResourceSpriteRegister {
 		addResource(DUCKLeft1, "/animal/duck/DUCKLeft1.png");
 		addResource(DUCKRight0, "/animal/duck/DUCKRight0.png");
 		addResource(DUCKRight1, "/animal/duck/DUCKRight1.png");
+		
         addResource(SHEEP, "/animal/sheep_with_wool.png");
 
 		addResource(COW, "/cow.png");
 		addResource(COW_FRONT_RIGHT, "/animal/cow_front_right.png");
-		// the following will be uncommented once the relevant resources
-		// are created and added to the game, @team pokeducks
-
-		// addResource(COWUpRight, "/COWUpRight.png");
+    	// addResource(COWUpRight, "/COWUpRight.png");
 		// addResource(COWUpLeft, "/COWUpLeft.png");
 		// addResource(COWDownRight, "/COWDownRight.png");
 		// addResource(COWDownLeft, "/COWDownLeft.png");
