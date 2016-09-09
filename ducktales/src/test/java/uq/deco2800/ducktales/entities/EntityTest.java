@@ -224,7 +224,7 @@ public class EntityTest {
 		Entity box = new Box(5, 4);
 		Entity background = new LongBox(4, 3);
 			
-		assertTrue("box incorrect!", box.getXLength() == 1);
+		assertTrue(String.valueOf(box.getXLength()), box.getXLength() == 1);
 		assertTrue("background incorrect", background.getXLength() == 2);
 		assertTrue("box incorrect!", box.getYLength() == 1);
 		assertTrue("background incorrect", background.getYLength() == 1);
