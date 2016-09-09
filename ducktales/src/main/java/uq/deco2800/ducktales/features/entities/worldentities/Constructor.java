@@ -82,4 +82,20 @@ public class Constructor {
 		building.specifications();
 		return building.resourcesProductionAmount();
 	}
+	
+	/**
+	 * Get xLength
+	 */
+	public int getXBuildingLength(Building building) {
+		building.specifications();
+		return building.getXLength();
+	}
+	
+	/**
+	 * Get yLength
+	 */
+	public int getYBuildingLength(Building building) {
+		building.specifications();
+		return building.getYLength();
+	}
 }

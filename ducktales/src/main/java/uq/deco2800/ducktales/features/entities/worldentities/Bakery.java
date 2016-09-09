@@ -35,6 +35,8 @@ public class Bakery extends Building {
 		Building.TIME = 4;
 		Building.PRODUCTIONTYPE = production.NULL;
 		Building.PRODUCTIONAMOUNT = 0;
+		Building.xLength = 2;
+		Building.yLength = 2;
 	}
 
 	/**
