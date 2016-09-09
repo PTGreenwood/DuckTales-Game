@@ -64,8 +64,8 @@ public class MissionManager {
 		GridPane missions = new GridPane();		
 		
 		missions.setVgap(10);
-		missions.add(createMission("1.Click Add peon :  ", 0), 0, 1);
-		missions.add(createMission("2.Click marketplace :  ", 1), 0, 2);		
+		missions.add(createMission("1.Click level button :  ", 0), 0, 1);
+		missions.add(createMission("2.Click achievement button :  ", 1), 0, 2);		
 		
 		ScrollPane scroll = new ScrollPane(missions);
 		
@@ -178,17 +178,15 @@ public class MissionManager {
 	public void missionCompletedAction(int missionNumber){
     	
     	//Untick mission2 box in Achievement window of Gamebeta when marketplace is clicked
-    	MissionHandler.getInstance().MissionImageCompleted(missionNumber);
+		missionMain.MissionImageCompleted(missionNumber);
         //Increment percentage of progress indicator in achievement
-        AchievementProgressIndicator.getInstance().setProgressPercentage(MissionHandler.getInstance().getMissionCount());
-        //Increment total achievement score
-        AchievementHandler.getInstance().achieveEasy();
+        missionMain.countNumberOfCompletedMissions();
         //Increment percentage of progress bar in leveling system
-        LevelHandler.getInstance().setProgressBar(0.5);
+        //LevelHandler.getInstance().setProgressBar(0.5);
         //if progress bar is full then level up
-        if(LevelHandler.getInstance().getBarProgress() == 1.0){
-        	LevelHandler.getInstance().LevelUp();
-        }
+        //if(LevelHandler.getInstance().getBarProgress() == 1.0){
+        //	LevelHandler.getInstance().LevelUp();
+        //}
     }
 	
 	public void showMission() {
