@@ -53,6 +53,18 @@ public class TimeManager implements SecondaryManager, Initializable, Tickable {
 
     @Override
     public void tick() {
+
         gameTime.tick();
+
+//        System.err.println("hour and minute: " + gameTime.getHour() + ", " + gameTime.getMinute());
+
+//        if (gameTime.getHour() == 0) {
+//            // Display the new time
+//            final int day = gameTime.getCurrentDay();
+//            final int hour = gameTime.getHour();
+//            final String timeText = "Current Time is: " + day + " days " + hour + " hours";
+//
+//            timeDisplayText.setText(timeText);
+//        }
     }
 }

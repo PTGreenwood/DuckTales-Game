@@ -118,7 +118,6 @@ public class GameManager {
      * such as: tell {@link WorldDisplayManager} to render the initial world
      */
     public void startGame() {
-        System.err.println("\n worldDisplayManager is: " + worldDisplayManager);
         // Pass the world model to the display manager, and initialize the display
         worldDisplayManager.setWorld(this.world);
         worldDisplayManager.initializeWorld();
@@ -330,6 +329,7 @@ public class GameManager {
         // Pass the managers to the game loop
         gameLoop.setEntityManager(this.entityManager);
         gameLoop.setTimeManager(this.timeManager);
+        gameLoop.setWorld(this.world);
     }
 
 }

@@ -47,16 +47,16 @@ public class InGameKeyboardHandler extends GameEventHandler implements EventHand
 
     private void handleKeyPressed(KeyCode code) {
         switch (code) {
-            case A:
+            case D:
                 displayManager.moveWorld(Direction.LEFT);
                 break;
-            case S:
+            case W:
                 displayManager.moveWorld(Direction.DOWN);
                 break;
-            case D:
+            case A:
                 displayManager.moveWorld(Direction.RIGHT);
                 break;
-            case W:
+            case S:
                 displayManager.moveWorld(Direction.UP);
                 System.err.println("moving UP in Handler");
                 break;
@@ -65,16 +65,16 @@ public class InGameKeyboardHandler extends GameEventHandler implements EventHand
 
     private void handleKeyReleased(KeyCode code) {
         switch (code) {
-            case A:
+            case D:
                 displayManager.stopMoveWorld(Direction.LEFT);
                 break;
-            case S:
+            case W:
                 displayManager.stopMoveWorld(Direction.DOWN);
                 break;
-            case D:
+            case A:
                 displayManager.stopMoveWorld(Direction.RIGHT);
                 break;
-            case W:
+            case S:
                 displayManager.stopMoveWorld(Direction.UP);
                 break;
         }

@@ -54,6 +54,8 @@ public class GameLoop implements Runnable {
 				world.tick();
 				entityManager.tick();
 				timeManager.tick();
+			} else {
+				System.err.println(" game loop not ready");
 			}
 			try {
 				Thread.sleep(gameSpeed);
