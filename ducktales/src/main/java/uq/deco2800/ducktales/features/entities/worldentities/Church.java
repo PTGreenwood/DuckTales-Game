@@ -14,6 +14,8 @@ public class Church extends Building {
 	// BuildingMenuSprite type
 	private static final ResourceType TYPE = ResourceType.CHURCH;
 	
+	private static final int X_LENGTH = 2;
+	private static final int Y_LENGTH = 2;
 	
 	/**
 	 * Initialise a new barn. Requires the location of the church
@@ -22,7 +24,7 @@ public class Church extends Building {
 	 * @param y, y location of the building
 	 */
 	public Church(double x, double y) {
-		super(x, y, 2, 2, TYPE);
+		super(x, y, X_LENGTH, Y_LENGTH, TYPE);
 		
 	}
 	

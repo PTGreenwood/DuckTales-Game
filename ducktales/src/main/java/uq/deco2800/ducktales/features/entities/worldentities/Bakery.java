@@ -17,8 +17,8 @@ public class Bakery extends Building {
 	private static final ResourceType TYPE = BAKERY;
 
 	/** The length of this building */
-	public static final int X_LENGTH = 2;
-	public static final int Y_LENGTH = 2;
+	private static final int X_LENGTH = 2;
+	private static final int Y_LENGTH = 2;
 
 	/**
 	 * Initialise a new bakery. Requires the location of the bakery
@@ -39,8 +39,6 @@ public class Bakery extends Building {
 		Building.TIME = 4;
 		Building.PRODUCTIONTYPE = production.NULL;
 		Building.PRODUCTIONAMOUNT = 0;
-		Building.xLength = 2;
-		Building.yLength = 2;
 	}
 
 	/**

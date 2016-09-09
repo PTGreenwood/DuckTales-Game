@@ -14,6 +14,8 @@ public class Butcher extends Building {
 	// BuildingMenuSprite type
 	private static final ResourceType TYPE = ResourceType.BUTCHER;
 	
+	private static final int X_LENGTH = 2;
+	private static final int Y_LENGTH = 2;
 	
 	/**
 	 * Initialise a new barn. Requires the location of the butcher 
@@ -22,7 +24,7 @@ public class Butcher extends Building {
 	 * @param y, y location of the building
 	 */
 	public Butcher(double x, double y) {
-		super(x, y, 2, 2, TYPE);
+		super(x, y, X_LENGTH, Y_LENGTH, TYPE);
 		
 	}
 	

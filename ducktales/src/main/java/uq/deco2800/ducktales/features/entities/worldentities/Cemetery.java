@@ -15,6 +15,9 @@ public class Cemetery extends Building {
 	// BuildingMenuSprite type
 	private static final ResourceType TYPE = ResourceType.CEMETERY;
 
+	private static final int X_LENGTH = 2;
+	private static final int Y_LENGTH = 2;
+	
 	/**
 	 * Initialise a new cemetery. Requires the location of the cemetery
 	 *  to be passed.
@@ -22,7 +25,7 @@ public class Cemetery extends Building {
 	 * @param y, y location of the building
 	 */
 	public Cemetery(double x, double y) {
-		super(x, y, 2, 2, TYPE);
+		super(x, y, X_LENGTH, Y_LENGTH, TYPE);
 	}
 	
 	/**
