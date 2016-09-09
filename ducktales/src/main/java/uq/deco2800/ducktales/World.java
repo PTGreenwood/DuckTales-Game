@@ -132,6 +132,33 @@ public class World implements Tickable {
 		return this.entities.size();
 	}
 
+	/**
+	 * Check the availability of the tiles around the given tile. This is mainly
+	 * used when a building is to be added to the world.
+	 *
+	 * Note: The lead tile is the lowest tile. For example. for a 2x2 building:
+	 *  .   x   .
+	 *    x   x
+	 *  .   o   .
+	 *       The lead tile is 'o', and the tiles checked will are 'x' tiles
+	 *
+	 * @param x
+	 * 		The x-coordinate of the lead tile
+	 * @param y
+	 * 		The y-coordinate of the lead tile
+	 * @param xLength
+	 * 		The length x of the building - define how many tiles to the upper left
+	 * 		will be checked
+	 * @param yLength
+	 * 		The length y of the building - define how many tiles to the upper right
+	 * 		will be checked
+	 *
+	 * @return Whether the building can be added to this tile
+	 */
+	public boolean checkTileAvailability(int x, int y, int xLength, int yLength) {
+
+	}
+
 	@Override
 	public void tick() {
 		// Update all the tiles
