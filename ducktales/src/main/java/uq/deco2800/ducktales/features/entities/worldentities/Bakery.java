@@ -49,6 +49,5 @@ public class Bakery extends Building {
 	@Override
 	public void tick() {
 		// To be implemented if there is to be animation of construction 
-	}
-	
+	}	
 }

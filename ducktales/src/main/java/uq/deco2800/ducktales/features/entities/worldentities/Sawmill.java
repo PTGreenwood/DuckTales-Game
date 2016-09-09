@@ -45,5 +45,5 @@ public class Sawmill extends Building {
 	public void tick() {
 		// To be implemented if there is to be animation of construction
 	}
-
+	
 }

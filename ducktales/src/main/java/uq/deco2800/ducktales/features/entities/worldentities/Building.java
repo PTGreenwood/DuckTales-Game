@@ -121,14 +121,10 @@ public abstract class Building extends WorldEntity {
 	/**
 	 * Get xLength
 	 */
-	protected int getXBuildingLength() {
-		return xLength;
-	}
+	protected abstract int getXBuildingLength();
 	
 	/**
 	 * Get yLength
 	 */
-	protected int getYBuildingLength() {
-		return yLength;
-	}
+	protected abstract int getYBuildingLength();
 }
