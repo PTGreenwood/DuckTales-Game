@@ -24,10 +24,6 @@ public abstract class Building extends WorldEntity {
 	protected static production PRODUCTIONTYPE;
 	
 	protected static int PRODUCTIONAMOUNT;
-	
-	protected static int xLength;
-	
-	protected static int yLength;
 
 	/**
 	 * Main constructor of the class.
@@ -117,18 +113,4 @@ public abstract class Building extends WorldEntity {
 	 * building is called.
 	 */
 	protected abstract void specifications();
-	
-	/**
-	 * Get xLength
-	 */
-	protected int getXBuildingLength() {
-		return xLength;
-	}
-	
-	/**
-	 * Get yLength
-	 */
-	protected int getYBuildingLength() {
-		return yLength;
-	}
 }

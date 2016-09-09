@@ -17,8 +17,8 @@ public class Bakery extends Building {
 	private static final ResourceType TYPE = BAKERY;
 
 	/** The length of this building */
-	public static final int X_LENGTH = 2;
-	public static final int Y_LENGTH = 2;
+	private static final int X_LENGTH = 2;
+	private static final int Y_LENGTH = 2;
 
 	/** The passability of this building */
 	public static final boolean PASSABLILITY = false;
@@ -42,8 +42,6 @@ public class Bakery extends Building {
 		Building.TIME = 4;
 		Building.PRODUCTIONTYPE = production.NULL;
 		Building.PRODUCTIONAMOUNT = 0;
-		Building.xLength = 2;
-		Building.yLength = 2;
 	}
 
 	/**
@@ -56,6 +54,5 @@ public class Bakery extends Building {
 	@Override
 	public void tick() {
 		// To be implemented if there is to be animation of construction 
-	}
-	
+	}	
 }

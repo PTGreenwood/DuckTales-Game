@@ -12,6 +12,9 @@ public class LongBox extends Building {
 	
 	// BuildingMenuSprite type
 	private final static ResourceType TYPE = ResourceType.LONG_BOX;
+	
+	private static final int X_LENGTH = 2;
+	private static final int Y_LENGTH = 1;
 
 	/**
 	 * Initialise a new long box. Requires the location of the long box
@@ -20,7 +23,7 @@ public class LongBox extends Building {
 	 * @param y, y location of the building
 	 */
 	public LongBox(int x, int y) {
-		super(x, y, 2, 1, TYPE);
+		super(x, y, X_LENGTH, Y_LENGTH, TYPE);
 	}
 
 	/**

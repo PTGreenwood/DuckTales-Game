@@ -14,6 +14,9 @@ public class House extends Building {
 	private static final ResourceType TYPE = ResourceType.HOUSE;
 
 	private int health =1000;
+	
+	private static final int X_LENGTH = 2;
+	private static final int Y_LENGTH = 2;
 
 	/**
 	 * Initialise a new house. Requires the location of the house
@@ -22,7 +25,7 @@ public class House extends Building {
 	 * @param y, y location of the building
 	 */
 	public House(double x, double y) {
-		super(x, y, 2, 2, TYPE);
+		super(x, y, X_LENGTH, Y_LENGTH, TYPE);
 	}
 	
 	public void ChangeHealth(int NewValue){
