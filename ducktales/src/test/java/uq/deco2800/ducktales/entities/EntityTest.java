@@ -173,9 +173,13 @@ public class EntityTest {
 	 */
 	@Test
 	public void diffDistanceInsideTest() {
-		Entity foreground = new Box(5, 4);
-		Entity foreground2 = new Box(1, 2);
-		Entity background = new LongBox(4, 3);
+		Entity foreground = new Box(5, 4); //Distance Inside = 0
+		Entity foreground2 = new Box(1, 7); //Distance Inside = 5
+		Entity background = new LongBox(4, 3); //Distance Inside = -1
+		
+		System.out.println(String.valueOf(foreground.getDistanceInside()));
+		System.out.println(String.valueOf(foreground2.getDistanceInside()));
+		System.out.println(String.valueOf(background.getDistanceInside()));
 		
 		List<Entity> entities = new ArrayList<Entity>();
 		entities.add(foreground);
@@ -187,8 +191,11 @@ public class EntityTest {
 		Collections.sort(entities);
 		
 		assertTrue("Entity 1 incorrect!", foreground.compareTo(background) == 1);
+		assertTrue("Entity 1 incorrect!", foreground.compareTo(foreground2) == 1);
 		assertTrue("forground2 incorrect", foreground2.compareTo(foreground) == 0);
+		assertTrue("forground2 incorrect", foreground2.compareTo(background) == 1);
 		assertTrue("Entity 2 incorrect!", background.compareTo(foreground) == -1);
+		assertTrue("Entity 2 incorrect!", background.compareTo(foreground2) == -1);
 	}
 	
 	/**
