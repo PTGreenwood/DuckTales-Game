@@ -14,7 +14,7 @@ import uq.deco2800.ducktales.resources.ResourceType;
  *
  * @author khoiphan21
  */
-public class TileSprite extends ImageView{
+public class TileSprite extends ImageView {
     /**
      * CONSTANTS
      */

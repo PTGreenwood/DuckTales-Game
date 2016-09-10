@@ -18,6 +18,7 @@ public class Constructor {
 	 * available resources.
 	 */
 	public Constructor() {
+		// Nothing to do, using constructor for access
 	}
 	
 	
@@ -81,21 +82,5 @@ public class Constructor {
 	public int getResourcesProductionAmount(Building building) {
 		building.specifications();
 		return building.resourcesProductionAmount();
-	}
-	
-	/**
-	 * Get xLength
-	 */
-	public int getXBuildingLength(Building building) {
-		building.specifications();
-		return building.getXLength();
-	}
-	
-	/**
-	 * Get yLength
-	 */
-	public int getYBuildingLength(Building building) {
-		building.specifications();
-		return building.getYLength();
 	}
 }
