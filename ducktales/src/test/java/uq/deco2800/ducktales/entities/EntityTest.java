@@ -351,7 +351,7 @@ public class EntityTest {
 		assertTrue("diff houses", house.equals(house3) == false);
 		assertTrue("diff houses", house.equals(house4) == false);
 		
-		assertTrue("diff", box.equals(house2));
+		assertTrue("diff", box.equals(house2) == false);
 		assertTrue("diff length", box.equals(longBox) == false);
 		assertTrue("diff length", house.equals(longBox) == false);
 		
