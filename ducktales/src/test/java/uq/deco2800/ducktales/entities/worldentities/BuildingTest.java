@@ -381,6 +381,46 @@ public class BuildingTest {
 	}
 	
 	@Test
+	public void mineTest(){
+		Mine entity1 = new Mine(2, 3);
+		Mine entity2 = new Mine(4, 5);
+		Mine entity3 = new Mine(1, 1);
+		
+		List<Entity> entities = new ArrayList<Entity>();
+		entities.add(entity1);
+		entities.add(entity2);
+		entities.add(entity3);
+		
+		// Check entity functionality still works
+		Collections.sort(entities);
+		
+		assertTrue("Entity 0 incorrect!", entities.get(0).equals(entity3));
+		assertTrue("Entity 1 incorrect!", entities.get(1).equals(entity1));
+		assertTrue("Entity 2 incorrect!", entities.get(2).equals(entity2));
+		
+		// Check correct resources and time
+		assertTrue("Wrong returned resources", entity1.resourcesReturnWood() == (3));
+		assertTrue("Wrong resources to build", entity3.resourcesBuildStone() == 10);
+		assertTrue("Wrong time", entity2.timeToBuild() == 3);
+		
+		// Check correct production type and amount
+		assertTrue("Wrong production type", entity1.resourcesProductionType() == production.ORE);
+		assertTrue("Wrong production amount", entity3.resourcesProductionAmount() == 5);
+		
+		// Check if nothing has changed after call tick()
+		entity1.tick();
+		entity2.tick();
+		entity3.tick();
+		assertTrue("Wrong returned resources", entity1.resourcesReturnWood() == (3));
+		assertTrue("Wrong resources to build", entity3.resourcesBuildStone() == 10);
+		assertTrue("Wrong time", entity2.timeToBuild() == 3);
+		
+		// Test getx/gety
+		assertTrue("Correct xLength", entity3.getXLength() == 5);
+		assertTrue("Correct xLength", entity3.getYLength() == 5);
+	}
+	
+	@Test
 	public void butcherTest(){
 		Butcher entity1 = new Butcher(2, 3);
 		Butcher entity2 = new Butcher(4, 5);
