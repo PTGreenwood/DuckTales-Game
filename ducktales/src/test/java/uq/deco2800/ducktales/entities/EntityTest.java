@@ -330,6 +330,26 @@ public class EntityTest {
 		assertTrue(observatory.toString(), observatory.toString().equals("[5.000000 8.000000 2 2    1.000000]"));
 	}
 	
+	/**
+	 * Equals() test
+	 */
+	@Test
+	public void equalTest() {
+		Entity box = new Box(5, 4);
+		Entity house = new House(4, 4);
+		Entity house2 = new House(6,7);
+		Object object = new Object();
+		
+		assertTrue("both entity, but diff", house.equals(box)== false);
+		
+		assertTrue("non entity", house.equals(object) == false);
+		
+		assertTrue("diff houses", house.equals(house2) == false);
+		
+		assertTrue("same", house.equals(house) == true);
+		
+	}
+	
 	
 	
 }

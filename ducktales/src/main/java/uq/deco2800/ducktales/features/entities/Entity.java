@@ -197,10 +197,21 @@ public abstract class Entity implements Comparable<Entity>, Tickable{
 		return distanceInside;
 	}
 	
+	/**
+	 * Used for testing, can be used elsewhere as well.
+	 * 
+	 * @return the private distanceTop variable
+	 */
 	public double getDistanceTop() {
 		return distanceTop;
 	}
 	
+	/**
+	 * Used for testing, can also be used to access private variable if 
+	 * required.
+	 * 
+	 * @return the private distanceBottom variable
+	 */
 	public double getDistanceBottom() {
 		return distanceBottom;
 	}
