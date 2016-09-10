@@ -80,36 +80,27 @@ public abstract class Entity implements Comparable<Entity>, Tickable{
 	public int compareTo(Entity entity) {
 		// Fix big of comparing floats by checking difference
 		if (this.distanceTop - entity.distanceTop >= -0.0001
-				&& this.distanceInside - entity.distanceInside < 1) {
+				&& this.distanceTop - entity.distanceTop < 1) {
 			// Fix big of comparing floats by checking difference
-			//System.err.println("a");
 			if (this.distanceBottom - entity.distanceBottom >= -0.0001
-					&& this.distanceInside - entity.distanceInside < 1) {
+					&& this.distanceBottom - entity.distanceBottom < 1) {
 				// Fix bug of comparing floats by comparing differences
-				//System.err.println("b");
 				if (this.distanceInside - entity.distanceInside >= -0.0001 
 						&& this.distanceInside - entity.distanceInside < 1) {
-					//System.err.println("c");
 					return 0;
 				} else if (this.distanceInside < entity.distanceInside) {
-					//System.err.println("d");
 					return -1;
 				} else {
-					//System.err.println("e");
 					return 1;
 				}
 			} else if (this.distanceBottom < entity.distanceBottom) {
-				//System.err.println("f");
 				return -1;
 			} else {
-				//System.err.println("g");
 				return 1;
 			}
 		} else if (this.distanceTop < entity.distanceTop) {
-			//System.err.println("h");
 			return -1;
 		} else {
-			//System.err.println("i");
 			return 1;
 		}
 	}

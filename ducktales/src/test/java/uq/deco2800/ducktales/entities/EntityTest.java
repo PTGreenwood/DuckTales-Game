@@ -121,7 +121,7 @@ public class EntityTest {
 		Collections.sort(entities);
 		
 		assertTrue("Entity 1 incorrect!", foreground.compareTo(background) == 1);
-		assertTrue("background2 incorrect!", background2.compareTo(foreground) == 0);
+		assertTrue("background2 incorrect!", background2.compareTo(foreground) == 1);
 		assertTrue("Entity 2 incorrect!", background.compareTo(foreground) == -1);
 	}
 	
@@ -133,8 +133,9 @@ public class EntityTest {
 		Entity foreground = new Box(3, 4);
 		Entity foreground2 = new Box(1, 7); //Distance Bottom = 5
 		Entity background = new LongBox(4, 4);
-		Entity background2 = new Box(1, 7); //Distance Bottom = 0
-		
+		Entity background2 = new Box(8, 9); //Distance Bottom = 0
+		Entity background3 = new LongBox(16, 2); //Distance Bottom = 0
+		Entity background4 = new LongBox(3, 6); //Distance Bottom = 0
 		
 		List<Entity> entities = new ArrayList<Entity>();
 		entities.add(foreground);
@@ -147,8 +148,18 @@ public class EntityTest {
 		
 		Collections.sort(entities);
 		
-		assertTrue("Entity 1 incorrect!", foreground.compareTo(background) == 1);
-		assertTrue("Entity 2 incorrect!", background2.compareTo(foreground2) == 0);
+		assertTrue("Entity 1 incorrect!", foreground.compareTo(background) == -1);
+		assertTrue("Entity 1 incorrect!", background.compareTo(foreground) == 1);
+		assertTrue("Entity 1 incorrect!", foreground.compareTo(background3) == -1);
+		assertTrue("Entity 1 incorrect!", background3.compareTo(foreground) == 1);
+		assertTrue("Entity 1 incorrect!", background3.compareTo(foreground2) == 1);
+		assertTrue("Entity 1 incorrect!", foreground2.compareTo(background3) == -1);
+		assertTrue("Entity 2 incorrect!", background2.compareTo(foreground2) == 1);
+		assertTrue("Entity 2 incorrect!", foreground2.compareTo(foreground) == 1);
+		assertTrue("Entity 2 incorrect!", background2.compareTo(background3) == -1);
+		assertTrue("Entity 2 incorrect!", background2.compareTo(background3) == -1);
+		assertTrue("Entity 2 incorrect!", background2.compareTo(background4) == 1);
+		assertTrue("Entity 2 incorrect!", foreground2.compareTo(background4) == -1);
 	}
 	
 	/**
@@ -161,6 +172,7 @@ public class EntityTest {
 		Entity foreground2 = new Box(1, 7); //Distance Inside = 5
 		Entity background = new LongBox(4, 3); //Distance Inside = -1
 		Entity background2 = new Box(5, 5); //Distance Inside = 0
+		Entity background4 = new LongBox(5, 2); //Distance Bottom = 0
 		
 		List<Entity> entities = new ArrayList<Entity>();
 		entities.add(foreground);
@@ -174,11 +186,14 @@ public class EntityTest {
 		Collections.sort(entities);
 		
 		assertTrue("Entity 1 incorrect!", foreground.compareTo(background) == 1);
+		assertTrue("Entity 1 incorrect!", background.compareTo(foreground) == -1);
 		assertTrue("Entity 1 incorrect!", foreground.compareTo(foreground) == 0);
-		assertTrue("Entity 1 incorrect!", foreground.compareTo(foreground2) == -1);
+		assertTrue("Entity 1 incorrect!", foreground.compareTo(foreground2) == 1);
 		assertTrue("forground2 incorrect", foreground2.compareTo(background) == 1);
-		assertTrue("forground2 incorrect", background2.compareTo(background) == 0);
+		assertTrue("forground2 incorrect", background2.compareTo(background) == 1);
+		assertTrue("forground2 incorrect", background2.compareTo(foreground) == 1);
 		assertTrue(String.valueOf(background2.compareTo(background)), background.compareTo(background2) == -1);
+		assertTrue("forground2 incorrect", background4.compareTo(background) == 1);
 	}
 	
 	/**
