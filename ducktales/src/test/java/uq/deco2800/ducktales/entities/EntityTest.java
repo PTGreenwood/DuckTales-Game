@@ -338,6 +338,9 @@ public class EntityTest {
 		Entity box = new Box(5, 4);
 		Entity house = new House(4, 4);
 		Entity house2 = new House(6,7);
+		Entity house3 = new House(4, 5);
+		Entity house4 = new House(5, 4);
+		Entity longBox = new LongBox(5,4);
 		Object object = new Object();
 		
 		assertTrue("both entity, but diff", house.equals(box)== false);
@@ -345,11 +348,14 @@ public class EntityTest {
 		assertTrue("non entity", house.equals(object) == false);
 		
 		assertTrue("diff houses", house.equals(house2) == false);
+		assertTrue("diff houses", house.equals(house3) == false);
+		assertTrue("diff houses", house.equals(house4) == false);
+		
+		assertTrue("diff length", box.equals(longBox) == false);
+		assertTrue("diff length", house.equals(longBox) == false);
 		
 		assertTrue("same", house.equals(house) == true);
 		
 	}
-	
-	
 	
 }
