@@ -46,7 +46,7 @@ public class Point implements Comparable<Point> {
 		double deltaX = x - point.x;
 		double deltaY = y - point.y;
 		double angle;
-
+		
 		angle = Math.atan2(deltaY, deltaX) + Math.PI;
 
 		double xShift = Math.cos(angle) * distance;
