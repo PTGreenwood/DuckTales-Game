@@ -25,9 +25,9 @@ public class MissionHandler {
 	
 	MissionProgressIndicator piMain = MissionProgressIndicator.getInstance();	
 		
-	private static MissionHandler INSTANCE = new MissionHandler();
+	private static MissionHandler instance = new MissionHandler();
 	public static MissionHandler getInstance() {
-		return INSTANCE;		
+		return instance;		
 	}
 	
 	/**

@@ -7,7 +7,7 @@ import uq.deco2800.ducktales.resources.ResourceType;
 
 public class Rock extends ResourceEntity{
 
-	private static ResourceType[] TYPES = {ROCK_1, ROCK_2};
+	private static final ResourceType[] TYPES = {ROCK_1, ROCK_2};
 
 	public Rock(double x, double y) {
 		super(x, y, 1, 1, TYPES[1], 0);

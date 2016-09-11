@@ -36,15 +36,18 @@ public class MarketManager {
     private Button placeATradeBtn;
     
     /** Selected navigation button background colour **/ 
-    private static String BTN_SELECTED = "#0C8F8F";
+    private static final String BTN_SELECTED = "#0C8F8F";
     
     /** Deselected navigation button background colour **/
-    private static String BTN_NOT_SELECTED = "#73B06F";
+    private static final String BTN_NOT_SELECTED = "#73B06F";
     
     /** Enum corresponding to the navigation buttons**/
     public enum Vista {
     	CURRENTTRADES, YOURTRADES, YOUROFFERS, PLACEATRADE 
     }
+    
+    /**String for the background color**/
+    String backgroundColorString = "-fx-background-color:";
     
     /** The enum of the currently selected navigation button.**/
     private Vista selectedVista = Vista.CURRENTTRADES;
@@ -132,19 +135,19 @@ public class MarketManager {
     	
     	switch (button) {
     		case CURRENTTRADES: currentTradesBtn.setStyle(
-    				"-fx-background-color:"+BTN_NOT_SELECTED);
+    				backgroundColorString+BTN_NOT_SELECTED);
     			break;
     			
     		case YOURTRADES: yourTradesBtn.setStyle(
-    				"-fx-background-color:"+BTN_NOT_SELECTED);
+    				backgroundColorString+BTN_NOT_SELECTED);
     			break;
     			
     		case YOUROFFERS: yourOffersBtn.setStyle(
-    				"-fx-background-color:"+BTN_NOT_SELECTED);
+    				backgroundColorString+BTN_NOT_SELECTED);
     			break;
     			
     		case PLACEATRADE: placeATradeBtn.setStyle(
-    				"-fx-background-color:"+BTN_NOT_SELECTED);
+    				backgroundColorString+BTN_NOT_SELECTED);
     			break;
     			
     		default: break;
@@ -163,22 +166,22 @@ public class MarketManager {
     	
 		switch (button) {
     		case CURRENTTRADES: currentTradesBtn.setStyle(
-    				"-fx-background-color:"+BTN_SELECTED);
+    				backgroundColorString+BTN_SELECTED);
     			selectedVista = Vista.CURRENTTRADES;
     			break;
     			
     		case YOURTRADES: yourTradesBtn.setStyle(
-    				"-fx-background-color:"+BTN_SELECTED);
+    				backgroundColorString+BTN_SELECTED);
     			selectedVista = Vista.YOURTRADES;
     			break;
     			
     		case YOUROFFERS: yourOffersBtn.setStyle(
-    				"-fx-background-color:"+BTN_SELECTED);
+    				backgroundColorString+BTN_SELECTED);
     			selectedVista = Vista.YOUROFFERS;
     			break;
     			
     		case PLACEATRADE: placeATradeBtn.setStyle(
-    				"-fx-background-color:"+BTN_SELECTED);
+    				backgroundColorString+BTN_SELECTED);
     			selectedVista = Vista.PLACEATRADE;
     			break;
     			

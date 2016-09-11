@@ -16,7 +16,7 @@ public abstract class Job {
     protected int mentorIntelligence;
     
     protected String jobName;
-    protected JobType JOBTYPE;
+    protected JobType jobtype;
     /**
      * Main constructor of the {@link Job} class.
      * 
@@ -27,7 +27,7 @@ public abstract class Job {
      * @param jobName 
      */
     public Job(int requiredStrength, int requiredIntelligence, 
-            int mentorStrength, int mentorIntelligence, String jobName, JobType JOBTYPE) {
+            int mentorStrength, int mentorIntelligence, String jobName, JobType jobtype) {
         if (requiredStrength <= 0)
             this.requiredStrength = 1;
         if (requiredIntelligence <=0)
@@ -41,7 +41,7 @@ public abstract class Job {
         this.mentorStrength = mentorStrength;
         this.mentorIntelligence = mentorIntelligence;
         this.jobName = jobName;
-        this.JOBTYPE = JOBTYPE;
+        this.jobtype = jobtype;
     }
     
     /**

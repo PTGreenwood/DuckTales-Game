@@ -22,7 +22,7 @@ public class ThreatManager {
 	/**
 	 * Set threat level 1.
 	 */
-	public void ThreatsLVL1() {
+	public void threatsLvl1() {
 		 //Clear Effects
 		 effectsList.clear();
 		 enemiesList.clear();
@@ -83,7 +83,7 @@ public class ThreatManager {
 	/**
 	 * Set threat level 2.
 	 */
-	public void ThreatsLVL2() {
+	public void threatsLvl2() {
 		//Clear Effects
 		 effectsList.clear();
 		 enemiesList.clear();
@@ -144,7 +144,7 @@ public class ThreatManager {
 	/**
 	 * Set threat level 3.
 	 */
-	public void ThreatsLVL3() {
+	public void threatsLvl3() {
 		//Clear Effects
 		 effectsList.clear();
 		 enemiesList.clear();
@@ -205,7 +205,7 @@ public class ThreatManager {
 	/**
 	 * Set threat level 4.
 	 */
-	public void ThreatsLVL4() {
+	public void threatsLvl4() {
 		//Clear Effects
 		 effectsList.clear();
 		 enemiesList.clear();

@@ -15,7 +15,7 @@ public abstract class ResourceEntity extends WorldEntity {
 
 	//Default starting value of Resource nodes, subject to change pending further discussion
 	//made public static to final, to fix code vulnerability 
-	public static final int defValue = 100;
+	public static final int DEFVALUE = 100;
 	//Actual, editable value the Resources nodes will take
 	public int value;
 

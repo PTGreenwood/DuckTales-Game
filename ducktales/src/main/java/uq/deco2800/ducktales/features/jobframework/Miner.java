@@ -16,7 +16,7 @@ public class Miner extends Job {
     protected static int mentorIntelligence = 2;
     
     protected static String jobName = "Miner";	
-    protected static JobType JOBTYPE = JobType.MINER;
+    protected static final JobType JOBTYPE = JobType.MINER;
 
 	public Miner(int requiredStrength, int requiredIntelligence, int mentorStrength, int mentorIntelligence, String jobName, JobType JOBTYPE) {
 		super(requiredStrength, requiredIntelligence, 
