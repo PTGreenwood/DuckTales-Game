@@ -47,6 +47,10 @@ public class Array2DTest {
 		testArray2.get(-7, -10);
 		// one -ve
 		testArray2.get(7, -10);
+		
+		testArray.get(7, -10);
+		
+		testArray.get(-7, 10);
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -72,5 +76,9 @@ public class Array2DTest {
 		testArray2.set(-7, -10, t);
 		// one -ve
 		testArray2.set(7, -10, t);
+		
+		testArray.set(7, -10, t);
+		
+		testArray.set(-7, 10, t);
 	}
 }
