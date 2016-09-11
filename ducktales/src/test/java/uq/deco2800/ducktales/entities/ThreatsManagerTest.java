@@ -6,9 +6,9 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
-import uq.deco2800.ducktales.entities.Effect;
-import uq.deco2800.ducktales.entities.Enemy;
-import uq.deco2800.ducktales.entities.ThreatManager;
+import uq.deco2800.ducktales.features.entities.Effect;
+import uq.deco2800.ducktales.features.entities.Enemy;
+import uq.deco2800.ducktales.features.entities.ThreatManager;
 
 public class ThreatsManagerTest {
 
@@ -50,23 +50,35 @@ public class ThreatsManagerTest {
 		effectsList.add(tempEffect);
 
 		// -------Enemies--------
-		// Create Temp variable
-		tempEnemy = new Enemy("SCV");
-		// Add parameters to temp variable
-		// ------------
-		tempEnemy.setStartTimer(20, "Timer");
-		tempEnemy.setEndTimer(50);
-		// Add temp variable to list
-		enemiesList.add(tempEnemy);
-
-		// Create Temp variable
-		tempEnemy = new Enemy("Ducktron");
-		// Add parameters to temp variable
-		// ------------
-		tempEnemy.setStartTimer(20, "Timer");
-		tempEnemy.setEndTimer(50);
-		// Add temp variable to list
-		enemiesList.add(tempEnemy);
+		//Create Temp variable
+	 	tempEnemy = new Enemy("Raccoon");
+	 	// affects people and animals
+	 	//Add parameters to temp variable
+	 	//------------
+	 	tempEnemy.setStartTimer(20,"Timer");
+	 	tempEnemy.setEndTimer(50);
+	 	//Add temp variable to list
+	 	enemiesList.add(tempEnemy);
+	 	
+	 	//Create Temp variable
+	 	tempEnemy = new Enemy("Beetle");
+	 	// affects resources
+	 	//Add parameters to temp variable
+	 	//------------
+	 	tempEnemy.setStartTimer(20,"Timer");
+	 	tempEnemy.setEndTimer(50);
+	 	//Add temp variable to list
+	 	enemiesList.add(tempEnemy);
+	 	
+	 	//Create Temp variable
+	 	tempEnemy = new Enemy("Wild Villager");
+	 	// affects buildings
+	 	//Add parameters to temp variable
+	 	//------------		 	
+	 	tempEnemy.setStartTimer(20, "Timer");
+	 	tempEnemy.setEndTimer(50);
+	 	//Add temp variable to list
+	 	enemiesList.add(tempEnemy);
 
 		TM.ThreatsLVL1();
 
@@ -116,23 +128,35 @@ public class ThreatsManagerTest {
 		effectsList.add(tempEffect);
 
 		// -------Enemies--------
-		// Create Temp variable
-		tempEnemy = new Enemy("Mutalisk");
-		// Add parameters to temp variable
-		// ------------
-		tempEnemy.setStartTimer(20, "Timer");
-		tempEnemy.setEndTimer(50);
-		// Add temp variable to list
-		enemiesList.add(tempEnemy);
-
-		// Create Temp variable
-		tempEnemy = new Enemy("Brutalisk");
-		// Add parameters to temp variable
-		// ------------
-		tempEnemy.setStartTimer(20, "Timer");
-		tempEnemy.setEndTimer(50);
-		// Add temp variable to list
-		enemiesList.add(tempEnemy);
+		//Create Temp variable
+	 	tempEnemy = new Enemy("Wolf");
+	 	// affects people and animals
+	 	//Add parameters to temp variable
+	 	//------------
+	 	tempEnemy.setStartTimer(20,"Timer");
+	 	tempEnemy.setEndTimer(50);
+	 	//Add temp variable to list
+	 	enemiesList.add(tempEnemy);
+	 	
+	 	//Create Temp variable
+	 	tempEnemy = new Enemy("Crow");
+	 	// affects resources
+	 	//Add parameters to temp variable
+	 	//------------
+	 	tempEnemy.setStartTimer(20,"Timer");
+	 	tempEnemy.setEndTimer(50);
+	 	//Add temp variable to list
+	 	enemiesList.add(tempEnemy);
+	 	
+	 	//Create Temp variable
+	 	tempEnemy = new Enemy("Gorilla");
+	 	// affects buildings
+	 	//Add parameters to temp variable
+	 	//------------		 	
+	 	tempEnemy.setStartTimer(20, "Timer");
+	 	tempEnemy.setEndTimer(50);
+	 	//Add temp variable to list
+	 	enemiesList.add(tempEnemy);
 
 		TM.ThreatsLVL2();
 
@@ -182,23 +206,35 @@ public class ThreatsManagerTest {
 		effectsList.add(tempEffect);
 
 		// -------Enemies--------
-		// Create Temp variable
-		tempEnemy = new Enemy("Deathclaw");
-		// Add parameters to temp variable
-		// ------------
-		tempEnemy.setStartTimer(20, "Timer");
-		tempEnemy.setEndTimer(50);
-		// Add temp variable to list
-		enemiesList.add(tempEnemy);
-
-		// Create Temp variable
-		tempEnemy = new Enemy("Cartman");
-		// Add parameters to temp variable
-		// ------------
-		tempEnemy.setStartTimer(20, "Timer");
-		tempEnemy.setEndTimer(50);
-		// Add temp variable to list
-		enemiesList.add(tempEnemy);
+		//Create Temp variable
+	 	tempEnemy = new Enemy("Lion");
+	 	// affects people and animals
+	 	//Add parameters to temp variable
+	 	//------------
+	 	tempEnemy.setStartTimer(20,"Timer");
+	 	tempEnemy.setEndTimer(50);
+	 	//Add temp variable to list
+	 	enemiesList.add(tempEnemy);
+	 	
+	 	//Create Temp variable
+	 	tempEnemy = new Enemy("Chimp");
+	 	// affects resources
+	 	//Add parameters to temp variable
+	 	//------------
+	 	tempEnemy.setStartTimer(20,"Timer");
+	 	tempEnemy.setEndTimer(50);
+	 	//Add temp variable to list
+	 	enemiesList.add(tempEnemy);
+	 	
+	 	//Create Temp variable
+	 	tempEnemy = new Enemy("Bear");
+	 	// affects buildings
+	 	//Add parameters to temp variable
+	 	//------------		 	
+	 	tempEnemy.setStartTimer(20, "Timer");
+	 	tempEnemy.setEndTimer(50);
+	 	//Add temp variable to list
+	 	enemiesList.add(tempEnemy);
 
 		TM.ThreatsLVL3();
 
@@ -248,23 +284,35 @@ public class ThreatsManagerTest {
 		effectsList.add(tempEffect);
 
 		// -------Enemies--------
-		// Create Temp variable
-		tempEnemy = new Enemy("Deathwing");
-		// Add parameters to temp variable
-		// ------------
-		tempEnemy.setStartTimer(20, "Timer");
-		tempEnemy.setEndTimer(50);
-		// Add temp variable to list
-		enemiesList.add(tempEnemy);
-
-		// Create Temp variable
-		tempEnemy = new Enemy("Lich - King");
-		// Add parameters to temp variable
-		// ------------
-		tempEnemy.setStartTimer(20, "Timer");
-		tempEnemy.setEndTimer(50);
-		// Add temp variable to list
-		enemiesList.add(tempEnemy);
+		//Create Temp variable
+	 	tempEnemy = new Enemy("Zombie Duck");
+	 	// affects people and animals
+	 	//Add parameters to temp variable
+	 	//------------
+	 	tempEnemy.setStartTimer(20,"Timer");
+	 	tempEnemy.setEndTimer(50);
+	 	//Add temp variable to list
+	 	enemiesList.add(tempEnemy);
+	 	
+	 	//Create Temp variable
+	 	tempEnemy = new Enemy("Robber");
+	 	// affects resources
+	 	//Add parameters to temp variable
+	 	//------------
+	 	tempEnemy.setStartTimer(20,"Timer");
+	 	tempEnemy.setEndTimer(50);
+	 	//Add temp variable to list
+	 	enemiesList.add(tempEnemy);
+	 	
+	 	//Create Temp variable
+	 	tempEnemy = new Enemy("Elephant");
+	 	// affects buildings
+	 	//Add parameters to temp variable
+	 	//------------		 	
+	 	tempEnemy.setStartTimer(20, "Timer");
+	 	tempEnemy.setEndTimer(50);
+	 	//Add temp variable to list
+	 	enemiesList.add(tempEnemy);
 
 		TM.ThreatsLVL4();
 

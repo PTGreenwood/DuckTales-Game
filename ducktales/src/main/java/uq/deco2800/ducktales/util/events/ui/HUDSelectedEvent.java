@@ -12,9 +12,7 @@ import uq.deco2800.ducktales.resources.ResourceType;
  */
 class HUDSelectedEvent extends UIEvent {
 
-    /**
-     * The starting point of this event
-     */
+    /** The starting point of this event */
     private double startingX;
     private double startingY;
 

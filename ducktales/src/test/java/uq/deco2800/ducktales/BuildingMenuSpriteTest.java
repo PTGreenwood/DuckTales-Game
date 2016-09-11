@@ -8,19 +8,19 @@ import java.util.List;
 
 import org.junit.Test;
 
-import uq.deco2800.ducktales.entities.worldentities.Bakery;
-import uq.deco2800.ducktales.entities.worldentities.Barn;
-import uq.deco2800.ducktales.entities.worldentities.Box;
-import uq.deco2800.ducktales.entities.worldentities.Cemetery;
-import uq.deco2800.ducktales.entities.worldentities.Farmhouse;
-import uq.deco2800.ducktales.entities.worldentities.Forge;
-import uq.deco2800.ducktales.entities.worldentities.Hospital;
-import uq.deco2800.ducktales.entities.worldentities.House;
-import uq.deco2800.ducktales.entities.Entity;
-import uq.deco2800.ducktales.entities.worldentities.LongBox;
-import uq.deco2800.ducktales.entities.worldentities.Observatory;
-import uq.deco2800.ducktales.entities.worldentities.Sawmill;
-import uq.deco2800.ducktales.entities.worldentities.WorldEntity;
+import uq.deco2800.ducktales.features.entities.worldentities.Bakery;
+import uq.deco2800.ducktales.features.entities.worldentities.Barn;
+import uq.deco2800.ducktales.features.entities.worldentities.Box;
+import uq.deco2800.ducktales.features.entities.worldentities.Cemetery;
+import uq.deco2800.ducktales.features.entities.worldentities.Farm;
+import uq.deco2800.ducktales.features.entities.worldentities.Forge;
+import uq.deco2800.ducktales.features.entities.worldentities.Hospital;
+import uq.deco2800.ducktales.features.entities.worldentities.House;
+import uq.deco2800.ducktales.features.entities.Entity;
+import uq.deco2800.ducktales.features.entities.worldentities.LongBox;
+import uq.deco2800.ducktales.features.entities.worldentities.Observatory;
+import uq.deco2800.ducktales.features.entities.worldentities.Sawmill;
+import uq.deco2800.ducktales.features.entities.worldentities.WorldEntity;
 
 public class BuildingMenuSpriteTest {
 	
@@ -235,10 +235,10 @@ public class BuildingMenuSpriteTest {
 	}
 	
 	@Test
-	public void farmhouseTest(){
-		Farmhouse entity1 = new Farmhouse(2, 3);
-		Farmhouse entity2 = new Farmhouse(4, 5);
-		Farmhouse entity3 = new Farmhouse(1, 1);
+	public void farmTest(){
+		Farm entity1 = new Farm(2, 3);
+		Farm entity2 = new Farm(4, 5);
+		Farm entity3 = new Farm(1, 1);
 		
 		List<Entity> entities = new ArrayList<Entity>();
 		entities.add(entity1);

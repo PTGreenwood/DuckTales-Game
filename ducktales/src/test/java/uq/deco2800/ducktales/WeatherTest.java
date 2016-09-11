@@ -6,7 +6,7 @@ import org.junit.*;
 
 // Dunno but the ch. was causing errors 
 //import ch.qos.logback.core.net.SyslogOutputStream;
-import uq.deco2800.ducktales.weather.*;
+import uq.deco2800.ducktales.features.weather.*;
 
 /**
  * Last modified: 21 August 2016 by mattyleggy

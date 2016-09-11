@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox fx:id="timeDisplay" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="400.0" styleClass="timeDisplay" stylesheets="@timeDisplay.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uq.deco2800.ducktales.features.time.TimeManager">
+   <children>
+      <Label fx:id="timeDisplayText" styleClass="timeDisplayText" text="TIME DISPLAY TEXT">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+   </children>
+</HBox>
