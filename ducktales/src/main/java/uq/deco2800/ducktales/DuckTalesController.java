@@ -10,7 +10,6 @@ import uq.deco2800.ducktales.deprecated.OldGameController;
 import uq.deco2800.ducktales.deprecated.ui.*;
 import uq.deco2800.ducktales.features.market.MarketManager;
 import uq.deco2800.ducktales.features.market.MarketVistaNavigator;
-import uq.deco2800.ducktales.features.missions.MissionHandler;
 import uq.deco2800.ducktales.deprecated.OldGameManager;
 import uq.deco2800.ducktales.features.weather.Weather;
 import uq.deco2800.ducktales.features.weather.WeatherEffect;

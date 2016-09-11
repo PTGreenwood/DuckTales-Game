@@ -48,7 +48,9 @@ public class GameController implements Initializable{
 
     /** The main UI elements */
     @FXML
-    private AnchorPane leftPane, bottomPane, worldPane;
+    private AnchorPane leftPane;
+    private AnchorPane bottomPane;
+    private AnchorPane worldPane;
     @FXML
     private Button closeButton;
 

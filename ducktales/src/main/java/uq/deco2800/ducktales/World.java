@@ -3,13 +3,9 @@ package uq.deco2800.ducktales;
 import java.util.ArrayList;
 
 import uq.deco2800.ducktales.features.entities.Entity;
-import uq.deco2800.ducktales.features.entities.EntityManager;
-
-
 import uq.deco2800.ducktales.features.entities.agententities.AgentEntity;
 
 import uq.deco2800.ducktales.features.entities.worldentities.Bakery;
-import uq.deco2800.ducktales.features.entities.worldentities.Building;
 import uq.deco2800.ducktales.features.entities.worldentities.WorldEntity;
 import uq.deco2800.ducktales.resources.ResourceInfoRegister;
 import uq.deco2800.ducktales.resources.ResourceSpriteRegister;

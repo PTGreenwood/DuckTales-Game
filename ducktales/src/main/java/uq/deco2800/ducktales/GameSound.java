@@ -19,6 +19,8 @@ import org.slf4j.LoggerFactory;
 public class GameSound {
 	private Mixer mixer;
 	private Clip clip;
+	// Error log
+	String lineUnavailable = "Line Unavailble";
 	//add a logger to fix code vulnerability 
 	private static Logger logger = LoggerFactory.getLogger(GameLoop.class);
 	/**
@@ -27,23 +29,27 @@ public class GameSound {
 	 * @param location Directory of audio file to be played.
 	 */
 	public void playThisSound(String location){
-		Mixer.Info[] mixInfos	=AudioSystem.getMixerInfo();
+		Mixer.Info[] mixInfos = AudioSystem.getMixerInfo();
 		/**for(Mixer.Info info: mixInfos){
 			System.out.println(  info.getName() +" - - - " + info.getDescription() );
 		}
 		**/
 		mixer = AudioSystem.getMixer(mixInfos[0]);
 		DataLine.Info dataInfo = new DataLine.Info(Clip.class, null);
-		try { clip =(Clip)mixer.getLine(dataInfo);}
-		catch(LineUnavailableException lue){ logger.info("Line Unavailable", lue);}
+		try { 
+			clip =(Clip)mixer.getLine(dataInfo);
+			}
+		catch(LineUnavailableException lue){ 
+			logger.info(lineUnavailable, lue);
+			}
 		
 		try {
 			URL soundURL = GameSound.class.getResource(location);
 			AudioInputStream audioStream = AudioSystem.getAudioInputStream(soundURL);
-			clip.open(audioStream);			
+			clip.open(audioStream);
 		}
 		
-		catch(LineUnavailableException lue){logger.info("Line Unavailable", lue);}
+		catch(LineUnavailableException lue){logger.info(lineUnavailable, lue);}
 		catch(UnsupportedAudioFileException uafe){logger.info("Unsupported Audio File", uafe);}
 		catch(IOException ioe){ ioe.printStackTrace();}
 		clip.start();
@@ -68,8 +74,12 @@ public class GameSound {
 		**/
 		mixer = AudioSystem.getMixer(mixInfos[0]);
 		DataLine.Info dataInfo = new DataLine.Info(Clip.class, null);
-		try { clip =(Clip)mixer.getLine(dataInfo);}
-		catch(LineUnavailableException lue){ logger.info("Line Unavailable", lue);}
+		try { 
+			clip =(Clip)mixer.getLine(dataInfo);
+			}
+		catch(LineUnavailableException lue){ 
+			logger.info(lineUnavailable, lue);
+			}
 		
 		try{
 			URL soundURL = GameSound.class.getResource(location);
@@ -77,14 +87,24 @@ public class GameSound {
 			clip.open(audioStream);			
 		}
 		
-		catch(LineUnavailableException lue){lue.printStackTrace();}
-		catch(UnsupportedAudioFileException uafe){uafe.printStackTrace();}
-		catch(IOException ioe){ ioe.printStackTrace();}
+		catch(LineUnavailableException lue){
+			lue.printStackTrace();
+			}
+		catch(UnsupportedAudioFileException uafe){
+			uafe.printStackTrace();
+			}
+		catch(IOException ioe){ 
+			ioe.printStackTrace();
+			}
 		clip.start();
 		
 		{
-			try{Thread.sleep(50);}
-			catch(InterruptedException ie){ie.printStackTrace();}
+			try{
+				Thread.sleep(50);
+				}
+			catch(InterruptedException ie) {
+				ie.printStackTrace();
+				}
 			
 		} while(clip.isActive());
 

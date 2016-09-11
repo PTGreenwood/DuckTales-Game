@@ -41,7 +41,7 @@ public class Duck extends Animal {
      * Enables the duck to drop feathers.
      */
     public void dropFeathers() {
-        if (this.isDead() == true) {
+        if (this.isDead()) {
             this.canDropFeathers = true;
         }
     }
