@@ -17,10 +17,10 @@ import uq.deco2800.ducktales.util.Point;
  */
 public class Animal extends AgentEntity {
 
-    private final static int minStartHealth = 20;
-    private final static int minStartHunger = 20;
-    private final static int minStartThirst = 20;
-    private final static int minStartStrength = 5;
+    private static final int minStartHealth = 20;
+    private static final int minStartHunger = 20;
+    private static final int minStartThirst = 20;
+    private static final int minStartStrength = 5;
 
     protected int health; // The animal's state of health.
     protected int hunger; // The animal's state of hunger.
@@ -125,7 +125,7 @@ public class Animal extends AgentEntity {
      * @param opponent The peon to be attacked.
      */
     public void attack(Peon opponent) {
-        if (this.getOutOfZone() == true) {
+        if (this.getOutOfZone()) {
             opponent.setHealth(opponent.getHealth() - this.getStrength());
         }
         if (opponent.getHealth() <= 0) {

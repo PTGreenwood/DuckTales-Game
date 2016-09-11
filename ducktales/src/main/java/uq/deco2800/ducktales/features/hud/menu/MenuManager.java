@@ -44,7 +44,8 @@ public class MenuManager implements Initializable, SecondaryManager{
     @FXML
     private AnchorPane menuPane; // The parent Node for all menus
     @FXML
-    private HBox buildingsMenu, animalsMenu;
+    private HBox buildingsMenu;
+    private HBox animalsMenu;
     @FXML
     private VBox menuButtons;
 

@@ -41,6 +41,7 @@ public class Peon extends AgentEntity {
 
 	// Job related information
 	private String job = "Jobless";
+	String jobString = "Jobless";
 	private double qualification = 0;
 	private boolean mentorStatus = false;
 
@@ -147,8 +148,8 @@ public class Peon extends AgentEntity {
 	 * @param job
 	 */
 	public void quitJob(Job job) {
-		if (this.getJob() != "Jobless")
-			this.setJob("Jobless");
+		if (this.getJob() != jobString)
+			this.setJob(jobString);
 	}
 
 	/**

@@ -13,7 +13,10 @@ public class InventoryManager {
     private int foodAmount = 0;
 
     /** Variable for the UI elements */
-    private Label woodLabel, rockLabel, foodLabel, oresLabel;
+    private Label woodLabel;
+    private Label rockLabel;
+    private Label foodLabel;
+    private Label oresLabel;
 
     public InventoryManager() {
 

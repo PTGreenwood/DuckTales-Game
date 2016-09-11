@@ -20,8 +20,8 @@ public class WorldBuilderManager {
     /**
      * CONSTANTS
      */
-    public final int TILE = 1;
-    public final int ENTITY = 2;
+    public static final int TILE = 1;
+    public static final int ENTITY = 2;
 
 
     private World world;

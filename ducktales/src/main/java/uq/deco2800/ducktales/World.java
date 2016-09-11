@@ -27,7 +27,7 @@ public class World implements Tickable {
 	/**
 	 * CONSTANTS
 	 */
-	private final ResourceType DEFAULT_TILE_TYPE = GRASS_1;
+	private static final ResourceType DEFAULT_TILE_TYPE = GRASS_1;
 
 	/** GENERAL properties of this world */
 	private String name; // the name of the world

@@ -28,7 +28,8 @@ public class TutorialController {
 	
 	
 	@FXML
-	private AnchorPane tutorialWindow, rightPane;
+	private AnchorPane tutorialWindow;
+	private AnchorPane rightPane;
 	
 	
 	

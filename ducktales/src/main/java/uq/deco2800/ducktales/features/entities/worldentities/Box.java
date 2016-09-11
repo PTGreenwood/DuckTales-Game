@@ -12,7 +12,7 @@ import uq.deco2800.ducktales.resources.ResourceType;
 public class Box extends Building {
 
 	// BuildingMenuSprite type
-	private final static ResourceType TYPE = ResourceType.BOX;
+	private static final ResourceType TYPE = ResourceType.BOX;
 
 	public static final int X_LENGTH = 1;
 	public static final int Y_LENGTH = 1;

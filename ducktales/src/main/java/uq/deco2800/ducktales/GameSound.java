@@ -55,7 +55,9 @@ public class GameSound {
 		clip.start();
 		
 		{
-			try{Thread.sleep(50);}
+			try{
+				Thread.sleep(50);
+				}
 			catch(InterruptedException ie){ie.printStackTrace();}
 			
 		} while(clip.isActive());
