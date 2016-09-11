@@ -14,6 +14,9 @@ public class CommunityBuilding extends Building {
 	// BuildingMenuSprite type
 	private static final ResourceType TYPE = ResourceType.COMMUNITY_BUILDING;
 	
+	public static final int X_LENGTH = 2;
+	public static final int Y_LENGTH = 2;
+	public static final boolean PASSABILITY = false;
 	
 	/**
 	 * Initialise a new barn. Requires the location of the community building 
@@ -22,7 +25,7 @@ public class CommunityBuilding extends Building {
 	 * @param y, y location of the building
 	 */
 	public CommunityBuilding(double x, double y) {
-		super(x, y, 2, 2, TYPE);
+		super(x, y, X_LENGTH, Y_LENGTH, TYPE);
 		
 	}
 	

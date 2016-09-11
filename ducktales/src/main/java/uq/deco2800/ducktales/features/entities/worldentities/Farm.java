@@ -14,6 +14,9 @@ public class Farm extends Building {
 	// BuildingMenuSprite type
 	private static final ResourceType TYPE = ResourceType.FARM;
 
+	private static final int X_LENGTH = 5;
+	private static final int Y_LENGTH = 5;
+	
 	/**
 	 * Initialise a new farm. Requires the location of the farm 
 	 *  to be passed.
@@ -21,7 +24,7 @@ public class Farm extends Building {
 	 * @param y, y location of the building
 	 */
 	public Farm(double x, double y) {
-		super(x, y, 5, 5, TYPE);
+		super(x, y, X_LENGTH, Y_LENGTH, TYPE);
 	}
 	
 	/**

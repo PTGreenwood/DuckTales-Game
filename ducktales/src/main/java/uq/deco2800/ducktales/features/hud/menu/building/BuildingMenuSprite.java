@@ -1,6 +1,8 @@
 package uq.deco2800.ducktales.features.hud.menu.building;
 
+import javafx.scene.input.MouseButton;
 import uq.deco2800.ducktales.features.hud.HUDSprite;
+import uq.deco2800.ducktales.features.hud.menu.MenuManager;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.events.ui.BuildingsMenuSelectedEvent;
 import uq.deco2800.ducktales.util.events.ui.MenuSelectedEvent;
@@ -31,22 +33,11 @@ public class BuildingMenuSprite extends HUDSprite {
      */
     private void setupMouseEventHandlers() {
         this.setOnMouseClicked(event -> {
-            fireEvent(new MenuSelectedEvent(
-                    this.getSpriteType(), event.getSceneX(), event.getSceneY()));
-        });
-
-//        this.setOnMouseReleased(event -> {
-//            System.err.println("Mouse released on building " + this.buildingType);
-//            fireEvent(new HUD_DESELECTED_EVENT(this.buildingType));
-//        });
-//        this.setOnMouseDragged(event -> {
-//            fireEvent(new CursorMovedEvent(event.getSceneX(), event.getSceneY()));
-//        });
-
-
-        this.setOnMouseEntered(event -> {
-            System.err.println("mouse hovered on: " + event.getSource().toString());
-            // stub event just to trigger parent event
+            if (event.getButton() == MouseButton.PRIMARY) {
+                fireEvent(new MenuSelectedEvent(
+                        MenuManager.MenuType.BUILDING, this.getSpriteType(),
+                        event.getSceneX(), event.getSceneY()));
+            }
         });
     }
 

@@ -110,7 +110,7 @@ public class DuckTalesController implements Initializable {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(location);
 		Parent root = loader.load(location.openStream());
-		Scene tutorialScene = new Scene(root, 800, 400);
+		Scene tutorialScene = new Scene(root, 1200, 600);
 		Stage tutorialStage = new Stage();
 		tutorialStage.setTitle("Tutorial");
 		tutorialStage.setScene(tutorialScene);

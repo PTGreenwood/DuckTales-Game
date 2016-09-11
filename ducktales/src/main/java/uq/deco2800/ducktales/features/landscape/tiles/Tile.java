@@ -74,6 +74,14 @@ public class Tile implements Tickable {
 		this.worldEntityType = worldEntityType;
 	}
 
+	/**
+	 * Get the type of world entity on this tile
+	 *
+	 * @return the type of world entity on this tile
+	 */
+	public ResourceType getWorldEntityType() {
+		return worldEntityType;
+	}
 
 	/**
 	 * Set the passability of this tile

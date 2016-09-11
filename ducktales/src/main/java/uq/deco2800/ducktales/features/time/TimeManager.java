@@ -1,5 +1,6 @@
 package uq.deco2800.ducktales.features.time;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -53,6 +54,26 @@ public class TimeManager implements SecondaryManager, Initializable, Tickable {
 
     @Override
     public void tick() {
+
         gameTime.tick();
+
+//        System.err.println("hour and minute: " + gameTime.getHour() + ", " + gameTime.getMinute());
+
+        if (gameTime != null) {
+            // Display the new time
+            final int day = gameTime.getCurrentDay();
+            final int hour = gameTime.getHour();
+            final int minute = gameTime.getMinute();
+            final String timeText = "Current Time is: " + hour + ":" + minute + ", day " + day;
+
+            // this is needed, since this UI update is called from another thread
+            // (GameLoop runs on another thread and not the main FXApplication thread)
+            // TIME TEAM: ALL CALL TO UI CHANGES MUST GO INSIDE THIS METHOD CALL
+            // Enjoy coding - from Khoi :)
+            Platform.runLater(() -> {
+                timeDisplayText.setText(timeText);
+            });
+
+        }
     }
 }

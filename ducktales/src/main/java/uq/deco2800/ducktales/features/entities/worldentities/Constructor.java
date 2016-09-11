@@ -18,6 +18,7 @@ public class Constructor {
 	 * available resources.
 	 */
 	public Constructor() {
+		// Nothing to do, using constructor for access
 	}
 	
 	
