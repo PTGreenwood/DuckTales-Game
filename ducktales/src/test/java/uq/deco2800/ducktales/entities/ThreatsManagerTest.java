@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import uq.deco2800.ducktales.features.entities.Effect;
 import uq.deco2800.ducktales.features.entities.Enemy;
-import uq.deco2800.ducktales.features.entities.threats.ThreatManager;
+import uq.deco2800.ducktales.features.entities.ThreatManager;
 
 public class ThreatsManagerTest {
 

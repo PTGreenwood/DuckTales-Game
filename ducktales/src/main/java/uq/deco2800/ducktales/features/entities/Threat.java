@@ -1,6 +1,7 @@
-package uq.deco2800.ducktales.features.entities.threats;
+package uq.deco2800.ducktales.features.entities;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import uq.deco2800.ducktales.World;
 import uq.deco2800.ducktales.deprecated.world.*;
@@ -182,12 +183,17 @@ public class Threat {
 	
 	public int setRandomX(){
 		//return x value within range of possible plot points
-		return 0;
+		int maxWidth = world.getWidth();
+		Random random = new Random();
+		int randomX = random.nextInt(maxWidth) + 1;
+		return randomX;
 	}
 	
 	public int setRandomY(){
-		return 0;
-		
+		int maxHeight = world.getHeight();
+		Random random = new Random();
+		int randomY = random.nextInt(maxHeight) + 1;
+		return randomY;	
 	}
 	
 	public void addImage(String imageName) {

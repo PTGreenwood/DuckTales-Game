@@ -4,7 +4,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import uq.deco2800.ducktales.features.achievements.AchievementManager;
 import uq.deco2800.ducktales.features.entities.EntityManager;
-import uq.deco2800.ducktales.features.entities.threats.ThreatManager;
+import uq.deco2800.ducktales.features.entities.ThreatManager;
 import uq.deco2800.ducktales.features.hud.HUDManager;
 import uq.deco2800.ducktales.features.hud.menu.MenuManager;
 import uq.deco2800.ducktales.features.level.LevelManager;

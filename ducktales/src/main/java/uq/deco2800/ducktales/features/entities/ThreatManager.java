@@ -1,7 +1,6 @@
-package uq.deco2800.ducktales.features.entities.threats;
+package uq.deco2800.ducktales.features.entities;
 import uq.deco2800.ducktales.World;
-import uq.deco2800.ducktales.features.entities.Effect;
-import uq.deco2800.ducktales.features.entities.Enemy;
+import uq.deco2800.ducktales.deprecated.world.WorldBeta;
 
 import java.util.*;
 
@@ -307,4 +306,5 @@ public class ThreatManager {
 	public void setWorld(World world) {
 		this.world = world;
 	}
+	
 }
