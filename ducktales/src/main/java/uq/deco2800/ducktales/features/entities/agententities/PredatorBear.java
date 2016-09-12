@@ -15,7 +15,7 @@ public class PredatorBear extends Animal {
     private EntityManager opponentList; // List of possible opponents.
 
     public PredatorBear(int x, int y) {
-        super(x, y, ResourceType.BEAR, 1, 1, 1, 1, 0.05);
+        super(x, y, ResourceType.DUCK, 1, 1, 1, 1, 0.05);
         int var = (int) (Math.random() * 100);
         int var2 = (int) (Math.random() * 20);
         setStartingHealth(var);
