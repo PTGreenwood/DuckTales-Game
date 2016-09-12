@@ -16,7 +16,7 @@ import uq.deco2800.ducktales.util.Point;
  * hunger and thirst will decrease (be more hungry/thirsty) over time
  * lower hunger/thirst will affect its strength
  *
- * @author Leggy
+ * @author Leggy, Jin Shin
  *
  */
 public class Peon extends AgentEntity {
@@ -41,6 +41,7 @@ public class Peon extends AgentEntity {
 
 	// Job related information
 	private String job = "Jobless";
+	String jobString = "Jobless";
 	private double qualification = 0;
 	private boolean mentorStatus = false;
 
@@ -66,22 +67,16 @@ public class Peon extends AgentEntity {
 		this.treesChopped = 0;
 	}
 
+	/**
+	 * Health limit is between 1000 and 0
+	 */
 	public void setHealth(int newValue) {
-		if (newValue > 0) {
+		if (newValue > 1000) {
+			this.health = 1000;
+		} else if (newValue >= 0) {
 			this.health = newValue;
-		}
-	}
-
-	//lower hunger/thirst would decrease the speed?
-	public void setHunger(int newValue) {
-		if (newValue > 0) {
-			this.hunger = newValue;
-		}
-	}
-
-	public void setThirst(int newValue) {
-		if (newValue > 0) {
-			this.thirst = newValue;
+		} else if (newValue < 0) {
+			this.health = 0;
 		}
 	}
 
@@ -89,8 +84,34 @@ public class Peon extends AgentEntity {
 		return health;
 	}
 
+	/**
+	 * Hunger limit is between 100 and 0
+	 */
+	public void setHunger(int newValue) {
+		if (newValue > 100) {
+			this.hunger = 100;
+		} else if (newValue >= 0) {
+			this.hunger = newValue;
+		} else if (newValue < 0 ) {
+			this.hunger = 0;
+		}
+	}
+
 	public int getHunger() {
 		return hunger;
+	}
+
+	/**
+	 * Thirst limit is between 100 and 0
+	 */
+	public void setThirst(int newValue) {
+		if (newValue > 100) {
+			this.thirst = 100;
+		} else if (newValue >= 0) {
+			this.thirst = newValue;
+		} else if (newValue < 0 ) {
+			this.thirst = 0;
+		}
 	}
 
 	public int getThirst() {
@@ -98,14 +119,19 @@ public class Peon extends AgentEntity {
 	}
 
 	/**
-	 * Keep update how many resource does peon have
-	 *
-	 * @param sourceValue
+	 * Speed limit is between 0 and
+	 * speed 0 means no movement?
 	 */
-	public void setResources(int sourceValue) {
-		if (sourceValue > 0) {
-			this.resource = sourceValue;
+	public void setSpeed(double newSpeed) {
+		if (newSpeed < 0) {
+			this.speed = 0;
+		} else {
+			this.speed = newSpeed;
 		}
+	}
+
+	public double getSpeed() {
+		return this.speed;
 	}
 
 	/**
@@ -147,8 +173,28 @@ public class Peon extends AgentEntity {
 	 * @param job
 	 */
 	public void quitJob(Job job) {
-		if (this.getJob() != "Jobless")
-			this.setJob("Jobless");
+		if (this.getJob() != jobString)
+			this.setJob(jobString);
+	}
+
+	/**
+	 * Check if Peon finished the current job
+	 *
+	 * everytime Peon completes a task they will gain attributes that affects
+	 * job completion time
+	 */
+	public void checkJobFinshed() {
+		//check if current job finishes
+
+		//increase attribtues
+		increaseAttribute();
+	}
+
+	/**
+	 * Increase attributes that affects the job completion time
+	 */
+	public void increaseAttribute() {
+
 	}
 
 	/**

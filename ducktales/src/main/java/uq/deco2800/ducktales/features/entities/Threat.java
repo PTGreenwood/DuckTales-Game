@@ -67,7 +67,8 @@ public class Threat {
 			this.startTimer = time;
 			this.hasStartTimer = true;
 			
-		}if (time > 0 && type =="Timer") {
+		}
+		if (time > 0 && type =="Timer") {
 			this.currentTime = System.currentTimeMillis();
 			this.startTimer =  currentTime + time;
 			this.hasStartTimer = true;

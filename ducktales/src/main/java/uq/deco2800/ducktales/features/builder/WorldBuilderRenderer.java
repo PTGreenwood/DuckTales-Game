@@ -35,12 +35,12 @@ public class WorldBuilderRenderer extends AnimationTimer {
         HOSPITAL, BAKERY, BARN
     };
     // The constants to layout the UI elements
-    private static double BUILDING_SCENE_H_PORTION = 85.0/100.0;
-    private static double BUILDING_SCENE_V_PORTION = 85.0/100.0;
-    private static double TILE_MENU_H_PORTION = 100.0 - BUILDING_SCENE_H_PORTION;
-    private static double TILE_MENU_V_PORTION = BUILDING_SCENE_V_PORTION;
-    private static double RESOURCE_MENU_H_PORTION = 1.0;
-    private static double RESOURCE_MENU_V_PORTION = 100.0 - BUILDING_SCENE_V_PORTION;
+    private static final double BUILDING_SCENE_H_PORTION = 85.0/100.0;
+    private static final double BUILDING_SCENE_V_PORTION = 85.0/100.0;
+    private static final double TILE_MENU_H_PORTION = 100.0 - BUILDING_SCENE_H_PORTION;
+    private static final double TILE_MENU_V_PORTION = BUILDING_SCENE_V_PORTION;
+    private static final double RESOURCE_MENU_H_PORTION = 1.0;
+    private static final double RESOURCE_MENU_V_PORTION = 100.0 - BUILDING_SCENE_V_PORTION;
 
 
     /** General rendering variables */

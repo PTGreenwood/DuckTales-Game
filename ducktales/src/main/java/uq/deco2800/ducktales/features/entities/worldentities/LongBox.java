@@ -11,7 +11,7 @@ import uq.deco2800.ducktales.resources.ResourceType;
 public class LongBox extends Building {
 	
 	// BuildingMenuSprite type
-	private final static ResourceType TYPE = ResourceType.LONG_BOX;
+	private static final ResourceType TYPE = ResourceType.LONG_BOX;
 	
 	private static final int X_LENGTH = 2;
 	private static final int Y_LENGTH = 1;

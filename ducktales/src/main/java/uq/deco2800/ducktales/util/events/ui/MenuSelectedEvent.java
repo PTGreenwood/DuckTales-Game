@@ -1,7 +1,6 @@
 package uq.deco2800.ducktales.util.events.ui;
 
 import javafx.event.EventType;
-import uq.deco2800.ducktales.features.hud.menu.MenuManager;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.features.hud.menu.MenuManager.MenuType;
 

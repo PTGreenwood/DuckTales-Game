@@ -2,8 +2,6 @@ package uq.deco2800.ducktales.features.landscape.tiles;
 
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
-import uq.deco2800.ducktales.deprecated.GameManagerBeta;
-import uq.deco2800.ducktales.deprecated.GameRendererBeta;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.events.tile.TileClickedEvent;
 import uq.deco2800.ducktales.util.events.tile.TileEnteredEvent;

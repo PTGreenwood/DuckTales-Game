@@ -45,7 +45,9 @@ public class OldGameController {
     private HBox animalsMenu;
     // The Inventory menu
     @FXML
-    private Label woodLabel, foodLabel, oresLabel;
+    private Label woodLabel;
+    private Label foodLabel;
+    private Label oresLabel;
     // The button to close all info panes
     @FXML
     private Button closeInfoPaneButton;

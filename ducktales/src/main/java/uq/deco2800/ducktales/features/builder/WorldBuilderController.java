@@ -1,10 +1,6 @@
 package uq.deco2800.ducktales.features.builder;
 
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-
 import uq.deco2800.ducktales.resources.ResourceType;
-import uq.deco2800.ducktales.World;
 
 import static uq.deco2800.ducktales.resources.ResourceType.*;
 

@@ -92,6 +92,7 @@ public class ResourceSpriteRegister {
 		
 		addResource(DUCK, "/duck.png");
 		addResource(DUCK_1_1, "/animal/duck_1_1.png");
+<<<<<<< HEAD
 		addResource(DUCKDown0, "/animal/duck/DUCKDown0.png");
 		addResource(DUCKDown1, "/animal/duck/DUCKDown1.png");
 		addResource(DUCKUp0, "/animal/duck/DUCKUp0.png");
@@ -101,6 +102,16 @@ public class ResourceSpriteRegister {
 		addResource(DUCKRight0, "/animal/duck/DUCKRight0.png");
 		addResource(DUCKRight1, "/animal/duck/DUCKRight1.png");
 		
+=======
+		addResource(DUCKDOWN0, "/animal/duck/DUCKDown0.png");
+		addResource(DUCKDOWN1, "/animal/duck/DUCKDown1.png");
+		addResource(DUCKUP0, "/animal/duck/DUCKUp0.png");
+		addResource(DUCKUP1, "/animal/duck/DUCKUp1.png");
+		addResource(DUCKLEFT0, "/animal/duck/DUCKLeft0.png");
+		addResource(DUCKLEFT1, "/animal/duck/DUCKLeft1.png");
+		addResource(DUCKRIGHT0, "/animal/duck/DUCKRight0.png");
+		addResource(DUCKRIGHT1, "/animal/duck/DUCKRight1.png");
+>>>>>>> 08886db1d65d0a5501cb44cbe8d5e1ae14f218f8
         addResource(SHEEP, "/animal/sheep_with_wool.png");
 
 		addResource(COW, "/cow.png");

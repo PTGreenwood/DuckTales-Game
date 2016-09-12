@@ -3,7 +3,6 @@ package uq.deco2800.ducktales;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import uq.deco2800.ducktales.features.entities.EntityManager;
-import uq.deco2800.ducktales.features.time.GameTime;
 import uq.deco2800.ducktales.features.time.TimeManager;
 
 import java.util.concurrent.atomic.AtomicBoolean;

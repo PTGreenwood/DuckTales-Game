@@ -10,7 +10,6 @@ import uq.deco2800.ducktales.deprecated.OldGameController;
 import uq.deco2800.ducktales.deprecated.ui.*;
 import uq.deco2800.ducktales.features.market.MarketManager;
 import uq.deco2800.ducktales.features.market.MarketVistaNavigator;
-import uq.deco2800.ducktales.features.missions.MissionHandler;
 import uq.deco2800.ducktales.deprecated.OldGameManager;
 import uq.deco2800.ducktales.features.weather.Weather;
 import uq.deco2800.ducktales.features.weather.WeatherEffect;
@@ -253,49 +252,6 @@ public class DuckTalesController implements Initializable {
 //		}
 //	}
 
-	/**
-	 * This will launch the game with the new rendering engine - beta version
-	 * 
-	 * @param event
-	 * @throws Exception
-	 */
-	@FXML
-	public void startGameBeta(ActionEvent event) throws Exception {
-		System.err.println("BETA RENDERER");
-		if (gamePane == null) {
-			toggleMenuPane();
-
-            // First implementation of using FXML for styling
-			URL location = getClass().getResource("/game.fxml");
-            FXMLLoader loader = new FXMLLoader(location);
-
-			// Load the FXML and set the size of the root Node
-			try {
-				gamePane = loader.load();
-
-			} catch (Exception e) {
-				System.err.println("exception in loading fxml");
-			}
-
-			// Set the game pane to resize with the window
-			contentPane.setLeftAnchor(gamePane, 0.0);
-			contentPane.setRightAnchor(gamePane, 0.0);
-			contentPane.setTopAnchor(gamePane, 0.0);
-			contentPane.setBottomAnchor(gamePane, 0.0);
-
-			showPane(gamePane);
-
-			// Set up the controller
-			OldGameController oldGameController = loader.getController();
-
-			// Set up the renderer and give the controller its handle
-			oldGameController.setupGame();
-
-		} else {
-			showPane(gamePane);
-		}
-
-	}
 
 	/**
 	 * This method is called when "Build World" button is pressed

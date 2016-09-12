@@ -80,7 +80,7 @@ public class ThreatsManagerTest {
 	 	//Add temp variable to list
 	 	enemiesList.add(tempEnemy);
 
-		TM.ThreatsLVL1();
+		TM.threatsLvl1();
 
 		assertTrue("Effects list is incorrect",
 				TM.returnEffects().get(0).toString().equals(effectsList.get(0).toString()));
@@ -158,7 +158,7 @@ public class ThreatsManagerTest {
 	 	//Add temp variable to list
 	 	enemiesList.add(tempEnemy);
 
-		TM.ThreatsLVL2();
+		TM.threatsLvl2();
 
 		assertTrue("Effects list is incorrect",
 				TM.returnEffects().get(0).toString().equals(effectsList.get(0).toString()));
@@ -236,7 +236,7 @@ public class ThreatsManagerTest {
 	 	//Add temp variable to list
 	 	enemiesList.add(tempEnemy);
 
-		TM.ThreatsLVL3();
+		TM.threatsLvl3();
 
 		assertTrue("Effects list is incorrect",
 				TM.returnEffects().get(0).toString().equals(effectsList.get(0).toString()));
@@ -314,7 +314,7 @@ public class ThreatsManagerTest {
 	 	//Add temp variable to list
 	 	enemiesList.add(tempEnemy);
 
-		TM.ThreatsLVL4();
+		TM.threatsLvl4();
 
 		assertTrue("Effects list is incorrect",
 				TM.returnEffects().get(0).toString().equals(effectsList.get(0).toString()));
