@@ -41,7 +41,7 @@ public class Peon extends AgentEntity {
 
 	// Job related information
 	private String job = "Jobless";
-	String jobString = "Jobless";
+	String jobless  = "Jobless";
 	private double qualification = 0;
 	private boolean mentorStatus = false;
 
@@ -162,25 +162,34 @@ public class Peon extends AgentEntity {
 	 *
 	 * @param job
 	 */
-	public void applyForJob(Job job) {
-		if (job.isQualified(this))
-			this.setJob(job.toString());
-	}
+    public String applyForJob(Job job){
+            if (job.isQualified(this)){
+                    this.setJob(job.toString());
+                    return "You're hired!";
+            } else if (	this.getStrength()<job.getRequiredStrength()
+                    &&		this.getIntelligence()<job.getRequiredIntelligence()){
+                    return "Peon is not qualified in both aspects";
+            } else if (this.getStrength()<job.getRequiredStrength()){
+                    return "Peon strength is not high enough";
+            } else {
+                    return "Peon intelligence is not high enough";
+            }
+    }
 
 	/**
 	 * Peon quits job if it has one
 	 *
 	 * @param job
 	 */
-	public void quitJob(Job job) {
-		if (this.getJob() != jobString)
-			this.setJob(jobString);
+	public void quitJob() {
+		if (this.getJob() != jobless)
+			this.setJob(jobless);
 	}
 
 	/**
 	 * Check if Peon finished the current job
 	 *
-	 * everytime Peon completes a task they will gain attributes that affects
+	 * every time Peon completes a task they will gain attributes that affects
 	 * job completion time
 	 */
 	public void checkJobFinshed() {
