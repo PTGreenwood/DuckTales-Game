@@ -1,6 +1,11 @@
 package uq.deco2800.ducktales.features.entities;
 
 import java.util.ArrayList;
+import java.util.Random;
+
+import uq.deco2800.ducktales.World;
+import uq.deco2800.ducktales.deprecated.world.*;
+import uq.deco2800.ducktales.features.entities.agententities.Peon;
 
 /**
  * Handles game threats. 
@@ -29,6 +34,8 @@ public class Threat {
 	int speed;
 	
 	boolean isPassable; //detects whether a tile is passable
+	
+	private World world;
 
 	/**
 	 * Enemy takes a string name and a type of enemy which is Creature or
@@ -52,6 +59,10 @@ public class Threat {
 		} else {
 			this.type = type;
 		}
+	}
+	
+	public void setWorld(World world) {
+		
 	}
 
 	/**
@@ -171,12 +182,19 @@ public class Threat {
 		this.yCord = y;
 	}
 	
-	public void setRandomX(){
+	public int setRandomX(){
 		//return x value within range of possible plot points
+		int maxWidth = world.getWidth();
+		Random random = new Random();
+		int randomX = random.nextInt(maxWidth) + 1;
+		return randomX;
 	}
 	
-	public void setRandomY(){
-		
+	public int setRandomY(){
+		int maxHeight = world.getHeight();
+		Random random = new Random();
+		int randomY = random.nextInt(maxHeight) + 1;
+		return randomY;	
 	}
 	
 	public void addImage(String imageName) {

@@ -1,10 +1,10 @@
 package uq.deco2800.ducktales.features.entities.worldentities;
 
-import uq.deco2800.ducktales.features.entities.worldentities.Building.production;
 import uq.deco2800.ducktales.resources.ResourceType;
 
 /**
- * A Church.
+ * A Church. Class containing all properties and specifications of a 
+ * church.
  * 
  * @author Gabrielle Hodge, 43590526 
  *
@@ -14,12 +14,13 @@ public class Church extends Building {
 	// BuildingMenuSprite type
 	private static final ResourceType TYPE = ResourceType.CHURCH;
 	
+	// Size of a church
 	public static final int X_LENGTH = 2;
 	public static final int Y_LENGTH = 2;
 	public static final boolean PASSABILITY = false;
 	
 	/**
-	 * Initialise a new barn. Requires the location of the church
+	 * Initialise a new church. Requires the location of the church
 	 *  to be passed.
 	 * @param x, x location of the building
 	 * @param y, y location of the building
@@ -33,11 +34,7 @@ public class Church extends Building {
 	 * Update the WorldEntity properties with those of a church.
 	 */
 	protected void specifications() {
-		Building.STONERESOURCES = 8;
-		Building.WOODRESOURCES = 10;
-		Building.TIME = 9;
-		Building.PRODUCTIONTYPE = production.NULL;
-		Building.PRODUCTIONAMOUNT = 0;
+		specifications(8, 10, 9, production.NULL, 0);
 	}
 	
 	/**

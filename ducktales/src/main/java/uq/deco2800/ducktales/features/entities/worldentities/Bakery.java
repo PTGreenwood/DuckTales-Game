@@ -3,10 +3,9 @@ package uq.deco2800.ducktales.features.entities.worldentities;
 import uq.deco2800.ducktales.resources.ResourceType;
 import static uq.deco2800.ducktales.resources.ResourceType.*;
 
-import uq.deco2800.ducktales.features.entities.worldentities.Building.production;
-
 /**
- * A Bakery.
+ * A Bakery. Class containing all properties and specifications of a 
+ * bakery.
  * 
  * @author Gabrielle Hodge, 43590526
  *
@@ -31,17 +30,14 @@ public class Bakery extends Building {
 	 */
 	public Bakery(double x, double y) {
 		super(x, y, X_LENGTH, Y_LENGTH, TYPE);
+		specifications();
 	}
 	
 	/**
 	 * Update the WorldEntity properties with those of a bakery.
 	 */
 	protected void specifications() {
-		Building.STONERESOURCES = 4;
-		Building.WOODRESOURCES = 6;
-		Building.TIME = 4;
-		Building.PRODUCTIONTYPE = production.NULL;
-		Building.PRODUCTIONAMOUNT = 0;
+		specifications(4, 6, 4, production.NULL, 0);
 	}
 
 	/**

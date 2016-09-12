@@ -10,6 +10,7 @@ import uq.deco2800.ducktales.resources.ResourceType;
  */
 public abstract class Building extends WorldEntity {
 	
+	// Constants for building parameters
 	protected static int TIME;
 	
 	protected static int WOODRESOURCES;
@@ -36,7 +37,6 @@ public abstract class Building extends WorldEntity {
 	protected Building(double x, double y, int lengthX, int lengthY, 
 			ResourceType type) {
 		super(x, y, lengthX, lengthY, type);
-		specifications();
 	}
 		
 	/**
@@ -45,6 +45,7 @@ public abstract class Building extends WorldEntity {
 	 * @return int representing time to construct
 	 */
 	public int timeToBuild() {
+		specifications();
 		return TIME;
 	}
 	
@@ -75,6 +76,7 @@ public abstract class Building extends WorldEntity {
 	 * @return the int of wood returned
 	 */
 	public int resourcesReturnWood() {
+		specifications();
 		return (int) (0.5*WOODRESOURCES);
 	}
 	
@@ -85,6 +87,7 @@ public abstract class Building extends WorldEntity {
 	 * @return the int of stone returned
 	 */
 	public int resourcesReturnStone() {
+		specifications();
 		return (int) (0.5*STONERESOURCES);
 	}
 	
@@ -95,6 +98,7 @@ public abstract class Building extends WorldEntity {
 	 * @return the enum of the resource type
 	 */
 	public production resourcesProductionType() {
+		specifications();
 		return PRODUCTIONTYPE;
 	}
 	
@@ -105,12 +109,27 @@ public abstract class Building extends WorldEntity {
 	 * @return the int of the resource amount
 	 */
 	public int resourcesProductionAmount() {
+		specifications();
 		return PRODUCTIONAMOUNT;
 	}
 	
 	/**
 	 * Update the variables with the building specifications, when the 
-	 * building is called.
+	 * building is called. Moved updating function to building class to 
+	 * remove duplicated code errors throughout the building class.
+	 */
+	protected void specifications(int stone, int wood, int time, 
+			production produce, int amount) {
+		WOODRESOURCES = wood;
+		STONERESOURCES = stone;
+		TIME = time;
+		PRODUCTIONTYPE = produce;
+		PRODUCTIONAMOUNT = amount;
+	}
+
+	/**
+	 * Calls the above specification method which updates the variables 
+	 * as required. Called by both building and constructor classes.
 	 */
 	protected abstract void specifications();
 }
