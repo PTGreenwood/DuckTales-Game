@@ -3,7 +3,8 @@ package uq.deco2800.ducktales.deprecated;
 import uq.deco2800.ducktales.World;
 import uq.deco2800.ducktales.rendering.RenderingInformation;
 import uq.deco2800.ducktales.features.landscape.tiles.TilesManager;
-
+import uq.deco2800.ducktales.features.entities.Threat;
+import uq.deco2800.ducktales.features.entities.ThreatManager;
 import uq.deco2800.ducktales.features.inventory.InventoryManager;
 import uq.deco2800.ducktales.resources.ResourceType;
 
@@ -20,6 +21,7 @@ import static uq.deco2800.ducktales.resources.ResourceType.*;
  *
  * @author khoiphan21
  */
+
 public class GameManagerBeta {
     /**
      * CONSTANTS
@@ -43,6 +45,9 @@ public class GameManagerBeta {
     /** The class managing the information of all the tiles */
     private TilesManager tilesManager;
 
+    private Threat threat;
+    
+    
     /**
      * Variables for managing the game
      */

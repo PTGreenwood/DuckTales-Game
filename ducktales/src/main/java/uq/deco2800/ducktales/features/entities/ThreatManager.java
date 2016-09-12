@@ -146,9 +146,17 @@ public class ThreatManager {
 		 	//------- parameters here will move evil 
 		 	//duck and reduce health of any 
 		 	//peons it collides with
+		 	
+		 	
+		 	
 		 	tempEnemy.setStartTimer(20, "Timer");
 		 	tempEnemy.setEndTimer(50);
+		 	tempEnemy.setRandomX();
+		 	tempEnemy.setRandomY();
 		 	enemiesList.add(tempEnemy);
+		 	int evilDuckValue = enemiesList.indexOf("Evil Duck");
+		 	Enemy evilDuck = enemiesList.get(evilDuckValue);
+		 	
 	}
 	 
 	/**

@@ -2,6 +2,9 @@ package uq.deco2800.ducktales.features.entities;
 
 import java.util.ArrayList;
 
+import uq.deco2800.ducktales.World;
+import uq.deco2800.ducktales.deprecated.world.*;
+
 /**
  * Handles game threats. 
  * 
@@ -29,6 +32,8 @@ public class Threat {
 	int speed;
 	
 	boolean isPassable; //detects whether a tile is passable
+	
+	private World world;
 
 	/**
 	 * Enemy takes a string name and a type of enemy which is Creature or
@@ -52,6 +57,10 @@ public class Threat {
 		} else {
 			this.type = type;
 		}
+	}
+	
+	public void setWorld(World world) {
+		
 	}
 
 	/**
@@ -171,8 +180,8 @@ public class Threat {
 		this.yCord = y;
 	}
 	
-	public void setRandomX(){
-		//return x value within range of possible plot points
+	public int setRandomX(){
+		//return x value within range of possible plot points 
 	}
 	
 	public void setRandomY(){
