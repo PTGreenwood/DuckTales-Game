@@ -21,7 +21,7 @@ public class ConstructorTest {
 		Constructor constructor = new Constructor();
 		Bakery bakery = new Bakery(2,2);
 		
-		assertTrue("Bakery getStone incorrect!", constructor.getStone(bakery) == (4));
+		assertTrue(String.valueOf(constructor.getStone(bakery)), constructor.getStone(bakery) == (4));
 		assertTrue("Bakery getWood incorrect!", constructor.getWood(bakery) == (6));
 		assertTrue("Bakery getTime incorrect!", constructor.getTime(bakery) == (4));
 	}

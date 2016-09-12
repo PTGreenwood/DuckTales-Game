@@ -20,6 +20,9 @@ public class InGameKeyboardHandler extends GameEventHandler implements EventHand
 
     /** The secondary managers */
     private WorldDisplayManager displayManager;
+    
+    // For testing, to check that the correct direction is selected
+    protected Direction moveDirection; 
 
     /**
      * Create a handler for in-game keyboard events
@@ -46,17 +49,22 @@ public class InGameKeyboardHandler extends GameEventHandler implements EventHand
     }
 
     private void handleKeyPressed(KeyCode code) {
+    	System.out.println(code);
         switch (code) {
             case D:
+            	moveDirection = Direction.LEFT;
                 displayManager.moveWorld(Direction.LEFT);
                 break;
             case W:
+            	moveDirection = Direction.DOWN;
                 displayManager.moveWorld(Direction.DOWN);
                 break;
             case A:
+            	moveDirection = Direction.RIGHT;
                 displayManager.moveWorld(Direction.RIGHT);
                 break;
             case S:
+            	moveDirection = Direction.UP;
                 displayManager.moveWorld(Direction.UP);
                 System.err.println("moving UP in Handler");
                 break;
@@ -66,18 +74,30 @@ public class InGameKeyboardHandler extends GameEventHandler implements EventHand
     private void handleKeyReleased(KeyCode code) {
         switch (code) {
             case D:
+            	moveDirection = Direction.LEFT;
                 displayManager.stopMoveWorld(Direction.LEFT);
                 break;
             case W:
+            	moveDirection = Direction.DOWN;
                 displayManager.stopMoveWorld(Direction.DOWN);
                 break;
             case A:
+            	moveDirection = Direction.RIGHT;
                 displayManager.stopMoveWorld(Direction.RIGHT);
                 break;
             case S:
+            	moveDirection = Direction.UP;
                 displayManager.stopMoveWorld(Direction.UP);
                 break;
         }
 
+    }
+    
+    /**
+     * Method for testing, easy access to the moveDirection variable.
+     * @return the moveDirection following key press/release
+     */
+    public Direction moveDirection() {
+    	return moveDirection;
     }
 }

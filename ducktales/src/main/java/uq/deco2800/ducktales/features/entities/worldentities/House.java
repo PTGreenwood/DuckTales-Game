@@ -1,10 +1,10 @@
 package uq.deco2800.ducktales.features.entities.worldentities;
 
-import uq.deco2800.ducktales.features.entities.worldentities.Building.production;
 import uq.deco2800.ducktales.resources.ResourceType;
 
 /**
  * A House.
+ * 
  * @author Leggy
  *
  */
@@ -15,6 +15,7 @@ public class House extends Building {
 
 	private int health =1000;
 	
+	// Building size
 	private static final int X_LENGTH = 2;
 	private static final int Y_LENGTH = 2;
 
@@ -28,29 +29,37 @@ public class House extends Building {
 		super(x, y, X_LENGTH, Y_LENGTH, TYPE);
 	}
 	
+	/**
+	 * Update the 'health' of the house. Requires an integer value of 
+	 * the new health to be passed.
+	 * 
+	 * @param NewValue, new health of the building
+	 */
 	public void ChangeHealth(int NewValue){
 		if (NewValue >0){
 			this.health =NewValue;
 		}
 	}
 	
+	/**
+	 * Method to access the 'health' of the house. Returns the integer 
+	 * value of the health.
+	 * 
+	 * @return the health of the house.
+	 */
 	public int GetHealth(){
 		return health;
 	}
 	
 	/**
-	 * Update the WorldEntity properties with those of a bakery.
+	 * Update the WorldEntity properties with those of a house.
 	 */
 	protected void specifications() {
-		Building.STONERESOURCES = 2;
-		Building.WOODRESOURCES = 4;
-		Building.TIME = 2;
-		Building.PRODUCTIONTYPE = production.NULL;
-		Building.PRODUCTIONAMOUNT = 0;
+		specifications(2, 4, 2, production.NULL, 0);
 	}
 
 	/**
-	 * Method to update bakery at each discrete simulation step.
+	 * Method to update a house at each discrete simulation step.
 	 * 
 	 * Note sure if any implementation will be used. To be determined later
 	 * May implement for only some of the classes (hence left in the individual 

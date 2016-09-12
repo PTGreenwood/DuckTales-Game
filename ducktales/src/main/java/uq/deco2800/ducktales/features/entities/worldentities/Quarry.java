@@ -3,7 +3,8 @@ package uq.deco2800.ducktales.features.entities.worldentities;
 import uq.deco2800.ducktales.resources.ResourceType;
 
 /**
- * A Quarry.
+ * A Quarry. Class containing all properties and specifications of a 
+ * quarry.
  * 
  * @author Gabrielle Hodge, 43590526 
  *
@@ -13,6 +14,7 @@ public class Quarry extends Building {
 	// BuildingMenuSprite type
 	private static final ResourceType TYPE = ResourceType.QUARRY;
 	
+	// Size of the building
 	private static final int X_LENGTH = 5;
 	private static final int Y_LENGTH = 5;
 	
@@ -32,15 +34,11 @@ public class Quarry extends Building {
 	 * Update the WorldEntity properties with those of a quarry.
 	 */
 	protected void specifications() {
-		Building.STONERESOURCES = 8;
-		Building.WOODRESOURCES = 6;
-		Building.TIME = 5;
-		Building.PRODUCTIONTYPE = production.STONE;
-		Building.PRODUCTIONAMOUNT = 5;
+		specifications(8, 6, 5, production.STONE, 5);
 	}
 	
 	/**
-	 * Method to update quarry at each discrete simulation step.
+	 * Method to update a quarry at each discrete simulation step.
 	 * 
 	 * Note sure if any implementation will be used. To be determined later
 	 * May implement for only some of the classes (hence left in the individual 
