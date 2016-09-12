@@ -1,10 +1,10 @@
 package uq.deco2800.ducktales.features.entities.worldentities;
 
-import uq.deco2800.ducktales.features.entities.worldentities.Building.production;
 import uq.deco2800.ducktales.resources.ResourceType;
 
 /**
- * A Hospital.
+ * A Hospital. Class containing all properties and specifications of a 
+ * hospital.
  * 
  * @author Gabrielle Hodge, 43590526 
  *
@@ -15,6 +15,7 @@ public class Hospital extends Building {
 	// BuildingMenuSprite type
 	private static final ResourceType TYPE = ResourceType.HOSPITAL;
 
+	// Size of the hospital
 	private static final int X_LENGTH = 2;
 	private static final int Y_LENGTH = 2;
 	
@@ -29,18 +30,14 @@ public class Hospital extends Building {
 	}
 	
 	/**
-	 * Update the WorldEntity properties with those of a bakery.
+	 * Update the WorldEntity properties with those of a hospital.
 	 */
 	protected void specifications() {
-		Building.STONERESOURCES = 12;
-		Building.WOODRESOURCES = 8;
-		Building.TIME = 5;
-		Building.PRODUCTIONTYPE = production.NULL;
-		Building.PRODUCTIONAMOUNT = 0;
+		specifications(12, 8, 5, production.NULL, 0);
 	}
 
 	/**
-	 * Method to update bakery at each discrete simulation step.
+	 * Method to update a hospital at each discrete simulation step.
 	 * 
 	 * Note sure if any implementation will be used. To be determined later
 	 * May implement for only some of the classes (hence left in the individual 
