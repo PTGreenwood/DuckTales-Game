@@ -1,4 +1,8 @@
-package uq.deco2800.ducktales.features.entities;
+package uq.deco2800.ducktales.features.entities.threats;
+import uq.deco2800.ducktales.World;
+import uq.deco2800.ducktales.features.entities.Effect;
+import uq.deco2800.ducktales.features.entities.Enemy;
+
 import java.util.*;
 
 
@@ -17,6 +21,9 @@ public class ThreatManager {
 	private Effect tempEffect;
 	private Enemy tempEnemy;
 	String timer = "Timer";
+
+	/** The world of the game */
+	private World world;
 	 
 	 
 	/**
@@ -296,5 +303,8 @@ public class ThreatManager {
 	public ArrayList<Effect> returnEffects() {
 		 return this.effectsList;
 	}
-	
+
+	public void setWorld(World world) {
+		this.world = world;
+	}
 }

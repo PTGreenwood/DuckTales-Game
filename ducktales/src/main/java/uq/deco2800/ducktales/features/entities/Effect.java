@@ -1,6 +1,8 @@
 package uq.deco2800.ducktales.features.entities;
 
-public class Effect extends Threat{
+import uq.deco2800.ducktales.features.entities.threats.Threat;
+
+public class Effect extends Threat {
 	
 	/**Effect that affects the game world be objects or areas
 	 * SetS

@@ -1,4 +1,4 @@
-package uq.deco2800.ducktales.features.entities;
+package uq.deco2800.ducktales.features.entities.threats;
 
 import java.util.ArrayList;
 
@@ -181,10 +181,12 @@ public class Threat {
 	}
 	
 	public int setRandomX(){
-		//return x value within range of possible plot points 
+		//return x value within range of possible plot points
+		return 0;
 	}
 	
-	public void setRandomY(){
+	public int setRandomY(){
+		return 0;
 		
 	}
 	
