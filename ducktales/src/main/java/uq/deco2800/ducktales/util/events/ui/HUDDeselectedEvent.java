@@ -13,8 +13,8 @@ import uq.deco2800.ducktales.resources.ResourceType;
  */
 public class HUDDeselectedEvent extends UIEvent{
 
-    public static final EventType<HUDDeselectedEvent> HUDDeselectedEvent =
-            new EventType<>("HUDDeselectedEvent");
+    public static final EventType<HUDDeselectedEvent> HUD_DESELECTED_EVENT =
+            new EventType<>("HUD_DESELECTED_EVENT");
 
     /**
      * Construct a building menu deselected event, and pass the type of
@@ -24,7 +24,7 @@ public class HUDDeselectedEvent extends UIEvent{
      *          The type of the building being deselected
      */
     public HUDDeselectedEvent(ResourceType type) {
-        super(HUDDeselectedEvent);
+        super(HUD_DESELECTED_EVENT);
         this.type = type;
     }
 
@@ -32,6 +32,6 @@ public class HUDDeselectedEvent extends UIEvent{
      * Construct an empty deselected event just to notify the managers
      */
     public HUDDeselectedEvent() {
-        super(HUDDeselectedEvent);
+        super(HUD_DESELECTED_EVENT);
     }
 }
