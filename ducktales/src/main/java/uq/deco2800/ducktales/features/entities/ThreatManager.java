@@ -16,12 +16,13 @@ public class ThreatManager {
 	//Temp variables
 	private Effect tempEffect;
 	private Enemy tempEnemy;
+	String timer = "Timer";
 	 
 	 
 	/**
 	 * Set threat level 1.
 	 */
-	public void ThreatsLVL1() {
+	public void threatsLvl1() {
 		 //Clear Effects
 		 effectsList.clear();
 		 enemiesList.clear();
@@ -31,7 +32,7 @@ public class ThreatManager {
 		 	tempEffect = new Effect("Shake");
 		 	//Add parameters to temp variable
 		 	//------------
-		 	tempEffect.setStartTimer(20,"Timer");
+		 	tempEffect.setStartTimer(20, timer);
 		 	tempEffect.setEndTimer(50);
 		 	
 		 	//Add temp variable to list
@@ -41,7 +42,7 @@ public class ThreatManager {
 		 	tempEffect = new Effect("Dust");
 		 	//Add parameters to temp variable
 		 	//------------
-		 	tempEffect.setStartTimer(50,"Timer");
+		 	tempEffect.setStartTimer(50, timer);
 		 	tempEffect.setEndTimer(100);
 		 	//Add temp variable to list
 		 	effectsList.add(tempEffect);
@@ -53,7 +54,7 @@ public class ThreatManager {
 		 	// affects people and animals
 		 	//Add parameters to temp variable
 		 	//------------
-		 	tempEnemy.setStartTimer(20,"Timer");
+		 	tempEnemy.setStartTimer(20, timer);
 		 	tempEnemy.setEndTimer(50);
 		 	//Add temp variable to list
 		 	enemiesList.add(tempEnemy);
@@ -63,7 +64,7 @@ public class ThreatManager {
 		 	// affects resources
 		 	//Add parameters to temp variable
 		 	//------------
-		 	tempEnemy.setStartTimer(20,"Timer");
+		 	tempEnemy.setStartTimer(20, timer);
 		 	tempEnemy.setEndTimer(50);
 		 	//Add temp variable to list
 		 	enemiesList.add(tempEnemy);
@@ -73,7 +74,7 @@ public class ThreatManager {
 		 	// affects buildings
 		 	//Add parameters to temp variable
 		 	//------------		 	
-		 	tempEnemy.setStartTimer(20, "Timer");
+		 	tempEnemy.setStartTimer(20, timer);
 		 	tempEnemy.setEndTimer(50);
 		 	//Add temp variable to list
 		 	enemiesList.add(tempEnemy);
@@ -82,7 +83,7 @@ public class ThreatManager {
 	/**
 	 * Set threat level 2.
 	 */
-	public void ThreatsLVL2() {
+	public void threatsLvl2() {
 		//Clear Effects
 		 effectsList.clear();
 		 enemiesList.clear();
@@ -92,7 +93,7 @@ public class ThreatManager {
 		 	tempEffect = new Effect("Rumble");
 		 	//Add parameters to temp variable
 		 	//------------
-		 	tempEffect.setStartTimer(20,"Timer");
+		 	tempEffect.setStartTimer(20, timer);
 		 	tempEffect.setEndTimer(50);
 		 	
 		 	//Add temp variable to list
@@ -102,7 +103,7 @@ public class ThreatManager {
 		 	tempEffect = new Effect("Cyanide");
 		 	//Add parameters to temp variable
 		 	//------------
-		 	tempEffect.setStartTimer(50,"Timer");
+		 	tempEffect.setStartTimer(50, timer);
 		 	tempEffect.setEndTimer(100);
 		 	//Add temp variable to list
 		 	effectsList.add(tempEffect);
@@ -114,7 +115,7 @@ public class ThreatManager {
 		 	// affects people and animals
 		 	//Add parameters to temp variable
 		 	//------------
-		 	tempEnemy.setStartTimer(20,"Timer");
+		 	tempEnemy.setStartTimer(20, timer);
 		 	tempEnemy.setEndTimer(50);
 		 	//Add temp variable to list
 		 	enemiesList.add(tempEnemy);
@@ -124,7 +125,7 @@ public class ThreatManager {
 		 	// affects resources
 		 	//Add parameters to temp variable
 		 	//------------
-		 	tempEnemy.setStartTimer(20,"Timer");
+		 	tempEnemy.setStartTimer(20, timer);
 		 	tempEnemy.setEndTimer(50);
 		 	//Add temp variable to list
 		 	enemiesList.add(tempEnemy);
@@ -134,7 +135,7 @@ public class ThreatManager {
 		 	// affects buildings
 		 	//Add parameters to temp variable
 		 	//------------		 	
-		 	tempEnemy.setStartTimer(20, "Timer");
+		 	tempEnemy.setStartTimer(20, timer);
 		 	tempEnemy.setEndTimer(50);
 		 	//Add temp variable to list
 		 	enemiesList.add(tempEnemy);
@@ -143,7 +144,7 @@ public class ThreatManager {
 	/**
 	 * Set threat level 3.
 	 */
-	public void ThreatsLVL3() {
+	public void threatsLvl3() {
 		//Clear Effects
 		 effectsList.clear();
 		 enemiesList.clear();
@@ -153,7 +154,7 @@ public class ThreatManager {
 		 	tempEffect = new Effect("Earthqauke");
 		 	//Add parameters to temp variable
 		 	//------------
-		 	tempEffect.setStartTimer(20,"Timer");
+		 	tempEffect.setStartTimer(20, timer);
 		 	tempEffect.setEndTimer(50);
 		 	
 		 	//Add temp variable to list
@@ -163,7 +164,7 @@ public class ThreatManager {
 		 	tempEffect = new Effect("Poisson Cloud");
 		 	//Add parameters to temp variable
 		 	//------------
-		 	tempEffect.setStartTimer(50,"Timer");
+		 	tempEffect.setStartTimer(50, timer);
 		 	tempEffect.setEndTimer(100);
 		 	//Add temp variable to list
 		 	effectsList.add(tempEffect);
@@ -175,7 +176,7 @@ public class ThreatManager {
 		 	// affects people and animals
 		 	//Add parameters to temp variable
 		 	//------------
-		 	tempEnemy.setStartTimer(20,"Timer");
+		 	tempEnemy.setStartTimer(20, timer);
 		 	tempEnemy.setEndTimer(50);
 		 	//Add temp variable to list
 		 	enemiesList.add(tempEnemy);
@@ -185,7 +186,7 @@ public class ThreatManager {
 		 	// affects resources
 		 	//Add parameters to temp variable
 		 	//------------
-		 	tempEnemy.setStartTimer(20,"Timer");
+		 	tempEnemy.setStartTimer(20, timer);
 		 	tempEnemy.setEndTimer(50);
 		 	//Add temp variable to list
 		 	enemiesList.add(tempEnemy);
@@ -195,7 +196,7 @@ public class ThreatManager {
 		 	// affects buildings
 		 	//Add parameters to temp variable
 		 	//------------		 	
-		 	tempEnemy.setStartTimer(20, "Timer");
+		 	tempEnemy.setStartTimer(20,  timer);
 		 	tempEnemy.setEndTimer(50);
 		 	//Add temp variable to list
 		 	enemiesList.add(tempEnemy);
@@ -204,7 +205,7 @@ public class ThreatManager {
 	/**
 	 * Set threat level 4.
 	 */
-	public void ThreatsLVL4() {
+	public void threatsLvl4() {
 		//Clear Effects
 		 effectsList.clear();
 		 enemiesList.clear();
@@ -214,7 +215,7 @@ public class ThreatManager {
 		 	tempEffect = new Effect("Blight");
 		 	//Add parameters to temp variable
 		 	//------------
-		 	tempEffect.setStartTimer(20,"Timer");
+		 	tempEffect.setStartTimer(20, timer);
 		 	tempEffect.setEndTimer(50);
 		 	
 		 	//Add temp variable to list
@@ -224,7 +225,7 @@ public class ThreatManager {
 		 	tempEffect = new Effect("Fel");
 		 	//Add parameters to temp variable
 		 	//------------
-		 	tempEffect.setStartTimer(50,"Timer");
+		 	tempEffect.setStartTimer(50, timer);
 		 	tempEffect.setEndTimer(100);
 		 	//Add temp variable to list
 		 	effectsList.add(tempEffect);
@@ -236,7 +237,7 @@ public class ThreatManager {
 		 	// affects people and animals
 		 	//Add parameters to temp variable
 		 	//------------
-		 	tempEnemy.setStartTimer(20,"Timer");
+		 	tempEnemy.setStartTimer(20, timer);
 		 	tempEnemy.setEndTimer(50);
 		 	//Add temp variable to list
 		 	enemiesList.add(tempEnemy);
@@ -246,7 +247,7 @@ public class ThreatManager {
 		 	// affects resources
 		 	//Add parameters to temp variable
 		 	//------------
-		 	tempEnemy.setStartTimer(20,"Timer");
+		 	tempEnemy.setStartTimer(20, timer);
 		 	tempEnemy.setEndTimer(50);
 		 	//Add temp variable to list
 		 	enemiesList.add(tempEnemy);
@@ -256,7 +257,7 @@ public class ThreatManager {
 		 	// affects buildings
 		 	//Add parameters to temp variable
 		 	//------------		 	
-		 	tempEnemy.setStartTimer(20, "Timer");
+		 	tempEnemy.setStartTimer(20, timer);
 		 	tempEnemy.setEndTimer(50);
 		 	//Add temp variable to list
 		 	enemiesList.add(tempEnemy);

@@ -79,12 +79,14 @@ public abstract class Entity implements Comparable<Entity>, Tickable{
 	@Override
 	public int compareTo(Entity entity) {
 		// Fix big of comparing floats by checking difference
-		if (this.distanceTop - entity.distanceTop <= 0.0001) {
+		if (this.distanceTop - entity.distanceTop >= -0.0001
+				&& this.distanceTop - entity.distanceTop < 1) {
 			// Fix big of comparing floats by checking difference
-			if (this.distanceBottom - entity.distanceBottom <= 0.00001) {
+			if (this.distanceBottom - entity.distanceBottom >= -0.0001
+					&& this.distanceBottom - entity.distanceBottom < 1) {
 				// Fix bug of comparing floats by comparing differences
-				// distanceInside are negatives, hence the > -ve
-				if (this.distanceInside - entity.distanceInside >= -0.0001) {
+				if (this.distanceInside - entity.distanceInside >= -0.0001 
+						&& this.distanceInside - entity.distanceInside < 1) {
 					return 0;
 				} else if (this.distanceInside < entity.distanceInside) {
 					return -1;
@@ -193,6 +195,25 @@ public abstract class Entity implements Comparable<Entity>, Tickable{
 	 */
 	public double getDistanceInside() {
 		return distanceInside;
+	}
+	
+	/**
+	 * Used for testing, can be used elsewhere as well.
+	 * 
+	 * @return the private distanceTop variable
+	 */
+	public double getDistanceTop() {
+		return distanceTop;
+	}
+	
+	/**
+	 * Used for testing, can also be used to access private variable if 
+	 * required.
+	 * 
+	 * @return the private distanceBottom variable
+	 */
+	public double getDistanceBottom() {
+		return distanceBottom;
 	}
 
 }

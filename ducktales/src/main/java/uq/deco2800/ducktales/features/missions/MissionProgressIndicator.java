@@ -5,10 +5,10 @@ import javafx.scene.control.ProgressIndicator;
 public class MissionProgressIndicator {
 	private ProgressIndicator pi;	
 	
-	private static MissionProgressIndicator INSTANCE = new MissionProgressIndicator();
+	private static MissionProgressIndicator instance = new MissionProgressIndicator();
 	
 	public static MissionProgressIndicator getInstance() {
-		return INSTANCE;		
+		return instance;		
 	}
 	
 	public MissionProgressIndicator(){

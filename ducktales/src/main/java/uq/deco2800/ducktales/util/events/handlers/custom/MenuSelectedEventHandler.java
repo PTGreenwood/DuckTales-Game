@@ -12,7 +12,8 @@ import uq.deco2800.ducktales.util.events.ui.MenuSelectedEvent;
  *
  * The operations performed:
  *      1. Update the cursor image
- *      2. Set the resource currently managed in the manager to the item type
+ *      2. Set the resource currently managed in the manager to the item type,
+ *         as well as the menu type
  *
  * Created on 5/09/2016.
  * @author khoiphan21
@@ -72,5 +73,6 @@ public class MenuSelectedEventHandler extends GameEventHandler
      */
     private void doTask2(MenuSelectedEvent event) {
         gameManager.setCurrentEntityManaging(event.getType());
+        gameManager.setMenuSelected(event.getMenuType());
     }
 }

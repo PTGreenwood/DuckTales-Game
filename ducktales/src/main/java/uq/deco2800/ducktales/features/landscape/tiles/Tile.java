@@ -1,6 +1,5 @@
 package uq.deco2800.ducktales.features.landscape.tiles;
 
-import uq.deco2800.ducktales.features.entities.worldentities.WorldEntity;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.Tickable;
 
@@ -74,6 +73,14 @@ public class Tile implements Tickable {
 		this.worldEntityType = worldEntityType;
 	}
 
+	/**
+	 * Get the type of world entity on this tile
+	 *
+	 * @return the type of world entity on this tile
+	 */
+	public ResourceType getWorldEntityType() {
+		return worldEntityType;
+	}
 
 	/**
 	 * Set the passability of this tile

@@ -10,7 +10,6 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -21,7 +20,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.control.ProgressIndicator;
 import uq.deco2800.ducktales.features.achievements.AchievementHandler;
-import uq.deco2800.ducktales.features.achievements.AchievementProgressIndicator;
 import uq.deco2800.ducktales.features.level.LevelHandler;
 
 /**

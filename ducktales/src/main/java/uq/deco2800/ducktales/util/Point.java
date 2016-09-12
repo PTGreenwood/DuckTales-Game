@@ -46,7 +46,7 @@ public class Point implements Comparable<Point> {
 		double deltaX = x - point.x;
 		double deltaY = y - point.y;
 		double angle;
-
+		
 		angle = Math.atan2(deltaY, deltaX) + Math.PI;
 
 		double xShift = Math.cos(angle) * distance;
@@ -67,7 +67,9 @@ public class Point implements Comparable<Point> {
 			return false;
 		}
 		Point point = (Point) object;
-		return point.x == this.x && point.y == this.y;
+		// removed code smell due to equality of floats
+		return (point.x - this.x <= 0.00001 && point.x - this.x > -0.00001) 
+				&& (point.y - this.y <= 0.00001 && point.y - this.y > -0.00001);
 	}
 
 	@Override
@@ -79,10 +81,12 @@ public class Point implements Comparable<Point> {
 	public int compareTo(Point point) {
 		if (this.y < point.y) {
 			return -1;
-		} else if (this.y == point.y) {
+		} // removed code smell due to equality of floats 
+		else if (point.y - this.y <= 0.00001 && point.y - this.y > -0.00001) {
 			if (this.x < point.x) {
 				return -1;
-			} else if (this.x == point.x) {
+			} // removed code smell due to equality of floats
+			else if (point.x - this.x <= 0.00001 && point.x - this.x > -0.00001) {
 				return 0;
 			} else {
 				return 1;

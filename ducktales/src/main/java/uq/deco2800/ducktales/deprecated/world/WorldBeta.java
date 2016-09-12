@@ -16,7 +16,7 @@ public class WorldBeta {
     /**
      * CONSTANTS
      */
-    private final ResourceType DefaultTileType = ResourceType.GRASS_1;
+    private static final ResourceType DefaultTileType = ResourceType.GRASS_1;
 
     /** Properties of this world */
     private String name;

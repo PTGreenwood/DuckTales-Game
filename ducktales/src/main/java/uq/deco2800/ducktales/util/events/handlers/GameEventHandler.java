@@ -1,6 +1,6 @@
 package uq.deco2800.ducktales.util.events.handlers;
 
-import javafx.event.EventHandler;
+// removed fx event handler import as unused
 import uq.deco2800.ducktales.GameManager;
 
 /**

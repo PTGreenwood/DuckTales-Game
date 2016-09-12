@@ -17,10 +17,10 @@ import uq.deco2800.ducktales.util.Point;
  */
 public class Animal extends AgentEntity {
 
-    private final static int minStartHealth = 20;
-    private final static int minStartHunger = 20;
-    private final static int minStartThirst = 20;
-    private final static int minStartStrength = 5;
+    private static final int MINSTARTHEALTH = 20;
+    private static final int MINSTARTHUNGER = 20;
+    private static final int MINSTARTTHIRST = 20;
+    private static final int MINSTARTSTRENGTH = 5;
 
     protected int health; // The animal's state of health.
     protected int hunger; // The animal's state of hunger.
@@ -125,7 +125,7 @@ public class Animal extends AgentEntity {
      * @param opponent The peon to be attacked.
      */
     public void attack(Peon opponent) {
-        if (this.getOutOfZone() == true) {
+        if (this.getOutOfZone()) {
             opponent.setHealth(opponent.getHealth() - this.getStrength());
         }
         if (opponent.getHealth() <= 0) {
@@ -139,8 +139,8 @@ public class Animal extends AgentEntity {
      * @param startingHealth The starting health of the animal.
      */
     protected void setStartingHealth(int startingHealth) {
-        if (startingHealth < minStartHealth) {
-            setHealth(minStartHealth);
+        if (startingHealth < MINSTARTHEALTH) {
+            setHealth(MINSTARTHEALTH);
         } else {
             setHealth(startingHealth);
         }
@@ -152,8 +152,8 @@ public class Animal extends AgentEntity {
      * @param startingHunger The starting hunger state of the animal.
      */
     protected void setStartingHunger(int startingHunger) {
-        if (startingHunger < minStartHunger) {
-            setHunger(minStartHunger);
+        if (startingHunger < MINSTARTHUNGER) {
+            setHunger(MINSTARTHUNGER);
         } else {
             setHunger(startingHunger);
         }
@@ -165,8 +165,8 @@ public class Animal extends AgentEntity {
      * @param startingThirst The starting thirst state of the animal.
      */
     protected void setStartingThirst(int startingThirst) {
-        if (startingThirst < minStartThirst) {
-            setThirst(minStartThirst);
+        if (startingThirst < MINSTARTTHIRST) {
+            setThirst(MINSTARTTHIRST);
         } else {
             setThirst(startingThirst);
         }
@@ -178,8 +178,8 @@ public class Animal extends AgentEntity {
      * @param startingStrength The starting strength level of the animal.
      */
     protected void setStartingStrength(int startingStrength) {
-        if (startingStrength < minStartStrength) {
-            setStrength(minStartStrength);
+        if (startingStrength < MINSTARTSTRENGTH) {
+            setStrength(MINSTARTSTRENGTH);
         } else {
             setStrength(startingStrength);
         }

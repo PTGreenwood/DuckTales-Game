@@ -12,6 +12,9 @@ public class Sawmill extends Building {
 	
 	// BuildingMenuSprite type
 	private static final ResourceType TYPE = ResourceType.SAWMILL;
+	
+	private static final int X_LENGTH = 5;
+	private static final int Y_LENGTH = 5;
 
 	/**
 	 * Initialise a new sawmill. Requires the location of the sawmill
@@ -20,7 +23,7 @@ public class Sawmill extends Building {
 	 * @param y, y location of the building
 	 */
 	public Sawmill(double x, double y) {
-		super(x, y, 5, 5, TYPE);
+		super(x, y, X_LENGTH, Y_LENGTH, TYPE);
 	}
 
 	/**
@@ -45,5 +48,5 @@ public class Sawmill extends Building {
 	public void tick() {
 		// To be implemented if there is to be animation of construction
 	}
-
+	
 }

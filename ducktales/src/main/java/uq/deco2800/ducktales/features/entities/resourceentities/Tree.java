@@ -8,7 +8,7 @@ import uq.deco2800.ducktales.resources.ResourceType;
 
 public class Tree extends ResourceEntity{
 	
-	private static ResourceType[] TYPES = {TREE_1, TREE_2, TREE_3};
+	private static final ResourceType[] TYPES = {TREE_1, TREE_2, TREE_3};
 	/*Scheduler for growing trees. Currently will grow every minute.	
 	 *  
 	 * (Can be changed to fit with the methods in Time class when implemented)
@@ -16,7 +16,7 @@ public class Tree extends ResourceEntity{
 	private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 	
 	public Tree(double x, double y) {
-		super(x, y, 1, 1, rare(TYPES), defValue);		
+		super(x, y, 1, 1, rare(TYPES), DEFVALUE);		
 		//Scheduling the runnable to run every minute in real time.
 		scheduler.scheduleAtFixedRate(createRunnable(this), 60, 60, TimeUnit.SECONDS);
 		/*If the tree is the last type in the list, which will always be the rare,

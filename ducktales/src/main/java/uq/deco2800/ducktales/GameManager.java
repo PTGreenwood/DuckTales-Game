@@ -5,6 +5,7 @@ import javafx.scene.layout.Pane;
 import uq.deco2800.ducktales.features.achievements.AchievementManager;
 import uq.deco2800.ducktales.features.entities.EntityManager;
 import uq.deco2800.ducktales.features.hud.HUDManager;
+import uq.deco2800.ducktales.features.hud.menu.MenuManager;
 import uq.deco2800.ducktales.features.level.LevelManager;
 import uq.deco2800.ducktales.features.market.MarketManager;
 import uq.deco2800.ducktales.features.time.TimeManager;
@@ -23,6 +24,7 @@ import uq.deco2800.ducktales.util.events.tile.TileClickedEvent;
 import uq.deco2800.ducktales.util.events.tile.TileEnteredEvent;
 import uq.deco2800.ducktales.util.events.ui.HUDDeselectedEvent;
 import uq.deco2800.ducktales.util.events.ui.MenuSelectedEvent;
+import uq.deco2800.ducktales.features.hud.menu.MenuManager.MenuType;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -53,6 +55,7 @@ public class GameManager {
 
     /** Variables to control GUI logic */
     private ResourceType currentEntityManaging;
+    private MenuType menuSelected;
 
     /** The model of the game */
     private World world;
@@ -332,4 +335,23 @@ public class GameManager {
         gameLoop.setWorld(this.world);
     }
 
+    /**
+     * Set the type of the menu selected - used when user tries to add something
+     * from the menu into the world
+     *
+     * @param menuSelected
+     *          The type of menu item selected
+     */
+    public void setMenuSelected(MenuManager.MenuType menuSelected) {
+        this.menuSelected = menuSelected;
+    }
+
+    /**
+     * Get the type of menu selected
+     *
+     * @return the type of menu selected
+     */
+    public MenuType getMenuSelected() {
+        return this.menuSelected;
+    }
 }

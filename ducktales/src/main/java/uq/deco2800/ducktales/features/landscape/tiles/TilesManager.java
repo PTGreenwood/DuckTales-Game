@@ -199,11 +199,11 @@ public class TilesManager implements SecondaryManager {
         try {
             xLength = worldEntityInfo.getBuildingLength(
                     buildingType,
-                    WorldEntityInfo.xLength
+                    WorldEntityInfo.XLENGTH
             );
             yLength = worldEntityInfo.getBuildingLength(
                     buildingType,
-                    WorldEntityInfo.yLength
+                    WorldEntityInfo.YLENGTH
             );
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -237,4 +237,5 @@ public class TilesManager implements SecondaryManager {
     public void reload() {
 
     }
+
 }

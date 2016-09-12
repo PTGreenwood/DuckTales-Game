@@ -15,6 +15,9 @@ public class Hospital extends Building {
 	// BuildingMenuSprite type
 	private static final ResourceType TYPE = ResourceType.HOSPITAL;
 
+	private static final int X_LENGTH = 2;
+	private static final int Y_LENGTH = 2;
+	
 	/**
 	 * Initialise a new hospital. Requires the location of the hospital
 	 *  to be passed.
@@ -22,7 +25,7 @@ public class Hospital extends Building {
 	 * @param y, y location of the building
 	 */
 	public Hospital(double x, double y) {
-		super(x, y, 2, 2, TYPE);
+		super(x, y, X_LENGTH, Y_LENGTH, TYPE);
 	}
 	
 	/**

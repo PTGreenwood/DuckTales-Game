@@ -14,13 +14,13 @@ import uq.deco2800.ducktales.resources.ResourceType;
  *
  * @author khoiphan21
  */
-public class TileSprite extends ImageView{
+public class TileSprite extends ImageView {
     /**
      * CONSTANTS
      */
-    private final double SCALE = 0.5;
-    private final double SPRITE_HEIGHT = 100 * SCALE;
-    private final double SPRITE_WIDTH = 174 * SCALE;
+    private static final double SCALE = 0.5;
+    private static final double SPRITE_HEIGHT = 100 * SCALE;
+    private static final double SPRITE_WIDTH = 174 * SCALE;
 
     private ResourceType tileType;
     private WorldBuilderManager manager; // The manager that this sprite reports to

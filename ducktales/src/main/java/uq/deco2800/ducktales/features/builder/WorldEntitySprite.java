@@ -19,7 +19,8 @@ public class WorldEntitySprite extends ImageView {
     /**
      * CONSTANTS
      */
-    private final double SCALE = 0.25;
+	// static added to remove code smell
+    private static final double SCALE = 0.25;
 
     /**
      * This is the size of this world entity in terms of tile units.
@@ -42,7 +43,9 @@ public class WorldEntitySprite extends ImageView {
 
     private ResourceType entityType;
     private WorldBuilderManager manager;
-    private ResourceSpriteRegister register;
+    // remove code smell as being flagged as unused
+    @SuppressWarnings("unused")
+	private ResourceSpriteRegister register;
     private Image sprite;
 
     public WorldEntitySprite(ResourceType type) {

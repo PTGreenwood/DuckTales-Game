@@ -8,7 +8,7 @@ import javafx.scene.control.ProgressBar;
  *
  */
 public class LevelHandler {
-	private static LevelHandler INSTANCE = new LevelHandler();
+	private static LevelHandler instance = new LevelHandler();
 	
 	private int level;
 	private ProgressBar pb;
@@ -20,7 +20,7 @@ public class LevelHandler {
 	 * @return <CODE>INSTANCE</CODE>
 	 */
 	public static LevelHandler getInstance() {
-		return INSTANCE;		
+		return instance;		
 	}
 	
 	public LevelHandler(){
@@ -29,7 +29,7 @@ public class LevelHandler {
 		this.pb = new ProgressBar(0.0);
 	}
 	
-	public void LevelUp(){
+	public void levelUp(){
 		this.level = this.level + 1;
 		this.barProgress = 0;
 		this.pb.setProgress(0);

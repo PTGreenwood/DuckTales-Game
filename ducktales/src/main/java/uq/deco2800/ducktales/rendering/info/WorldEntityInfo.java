@@ -11,7 +11,7 @@ import static uq.deco2800.ducktales.resources.ResourceType.*;
  * building size
  *
  * To add a new building, first register the size of that building in the
- * variable buildingSizes, and then add the enum type of that building to
+ * variable BUILDINGSIZEs, and then add the enum type of that building to
  * buildingNames. Make sure the order is correct, and watch out for exceptions
  *
  * Created on 3/09/2016.
@@ -26,16 +26,16 @@ public class WorldEntityInfo {
 
     /** CONSTANTS */
     // The size of the array int[] holding the size of the building
-    private static final int buildingSize = 2;
+    private static final int BUILDINGSIZE = 2;
 
     /** Constants to get either the x or y length of the building */
-    public static final int xLength = 0;
-    public static final int yLength = 1;
+    public static final int XLENGTH = 0;
+    public static final int YLENGTH = 1;
 
     /*
      * INVARIANTS
-     *      buildingSizes.length = buildingNames.length
-     *      each int[] unit in buildingSizes only has 2 (BuildingSize) values
+     *      BUILDINGSIZEs.length = buildingNames.length
+     *      each int[] unit in BUILDINGSIZEs only has 2 (BUILDINGSIZE) values
      */
 
     /**
@@ -46,7 +46,7 @@ public class WorldEntityInfo {
      * Note: make sure the order of registering the buildings is correct!
      */
     // The size of the building in tile unit, in the format {x, y}
-    private int[][] buildingSizes = {
+    private int[][] BUILDINGSIZEs = {
             {5, 5}, // pasture
             {2, 2}, // butcher
             {2, 2}, // community building
@@ -65,19 +65,19 @@ public class WorldEntityInfo {
     /**
      * The size of all building-type entities in the game
      */
-    private HashMap<ResourceType, int[]> buildingSizeInfo;
+    private HashMap<ResourceType, int[]> BUILDINGSIZEInfo;
 
     /**
      * Instantiate a world entity info manager and register all world entities
      */
     private WorldEntityInfo() {
-        buildingSizeInfo = new HashMap<>();
+        BUILDINGSIZEInfo = new HashMap<>();
 
         checkInvariants();
 
         // Register all building sizes
-        for (int i = 0 ; i < buildingSizes.length; i++) {
-            registerBuilding(buildingNames[i], buildingSizes[i]);
+        for (int i = 0 ; i < BUILDINGSIZEs.length; i++) {
+            registerBuilding(buildingNames[i], BUILDINGSIZEs[i]);
         }
 
     }
@@ -98,19 +98,19 @@ public class WorldEntityInfo {
     public int getBuildingLength(ResourceType buildingType, int index)
     throws Exception {
         // Check if the registry has the building type given
-        if (!buildingSizeInfo.containsKey(buildingType)) {
+        if (!BUILDINGSIZEInfo.containsKey(buildingType)) {
             throw new Exception("BuildingMenuSprite type requested is not yet registered.");
         }
 
         // The building type given is in the registry. Check the requested index
-        if (index != xLength && index != yLength) {
+        if (index != XLENGTH && index != YLENGTH) {
             throw new Exception("The index given must be " +
-                    "WorldEntityInfo.XLength or YLength. Given index" +
+                    "WorldEntityInfo.XLENGTH or YLENGTH. Given index" +
                     "is: " + index);
         }
 
         // Everything should be okay at this point
-        int[] size = buildingSizeInfo.get(buildingType);
+        int[] size = BUILDINGSIZEInfo.get(buildingType);
 
         return size[index];
     }
@@ -122,7 +122,7 @@ public class WorldEntityInfo {
      * @return whether the manager has the information for that building type
      */
     public boolean containEntity(ResourceType buildingType) {
-        return buildingSizeInfo.containsKey(buildingType);
+        return BUILDINGSIZEInfo.containsKey(buildingType);
     }
 
     /**
@@ -134,12 +134,12 @@ public class WorldEntityInfo {
      */
     private void registerBuilding(ResourceType buildingType, int[] size) {
 
-        if (size.length != buildingSize) {
+        if (size.length != BUILDINGSIZE) {
             throw new IndexOutOfBoundsException("size of a building must be an" +
                     "array of 2 integers, the first is the x-length and the " +
                     "second is the y-length");
         } else {
-            buildingSizeInfo.put(buildingType, size);
+            BUILDINGSIZEInfo.put(buildingType, size);
         }
     }
 
@@ -150,9 +150,9 @@ public class WorldEntityInfo {
         int nameArraySize = 0;
         int sizeArraySize = 0;
 
-        for (int i = 0; i < buildingSizes.length; i++) {
+        for (int i = 0; i < BUILDINGSIZEs.length; i++) {
             // Check that the length of each item is 2
-            if (buildingSizes[i].length != buildingSize) {
+            if (BUILDINGSIZEs[i].length != BUILDINGSIZE) {
                 throw new ClassFormatError("Size of each building must be a 1x2" +
                         "array, with size[0] is the x-length and size[1] is the" +
                         "y-length");
@@ -167,7 +167,7 @@ public class WorldEntityInfo {
 
         // name array's size MUST be equal to size array's size
         if (nameArraySize != sizeArraySize) {
-            throw new ClassFormatError("Size of buildingSizes must be the same" +
+            throw new ClassFormatError("Size of BUILDINGSIZEs must be the same" +
                     "as size of buildingNames");
         }
     }

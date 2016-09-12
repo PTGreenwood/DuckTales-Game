@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane fx:id="gameWindow" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="737.0" prefWidth="1295.0" stylesheets="@ducktales.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uq.deco2800.ducktales.DuckTalesController">
+<AnchorPane fx:id="gameWindow" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="737.0" prefWidth="1295.0" stylesheets="@ducktales.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uq.deco2800.ducktales.DuckTalesController">
 	<children>
 		<AnchorPane fx:id="mainMenuPane" layoutY="-2.0" minHeight="0.0" minWidth="0.0" prefHeight="737.0" prefWidth="1295.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 			<children>
@@ -15,7 +15,6 @@
 						<Image url="@ducktaleslogo.png" />
 					</image>
 				</ImageView>
-				<Button layoutX="14.0" layoutY="677.0" mnemonicParsing="false" onAction="#startGameBeta" prefHeight="45.0" prefWidth="153.0" text="PLAY GAME (BETA)" textAlignment="CENTER" />
 				<Button fx:id="startGameBtn" layoutX="648.0" layoutY="257.0" mnemonicParsing="false" onAction="#startGame" prefHeight="45.0" prefWidth="500" styleClass="buttonImage" textAlignment="CENTER" AnchorPane.bottomAnchor="435.0" />
 				<Button fx:id="buildWorldBtn" layoutX="648.0" layoutY="332.0" mnemonicParsing="false" onAction="#buildWorld" prefHeight="45.0" prefWidth="500" styleClass="buttonImage" textAlignment="CENTER" />
 				<Button fx:id="tutorialBtn" layoutX="648.0" layoutY="407.0" mnemonicParsing="false" onAction="#tutorial" prefHeight="45.0" prefWidth="500" styleClass="buttonImage" textAlignment="CENTER" />

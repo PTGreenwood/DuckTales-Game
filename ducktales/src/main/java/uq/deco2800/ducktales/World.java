@@ -3,12 +3,11 @@ package uq.deco2800.ducktales;
 import java.util.ArrayList;
 
 import uq.deco2800.ducktales.features.entities.Entity;
-import uq.deco2800.ducktales.features.entities.EntityManager;
-
-
 import uq.deco2800.ducktales.features.entities.agententities.AgentEntity;
 
+import uq.deco2800.ducktales.features.entities.worldentities.Bakery;
 import uq.deco2800.ducktales.features.entities.worldentities.WorldEntity;
+import uq.deco2800.ducktales.resources.ResourceInfoRegister;
 import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 
 
@@ -28,7 +27,7 @@ public class World implements Tickable {
 	/**
 	 * CONSTANTS
 	 */
-	private final ResourceType DEFAULT_TILE_TYPE = GRASS_1;
+	private static final ResourceType DEFAULT_TILE_TYPE = GRASS_1;
 
 	/** GENERAL properties of this world */
 	private String name; // the name of the world
@@ -39,8 +38,9 @@ public class World implements Tickable {
 	/** The model for the actual game */
 	private ArrayList<Entity> entities; // All the entities in the game
 
-
-	private static ResourceSpriteRegister tileRegister = ResourceSpriteRegister.getInstance();
+	/** The registers */
+	private ResourceSpriteRegister tileRegister = ResourceSpriteRegister.getInstance();
+	private ResourceInfoRegister infoRegister = ResourceInfoRegister.getInstance();
 
 	/**
 	 * Instantiates a World with the given specified parameters, with the tiles
@@ -115,6 +115,43 @@ public class World implements Tickable {
 	}
 
 	/**
+	 * Add the given world entity to the list of entities, and set the tiles that
+	 * it is on to its type, and its passability
+	 *
+	 * @param entity
+	 * 			The entity to be added
+	 * @param startX
+	 * 			The x-coordinate of the lead tile
+	 * @param startY
+	 * 			The y-coordinate of the lead tile
+	 * @param xLength
+	 * 			The x-length of the world entity
+	 * @param yLength
+	 * 			The y-length of the world entity
+	 */
+	public void addWorldEntity(Entity entity, int startX, int startY,
+							   int xLength, int yLength) {
+		if (!entities.contains(entity)) {
+			// Add the entity
+			entities.add(entity);
+
+			// Set the tiles' worldEntity value and passability value
+			for (int x = 0; x < xLength; x++) {
+				for (int y = 0; y < yLength; y++) {
+					// this is a bit of math. write it down and it will make more sense
+					Tile tile = tiles.get(startX - x, startY - y); // Get the tile
+
+					// Set world entity
+					tile.setWorldEntityType(entity.getType());
+					// Set passability
+					tile.setPassable(infoRegister.getPassability(entity.getType()));
+
+				}
+			}
+		}
+	}
+
+	/**
 	 * Remove the given entity from the world
 	 *
 	 * @param entity
@@ -130,6 +167,49 @@ public class World implements Tickable {
 	 */
 	public int getEntitiesNumber() {
 		return this.entities.size();
+	}
+
+	/**
+	 * Check the availability of the tiles around the given tile. This is mainly
+	 * used when a building is to be added to the world.
+	 *
+	 * Note: The lead tile is the lowest tile. For example. for a 2x2 building:
+	 *  .   x   .
+	 *    x   x
+	 *  .   o   .
+	 *       The lead tile is 'o', and the tiles checked will are 'x' tiles
+	 *
+	 * @param startX
+	 * 		The x-coordinate of the lead tile
+	 * @param startY
+	 * 		The y-coordinate of the lead tile
+	 * @param xLength
+	 * 		The length x of the building - define how many tiles to the upper right
+	 * 		will be checked
+	 * @param yLength
+	 * 		The length y of the building - define how many tiles to the upper left
+	 * 		will be checked
+	 *
+	 * @return Whether the building can be added to this tile
+	 */
+	public boolean checkTileAvailability(int startX, int startY, int xLength, int yLength) {
+		for (int x = 0; x < xLength; x++) {
+			for (int y = 0; y < yLength; y++) {
+
+				// this is a bit of math. write it down and it will make more sense
+				Tile tile = tiles.get(startX - x, startY - y);
+
+				if (tile.isPassable()) {
+					continue;
+				} else {
+					// This tile has something in it
+					return false;
+				}
+			}
+		}
+
+		// Everything should be okay at this point
+		return true;
 	}
 
 	@Override

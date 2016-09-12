@@ -20,7 +20,7 @@ public class AgentEntityInfo {
     public static AgentEntityInfo getInstance() { return INSTANCE; }
 
     /** REGISTERED AGENT TYPES */
-    private final ResourceType[] agentTypes = {
+    private static final ResourceType[] agentTypes = {
         SHEEP, COW_FRONT_RIGHT, DUCK_1_1
     };
 
