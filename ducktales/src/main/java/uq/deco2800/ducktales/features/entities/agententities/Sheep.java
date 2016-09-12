@@ -6,12 +6,13 @@ import uq.deco2800.ducktales.resources.ResourceType;
 /**
  * Class which defines the animal 'Sheep' that produces milk
  *
- * @author 
+ * @author Damian Maher
  */
 
 public class Sheep extends Animal {
 
     private boolean canProduceWool = false; // Whether the sheep can produce wool
+    private boolean canProduceMutton = false; // Whether the sheep can produce mutton
     private Peon opponent; // The peon that the animal will battle.
     private EntityManager opponentList; // List of possible opponents.
 
@@ -30,9 +31,20 @@ public class Sheep extends Animal {
      * their health, hunger, and thirst meet
      * satisfy a certain threshold.
      */
-    private void produceWool() {
+    public void produceWool() {
         if (this.getHealth() >= 85 && this.getHunger() >= 85 && this.getThirst() >= 85) {
             this.canProduceWool = true;
+        }
+    }
+    
+    /**
+     * Checks whether the sheep can produce mutton. Sheep can only produce mutton if 
+     * their health, hunger, and thirst meet
+     * satisfy a certain threshold.
+     */
+    public void produceMutton() {
+        if (this.getHealth() >= 85 && this.getHunger() >= 85 && this.getThirst() >= 85) {
+            this.canProduceMutton = true;
         }
     }
 
@@ -45,5 +57,14 @@ public class Sheep extends Animal {
      */
     public boolean canProduceWool() {
         return this.canProduceWool;
+    }
+    
+    /**
+     * Returns whether the sheep can produce mutton.
+     *
+     * @return canProduceWool
+     */
+    public boolean canProduceMutton() {
+        return this.canProduceMutton;
     }
 }
