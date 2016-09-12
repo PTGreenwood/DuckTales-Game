@@ -5,6 +5,7 @@ import java.util.Random;
 
 import uq.deco2800.ducktales.World;
 import uq.deco2800.ducktales.deprecated.world.*;
+import uq.deco2800.ducktales.features.entities.agententities.Peon;
 
 /**
  * Handles game threats. 

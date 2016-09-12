@@ -1,6 +1,7 @@
 package uq.deco2800.ducktales.features.entities;
 import uq.deco2800.ducktales.World;
 import uq.deco2800.ducktales.deprecated.world.WorldBeta;
+import uq.deco2800.ducktales.features.entities.agententities.Peon;
 
 import java.util.*;
 
@@ -23,8 +24,7 @@ public class ThreatManager {
 
 	/** The world of the game */
 	private World world;
-	 
-	 
+	  
 	/**
 	 * Set threat level 1.
 	 */
@@ -149,16 +149,11 @@ public class ThreatManager {
 		 	//Create Temp variable
 		 	tempEnemy = new Enemy("Evil Duck");
 		 	//Add parameters to temp variable
-		 	//------- parameters here will move evil 
-		 	//duck and reduce health of any 
-		 	//peons it collides with
-		 	
-		 	
-		 	
 		 	tempEnemy.setStartTimer(20, "Timer");
 		 	tempEnemy.setEndTimer(50);
 		 	tempEnemy.setRandomX();
 		 	tempEnemy.setRandomY();
+		 	tempEnemy.checkCollision();
 		 	enemiesList.add(tempEnemy);
 		 	int evilDuckValue = enemiesList.indexOf("Evil Duck");
 		 	Enemy evilDuck = enemiesList.get(evilDuckValue);
