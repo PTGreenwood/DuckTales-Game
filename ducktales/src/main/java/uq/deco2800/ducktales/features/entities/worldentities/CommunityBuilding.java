@@ -14,6 +14,9 @@ public class CommunityBuilding extends Building {
 	// BuildingMenuSprite type
 	private static final ResourceType TYPE = ResourceType.COMMUNITY_BUILDING;
 	
+	// Building health - starting value
+	private static int health = 1400;
+	
 	// Size of the building
 	public static final int X_LENGTH = 2;
 	public static final int Y_LENGTH = 2;
@@ -27,7 +30,7 @@ public class CommunityBuilding extends Building {
 	 */
 	public CommunityBuilding(double x, double y) {
 		super(x, y, X_LENGTH, Y_LENGTH, TYPE);
-		
+		health = 1400;
 	}
 	
 	/**
@@ -35,6 +38,28 @@ public class CommunityBuilding extends Building {
 	 */
 	protected void specifications() {
 		specifications(6, 8, 8, production.NULL, 0);
+	}
+	
+	/**
+	 * Update the 'health' of the community building. Requires an integer 
+	 * value of the new health to be passed.
+	 * 
+	 * @param NewValue, new health of the building
+	 */
+	public void ChangeHealth(int newValue){
+		if (newValue > 0){
+			health = newValue;
+		}
+	}
+	
+	/**
+	 * Method to access the 'health' of the community building. Returns the 
+	 * integer value of the health.
+	 * 
+	 * @return the health of the community building.
+	 */
+	public int GetHealth(){
+		return health;
 	}
 	
 	/**

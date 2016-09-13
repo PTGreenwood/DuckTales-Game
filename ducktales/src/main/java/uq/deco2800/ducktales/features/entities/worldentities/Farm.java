@@ -15,6 +15,9 @@ public class Farm extends Building {
 	// BuildingMenuSprite type
 	private static final ResourceType TYPE = ResourceType.FARM;
 
+	// Building health - starting value
+	private static int health = 900;
+	
 	// Size of the building
 	private static final int X_LENGTH = 5;
 	private static final int Y_LENGTH = 5;
@@ -27,6 +30,7 @@ public class Farm extends Building {
 	 */
 	public Farm(double x, double y) {
 		super(x, y, X_LENGTH, Y_LENGTH, TYPE);
+		health = 900;
 	}
 	
 	/**
@@ -34,6 +38,28 @@ public class Farm extends Building {
 	 */
 	protected void specifications() {
 		specifications(8, 10, 9, production.FOOD, 5);
+	}
+	
+	/**
+	 * Update the 'health' of the farm. Requires an integer value of 
+	 * the new health to be passed.
+	 * 
+	 * @param NewValue, new health of the building
+	 */
+	public void ChangeHealth(int newValue){
+		if (newValue > 0){
+			health = newValue;
+		}
+	}
+	
+	/**
+	 * Method to access the 'health' of the farm. Returns the integer 
+	 * value of the health.
+	 * 
+	 * @return the health of the farm.
+	 */
+	public int GetHealth(){
+		return health;
 	}
 
 	/**

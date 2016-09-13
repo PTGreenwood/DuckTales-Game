@@ -14,6 +14,9 @@ public class Pasture extends Building {
 	// BuildingMenuSprite type
 	private static final ResourceType TYPE = ResourceType.PASTURE;
 	
+	// Building health - starting value
+	private static int health = 800;
+	
 	// Size of the pasture
 	public static final int X_LENGTH = 5;
 	public static final int Y_LENGTH = 5;
@@ -27,6 +30,7 @@ public class Pasture extends Building {
 	 */
 	public Pasture(double x, double y) {
 		super(x, y, X_LENGTH, Y_LENGTH, TYPE);
+		health = 800;
 	}
 	
 	/**
@@ -34,6 +38,28 @@ public class Pasture extends Building {
 	 */
 	protected void specifications() {
 		specifications(2, 10, 4, production.NULL, 0);
+	}
+	
+	/**
+	 * Update the 'health' of the pasture. Requires an integer value of 
+	 * the new health to be passed.
+	 * 
+	 * @param NewValue, new health of the building
+	 */
+	public void ChangeHealth(int newValue){
+		if (newValue > 0){
+			health = newValue;
+		}
+	}
+	
+	/**
+	 * Method to access the 'health' of the pasture. Returns the integer 
+	 * value of the health.
+	 * 
+	 * @return the health of the pasture.
+	 */
+	public int GetHealth(){
+		return health;
 	}
 	
 	/**

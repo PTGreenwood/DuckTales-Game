@@ -14,6 +14,9 @@ public class Church extends Building {
 	// BuildingMenuSprite type
 	private static final ResourceType TYPE = ResourceType.CHURCH;
 	
+	// Building health - starting value
+	private static int health = 1900;
+	
 	// Size of a church
 	public static final int X_LENGTH = 2;
 	public static final int Y_LENGTH = 2;
@@ -27,7 +30,7 @@ public class Church extends Building {
 	 */
 	public Church(double x, double y) {
 		super(x, y, X_LENGTH, Y_LENGTH, TYPE);
-		
+		health = 1900;
 	}
 	
 	/**
@@ -35,6 +38,28 @@ public class Church extends Building {
 	 */
 	protected void specifications() {
 		specifications(8, 10, 9, production.NULL, 0);
+	}
+	
+	/**
+	 * Update the 'health' of the church. Requires an integer value of 
+	 * the new health to be passed.
+	 * 
+	 * @param NewValue, new health of the building
+	 */
+	public void ChangeHealth(int newValue){
+		if (newValue > 0){
+			health = newValue;
+		}
+	}
+	
+	/**
+	 * Method to access the 'health' of the church. Returns the integer 
+	 * value of the health.
+	 * 
+	 * @return the health of the church.
+	 */
+	public int GetHealth(){
+		return health;
 	}
 	
 	/**

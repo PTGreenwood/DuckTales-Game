@@ -15,6 +15,9 @@ public class Bakery extends Building {
 	/** The type of this building */
 	private static final ResourceType TYPE = BAKERY;
 
+	// Building health - starting value
+	private static int health = 850;
+	
 	/** The length of this building */
 	public static final int X_LENGTH = 2;
 	public static final int Y_LENGTH = 2;
@@ -30,7 +33,7 @@ public class Bakery extends Building {
 	 */
 	public Bakery(double x, double y) {
 		super(x, y, X_LENGTH, Y_LENGTH, TYPE);
-		specifications();
+		health = 850;
 	}
 	
 	/**
@@ -38,6 +41,28 @@ public class Bakery extends Building {
 	 */
 	protected void specifications() {
 		specifications(4, 6, 4, production.NULL, 0);
+	}
+	
+	/**
+	 * Update the 'health' of the bakery. Requires an integer value of 
+	 * the new health to be passed.
+	 * 
+	 * @param NewValue, new health of the building
+	 */
+	public void ChangeHealth(int newValue){
+		if (newValue > 0){
+			health = newValue;
+		}
+	}
+	
+	/**
+	 * Method to access the 'health' of the bakery. Returns the integer 
+	 * value of the health.
+	 * 
+	 * @return the health of the bakery.
+	 */
+	public int GetHealth(){
+		return health;
 	}
 
 	/**

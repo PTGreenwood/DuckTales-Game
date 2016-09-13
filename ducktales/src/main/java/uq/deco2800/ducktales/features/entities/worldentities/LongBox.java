@@ -12,6 +12,9 @@ public class LongBox extends Building {
 	// BuildingMenuSprite type
 	private static final ResourceType TYPE = ResourceType.LONG_BOX;
 	
+	// Building health - starting value
+	private static int health = 600;
+	
 	// Long Box size
 	private static final int X_LENGTH = 2;
 	private static final int Y_LENGTH = 1;
@@ -24,6 +27,7 @@ public class LongBox extends Building {
 	 */
 	public LongBox(int x, int y) {
 		super(x, y, X_LENGTH, Y_LENGTH, TYPE);
+		health = 600;
 	}
 
 	/**
@@ -31,6 +35,28 @@ public class LongBox extends Building {
 	 */
 	protected void specifications() {
 		specifications(2, 2, 2, production.NULL, 0);
+	}
+	
+	/**
+	 * Update the 'health' of the long box. Requires an integer value of 
+	 * the new health to be passed.
+	 * 
+	 * @param NewValue, new health of the building
+	 */
+	public void ChangeHealth(int newValue){
+		if (newValue > 0){
+			health = newValue;
+		}
+	}
+	
+	/**
+	 * Method to access the 'health' of the long box. Returns the integer 
+	 * value of the health.
+	 * 
+	 * @return the health of the long box.
+	 */
+	public int GetHealth(){
+		return health;
 	}
 	
 	/**

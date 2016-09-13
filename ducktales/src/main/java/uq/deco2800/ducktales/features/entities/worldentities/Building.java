@@ -117,6 +117,14 @@ public abstract class Building extends WorldEntity {
 	 * Update the variables with the building specifications, when the 
 	 * building is called. Moved updating function to building class to 
 	 * remove duplicated code errors throughout the building class.
+	 * 
+	 * @param stone, the amount of stone to build
+	 * @param wood, the amount of wood to build
+	 * @param time, the amount of time to build
+	 * @param produce, the production type produced by the building
+	 * @param amount, the amount of the resource produced
+	 * 
+	 *  
 	 */
 	protected void specifications(int stone, int wood, int time, 
 			production produce, int amount) {

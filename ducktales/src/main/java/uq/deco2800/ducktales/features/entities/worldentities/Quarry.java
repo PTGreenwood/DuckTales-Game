@@ -14,6 +14,9 @@ public class Quarry extends Building {
 	// BuildingMenuSprite type
 	private static final ResourceType TYPE = ResourceType.QUARRY;
 	
+	// Building health - starting value
+	private static int health = 1300;
+	
 	// Size of the building
 	private static final int X_LENGTH = 5;
 	private static final int Y_LENGTH = 5;
@@ -27,7 +30,7 @@ public class Quarry extends Building {
 	 */
 	public Quarry(double x, double y) {
 		super(x, y, X_LENGTH, Y_LENGTH, TYPE);
-		
+		health = 1300;
 	}
 	
 	/**
@@ -35,6 +38,28 @@ public class Quarry extends Building {
 	 */
 	protected void specifications() {
 		specifications(8, 6, 5, production.STONE, 5);
+	}
+	
+	/**
+	 * Update the 'health' of the quarry. Requires an integer value of 
+	 * the new health to be passed.
+	 * 
+	 * @param NewValue, new health of the building
+	 */
+	public void ChangeHealth(int newValue){
+		if (newValue > 0){
+			health = newValue;
+		}
+	}
+	
+	/**
+	 * Method to access the 'health' of the quarry. Returns the integer 
+	 * value of the health.
+	 * 
+	 * @return the health of the quarry.
+	 */
+	public int GetHealth(){
+		return health;
 	}
 	
 	/**

@@ -14,6 +14,9 @@ public class Observatory extends Building {
 	// BuildingMenuSprite type
 	private static final ResourceType TYPE = ResourceType.OBSERVATORY;
 	
+	// Building health - starting value
+	private static int health = 900;
+	
 	// Size of the observatory
 	private static final int X_LENGTH = 2;
 	private static final int Y_LENGTH = 2;
@@ -26,6 +29,7 @@ public class Observatory extends Building {
 	 */
 	public Observatory(double x, double y) {
 		super(x, y, X_LENGTH, Y_LENGTH, TYPE);
+		health = 900;
 	}
 	
 	/**
@@ -33,6 +37,28 @@ public class Observatory extends Building {
 	 */
 	protected void specifications() {
 		specifications(4, 10, 5, production.NULL, 0);
+	}
+	
+	/**
+	 * Update the 'health' of the observatory. Requires an integer value of 
+	 * the new health to be passed.
+	 * 
+	 * @param NewValue, new health of the building
+	 */
+	public void ChangeHealth(int newValue){
+		if (newValue > 0){
+			health = newValue;
+		}
+	}
+	
+	/**
+	 * Method to access the 'health' of the observatory. Returns the integer 
+	 * value of the health.
+	 * 
+	 * @return the health of the observatory.
+	 */
+	public int GetHealth(){
+		return health;
 	}
 
 	/**

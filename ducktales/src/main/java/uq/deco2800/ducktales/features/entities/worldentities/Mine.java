@@ -14,6 +14,9 @@ public class Mine extends Building {
 	// BuildingMenuSprite type
 	private static final ResourceType TYPE = ResourceType.MINE;
 
+	// Building health - starting value
+	private static int health = 1300;
+	
 	// Mine size
 	private static final int X_LENGTH = 5;
 	private static final int Y_LENGTH = 5;
@@ -26,6 +29,7 @@ public class Mine extends Building {
 	 */
 	public Mine(double x, double y) {
 		super(x, y, X_LENGTH, Y_LENGTH, TYPE);
+		health = 1300;
 	}
 	
 	/**
@@ -33,6 +37,28 @@ public class Mine extends Building {
 	 */
 	protected void specifications() {
 		specifications(10, 6, 3, production.ORE, 5);
+	}
+	
+	/**
+	 * Update the 'health' of the mine. Requires an integer value of 
+	 * the new health to be passed.
+	 * 
+	 * @param NewValue, new health of the building
+	 */
+	public void ChangeHealth(int newValue){
+		if (newValue > 0){
+			health = newValue;
+		}
+	}
+	
+	/**
+	 * Method to access the 'health' of the mine. Returns the integer 
+	 * value of the health.
+	 * 
+	 * @return the health of the mine.
+	 */
+	public int GetHealth(){
+		return health;
 	}
 
 	/**

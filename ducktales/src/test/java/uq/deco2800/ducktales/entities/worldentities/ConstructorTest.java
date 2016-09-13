@@ -9,6 +9,7 @@ import uq.deco2800.ducktales.features.entities.worldentities.Building.production
 import uq.deco2800.ducktales.features.entities.worldentities.Constructor;
 import uq.deco2800.ducktales.features.entities.worldentities.Forge;
 import uq.deco2800.ducktales.features.entities.worldentities.House;
+import uq.deco2800.ducktales.features.entities.worldentities.LongBox;
 import uq.deco2800.ducktales.features.entities.worldentities.Sawmill;
 
 public class ConstructorTest {
@@ -61,5 +62,19 @@ public class ConstructorTest {
 				constructor.getResourcesProductionAmount(sawmill) == 5);
 		assertTrue("House getproductionType incorrect", 
 				constructor.getResourcesProductionType(sawmill) == production.WOOD);
+		
+		assertTrue("Correct Health", sawmill.GetHealth() == 1400);
+		assertTrue("Correct Health", house.GetHealth() == 1000);
+		assertTrue("Correct Health", bakery.GetHealth() == 850);
+		
+		// Check update health
+		bakery.ChangeHealth(10);
+		assertTrue("Correct Health", bakery.GetHealth() == 10);
+		house.ChangeHealth(0);
+		assertTrue("Correct Health", house.GetHealth() == 1000);
+		sawmill.ChangeHealth(978000);
+		assertTrue("Correct Health", sawmill.GetHealth() == 978000);
+		bakery.ChangeHealth(-10);
+		assertTrue("Correct Health", bakery.GetHealth() == 10);
 	}
 }
