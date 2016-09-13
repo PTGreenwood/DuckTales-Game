@@ -27,10 +27,10 @@ public class WorldBuilderController {
 	private WorldBuilderRenderer renderer;
 	
 	public WorldBuilderController() {
-		this.manager = WorldBuilderManager.getInstance();
+		//this.manager = WorldBuilderManager.getInstance();
 		//this.tileSprite = new TileSprite(resource);
 		this.model = new WorldBuilderModel();
-		this.renderer = new WorldBuilderRenderer(new Pane(), new BorderPane());
+		//this.renderer = new WorldBuilderRenderer(new Pane(), new BorderPane());
 	}
 	
 	public void setWorld(World world) {
