@@ -317,7 +317,7 @@ public class BuildingMenuSpriteTest {
 		assertTrue("Entity 2 incorrect!", entities.get(2).equals(entity2));
 		
 		// Check correct resources and time
-		assertTrue("Wrong returned resources", entity1.resourcesReturnWood() == 4);
+		assertTrue(String.valueOf(entity1.resourcesReturnWood()), entity1.resourcesReturnWood() == 4);
 		assertTrue("Wrong resources to build", entity3.resourcesBuildWood() == 8);
 		assertTrue("Wrong time", entity2.timeToBuild() == 5);
 		

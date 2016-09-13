@@ -9,6 +9,7 @@ import uq.deco2800.ducktales.features.entities.worldentities.Building.production
 import uq.deco2800.ducktales.features.entities.worldentities.Constructor;
 import uq.deco2800.ducktales.features.entities.worldentities.Forge;
 import uq.deco2800.ducktales.features.entities.worldentities.House;
+import uq.deco2800.ducktales.features.entities.worldentities.LongBox;
 import uq.deco2800.ducktales.features.entities.worldentities.Sawmill;
 
 public class ConstructorTest {
@@ -21,7 +22,7 @@ public class ConstructorTest {
 		Constructor constructor = new Constructor();
 		Bakery bakery = new Bakery(2,2);
 		
-		assertTrue("Bakery getStone incorrect!", constructor.getStone(bakery) == (4));
+		assertTrue(String.valueOf(constructor.getStone(bakery)), constructor.getStone(bakery) == (4));
 		assertTrue("Bakery getWood incorrect!", constructor.getWood(bakery) == (6));
 		assertTrue("Bakery getTime incorrect!", constructor.getTime(bakery) == (4));
 	}
@@ -61,5 +62,19 @@ public class ConstructorTest {
 				constructor.getResourcesProductionAmount(sawmill) == 5);
 		assertTrue("House getproductionType incorrect", 
 				constructor.getResourcesProductionType(sawmill) == production.WOOD);
+		
+		assertTrue("Correct Health", sawmill.getHealth() == 1400);
+		assertTrue("Correct Health", house.getHealth() == 1000);
+		assertTrue("Correct Health", bakery.getHealth() == 850);
+		
+		// Check update health
+		bakery.changeHealth(10);
+		assertTrue("Correct Health", bakery.getHealth() == 10);
+		house.changeHealth(0);
+		assertTrue("Correct Health", house.getHealth() == 1000);
+		sawmill.changeHealth(978000);
+		assertTrue("Correct Health", sawmill.getHealth() == 978000);
+		bakery.changeHealth(-10);
+		assertTrue("Correct Health", bakery.getHealth() == 10);
 	}
 }

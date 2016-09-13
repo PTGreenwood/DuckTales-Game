@@ -129,6 +129,8 @@ public class GameController implements Initializable{
 
         marketManager.showMarketPlace();
         closeButton.setVisible(true);
+        
+        missionManager.missionCompletedAction(2);
     }
     
     /**
@@ -248,7 +250,7 @@ public class GameController implements Initializable{
 
             // Position the time display
             AnchorPane.setTopAnchor(timeDisplay, 0.0);
-            AnchorPane.setRightAnchor(timeDisplay, 100.0);
+            AnchorPane.setRightAnchor(timeDisplay, 400.0);
 
         } catch (IOException e) {
             System.err.println("unable to load time display");

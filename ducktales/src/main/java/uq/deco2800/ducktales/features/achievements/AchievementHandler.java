@@ -6,6 +6,7 @@ package uq.deco2800.ducktales.features.achievements;
  * 
  */
 public class AchievementHandler {
+	
 	private static AchievementHandler INSTANCE = new AchievementHandler();
 	
 	private int intAchieve;

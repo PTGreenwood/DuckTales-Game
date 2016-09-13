@@ -1,4 +1,8 @@
 package uq.deco2800.ducktales.features.entities;
+import uq.deco2800.ducktales.World;
+import uq.deco2800.ducktales.deprecated.world.WorldBeta;
+import uq.deco2800.ducktales.features.entities.agententities.Peon;
+
 import java.util.*;
 
 
@@ -17,8 +21,10 @@ public class ThreatManager {
 	private Effect tempEffect;
 	private Enemy tempEnemy;
 	String timer = "Timer";
-	 
-	 
+
+	/** The world of the game */
+	private World world;
+	  
 	/**
 	 * Set threat level 1.
 	 */
@@ -139,6 +145,19 @@ public class ThreatManager {
 		 	tempEnemy.setEndTimer(50);
 		 	//Add temp variable to list
 		 	enemiesList.add(tempEnemy);
+		 	
+		 	//Create Temp variable
+		 	tempEnemy = new Enemy("Evil Duck");
+		 	//Add parameters to temp variable
+		 	tempEnemy.setStartTimer(20, "Timer");
+		 	tempEnemy.setEndTimer(50);
+		 	tempEnemy.setRandomX();
+		 	tempEnemy.setRandomY();
+		 	tempEnemy.checkCollision();
+		 	enemiesList.add(tempEnemy);
+		 	int evilDuckValue = enemiesList.indexOf("Evil Duck");
+		 	Enemy evilDuck = enemiesList.get(evilDuckValue);
+		 	
 	}
 	 
 	/**
@@ -277,6 +296,10 @@ public class ThreatManager {
 	  */
 	public ArrayList<Effect> returnEffects() {
 		 return this.effectsList;
+	}
+
+	public void setWorld(World world) {
+		this.world = world;
 	}
 	
 }

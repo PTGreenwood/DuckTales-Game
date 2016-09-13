@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Font;
@@ -26,6 +27,7 @@ public class AchievementManager {
 	private BorderPane achievementProgress;
 	
 	AchievementHandler achievementMain = AchievementHandler.getInstance();
+	AchievementMission achievementMission = AchievementMission.getInstance();
 	MissionHandler missionMain = MissionHandler.getInstance();
 	LevelHandler levelMain = LevelHandler.getInstance();
 	AchievementProgressIndicator piMain = AchievementProgressIndicator.getInstance();
@@ -38,8 +40,11 @@ public class AchievementManager {
 		loader.setLocation(location);
 		achievements = loader.load();
 		
-		setTitleOnTop(achievements,"Achievements");
+		ImageView achievementMissionImage = new ImageView();
+		achievementMissionImage = achievementMission.getAchievementMissionImage();
 		
+		setTitleOnTop(achievements,"Mission Achievements");
+		achievements.setCenter(achievementMissionImage);
 		achievements.setPrefHeight(rightPane.getHeight());
 		achievements.setPrefWidth(rightPane.getWidth());		
 		rightPane.getChildren().add(achievements);				
