@@ -5,7 +5,7 @@ package uq.deco2800.ducktales.features.weather;
  * @author mattyleggy
  *
  */
-public class Fire implements Weather {
+public class Fire extends Weather {
 	public WeatherEffect getWeatherEffect() {
 		WeatherEffect weatherEffect = new WeatherEffect("fire.gif");
 		return weatherEffect;

@@ -5,7 +5,7 @@ package uq.deco2800.ducktales.features.weather;
  * @author mattyleggy
  *
  */
-public class Storm implements Weather {
+public class Storm extends Weather {
 	private StormType type;
 	public Storm(StormType type) {
 		this.type = type;
