@@ -15,7 +15,7 @@ public class Pasture extends Building {
 	private static final ResourceType TYPE = ResourceType.PASTURE;
 	
 	// Building health - starting value
-	private static int health = 800;
+	private int health = 800;
 	
 	// Size of the pasture
 	public static final int X_LENGTH = 5;

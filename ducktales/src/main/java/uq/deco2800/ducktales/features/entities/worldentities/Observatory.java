@@ -15,7 +15,7 @@ public class Observatory extends Building {
 	private static final ResourceType TYPE = ResourceType.OBSERVATORY;
 	
 	// Building health - starting value
-	private static int health = 900;
+	private int health = 900;
 	
 	// Size of the observatory
 	private static final int X_LENGTH = 2;

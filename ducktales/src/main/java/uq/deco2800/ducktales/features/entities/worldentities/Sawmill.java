@@ -15,7 +15,7 @@ public class Sawmill extends Building {
 	private static final ResourceType TYPE = ResourceType.SAWMILL;
 	
 	// Building health - starting value
-	private static int health = 1400;
+	private int health = 1400;
 	
 	// Sawmill size
 	private static final int X_LENGTH = 5;

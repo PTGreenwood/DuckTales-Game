@@ -15,7 +15,7 @@ public class CommunityBuilding extends Building {
 	private static final ResourceType TYPE = ResourceType.COMMUNITY_BUILDING;
 	
 	// Building health - starting value
-	private static int health = 1400;
+	private int health = 1400;
 	
 	// Size of the building
 	public static final int X_LENGTH = 2;
