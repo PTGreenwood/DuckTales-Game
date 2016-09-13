@@ -20,6 +20,7 @@ public class GameTime implements Tickable {
 
 	private int hour;
 	private int minute;
+	private int tickCounter = 4;
 
 
 	/**
@@ -106,20 +107,24 @@ public class GameTime implements Tickable {
 	 */
 	@Override
 	public void tick() {
-		minute++;
-		if(minute == 60) {
-			hour++;
-			minute = 0;
+		if(tickCounter == 4){
+			tickCounter = 0;
+			minute++;
+			if(minute == 60) {
+				hour++;
+				minute = 0;
+			}
+			if(hour == 24) {
+				day++;
+				hour = 0;
+				//Left this hear to print out the time once a day
+				System.out.println(printGameTime());
+			} 
+			if (this.day/this.year > 80) {
+				this.year++;
+			}
 		}
-		if(hour == 24) {
-			day++;
-			hour = 0;
-			//Left this hear to print out the time once a day
-			System.out.println(printGameTime());
-		} 
-		if (this.day/this.year > 80) {
-			this.year++;
-		}
+		tickCounter++;
 	//Uncomment this to see a print out of the current time every minute update
 	//System.out.println(printGameTime());
 	}
@@ -191,9 +196,10 @@ public class GameTime implements Tickable {
 	 */
 	public String printGameTime() {
 		int h = hour;
-		int m = minute;
+		String m = String.format("%02d", 5);
 		int d = this.day;
+		int y = this.year;
 
-		return "Current Time is: " + h + ":" + m + " day: " + d;
+		return "Current Time is: " + h + ":" + m + " Day: " + d + " Year: " + y;
 	}
 }

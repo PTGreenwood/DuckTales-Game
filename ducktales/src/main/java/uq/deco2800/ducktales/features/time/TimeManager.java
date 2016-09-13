@@ -60,11 +60,12 @@ public class TimeManager implements SecondaryManager, Initializable, Tickable {
 //        System.err.println("hour and minute: " + gameTime.getHour() + ", " + gameTime.getMinute());
 
         if (gameTime != null) {
-            // Display the new time
+            // Display the new time\
+        	final int year = gameTime.getCurrentYear();
             final int day = gameTime.getCurrentDay();
             final int hour = gameTime.getHour();
-            final int minute = gameTime.getMinute();
-            final String timeText = "Current Time is: " + hour + ":" + minute + ", day " + day;
+            final String minute = String.format("%02d", gameTime.getMinute());
+            final String timeText = "Current Time is: " + hour + ":" + minute + ", Day " + day + " Year " + year;
 
             // this is needed, since this UI update is called from another thread
             // (GameLoop runs on another thread and not the main FXApplication thread)
