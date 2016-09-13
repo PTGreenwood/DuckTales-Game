@@ -125,7 +125,7 @@ public abstract class Building extends WorldEntity {
 	 * @param time, the amount of time to build
 	 * @param produce, the production type produced by the building
 	 * @param amount, the amount of the resource produced
-	 * 
+	 * @param health, the health of the building
 	 *  
 	 */
 	protected void specifications(int stone, int wood, int time, 
@@ -145,13 +145,31 @@ public abstract class Building extends WorldEntity {
 	protected abstract void specifications();
 	
 	/**
-	 * Method to access the 'health' of the bakery. Returns the integer 
+	 * Calls the changeHealthBuilding method which updates the 
+	 * health of the building.
+	 */
+	protected abstract void changeHealthBuilding(int newHealth);
+	
+	/**
+	 * Method to access the 'health' of the building. Returns the integer  
 	 * value of the health.
 	 * 
-	 * @return the health of the bakery.
+	 * @return the health of the building.
 	 */
-	public int GetHealth() {
+	public int getHealth() {
 		specifications();
 		return HEALTH;
+	}
+	
+	/**
+	 * Update the 'health' of the quarry. Requires an integer value of 
+	 * the new health to be passed.
+	 * 
+	 * @param NewValue, new health of the building
+	 */
+	public void changeHealth(int newValue){
+		if (newValue > 0){
+			changeHealthBuilding(newValue);
+		}
 	}
 }

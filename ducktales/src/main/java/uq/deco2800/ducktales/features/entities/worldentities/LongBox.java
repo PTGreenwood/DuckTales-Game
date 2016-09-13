@@ -43,10 +43,8 @@ public class LongBox extends Building {
 	 * 
 	 * @param NewValue, new health of the building
 	 */
-	public void ChangeHealth(int newValue){
-		if (newValue > 0){
-			health = newValue;
-		}
+	protected void changeHealthBuilding(int newValue){
+		health = newValue;
 	}
 	
 	/**

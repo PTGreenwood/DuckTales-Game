@@ -63,18 +63,18 @@ public class ConstructorTest {
 		assertTrue("House getproductionType incorrect", 
 				constructor.getResourcesProductionType(sawmill) == production.WOOD);
 		
-		assertTrue("Correct Health", sawmill.GetHealth() == 1400);
-		assertTrue("Correct Health", house.GetHealth() == 1000);
-		assertTrue("Correct Health", bakery.GetHealth() == 850);
+		assertTrue("Correct Health", sawmill.getHealth() == 1400);
+		assertTrue("Correct Health", house.getHealth() == 1000);
+		assertTrue("Correct Health", bakery.getHealth() == 850);
 		
 		// Check update health
-		bakery.ChangeHealth(10);
-		assertTrue("Correct Health", bakery.GetHealth() == 10);
-		house.ChangeHealth(0);
-		assertTrue("Correct Health", house.GetHealth() == 1000);
-		sawmill.ChangeHealth(978000);
-		assertTrue("Correct Health", sawmill.GetHealth() == 978000);
-		bakery.ChangeHealth(-10);
-		assertTrue("Correct Health", bakery.GetHealth() == 10);
+		bakery.changeHealth(10);
+		assertTrue("Correct Health", bakery.getHealth() == 10);
+		house.changeHealth(0);
+		assertTrue("Correct Health", house.getHealth() == 1000);
+		sawmill.changeHealth(978000);
+		assertTrue("Correct Health", sawmill.getHealth() == 978000);
+		bakery.changeHealth(-10);
+		assertTrue("Correct Health", bakery.getHealth() == 10);
 	}
 }

@@ -45,10 +45,8 @@ public class Sawmill extends Building {
 	 * 
 	 * @param NewValue, new health of the building
 	 */
-	public void ChangeHealth(int newValue){
-		if (newValue > 0){
+	protected void changeHealthBuilding(int newValue){
 			health = newValue;
-		}
 	}
 	
 	/**
