@@ -1,14 +1,14 @@
 package uq.deco2800.ducktales.entities;
 
-import static org.junit.Assert.*;
+import org.junit.Test;
 
 import java.util.ArrayList;
-
-import org.junit.Test;
 
 import uq.deco2800.ducktales.features.entities.Effect;
 import uq.deco2800.ducktales.features.entities.Enemy;
 import uq.deco2800.ducktales.features.entities.ThreatManager;
+
+import static org.junit.Assert.assertTrue;
 
 public class ThreatsManagerTest {
 

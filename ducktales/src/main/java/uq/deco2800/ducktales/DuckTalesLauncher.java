@@ -1,14 +1,14 @@
 package uq.deco2800.ducktales;
 
-import uq.deco2800.ducktales.deprecated.ui.MenuKeyboardHandler;
+import java.net.URL;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
-
-import java.net.URL;
+import uq.deco2800.ducktales.deprecated.ui.MenuKeyboardHandler;
 
 /**
  * Launcher class for DuckTales.
@@ -40,8 +40,9 @@ public class DuckTalesLauncher extends Application {
 		scene.addEventHandler(KeyEvent.KEY_PRESSED, new MenuKeyboardHandler(ducktalesController));
 		primaryStage.setMinWidth(1200);
 		primaryStage.setMinHeight(700);
-		primaryStage.setOnCloseRequest(e -> ducktalesController.stopGame());
-		primaryStage.show();	
+//		primaryStage.setOnCloseRequest(e -> ducktalesController.stopGame());
+		primaryStage.setOnCloseRequest(e -> System.exit(0));
+		primaryStage.show();
 	}
 	
 }
