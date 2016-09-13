@@ -14,7 +14,7 @@ public class House extends Building {
 	private static final ResourceType TYPE = ResourceType.HOUSE;
 
 	// Building health - starting value
-	private static int health = 1000;
+	private int health = 1000;
 	
 	// Building size
 	private static final int X_LENGTH = 2;

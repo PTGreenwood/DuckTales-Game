@@ -13,7 +13,7 @@ public class LongBox extends Building {
 	private static final ResourceType TYPE = ResourceType.LONG_BOX;
 	
 	// Building health - starting value
-	private static int health = 600;
+	private int health = 600;
 	
 	// Long Box size
 	private static final int X_LENGTH = 2;

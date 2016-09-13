@@ -16,7 +16,7 @@ public class Bakery extends Building {
 	private static final ResourceType TYPE = BAKERY;
 
 	// Building health - starting value
-	private static int health = 850;
+	private int health = 850;
 	
 	/** The length of this building */
 	public static final int X_LENGTH = 2;

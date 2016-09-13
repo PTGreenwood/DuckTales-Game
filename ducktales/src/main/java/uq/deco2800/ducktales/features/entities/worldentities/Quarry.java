@@ -15,7 +15,7 @@ public class Quarry extends Building {
 	private static final ResourceType TYPE = ResourceType.QUARRY;
 	
 	// Building health - starting value
-	private static int health = 1300;
+	private int health = 1300;
 	
 	// Size of the building
 	private static final int X_LENGTH = 5;

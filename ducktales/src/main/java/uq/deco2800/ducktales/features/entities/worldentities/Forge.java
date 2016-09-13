@@ -15,7 +15,7 @@ public class Forge extends Building {
 	private static final ResourceType TYPE = ResourceType.FORGE;
 
 	// Building health - starting value
-	private static int health = 1000;
+	private int health = 1000;
 	
 	// Size of the building
 	private static final int X_LENGTH = 2;

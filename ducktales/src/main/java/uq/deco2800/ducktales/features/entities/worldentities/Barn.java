@@ -15,7 +15,7 @@ public class Barn extends Building {
 	private static final ResourceType TYPE = ResourceType.BARN;
 	
 	// Building health - starting value
-	private static int health = 900;
+	private int health = 900;
 	
 	// Barn size
 	public static final int X_LENGTH = 2;

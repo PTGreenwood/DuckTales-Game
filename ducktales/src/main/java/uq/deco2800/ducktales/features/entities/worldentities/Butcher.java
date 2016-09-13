@@ -15,7 +15,7 @@ public class Butcher extends Building {
 	private static final ResourceType TYPE = ResourceType.BUTCHER;
 	
 	// Building health - starting value
-	private static int health = 750;
+	private int health = 750;
 	
 	// Building size
 	public static final int X_LENGTH = 2;

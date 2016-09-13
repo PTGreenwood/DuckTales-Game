@@ -15,7 +15,7 @@ public class Box extends Building {
 	private static final ResourceType TYPE = ResourceType.BOX;
 
 	// Building health - starting value
-	private static int health = 400;
+	private int health = 400;
 	
 	// Size of a box
 	public static final int X_LENGTH = 1;

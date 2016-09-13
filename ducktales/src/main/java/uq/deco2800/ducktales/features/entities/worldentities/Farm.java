@@ -11,12 +11,11 @@ import uq.deco2800.ducktales.resources.ResourceType;
  */
 public class Farm extends Building {
 	
-
 	// BuildingMenuSprite type
 	private static final ResourceType TYPE = ResourceType.FARM;
 
 	// Building health - starting value
-	private static int health = 900;
+	private int health = 900;
 	
 	// Size of the building
 	private static final int X_LENGTH = 5;

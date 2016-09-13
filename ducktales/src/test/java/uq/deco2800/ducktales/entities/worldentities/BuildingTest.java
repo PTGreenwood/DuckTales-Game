@@ -919,11 +919,11 @@ public class BuildingTest {
 		((LongBox) (foreground)).changeHealth(10);
 		assertTrue("Correct Health", ((LongBox) (foreground)).getHealth() == 10);
 		((LongBox) background).changeHealth(0);
-		assertTrue("Correct Health", ((LongBox) background).getHealth() == 10);
+		assertTrue("Correct Health", ((LongBox) background).getHealth() == 600);
 		((LongBox) (foreground)).changeHealth(978000);
 		assertTrue("Correct Health", ((LongBox) (foreground)).getHealth() == 978000);
 		((LongBox) background).changeHealth(-10);
-		assertTrue("Correct Health", ((LongBox) background).getHealth() == 978000);
+		assertTrue("Correct Health", ((LongBox) background).getHealth() == 600);
 	}
 
 	
@@ -951,11 +951,11 @@ public class BuildingTest {
 		((LongBox) (foreground)).changeHealth(10);
 		assertTrue("Correct Health", ((LongBox) (foreground)).getHealth() == 10);
 		((LongBox) background).changeHealth(0);
-		assertTrue("Correct Health", ((LongBox) background).getHealth() == 10);
+		assertTrue("Correct Health", ((LongBox) background).getHealth() == 600);
 		((LongBox) (foreground)).changeHealth(978000);
 		assertTrue("Correct Health", ((LongBox) (foreground)).getHealth() == 978000);
 		((LongBox) background).changeHealth(-10);
-		assertTrue("Correct Health", ((LongBox) background).getHealth() == 978000);
+		assertTrue("Correct Health", ((LongBox) background).getHealth() == 600);
 	}
 	
 	@Test

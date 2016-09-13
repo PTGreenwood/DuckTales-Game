@@ -15,7 +15,7 @@ public class Mine extends Building {
 	private static final ResourceType TYPE = ResourceType.MINE;
 
 	// Building health - starting value
-	private static int health = 1300;
+	private int health = 1300;
 	
 	// Mine size
 	private static final int X_LENGTH = 5;

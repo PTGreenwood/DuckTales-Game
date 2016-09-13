@@ -15,7 +15,7 @@ public class Hospital extends Building {
 	private static final ResourceType TYPE = ResourceType.HOSPITAL;
 
 	// Building health - starting value
-	private static int health = 1800;
+	private int health = 1800;
 	
 	// Size of the hospital
 	private static final int X_LENGTH = 2;

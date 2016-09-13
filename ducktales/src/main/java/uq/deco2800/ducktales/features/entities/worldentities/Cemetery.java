@@ -16,7 +16,7 @@ public class Cemetery extends Building {
 	private static final ResourceType TYPE = ResourceType.CEMETERY;
 
 	// Building health - starting value
-	private static int health = 500;
+	private int health = 500;
 	
 	// Size of a cemetery
 	public static final int X_LENGTH = 2;
