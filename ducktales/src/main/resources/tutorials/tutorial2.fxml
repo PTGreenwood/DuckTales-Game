@@ -6,8 +6,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane prefHeight="400.0" prefWidth="400.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.60">
+<BorderPane fx:id="mainBorder" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uq.deco2800.ducktales.features.tutorials.Tutorial2Controller">
    <top>
       <Label text="Buildings" BorderPane.alignment="CENTER">
          <font>
@@ -16,10 +15,10 @@
       </Label>
    </top>
    <bottom>
-      <AnchorPane prefHeight="50.0" prefWidth="400.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="50.0" prefWidth="800.0" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="14.0" layoutY="10.0" mnemonicParsing="false" text="Previous" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />
-            <Button layoutX="335.0" layoutY="10.0" mnemonicParsing="false" text="Next" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+            <Button layoutX="14.0" layoutY="10.0" mnemonicParsing="false" onAction="#tutorial2Previous" text="Previous" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />
+            <Button layoutX="335.0" layoutY="10.0" mnemonicParsing="false" onAction="#tutorial2Next" text="Next" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
          </children>
       </AnchorPane>
    </bottom>
