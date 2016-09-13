@@ -37,7 +37,7 @@ public class Barn extends Building {
 	 * Update the WorldEntity properties with those of a barn.
 	 */
 	protected void specifications() {
-		specifications(4, 10, 9, production.NULL, 0);
+		specifications(4, 10, 9, production.NULL, 0, health);
 	}
 	
 	/**
@@ -50,16 +50,6 @@ public class Barn extends Building {
 		if (newValue > 0){
 			health = newValue;
 		}
-	}
-	
-	/**
-	 * Method to access the 'health' of the barn. Returns the integer 
-	 * value of the health.
-	 * 
-	 * @return the health of the barn.
-	 */
-	public int GetHealth(){
-		return health;
 	}
 	
 	/**

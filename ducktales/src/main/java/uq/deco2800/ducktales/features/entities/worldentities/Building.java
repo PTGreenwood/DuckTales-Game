@@ -25,6 +25,8 @@ public abstract class Building extends WorldEntity {
 	protected static production PRODUCTIONTYPE;
 	
 	protected static int PRODUCTIONAMOUNT;
+	
+	protected static int HEALTH;
 
 	/**
 	 * Main constructor of the class.
@@ -127,12 +129,13 @@ public abstract class Building extends WorldEntity {
 	 *  
 	 */
 	protected void specifications(int stone, int wood, int time, 
-			production produce, int amount) {
+			production produce, int amount, int health) {
 		WOODRESOURCES = wood;
 		STONERESOURCES = stone;
 		TIME = time;
 		PRODUCTIONTYPE = produce;
 		PRODUCTIONAMOUNT = amount;
+		HEALTH = health;
 	}
 
 	/**
@@ -140,4 +143,15 @@ public abstract class Building extends WorldEntity {
 	 * as required. Called by both building and constructor classes.
 	 */
 	protected abstract void specifications();
+	
+	/**
+	 * Method to access the 'health' of the bakery. Returns the integer 
+	 * value of the health.
+	 * 
+	 * @return the health of the bakery.
+	 */
+	public int GetHealth() {
+		specifications();
+		return HEALTH;
+	}
 }

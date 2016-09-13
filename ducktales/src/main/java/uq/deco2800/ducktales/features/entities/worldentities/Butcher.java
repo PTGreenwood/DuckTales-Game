@@ -37,7 +37,7 @@ public class Butcher extends Building {
 	 * Update the WorldEntity properties with those of a butcher.
 	 */
 	protected void specifications() {
-		specifications(4, 8, 7, production.NULL, 0);
+		specifications(4, 8, 7, production.NULL, 0, health);
 	}
 	
 	/**
@@ -50,16 +50,6 @@ public class Butcher extends Building {
 		if (newValue > 0){
 			health = newValue;
 		}
-	}
-	
-	/**
-	 * Method to access the 'health' of the butcher. Returns the integer 
-	 * value of the health.
-	 * 
-	 * @return the health of the butcher.
-	 */
-	public int GetHealth(){
-		return health;
 	}
 	
 	/**

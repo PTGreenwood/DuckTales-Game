@@ -36,7 +36,7 @@ public class Sawmill extends Building {
 	 * Update the WorldEntity properties with those of a sawmill.
 	 */
 	protected void specifications() {
-		specifications(4, 8, 3, production.WOOD, 5);
+		specifications(4, 8, 3, production.WOOD, 5, health);
 	}
 	
 	/**
@@ -49,16 +49,6 @@ public class Sawmill extends Building {
 		if (newValue > 0){
 			health = newValue;
 		}
-	}
-	
-	/**
-	 * Method to access the 'health' of the sawmill. Returns the integer 
-	 * value of the health.
-	 * 
-	 * @return the health of the sawmill.
-	 */
-	public int GetHealth(){
-		return health;
 	}
 	
 	/**

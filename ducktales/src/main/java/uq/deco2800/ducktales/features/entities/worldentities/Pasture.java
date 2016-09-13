@@ -37,7 +37,7 @@ public class Pasture extends Building {
 	 * Update the WorldEntity properties with those of a pasture.
 	 */
 	protected void specifications() {
-		specifications(2, 10, 4, production.NULL, 0);
+		specifications(2, 10, 4, production.NULL, 0, health);
 	}
 	
 	/**
@@ -50,16 +50,6 @@ public class Pasture extends Building {
 		if (newValue > 0){
 			health = newValue;
 		}
-	}
-	
-	/**
-	 * Method to access the 'health' of the pasture. Returns the integer 
-	 * value of the health.
-	 * 
-	 * @return the health of the pasture.
-	 */
-	public int GetHealth(){
-		return health;
 	}
 	
 	/**

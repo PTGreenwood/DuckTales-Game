@@ -36,7 +36,7 @@ public class Observatory extends Building {
 	 * Update the WorldEntity properties with those of an observatory.
 	 */
 	protected void specifications() {
-		specifications(4, 10, 5, production.NULL, 0);
+		specifications(4, 10, 5, production.NULL, 0, health);
 	}
 	
 	/**
@@ -49,16 +49,6 @@ public class Observatory extends Building {
 		if (newValue > 0){
 			health = newValue;
 		}
-	}
-	
-	/**
-	 * Method to access the 'health' of the observatory. Returns the integer 
-	 * value of the health.
-	 * 
-	 * @return the health of the observatory.
-	 */
-	public int GetHealth(){
-		return health;
 	}
 
 	/**

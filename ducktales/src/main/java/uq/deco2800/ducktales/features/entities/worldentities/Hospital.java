@@ -36,7 +36,7 @@ public class Hospital extends Building {
 	 * Update the WorldEntity properties with those of a hospital.
 	 */
 	protected void specifications() {
-		specifications(12, 8, 5, production.NULL, 0);
+		specifications(12, 8, 5, production.NULL, 0, health);
 	}
 	
 	/**
@@ -49,16 +49,6 @@ public class Hospital extends Building {
 		if (newValue > 0){
 			health = newValue;
 		}
-	}
-	
-	/**
-	 * Method to access the 'health' of the hospital. Returns the integer 
-	 * value of the health.
-	 * 
-	 * @return the health of the hospital.
-	 */
-	public int GetHealth(){
-		return health;
 	}
 
 	/**

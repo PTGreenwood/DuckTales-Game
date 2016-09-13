@@ -37,7 +37,7 @@ public class Church extends Building {
 	 * Update the WorldEntity properties with those of a church.
 	 */
 	protected void specifications() {
-		specifications(8, 10, 9, production.NULL, 0);
+		specifications(8, 10, 9, production.NULL, 0, health);
 	}
 	
 	/**
@@ -50,16 +50,6 @@ public class Church extends Building {
 		if (newValue > 0){
 			health = newValue;
 		}
-	}
-	
-	/**
-	 * Method to access the 'health' of the church. Returns the integer 
-	 * value of the health.
-	 * 
-	 * @return the health of the church.
-	 */
-	public int GetHealth(){
-		return health;
 	}
 	
 	/**

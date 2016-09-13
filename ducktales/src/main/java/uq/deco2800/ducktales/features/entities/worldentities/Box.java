@@ -37,7 +37,7 @@ public class Box extends Building {
 	 * Update the WorldEntity properties with those of a box.
 	 */
 	protected void specifications() {
-		specifications(2, 2, 4, production.NULL, 0);
+		specifications(2, 2, 4, production.NULL, 0, health);
 	}
 	
 	/**
@@ -50,16 +50,6 @@ public class Box extends Building {
 		if (newValue > 0){
 			health = newValue;
 		}
-	}
-	
-	/**
-	 * Method to access the 'health' of the box. Returns the integer 
-	 * value of the health.
-	 * 
-	 * @return the health of the box.
-	 */
-	public int GetHealth(){
-		return health;
 	}
 
 	/**

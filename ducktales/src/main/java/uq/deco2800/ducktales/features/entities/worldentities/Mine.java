@@ -36,7 +36,7 @@ public class Mine extends Building {
 	 * Update the WorldEntity properties with those of a mine.
 	 */
 	protected void specifications() {
-		specifications(10, 6, 3, production.ORE, 5);
+		specifications(10, 6, 3, production.ORE, 5, health);
 	}
 	
 	/**
@@ -49,16 +49,6 @@ public class Mine extends Building {
 		if (newValue > 0){
 			health = newValue;
 		}
-	}
-	
-	/**
-	 * Method to access the 'health' of the mine. Returns the integer 
-	 * value of the health.
-	 * 
-	 * @return the health of the mine.
-	 */
-	public int GetHealth(){
-		return health;
 	}
 
 	/**

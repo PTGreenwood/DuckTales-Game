@@ -35,7 +35,7 @@ public class House extends Building {
 	 * Update the WorldEntity properties with those of a house.
 	 */
 	protected void specifications() {
-		specifications(2, 4, 2, production.NULL, 0);
+		specifications(2, 4, 2, production.NULL, 0, health);
 	}
 	
 	/**
@@ -48,16 +48,6 @@ public class House extends Building {
 		if (newValue > 0){
 			health = newValue;
 		}
-	}
-	
-	/**
-	 * Method to access the 'health' of the house. Returns the integer 
-	 * value of the health.
-	 * 
-	 * @return the health of the house.
-	 */
-	public int GetHealth(){
-		return health;
 	}
 
 	/**

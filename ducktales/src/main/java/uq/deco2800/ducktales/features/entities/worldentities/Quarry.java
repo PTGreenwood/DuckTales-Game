@@ -37,7 +37,7 @@ public class Quarry extends Building {
 	 * Update the WorldEntity properties with those of a quarry.
 	 */
 	protected void specifications() {
-		specifications(8, 6, 5, production.STONE, 5);
+		specifications(8, 6, 5, production.STONE, 5, health);
 	}
 	
 	/**
@@ -50,16 +50,6 @@ public class Quarry extends Building {
 		if (newValue > 0){
 			health = newValue;
 		}
-	}
-	
-	/**
-	 * Method to access the 'health' of the quarry. Returns the integer 
-	 * value of the health.
-	 * 
-	 * @return the health of the quarry.
-	 */
-	public int GetHealth(){
-		return health;
 	}
 	
 	/**

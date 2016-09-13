@@ -37,7 +37,7 @@ public class CommunityBuilding extends Building {
 	 * Update the WorldEntity properties with those of a community building.
 	 */
 	protected void specifications() {
-		specifications(6, 8, 8, production.NULL, 0);
+		specifications(6, 8, 8, production.NULL, 0, health);
 	}
 	
 	/**
@@ -50,16 +50,6 @@ public class CommunityBuilding extends Building {
 		if (newValue > 0){
 			health = newValue;
 		}
-	}
-	
-	/**
-	 * Method to access the 'health' of the community building. Returns the 
-	 * integer value of the health.
-	 * 
-	 * @return the health of the community building.
-	 */
-	public int GetHealth(){
-		return health;
 	}
 	
 	/**

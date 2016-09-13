@@ -36,7 +36,7 @@ public class Forge extends Building {
 	 * Update the WorldEntity properties with those of a forge.
 	 */
 	protected void specifications() {
-		specifications (10, 6, 3, production.NULL, 0);
+		specifications (10, 6, 3, production.NULL, 0, health);
 	}
 	
 	/**
@@ -49,16 +49,6 @@ public class Forge extends Building {
 		if (newValue > 0){
 			health = newValue;
 		}
-	}
-	
-	/**
-	 * Method to access the 'health' of the forge. Returns the integer 
-	 * value of the health.
-	 * 
-	 * @return the health of the forge.
-	 */
-	public int GetHealth(){
-		return health;
 	}
 
 	/**

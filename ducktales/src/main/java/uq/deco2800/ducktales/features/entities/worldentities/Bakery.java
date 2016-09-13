@@ -40,7 +40,7 @@ public class Bakery extends Building {
 	 * Update the WorldEntity properties with those of a bakery.
 	 */
 	protected void specifications() {
-		specifications(4, 6, 4, production.NULL, 0);
+		specifications(4, 6, 4, production.NULL, 0, health);
 	}
 	
 	/**
@@ -53,16 +53,6 @@ public class Bakery extends Building {
 		if (newValue > 0){
 			health = newValue;
 		}
-	}
-	
-	/**
-	 * Method to access the 'health' of the bakery. Returns the integer 
-	 * value of the health.
-	 * 
-	 * @return the health of the bakery.
-	 */
-	public int GetHealth(){
-		return health;
 	}
 
 	/**

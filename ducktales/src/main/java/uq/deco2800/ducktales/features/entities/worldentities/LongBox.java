@@ -34,7 +34,7 @@ public class LongBox extends Building {
 	 * Update the WorldEntity properties with those of a long box.
 	 */
 	protected void specifications() {
-		specifications(2, 2, 2, production.NULL, 0);
+		specifications(2, 2, 2, production.NULL, 0, health);
 	}
 	
 	/**
@@ -47,16 +47,6 @@ public class LongBox extends Building {
 		if (newValue > 0){
 			health = newValue;
 		}
-	}
-	
-	/**
-	 * Method to access the 'health' of the long box. Returns the integer 
-	 * value of the health.
-	 * 
-	 * @return the health of the long box.
-	 */
-	public int GetHealth(){
-		return health;
 	}
 	
 	/**
