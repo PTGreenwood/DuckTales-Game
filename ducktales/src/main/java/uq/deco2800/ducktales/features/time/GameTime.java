@@ -1,7 +1,8 @@
 package uq.deco2800.ducktales.features.time;
+
 import uq.deco2800.ducktales.features.seasons.Season;
 import uq.deco2800.ducktales.util.Tickable;
-//testing branch
+
 /*
  *
  * GameTime Encompasses all time, day, season and year data
@@ -12,40 +13,40 @@ import uq.deco2800.ducktales.util.Tickable;
  */
 public class GameTime implements Tickable {
 
-
-	//Instantiate the GameTime
+	// Instantiate the GameTime
 	protected int day;
 	protected int year;
 	protected Season season;
 
 	private int hour;
 	private int minute;
-	private int tickCounter = 4;
-
+	private int tickCounter = 0;
 
 	/**
 	 * 20 Day Seasons. 4 Seasons to 1 year.
+	 * 
 	 * @param d
-	 * 		- Integer: Current Day (1 >= d <= 80)
+	 *            - Integer: Current Day (1 >= d <= 80)
 	 * @param y
-	 * 		- Integer: Current Year (>0)
+	 *            - Integer: Current Year (>0)
 	 */
 	public GameTime() {
 
-		this.day = 1; //Set day of calendar at 1
-		this.year = 1; //Set year of calendar at 1
+		this.day = 1; // Set day of calendar at 1
+		this.year = 1; // Set year of calendar at 1
 
-		//As fixed variables are set for day and year
-		//So to will the season automatically start in Spring
+		// As fixed variables are set for day and year
+		// So to will the season automatically start in Spring
 		this.season = Season.SPRING;
 
+		// Considering making this just one number and mathing it to get the
+		// right time
+		// depending on day and year. Can then also have total time in place. I
+		// spose I
+		// could just math the total time off years and days...
 
-		//Considering making this just one number and mathing it to get the right time
-		//depending on day and year. Can then also have total time in place. I spose I
-		//could just math the total time off years and days...
-
-		this.hour = 0; //Set the hour of the time
-		this.minute = 0; //Set the minutes of the time.
+		this.hour = 0; // Set the hour of the time
+		this.minute = 0; // Set the minutes of the time.
 	}
 
 	/**
@@ -71,13 +72,13 @@ public class GameTime implements Tickable {
 	/**
 	 * Sets the Time with the specified Hour.
 	 *
-	 * 	@param Int setHour
-	 * 			-	Integer of the given hour must be 0 >= setHour <= 23
-	 *	@throws Exception
-	 *			-	Throws GameTimeException if number is out of range
+	 * @param Int
+	 *            setHour - Integer of the given hour must be 0 >= setHour <= 23
+	 * @throws Exception
+	 *             - Throws GameTimeException if number is out of range
 	 */
-	public void setHour(int setHour)  {
-		if((setHour >= 0) && (setHour <= 23)) {
+	public void setHour(int setHour) {
+		if ((setHour >= 0) && (setHour <= 23)) {
 			this.hour = setHour;
 		} else {
 			throw new GameTimeException("Error: Hour must be an Integer >= 0 && <= 23");
@@ -87,13 +88,14 @@ public class GameTime implements Tickable {
 	/**
 	 * Sets the Time with the specified Minute.
 	 *
-	 * 	@param Int setMinute
-	 * 			-	Integer of the given minute must be 0 >= setMinute <= 59
-	 *	@throws Exception
-	 *			-	Throws Exception(Exception) if number is out of range
+	 * @param Int
+	 *            setMinute - Integer of the given minute must be 0 >= setMinute
+	 *            <= 59
+	 * @throws Exception
+	 *             - Throws Exception(Exception) if number is out of range
 	 */
-	public void setMinute(int setMinute){
-		if((setMinute >= 0) && (setMinute <= 59)) {
+	public void setMinute(int setMinute) {
+		if ((setMinute >= 0) && (setMinute <= 59)) {
 			this.minute = setMinute;
 		} else {
 			throw new GameTimeException("Error: Minute must be an Integer >= 0 && <= 59");
@@ -101,36 +103,39 @@ public class GameTime implements Tickable {
 	}
 
 	/**
-	 * Class implements tick method from Tickable interface
-	 * Tick method is called within GameLoop class
+	 * Class implements tick method from Tickable interface Tick method is
+	 * called within GameLoop class
 	 *
 	 */
 	@Override
 	public void tick() {
-		if(tickCounter == 4){
+		if (tickCounter == 3) {
 			tickCounter = 0;
 			minute++;
-			if(minute == 60) {
+			if (minute == 60) {
 				hour++;
 				minute = 0;
 			}
-			if(hour == 24) {
+			if (hour == 24) {
 				day++;
 				hour = 0;
-				//Left this hear to print out the time once a day
+				// Left this hear to print out the time once a day
 				System.out.println(printGameTime());
-			} 
-			if (this.day/this.year > 80) {
+			}
+			if (this.day / this.year > 80) {
 				this.year++;
 			}
+		} else {
+			tickCounter++;
 		}
-		tickCounter++;
-	//Uncomment this to see a print out of the current time every minute update
-	//System.out.println(printGameTime());
+		// Uncomment this to see a print out of the current time every minute
+		// update
+		// System.out.println(printGameTime());
 	}
 
 	/**
 	 * Retrieves the current day of the year
+	 * 
 	 * @return integer: currentDay of year
 	 */
 	public int getCurrentDay() {
@@ -139,6 +144,7 @@ public class GameTime implements Tickable {
 
 	/**
 	 * Retrieves the current year of the Calendar
+	 * 
 	 * @return integer: currentYear on Calendar
 	 */
 	public int getCurrentYear() {
@@ -147,6 +153,7 @@ public class GameTime implements Tickable {
 
 	/**
 	 * Retrieves the current season
+	 * 
 	 * @return Season: currentSeason of world
 	 */
 	public Season getCurrentSeason() {
@@ -154,23 +161,24 @@ public class GameTime implements Tickable {
 	}
 
 	/**
-	 * Sets the current season to be a season passed in
-	 * Note: must be of type Season
+	 * Sets the current season to be a season passed in Note: must be of type
+	 * Season
 	 *
-	 * @param Season season: Spring, Summer, Autumn or Winter
+	 * @param Season
+	 *            season: Spring, Summer, Autumn or Winter
 	 */
 	public void setSeason(Season season) {
 		this.season = season;
 	}
 
 	/**
-	 * Sets the current year of the Calendar
-	 * to be whatever is passed in
+	 * Sets the current year of the Calendar to be whatever is passed in
 	 *
-	 * @param integer yearSet: year to set the Calendar
+	 * @param integer
+	 *            yearSet: year to set the Calendar
 	 */
 	public void setYear(int yearSet) {
-		if(yearSet >= 1) {
+		if (yearSet >= 1) {
 			this.year = yearSet;
 		} else {
 			throw new GameTimeException("Error: Year must be an Integer >= 1");
@@ -179,24 +187,27 @@ public class GameTime implements Tickable {
 
 	/**
 	 * Sets the current day of the Calendar
-	 * @param Integer daySet: day to set the Calendar
+	 * 
+	 * @param Integer
+	 *            daySet: day to set the Calendar
 	 */
 	public void setDay(int daySet) {
-		if(daySet >= 1) {
+		if (daySet >= 1) {
 			this.day = daySet;
 		} else {
 			throw new GameTimeException("Error: Day must be an Integer >= 1");
 		}
 	}
 
-	/** Print out a String that has the
-	 * Current Hour, Current Minute and Current Day Number
+	/**
+	 * Print out a String that has the Current Hour, Current Minute and Current
+	 * Day Number
 	 *
 	 * @return a lame string telling the current time for lame debug
 	 */
 	public String printGameTime() {
 		int h = hour;
-		String m = String.format("%02d", 5);
+		String m = String.format("%02d", minute);
 		int d = this.day;
 		int y = this.year;
 
