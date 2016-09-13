@@ -106,7 +106,7 @@ public class WorldBuilderRenderer extends AnimationTimer {
         this.worldBuilderPane = worldBuilderPane;
         setupWorldBuilderUI();
 
-        this.world = WorldBuilderManager.getInstance().getWorld();
+        this.world = manager.getWorld();
         this.resourceSpriteRegister = ResourceSpriteRegister.getInstance();
         this.tileHeight = ResourceSpriteRegister.TILE_HEIGHT;
         this.tileWidth = ResourceSpriteRegister.TILE_WIDTH;

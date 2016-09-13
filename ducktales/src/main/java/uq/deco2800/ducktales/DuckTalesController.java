@@ -14,6 +14,7 @@ import uq.deco2800.ducktales.deprecated.OldGameManager;
 import uq.deco2800.ducktales.features.weather.Weather;
 import uq.deco2800.ducktales.features.weather.WeatherEffect;
 import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
+import uq.deco2800.ducktales.features.builder.WorldBuilderController;
 import uq.deco2800.ducktales.features.builder.WorldBuilderManager;
 import uq.deco2800.ducktales.features.builder.WorldBuilderRenderer;
 import javafx.event.ActionEvent;
@@ -34,7 +35,7 @@ public class DuckTalesController implements Initializable {
 	//gameWindow, contentPane & mainMenuPane are referenced in ducktales.fxml
 	private AnchorPane gameWindow;
 	@FXML
-	private AnchorPane contentPane;
+	private static AnchorPane contentPane;
 	@FXML
 	private AnchorPane mainMenuPane;
 
@@ -65,10 +66,10 @@ public class DuckTalesController implements Initializable {
 	private boolean running = false;
 	private ResourceSpriteRegister tileRegister;
 	private OldGameManager oldGameManager;
-	private WorldBuilderManager worldBuilderManager;
+	private WorldBuilderController worldBuilderManager;
 
 	// UI for World Builder
-	private BorderPane worldBuilderPane;
+	private static BorderPane worldBuilderPane;
 	private AnchorPane gamePane;
 
 	private AtomicBoolean quit;
@@ -86,7 +87,7 @@ public class DuckTalesController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		tileRegister = ResourceSpriteRegister.getInstance();
 		oldGameManager = OldGameManager.getInstance();
-		worldBuilderManager = WorldBuilderManager.getInstance();
+		worldBuilderManager = new WorldBuilderController();
 		
 		// Set the handlers for the game panes
 		contentPane.setOnMousePressed(new MousePressedHandler());
@@ -194,6 +195,8 @@ public class DuckTalesController implements Initializable {
 		showPane(gamePane);
 
 	}
+	
+
 
 	/**
 	 * This is a helper method that helps set
@@ -213,6 +216,14 @@ public class DuckTalesController implements Initializable {
 		contentPane.setBottomAnchor(gamePane, 0.0);
 	}
 
+	public static AnchorPane getContentPane() {
+		return contentPane;
+	}
+	
+	public static BorderPane getBorderPane() {
+		return worldBuilderPane;
+	}
+	
 	//	/**
 //	 * This method will be called when the 'Launch Game' button is pressed The
 //	 * code that will call this method is defined in ducktales.fxml
@@ -252,6 +263,8 @@ public class DuckTalesController implements Initializable {
 //		}
 //	}
 
+	
+	
 
 	/**
 	 * This method is called when "Build World" button is pressed

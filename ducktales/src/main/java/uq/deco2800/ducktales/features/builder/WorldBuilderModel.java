@@ -15,8 +15,8 @@ import static uq.deco2800.ducktales.resources.ResourceType.*;
  *
  * Created by Khoi on 19/08/2016.
  */
-public class WorldBuilderManager {	
-    private static final WorldBuilderManager INSTANCE = new WorldBuilderManager();
+public class WorldBuilderModel {	
+    //private static final WorldBuilderManager INSTANCE = new WorldBuilderManager();
     /**
      * CONSTANTS
      */
@@ -25,22 +25,15 @@ public class WorldBuilderManager {
 
 
     private World world;
-    private WorldBuilderRenderer renderer;
+    //private WorldBuilderRenderer renderer;
     private ResourceType currentResource = NONE;
 
     private int currentType = 0;
 
     /**
-     * Returns the instance of {@link WorldBuilderManager}.
-     *
-     * @return Returns the instance of WorldBuilderManager
-     */
-    public static WorldBuilderManager getInstance() { return INSTANCE; }
-
-    /**
      * Constructor of the {@link WorldBuilderManager} class
      */
-    private WorldBuilderManager() {
+    public WorldBuilderModel() {
     }
 
     /**
@@ -52,16 +45,6 @@ public class WorldBuilderManager {
      */
     public int getCurrentType() {
         return this.currentType;
-    }
-
-    /**
-     * Register the rendering engine for the world builder
-     * @param renderer
-     *          The rendering engine
-     */
-    public void setRenderer(WorldBuilderRenderer renderer) {
-        this.renderer = renderer;
-        renderer.start();
     }
 
     /**
@@ -78,7 +61,9 @@ public class WorldBuilderManager {
      * Get the world for this canvas
      * @return the world of the WorldBuilder canvas
      */
-    public World getWorld() { return world; };
+    public World getWorld() { 
+    	return world; 
+    }
 
     /**
      * Get the current resource currently managed by the user
@@ -93,17 +78,16 @@ public class WorldBuilderManager {
      * @param resource
      *          The type of resource that is being managed
      */
-    public void setCurrentResource(ResourceType resource, int type) {
+    public Object[] setCurrentResource(ResourceType resource, int type) {
         currentResource = resource;
         currentType = type;
+        String name = "";
         if (type == this.TILE) {
-            renderer.setCurrentTileSelected(resource);
+           name = "tile";
         } else if (type == this.ENTITY) {
-            renderer.setCurrentEntitySelected(resource);
+            name = "entity";
         }
-
         System.out.println("Current resource is: " + resource.toString());
+        return new Object[] {name, resource};
     }
-
-
 }
