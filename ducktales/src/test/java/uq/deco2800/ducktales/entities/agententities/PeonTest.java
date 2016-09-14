@@ -42,8 +42,8 @@ public class PeonTest {
     assertTrue("peon health should be 1000 if parameter is greater than 1000", peon.getHealth() == 1000);
     peon.setHealth(-1);
     assertTrue("peon health should be 0 if parameter is less than 0", peon.getHealth() == 0);
-    peon.setHealth(0);
-    assertTrue("peon health should be parameter", peon.getHealth() == 0);
+    peon.setHealth(50);
+    assertTrue("peon health should be parameter", peon.getHealth() == 50);
     peon.setHunger(101);
     assertTrue("peon hunger should be 100 if parameter is greater than 100", peon.getHunger() == 100);
     peon.setHunger(-1);
@@ -54,6 +54,13 @@ public class PeonTest {
     assertTrue("peon thirst should be 100 if parameter is greater than 100", peon.getThirst() == 100);
     peon.setThirst(-1);
     assertTrue("peon thirst should be 0 if parameter is less than 0", peon.getThirst() == 0);
+    peon.setThirst(50);
+    assertTrue("peon thirst should be parameter", peon.getThirst() == 50);
+    peon.setSpeed(-1);
+    assertTrue("peon speed should be 0 if parameter is less than 0", peon.getSpeed() == 0);
+    peon.setSpeed(0.10);
+    assertTrue("peon speed should be parameter", peon.getSpeed() == 0.10);
+
     peon.choppedATree();
     assertTrue("method should add 1 to the peon treesChopped", peon.getTreesChopped() == 1);
   }
