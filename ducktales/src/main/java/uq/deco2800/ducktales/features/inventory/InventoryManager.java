@@ -8,10 +8,13 @@ import javafx.scene.control.Label;
  */
 public class InventoryManager {
 
+    
     public int woodAmount = 0;
     public int oresAmount = 0;
     public int foodAmount = 0;
-
+    
+    
+    
     /** Variable for the UI elements */
     private Label woodLabel;
     private Label rockLabel;
@@ -19,7 +22,7 @@ public class InventoryManager {
     private Label oresLabel;
 
     public InventoryManager() {
-
+    
     }
 
 	public InventoryManager(Label woodLabel, Label foodLabel, Label oresLabel) {
@@ -27,6 +30,7 @@ public class InventoryManager {
 		this.woodLabel = woodLabel;
 		this.foodLabel = foodLabel;
 		this.oresLabel = oresLabel;
+		
 	}
 
     //define methods to retrieve and update amount of wood
