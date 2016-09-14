@@ -26,7 +26,7 @@ public class MissionHandler {
 	MissionProgressIndicator piMain = MissionProgressIndicator.getInstance();	
 		
 
-	private double numberOfCompletedMissions = 0.0;
+	public static double numberOfCompletedMissions = 0.0;
 	private static MissionHandler instance = new MissionHandler();
 	public static MissionHandler getInstance() {
 		return instance;		
@@ -84,11 +84,11 @@ public class MissionHandler {
 				numberOfCompletedMissions += 1;
 			}						
 		}
-		this.numberOfCompletedMissions = numberOfCompletedMissions;
+		MissionHandler.numberOfCompletedMissions = numberOfCompletedMissions;
 		piMain.setProgressPercentage(numberOfCompletedMissions/3);		
 	}
 	public double getNumberOfCompletedMissions(){
 		
-		return this.numberOfCompletedMissions;
+		return MissionHandler.numberOfCompletedMissions;
 	}
 }
