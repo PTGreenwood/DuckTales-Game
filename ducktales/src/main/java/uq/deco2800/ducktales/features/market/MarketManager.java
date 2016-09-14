@@ -36,10 +36,12 @@ public class MarketManager {
     private Button placeATradeBtn;
     
     /** Selected navigation button background colour **/ 
-    private static final String BTN_SELECTED = "#0C8F8F";
+    private static final String BTN_SELECTED = "#1b1464";
+    
+    private static final String BTN_BORDER_COLOUR = "white";
     
     /** Deselected navigation button background colour **/
-    private static final String BTN_NOT_SELECTED = "#73B06F";
+    private static final String BTN_NOT_SELECTED = "#1a1935";
     
     /** Enum corresponding to the navigation buttons**/
     public enum Vista {
@@ -47,7 +49,9 @@ public class MarketManager {
     }
     
     /**String for the background color**/
-    String backgroundColorString = "-fx-background-color:";
+    String backgroundColorString = "-fx-background-color: ";
+    
+    String btnColorString = "-fx-border-color: ";
     
     /** The enum of the currently selected navigation button.**/
     private Vista selectedVista = Vista.CURRENTTRADES;
@@ -135,19 +139,23 @@ public class MarketManager {
     	
     	switch (button) {
     		case CURRENTTRADES: currentTradesBtn.setStyle(
-    				backgroundColorString+BTN_NOT_SELECTED);
+    				backgroundColorString+BTN_NOT_SELECTED + "; " 
+    		+ btnColorString+BTN_BORDER_COLOUR);
     			break;
     			
     		case YOURTRADES: yourTradesBtn.setStyle(
-    				backgroundColorString+BTN_NOT_SELECTED);
+    				backgroundColorString+BTN_NOT_SELECTED + "; " 
+    			    		+ btnColorString+BTN_BORDER_COLOUR);
     			break;
     			
     		case YOUROFFERS: yourOffersBtn.setStyle(
-    				backgroundColorString+BTN_NOT_SELECTED);
+    				backgroundColorString+BTN_NOT_SELECTED + "; " 
+    			    		+ btnColorString+BTN_BORDER_COLOUR);
     			break;
     			
     		case PLACEATRADE: placeATradeBtn.setStyle(
-    				backgroundColorString+BTN_NOT_SELECTED);
+    				backgroundColorString+BTN_NOT_SELECTED + "; " 
+    			    		+ btnColorString+BTN_BORDER_COLOUR);
     			break;
     			
     		default: break;
@@ -166,22 +174,26 @@ public class MarketManager {
     	
 		switch (button) {
     		case CURRENTTRADES: currentTradesBtn.setStyle(
-    				backgroundColorString+BTN_SELECTED);
+    				backgroundColorString+BTN_SELECTED + "; " 
+    			    		+ btnColorString+BTN_BORDER_COLOUR);
     			selectedVista = Vista.CURRENTTRADES;
     			break;
     			
     		case YOURTRADES: yourTradesBtn.setStyle(
-    				backgroundColorString+BTN_SELECTED);
+    				backgroundColorString+BTN_SELECTED + "; " 
+    			    		+ btnColorString+BTN_BORDER_COLOUR);
     			selectedVista = Vista.YOURTRADES;
     			break;
     			
     		case YOUROFFERS: yourOffersBtn.setStyle(
-    				backgroundColorString+BTN_SELECTED);
+    				backgroundColorString+BTN_SELECTED + "; " 
+    			    		+ btnColorString+BTN_BORDER_COLOUR);
     			selectedVista = Vista.YOUROFFERS;
     			break;
     			
     		case PLACEATRADE: placeATradeBtn.setStyle(
-    				backgroundColorString+BTN_SELECTED);
+    				backgroundColorString+BTN_SELECTED + "; " 
+    			    		+ btnColorString+BTN_BORDER_COLOUR);
     			selectedVista = Vista.PLACEATRADE;
     			break;
     			
