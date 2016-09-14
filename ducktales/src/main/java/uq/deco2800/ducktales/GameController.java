@@ -22,6 +22,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import org.slf4j.Logger; 
+import org.slf4j.LoggerFactory; 
+
 /**
  * <p>
  *     This is the master controller for the actual game play, while
@@ -45,7 +48,7 @@ public class GameController implements Initializable{
     /** The main pane where everything is loaded into */
     @FXML
     private AnchorPane rootPane;
-
+    
     /** The main UI elements */
     @FXML
     private AnchorPane leftPane;
@@ -58,7 +61,10 @@ public class GameController implements Initializable{
 
     /** The Primary Manager of the game, that manages game GUI logic */
     private GameManager gameManager;
-
+    
+    /** implementing a logger, to catch ioe exception */
+    private static Logger logger = LoggerFactory.getLogger(GameController.class);
+    
     /** The Secondary Managers of the game, each managing an FXML loader */
     private MarketManager marketManager;
     
@@ -254,7 +260,7 @@ public class GameController implements Initializable{
 
         } catch (IOException e) {
             System.err.println("unable to load time display");
-            e.printStackTrace();
+            logger.info("Unable to load time display:" + e);
         }
 
     }
