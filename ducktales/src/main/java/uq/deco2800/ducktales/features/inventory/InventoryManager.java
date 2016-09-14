@@ -8,7 +8,7 @@ import javafx.scene.control.Label;
  */
 public class InventoryManager {
 
-    private int woodAmount = 0;
+    public static int woodAmount = 0;
     private int oresAmount = 0;
     private int foodAmount = 0;
 
