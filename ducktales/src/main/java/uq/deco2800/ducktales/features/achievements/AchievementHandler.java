@@ -1,6 +1,7 @@
 package uq.deco2800.ducktales.features.achievements;
 
 import uq.deco2800.ducktales.features.inventory.InventoryManager;
+import uq.deco2800.ducktales.features.missions.MissionHandler;
 
 /**
  * Contains all achievement methods.
@@ -8,7 +9,6 @@ import uq.deco2800.ducktales.features.inventory.InventoryManager;
  * 
  */
 public class AchievementHandler {
-	
 	private static AchievementHandler INSTANCE = new AchievementHandler();
 	
 	private int intAchieve;
@@ -49,22 +49,45 @@ public class AchievementHandler {
 	    this.intAchieve = this.intAchieve + 100;
     }
     
-    public void achievementHolder(){
-    	if(InventoryManager.woodAmount >= 100){
-			this.achieveVeasy();
-    	}
-    	if(InventoryManager.woodAmount == 1337){
-			this.achieveEasy();
-		}
-		if(InventoryManager.woodAmount>=10000){
-			this.achieveMedium();
-		}
-		if(InventoryManager.woodAmount>=25000){
-			this.achieveHard();
-		}
-		if(InventoryManager.woodAmount>=50000){
-			this.achieveVhard();
-		}
+   public void achievementHolder(){
+	   if(MissionHandler.numberOfCompletedMissions == 1)
+	    {
+	    this.achieveVeasy();
+	    }
+	    
+	    if(MissionHandler.numberOfCompletedMissions == 3)
+	    {
+	    this.achieveEasy();
+	    }
+	    if(MissionHandler.numberOfCompletedMissions == 5)
+	    {
+	    this.achieveMedium();
+	    }
+	    if(MissionHandler.numberOfCompletedMissions == 15)
+	    {
+	    this.achieveHard();
+	    }
+	    if(MissionHandler.numberOfCompletedMissions == 25)
+	    {
+	    this.achieveVhard();
+	    }
+	    
+    //	if(InventoryManager.getWoodAmount() >= 100){
+	//		this.achieveVeasy();
+    //	}
+    //	if(InventoryManager.woodAmount == 1337){
+	//		this.achieveEasy();
+	//	}
+	//	if(InventoryManager.woodAmount>=10000){
+	//		this.achieveMedium();
+	//	}
+	//	if(InventoryManager.woodAmount>=25000){
+	//		this.achieveHard();
+	//	}
+	//	if(InventoryManager.woodAmount>=50000){
+	//		this.achieveVhard();
+	//	}
+    
 		
 		
 		
