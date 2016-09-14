@@ -65,4 +65,9 @@ public abstract class Weather {
 		return this.getClass().getSimpleName().toLowerCase();
 	}
 	
+	@Override 
+	public int hashCode() {
+		return this.toString().hashCode();
+	}
+	
 }
