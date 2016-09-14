@@ -50,6 +50,28 @@ public class AchievementHandler {
     }
     
    public void achievementHolder(){
+	   if(MissionHandler.numberOfCompletedMissions == 1)
+	    {
+	    this.achieveVeasy();
+	    }
+	    
+	    if(MissionHandler.numberOfCompletedMissions == 3)
+	    {
+	    this.achieveEasy();
+	    }
+	    if(MissionHandler.numberOfCompletedMissions == 5)
+	    {
+	    this.achieveMedium();
+	    }
+	    if(MissionHandler.numberOfCompletedMissions == 15)
+	    {
+	    this.achieveHard();
+	    }
+	    if(MissionHandler.numberOfCompletedMissions == 25)
+	    {
+	    this.achieveVhard();
+	    }
+	    
     //	if(InventoryManager.getWoodAmount() >= 100){
 	//		this.achieveVeasy();
     //	}
@@ -65,27 +87,7 @@ public class AchievementHandler {
 	//	if(InventoryManager.woodAmount>=50000){
 	//		this.achieveVhard();
 	//	}
-    if(MissionHandler.numberOfCompletedMissions == 1)
-    {
-    this.achieveVeasy();
-    }
     
-    if(MissionHandler.numberOfCompletedMissions == 3)
-    {
-    this.achieveEasy();
-    }
-    if(MissionHandler.numberOfCompletedMissions == 5)
-    {
-    this.achieveMedium();
-    }
-    if(MissionHandler.numberOfCompletedMissions == 15)
-    {
-    this.achieveHard();
-    }
-    if(MissionHandler.numberOfCompletedMissions == 25)
-    {
-    this.achieveVhard();
-    }
 		
 		
 		
