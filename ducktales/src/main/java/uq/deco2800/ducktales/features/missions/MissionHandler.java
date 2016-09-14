@@ -5,6 +5,7 @@ import java.util.Arrays;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import uq.deco2800.ducktales.features.level.LevelHandler;
 
 /**
  * Handles in-game missions.
@@ -24,7 +25,7 @@ public class MissionHandler {
 	private Image checkedBox = new Image("/missions/boxChecked.png");
 	
 	MissionProgressIndicator piMain = MissionProgressIndicator.getInstance();	
-		
+	LevelHandler levelMain = LevelHandler.getInstance();
 
 	public static double numberOfCompletedMissions = 0.0;
 	private static MissionHandler instance = new MissionHandler();
@@ -86,7 +87,13 @@ public class MissionHandler {
 		}
 		MissionHandler.numberOfCompletedMissions = numberOfCompletedMissions;
 		piMain.setProgressPercentage(numberOfCompletedMissions/3);		
+		levelMain.setProgressBar(numberOfCompletedMissions/2);
 	}
+	
+	/**
+	 * get number of completed missions
+	 * @return numberOfcompletedMissions
+	 */
 	public double getNumberOfCompletedMissions(){
 		
 		return MissionHandler.numberOfCompletedMissions;

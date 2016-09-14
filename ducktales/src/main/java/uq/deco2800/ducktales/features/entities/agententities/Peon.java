@@ -192,9 +192,10 @@ public class Peon extends AgentEntity {
 
 	/**
 	 * Increase attributes that affects the job completion time
+	 *	- Strengh and Intelligence will increase according to its Job finished
 	 */
 	public void increaseAttribute() {
-
+		//need to be implemented
 	}
 
 	/**
@@ -302,16 +303,18 @@ public class Peon extends AgentEntity {
 
 	/**
 	 * function that auto decrease the Peon's hunger and thirst
-	 * every 3 minutes
+	 * 	- natural decrease hunger -= 2 and thirst -=3 every 3 hours
+	 *	- weather decrease
+	 *
 	 */
 	private void autoDecrease() {
 		++time;
-		if (time == 180) {
-			hunger -= 3;
-			thirst -= 2;
-			time = 0;
 
-			//System.out.println("Peon hunger: " + hunger + ". thirst: " + thirst);
+		//natural decrease
+		if (time == 180) {
+			hunger -= 2;
+			thirst -= 3;
+			time = 0;
 		}
 	}
 
@@ -320,6 +323,14 @@ public class Peon extends AgentEntity {
 	 * different weather will have different effect on peon's stats.
 	 */
 	private void weatherEffect() {
-
+		//need to be implemented
 	}
+
+	/**
+	 * function that check the status of Peon to add buff/debuff
+	 * 	- hunger/thirst threshold
+	 */
+	 private void checkPeonStatus() {
+		 //need to be implemented
+	 }
 }
