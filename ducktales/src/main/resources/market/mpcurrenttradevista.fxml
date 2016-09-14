@@ -12,9 +12,9 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane fx:id="vista1" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uq.deco2800.ducktales.features.market.CurrentTradeController">
+<StackPane id="currentTradeVistaPropId" fx:id="currentTradeVista" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uq.deco2800.ducktales.features.market.CurrentTradeController">
    <children>
-      <GridPane prefHeight="372.0" prefWidth="410.0" style="-fx-background-color: #0C8F8F;">
+      <GridPane fx:id="currentTradeVistaGridPane" prefHeight="372.0" prefWidth="410.0" style="-fx-background-color: #1b1464; -fx-border-color: white;">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -26,24 +26,24 @@
          </rowConstraints>
          <children>
             <Canvas height="108.0" width="204.0" />
-            <Pane prefHeight="63.0" prefWidth="140.0" style="-fx-background-color: #4ECC44;">
+            <Pane prefHeight="63.0" prefWidth="140.0" style="-fx-background-color: #1a1935; -fx-border-color: white;">
                <children>
-                  <TextField layoutX="83.0" layoutY="9.0" prefHeight="10.0" prefWidth="100.0" style="-fx-background-color: #4ECC44;" />
-                  <Label layoutX="86.0" layoutY="10.0" text="Item Name" textFill="#0c8f8f">
+                  <TextField layoutX="83.0" layoutY="9.0" prefHeight="10.0" prefWidth="100.0" style="-fx-background-color: #1a1935;" />
+                  <Label layoutX="86.0" layoutY="10.0" text="Item Name" textFill="WHITE">
                      <font>
-                        <Font name="Helvetica Neue Bold" size="18.0" />
+                        <Font name="Free Pixel Regular" size="18.0" />
                      </font>
                   </Label>
-                  <TextField layoutX="83.0" layoutY="36.0" prefHeight="4.0" prefWidth="100.0" style="-fx-background-color: #4ECC44;" />
-                  <Label layoutX="87.0" layoutY="39.0" text="Quantity" textFill="#0c8f8f">
+                  <TextField layoutX="83.0" layoutY="36.0" prefHeight="4.0" prefWidth="100.0" style="-fx-background-color: #1a1935;" />
+                  <Label layoutX="87.0" layoutY="39.0" text="Quantity" textFill="WHITE">
                      <font>
-                        <Font size="16.0" />
+                        <Font name="Free Pixel Regular" size="16.0" />
                      </font>
                   </Label>
-                  <TextField layoutX="83.0" layoutY="63.0" prefHeight="10.0" prefWidth="100.0" style="-fx-background-color: #4ECC44;" />
-                  <Label layoutX="88.0" layoutY="66.0" text="User" textFill="#0c8f8f">
+                  <TextField layoutX="83.0" layoutY="63.0" prefHeight="10.0" prefWidth="100.0" style="-fx-background-color: #1a1935;" />
+                  <Label layoutX="88.0" layoutY="66.0" text="User" textFill="WHITE">
                      <font>
-                        <Font size="16.0" />
+                        <Font name="Free Pixel Regular" size="16.0" />
                      </font>
                   </Label>
                   <Region layoutX="10.0" layoutY="13.0" prefHeight="74.0" prefWidth="72.0" style="-fx-background-color: #ffffffff;" />

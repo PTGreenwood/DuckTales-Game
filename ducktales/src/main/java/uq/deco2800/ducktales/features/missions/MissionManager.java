@@ -64,6 +64,7 @@ public class MissionManager {
 		missions.setVgap(10);
 		missions.add(createMission("1.Click level button :  ", 0), 0, 1);
 		missions.add(createMission("2.Click achievement button :  ", 1), 0, 2);		
+		missions.add(createMission("3.Click marketplace button :  ", 2), 0, 3);
 		
 		ScrollPane scroll = new ScrollPane(missions);
 		
@@ -109,49 +110,8 @@ public class MissionManager {
 		achievement.setPrefWidth(rightPane.getWidth());		
 		
 		rightPane.getChildren().add(achievement);
-	}
+	}	
 	
-	/**
-	 * Starts level.
-	 * 
-	 * @param event
-	 * @throws Exception
-	 */
-	
-	/*
-	@FXML
-	public void startlevel(ActionEvent event) throws Exception {
-		
-		removeAllPane();
-		URL location = getClass().getResource("/missions/level.fxml");
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(location);
-		level = loader.load();
-		
-		GridPane levelGrid = new GridPane();
-		
-		
-		Label levelDisplay = new Label("Level : " + levelMain.getLevel());		
-
-		Label pbExplanation = new Label("2 missions done ==> level up");
-		ProgressBar  pb1 = new ProgressBar();
-		pb1 = levelMain.getProgressIndicator();		
-		
-		levelGrid.setVgap(10);
-		levelGrid.setPadding(new Insets(10, 10, 10, 10));
-		levelGrid.add(levelDisplay, 0, 1);
-		levelGrid.add(pb1, 0, 2);
-		levelGrid.add(pbExplanation, 0, 3);
-		
-		setTitleOnTop(level,"Leveling System");
-		
-		level.setCenter(levelGrid);
-		level.setPrefHeight(rightPane.getHeight());
-		level.setPrefWidth(rightPane.getWidth());
-		
-		rightPane.getChildren().add(level);	
-	}
-	*/
 	private HBox createMission(String missionName, int missionNumber){
 		Label mission = new Label(missionName);
 		mission.setFont(new Font("Arial", 24));
@@ -179,12 +139,8 @@ public class MissionManager {
 		missionMain.MissionImageCompleted(missionNumber);
         //Increment percentage of progress indicator in achievement
         missionMain.countNumberOfCompletedMissions();
-        //Increment percentage of progress bar in leveling system
-        //LevelHandler.getInstance().setProgressBar(0.5);
-        //if progress bar is full then level up
-        //if(LevelHandler.getInstance().getBarProgress() == 1.0){
-        //	LevelHandler.getInstance().LevelUp();
-        //}
+            
+        
     }
 	
 	public void showMission() {

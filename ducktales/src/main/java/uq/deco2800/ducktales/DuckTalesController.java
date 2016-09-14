@@ -110,6 +110,7 @@ public class DuckTalesController implements Initializable {
 		loader.setLocation(location);
 		Parent root = loader.load(location.openStream());
 		Scene tutorialScene = new Scene(root, 1200, 600);
+		
 		Stage tutorialStage = new Stage();
 		tutorialStage.setTitle("Tutorial");
 		tutorialStage.setScene(tutorialScene);
@@ -125,12 +126,13 @@ public class DuckTalesController implements Initializable {
 	@FXML
 	private void missionAndAchievement(ActionEvent event) throws Exception {
 		
-		URL location = getClass().getResource("/missionAndAchievement.fxml");
+		URL location = getClass().getResource("/missions/missionAndAchievement.fxml");
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(location);
 		Parent root = loader.load(location.openStream());
 		
 		Scene missionAndAchievementScene = new Scene(root, 800, 400);
+		
 		
 		Stage missionAndAchievementStage = new Stage();
 		
