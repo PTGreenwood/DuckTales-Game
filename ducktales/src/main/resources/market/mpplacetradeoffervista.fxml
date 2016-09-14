@@ -14,39 +14,39 @@
    <children>
       <VBox prefHeight="350.0" prefWidth="550.0">
          <children>
-            <AnchorPane prefHeight="353.0" prefWidth="550.0" style="-fx-background-color: #0C8F8F;">
+            <AnchorPane prefHeight="353.0" prefWidth="550.0" style="-fx-background-color: #1b1464;">
                <children>
-                  <AnchorPane prefHeight="350.0" prefWidth="180.0" style="-fx-background-color: #406664;">
+                  <AnchorPane prefHeight="350.0" prefWidth="180.0" style="-fx-background-color: #1a1935;">
                      <children>
                         <Pane layoutX="18.0" layoutY="22.0" prefHeight="143.0" prefWidth="143.0" style="-fx-background-color: #FFFFFF;" />
-                        <TextField layoutX="15.0" layoutY="175.0" prefHeight="27.0" prefWidth="150.0" style="-fx-background-radius: 0px; -fx-background-color: #406664;">
+                        <TextField layoutX="15.0" layoutY="175.0" prefHeight="27.0" prefWidth="150.0" style="-fx-background-radius: 0px; -fx-background-color: #1a1935;">
                            <font>
                               <Font name="Helvetica Neue Bold" size="12.0" />
                            </font>
                         </TextField>
-                        <TextField layoutX="15.0" layoutY="202.0" prefHeight="27.0" prefWidth="150.0" style="-fx-background-radius: 0px; -fx-background-color: #406664;">
+                        <TextField layoutX="15.0" layoutY="202.0" prefHeight="27.0" prefWidth="150.0" style="-fx-background-radius: 0px; -fx-background-color: #1a1935;">
                            <font>
                               <Font name="Helvetica Neue Bold" size="12.0" />
                            </font>
                         </TextField>
-                        <TextField layoutX="15.0" layoutY="229.0" prefHeight="27.0" prefWidth="150.0" style="-fx-background-radius: 0px; -fx-background-color: #406664;">
+                        <TextField layoutX="15.0" layoutY="229.0" prefHeight="27.0" prefWidth="150.0" style="-fx-background-radius: 0px; -fx-background-color: #1a1935;">
                            <font>
                               <Font name="Helvetica Neue Bold" size="12.0" />
                            </font>
                         </TextField>
                         <Label layoutX="23.0" layoutY="179.0" text="Item Name" textFill="WHITE">
                            <font>
-                              <Font name="System Bold" size="14.0" />
+                              <Font name="Free Pixel Regular" size="16.0" />
                            </font>
                         </Label>
                         <Label layoutX="23.0" layoutY="206.0" text="Quantity" textFill="WHITE">
                            <font>
-                              <Font name="System Bold" size="14.0" />
+                              <Font name="Free Pixel Regular" size="16.0" />
                            </font>
                         </Label>
                         <Label layoutX="23.0" layoutY="232.0" text="User" textFill="WHITE">
                            <font>
-                              <Font name="System Bold" size="14.0" />
+                              <Font name="Free Pixel Regular" size="16.0" />
                            </font>
                         </Label>
                      </children>
@@ -56,17 +56,17 @@
                   <ComboBox layoutX="191.0" layoutY="61.0" prefHeight="27.0" prefWidth="180.0" style="-fx-background-color: #EDD75A;" />
                   <Label layoutX="191.0" layoutY="33.0" text="Item Name" textFill="WHITE">
                      <font>
-                        <Font name="Helvetica Neue Bold" size="20.0" />
+                        <Font name="Free Pixel Regular" size="20.0" />
                      </font>
                   </Label>
                   <Label layoutX="191.0" layoutY="109.0" text="Quantity" textFill="WHITE">
                      <font>
-                        <Font name="Helvetica Neue Bold" size="20.0" />
+                        <Font name="Free Pixel Regular" size="20.0" />
                      </font>
                   </Label>
-                  <Button layoutX="192.0" layoutY="196.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="180.0" style="-fx-background-color: #73B06F; -fx-background-radius: 0px;" styleClass="menu" text="Place Offer" textFill="#edd75a">
+                  <Button layoutX="192.0" layoutY="196.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="180.0" style="-fx-background-color: #1a1935; -fx-background-radius: 0px; -fx-border-color: white;" styleClass="menu" text="Place Offer" textFill="WHITE">
                      <font>
-                        <Font name="Helvetica Neue Bold" size="20.0" />
+                        <Font name="Free Pixel Regular" size="20.0" />
                      </font>
                   </Button>
                </children>
