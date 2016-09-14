@@ -75,21 +75,125 @@ public class BuildingTest {
 		assertTrue("Wrong resources to build", entity3.resourcesBuildStone() == 2);
 		assertTrue("Wrong time", entity2.timeToBuild() == 2);
 		
-		assertTrue("Correct Health", entity3.GetHealth() == 1000);
+		assertTrue("Correct Health", entity3.getHealth() == 1000);
 		
 		// Check update health
-		entity3.ChangeHealth(10);
-		assertTrue("Correct Health", entity3.GetHealth() == 10);
-		entity3.ChangeHealth(0);
-		assertTrue("Correct Health", entity3.GetHealth() == 10);
-		entity3.ChangeHealth(978000);
-		assertTrue("Correct Health", entity3.GetHealth() == 978000);
-		entity3.ChangeHealth(-10);
-		assertTrue("Correct Health", entity3.GetHealth() == 978000);
+		entity3.changeHealth(10);
+		assertTrue("Correct Health", entity3.getHealth() == 10);
+		entity3.changeHealth(0);
+		assertTrue("Correct Health", entity3.getHealth() == 10);
+		entity3.changeHealth(978000);
+		assertTrue("Correct Health", entity3.getHealth() == 978000);
+		entity3.changeHealth(-10);
+		assertTrue("Correct Health", entity3.getHealth() == 978000);
 		
 		// Test getx/gety
 		assertTrue("Correct xLength", entity3.getXLength() == 2);
 		assertTrue("Correct xLength", entity3.getYLength() == 2);
+	}
+	
+	@Test
+	public void boxTest(){
+		Box entity1 = new Box(2, 3);
+		Box entity2 = new Box(4, 5);
+		Box entity3 = new Box(1, 1);
+		
+		List<Entity> entities = new ArrayList<Entity>();
+		entities.add(entity1);
+		entities.add(entity2);
+		entities.add(entity3);
+		
+		// Check entity functionality still works
+		Collections.sort(entities);
+		
+		assertTrue("Entity 0 incorrect!", entities.get(0).equals(entity3));
+		assertTrue("Entity 1 incorrect!", entities.get(1).equals(entity1));
+		assertTrue("Entity 2 incorrect!", entities.get(2).equals(entity2));
+		
+		// Check correct resources and time
+		assertTrue("Wrong returned resources", entity1.resourcesReturnWood() == (1));
+		assertTrue("Wrong resources to build", entity3.resourcesBuildStone() == 2);
+		assertTrue("Wrong time", entity2.timeToBuild() == 4);
+		
+		// Check correct production type and amount
+		assertTrue("Wrong production type", entity1.resourcesProductionType() == production.NULL);
+		assertTrue("Wrong production amount", entity3.resourcesProductionAmount() == 0);
+		
+		// Check if nothing has changed after call tick()
+		entity1.tick();
+		entity2.tick();
+		entity3.tick();
+		assertTrue("Wrong returned resources", entity1.resourcesReturnWood() == (1));
+		assertTrue("Wrong resources to build", entity3.resourcesBuildStone() == 2);
+		assertTrue("Wrong time", entity2.timeToBuild() == 4);
+		
+		assertTrue("Correct Health", entity3.getHealth() == 400);
+		
+		// Check update health
+		entity3.changeHealth(10);
+		assertTrue("Correct Health", entity3.getHealth() == 10);
+		entity3.changeHealth(0);
+		assertTrue("Correct Health", entity3.getHealth() == 10);
+		entity3.changeHealth(978000);
+		assertTrue("Correct Health", entity3.getHealth() == 978000);
+		entity3.changeHealth(-10);
+		assertTrue("Correct Health", entity3.getHealth() == 978000);
+		
+		// Test getx/gety
+		assertTrue("Correct xLength", entity3.getXLength() == 1);
+		assertTrue("Correct xLength", entity3.getYLength() == 1);
+	}
+	
+	@Test
+	public void longBoxTest(){
+		LongBox entity1 = new LongBox(2, 3);
+		LongBox entity2 = new LongBox(4, 5);
+		LongBox entity3 = new LongBox(1, 1);
+		
+		List<Entity> entities = new ArrayList<Entity>();
+		entities.add(entity1);
+		entities.add(entity2);
+		entities.add(entity3);
+		
+		// Check entity functionality still works
+		Collections.sort(entities);
+		
+		assertTrue("Entity 0 incorrect!", entities.get(0).equals(entity3));
+		assertTrue("Entity 1 incorrect!", entities.get(1).equals(entity1));
+		assertTrue("Entity 2 incorrect!", entities.get(2).equals(entity2));
+		
+		// Check correct resources and time
+		assertTrue("Wrong returned resources", entity1.resourcesReturnWood() == (1));
+		assertTrue("Wrong resources to build", entity3.resourcesBuildStone() == 2);
+		assertTrue("Wrong time", entity2.timeToBuild() == 2);
+		
+		// Check correct production type and amount
+		assertTrue("Wrong production type", entity1.resourcesProductionType() == production.NULL);
+		assertTrue("Wrong production amount", entity3.resourcesProductionAmount() == 0);
+		
+		// Check if nothing has changed after call tick()
+		entity1.tick();
+		entity2.tick();
+		entity3.tick();
+		assertTrue("Wrong returned resources", entity1.resourcesReturnWood() == (1));
+		assertTrue("Wrong resources to build", entity3.resourcesBuildStone() == 2);
+		assertTrue("Wrong time", entity2.timeToBuild() == 2);
+		
+		assertTrue("Correct Health", entity3.getHealth() == 600);
+		
+		// Check update health
+		entity3.changeHealth(10);
+		assertTrue("Correct Health", entity3.getHealth() == 10);
+		entity3.changeHealth(0);
+		assertTrue("Correct Health", entity3.getHealth() == 10);
+		entity3.changeHealth(978000);
+		assertTrue("Correct Health", entity3.getHealth() == 978000);
+		entity3.changeHealth(-10);
+		assertTrue("Correct Health", entity3.getHealth() == 978000);
+		
+		// Test getx/gety
+		assertTrue("Correct xLength", entity3.getXLength() == 2);
+		assertTrue("Correct xLength", entity3.getYLength() == 1);
 	}
 	
 	@Test
@@ -126,6 +230,18 @@ public class BuildingTest {
 		assertTrue("Wrong returned resources", entity1.resourcesReturnWood() == 5);
 		assertTrue("Wrong resources to build", entity3.resourcesBuildStone() == 4);
 		assertTrue("Wrong time", entity2.timeToBuild() == 9);
+		
+		assertTrue("Correct Health", entity3.getHealth() == 900);
+		
+		// Check update health
+		entity3.changeHealth(10);
+		assertTrue("Correct Health", entity3.getHealth() == 10);
+		entity3.changeHealth(0);
+		assertTrue("Correct Health", entity3.getHealth() == 10);
+		entity3.changeHealth(978000);
+		assertTrue("Correct Health", entity3.getHealth() == 978000);
+		entity3.changeHealth(-10);
+		assertTrue("Correct Health", entity3.getHealth() == 978000);
 	}
 	
 	@Test
@@ -162,6 +278,18 @@ public class BuildingTest {
 		assertTrue("Wrong returned resources", entity1.resourcesReturnStone() == 2);
 		assertTrue("Wrong resources to build", entity3.resourcesBuildStone() == 4);
 		assertTrue("Wrong time", entity2.timeToBuild() == 3);
+		
+		assertTrue("Correct Health", entity3.getHealth() == 1400);
+		
+		// Check update health
+		entity3.changeHealth(10);
+		assertTrue("Correct Health", entity3.getHealth() == 10);
+		entity3.changeHealth(0);
+		assertTrue("Correct Health", entity3.getHealth() == 10);
+		entity3.changeHealth(978000);
+		assertTrue("Correct Health", entity3.getHealth() == 978000);
+		entity3.changeHealth(-10);
+		assertTrue("Correct Health", entity3.getHealth() == 978000);
 	}
 	
 	@Test
@@ -198,6 +326,18 @@ public class BuildingTest {
 		assertTrue("Wrong returned resources", entity1.resourcesReturnWood() == 5);
 		assertTrue("Wrong resources to build", entity3.resourcesBuildWood() == 10);
 		assertTrue("Wrong time", entity2.timeToBuild() == 5);
+		
+		assertTrue("Correct Health", entity3.getHealth() == 900);
+		
+		// Check update health
+		entity3.changeHealth(10);
+		assertTrue("Correct Health", entity3.getHealth() == 10);
+		entity3.changeHealth(0);
+		assertTrue("Correct Health", entity3.getHealth() == 10);
+		entity3.changeHealth(978000);
+		assertTrue("Correct Health", entity3.getHealth() == 978000);
+		entity3.changeHealth(-10);
+		assertTrue("Correct Health", entity3.getHealth() == 978000);
 	}
 	
 	@Test
@@ -234,6 +374,18 @@ public class BuildingTest {
 		assertTrue(String.valueOf(entity1.resourcesReturnStone()), entity1.resourcesReturnStone() == 2);
 		assertTrue("Wrong resources to build", entity3.resourcesBuildStone() == 4);
 		assertTrue("Wrong time", entity2.timeToBuild() == 4);
+		
+		assertTrue("Correct Health", entity3.getHealth() == 850);
+		
+		// Check update health
+		entity3.changeHealth(10);
+		assertTrue("Correct Health", entity3.getHealth() == 10);
+		entity3.changeHealth(0);
+		assertTrue("Correct Health", entity3.getHealth() == 10);
+		entity3.changeHealth(978000);
+		assertTrue("Correct Health", entity3.getHealth() == 978000);
+		entity3.changeHealth(-10);
+		assertTrue("Correct Health", entity3.getHealth() == 978000);
 	}
 	
 	@Test
@@ -270,6 +422,18 @@ public class BuildingTest {
 		assertTrue("Wrong returned resources", entity1.resourcesReturnStone() == 1);
 		assertTrue("Wrong resources to build", entity3.resourcesBuildWood() == 4);
 		assertTrue("Wrong time", entity2.timeToBuild() == 2);
+		
+		assertTrue("Correct Health", entity3.getHealth() == 500);
+		
+		// Check update health
+		entity3.changeHealth(10);
+		assertTrue("Correct Health", entity3.getHealth() == 10);
+		entity3.changeHealth(0);
+		assertTrue("Correct Health", entity3.getHealth() == 10);
+		entity3.changeHealth(978000);
+		assertTrue("Correct Health", entity3.getHealth() == 978000);
+		entity3.changeHealth(-10);
+		assertTrue("Correct Health", entity3.getHealth() == 978000);
 	}
 	
 	@Test
@@ -306,6 +470,18 @@ public class BuildingTest {
 		assertTrue("Wrong returned resources", entity1.resourcesReturnWood() == 5);
 		assertTrue("Wrong resources to build", entity3.resourcesBuildStone() == 8);
 		assertTrue("Wrong time", entity2.timeToBuild() == 9);
+		
+		assertTrue("Correct Health", entity3.getHealth() == 900);
+		
+		// Check update health
+		entity3.changeHealth(10);
+		assertTrue("Correct Health", entity3.getHealth() == 10);
+		entity3.changeHealth(0);
+		assertTrue("Correct Health", entity3.getHealth() == 10);
+		entity3.changeHealth(978000);
+		assertTrue("Correct Health", entity3.getHealth() == 978000);
+		entity3.changeHealth(-10);
+		assertTrue("Correct Health", entity3.getHealth() == 978000);
 	}
 	
 	@Test
@@ -342,6 +518,18 @@ public class BuildingTest {
 		assertTrue("Wrong returned resources", entity1.resourcesReturnStone() == 5);
 		assertTrue("Wrong resources to build", entity3.resourcesBuildStone() == 10);
 		assertTrue("Wrong time", entity2.timeToBuild() == 3);
+		
+		assertTrue("Correct Health", entity3.getHealth() == 1000);
+		
+		// Check update health
+		entity3.changeHealth(10);
+		assertTrue("Correct Health", entity3.getHealth() == 10);
+		entity3.changeHealth(0);
+		assertTrue("Correct Health", entity3.getHealth() == 10);
+		entity3.changeHealth(978000);
+		assertTrue("Correct Health", entity3.getHealth() == 978000);
+		entity3.changeHealth(-10);
+		assertTrue("Correct Health", entity3.getHealth() == 978000);
 	}
 	
 	@Test
@@ -378,6 +566,18 @@ public class BuildingTest {
 		assertTrue("Wrong returned resources", entity1.resourcesReturnWood() == 4);
 		assertTrue("Wrong resources to build", entity3.resourcesBuildWood() == 8);
 		assertTrue("Wrong time", entity2.timeToBuild() == 5);
+		
+		assertTrue("Correct Health", entity3.getHealth() == 1800);
+		
+		// Check update health
+		entity3.changeHealth(10);
+		assertTrue("Correct Health", entity3.getHealth() == 10);
+		entity3.changeHealth(0);
+		assertTrue("Correct Health", entity3.getHealth() == 10);
+		entity3.changeHealth(978000);
+		assertTrue("Correct Health", entity3.getHealth() == 978000);
+		entity3.changeHealth(-10);
+		assertTrue("Correct Health", entity3.getHealth() == 978000);
 	}
 	
 	@Test
@@ -418,6 +618,18 @@ public class BuildingTest {
 		// Test getx/gety
 		assertTrue("Correct xLength", entity3.getXLength() == 5);
 		assertTrue("Correct xLength", entity3.getYLength() == 5);
+		
+		assertTrue("Correct Health", entity3.getHealth() == 1300);
+		
+		// Check update health
+		entity3.changeHealth(10);
+		assertTrue("Correct Health", entity3.getHealth() == 10);
+		entity3.changeHealth(0);
+		assertTrue("Correct Health", entity3.getHealth() == 10);
+		entity3.changeHealth(978000);
+		assertTrue("Correct Health", entity3.getHealth() == 978000);
+		entity3.changeHealth(-10);
+		assertTrue("Correct Health", entity3.getHealth() == 978000);
 	}
 	
 	@Test
@@ -454,6 +666,18 @@ public class BuildingTest {
 		assertTrue("Wrong returned resources", entity1.resourcesReturnStone() == 2);
 		assertTrue("Wrong resources to build", entity3.resourcesBuildStone() == 4);
 		assertTrue("Wrong time", entity2.timeToBuild() == 7);
+		
+		assertTrue("Correct Health", entity3.getHealth() == 750);
+		
+		// Check update health
+		entity3.changeHealth(10);
+		assertTrue("Correct Health", entity3.getHealth() == 10);
+		entity3.changeHealth(0);
+		assertTrue("Correct Health", entity3.getHealth() == 10);
+		entity3.changeHealth(978000);
+		assertTrue("Correct Health", entity3.getHealth() == 978000);
+		entity3.changeHealth(-10);
+		assertTrue("Correct Health", entity3.getHealth() == 978000);
 	}
 	
 	@Test
@@ -490,6 +714,18 @@ public class BuildingTest {
 		assertTrue("Wrong returned resources", entity1.resourcesReturnStone() == 4);
 		assertTrue("Wrong resources to build", entity3.resourcesBuildStone() == 8);
 		assertTrue("Wrong time", entity2.timeToBuild() == 9);
+		
+		assertTrue("Correct Health", entity3.getHealth() == 1900);
+		
+		// Check update health
+		entity3.changeHealth(10);
+		assertTrue("Correct Health", entity3.getHealth() == 10);
+		entity3.changeHealth(0);
+		assertTrue("Correct Health", entity3.getHealth() == 10);
+		entity3.changeHealth(978000);
+		assertTrue("Correct Health", entity3.getHealth() == 978000);
+		entity3.changeHealth(-10);
+		assertTrue("Correct Health", entity3.getHealth() == 978000);
 	}
 	
 	@Test
@@ -526,6 +762,18 @@ public class BuildingTest {
 		assertTrue("Wrong returned resources", entity1.resourcesReturnStone() == 3);
 		assertTrue("Wrong resources to build", entity3.resourcesBuildStone() == 6);
 		assertTrue("Wrong time", entity2.timeToBuild() == 8);
+		
+		assertTrue("Correct Health", entity3.getHealth() == 1400);
+		
+		// Check update health
+		entity3.changeHealth(10);
+		assertTrue("Correct Health", entity3.getHealth() == 10);
+		entity3.changeHealth(0);
+		assertTrue("Correct Health", entity3.getHealth() == 10);
+		entity3.changeHealth(978000);
+		assertTrue("Correct Health", entity3.getHealth() == 978000);
+		entity3.changeHealth(-10);
+		assertTrue("Correct Health", entity3.getHealth() == 978000);
 	}
 	
 	@Test
@@ -562,6 +810,18 @@ public class BuildingTest {
 		assertTrue("Wrong returned resources", entity1.resourcesReturnStone() == 1);
 		assertTrue("Wrong resources to build", entity3.resourcesBuildStone() == 2);
 		assertTrue("Wrong time", entity2.timeToBuild() == 4);
+		
+		assertTrue("Correct Health", entity3.getHealth() == 800);
+		
+		// Check update health
+		entity3.changeHealth(10);
+		assertTrue("Correct Health", entity3.getHealth() == 10);
+		entity3.changeHealth(0);
+		assertTrue("Correct Health", entity3.getHealth() == 10);
+		entity3.changeHealth(978000);
+		assertTrue("Correct Health", entity3.getHealth() == 978000);
+		entity3.changeHealth(-10);
+		assertTrue("Correct Health", entity3.getHealth() == 978000);
 	}
 	
 	@Test
@@ -598,6 +858,18 @@ public class BuildingTest {
 		assertTrue("Wrong returned resources", entity1.resourcesReturnStone() == 4);
 		assertTrue("Wrong resources to build", entity3.resourcesBuildStone() == 8);
 		assertTrue("Wrong time", entity2.timeToBuild() == 5);
+		
+		assertTrue("Correct Health", entity3.getHealth() == 1300);
+		
+		// Check update health
+		entity3.changeHealth(10);
+		assertTrue("Correct Health", entity3.getHealth() == 10);
+		entity3.changeHealth(0);
+		assertTrue("Correct Health", entity3.getHealth() == 10);
+		entity3.changeHealth(978000);
+		assertTrue("Correct Health", entity3.getHealth() == 978000);
+		entity3.changeHealth(-10);
+		assertTrue("Correct Health", entity3.getHealth() == 978000);
 	}
 	
 //	@Test
@@ -640,7 +912,18 @@ public class BuildingTest {
 		assertTrue("Entity 1 incorrect!", entities.get(0).equals(background));
 		assertTrue("Entity 2 incorrect!", entities.get(1).equals(foreground));
 		
+		assertTrue("Correct Health", ((LongBox) (foreground)).getHealth() == 600);
+		assertTrue("Correct Health", ((LongBox) background).getHealth() == 600);
 		
+		// Check update health
+		((LongBox) (foreground)).changeHealth(10);
+		assertTrue("Correct Health", ((LongBox) (foreground)).getHealth() == 10);
+		((LongBox) background).changeHealth(0);
+		assertTrue("Correct Health", ((LongBox) background).getHealth() == 600);
+		((LongBox) (foreground)).changeHealth(978000);
+		assertTrue("Correct Health", ((LongBox) (foreground)).getHealth() == 978000);
+		((LongBox) background).changeHealth(-10);
+		assertTrue("Correct Health", ((LongBox) background).getHealth() == 600);
 	}
 
 	
@@ -660,6 +943,19 @@ public class BuildingTest {
 		
 		assertTrue("Entity 1 incorrect!", entities.get(0).equals(background));
 		assertTrue("Entity 2 incorrect!", entities.get(1).equals(foreground));	
+		
+		assertTrue("Correct Health", ((LongBox) (foreground)).getHealth() == 600);
+		assertTrue("Correct Health", ((LongBox) background).getHealth() == 600);
+		
+		// Check update health
+		((LongBox) (foreground)).changeHealth(10);
+		assertTrue("Correct Health", ((LongBox) (foreground)).getHealth() == 10);
+		((LongBox) background).changeHealth(0);
+		assertTrue("Correct Health", ((LongBox) background).getHealth() == 600);
+		((LongBox) (foreground)).changeHealth(978000);
+		assertTrue("Correct Health", ((LongBox) (foreground)).getHealth() == 978000);
+		((LongBox) background).changeHealth(-10);
+		assertTrue("Correct Health", ((LongBox) background).getHealth() == 600);
 	}
 	
 	@Test

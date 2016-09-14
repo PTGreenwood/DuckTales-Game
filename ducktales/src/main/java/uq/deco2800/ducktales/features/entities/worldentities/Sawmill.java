@@ -3,7 +3,8 @@ package uq.deco2800.ducktales.features.entities.worldentities;
 import uq.deco2800.ducktales.resources.ResourceType;
 
 /**
- * A Sawmill.
+ * A Sawmill. Class containing all properties and specifications of a 
+ * sawmill.
  * 
  * @author Gabrielle Hodge, 43590526 
  *
@@ -13,6 +14,10 @@ public class Sawmill extends Building {
 	// BuildingMenuSprite type
 	private static final ResourceType TYPE = ResourceType.SAWMILL;
 	
+	// Building health - starting value
+	private int health = 1400;
+	
+	// Sawmill size
 	private static final int X_LENGTH = 5;
 	private static final int Y_LENGTH = 5;
 
@@ -24,21 +29,28 @@ public class Sawmill extends Building {
 	 */
 	public Sawmill(double x, double y) {
 		super(x, y, X_LENGTH, Y_LENGTH, TYPE);
+		health = 1400;
 	}
 
 	/**
 	 * Update the WorldEntity properties with those of a sawmill.
 	 */
 	protected void specifications() {
-		Building.STONERESOURCES = 4;
-		Building.WOODRESOURCES = 8;
-		Building.TIME = 3;
-		Building.PRODUCTIONTYPE = production.WOOD;
-		Building.PRODUCTIONAMOUNT = 5;
+		specifications(4, 8, 3, production.WOOD, 5, health);
 	}
 	
 	/**
-	 * Method to update bakery at each discrete simulation step.
+	 * Update the 'health' of the sawmill. Requires an integer value of 
+	 * the new health to be passed.
+	 * 
+	 * @param NewValue, new health of the building
+	 */
+	protected void changeHealthBuilding(int newValue){
+			health = newValue;
+	}
+	
+	/**
+	 * Method to update a sawmill at each discrete simulation step.
 	 * 
 	 * Note sure if any implementation will be used. To be determined later
 	 * May implement for only some of the classes (hence left in the individual 

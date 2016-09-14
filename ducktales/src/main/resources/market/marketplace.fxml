@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="marketplacePane" prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uq.deco2800.ducktales.features.market.MarketManager">
+<VBox id="marketplacePanePropId" fx:id="marketplacePane" prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uq.deco2800.ducktales.features.market.MarketManager">
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <children>
@@ -41,7 +41,7 @@
                </font>
             </Button>
             <AnchorPane layoutX="206.0" prefHeight="400.0" prefWidth="564.0" style="-fx-background-color: #85C1BE;" />
-            <StackPane fx:id="vistaHolder" layoutX="208.0" layoutY="15.0" prefHeight="372.0" prefWidth="550.0" style="-fx-background-color: #0C8F8F;" />
+            <StackPane id="vistaHolderPropId" fx:id="vistaHolder" layoutX="208.0" layoutY="15.0" prefHeight="372.0" prefWidth="550.0" style="-fx-background-color: #0C8F8F;" />
       </children>
     </AnchorPane>
   </children>

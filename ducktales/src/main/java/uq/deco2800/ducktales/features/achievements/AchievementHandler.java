@@ -8,6 +8,7 @@ import uq.deco2800.ducktales.features.inventory.InventoryManager;
  * 
  */
 public class AchievementHandler {
+	
 	private static AchievementHandler INSTANCE = new AchievementHandler();
 	
 	private int intAchieve;

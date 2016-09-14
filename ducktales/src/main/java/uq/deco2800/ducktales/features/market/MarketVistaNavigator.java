@@ -52,17 +52,19 @@ public class MarketVistaNavigator {
      * @param fxml the fxml file to be loaded.
      */
     public static void loadVista(String fxml) {
-        try {
+    	
+    	System.err.println("loadVista fxml input is " + fxml);
+    		
+		try {
             mainController.setVista(
                 FXMLLoader.load(
-                	MarketVistaNavigator.class.getResource(
-                        fxml
+                		MarketVistaNavigator.class.getResource(fxml)
                     )
-                )
-            );
+                );
         } catch (IOException e) {
             e.printStackTrace();
         }
+        
     }
 
 }

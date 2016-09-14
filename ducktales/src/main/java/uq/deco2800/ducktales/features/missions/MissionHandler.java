@@ -25,6 +25,8 @@ public class MissionHandler {
 	
 	MissionProgressIndicator piMain = MissionProgressIndicator.getInstance();	
 		
+
+	private double numberOfCompletedMissions = 0.0;
 	private static MissionHandler instance = new MissionHandler();
 	public static MissionHandler getInstance() {
 		return instance;		
@@ -75,12 +77,18 @@ public class MissionHandler {
 	 * Check number of missions completed
 	 */	
 	public void countNumberOfCompletedMissions(){
+
 		double numberOfCompletedMissions = 0.0;
 		for(int i =0; i<4; i++){
 			if(this.countCompletedMissions[i] == 1){
 				numberOfCompletedMissions += 1;
 			}						
 		}
-		piMain.setProgressPercentage(numberOfCompletedMissions/2);		
+		this.numberOfCompletedMissions = numberOfCompletedMissions;
+		piMain.setProgressPercentage(numberOfCompletedMissions/3);		
+	}
+	public double getNumberOfCompletedMissions(){
+		
+		return this.numberOfCompletedMissions;
 	}
 }
