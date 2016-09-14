@@ -292,7 +292,7 @@ public class GameController implements Initializable{
 
         } catch (IOException e) {
             System.err.println("Unable to load Marketplace");
-            e.printStackTrace();
+            logger.info("Unable to load Marketplace:" + e);
         }
     }
     
@@ -321,7 +321,7 @@ public class GameController implements Initializable{
 
         } catch (IOException e) {
             System.err.println("Unable to load Missions");
-            e.printStackTrace();
+            logger.info("Unable to load Missions:" + e);
         }
     }
     
@@ -349,7 +349,7 @@ public class GameController implements Initializable{
 
         } catch (IOException e) {
             System.err.println("Unable to load Level");
-            e.printStackTrace();
+            logger.info("Unable to load level:" + e);
         }
     }
     
@@ -376,7 +376,7 @@ public class GameController implements Initializable{
 
         } catch (IOException e) {
             System.err.println("Unable to load Achievement");
-            e.printStackTrace();
+            logger.info("Unable to load Achievment:" + e);;
         }
     }
       
