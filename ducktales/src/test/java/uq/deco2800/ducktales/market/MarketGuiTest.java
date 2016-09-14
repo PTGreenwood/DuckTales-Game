@@ -19,12 +19,19 @@ import javafx.stage.Stage;
 import uq.deco2800.ducktales.features.market.MarketManager;
 import uq.deco2800.ducktales.features.market.MarketVistaNavigator;
 
+/**
+ * Conducts tests on the Graphics User Interface for the marketplace.
+ * @author Mark Belonogoff
+ *
+ */
 public class MarketGuiTest extends GuiTest {
 	
 	MarketManager marketManager;
 	Parent parent = null;
 	
-	
+	/**
+	 * Set up for TestFX.
+	 */
 	@Override
 	public Parent getRootNode() {
 		
@@ -56,6 +63,10 @@ public class MarketGuiTest extends GuiTest {
 		
 	}
 
+	/**
+	 * Checks that when a user Clicks the Current Trades button that
+	 * the correct view appears.
+	 */
     @Test 
     public void testSelectCurrentTrades() {
     	
