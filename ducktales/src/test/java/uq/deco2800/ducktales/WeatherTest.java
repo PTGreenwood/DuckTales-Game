@@ -36,6 +36,12 @@ public class WeatherTest {
 		Assert.assertEquals(false, storm.isLand());
 		Assert.assertEquals(true, storm.isWater());
 		Assert.assertEquals(false, storm.isAmphibious());
+		
+		type = StormType.LIGHTNING;
+		storm = new Storm(type);
+		Assert.assertEquals(true, storm.isLand());
+		Assert.assertEquals(true, storm.isWater());
+		Assert.assertEquals(true, storm.isAmphibious());
 	}
 
 	/**
@@ -44,14 +50,32 @@ public class WeatherTest {
 	 */
 	@Test
 	public void testWeatherChance() throws InvalidWeatherChanceException {		
-		Weather rain = new Rain();
+		Rain rain = new Rain();
 		WeatherChance wc = new WeatherChance(rain, 50);
 		Assert.assertEquals("50% of rain", wc.toString());		
+		
+		Fire fire = new Fire();
+		wc = new WeatherChance(fire, 50);
+		Assert.assertEquals("50% of fire", wc.toString());		
+		
+		StormType type = StormType.WHIRLPOOL;
+		Storm storm = new Storm(type);
+		wc = new WeatherChance(storm, 50);		
+		Assert.assertEquals("50% of whirlpool", wc.toString());		
+		
+		type = StormType.LIGHTNING;
+		storm = new Storm(type);
+		wc = new WeatherChance(storm, 50);		
+		Assert.assertEquals("50% of lightning", wc.toString());
+		
+		wc = new WeatherChance(storm, 30);
+		System.out.println(wc.toString());
+		Assert.assertEquals("30% of lightning", wc.toString());
 	}
 	
 	@Test
 	public void testWeatherEvent() throws InvalidWeatherChanceException {
-		WeatherEvent weatherEvent = new WeatherEvent();
+		WeatherEvents weatherEvent = new WeatherEvents();
 		WeatherChance rainChance = new WeatherChance(new Rain(),50);
 		WeatherChance fireChance = new WeatherChance(new Fire(),30);
 		weatherEvent.add(rainChance);
@@ -63,12 +87,12 @@ public class WeatherTest {
 		Weather fire = new Fire();
 		Weather rain = new Rain();		
 		Weather rain2 = new Rain();		
-		WeatherEvent we = new WeatherEvent();		
+		WeatherEvents we = new WeatherEvents();		
 	}
 	
 	@Test
 	public void testList() throws InvalidWeatherChanceException {
-		WeatherEvent weatherEvent = new WeatherEvent();
+		WeatherEvents weatherEvent = new WeatherEvents();
 		HashSet<WeatherChance> wc = new HashSet<>();
 		Assert.assertEquals(wc, weatherEvent.getWeatherEvents());
 		wc.add(new WeatherChance(new Rain(),50));

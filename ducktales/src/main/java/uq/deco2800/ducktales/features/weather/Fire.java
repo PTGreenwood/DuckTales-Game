@@ -12,6 +12,7 @@ public class Fire extends Weather {
 	}
 	
 	//Fire occurs on land
+	@Override
 	public boolean isLand() {
 		return true;
 	}	

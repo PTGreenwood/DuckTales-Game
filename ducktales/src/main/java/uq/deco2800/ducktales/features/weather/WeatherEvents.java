@@ -6,7 +6,7 @@ import java.util.*;
  * @author mattyleggy
  *
  */
-public class WeatherEvent {
+public class WeatherEvents {
 	//list of weather events
 	private HashSet<WeatherChance> weatherEvents;
 	
@@ -14,7 +14,7 @@ public class WeatherEvent {
 	 * An empty list of weather events is constructed.
 	 * 	 * 
 	 */
-	public WeatherEvent() {
+	public WeatherEvents() {
 		this.weatherEvents = new HashSet<>(); 
 	}
 	
