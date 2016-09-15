@@ -202,15 +202,16 @@ public class GameController implements Initializable{
         try {
             Pane worldPane = loader.load();
             this.worldDisplayManager = loader.getController();
-
+            
             // add the world pane to the root pane
-            rootPane.getChildren().add(0, worldPane);
-
+            rootPane.getChildren().add(worldPane);
+            worldPane.toBack();
             // Set the sizing for world pane
             AnchorPane.setLeftAnchor(worldPane, 0.0);
             AnchorPane.setRightAnchor(worldPane, 0.0);
             AnchorPane.setTopAnchor(worldPane, 0.0);
             AnchorPane.setBottomAnchor(worldPane, 0.0);
+          
 
         } catch (IOException e) {
             System.err.println("unable to load world display");
@@ -226,12 +227,12 @@ public class GameController implements Initializable{
 
         try {
             Pane worldPane = loader.load();
-            this.worldDisplayManager = loader.getController();
-            this.worldDisplayManager.changeWeather(new Rain());
+            this.worldDisplayManager = loader.getController();            
 
             // add the world pane to the root pane
-            rootPane.getChildren().add(worldPane);
-
+            rootPane.getChildren().add(worldPane);           
+            worldPane.setOpacity(0.5);
+            this.worldDisplayManager.changeWeather(new Rain());
             // Set the sizing for world pane
             AnchorPane.setLeftAnchor(worldPane, 0.0);
             AnchorPane.setRightAnchor(worldPane, 0.0);
