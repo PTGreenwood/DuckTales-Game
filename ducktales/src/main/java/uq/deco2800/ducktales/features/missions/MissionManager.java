@@ -129,6 +129,9 @@ public class MissionManager {
 		missionMain.MissionImageCompleted(missionNumber);
         //Increment percentage of progress indicator in achievement
         missionMain.countNumberOfCompletedMissions();
+        if(levelMain.getProgressIndicator().getProgress() == 1.0) {
+        	levelMain.levelUp();
+        }
             
         
     }

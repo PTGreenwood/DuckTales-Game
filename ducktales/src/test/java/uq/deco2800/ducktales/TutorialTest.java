@@ -16,12 +16,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import uq.deco2800.ducktales.features.tutorials.TutorialController;
 
-public class TutorialTest extends GuiTest {
+public class TutorialTest extends ApplicationTest {
 		
-	
-	
-	@Override
+	TutorialController tutorialController;
+	/*@Override
     protected Parent getRootNode() {
 		
 		
@@ -33,11 +33,26 @@ public class TutorialTest extends GuiTest {
 			throw new IllegalStateException(e);
 		}
         
+    }*/
+	
+	@Override
+    public void start(Stage stage) throws Exception {
+		URL location = getClass().getResource("/tutorial.fxml");
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(location);
+		Parent root = loader.load(location.openStream());
+		Scene tutorialScene = new Scene(root, 1200, 600);
+		
+		stage.setTitle("Tutorial");
+		stage.setScene(tutorialScene);
+		stage.show();
     }
 	
 	@Test
 	public void checkBasicInterface() {		
 		clickOn("#basicInter");
+		
+		//verifyThat("#titleLabel", containsText("User logged in!"));
 	}
 	
 	@Test
