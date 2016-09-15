@@ -52,6 +52,7 @@ public class MarketModel {
 					mocUserName, mocItemPictureFilePath);
 			
 			currentTrades.add(mocTrade);
+			
 		}
 		
 		
