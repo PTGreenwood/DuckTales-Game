@@ -18,9 +18,10 @@ public class Quarry extends Building {
 	private int health = 1300;
 	
 	// Size of the building
-	private static final int X_LENGTH = 5;
-	private static final int Y_LENGTH = 5;
+	public static final int X_LENGTH = 5;
+	public static final int Y_LENGTH = 5;
 	
+	public static final boolean PASSABILITY = true;
 	
 	/**
 	 * Initialise a new quarry. Requires the location of the quarry

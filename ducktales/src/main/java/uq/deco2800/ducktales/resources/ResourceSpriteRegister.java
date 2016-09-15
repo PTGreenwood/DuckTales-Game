@@ -126,7 +126,7 @@ public class ResourceSpriteRegister {
 		// note from creator of ResourceType: please remember to use the enums from
 		// ResourceType enum class instead of the previous String implementation
 		
-		//addResource(MINE, "/mine.png");
+		
 		//addResource(FARM, "/farm.png");
 		//addResource(QUARRY, "/quarry.png");
 		
@@ -136,15 +136,17 @@ public class ResourceSpriteRegister {
 		addResource(BAKERY, "/buildings/bakery.png");
 		addResource(COMMUNITY_BUILDING, "/buildings/community_building.png");
 		addResource(CONSTRUCTION, "/buildings/construction2.png");
-
-		addResource(HOUSE, "/house.png");
-		addResource(SAWMILL, "/sawmill.png");
+		addResource(CHURCH, "/buildings/church.png");
+		addResource(HOUSE, "/buildings/house.png");
+		addResource(SAWMILL, "/buildings/sawmill.png");
+		addResource(FORGE, "/buildings/forge.png");
+		addResource(OBSERVATORY, "/buildings/observatory.png");
+		addResource(MINE, "/buildings/mine.png");
 
 		//addResource(CEMETERY, "/cemetery.png");
 		//addResource(FARMHOUSE, "/farm+barn.png");
 		//addResource(c, "/barn.png");
-		//addResource(FORGE, "/forge.png");
-		//addResource(OBSERVATORY, "/observatory.png");
+		
 
 	}
 

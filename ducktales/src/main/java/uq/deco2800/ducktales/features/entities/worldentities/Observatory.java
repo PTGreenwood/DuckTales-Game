@@ -18,8 +18,10 @@ public class Observatory extends Building {
 	private int health = 900;
 	
 	// Size of the observatory
-	private static final int X_LENGTH = 2;
-	private static final int Y_LENGTH = 2;
+	public static final int X_LENGTH = 2;
+	public static final int Y_LENGTH = 2;
+	
+	public static final boolean PASSABILITY = true;
 
 	/**
 	 * Initialise a new observatory. Requires the location of the observatory 

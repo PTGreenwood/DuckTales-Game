@@ -17,8 +17,10 @@ public class House extends Building {
 	private int health = 1000;
 	
 	// Building size
-	private static final int X_LENGTH = 2;
-	private static final int Y_LENGTH = 2;
+	public static final int X_LENGTH = 2;
+	public static final int Y_LENGTH = 2;
+	
+	public static final boolean PASSABILITY = true;
 
 	/**
 	 * Initialise a new house. Requires the location of the house

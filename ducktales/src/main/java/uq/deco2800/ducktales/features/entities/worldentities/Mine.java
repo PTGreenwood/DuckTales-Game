@@ -18,8 +18,10 @@ public class Mine extends Building {
 	private int health = 1300;
 	
 	// Mine size
-	private static final int X_LENGTH = 5;
-	private static final int Y_LENGTH = 5;
+	public static final int X_LENGTH = 5;
+	public static final int Y_LENGTH = 5;
+	
+	public static final boolean PASSABILITY = true;
 	
 	/**
 	 * Initialise a new mine. Requires the location of the mine
