@@ -21,7 +21,7 @@ public class Mine extends Building {
 	public static final int X_LENGTH = 5;
 	public static final int Y_LENGTH = 5;
 	
-	public static final boolean PASSABILITY = true;
+	public static final boolean PASSABILITY = false;
 	
 	/**
 	 * Initialise a new mine. Requires the location of the mine
