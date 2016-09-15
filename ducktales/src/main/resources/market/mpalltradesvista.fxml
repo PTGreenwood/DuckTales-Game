@@ -11,7 +11,7 @@
    <children>
       <ScrollPane prefHeight="350.0" prefWidth="550.0">
          <content>
-            <GridPane fx:id="currentTradeVistaGridPane" prefHeight="350.0" prefWidth="550.0" style="-fx-background-color: #1b1464; -fx-border-color: white;">
+            <GridPane fx:id="allTradesGridPane" prefHeight="350.0" prefWidth="550.0" style="-fx-background-color: #1b1464; -fx-border-color: white;">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

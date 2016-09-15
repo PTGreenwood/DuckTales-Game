@@ -1,5 +1,7 @@
 package uq.deco2800.ducktales.features.market;
 
+import java.util.List;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -70,6 +72,10 @@ public class MarketManager {
         // Create a new instance of the MarketModel
         marketModel = new MarketModel();
     	
+    }
+    
+    public List<MocTrade> getAllTrades() {
+    	return this.marketModel.getAllTrades();
     }
 
     /**

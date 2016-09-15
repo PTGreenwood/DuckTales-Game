@@ -23,7 +23,8 @@ public class MarketVistaNavigator {
     public static final String ALL_TRADES = "/market/mpalltradesvista.fxml";
     public static final String YOUR_TRADES = "/market/mpyourtradesvista.fxml";
     public static final String YOUR_OFFERS = "/market/mpyouroffersvista.fxml";
-    public static final String PLACE_A_TRADE = "/market/mpplacetradeoffervista.fxml";
+    public static final String PLACE_A_TRADE = 
+    		"/market/mpplacetradeoffervista.fxml";
 
     /** The main market layout controller. */
     private static MarketManager mainController;

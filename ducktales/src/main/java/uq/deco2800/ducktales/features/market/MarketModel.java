@@ -12,7 +12,7 @@ public class MarketModel {
 	
 	//TODO: Add data structure for items: id, name, function to add / delete
 	
-	private List<MocTrade> currentTrades;
+	private List<MocTrade> allTrades;
 	
 	public MarketModel() {
 		
@@ -35,7 +35,7 @@ public class MarketModel {
 		userNames.add("KanyeNest");
 		userNames.add("ABeakman");
 		
-		currentTrades = new ArrayList<MocTrade>();
+		allTrades = new ArrayList<MocTrade>();
 		
 		for (int i = 0; i < 10; i++) {
 			// create some moc trades
@@ -51,11 +51,16 @@ public class MarketModel {
 			MocTrade mocTrade = new MocTrade(mocItem, mocQuantity, 
 					mocUserName, mocItemPictureFilePath);
 			
-			currentTrades.add(mocTrade);
+			allTrades.add(mocTrade);
 			
 		}
 		
 		
+	}
+	
+	
+	public List<MocTrade> getAllTrades() {
+		return new ArrayList<MocTrade>(allTrades);
 	}
 	
 	
