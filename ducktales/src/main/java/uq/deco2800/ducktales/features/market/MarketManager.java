@@ -16,6 +16,8 @@ import javafx.scene.layout.VBox;
  *
  */
 public class MarketManager {
+	
+	private MarketModel marketModel;
 
 	/** The root pane where everything else is added onto */
 	@FXML
@@ -64,6 +66,9 @@ public class MarketManager {
     	
     	// Set the controller that displays the vistas as child elements.
         MarketVistaNavigator.setMainController(this);
+        
+        // Create a new instance of the MarketModel
+        marketModel = new MarketModel();
     	
     }
 
