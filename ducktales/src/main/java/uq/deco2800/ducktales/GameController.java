@@ -15,6 +15,7 @@ import uq.deco2800.ducktales.features.level.LevelManager;
 import uq.deco2800.ducktales.features.market.MarketManager;
 import uq.deco2800.ducktales.features.market.MarketVistaNavigator;
 import uq.deco2800.ducktales.features.time.TimeManager;
+import uq.deco2800.ducktales.features.weather.*;
 import uq.deco2800.ducktales.rendering.worlddisplay.WorldDisplayManager;
 import uq.deco2800.ducktales.features.missions.MissionManager;
 
@@ -56,6 +57,7 @@ public class GameController implements Initializable{
     private AnchorPane bottomPane;
     @FXML
     private AnchorPane worldPane;
+    
     @FXML
     private Button closeButton;
 
@@ -96,8 +98,9 @@ public class GameController implements Initializable{
         gameManager = new GameManager(this.rootPane); // = new GameManager(loadedWorld) for later
 
         // Load each FXML element into the root pane on by one, and retrieve
-        // their respective controllers
-        loadWorldDisplay();
+        // their respective controllers        
+        loadWeatherDisplay();
+        loadWorldDisplay();        
         loadHUD();
         loadMarketPlace();
         loadMissions();
@@ -119,8 +122,7 @@ public class GameController implements Initializable{
         gameManager.setTimeManager(this.timeManager);
 
         // Now officially call the game starting method from Game Manager
-        gameManager.startGame();
-
+        gameManager.startGame();        
         // Game Controller's job of setting up the UI is done.
     }
 
@@ -202,7 +204,7 @@ public class GameController implements Initializable{
             this.worldDisplayManager = loader.getController();
 
             // add the world pane to the root pane
-            rootPane.getChildren().add(worldPane);
+            rootPane.getChildren().add(0, worldPane);
 
             // Set the sizing for world pane
             AnchorPane.setLeftAnchor(worldPane, 0.0);
@@ -213,6 +215,32 @@ public class GameController implements Initializable{
         } catch (IOException e) {
             System.err.println("unable to load world display");
             //e.printStackTrace();
+        }
+    }
+    
+   
+    private void loadWeatherDisplay() {
+    	// The typical thing.
+        URL location = getClass().getResource("/weather/weatherEffects.fxml");
+        FXMLLoader loader = new FXMLLoader(location);
+
+        try {
+            Pane worldPane = loader.load();
+            this.worldDisplayManager = loader.getController();
+            this.worldDisplayManager.changeWeather(new Rain());
+
+            // add the world pane to the root pane
+            rootPane.getChildren().add(worldPane);
+
+            // Set the sizing for world pane
+            AnchorPane.setLeftAnchor(worldPane, 0.0);
+            AnchorPane.setRightAnchor(worldPane, 0.0);
+            AnchorPane.setTopAnchor(worldPane, 0.0);
+            AnchorPane.setBottomAnchor(worldPane, 0.0);
+            
+
+        } catch (IOException e) {
+            System.err.println("unable to load weather effects");
         }
     }
 
@@ -379,5 +407,7 @@ public class GameController implements Initializable{
             logger.info("Unable to load Achievment:" + e);;
         }
     }
+    
+
       
 }

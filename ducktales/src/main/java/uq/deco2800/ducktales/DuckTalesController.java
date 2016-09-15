@@ -49,17 +49,11 @@ public class DuckTalesController implements Initializable {
 
 
 
-	
-	//weatherEffectPane referenced in ducktales.fxml
 	/**
 	 * TO BE REMOVED EVENTUALLY
 	 * @deprecated
 	 */
-	@Deprecated
-	@FXML
-	private Pane weatherEffectPane;
-
-	
+	@Deprecated	
 	private ExecutorService executor;
 
 	private boolean running = false;
@@ -317,20 +311,6 @@ public class DuckTalesController implements Initializable {
 		}
 		contentPane.getChildren().removeAll(worldBuilderPane, gamePane);
 		contentPane.getChildren().add(pane);
-	}
-	
-	/**
-	 * Change the current weather of the scene to given weather.
-	 * 
-	 * @param weather
-	 * 			weather to change current scene to
-	 */
-	private void changeWeather(Weather weather) {
-		WeatherEffect weatherEffect = weather.getWeatherEffect();
-		String sprite = weatherEffect.getSprite();
-		String weatherName = weatherEffect.toString();
-		weatherEffectPane.setStyle("-fx-background-image: url('"+sprite+"')");
-		System.out.println("Weather set to: "+weather.toString().toUpperCase());
 	}
 
 	/**
