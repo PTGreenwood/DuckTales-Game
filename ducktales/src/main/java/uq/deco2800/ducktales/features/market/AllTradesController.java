@@ -6,6 +6,7 @@ public class AllTradesController {
 	
 	public AllTradesController() {
 		this.marketManager = MarketVistaNavigator.getMainController();
+		System.out.println("AllTradesController created");
 	}
 
 }
