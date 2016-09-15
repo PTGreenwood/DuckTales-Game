@@ -36,7 +36,7 @@ public class MissionHandler {
 	/**
 	 * Main constructor of {@link Missions} class.
 	 */
-	public MissionHandler(){
+	public MissionHandler() {
 		this.countCompletedMissions = new int[4];
 		Arrays.fill(this.countCompletedMissions, 0);
 		this.missionsArray = new ArrayList<ImageView>();
@@ -51,7 +51,7 @@ public class MissionHandler {
 		this.missionsArray.add(3, this.mission4ImageCompleted);
 		
 		
-		for(int i =0; i<4; i++){
+		for(int i = 0; i < 4; i++) {
 			this.missionsArray.get(i).setImage(uncheckedBox);
 		}
 	}	
@@ -60,7 +60,7 @@ public class MissionHandler {
 	 * Checks checkbox on mission complete.
 	 * @param i
 	 */
-	public void MissionImageCompleted(int i){
+	public void MissionImageCompleted(int i) {
 		this.missionsArray.get(i).setImage(checkedBox);
 		this.countCompletedMissions[i] = 1;
 	}
@@ -70,18 +70,18 @@ public class MissionHandler {
 	 * @param i
 	 * @return Returns {@code missionsArray}
 	 */
-	public ImageView getMissionImageCompleted(int i){
+	public ImageView getMissionImageCompleted(int i) {
 		return this.missionsArray.get(i);
 	}
 	
 	/**
 	 * Check number of missions completed
 	 */	
-	public void countNumberOfCompletedMissions(){
+	public void countNumberOfCompletedMissions() {
 
 		double numberOfCompletedMissions = 0.0;
 		for(int i =0; i<4; i++){
-			if(this.countCompletedMissions[i] == 1){
+			if(this.countCompletedMissions[i] == 1) {
 				numberOfCompletedMissions += 1;
 			}						
 		}
@@ -94,7 +94,7 @@ public class MissionHandler {
 	 * get number of completed missions
 	 * @return numberOfcompletedMissions
 	 */
-	public double getNumberOfCompletedMissions(){
+	public double getNumberOfCompletedMissions() {
 		
 		return MissionHandler.numberOfCompletedMissions;
 	}

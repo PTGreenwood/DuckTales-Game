@@ -5,6 +5,7 @@ import java.net.URL;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -27,6 +28,13 @@ public class TutorialController {
 	private BorderPane tutorial1;
 	private BorderPane tutorial2;
 	private BorderPane tutorial3;
+	
+	@FXML
+	private Button basicInter;
+	@FXML
+	private Button buildings;
+	@FXML
+	private Button marketPlace;
 	
 	
 	
@@ -63,8 +71,7 @@ public class TutorialController {
 		URL locationBuildingMain = getClass().getResource("/tutorials/tutorial2Pane0.fxml");
 		FXMLLoader loaderBuildingMain = new FXMLLoader();
 		loaderBuildingMain.setLocation(locationBuildingMain);		
-		tutorial2Main = loaderBuildingMain.load();	
-		
+		tutorial2Main = loaderBuildingMain.load();			
 		
 		tutorial2.setPrefHeight(rightPane.getHeight());
 		tutorial2.setPrefWidth(rightPane.getWidth());
