@@ -3,6 +3,7 @@ package uq.deco2800.ducktales.features.hud.menu;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import uq.deco2800.ducktales.features.hud.menu.animal.AnimalMenuSprite;
@@ -44,11 +45,9 @@ public class MenuManager implements Initializable, SecondaryManager{
     @FXML
     private AnchorPane menuPane; // The parent Node for all menus
     @FXML
-    private HBox buildingsMenu;
+    private GridPane buildingsMenu;
     @FXML
-    private HBox animalsMenu;
-    @FXML
-    private VBox menuButtons;
+    private GridPane animalsMenu;
 
     /** The lists of menu sprites */
     private ArrayList<BuildingMenuSprite> buildingMenuSprites;
@@ -159,18 +158,27 @@ public class MenuManager implements Initializable, SecondaryManager{
             /*
              * Firstly add all building sprites to the menu first
              */
-            buildingsMenu.getChildren().addAll(buildingMenuSprites);
-
+            //buildingsMenu.getChildren().addAll(buildingMenuSprites);
+            
             /*
              * Then adjust the size of the sprites accordingly
              */
             // Get the officially defined scale from the rendering manager
             double uiScale = RenderingInformation.UI_SCALE;
-
+            int column = 0;
+            int row = 0;
             // adjust the size of the sprites
-            for (int i = 0; i < buildingMenuSprites.size(); i++) {
+            for (int i = 0; i < buildingMenuSprites.size(); i++) {   	
+            	
                 BuildingMenuSprite sprite = buildingMenuSprites.get(i);
-
+                //@mattyleggy - adding to grid pane instead of HBox...                
+                buildingsMenu.add(sprite,column,row);                
+                if (column==1) {
+            		column=0;
+            		row++;
+            	} else {
+            		column++;
+            	}
                 // Get the size of the building in tile-unit first
                 int xLength = 0;
                 int yLength = 0;

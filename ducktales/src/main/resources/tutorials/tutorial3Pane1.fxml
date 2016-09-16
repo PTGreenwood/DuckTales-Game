@@ -10,7 +10,7 @@
    <children>
       <ImageView fitHeight="600.0" fitWidth="600.0" layoutX="100.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@basicinterface3.png" />
+            <Image url="@marketplace2.png" />
          </image>
       </ImageView>
       <Label layoutX="350.0" layoutY="400.0" text="Trading System2">

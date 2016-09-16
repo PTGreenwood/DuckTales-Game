@@ -10,31 +10,44 @@ import uq.deco2800.ducktales.features.level.LevelHandler;
 /**
  * Handles in-game missions.
  * 
- * @author Naehyung Nate Kim
+ * @author Naehyung Kim
  */
 public class MissionHandler {
 	
+	/** ImageViews that will be used in MissionManager to display tick box */
 	private ImageView mission1ImageCompleted;
 	private ImageView mission2ImageCompleted;
 	private ImageView mission3ImageCompleted;
 	private ImageView mission4ImageCompleted;
-	private ArrayList<ImageView> missionsArray;
-	private int[] countCompletedMissions;	
 	
+	private ArrayList<ImageView> missionsArray;
+	
+	private int[] countCompletedMissions;	
+
+	public static double numberOfCompletedMissions = 0.0;
+
+	/** Load checked and unchecked box */
 	private Image uncheckedBox = new Image("/missions/boxUnchecked.png");
 	private Image checkedBox = new Image("/missions/boxChecked.png");
 	
+	/** Initialize classes */	
 	MissionProgressIndicator piMain = MissionProgressIndicator.getInstance();	
 	LevelHandler levelMain = LevelHandler.getInstance();
-
-	public static double numberOfCompletedMissions = 0.0;
+	
 	private static MissionHandler instance = new MissionHandler();
+	
+	/**
+	 * Constructor of {@link Missions}
+	 * 	
+	 * @return <CODE>INSTANCE</CODE>
+	 */
 	public static MissionHandler getInstance() {
 		return instance;		
 	}
 	
 	/**
-	 * Main constructor of {@link Missions} class.
+	 * Main constructor of {@link Missions} class
+	 * 
 	 */
 	public MissionHandler() {
 		this.countCompletedMissions = new int[4];
@@ -58,6 +71,7 @@ public class MissionHandler {
 	
 	/**
 	 * Checks checkbox on mission complete.
+	 * 
 	 * @param i
 	 */
 	public void MissionImageCompleted(int i) {
@@ -66,9 +80,10 @@ public class MissionHandler {
 	}
 	
 	/**
+	 * Get mission image
 	 * 
 	 * @param i
-	 * @return Returns {@code missionsArray}
+	 * @return Returns mission Image
 	 */
 	public ImageView getMissionImageCompleted(int i) {
 		return this.missionsArray.get(i);
@@ -76,6 +91,7 @@ public class MissionHandler {
 	
 	/**
 	 * Check number of missions completed
+	 * 
 	 */	
 	public void countNumberOfCompletedMissions() {
 
@@ -92,6 +108,7 @@ public class MissionHandler {
 	
 	/**
 	 * get number of completed missions
+	 * 
 	 * @return numberOfcompletedMissions
 	 */
 	public double getNumberOfCompletedMissions() {
