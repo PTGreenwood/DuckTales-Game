@@ -5,12 +5,14 @@ import java.net.URL;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import uq.deco2800.ducktales.features.level.LevelHandler;
 import uq.deco2800.ducktales.features.missions.MissionHandler;
@@ -42,9 +44,14 @@ public class AchievementManager {
 		
 		ImageView achievementMissionImage = new ImageView();
 		achievementMissionImage = achievementMission.getAchievementMissionImage();
+		Label achievementMissionLabel = new Label();
+		achievementMissionLabel = achievementMission.getAchievementMissionLabel();		
+		achievementMissionLabel.setFont(new Font("Arial", 24));
 		
 		setTitleOnTop(achievements,"Mission Achievements");
 		achievements.setCenter(achievementMissionImage);
+		achievements.setBottom(achievementMissionLabel);
+		achievements.setAlignment(achievementMissionLabel, Pos.CENTER);
 		achievements.setPrefHeight(rightPane.getHeight());
 		achievements.setPrefWidth(rightPane.getWidth());		
 		rightPane.getChildren().add(achievements);				

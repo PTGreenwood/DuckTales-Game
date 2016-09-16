@@ -1,5 +1,7 @@
 package uq.deco2800.ducktales.features.entities.agententities;
 
+import java.util.Random;
+
 import uq.deco2800.ducktales.features.entities.EntityManager;
 import uq.deco2800.ducktales.resources.ResourceType;
 
@@ -24,8 +26,11 @@ public class Duck extends Animal {
 
     public Duck(int x, int y) {
         super(x, y, ResourceType.DUCK, 1, 1, 1, 1, 0.05);
-        int var = (int) (Math.random() * 100);
-        int var2 = (int) (Math.random() * 20);
+        
+        Random random = new Random();
+        Random random2 = new Random();
+        int var = random.nextInt(100);
+        int var2 = random2.nextInt(20);
         setStartingHealth(var);
         setStartingHunger(var);
         setStartingThirst(var);
@@ -47,7 +52,7 @@ public class Duck extends Animal {
      * Enables the duck to drop feathers. Ducks can only drop feathers when they are dead.
      */
     public void dropFeathers() {
-        if (this.isDead() == true) {
+        if (this.isDead()) {
             this.canDropFeathers = true;
         }
     }
@@ -57,7 +62,7 @@ public class Duck extends Animal {
      * Note that this is only a temporary method.
      */
     public void dropResource() {
-        if (this.isDead() == true) {
+        if (this.isDead()) {
             this.canDropResource = true;
         }
     }
