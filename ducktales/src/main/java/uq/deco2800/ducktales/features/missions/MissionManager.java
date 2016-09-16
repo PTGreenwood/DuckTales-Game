@@ -91,18 +91,8 @@ public class MissionManager {
 		loader.setLocation(location);
 		achievement = loader.load();
 		
-		//GridPane achieveGrid = new GridPane();		
-				
-		//Label pi1Label = new Label("Mission Progress");
 		ProgressIndicator  pi1 = new ProgressIndicator();
 		pi1 = piMain.getProgressIndicator();
-		//VBox achieveVBox1 = new VBox();
-		//achieveVBox1.getChildren().addAll(pi1,pi1Label);	
-		
-		/*achieveGrid.setVgap(10);
-		achieveGrid.setPadding(new Insets(10, 10, 10, 10));
-		achieveGrid.add(achieveVBox1, 0, 1);
-		*/
 		setTitleOnTop(achievement,"Mission Progress");
 		
 		achievement.setCenter(pi1);		
@@ -139,6 +129,9 @@ public class MissionManager {
 		missionMain.MissionImageCompleted(missionNumber);
         //Increment percentage of progress indicator in achievement
         missionMain.countNumberOfCompletedMissions();
+        if(levelMain.getProgressIndicator().getProgress() == 1.0) {
+        	levelMain.levelUp();
+        }
             
         
     }

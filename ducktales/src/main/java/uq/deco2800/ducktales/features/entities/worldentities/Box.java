@@ -20,6 +20,7 @@ public class Box extends Building {
 	// Size of a box
 	public static final int X_LENGTH = 1;
 	public static final int Y_LENGTH = 1;
+	
 	public static final boolean PASSABILITY = false;
 	
 	/**

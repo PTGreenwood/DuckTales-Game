@@ -11,22 +11,22 @@ import uq.deco2800.ducktales.resources.ResourceType;
 public abstract class Building extends WorldEntity {
 	
 	// Constants for building parameters
-	protected static int TIME;
+	protected static int time;
 	
-	protected static int WOODRESOURCES;
+	protected static int woodResources;
 
-	protected static int STONERESOURCES;
+	protected static int stoneResources;
 	
 	// Otherwise external classes cannot access type (even using method below)
 	public enum production {
 		NULL, WOOD, STONE, ORE, FOOD
 	}
 	
-	protected static production PRODUCTIONTYPE;
+	protected static production productionType;
 	
-	protected static int PRODUCTIONAMOUNT;
+	protected static int productionAmount;
 	
-	protected static int HEALTH;
+	protected static int health;
 
 	/**
 	 * Main constructor of the class.
@@ -48,7 +48,7 @@ public abstract class Building extends WorldEntity {
 	 */
 	public int timeToBuild() {
 		specifications();
-		return TIME;
+		return time;
 	}
 	
 	/**
@@ -58,7 +58,8 @@ public abstract class Building extends WorldEntity {
 	 * @return the int of wood required
 	 */
 	public int resourcesBuildWood() {
-		return WOODRESOURCES;
+		specifications();
+		return woodResources;
 	}
 	
 	/**
@@ -68,7 +69,8 @@ public abstract class Building extends WorldEntity {
 	 * @return the int of stone required
 	 */
 	public int resourcesBuildStone() {
-		return STONERESOURCES;
+		specifications();
+		return stoneResources;
 	}
 	
 	/**
@@ -79,7 +81,7 @@ public abstract class Building extends WorldEntity {
 	 */
 	public int resourcesReturnWood() {
 		specifications();
-		return (int) (0.5*WOODRESOURCES);
+		return (int) (0.5*woodResources);
 	}
 	
 	/**
@@ -90,7 +92,7 @@ public abstract class Building extends WorldEntity {
 	 */
 	public int resourcesReturnStone() {
 		specifications();
-		return (int) (0.5*STONERESOURCES);
+		return (int) (0.5*stoneResources);
 	}
 	
 	/**
@@ -101,7 +103,7 @@ public abstract class Building extends WorldEntity {
 	 */
 	public production resourcesProductionType() {
 		specifications();
-		return PRODUCTIONTYPE;
+		return productionType;
 	}
 	
 	/**
@@ -112,7 +114,7 @@ public abstract class Building extends WorldEntity {
 	 */
 	public int resourcesProductionAmount() {
 		specifications();
-		return PRODUCTIONAMOUNT;
+		return productionAmount;
 	}
 	
 	/**
@@ -128,14 +130,14 @@ public abstract class Building extends WorldEntity {
 	 * @param health, the health of the building
 	 *  
 	 */
-	protected void specifications(int stone, int wood, int time, 
-			production produce, int amount, int health) {
-		WOODRESOURCES = wood;
-		STONERESOURCES = stone;
-		TIME = time;
-		PRODUCTIONTYPE = produce;
-		PRODUCTIONAMOUNT = amount;
-		HEALTH = health;
+	protected static void specifications(int stone, int wood, int timeSet, 
+			production produce, int amount, int healthSet) {
+		woodResources = wood;
+		stoneResources = stone;
+		time = timeSet;
+		productionType = produce;
+		productionAmount = amount;
+		health = healthSet;
 	}
 
 	/**
@@ -158,7 +160,7 @@ public abstract class Building extends WorldEntity {
 	 */
 	public int getHealth() {
 		specifications();
-		return HEALTH;
+		return health;
 	}
 	
 	/**
