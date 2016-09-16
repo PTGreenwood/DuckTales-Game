@@ -1,9 +1,6 @@
 package uq.deco2800.ducktales.features.entities;
 
 import uq.deco2800.ducktales.World;
-import uq.deco2800.ducktales.deprecated.world.WorldBeta;
-import uq.deco2800.ducktales.features.entities.agententities.Peon;
-
 import java.util.*;
 
 /**
@@ -40,6 +37,7 @@ public class ThreatManager {
 		tempEffect.setEndTimer(50);
 		tempEffect.setRandomX();
 		tempEffect.setRandomY();
+		tempEffect.setTheLevelOfDamage(20);
 		//tempEffect.checkCollision();
 		effectsList.add(tempEffect);
 		int blackSmokeValue = effectsList.indexOf("Black Smoke");
@@ -51,6 +49,7 @@ public class ThreatManager {
 		tempEffect.setEndTimer(100);
 		tempEffect.setRandomX();
 		tempEffect.setRandomY();
+		tempEffect.setTheLevelOfDamage(25);
 		//tempEffect.checkCollision();
 		effectsList.add(tempEffect);
 		int shakeValue = effectsList.indexOf("Shake");
@@ -300,5 +299,7 @@ public class ThreatManager {
 	public void setWorld(World world) {
 		this.world = world;
 	}
+	
+	
 
 }

@@ -21,17 +21,21 @@ public class Threat {
 	private float endTimer = 0;
 	private float currentTime;
 
-	private int randomX;
-	private int randomY;
-
-	private int xCord; // value to assign x coordinate
-	private int yCord; // value to assign y coordinate
+	private double randomX;
+	private double randomY;
+	private double xCord; // value to assign x coordinate
+	private double yCord; // value to assign y coordinate
+	
+	private double speed; // value to assign the threat's movement speed
+	private int levelOfDamage; // the level of damage cause by a threat
+	
+	// The animation of a threat
+	private int startFrame; // the frame to start with regard to its direction
+	private int currentFrame;
+	private int tweenFrames; // the period between the current frame & the next one
 
 	// private HashMap<Image> enemyTypeRegister;
 	private ArrayList<String> imageStore;
-
-	protected int speed;
-	protected int levelOfDamage;
 
 	protected boolean isPassable; // detects whether a tile is passable
 
@@ -167,22 +171,21 @@ public class Threat {
 	@Override
 	public String toString() {
 		return this.name;
-
 	}
 
-	public int getX() {
+	public double getX() {
 		return xCord;
 	}
 
-	public int getY() {
+	public double getY() {
 		return yCord;
 	}
 
-	public void setXCord(int tempX) {
+	public void setXCord(double tempX) {
 		this.xCord = randomX;
 	}
 
-	public void setYCord(int tempY) {
+	public void setYCord(double tempY) {
 		this.yCord = randomY;
 	}
 
@@ -191,7 +194,7 @@ public class Threat {
 	 * 
 	 * @return randomX
 	 */
-	public int setRandomX() {
+	public double setRandomX() {
 		int maxWidth = world.getWidth();
 		Random random = new Random();
 		randomX = random.nextInt(maxWidth) + 1;
@@ -203,20 +206,28 @@ public class Threat {
 	 * 
 	 * @return randomY
 	 */
-	public int setRandomY() {
+	public double setRandomY() {
 		int maxHeight = world.getHeight();
 		Random random = new Random();
 		randomY = random.nextInt(maxHeight) + 1;
 		return randomY;
 	}
+	
+	/**
+	 * Assign the level of damage for a threat
+	 * @param damage
+	 */
+	public void setTheLevelOfDamage(int newLevelOfDamage) {
+		this.levelOfDamage = newLevelOfDamage;
+	}
 
-//	/**
-//	 * A method return the value of isPassable.
-//	 * @return true or false
-//	 */
-//	public boolean tileIsPassable() {
-//		return isPassable;
-//	}
+	/**
+	 * A method return the value of isPassable.
+	 * @return true or false
+	 */
+	public boolean tileIsPassable() {
+		return isPassable;
+	}
 
 	public void addImage(String imageName) {
 		imageStore.add(imageName);
@@ -228,14 +239,14 @@ public class Threat {
 	// method to detect peon/enemy collisions
 	public void checkCollision() {
 		int currentHealth = peon.getHealth();
-		int newHealth = currentHealth - 50;
+		int newHealth = currentHealth - levelOfDamage;
 		if ((this.getX() == peon.getX() && (this.getY() == peon.getY()))) {
 			peon.setHealth(newHealth);
 		}
 	}
 
-	public int getTheLevelOfDamage() {
-		return levelOfDamage;
-	}
+
+	
+	
 
 }
