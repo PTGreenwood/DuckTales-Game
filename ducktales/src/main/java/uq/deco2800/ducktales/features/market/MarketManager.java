@@ -66,6 +66,11 @@ public class MarketManager {
         MarketVistaNavigator.setMainController(this);
     	
     }
+    
+    @FXML
+    public void initialize() {
+    	MarketVistaNavigator.loadVista(MarketVistaNavigator.CURRENT_TRADES);
+    }
 
     /**
      * Replaces the vista displayed in the vista holder with a new vista.

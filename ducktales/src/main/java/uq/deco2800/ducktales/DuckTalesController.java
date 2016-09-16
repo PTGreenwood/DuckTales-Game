@@ -164,7 +164,7 @@ public class DuckTalesController implements Initializable {
 		// To get the window to appear in front of the right pane
 		marketplaceStage.initOwner(contentPane.getScene().getWindow());
 		marketplaceStage.setTitle("Marketplace");
-		MarketVistaNavigator.loadVista(MarketVistaNavigator.CURRENT_TRADES);
+		
 		
 		marketplaceStage.setScene(marketplaceScene);
 		marketplaceStage.show();
