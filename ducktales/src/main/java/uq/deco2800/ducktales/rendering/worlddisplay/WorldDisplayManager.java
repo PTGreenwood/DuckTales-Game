@@ -32,9 +32,6 @@ public class WorldDisplayManager implements Initializable, SecondaryManager {
     /** The main manager of the game */
     private GameManager gameManager;
     
-    @FXML
-    private Pane weatherEffectsPane;
-
     /** Helper managers */
     private TilesManager tilesManager;
 
@@ -81,12 +78,14 @@ public class WorldDisplayManager implements Initializable, SecondaryManager {
 	 * 
 	 * @param weather
 	 * 			weather to change current scene to
+	 * @param pane
+	 * 			pane to place the weather effecst into
 	 */
-	public void changeWeather(Weather weather) {
+	public void changeWeather(Weather weather, Pane pane) {
 		WeatherEffect weatherEffect = weather.getWeatherEffect();
 		String sprite = weatherEffect.getSprite();
 		String weatherName = weatherEffect.toString();
-		weatherEffectsPane.setStyle("-fx-background-image: url('"+sprite+"')");
+		pane.setStyle("-fx-background-image: url('"+sprite+"')");
 		System.out.println("Weather set to: "+weather.toString().toUpperCase());
 	}
 

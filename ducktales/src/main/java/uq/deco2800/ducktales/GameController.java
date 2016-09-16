@@ -99,8 +99,9 @@ public class GameController implements Initializable{
 
         // Load each FXML element into the root pane on by one, and retrieve
         // their respective controllers        
+        
+        loadWorldDisplay();    
         loadWeatherDisplay();
-        loadWorldDisplay();        
         loadHUD();
         loadMarketPlace();
         loadMissions();
@@ -205,14 +206,11 @@ public class GameController implements Initializable{
             
             // add the world pane to the root pane
             rootPane.getChildren().add(worldPane);
-            worldPane.toBack();
             // Set the sizing for world pane
             AnchorPane.setLeftAnchor(worldPane, 0.0);
             AnchorPane.setRightAnchor(worldPane, 0.0);
             AnchorPane.setTopAnchor(worldPane, 0.0);
             AnchorPane.setBottomAnchor(worldPane, 0.0);
-          
-
         } catch (IOException e) {
             System.err.println("unable to load world display");
             //e.printStackTrace();
@@ -220,26 +218,26 @@ public class GameController implements Initializable{
     }
     
    
+    /**
+     * @mattyleggy
+     * Overlay the weather pane on top of the main game pane.
+     */
     private void loadWeatherDisplay() {
-    	// The typical thing.
         URL location = getClass().getResource("/weather/weatherEffects.fxml");
         FXMLLoader loader = new FXMLLoader(location);
-
         try {
-            Pane worldPane = loader.load();
-            this.worldDisplayManager = loader.getController();            
+            Pane weatherPane = loader.load();     
 
-            // add the world pane to the root pane
-            rootPane.getChildren().add(worldPane);           
-            worldPane.setOpacity(0.5);
-            this.worldDisplayManager.changeWeather(new Rain());
+            // add the weather pane to the root pane
+            rootPane.getChildren().add(weatherPane);           
+            weatherPane.setOpacity(0.7);
+            this.worldDisplayManager.changeWeather(new Rain(), weatherPane);
             // Set the sizing for world pane
-            AnchorPane.setLeftAnchor(worldPane, 0.0);
-            AnchorPane.setRightAnchor(worldPane, 0.0);
-            AnchorPane.setTopAnchor(worldPane, 0.0);
-            AnchorPane.setBottomAnchor(worldPane, 0.0);
+            AnchorPane.setLeftAnchor(weatherPane, 0.0);
+            AnchorPane.setRightAnchor(weatherPane, 0.0);
+            AnchorPane.setTopAnchor(weatherPane, 0.0);
+            AnchorPane.setBottomAnchor(weatherPane, 0.0);
             
-
         } catch (IOException e) {
             System.err.println("unable to load weather effects");
         }
