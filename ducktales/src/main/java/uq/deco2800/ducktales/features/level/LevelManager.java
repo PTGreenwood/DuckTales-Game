@@ -30,11 +30,11 @@ public class LevelManager {
 		ProgressBar  pb1 = new ProgressBar();
 		pb1 = levelMain.getProgressIndicator();		
 		VBox levelVBox = new VBox(5);
-		System.out.println(levelMain.getLevel());
+		System.out.println("Current level = " + levelMain.getLevel());
 		levelVBox.getChildren().addAll(levelDisplay,pb1);
 		
 		level.getChildren().add(levelVBox);
-		
+				
 	}
 	
 	/**

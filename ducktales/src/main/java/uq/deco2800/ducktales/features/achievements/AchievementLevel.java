@@ -49,16 +49,23 @@ public class AchievementLevel {
 	 */
 	public ImageView getAchievementLevelImage() {
 		ImageView AchievementMissionImage = new ImageView();
+		
 		if(levelHandler.getLevel() == 1) {
+			
 			AchievementMissionImage.setImage(bronze);
 			setAchievementLevelText();
+			
 		} else if (levelHandler.getLevel() == 2) {
+			
 			AchievementMissionImage.setImage(silver);
 			setAchievementLevelText();
+			
 		} else if (levelHandler.getLevel() >= 3) {
+			
 			AchievementMissionImage.setImage(gold);
 			setAchievementLevelText();
 		}
+		
 		return AchievementMissionImage;
 	}
 	

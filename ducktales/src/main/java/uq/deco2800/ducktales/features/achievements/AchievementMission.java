@@ -51,16 +51,24 @@ public class AchievementMission {
 	 */
 	public ImageView getAchievementMissionImage() {
 		ImageView AchievementMissionImage = new ImageView();
+		
 		if(missionHandler.getNumberOfCompletedMissions() == 1){
+			
 			AchievementMissionImage.setImage(bronze);
 			setAchievementMissionText();
+			
 		} else if (missionHandler.getNumberOfCompletedMissions() == 2){
+			
 			AchievementMissionImage.setImage(silver);
 			setAchievementMissionText();
+			
 		} else if (missionHandler.getNumberOfCompletedMissions() == 3){
+			
 			AchievementMissionImage.setImage(gold);
 			setAchievementMissionText();
+			
 		}
+		
 		return AchievementMissionImage;
 	}
 	

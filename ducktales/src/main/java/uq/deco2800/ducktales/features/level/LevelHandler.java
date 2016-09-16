@@ -17,7 +17,6 @@ public class LevelHandler {
 	//progress bar
 	private ProgressBar pb;
 
-
 	/**
 	 * Constructor of {@link Level}.
 	 * 

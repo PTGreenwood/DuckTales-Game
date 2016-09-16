@@ -57,6 +57,7 @@ public class AchievementManager {
 	 */
 	@FXML
 	private void startAchievementMission(ActionEvent event) throws Exception {
+		
 		removeAllPane();
 		URL location = getClass().getResource("/achievements/achievement.fxml");
 		FXMLLoader loader = new FXMLLoader();
@@ -86,6 +87,7 @@ public class AchievementManager {
 	 */
 	@FXML
 	private void startAchievementLevel(ActionEvent event) throws Exception {
+		
 		removeAllPane();
 		URL location = getClass().getResource("/achievements/achievementLevel.fxml");
 		FXMLLoader loader = new FXMLLoader();
@@ -114,6 +116,7 @@ public class AchievementManager {
 	 * @param title
 	 */
 	private void setTitleOnTop(BorderPane borderPane, String title){
+		
 		Label titleLabel = new Label(title);
 		titleLabel.setFont(new Font("Arial", 36));
 		borderPane.setTop(titleLabel);
