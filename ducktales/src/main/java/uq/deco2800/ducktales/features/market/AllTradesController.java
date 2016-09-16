@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +15,10 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
 public class AllTradesController {
+	
+	private static final Logger LOGGER = Logger.getLogger(
+			AllTradesController.class.getName() );
+
 	
 	private MarketManager marketManager;
 	
@@ -59,6 +65,7 @@ public class AllTradesController {
 				System.err.println("tradePane is null ");
 			}
 			
+			
 			try {
 				
 				Label itemNameLabel = 
@@ -68,7 +75,7 @@ public class AllTradesController {
 				
 			} catch(NullPointerException exception) {
 				
-				System.err.println("Unable to set the item name label text");
+				LOGGER.log(Level.SEVERE, exception.toString(), exception);
 				
 			}
 			
@@ -81,7 +88,7 @@ public class AllTradesController {
 						trade.getQuantity().toString());
 				
 			} catch(NullPointerException exception) {
-				System.err.println("Unable to set the quantity label text");
+				LOGGER.log(Level.SEVERE, exception.toString(), exception);
 			}
 			
 			
@@ -90,12 +97,7 @@ public class AllTradesController {
 				userLabel.setText("User: " + trade.getUserName());
 				
 			} catch(NullPointerException exception) {
-				System.err.println("Unable to set the user label text");
-			}
-			
-			
-			if (allTradesGridPane == null) {
-				System.err.println("allTradesGridPane is null ");
+				LOGGER.log(Level.SEVERE, exception.toString(), exception);
 			}
 			
 			GridPane.setRowIndex(tradePane, row);
@@ -104,13 +106,12 @@ public class AllTradesController {
             try {
             	allTradesGridPane.getChildren().add(tradePane);
             } catch(NullPointerException exception) {
-            	System.err.println("Unable add tradePane " + 
-            			"to All Trades grid pane");
+            	LOGGER.log(Level.SEVERE, exception.toString(), exception);
             }
 			
 			
 			} catch (IOException exception) {
-				
+				LOGGER.log(Level.SEVERE, exception.toString(), exception);
 			}
 			
 			column++;
