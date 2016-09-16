@@ -120,7 +120,7 @@ public class DuckTalesController implements Initializable {
 	@FXML
 	private void missionAndAchievement(ActionEvent event) throws Exception {
 		
-		URL location = getClass().getResource("/missions/missionAndAchievement.fxml");
+		URL location = getClass().getResource("/achievements/achievementMain.fxml");
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(location);
 		Parent root = loader.load(location.openStream());

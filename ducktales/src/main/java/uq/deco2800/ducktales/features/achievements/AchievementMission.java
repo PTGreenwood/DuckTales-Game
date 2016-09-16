@@ -52,7 +52,7 @@ public class AchievementMission {
 	public ImageView getAchievementMissionImage() {
 		ImageView AchievementMissionImage = new ImageView();
 		
-		if(missionHandler.getNumberOfCompletedMissions() == 1){
+		if(missionHandler.getNumberOfCompletedMissions() < 2){
 			
 			AchievementMissionImage.setImage(bronze);
 			setAchievementMissionText();
@@ -62,7 +62,7 @@ public class AchievementMission {
 			AchievementMissionImage.setImage(silver);
 			setAchievementMissionText();
 			
-		} else if (missionHandler.getNumberOfCompletedMissions() == 3){
+		} else if (missionHandler.getNumberOfCompletedMissions() > 3){
 			
 			AchievementMissionImage.setImage(gold);
 			setAchievementMissionText();
