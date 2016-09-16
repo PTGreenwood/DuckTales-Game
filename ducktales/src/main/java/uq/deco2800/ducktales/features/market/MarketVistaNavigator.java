@@ -20,10 +20,11 @@ public class MarketVistaNavigator {
      * fxml layouts managed by the navigator.
      */
     public static final String MAIN = "/market/marketplace.fxml";
-    public static final String CURRENT_TRADES = "/market/mpcurrenttradevista.fxml";
+    public static final String ALL_TRADES = "/market/mpalltradesvista.fxml";
     public static final String YOUR_TRADES = "/market/mpyourtradesvista.fxml";
     public static final String YOUR_OFFERS = "/market/mpyouroffersvista.fxml";
-    public static final String PLACE_A_TRADE = "/market/mpplacetradeoffervista.fxml";
+    public static final String PLACE_A_TRADE = 
+    		"/market/mpplacetradeoffervista.fxml";
     
     private static String currentVista = null;
 
@@ -65,14 +66,15 @@ public class MarketVistaNavigator {
                     		MarketVistaNavigator.class.getResource(fxml)
                         )
                     );
+                
+                currentVista = fxml;
+                
             } catch (IOException e) {
                 e.printStackTrace();
             }
     		
-    		currentVista = fxml;
-    		
     	}
-        
+    	
     }
-
+    
 }
