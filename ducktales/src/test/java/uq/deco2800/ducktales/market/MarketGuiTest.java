@@ -59,8 +59,6 @@ public class MarketGuiTest extends GuiTest {
 		}
 		
 		return parent;
-
-		
 	}
 
 	/**

@@ -44,7 +44,7 @@ public class AllTradesController {
 		
 		int row = 0;
 		int column = 0;
-		for(int i=0; i < 6; i++) {
+		for(int i=0; i < allTrades.size(); i++) {
 			
 			FXMLLoader loader = new FXMLLoader();
 			

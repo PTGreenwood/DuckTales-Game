@@ -37,7 +37,7 @@ public class MarketModel {
 		
 		allTrades = new ArrayList<MocTrade>();
 		
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 6; i++) {
 			// create some moc trades
 			
 			String mocItem = itemNames.get(i % itemNames.size());
