@@ -20,8 +20,7 @@ public class Tutorial1Controller {
 	private Button previous;
 	
 	private AnchorPane pane1, pane2;
-	
-	
+		
 	@FXML
 	private void tutorial1Next(ActionEvent event) throws Exception {
 		

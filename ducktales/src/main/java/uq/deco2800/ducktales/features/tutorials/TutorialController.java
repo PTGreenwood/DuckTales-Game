@@ -37,10 +37,7 @@ public class TutorialController {
 	@FXML
 	private Button buildings;
 	@FXML
-	private Button marketPlace;
-	
-	private Label titleLabel;
-	
+	private Button marketPlace;	
 	
 	@FXML
 	public void startTutorial1(ActionEvent event) throws Exception {
@@ -54,9 +51,7 @@ public class TutorialController {
 		URL locationBasicInterfaceMain = getClass().getResource("/tutorials/tutorial1Pane0.fxml");
 		FXMLLoader loaderBasicInterfaceMain = new FXMLLoader();
 		loaderBasicInterfaceMain.setLocation(locationBasicInterfaceMain);		
-		tutorial1Main = loaderBasicInterfaceMain.load();		
-		
-		setTitleOnTop(tutorial1,"Basic Interface");
+		tutorial1Main = loaderBasicInterfaceMain.load();	
 		
 		tutorial1.setPrefHeight(rightPane.getHeight());
 		tutorial1.setPrefWidth(rightPane.getWidth());
@@ -106,14 +101,5 @@ public class TutorialController {
 		tutorial3.setCenter(tutorial3Main);
 		
 		rightPane.getChildren().add(tutorial3);
-	}	
-	
-	private void setTitleOnTop(BorderPane borderPane, String title){
-		titleLabel = new Label(title);
-		titleLabel.setId("title");
-		titleLabel.setFont(new Font("Arial", 36));
-		borderPane.setTop(titleLabel);
-		borderPane.setAlignment(titleLabel, Pos.CENTER);
-	}
-	
+	}			
 }

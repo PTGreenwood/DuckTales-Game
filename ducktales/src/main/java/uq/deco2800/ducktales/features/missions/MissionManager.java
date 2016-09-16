@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ScrollPane;
@@ -34,6 +35,11 @@ public class MissionManager {
 	
 	@FXML
 	private AnchorPane rightPane;
+	
+	@FXML
+	private Button Missions;
+	@FXML
+	private Button MissionProgress;
 	
 	private BorderPane gameMission1;
 	private BorderPane achievement;

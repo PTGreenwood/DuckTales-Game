@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.image.ImageView;
@@ -25,6 +26,9 @@ public class AchievementManager {
 	@FXML
 	private AnchorPane rightPane;
 	
+	@FXML
+	private Button achievementMissionBtn, achievementLevelBtn;
+	
 	private BorderPane achievementsMission;
 	private BorderPane achievementsLevel;
 	private BorderPane achievementProgress;
@@ -35,6 +39,8 @@ public class AchievementManager {
 	MissionHandler missionMain = MissionHandler.getInstance();
 	LevelHandler levelMain = LevelHandler.getInstance();
 	AchievementProgressIndicator piMain = AchievementProgressIndicator.getInstance();
+	
+	
 	
 	@FXML
 	private void startAchievementMission(ActionEvent event) throws Exception {
