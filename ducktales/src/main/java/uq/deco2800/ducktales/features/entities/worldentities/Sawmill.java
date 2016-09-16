@@ -18,8 +18,10 @@ public class Sawmill extends Building {
 	private int health = 1400;
 	
 	// Sawmill size
-	private static final int X_LENGTH = 5;
-	private static final int Y_LENGTH = 5;
+	public static final int X_LENGTH = 5;
+	public static final int Y_LENGTH = 5;
+	
+	public static final boolean PASSABILITY = false;
 
 	/**
 	 * Initialise a new sawmill. Requires the location of the sawmill

@@ -13,14 +13,13 @@ public class LevelManager {
 	
 	LevelHandler levelMain = LevelHandler.getInstance();
 	
-	public void startLevel() {
-		
+	public void startLevel() {		
 		
 		Label levelDisplay = new Label("Level : " + levelMain.getLevel());	
 		ProgressBar  pb1 = new ProgressBar();
 		pb1 = levelMain.getProgressIndicator();		
 		VBox levelVBox = new VBox(5);
-		
+		System.out.println(levelMain.getLevel());
 		levelVBox.getChildren().addAll(levelDisplay,pb1);
 		
 		level.getChildren().add(levelVBox);

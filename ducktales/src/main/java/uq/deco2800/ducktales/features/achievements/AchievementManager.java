@@ -25,22 +25,24 @@ public class AchievementManager {
 	@FXML
 	private AnchorPane rightPane;
 	
-	private BorderPane achievements;
+	private BorderPane achievementsMission;
+	private BorderPane achievementsLevel;
 	private BorderPane achievementProgress;
 	
 	AchievementHandler achievementMain = AchievementHandler.getInstance();
 	AchievementMission achievementMission = AchievementMission.getInstance();
+	AchievementLevel achievementLevel = AchievementLevel.getInstance();
 	MissionHandler missionMain = MissionHandler.getInstance();
 	LevelHandler levelMain = LevelHandler.getInstance();
 	AchievementProgressIndicator piMain = AchievementProgressIndicator.getInstance();
 	
 	@FXML
-	private void startAchievements(ActionEvent event) throws Exception {
+	private void startAchievementMission(ActionEvent event) throws Exception {
 		removeAllPane();
 		URL location = getClass().getResource("/achievements/achievement.fxml");
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(location);
-		achievements = loader.load();
+		achievementsMission = loader.load();
 		
 		ImageView achievementMissionImage = new ImageView();
 		achievementMissionImage = achievementMission.getAchievementMissionImage();
@@ -48,13 +50,36 @@ public class AchievementManager {
 		achievementMissionLabel = achievementMission.getAchievementMissionLabel();		
 		achievementMissionLabel.setFont(new Font("Arial", 24));
 		
-		setTitleOnTop(achievements,"Mission Achievements");
-		achievements.setCenter(achievementMissionImage);
-		achievements.setBottom(achievementMissionLabel);
-		achievements.setAlignment(achievementMissionLabel, Pos.CENTER);
-		achievements.setPrefHeight(rightPane.getHeight());
-		achievements.setPrefWidth(rightPane.getWidth());		
-		rightPane.getChildren().add(achievements);				
+		setTitleOnTop(achievementsMission,"Mission Achievements");
+		achievementsMission.setCenter(achievementMissionImage);
+		achievementsMission.setBottom(achievementMissionLabel);
+		achievementsMission.setAlignment(achievementMissionLabel, Pos.CENTER);
+		achievementsMission.setPrefHeight(rightPane.getHeight());
+		achievementsMission.setPrefWidth(rightPane.getWidth());		
+		rightPane.getChildren().add(achievementsMission);				
+	}	
+	
+	@FXML
+	private void startAchievementLevel(ActionEvent event) throws Exception {
+		removeAllPane();
+		URL location = getClass().getResource("/achievements/achievementLevel.fxml");
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(location);
+		achievementsLevel = loader.load();
+		
+		ImageView achievementLevelImage = new ImageView();
+		achievementLevelImage = achievementLevel.getAchievementLevelImage();
+		Label achievementLevelLabel = new Label();
+		achievementLevelLabel = achievementLevel.getAchievementLevelLabel();		
+		achievementLevelLabel.setFont(new Font("Arial", 24));
+		
+		setTitleOnTop(achievementsLevel,"Level Achievements");
+		achievementsLevel.setCenter(achievementLevelImage);
+		achievementsLevel.setBottom(achievementLevelLabel);
+		achievementsLevel.setAlignment(achievementLevelLabel, Pos.CENTER);
+		achievementsLevel.setPrefHeight(rightPane.getHeight());
+		achievementsLevel.setPrefWidth(rightPane.getWidth());		
+		rightPane.getChildren().add(achievementsLevel);				
 	}
 	
 	@FXML
@@ -84,7 +109,7 @@ public class AchievementManager {
 	}
 	
 	private void removeAllPane(){
-		rightPane.getChildren().removeAll(achievements,achievementProgress);
+		rightPane.getChildren().removeAll(achievementsLevel,achievementsMission,achievementProgress);
 	}
 	
 	public void showAchievement() {

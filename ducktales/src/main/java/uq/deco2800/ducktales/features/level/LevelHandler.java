@@ -40,7 +40,7 @@ public class LevelHandler {
 	}
 	
 	public int getLevel(){
-		return this.level;
+		return level;
 	}
 	
 	public void setProgressBar(double percentage){
