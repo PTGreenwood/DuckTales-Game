@@ -1,0 +1,7 @@
+.timeDisplay {
+    -fx-background-color: #1D221B;
+}
+
+.timeDisplayText {
+    -fx-text-fill: #99A4A2;
+}

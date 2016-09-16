@@ -11,18 +11,36 @@ package uq.deco2800.ducktales.resources;
  * @author khoiphan21
  */
 public enum ResourceType {
-        // Landscape
-        TREE_1, TREE_2, TREE_3,
-        GRASS_1, GRASS_2, GRASS_3,
+        // For WorldBuilder
+        NONE,
+
+        // Tiles
+        GRASS_1, GRASS_2, GRASS_3, GRASS_4,
+        DIRT_1, DIRT_2, DIRT_3,
         VOID, CYAN, CYAN_CROSSED, YELLOW,
         BLANK,
         WATER,
+        
+        // Landscape entities
+        TREE_1, TREE_2, TREE_3,
+        ROCK_1, ROCK_2,
 
-        // Entities
-        PEON,DUCK,COW,
+        // Agent entities
+        PEON,
+
+        DUCK, DUCKUp, DUCKLeft, DUCKRight, DUCKDown, DUCK_FRONT_RIGHT, DUCK_1_1,
+        DUCKDown0, DUCKDown1, DUCKLeft0, DUCKLeft1, DUCKRight0, DUCKRight1, DUCKUp0, DUCKUp1,
+        COW, COWUpRight, COWUpLeft, COWDownRight, COWDownLeft, COW_FRONT_RIGHT,
+        SHEEP, SHEEPUpRight, SHEEPUpLeft, SHEEPDownRight, SHEEPDownLeft,
+        TURTLE,
+        WOLF,
+        BEAR,
+
 
         // Buildings
-        HOUSE, SAWMILL, BAKERY, CEMETERY, FARMHOUSE, FORGE, HOSPITAL, OBSERVATORY,
+        PASTURE, BUTCHER, BAKERY, COMMUNITY_BUILDING, CONSTRUCTION,
+        HOUSE, SAWMILL, CEMETERY, BARN, FORGE, HOSPITAL, OBSERVATORY, FARM,
+        MINE, QUARRY, CHURCH,  
 
         // Miscellaneous
         BOX, LONG_BOX, WOOD_BOX

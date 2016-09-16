@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane fx:id="mainBorder" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uq.deco2800.ducktales.features.tutorials.Tutorial1Controller">
+   <bottom>
+      <AnchorPane prefHeight="50.0" prefWidth="400.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="previous" layoutX="15.0" layoutY="10.0" mnemonicParsing="false" onAction="#tutorial1Previous" text="Previous" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />
+            <Button fx:id="next" layoutX="335.0" layoutY="10.0" mnemonicParsing="false" onAction="#tutorial1Next" text="Next" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+         </children>
+      </AnchorPane>
+   </bottom>
+</BorderPane>
