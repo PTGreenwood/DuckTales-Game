@@ -59,26 +59,40 @@ public class AllTradesController {
 				System.err.println("tradePane is null ");
 			}
 			
-			Label itemNameLabel = 
-					(Label) tradePane.lookup("#itemNameLabel");
-			
-			itemNameLabel.setText(trade.getItemName());
-			
-			Label quantityLabel = (Label) tradePane.lookup("#quantityLabel");
-			
-			if (quantityLabel == null) {
-				System.err.println("quantityLabel is null ");
+			try {
+				
+				Label itemNameLabel = 
+						(Label) tradePane.lookup("#itemNameLabel");
+				
+				itemNameLabel.setText(trade.getItemName());
+				
+			} catch(NullPointerException exception) {
+				
+				System.err.println("Unable to set the item name label text");
+				
 			}
 			
-			quantityLabel.setText("Amount: " + trade.getQuantity().toString());
 			
-			Label userLabel = (Label) tradePane.lookup("#userLabel");
-			
-			if (userLabel == null) {
-				System.err.println("userLabel is null ");
+			try {
+				Label quantityLabel = 
+						(Label) tradePane.lookup("#quantityLabel");
+				
+				quantityLabel.setText("Amount: " + 
+						trade.getQuantity().toString());
+				
+			} catch(NullPointerException exception) {
+				System.err.println("Unable to set the quantity label text");
 			}
 			
-			userLabel.setText("User: " + trade.getUserName());
+			
+			try {
+				Label userLabel = (Label) tradePane.lookup("#userLabel");
+				userLabel.setText("User: " + trade.getUserName());
+				
+			} catch(NullPointerException exception) {
+				System.err.println("Unable to set the user label text");
+			}
+			
 			
 			if (allTradesGridPane == null) {
 				System.err.println("allTradesGridPane is null ");
@@ -87,12 +101,17 @@ public class AllTradesController {
 			GridPane.setRowIndex(tradePane, row);
             GridPane.setColumnIndex(tradePane, column);
 			
-			allTradesGridPane.getChildren().add(tradePane);
+            try {
+            	allTradesGridPane.getChildren().add(tradePane);
+            } catch(NullPointerException exception) {
+            	System.err.println("Unable add tradePane " + 
+            			"to All Trades grid pane");
+            }
+			
 			
 			} catch (IOException exception) {
 				
 			}
-			
 			
 			column++;
 			
