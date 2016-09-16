@@ -25,6 +25,8 @@ public class MarketVistaNavigator {
     public static final String YOUR_OFFERS = "/market/mpyouroffersvista.fxml";
     public static final String PLACE_A_TRADE = 
     		"/market/mpplacetradeoffervista.fxml";
+    
+    private static String currentVista = null;
 
     /** The main market layout controller. */
     private static MarketManager mainController;
@@ -55,17 +57,27 @@ public class MarketVistaNavigator {
     public static void loadVista(String fxml) {
     	
     	System.err.println("loadVista fxml input is " + fxml);
+    	
+    	if (currentVista == null || !currentVista.equals(fxml)) {
     		
-		try {
-            mainController.setVista(
-                FXMLLoader.load(
-                		MarketVistaNavigator.class.getResource(fxml)
-                    )
-                );
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        
+    		try {
+                mainController.setVista(
+                    FXMLLoader.load(
+                    		MarketVistaNavigator.class.getResource(fxml)
+                        )
+                    );
+                
+                currentVista = fxml;
+                
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+    		
+    	}
+    	
+    	
     }
+    
+    
 
 }

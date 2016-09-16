@@ -74,6 +74,11 @@ public class MarketManager {
     	
     }
     
+    @FXML
+	public void initialize() {
+    	MarketVistaNavigator.loadVista(MarketVistaNavigator.ALL_TRADES);
+    }
+    
     public List<MocTrade> getAllTrades() {
     	return this.marketModel.getAllTrades();
     }

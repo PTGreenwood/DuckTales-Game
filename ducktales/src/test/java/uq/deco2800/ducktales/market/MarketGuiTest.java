@@ -35,20 +35,11 @@ public class MarketGuiTest extends GuiTest {
 	@Override
 	public Parent getRootNode() {
 		
-		Parent parent = null;
-		
-//		URL location = getClass().getResource((MarketVistaNavigator.MAIN));
-//
-//        FXMLLoader loader = new FXMLLoader(location);
-//        
-//        // Retrieve the controller;
-//        marketManager = loader.getController();
-		
+		// Attempt to create the root node.
 		try {
 			parent = FXMLLoader.load(getClass()
 					 .getResource(MarketVistaNavigator.MAIN));
 			
-			marketManager = MarketVistaNavigator.getMainController();
 			
 		} catch (IOException e) {
 			
