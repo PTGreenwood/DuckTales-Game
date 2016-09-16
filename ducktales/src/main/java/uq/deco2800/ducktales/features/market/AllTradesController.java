@@ -62,11 +62,23 @@ public class AllTradesController {
 			Label itemNameLabel = 
 					(Label) tradePane.lookup("#itemNameLabel");
 			
-			if (itemNameLabel == null) {
-				System.err.println("itemNameLabel is null ");
+			itemNameLabel.setText(trade.getItemName());
+			
+			Label quantityLabel = (Label) tradePane.lookup("#quantityLabel");
+			
+			if (quantityLabel == null) {
+				System.err.println("quantityLabel is null ");
 			}
 			
-			itemNameLabel.setText(trade.getItemName());
+			quantityLabel.setText("Amount: " + trade.getQuantity().toString());
+			
+			Label userLabel = (Label) tradePane.lookup("#userLabel");
+			
+			if (userLabel == null) {
+				System.err.println("userLabel is null ");
+			}
+			
+			userLabel.setText("User: " + trade.getUserName());
 			
 			if (allTradesGridPane == null) {
 				System.err.println("allTradesGridPane is null ");
