@@ -13,16 +13,23 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Font;
 
-public class TutorialController {
+/**
+ * Manage all fxml action of main tutorial window
+ * 
+ * @author Naehyung Kim
+ *
+ */
+public class TutorialController {	
 	
-	@FXML
-	private AnchorPane anchorTutorial1;
-	
-	
+	/** Main window */
 	@FXML
 	private AnchorPane tutorialWindow;
+	
+	/** Right Pane of the window */
 	@FXML
 	private AnchorPane rightPane;
+	@FXML
+	private AnchorPane anchorTutorial1;	
 	
 	private AnchorPane tutorial1Main;
 	private AnchorPane tutorial2Main;
@@ -32,6 +39,7 @@ public class TutorialController {
 	private BorderPane tutorial2;
 	private BorderPane tutorial3;
 	
+	/** Buttons on left Pane */
 	@FXML
 	private Button basicInter;
 	@FXML
@@ -39,6 +47,12 @@ public class TutorialController {
 	@FXML
 	private Button marketPlace;	
 	
+	/**
+	 * Start tutorial1
+	 * 
+	 * @param event
+	 * @throws Exception
+	 */
 	@FXML
 	public void startTutorial1(ActionEvent event) throws Exception {
 		
@@ -60,6 +74,12 @@ public class TutorialController {
 		rightPane.getChildren().add(tutorial1);
 	}
 	
+	/**
+	 * Start tutorial2
+	 * 	
+	 * @param event
+	 * @throws Exception
+	 */
 	@FXML
 	public void startTutorial2(ActionEvent event) throws Exception {
 		
@@ -81,6 +101,12 @@ public class TutorialController {
 		rightPane.getChildren().add(tutorial2);
 	}
 	
+	/**
+	 * Start tutorial3
+	 * 
+	 * @param event
+	 * @throws Exception
+	 */
 	@FXML
 	public void startTutorial3(ActionEvent event) throws Exception {
 		
@@ -93,8 +119,7 @@ public class TutorialController {
 		URL locationTradingMain = getClass().getResource("/tutorials/tutorial3Pane0.fxml");
 		FXMLLoader loaderTradingMain = new FXMLLoader();
 		loaderTradingMain.setLocation(locationTradingMain);		
-		tutorial3Main = loaderTradingMain.load();	
-		
+		tutorial3Main = loaderTradingMain.load();			
 		
 		tutorial3.setPrefHeight(rightPane.getHeight());
 		tutorial3.setPrefWidth(rightPane.getWidth());

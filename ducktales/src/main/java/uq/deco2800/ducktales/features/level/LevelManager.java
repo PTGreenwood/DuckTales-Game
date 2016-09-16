@@ -6,13 +6,24 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
+/**
+ * Manage all fxml action of the level
+ * 
+ * @author Naehyung Kim
+ *
+ */
 public class LevelManager {
 	
 	@FXML 
 	private AnchorPane level;
 	
+	/** Initialize classes */	
 	LevelHandler levelMain = LevelHandler.getInstance();
 	
+	/**
+	 * Start level
+	 * 
+	 */
 	public void startLevel() {		
 		
 		Label levelDisplay = new Label("Level : " + levelMain.getLevel());	
@@ -25,7 +36,10 @@ public class LevelManager {
 		level.getChildren().add(levelVBox);
 		
 	}
-		
+	
+	/**
+	 * Show and hide main window
+	 */
 	public void showLevel() {
     	this.level.setVisible(true);
 	}
