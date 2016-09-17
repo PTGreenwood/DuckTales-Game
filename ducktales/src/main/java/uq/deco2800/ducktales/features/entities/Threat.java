@@ -4,11 +4,10 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import uq.deco2800.ducktales.World;
-import uq.deco2800.ducktales.deprecated.world.*;
 import uq.deco2800.ducktales.features.entities.agententities.Peon;
 
 /**
- * Handles game threats. 
+ * Handles game threats.
  * 
  *
  */
@@ -21,31 +20,37 @@ public class Threat {
 	private float startTimer = 0;
 	private float endTimer = 0;
 	private float currentTime;
+
+	private double randomX;
+	private double randomY;
+	private double xCord; // value to assign x coordinate
+	private double yCord; // value to assign y coordinate
 	
-	private int x;
-	private int y;
+	private double speed; // value to assign the threat's movement speed
+	private int levelOfDamage; // the level of damage cause by a threat
 	
-	private int xCord; //value to assign x coordinate
-	private int yCord; //vlaue to assign y coordinate
-	
-	//private HashMap<Image> enemyTypeRegister;
+	// The animation of a threat
+	private int startFrame; // the frame to start with regard to its direction
+	private int currentFrame;
+	private int tweenFrames; // the period between the current frame & the next one
+
+	// private HashMap<Image> enemyTypeRegister;
 	private ArrayList<String> imageStore;
-	
-	int speed;
-	
-	boolean isPassable; //detects whether a tile is passable
-	
+
+	protected boolean isPassable; // detects whether a tile is passable
+
 	private World world;
+	private Peon peon;
 
 	/**
-	 * Enemy takes a string name and a type of enemy which is Creature or
-	 * Effect
+	 * Enemy takes a string name and a type of enemy which is Creature or Effect
 	 * 
 	 * @param name
 	 *            - String name
 	 * @param type
 	 *            - String that is Creature or Effect
-	 * @throws exception On invalid parameters.
+	 * @throws exception
+	 *             On invalid parameters.
 	 */
 	public Threat(String name, String type) {
 		if (name == null || name.isEmpty() || name.trim().isEmpty()) {
@@ -53,16 +58,16 @@ public class Threat {
 		} else {
 			this.name = name;
 		}
-		
+
 		if (!("Enemy".equals(type) || "Effect".equals(type))) {
 			// Throw exception
 		} else {
 			this.type = type;
 		}
 	}
-	
+
 	public void setWorld(World world) {
-		
+
 	}
 
 	/**
@@ -70,22 +75,24 @@ public class Threat {
 	 * 
 	 * @param time
 	 *            input the system time when the effect needs to start from now
-	 * @param Type System if time is in System time in ms or type Timer if it is time from now   
-	 * @throws exception On invalid parameters.        
+	 * @param Type
+	 *            System if time is in System time in ms or type Timer if it is
+	 *            time from now
+	 * @throws exception
+	 *             On invalid parameters.
 	 */
 	public void setStartTimer(float time, String type) {
-		if (time > 0 && type =="System") {
+		if (time > 0 && type == "System") {
 			this.startTimer = time;
 			this.hasStartTimer = true;
-			
+
 		}
-		if (time > 0 && type =="Timer") {
+		if (time > 0 && type == "Timer") {
 			this.currentTime = System.currentTimeMillis();
-			this.startTimer =  currentTime + time;
+			this.startTimer = currentTime + time;
 			this.hasStartTimer = true;
-			
-		}
-		else {
+
+		} else {
 			// throw new exception
 		}
 	}
@@ -95,12 +102,13 @@ public class Threat {
 	 * 
 	 * @param time
 	 *            in seconds when effect ends from when it starts
-	 * @throws exception If {@code time <= startTimer}
+	 * @throws exception
+	 *             If {@code time <= startTimer}
 	 */
 	public void setEndTimer(float time) {
 		if (time > startTimer) {
 			this.currentTime = System.currentTimeMillis();
-			this.endTimer = currentTime +startTimer;
+			this.endTimer = currentTime + startTimer;
 			this.hasEndTimer = true;
 		} else {
 			// throw new exception
@@ -159,49 +167,86 @@ public class Threat {
 			return 0;
 		}
 	}
-	
+
 	@Override
-	public String toString(){
+	public String toString() {
 		return this.name;
-		
 	}
-	
-	public int getX(){
-		return x;
+
+	public double getX() {
+		return xCord;
 	}
-	
-	public int getY() {
-		return y;
+
+	public double getY() {
+		return yCord;
 	}
-	
-	public void setXCord(int tempX) {
-		this.xCord = x; 
+
+	public void setXCord(double tempX) {
+		this.xCord = randomX;
 	}
-	
-	public void setYCord(int tempY) {
-		this.yCord = y;
+
+	public void setYCord(double tempY) {
+		this.yCord = randomY;
 	}
-	
-	public int setRandomX(){
-		//return x value within range of possible plot points
+
+	/**
+	 * It detects the world width and returns a random x-coordinate.
+	 * 
+	 * @return randomX
+	 */
+	public double setRandomX() {
 		int maxWidth = world.getWidth();
 		Random random = new Random();
-		int randomX = random.nextInt(maxWidth) + 1;
+		randomX = random.nextInt(maxWidth) + 1;
 		return randomX;
 	}
-	
-	public int setRandomY(){
+
+	/**
+	 * It detects the world height and returns a random y-coordinate.
+	 * 
+	 * @return randomY
+	 */
+	public double setRandomY() {
 		int maxHeight = world.getHeight();
 		Random random = new Random();
-		int randomY = random.nextInt(maxHeight) + 1;
-		return randomY;	
+		randomY = random.nextInt(maxHeight) + 1;
+		return randomY;
 	}
 	
+	/**
+	 * Assign the level of damage for a threat
+	 * @param damage
+	 */
+	public void setTheLevelOfDamage(int newLevelOfDamage) {
+		this.levelOfDamage = newLevelOfDamage;
+	}
+
+	/**
+	 * A method return the value of isPassable.
+	 * @return true or false
+	 */
+	public boolean tileIsPassable() {
+		return isPassable;
+	}
+
 	public void addImage(String imageName) {
 		imageStore.add(imageName);
-		//imageStore.add(imageName);
-		//getClass()
-		//new Image(getClass().getResource(imageName).toString()));
+		// imageStore.add(imageName);
+		// getClass()
+		// new Image(getClass().getResource(imageName).toString()));
 	}
+	
+	// method to detect peon/enemy collisions
+	public void checkCollision() {
+		int currentHealth = peon.getHealth();
+		int newHealth = currentHealth - levelOfDamage;
+		if ((this.getX() == peon.getX() && (this.getY() == peon.getY()))) {
+			peon.setHealth(newHealth);
+		}
+	}
+
+
+	
+	
 
 }

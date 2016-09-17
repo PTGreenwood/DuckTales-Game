@@ -1,5 +1,9 @@
 package uq.deco2800.ducktales.features.market;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Set;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -16,6 +20,8 @@ import javafx.scene.layout.VBox;
  *
  */
 public class MarketManager {
+	
+	private MarketModel marketModel;
 
 	/** The root pane where everything else is added onto */
 	@FXML
@@ -45,7 +51,7 @@ public class MarketManager {
     
     /** Enum corresponding to the navigation buttons**/
     public enum Vista {
-    	CURRENTTRADES, YOURTRADES, YOUROFFERS, PLACEATRADE 
+    	ALLTRADES, YOURTRADES, YOUROFFERS, PLACEATRADE 
     }
     
     /**String for the background color**/
@@ -54,7 +60,7 @@ public class MarketManager {
     String btnColorString = "-fx-border-color: ";
     
     /** The enum of the currently selected navigation button.**/
-    private Vista selectedVista = Vista.CURRENTTRADES;
+    private Vista selectedVista = Vista.ALLTRADES;
     
     /**
      * Constructor for the MarketManager. Sets the Main Controller for the
@@ -64,8 +70,47 @@ public class MarketManager {
     	
     	// Set the controller that displays the vistas as child elements.
         MarketVistaNavigator.setMainController(this);
+        
+        // Create a new instance of the MarketModel
+        marketModel = new MarketModel();
     	
     }
+    
+    @FXML
+	public void initialize() {
+    	MarketVistaNavigator.loadVista(MarketVistaNavigator.ALL_TRADES);
+    }
+    
+    /**
+     * Returns all the trades posted on the server.
+     * 
+     * @return A list of posted trades
+     */
+    public List<MocTrade> getAllTrades() {
+    	return this.marketModel.getAllTrades();
+    }
+    
+    /**
+     * Returns a map of the user's inventory.
+     * 
+     * @return map of user inventory
+     */
+    public HashMap<String, Integer> getUserInventory() {
+    	return marketModel.getUserInventory();
+    }
+    
+    public Set<String> getUserInventoryItemNames() {
+    	return marketModel.getUserInventoryItemNames();
+    }
+    
+    public int getInventoryAmountForItem(String item) {
+    	return marketModel.getInventoryAmountForItem(item);
+    }
+    
+    public String getUserName() {
+    	return marketModel.getUserName();
+    }
+    
 
     /**
      * Replaces the vista displayed in the vista holder with a new vista.
@@ -83,10 +128,10 @@ public class MarketManager {
      */
     @FXML
     void viewCurrentTrades(ActionEvent event) {
-    	MarketVistaNavigator.loadVista(MarketVistaNavigator.CURRENT_TRADES);
+    	MarketVistaNavigator.loadVista(MarketVistaNavigator.ALL_TRADES);
     	
     	deselectButton(selectedVista);
-        selectButton(Vista.CURRENTTRADES);
+        selectButton(Vista.ALLTRADES);
     }
     
 	/**
@@ -138,7 +183,7 @@ public class MarketManager {
     public void deselectButton(Vista button) {
     	
     	switch (button) {
-    		case CURRENTTRADES: currentTradesBtn.setStyle(
+    		case ALLTRADES: currentTradesBtn.setStyle(
     				backgroundColorString+BTN_NOT_SELECTED + "; " 
     		+ btnColorString+BTN_BORDER_COLOUR);
     			break;
@@ -173,10 +218,10 @@ public class MarketManager {
 	public void selectButton(Vista button) {
     	
 		switch (button) {
-    		case CURRENTTRADES: currentTradesBtn.setStyle(
+    		case ALLTRADES: currentTradesBtn.setStyle(
     				backgroundColorString+BTN_SELECTED + "; " 
     			    		+ btnColorString+BTN_BORDER_COLOUR);
-    			selectedVista = Vista.CURRENTTRADES;
+    			selectedVista = Vista.ALLTRADES;
     			break;
     			
     		case YOURTRADES: yourTradesBtn.setStyle(
@@ -211,5 +256,15 @@ public class MarketManager {
 	}
 	public void hideMarketPlace() {
 		this.marketplacePane.setVisible(false);
+	}
+	//@mattyleggy, added this in for keyboard handlers
+	public void toggleMarketPlace() {
+		if (this.marketplacePane.isVisible())
+			hideMarketPlace();
+		else
+			showMarketPlace();
+	}
+	public boolean isVisible() {
+		return this.marketplacePane.isVisible();
 	}
 }

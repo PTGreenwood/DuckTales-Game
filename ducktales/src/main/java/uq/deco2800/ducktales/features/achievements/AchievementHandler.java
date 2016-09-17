@@ -1,56 +1,82 @@
 package uq.deco2800.ducktales.features.achievements;
 
+<<<<<<< HEAD
 import uq.deco2800.ducktales.features.inventory.InventoryManager;
 import uq.deco2800.ducktales.features.level.LevelHandler;
+=======
+>>>>>>> 38e4453008e53a1fd7d2eb4c5b211da1b49849d5
 import uq.deco2800.ducktales.features.missions.MissionHandler;
 
 /**
  * Contains all achievement methods.
  * 
+ * @author Naehyung Kim
  * 
  */
 public class AchievementHandler {
 	private static AchievementHandler INSTANCE = new AchievementHandler();
 	
+	/** Achievement Score */
 	private int intAchieve;
 	
+	/**
+	 * Constructor of {@link Achievement}.
+	 * 
+	 * @return <CODE>INSTANCE</CODE>
+	 */
 	public static AchievementHandler getInstance() {
 		return INSTANCE;
 	}
 	
-	public AchievementHandler(){
+	/**
+	 * Main constructor of {@link Achievement} class
+	 * 
+	 */
+	public AchievementHandler() {
 		this.intAchieve = 0;		
 	}
-	//Returns achievement score
-	public int getAchieve(){
+	
+	/**
+	 * Return achievement score
+	 * 
+	 * @return achievement score
+	 */
+	public int getAchieve() {
 		return this.intAchieve;
 	}
-	public void setAchieve(int intAchieve){
+	
+	/**
+	 * Set achievement score
+	 * 
+	 * @param intAchieve
+	 */
+	public void setAchieve(int intAchieve) {
 		this.intAchieve = intAchieve;
 	}
+	
 	//Sets value for varying difficulties of achievements, 
 	//for each specific difficulty adds specified value to the achievement score
-	public void achieveVeasy(){
+	public void achieveVeasy() {
 		this.intAchieve = this.intAchieve + 10;
 	}
 	
-    public void achieveEasy(){
+    public void achieveEasy() {
 	    this.intAchieve = this.intAchieve + 25;
     }
     
-    public void achieveMedium(){
+    public void achieveMedium() {
 	    this.intAchieve = this.intAchieve + 50;
     }
     
-    public void achieveHard(){
+    public void achieveHard() {
 	    this.intAchieve = this.intAchieve + 75;
     }
     
-    public void achieveVhard(){
+    public void achieveVhard() {
 	    this.intAchieve = this.intAchieve + 100;
     }
     
-   public void achievementHolder(){
+   public void achievementHolder() {
 	   if(MissionHandler.numberOfCompletedMissions == 1)
 	    {
 	    this.achieveVeasy();
@@ -95,11 +121,7 @@ public class AchievementHandler {
 	//	}
 	//	if(InventoryManager.woodAmount>=50000){
 	//		this.achieveVhard();
-	//	}
-    
-		
-		
-		
-	
-}
+	//	}	
+   }
+   
 }
