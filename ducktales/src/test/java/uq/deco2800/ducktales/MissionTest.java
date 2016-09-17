@@ -34,7 +34,8 @@ public class MissionTest extends ApplicationTest{
 		
 		clickOn("#Missions");
 		
-		verifyThat("#Missions", hasText("Missions"));
+		verifyThat("#Missions", hasText("Missions"));		
+		verifyThat("#titleLabel", hasText("Missions"));
 	}
 	
 	@Test
@@ -43,6 +44,7 @@ public class MissionTest extends ApplicationTest{
 		clickOn("#MissionProgress");
 		
 		verifyThat("#MissionProgress", hasText("Mission Progress Circle"));
+		verifyThat("#titleLabel", hasText("Mission Progress"));
 	}
 	@Test
     public void testIsNotNull() {

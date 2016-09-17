@@ -45,7 +45,10 @@ public class TutorialTest extends ApplicationTest {
 		
 		clickOn("#basicInter");
 		
-		verifyThat("#basicInter", hasText("Basic Interface"));		
+		//Verify that button has same text
+		verifyThat("#basicInter", hasText("Basic Interface"));
+		//Verify BorderPane loaded by button click has same Top label
+		verifyThat("#labelTop", hasText("Basic Interface"));
 	}
 	
 	@Test
@@ -54,6 +57,7 @@ public class TutorialTest extends ApplicationTest {
 		clickOn("#buildings");
 		
 		verifyThat("#buildings", hasText("Buildings"));
+		verifyThat("#labelTop", hasText("Buildings"));
 	}
 
 	@Test
@@ -62,6 +66,7 @@ public class TutorialTest extends ApplicationTest {
 		clickOn("#marketPlace");
 		
 		verifyThat("#marketPlace", hasText("Trading System"));
+		verifyThat("#labelTop", hasText("Trading System"));
 	}
 	
 	@Test

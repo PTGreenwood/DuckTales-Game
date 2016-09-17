@@ -46,6 +46,8 @@ public class MissionManager {
 	private BorderPane gameMission1;
 	private BorderPane achievement;
 	
+	private Label titleLabel;
+	
 	/** Initialize classes */
 	AchievementHandler achievementMain = AchievementHandler.getInstance();
 	MissionHandler missionMain = MissionHandler.getInstance();
@@ -135,7 +137,8 @@ public class MissionManager {
 	 * @param title
 	 */
 	private void setTitleOnTop(BorderPane borderPane, String title) {
-		Label titleLabel = new Label(title);
+		titleLabel = new Label(title);
+		titleLabel.setId("titleLabel");
 		titleLabel.setFont(new Font("Arial", 36));
 		borderPane.setTop(titleLabel);
 		borderPane.setAlignment(titleLabel, Pos.CENTER);
