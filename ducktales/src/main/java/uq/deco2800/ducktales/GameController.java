@@ -341,8 +341,8 @@ public class GameController implements Initializable{
 
             rootPane.getChildren().add(root);
 
-            AnchorPane.setTopAnchor(root, 0.0);
-            AnchorPane.setRightAnchor(root, 30.0);
+            AnchorPane.setTopAnchor(root, 50.0);
+            AnchorPane.setRightAnchor(root, 250.0);
 
             missionManager.hideMission();
 
@@ -369,8 +369,8 @@ public class GameController implements Initializable{
             
             rootPane.getChildren().add(root);
 
-            AnchorPane.setTopAnchor(root, 0.0);
-            AnchorPane.setLeftAnchor(root, 170.0);
+            AnchorPane.setTopAnchor(root, 60.0);
+            AnchorPane.setLeftAnchor(root, 20.0);
 
             levelManager.hideLevel();
 
@@ -396,8 +396,8 @@ public class GameController implements Initializable{
             
             rootPane.getChildren().add(root);
 
-            AnchorPane.setTopAnchor(root, 0.0);
-            AnchorPane.setRightAnchor(root, 30.0);
+            AnchorPane.setTopAnchor(root, 50.0);
+            AnchorPane.setRightAnchor(root, 250.0);
 
             achievementManager.hideAchievement();
 

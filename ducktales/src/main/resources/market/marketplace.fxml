@@ -41,7 +41,7 @@
                </font>
             </Button>
             <AnchorPane layoutX="261.0" prefHeight="500.0" prefWidth="595.0" style="-fx-background-color: black;" />
-            <StackPane id="vistaHolderPropId" fx:id="vistaHolder" layoutX="288.0" layoutY="15.0" prefHeight="468.0" prefWidth="550.0" style="-fx-background-color: #1b1464; -fx-border-color: white;" />
+            <StackPane id="vistaHolderPropId" fx:id="vistaHolder" layoutX="288.0" layoutY="15.0" prefHeight="470.0" prefWidth="550.0" style="-fx-background-color: #1b1464; -fx-border-color: white;" />
             <Button fx:id="placeATradeBtn1" layoutX="14.0" layoutY="410.0" mnemonicParsing="false" onAction="#viewPlaceATrade" prefHeight="75.0" prefWidth="245.0" style="-fx-background-radius: 0px; -fx-background-color: #1a1935; -fx-border-color: white;" text="Place New Trade" textFill="WHITE">
                <font>
                   <Font name="Press Start 2P" size="12.0" />
