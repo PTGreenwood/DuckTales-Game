@@ -15,7 +15,7 @@
          <children>
             <AnchorPane prefHeight="353.0" prefWidth="550.0" style="-fx-background-color: #1b1464;">
                <children>
-                  <AnchorPane prefHeight="350.0" prefWidth="180.0" style="-fx-background-color: #1a1935;">
+                  <AnchorPane prefHeight="500.0" prefWidth="180.0" style="-fx-background-color: #1a1935;">
                      <children>
                         <Pane fx:id="itemPictureRegion" layoutX="18.0" layoutY="22.0" prefHeight="143.0" prefWidth="143.0" style="-fx-background-color: #FFFFFF;" />
                         <Label fx:id="itemNameLabel" layoutX="23.0" layoutY="179.0" text="Item Name" textFill="WHITE">
