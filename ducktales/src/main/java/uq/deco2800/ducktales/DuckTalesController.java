@@ -85,6 +85,7 @@ public class DuckTalesController implements Initializable {
 		tileRegister = ResourceSpriteRegister.getInstance();
 		//oldGameManager = GameManager(contentPane);
 
+		
 		//System.out.println(contentPane.getHeight());
 		worldBuilderManager = WorldBuilderModel.getInstance();
 		worldBuilderController = new WorldBuilderController();
