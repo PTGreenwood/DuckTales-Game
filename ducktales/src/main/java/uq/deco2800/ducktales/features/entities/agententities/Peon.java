@@ -36,8 +36,8 @@ public class Peon extends AgentEntity {
 	private int strength;
 	private int intelligence;
 
-	private ArrayList<PeonDebuffType> debuffs = new ArrayList<PeonDebuffType>(); //access debuff by PeonDebuffType.DEBUFFNAME
-	private ArrayList<PeonBuffType> buffs = new ArrayList<PeonBuffType>(); //access debuff by PeonBuffType.BUFFNAME
+	private List<PeonDebuffType> debuffs = new ArrayList<PeonDebuffType>(); //access debuff by PeonDebuffType.DEBUFFNAME
+	private List<PeonBuffType> buffs = new ArrayList<PeonBuffType>(); //access debuff by PeonBuffType.BUFFNAME
 
 	// Job related information
 	private String job;
@@ -294,7 +294,7 @@ public class Peon extends AgentEntity {
 	 *		such as .get(index) or .contains(var name)
 	 *		when .get(index) used to compare to string use .get(index).toString() method
 	 */
-	public ArrayList<PeonDebuffType> getDebuffs() {
+	public List<PeonDebuffType> getDebuffs() {
 		return this.debuffs;
 	}
 
@@ -320,7 +320,7 @@ public class Peon extends AgentEntity {
 	 *		such as .get(index) or .contains(var name)
 	 *		when .get(index) used to compare to string use .get(index).toString() method
 	 */
-	public ArrayList<PeonBuffType> getBuffs() {
+	public List<PeonBuffType> getBuffs() {
 		return this.buffs;
 	}
 
