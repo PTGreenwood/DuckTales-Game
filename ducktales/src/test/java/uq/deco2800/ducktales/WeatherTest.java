@@ -21,28 +21,57 @@ public class WeatherTest {
 		Assert.assertEquals(true, fire.isLand());
 		Assert.assertEquals(false, fire.isWater());
 		Assert.assertEquals(false, fire.isAmphibious());
+		Assert.assertEquals(false, fire.requiresObjectUpdate());		
 
 		Rain rain = new Rain();
 		Assert.assertEquals(true, rain.isLand());
 		Assert.assertEquals(true, rain.isWater());
 		Assert.assertEquals(true, rain.isAmphibious());
+		Assert.assertEquals(false, rain.requiresObjectUpdate());
 
 		StormType type = StormType.WHIRLPOOL;
 		Storm storm = new Storm(type);
 		Assert.assertEquals(false, storm.isLand());
 		Assert.assertEquals(true, storm.isWater());
 		Assert.assertEquals(false, storm.isAmphibious());
+		Assert.assertEquals(false, storm.requiresObjectUpdate());
 
 		type = StormType.LIGHTNING;
 		storm = new Storm(type);
 		Assert.assertEquals(true, storm.isLand());
 		Assert.assertEquals(true, storm.isWater());
 		Assert.assertEquals(true, storm.isAmphibious());
+		Assert.assertEquals(false, storm.requiresObjectUpdate());
 
 		Weather weather = new Fire();
 		Assert.assertEquals(true, weather.isLand());
 		Assert.assertEquals(false, weather.isWater());
 		Assert.assertEquals(false, weather.isAmphibious());
+		Assert.assertEquals(false, weather.requiresObjectUpdate());
+	}
+	
+	/**
+	 * Test Weather toString methods
+	 */
+	@Test
+	public void testToString() {
+		Fire fire = new Fire();
+		Assert.assertEquals("fire", fire.toString());
+		Assert.assertFalse(fire.toString().equals("FIRE"));
+
+		Rain rain = new Rain();
+		Assert.assertEquals("rain", rain.toString());
+
+		StormType type = StormType.WHIRLPOOL;
+		Storm storm = new Storm(type);
+		Assert.assertEquals("whirlpool", storm.toString());
+
+		type = StormType.LIGHTNING;
+		storm = new Storm(type);
+		Assert.assertEquals("lightning", storm.toString());
+
+		Weather weather = new Fire();
+		Assert.assertEquals("fire", weather.toString());
 	}
 
 	/**
@@ -138,6 +167,13 @@ public class WeatherTest {
 		
 		//Need to fix this one... should be true
 		//Assert.assertTrue(testEvents.equals(weatherEvent));		
+	}
+	
+	@Test
+	public void testWeatherEffect() {
+		Fire fire = new Fire();
+		WeatherEffect we = fire.getWeatherEffect();
+		
 	}
 
 }

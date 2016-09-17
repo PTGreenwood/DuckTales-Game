@@ -2,10 +2,17 @@ package uq.deco2800.ducktales.features.weather;
 
 /**
  * 
+ * Weather type: FIRE
+ * 
  * @author mattyleggy
  *
  */
 public class Fire extends Weather {
+	public Fire() {
+		
+	}
+	
+	@Override
 	public WeatherEffect getWeatherEffect() {
 		WeatherEffect weatherEffect = new WeatherEffect("fire.gif");
 		return weatherEffect;
@@ -28,11 +35,6 @@ public class Fire extends Weather {
 	}
 	
 	public boolean requiresObjectUpdate() {
-		return true;
-	}
-	
-	@Override
-	public String toString() {
-		return this.getClass().getSimpleName().toLowerCase();
+		return false;
 	}
 }
