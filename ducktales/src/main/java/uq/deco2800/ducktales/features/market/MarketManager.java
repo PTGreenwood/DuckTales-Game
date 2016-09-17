@@ -1,6 +1,8 @@
 package uq.deco2800.ducktales.features.market;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -79,8 +81,26 @@ public class MarketManager {
     	MarketVistaNavigator.loadVista(MarketVistaNavigator.ALL_TRADES);
     }
     
+    /**
+     * Returns all the trades posted on the server.
+     * 
+     * @return A list of posted trades
+     */
     public List<MocTrade> getAllTrades() {
     	return this.marketModel.getAllTrades();
+    }
+    
+    /**
+     * Returns a map of the user's inventory.
+     * 
+     * @return map of user inventory
+     */
+    public HashMap<String, Integer> getUserInventory() {
+    	return marketModel.getUserInventory();
+    }
+    
+    public Set<String> getUserInventoryItemNames() {
+    	return marketModel.getUserInventoryItemNames();
     }
 
     /**
