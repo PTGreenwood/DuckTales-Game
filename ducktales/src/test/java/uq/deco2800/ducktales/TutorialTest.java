@@ -24,9 +24,17 @@ import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.verify;
 import static org.testfx.api.FxToolkit.setupStage;
 
-
+/**
+ * Tests the GUI for the tutorial * 
+ * @author Naehyung Kim
+ *
+ */
 public class TutorialTest extends ApplicationTest {
 				
+	/**
+	 * Set up testFx
+	 * 
+	 */
 	@Override
     public void start(Stage stage) throws Exception {
 		URL location = getClass().getResource("/tutorial.fxml");
@@ -40,6 +48,10 @@ public class TutorialTest extends ApplicationTest {
 		stage.show();
     }
 	
+	/**
+	 * Test for Basic interface Button 
+	 *
+	 */
 	@Test
 	public void checkBasicInterface() {		
 		
@@ -51,6 +63,10 @@ public class TutorialTest extends ApplicationTest {
 		verifyThat("#labelTop", hasText("Basic Interface"));
 	}
 	
+	/**
+	 * Test for Buildings Button 
+	 *
+	 */
 	@Test
 	public void checkBuildings() {
 		
@@ -59,7 +75,11 @@ public class TutorialTest extends ApplicationTest {
 		verifyThat("#buildings", hasText("Buildings"));
 		verifyThat("#labelTop", hasText("Buildings"));
 	}
-
+	
+	/**
+	 * Test for MarketPlace Button 
+	 *
+	 */
 	@Test
 	public void checkMarketPlace() {
 		
@@ -69,6 +89,10 @@ public class TutorialTest extends ApplicationTest {
 		verifyThat("#labelTop", hasText("Trading System"));
 	}
 	
+	/**
+	 * Tests if there is any null on the buttons
+	 * 
+	 */
 	@Test
     public void testIsNotNull() {
         

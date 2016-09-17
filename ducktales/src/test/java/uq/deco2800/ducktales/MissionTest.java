@@ -14,8 +14,17 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * Tests the GUI for Mission
+ * @author Naehyung Kim
+ *
+ */
 public class MissionTest extends ApplicationTest{
 	
+	/**
+	 * Set up testFx
+	 * 
+	 */
 	@Override
     public void start(Stage stage) throws Exception {
 		URL location = getClass().getResource("/missions/missionAndAchievement.fxml");
@@ -29,8 +38,12 @@ public class MissionTest extends ApplicationTest{
 		stage.show();
     }
 	
+	/**
+	 * Test for Missions Button 
+	 *
+	 */
 	@Test
-	public void checkBasicInterface() {		
+	public void checkMissions() {		
 		
 		clickOn("#Missions");
 		
@@ -38,14 +51,23 @@ public class MissionTest extends ApplicationTest{
 		verifyThat("#titleLabel", hasText("Missions"));
 	}
 	
+	/**
+	 * Test for Mission Progress Button 
+	 *
+	 */
 	@Test
-	public void checkBuildings() {
+	public void checkMissionProgress() {
 		
 		clickOn("#MissionProgress");
 		
 		verifyThat("#MissionProgress", hasText("Mission Progress Circle"));
 		verifyThat("#titleLabel", hasText("Mission Progress"));
 	}
+	
+	/**
+	 * Tests if there is any null on the buttons
+	 * 
+	 */
 	@Test
     public void testIsNotNull() {
         
