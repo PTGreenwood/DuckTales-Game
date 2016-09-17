@@ -102,6 +102,11 @@ public class MarketManager {
     public Set<String> getUserInventoryItemNames() {
     	return marketModel.getUserInventoryItemNames();
     }
+    
+    public int getInventoryAmountForItem(String item) {
+    	return marketModel.getInventoryAmountForItem(item);
+    }
+    
 
     /**
      * Replaces the vista displayed in the vista holder with a new vista.

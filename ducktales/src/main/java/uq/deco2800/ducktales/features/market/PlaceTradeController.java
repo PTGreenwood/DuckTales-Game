@@ -21,7 +21,7 @@ public class PlaceTradeController {
 	private ComboBox<String> itemNameCombo;
 	
 	@FXML
-	private ComboBox quantityCombo;
+	private ComboBox<Integer> quantityCombo;
 	
 	@FXML
 	private Button placeOfferBtn;
@@ -67,7 +67,20 @@ public class PlaceTradeController {
 	void itemSelected() {
 		
 		// Update the itemNameLabel
-		itemNameLabel.setText(itemNameCombo.getValue());
+		String selectedItemName = itemNameCombo.getValue();
+		//
+		itemNameLabel.setText(selectedItemName);
+		
+		// Load the required possible quantities in the quantity combobox.
+		int maxAmount = marketManager.getInventoryAmountForItem(
+				selectedItemName);
+		
+		// Clear the contents of the quantity combobox.
+		quantityCombo.getItems().clear();
+		
+		for (int i = 1; i <= maxAmount; i++) {
+			quantityCombo.getItems().add(i);
+		}
 		
 	}
 

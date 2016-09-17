@@ -81,6 +81,12 @@ public class MarketModel {
 		return userInventory.keySet();
 	}
 	
+	public int getInventoryAmountForItem(String item) {
+		
+		return userInventory.get(item);
+		
+	}
+	
 	
 	
 
