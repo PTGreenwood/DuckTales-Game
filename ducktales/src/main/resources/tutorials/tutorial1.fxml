@@ -16,7 +16,7 @@
       </AnchorPane>
    </bottom>
    <top>
-      <Label text="Basic Interface" BorderPane.alignment="CENTER">
+      <Label fx:id="labelTop" text="Basic Interface" BorderPane.alignment="CENTER">
          <font>
             <Font name="Arial" size="36.0" />
          </font>
