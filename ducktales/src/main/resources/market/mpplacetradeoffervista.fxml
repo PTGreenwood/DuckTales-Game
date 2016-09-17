@@ -15,22 +15,22 @@
          <children>
             <AnchorPane prefHeight="353.0" prefWidth="550.0" style="-fx-background-color: #1b1464;">
                <children>
-                  <AnchorPane prefHeight="500.0" prefWidth="180.0" style="-fx-background-color: #1a1935;">
+                  <AnchorPane prefHeight="470.0" prefWidth="180.0" style="-fx-background-color: #1a1935;">
                      <children>
                         <Pane fx:id="itemPictureRegion" layoutX="18.0" layoutY="22.0" prefHeight="143.0" prefWidth="143.0" style="-fx-background-color: #FFFFFF;" />
                         <Label fx:id="itemNameLabel" layoutX="23.0" layoutY="179.0" text="Item Name" textFill="WHITE">
                            <font>
-                              <Font name="Free Pixel Regular" size="16.0" />
+                              <Font name="Press Start 2P" size="12.0" />
                            </font>
                         </Label>
                         <Label fx:id="quantityLabel" layoutX="23.0" layoutY="206.0" text="Quantity" textFill="WHITE">
                            <font>
-                              <Font name="Free Pixel Regular" size="16.0" />
+                              <Font name="Press Start 2P" size="12.0" />
                            </font>
                         </Label>
                         <Label fx:id="userLabel" layoutX="23.0" layoutY="232.0" text="User" textFill="WHITE">
                            <font>
-                              <Font name="Free Pixel Regular" size="16.0" />
+                              <Font name="Press Start 2P" size="12.0" />
                            </font>
                         </Label>
                      </children>
@@ -40,17 +40,17 @@
                   <ComboBox fx:id="itemNameCombo" layoutX="191.0" layoutY="61.0" onAction="#itemSelected" prefHeight="27.0" prefWidth="180.0" style="-fx-background-color: white;" />
                   <Label layoutX="191.0" layoutY="33.0" text="Item Name" textFill="WHITE">
                      <font>
-                        <Font name="Free Pixel Regular" size="20.0" />
+                        <Font name="Press Start 2P" size="14.0" />
                      </font>
                   </Label>
                   <Label layoutX="191.0" layoutY="109.0" text="Quantity" textFill="WHITE">
                      <font>
-                        <Font name="Free Pixel Regular" size="20.0" />
+                        <Font name="Press Start 2P" size="14.0" />
                      </font>
                   </Label>
                   <Button fx:id="placeOfferBtn" layoutX="192.0" layoutY="196.0" mnemonicParsing="false" onMouseReleased="#placeOffer" prefHeight="38.0" prefWidth="180.0" style="-fx-background-color: #1a1935; -fx-background-radius: 0px; -fx-border-color: white;" styleClass="menu" text="Place Offer" textFill="WHITE">
                      <font>
-                        <Font name="Free Pixel Regular" size="20.0" />
+                        <Font name="Press Start 2P" size="12.0" />
                      </font>
                   </Button>
                </children>
