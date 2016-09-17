@@ -23,16 +23,22 @@ public class Lumberjack extends Job {
                         mentorStrength, mentorIntelligence, 
                         jobName, JOBTYPE);
     }
-    // chops a tree
+    /**
+     * Chops a tree and adds to the peon's resource thing
+     * @param peon
+     * @param tree 
+     */
     public void chop(Peon peon, Tree tree){
         // the lumber method from Tree.java
         tree.lumber(peon);
         // increase the peon's strength by 2
         peon.StrengthExp(2);
+        // increase the amount of trees chopped
         peon.choppedATree();
         if (peon.getTreesChopped()>=10){
             peon.IntelligenceExp(1);
         }
+        // TODO: INTERACT WITH THE TREE CLASS
     }
     /**
      * Defines whether or not the given peon is 

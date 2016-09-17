@@ -49,10 +49,15 @@ public class Peon extends AgentEntity {
 	 * how many trees the Peon has chopped (used in Lumberjack.java)
 	 */
 	private int treesChopped;
-
+        
+        /**
+         * how many buildings the Peon has created (used in Builder.java)
+         */
+        private int buildingsMade;
 	// affinity bounds
 	private static final int DEFAULT_MAX = 10;
 	private static final int DEFAULT_MIN = 1;
+
 
 	/**
 	 * @param x
@@ -65,6 +70,7 @@ public class Peon extends AgentEntity {
 		this.speed = 0.05;
 		this.goalPoints = new ArrayList<Point>();
 		this.treesChopped = 0;
+                this.buildingsMade = 0;
 	}
 
 	/**
@@ -244,6 +250,9 @@ public class Peon extends AgentEntity {
 	public int getStrength() {
 		return strength;
 	}
+        public void setStrength(int strength){
+            this.strength=strength;
+        }
 
 	/**
 	 * Increase the peon's intelligence through experience
@@ -257,6 +266,9 @@ public class Peon extends AgentEntity {
 	public int getIntelligence() {
 		return intelligence;
 	}
+        public void setIntelligence(int intellgience){
+            this.intelligence=intelligence;
+        }
 
 	/**
 	 * Add one to treesChopped
@@ -274,6 +286,10 @@ public class Peon extends AgentEntity {
 		return this.treesChopped;
 	}
 
+        
+        public int getBuildingsMade() {
+            return this.buildingsMade;
+        }   
 	@Override
 	public void tick() {
 		if (goalPoints.isEmpty()) {
@@ -331,4 +347,6 @@ public class Peon extends AgentEntity {
 	private void weatherEffect() {
 
 	}
+
+
 }
