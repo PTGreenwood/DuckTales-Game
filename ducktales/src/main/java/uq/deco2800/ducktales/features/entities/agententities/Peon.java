@@ -10,6 +10,7 @@ import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.AStar;
 import uq.deco2800.ducktales.util.Point;
 import uq.deco2800.ducktales.features.entities.agententities.PeonDebuffType;
+import uq.deco2800.ducktales.features.entities.agententities.PeonBuffType;
 
 /**
  * Class representing the worker.
@@ -36,6 +37,7 @@ public class Peon extends AgentEntity {
 	private int intelligence;
 
 	private ArrayList<PeonDebuffType> debuffs = new ArrayList<PeonDebuffType>(); //access debuff by PeonDebuffType.DEBUFFNAME
+	private ArrayList<PeonBuffType> buffs = new ArrayList<PeonBuffType>(); //access debuff by PeonBuffType.BUFFNAME
 
 	// Job related information
 	private String job;
@@ -294,6 +296,32 @@ public class Peon extends AgentEntity {
 	 */
 	public ArrayList<PeonDebuffType> getDebuffs() {
 		return this.debuffs;
+	}
+
+	/**
+	 * add a buff to Peon
+	 */
+	public void addBuff(PeonBuffType _buff) {
+		if (!buffs.contains(_buff)) { buffs.add(_buff); }
+	}
+
+	/**
+	 *	remove a buff from Peon
+	 */
+	 public void removeBuff(PeonBuffType _buff) {
+		 int index = buffs.indexOf(_buff);
+
+		 if (index != -1) { buffs.remove(index); }
+	 }
+
+	/**
+	 * return all buffs that Peon has
+	 * 	- to access each buff in the arraylist use ArrayList built-in functions
+	 *		such as .get(index) or .contains(var name)
+	 *		when .get(index) used to compare to string use .get(index).toString() method
+	 */
+	public ArrayList<PeonBuffType> getBuffs() {
+		return this.buffs;
 	}
 
 	@Override
