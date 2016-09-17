@@ -228,4 +228,11 @@ public class MarketManager {
 	public void hideMarketPlace() {
 		this.marketplacePane.setVisible(false);
 	}
+	//@mattyleggy, added this in for keyboard handlers
+	public void toggleMarketPlace() {
+		if (this.marketplacePane.isVisible())
+			hideMarketPlace();
+		else
+			showMarketPlace();
+	}
 }

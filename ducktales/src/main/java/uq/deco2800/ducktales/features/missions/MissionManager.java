@@ -177,4 +177,11 @@ public class MissionManager {
 	public void hideMission() {
 		this.missionWindow.setVisible(false);
 	}
+	//@mattyleggy, added this is for in-game keyboard handler
+	public void toggleMission() {
+		if (this.missionWindow.isVisible())
+			hideMission();
+		else
+			showMission();
+	}
 }

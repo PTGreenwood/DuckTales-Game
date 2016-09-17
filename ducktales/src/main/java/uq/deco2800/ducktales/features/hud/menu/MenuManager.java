@@ -132,17 +132,20 @@ public class MenuManager implements Initializable, SecondaryManager{
     private void setupAnimalsMenu() {
         if (animalsMenu.getChildren().size() == 0) {
             /*
-             * Firstly add all animal sprites to the menu first
-             */
-            animalsMenu.getChildren().addAll(animalMenuSprites);
-
-            /*
              * Then adjust the size of the sprites accordingly
              */
             // TODO IMPLEMENT THIS
+        	int column = 0;
+        	int row = 0;
             for (int i = 0; i < animalMenuSprites.size(); i++) {
                 AnimalMenuSprite sprite = animalMenuSprites.get(i);
-
+                animalsMenu.add(sprite,column,row);                
+                if (column==1) {
+            		column=0;
+            		row++;
+            	} else {
+            		column++;
+            	}
                 // STUB METHOD - set max height for the sprites
 //                sprite.setFitHeight(animalsMenu.getHeight());
             }
@@ -164,7 +167,8 @@ public class MenuManager implements Initializable, SecondaryManager{
              * Then adjust the size of the sprites accordingly
              */
             // Get the officially defined scale from the rendering manager
-            double uiScale = RenderingInformation.UI_SCALE;
+            //double uiScale = RenderingInformation.UI_SCALE;
+        	double uiScale = 0.5;
             int column = 0;
             int row = 0;
             // adjust the size of the sprites

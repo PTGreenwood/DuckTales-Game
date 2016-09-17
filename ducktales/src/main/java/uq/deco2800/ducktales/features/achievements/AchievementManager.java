@@ -139,4 +139,11 @@ public class AchievementManager {
 	public void hideAchievement() {
 		this.achievementWindow.setVisible(false);
 	}
+	//@mattyleggy, added this is for in-game keyboard handler
+	public void toggleAchievement() {
+		if (this.achievementWindow.isVisible())
+			hideAchievement();
+		else
+			showAchievement();
+	}
 }

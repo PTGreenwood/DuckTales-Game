@@ -68,6 +68,18 @@ public class InGameKeyboardHandler extends GameEventHandler implements EventHand
                 displayManager.moveWorld(Direction.UP);
                 System.err.println("moving UP in Handler");
                 break;
+            case M:            	
+            	gameManager.getMarketManager().toggleMarketPlace();            	
+            	break;
+            case I:            	
+            	gameManager.getMissionManager().toggleMission();
+            	break;
+            case L:            	
+            	gameManager.getLevelManager().toggleLevel();
+            	break;	
+            case H:            	
+            	gameManager.getAchievementManager().toggleAchievement();
+            	break;	            
         }
     }
 
