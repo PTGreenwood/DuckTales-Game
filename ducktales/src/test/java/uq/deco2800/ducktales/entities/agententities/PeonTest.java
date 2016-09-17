@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import uq.deco2800.ducktales.features.entities.EntityManager;
 import uq.deco2800.ducktales.features.entities.agententities.Peon;
+import uq.deco2800.ducktales.features.entities.agententities.PeonDebuffType;
 import uq.deco2800.ducktales.resources.*;
 
 import static org.junit.Assert.*;
@@ -60,8 +61,13 @@ public class PeonTest {
     assertTrue("peon speed should be 0 if parameter is less than 0", peon.getSpeed() == 0);
     peon.setSpeed(0.10);
     assertTrue("peon speed should be parameter", peon.getSpeed() == 0.10);
-
     peon.choppedATree();
     assertTrue("method should add 1 to the peon treesChopped", peon.getTreesChopped() == 1);
+    peon.addDebuff(PeonDebuffType.HUNGER);
+    assertTrue("peon now should have a HUNGER debuff", peon.getDebuffs().get(0).toString() == "HUNGER");
+    peon.addDebuff(PeonDebuffType.THIRST);
+    assertTrue("peon now should have two debuffs", peon.getDebuffs().size() == 2);
+    peon.removeDebuff(PeonDebuffType.HUNGER);
+    assertTrue("peon now should not have HUNGER debuff so only one debuff", peon.getDebuffs().size() == 1);
   }
 }

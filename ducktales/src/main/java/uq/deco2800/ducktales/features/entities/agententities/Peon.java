@@ -9,6 +9,7 @@ import uq.deco2800.ducktales.features.jobframework.Job;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.AStar;
 import uq.deco2800.ducktales.util.Point;
+import uq.deco2800.ducktales.features.entities.agententities.PeonDebuffType;
 
 /**
  * Class representing the worker.
@@ -22,33 +23,27 @@ import uq.deco2800.ducktales.util.Point;
 public class Peon extends AgentEntity {
 
 	private static final Random RANDOM = new Random();
-
 	private static final ResourceType TYPE = ResourceType.PEON;
-
 	private List<Point> goalPoints;
 
-	//Peon stats
-	private int time = 0;
+	private int time;
 	private double speed;
-	private int health = 1000;
-	private int hunger = 100;
-	private int thirst = 100;
-	private int resource= 0;
-
-	// affinity
+	private int health;
+	private int hunger;
+	private int thirst;
+	private int resource;
 	private int strength;
 	private int intelligence;
 
-	// Job related information
-	private String job = "Jobless";
-	String jobString = "Jobless";
-	private double qualification = 0;
-	private boolean mentorStatus = false;
+	private ArrayList<PeonDebuffType> debuffs = new ArrayList<PeonDebuffType>(); //access debuff by PeonDebuffType.DEBUFFNAME
 
-	/**
-	 * how many trees the Peon has chopped (used in Lumberjack.java)
-	 */
-	private int treesChopped;
+	// Job related information
+	private String job;
+	String jobString = "Jobless";
+	private double qualification;
+	private boolean mentorStatus;
+
+	private int treesChopped; //trees Peon has chopped, used in Lumberjack.java
 
 	// affinity bounds
 	private static final int DEFAULT_MAX = 10;
@@ -60,11 +55,20 @@ public class Peon extends AgentEntity {
 	 */
 	public Peon(int x, int y) {
 		super(x, y, 1, 1, TYPE);
-		strength = RANDOM.nextInt((DEFAULT_MAX - DEFAULT_MIN) + 1) + DEFAULT_MIN;
-		intelligence = RANDOM.nextInt((DEFAULT_MAX - DEFAULT_MIN) + 1) + DEFAULT_MIN;
+		this.time = 0;
+		this.health = 1000;
+		this.hunger = 100;
+		this.thirst = 100;
+		this.strength = RANDOM.nextInt((DEFAULT_MAX - DEFAULT_MIN) + 1) + DEFAULT_MIN;
+		this.intelligence = RANDOM.nextInt((DEFAULT_MAX - DEFAULT_MIN) + 1) + DEFAULT_MIN;
 		this.speed = 0.05;
-		this.goalPoints = new ArrayList<Point>();
+		this.resource = 0;
 		this.treesChopped = 0;
+		this.qualification = 0;
+		this.mentorStatus = false;
+		this.job = "Jobless";
+
+		this.goalPoints = new ArrayList<Point>();
 	}
 
 	/**
@@ -264,6 +268,32 @@ public class Peon extends AgentEntity {
 	 */
 	public int getTreesChopped() {
 		return this.treesChopped;
+	}
+
+	/**
+	 * add a debuff to Peon
+	 */
+	public void addDebuff(PeonDebuffType _debuff) {
+		if (!debuffs.contains(_debuff)) { debuffs.add(_debuff); }
+	}
+
+	/**
+	 *	remove a debuff from Peon
+	 */
+	 public void removeDebuff(PeonDebuffType _debuff) {
+		 int index = debuffs.indexOf(_debuff);
+
+		 if (index != -1) { debuffs.remove(index); }
+	 }
+
+	/**
+	 * return all debuffs that Peon has
+	 * 	- to access each debuff in the arraylist use ArrayList built-in functions
+	 *		such as .get(index) or .contains(var name)
+	 *		when .get(index) used to compare to string use .get(index).toString() method
+	 */
+	public ArrayList<PeonDebuffType> getDebuffs() {
+		return this.debuffs;
 	}
 
 	@Override
