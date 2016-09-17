@@ -15,7 +15,7 @@
          <children>
             <AnchorPane prefHeight="470.0" prefWidth="550.0" style="-fx-background-color: #1b1464;">
                <children>
-                  <AnchorPane layoutX="314.0" prefHeight="470.0" prefWidth="236.0" style="-fx-background-color: #1a1935;">
+                  <AnchorPane layoutX="314.0" prefHeight="375.0" prefWidth="236.0" style="-fx-background-color: #1a1935;">
                      <children>
                         <Label fx:id="itemNameLabel" layoutX="22.0" layoutY="242.0" text="Item Name" textFill="WHITE">
                            <font>
@@ -32,7 +32,7 @@
                               <Font name="Press Start 2P" size="12.0" />
                            </font>
                         </Label>
-                        <Button fx:id="placeOfferBtn" layoutX="18.0" layoutY="338.0" mnemonicParsing="false" onMouseReleased="#placeOffer" prefHeight="38.0" prefWidth="202.0" style="-fx-background-color: #1b1464; -fx-background-radius: 0px; -fx-border-color: white;" styleClass="menu" text="Place Trade" textFill="WHITE">
+                        <Button fx:id="placeOfferBtn" layoutX="18.0" layoutY="318.0" mnemonicParsing="false" onMouseReleased="#placeOffer" prefHeight="38.0" prefWidth="202.0" style="-fx-background-color: #1b1464; -fx-background-radius: 0px; -fx-border-color: white;" styleClass="menu" text="Place Trade" textFill="WHITE">
                            <font>
                               <Font name="Press Start 2P" size="12.0" />
                            </font>
