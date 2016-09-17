@@ -7,6 +7,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.internal.requests.ClassRequest;
@@ -34,6 +35,13 @@ public class WorldEntitySpriteTest {
 	WorldBuilderRenderer mockRenderer;
 	WorldBuilderController mockManager;
 	
+	
+	@Before
+	public void setup() {
+		mockRenderer = Mockito.mock(WorldBuilderRenderer.class);
+		mockWorld = Mockito.mock(World.class);
+		mockReg = Mockito.mock(ResourceSpriteRegister.class);
+	}
 	/**
 	 * Basic test for the WorldEntitySprite class, checks all fields 
 	 * and calls each method.
@@ -44,10 +52,11 @@ public class WorldEntitySpriteTest {
 		mockManager = Mockito.mock(WorldBuilderController.class);
 		mockRenderer = Mockito.mock(WorldBuilderRenderer.class);
 		mockWorld = Mockito.mock(World.class);
+
 		mockManager.setRenderer(mockRenderer);
 		mockManager.setWorld(mockWorld);
 		test = ResourceType.BAKERY;
-		mockReg = Mockito.mock(ResourceSpriteRegister.class);
+		
 		// Need to be able to create internal graphics to get the test to run
 		WorldEntitySprite tester = new WorldEntitySprite(test);
 		//WorldEntitySprite bakery = new WorldEntitySprite(ResourceType.BAKERY);

@@ -10,6 +10,10 @@
     
 }
 
+#keyboardShortcuts {
+	-fx-font-family: "Press Start 2P";
+}
+
 /*
 .bottomPane {	
 	-fx-background-image: url("../../hud/hud.png");

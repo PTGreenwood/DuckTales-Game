@@ -1,6 +1,8 @@
 package uq.deco2800.ducktales.features.market;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -79,9 +81,36 @@ public class MarketManager {
     	MarketVistaNavigator.loadVista(MarketVistaNavigator.ALL_TRADES);
     }
     
+    /**
+     * Returns all the trades posted on the server.
+     * 
+     * @return A list of posted trades
+     */
     public List<MocTrade> getAllTrades() {
     	return this.marketModel.getAllTrades();
     }
+    
+    /**
+     * Returns a map of the user's inventory.
+     * 
+     * @return map of user inventory
+     */
+    public HashMap<String, Integer> getUserInventory() {
+    	return marketModel.getUserInventory();
+    }
+    
+    public Set<String> getUserInventoryItemNames() {
+    	return marketModel.getUserInventoryItemNames();
+    }
+    
+    public int getInventoryAmountForItem(String item) {
+    	return marketModel.getInventoryAmountForItem(item);
+    }
+    
+    public String getUserName() {
+    	return marketModel.getUserName();
+    }
+    
 
     /**
      * Replaces the vista displayed in the vista holder with a new vista.
@@ -227,5 +256,15 @@ public class MarketManager {
 	}
 	public void hideMarketPlace() {
 		this.marketplacePane.setVisible(false);
+	}
+	//@mattyleggy, added this in for keyboard handlers
+	public void toggleMarketPlace() {
+		if (this.marketplacePane.isVisible())
+			hideMarketPlace();
+		else
+			showMarketPlace();
+	}
+	public boolean isVisible() {
+		return this.marketplacePane.isVisible();
 	}
 }

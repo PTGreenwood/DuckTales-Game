@@ -7,8 +7,7 @@ package uq.deco2800.ducktales.features.weather;
  *
  *
  */
-public abstract class Weather {
-	
+public abstract class Weather {	
 	/**
 	 * Get the weather effect (sprite) details for weather
 	 * 
@@ -54,10 +53,10 @@ public abstract class Weather {
 	
 	/**
 	 * @return true if an object (e.g. tree) requires an updated sprite
-	 * 		   false if an object does not need an updated sprite
+	 * 		   false if an object does not need an updated sprite 
 	 */
 	public boolean requiresObjectUpdate() {
-		return true;
+		return false;
 	}
 	
 	@Override

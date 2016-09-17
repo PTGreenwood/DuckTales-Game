@@ -1,5 +1,6 @@
 package uq.deco2800.ducktales.features.level;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -16,6 +17,10 @@ public class LevelManager {
 	
 	@FXML 
 	private AnchorPane level;
+	@FXML
+	private Label levelDisplay;
+	@FXML
+	private ProgressBar pb1;
 	
 	/** Initialize classes */	
 	LevelHandler levelMain = LevelHandler.getInstance();
@@ -25,16 +30,14 @@ public class LevelManager {
 	 * 
 	 */
 	public void startLevel() {		
-		
-		Label levelDisplay = new Label("Level : " + levelMain.getLevel());	
-		ProgressBar  pb1 = new ProgressBar();
+		Platform.runLater(() -> {
+			levelDisplay.setText("Level : " + levelMain.getLevel());
+        });
 		pb1 = levelMain.getProgressIndicator();		
 		VBox levelVBox = new VBox(5);
 		System.out.println("Current level = " + levelMain.getLevel());
-		levelVBox.getChildren().addAll(levelDisplay,pb1);
-		
-		level.getChildren().add(levelVBox);
-				
+		levelVBox.getChildren().addAll(levelDisplay,pb1);		
+		level.getChildren().add(levelVBox);				
 	}
 	
 	/**
@@ -45,5 +48,15 @@ public class LevelManager {
 	}
 	public void hideLevel() {
 		this.level.setVisible(false);
+	}
+	//@mattyleggy, added this is for in-game keyboard handler
+	public void toggleLevel() {
+		if (this.level.isVisible())
+			hideLevel();
+		else
+			showLevel();
+	}
+	public boolean isVisible() {
+		return this.level.isVisible();
 	}
 }

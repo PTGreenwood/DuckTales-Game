@@ -42,6 +42,8 @@ public class AchievementManager {
 	private BorderPane achievementsMission;
 	private BorderPane achievementsLevel;
 	
+	private Label titleLabel;
+	
 	/** Initialize classes */	
 	AchievementHandler achievementMain = AchievementHandler.getInstance();
 	AchievementMission achievementMission = AchievementMission.getInstance();
@@ -70,7 +72,7 @@ public class AchievementManager {
 		achievementMissionLabel = achievementMission.getAchievementMissionLabel();		
 		achievementMissionLabel.setFont(new Font("Arial", 24));
 		
-		setTitleOnTop(achievementsMission,"Mission Achievements");
+		setTitleOnTop(achievementsMission,"Mission Achievement");
 		achievementsMission.setCenter(achievementMissionImage);
 		achievementsMission.setBottom(achievementMissionLabel);
 		achievementsMission.setAlignment(achievementMissionLabel, Pos.CENTER);
@@ -100,7 +102,7 @@ public class AchievementManager {
 		achievementLevelLabel = achievementLevel.getAchievementLevelLabel();		
 		achievementLevelLabel.setFont(new Font("Arial", 24));
 		
-		setTitleOnTop(achievementsLevel,"Level Achievements");
+		setTitleOnTop(achievementsLevel,"Level Achievement");
 		achievementsLevel.setCenter(achievementLevelImage);
 		achievementsLevel.setBottom(achievementLevelLabel);
 		achievementsLevel.setAlignment(achievementLevelLabel, Pos.CENTER);
@@ -117,7 +119,8 @@ public class AchievementManager {
 	 */
 	private void setTitleOnTop(BorderPane borderPane, String title){
 		
-		Label titleLabel = new Label(title);
+		titleLabel = new Label(title);
+		titleLabel.setId("titleLabel");
 		titleLabel.setFont(new Font("Arial", 36));
 		borderPane.setTop(titleLabel);
 		borderPane.setAlignment(titleLabel, Pos.CENTER);
@@ -138,5 +141,18 @@ public class AchievementManager {
 	}
 	public void hideAchievement() {
 		this.achievementWindow.setVisible(false);
+	}
+	//@mattyleggy, added this is for in-game keyboard handler
+	/**
+	 * Toggle between visible and invisible for achievement window. 
+	 */
+	public void toggleAchievement() {
+		if (this.achievementWindow.isVisible())
+			hideAchievement();
+		else
+			showAchievement();
+	}
+	public boolean isVisible() {
+		return this.achievementWindow.isVisible();
 	}
 }

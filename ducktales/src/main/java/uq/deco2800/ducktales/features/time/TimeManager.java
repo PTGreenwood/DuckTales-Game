@@ -4,7 +4,9 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
 import uq.deco2800.ducktales.util.SecondaryManager;
 import uq.deco2800.ducktales.util.Tickable;
 
@@ -22,9 +24,11 @@ public class TimeManager implements SecondaryManager, Initializable, Tickable {
 
     /** The root pane for all the time display elements */
     @FXML
-    private HBox timeDisplay;
+    private AnchorPane timeDisplay;
     @FXML
-    private Label timeDisplayText;
+    private Text timeDisplayText;
+    @FXML
+    private Text dayDisplayText;
 
     /** The model for the game time */
     private GameTime gameTime;
@@ -71,7 +75,8 @@ public class TimeManager implements SecondaryManager, Initializable, Tickable {
             // TIME TEAM: ALL CALL TO UI CHANGES MUST GO INSIDE THIS METHOD CALL
             // Enjoy coding - from Khoi :)
             Platform.runLater(() -> {
-                timeDisplayText.setText(timeText);
+                timeDisplayText.setText(hour + ":" + minute);
+                dayDisplayText.setText("DAY "+day);
             });
 
         }

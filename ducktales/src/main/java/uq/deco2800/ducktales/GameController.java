@@ -273,17 +273,17 @@ public class GameController implements Initializable{
 
         try {
             // load the FXML
-            HBox timeDisplay = loader.load();
+            AnchorPane timeDisplay = loader.load();
 
             // Retrieve the controller
             timeManager = loader.getController();
 
             // Add the time display to the GUI
-            rootPane.getChildren().add(timeDisplay);
+            leftPane.getChildren().add(timeDisplay);
 
             // Position the time display
-            AnchorPane.setTopAnchor(timeDisplay, 0.0);
-            AnchorPane.setRightAnchor(timeDisplay, 400.0);
+            AnchorPane.setTopAnchor(timeDisplay, 20.0);
+            AnchorPane.setLeftAnchor(timeDisplay, 20.0);
 
         } catch (IOException e) {
             System.err.println("unable to load time display");
@@ -341,8 +341,8 @@ public class GameController implements Initializable{
 
             rootPane.getChildren().add(root);
 
-            AnchorPane.setTopAnchor(root, 0.0);
-            AnchorPane.setRightAnchor(root, 30.0);
+            AnchorPane.setTopAnchor(root, 50.0);
+            AnchorPane.setRightAnchor(root, 250.0);
 
             missionManager.hideMission();
 
@@ -369,8 +369,8 @@ public class GameController implements Initializable{
             
             rootPane.getChildren().add(root);
 
-            AnchorPane.setTopAnchor(root, 0.0);
-            AnchorPane.setLeftAnchor(root, 170.0);
+            AnchorPane.setTopAnchor(root, 60.0);
+            AnchorPane.setLeftAnchor(root, 20.0);
 
             levelManager.hideLevel();
 
@@ -396,8 +396,8 @@ public class GameController implements Initializable{
             
             rootPane.getChildren().add(root);
 
-            AnchorPane.setTopAnchor(root, 0.0);
-            AnchorPane.setRightAnchor(root, 30.0);
+            AnchorPane.setTopAnchor(root, 50.0);
+            AnchorPane.setRightAnchor(root, 250.0);
 
             achievementManager.hideAchievement();
 
