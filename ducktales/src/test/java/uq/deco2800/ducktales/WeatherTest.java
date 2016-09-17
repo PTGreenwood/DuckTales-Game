@@ -172,8 +172,24 @@ public class WeatherTest {
 	@Test
 	public void testWeatherEffect() {
 		Fire fire = new Fire();
-		WeatherEffect we = fire.getWeatherEffect();
+		WeatherEffect we = fire.getWeatherEffect();		
+		Assert.assertEquals(null,we.getName());
+		we.setName("Fire");
+		Assert.assertEquals("Fire",we.getName());
+		we.setName("Name");
+		Assert.assertEquals("Name",we.getName());
+		String location = we.getLocation();
+		Assert.assertEquals(location+"fire.gif",we.getSprite());
 		
+		Rain rain = new Rain();
+		we = rain.getWeatherEffect();		
+		Assert.assertEquals(null,we.getName());
+		we.setName("Rain");
+		Assert.assertEquals("Rain",we.getName());
+		we.setName("Name");
+		Assert.assertEquals("Name",we.getName());
+		location = we.getLocation();
+		Assert.assertEquals(location+"rain.gif",we.getSprite());
 	}
 
 }
