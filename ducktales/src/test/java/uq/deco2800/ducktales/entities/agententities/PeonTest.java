@@ -5,6 +5,7 @@ import org.junit.Test;
 import uq.deco2800.ducktales.features.entities.EntityManager;
 import uq.deco2800.ducktales.features.entities.agententities.Peon;
 import uq.deco2800.ducktales.features.entities.agententities.PeonDebuffType;
+import uq.deco2800.ducktales.features.entities.agententities.PeonBuffType;
 import uq.deco2800.ducktales.resources.*;
 
 import static org.junit.Assert.*;
@@ -69,5 +70,11 @@ public class PeonTest {
     assertTrue("peon now should have two debuffs", peon.getDebuffs().size() == 2);
     peon.removeDebuff(PeonDebuffType.HUNGRY);
     assertTrue("peon now should not have HUNGER debuff so only one debuff", peon.getDebuffs().size() == 1);
+    peon.addBuff(PeonBuffType.STUFFED);
+    assertTrue("peon now should have a STUFFED buff", peon.getBuffs().get(0).toString() == "STUFFED");
+    peon.addBuff(PeonBuffType.HYDRATED);
+    assertTrue("peon now should have two buffs", peon.getBuffs().size() == 2);
+    peon.removeBuff(PeonBuffType.STUFFED);
+    assertTrue("peon now should only have one buff left", peon.getBuffs().size() == 1);
   }
 }
