@@ -16,9 +16,11 @@ public class WorldBuilderLoop implements Runnable {
 	private int tick;
     @SuppressWarnings("unused")
 	private AtomicBoolean quit;
+    
+    private WorldBuilderController controller;
 
     public WorldBuilderLoop(AtomicBoolean quit, int tick) {
-        this.world = WorldBuilderModel.getInstance().getWorld();
+        this.world = controller.getWorld();
         this.tick = tick;
         this.quit = quit;
     }

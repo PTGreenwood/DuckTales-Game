@@ -6,7 +6,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import javafx.scene.layout.*;
-import uq.deco2800.ducktales.GameManager;
 import uq.deco2800.ducktales.deprecated.OldGameController;
 import uq.deco2800.ducktales.deprecated.ui.*;
 import uq.deco2800.ducktales.features.market.MarketManager;
@@ -15,9 +14,7 @@ import uq.deco2800.ducktales.deprecated.OldGameManager;
 import uq.deco2800.ducktales.features.weather.Weather;
 import uq.deco2800.ducktales.features.weather.WeatherEffect;
 import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
-import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.features.builder.WorldBuilderController;
-import uq.deco2800.ducktales.features.builder.WorldBuilderModel;
 import uq.deco2800.ducktales.features.builder.WorldBuilderModel;
 import uq.deco2800.ducktales.features.builder.WorldBuilderRenderer;
 import javafx.event.ActionEvent;
@@ -38,7 +35,7 @@ public class DuckTalesController implements Initializable {
 	//gameWindow, contentPane & mainMenuPane are referenced in ducktales.fxml
 	private AnchorPane gameWindow;
 	@FXML
-	private static AnchorPane contentPane;
+	private AnchorPane contentPane;
 	@FXML
 	private AnchorPane mainMenuPane;
 
@@ -63,11 +60,12 @@ public class DuckTalesController implements Initializable {
 	private boolean running = false;
 	private ResourceSpriteRegister tileRegister;
 	private OldGameManager oldGameManager;
-	private WorldBuilderModel worldBuilderManager;
+	
 	private WorldBuilderController worldBuilderController;
+	private WorldBuilderModel worldBuilderManager;
 
 	// UI for World Builder
-	private static BorderPane worldBuilderPane;
+	private BorderPane worldBuilderPane;
 	private AnchorPane gamePane;
 
 	private AtomicBoolean quit;
@@ -83,17 +81,10 @@ public class DuckTalesController implements Initializable {
 	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
 		tileRegister = ResourceSpriteRegister.getInstance();
-		//oldGameManager = OldGameManager.getInstance();
-		System.out.println(location);
-		System.out.println(resources);
-		
-		//System.out.println(contentPane.getId());
-		worldBuilderManager = WorldBuilderModel.getInstance();
+		oldGameManager = OldGameManager.getInstance();
 		worldBuilderController = new WorldBuilderController();
-		
-		//worldBuilderManager = WorldBuilderManager.getInstance();
+		worldBuilderManager = WorldBuilderModel.getInstance();
 
 		// Set the handlers for the game panes
 		contentPane.setOnMousePressed(new MousePressedHandler());
@@ -201,8 +192,6 @@ public class DuckTalesController implements Initializable {
 		showPane(gamePane);
 
 	}
-	
-
 
 	/**
 	 * This is a helper method that helps set
@@ -222,14 +211,6 @@ public class DuckTalesController implements Initializable {
 		contentPane.setBottomAnchor(gamePane, 0.0);
 	}
 
-	public static AnchorPane getContentPane() {
-		return contentPane;
-	}
-	
-	public static BorderPane getBorderPane() {
-		return worldBuilderPane;
-	}
-	
 	//	/**
 //	 * This method will be called when the 'Launch Game' button is pressed The
 //	 * code that will call this method is defined in ducktales.fxml
@@ -269,8 +250,6 @@ public class DuckTalesController implements Initializable {
 //		}
 //	}
 
-	
-	
 
 	/**
 	 * This method is called when "Build World" button is pressed

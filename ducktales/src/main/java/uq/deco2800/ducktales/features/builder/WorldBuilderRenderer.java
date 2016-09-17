@@ -131,9 +131,8 @@ public class WorldBuilderRenderer extends AnimationTimer {
      *
      * @param tileType
      */
-    public void setCurrentTileSelected(ResourceType tileType) {
+    protected void setCurrentTileSelected(ResourceType tileType) {
         hoveringImage.setImage(null);
-
         for (int i = 0; i < tiles.getWidth(); i++) {
             for (int j = 0; j < tiles.getHeight(); j++) {
                 tiles.get(i, j).setHoverType(tileType);
@@ -143,7 +142,7 @@ public class WorldBuilderRenderer extends AnimationTimer {
         missions.MissionImageCompleted(1);
     }
 
-    public void setCurrentEntitySelected(ResourceType entityType) {
+    protected void setCurrentEntitySelected(ResourceType entityType) {
         // Set the image that will follow the mouse
         Image image = resourceSpriteRegister.getResourceImage(entityType);
         hoveringImage.setImage(image);
@@ -165,7 +164,7 @@ public class WorldBuilderRenderer extends AnimationTimer {
      * @param y
      *          The y-coordinate of the hovered upon tile
      */
-    public void notifyTileHovered(int x, int y) {
+    protected void notifyTileHovered(int x, int y) {
         // making sure the hovering image does not move elsewhere due to
         // the setOnMouseMoved implementation
         isTiledHovered = true;
@@ -182,7 +181,7 @@ public class WorldBuilderRenderer extends AnimationTimer {
      * NOTE: there is currently a bug which causes occasional jittering when
      * cursor moves from one tile to another
      */
-    public void notifyTileEndHovering() {
+    protected void notifyTileEndHovering() {
         isTiledHovered = false;
     }
 
@@ -192,7 +191,7 @@ public class WorldBuilderRenderer extends AnimationTimer {
      * @param x
      * @param y
      */
-    public void notifyTileClicked(int x, int y) {
+    protected void notifyTileClicked(int x, int y) {
         ImageView entity = new ImageView();
         entity.setImage(hoveringImage.getImage());
         entity.setFitHeight(hoveringImage.getFitHeight());
@@ -206,9 +205,8 @@ public class WorldBuilderRenderer extends AnimationTimer {
 
         // add the entity onto the building scene
         buildingScene.getChildren().add(entity);
-
-        System.out.println("Entities added: " + addedEntities.toString());
-              
+        
+        //System.out.println("Entities added: " + addedEntities.toString());  
     }
 
     /**
@@ -217,11 +215,9 @@ public class WorldBuilderRenderer extends AnimationTimer {
      */
     private void setupHoveringImage(Pane buildingScene) {
         this.hoveringImage = new ImageView();
-
         buildingScene.getChildren().add(hoveringImage);
         buildingScene.setOnMouseMoved(event -> {
             if (!isTiledHovered) {
-                //System.out.println("X Y are: " + event.getX() + ", " + event.getY());
 
                 hoveringImage.setLayoutX(event.getX());
                 hoveringImage.setLayoutY(event.getY());
@@ -277,7 +273,7 @@ public class WorldBuilderRenderer extends AnimationTimer {
                  * Construct a WorldBuilderTile, passing it its world-coordinates
                   * and a handle of this rendering engine,
                  */
-                tiles.set(i, j, new WorldBuilderTile(this, i, j));
+                tiles.set(i, j, new WorldBuilderTile(i, j));
 
                 int x = startingX + (j - i) * scaledWidth / 2;
                 int y = startingY + (j + i) * scaledHeight / 2;
@@ -351,16 +347,25 @@ public class WorldBuilderRenderer extends AnimationTimer {
         
     }
 
+    /**
+     * Inherited from AnimationTimer.
+     */
     @Override
     public void handle(long arg0) {
         // stub method
     }
 
+    /**
+     * Start the renderer. Inherited from AnimationTimer, must remain public.
+     */
     @Override
     public void start() {
         super.start();
     }
 
+    /**
+     * Stop the renderer. Inherited from AnimationTimer, must remain public.
+     */
     @Override
     public void stop() {
         super.stop();

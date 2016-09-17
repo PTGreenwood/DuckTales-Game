@@ -32,7 +32,7 @@ public class WorldEntitySpriteTest {
 	World mockWorld;
 	ResourceSpriteRegister mockReg;
 	WorldBuilderRenderer mockRenderer;
-	WorldBuilderManager mockManager;
+	WorldBuilderController mockManager;
 	
 	/**
 	 * Basic test for the WorldEntitySprite class, checks all fields 
@@ -41,7 +41,7 @@ public class WorldEntitySpriteTest {
 	@Ignore
 	@Test
 	public void basicTest(){
-		mockManager = WorldBuilderManager.getInstance();
+		mockManager = Mockito.mock(WorldBuilderController.class);
 		mockRenderer = Mockito.mock(WorldBuilderRenderer.class);
 		mockWorld = Mockito.mock(World.class);
 		mockManager.setRenderer(mockRenderer);

@@ -1,19 +1,12 @@
 package uq.deco2800.ducktales.features.builder;
 
-import uq.deco2800.ducktales.DuckTalesController;
 import uq.deco2800.ducktales.World;
-import uq.deco2800.ducktales.features.missions.MissionHandler;
 import uq.deco2800.ducktales.resources.ResourceType;
 
-import static uq.deco2800.ducktales.resources.ResourceType.*;
-
-import com.sun.glass.events.MouseEvent;
-
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
-
 /**
- * Controller for builder package (part of MVC) architecture.
+ * Controller for builder package (part of MVC) architecture. Interacts with 
+ * external classes, as well as the Model and View classes within the builder 
+ * package.
  * 
  * @author Gabrielle Hodge, 43590526
  *
@@ -21,22 +14,28 @@ import javafx.scene.layout.Pane;
 
 public class WorldBuilderController {
 	
-	private WorldBuilderModel manager; // The manager that this sprite reports to
+	public final int TILE = 1;
+    public final int ENTITY = 2;
+	
 	private TileSprite tileSprite;
-	private WorldBuilderModel model;
-	private WorldBuilderRenderer renderer;
+	private static WorldBuilderModel model;
+	private static WorldBuilderRenderer renderer;
 	
 	public WorldBuilderController() {
-		//this.manager = WorldBuilderManager.getInstance();
-		//this.tileSprite = new TileSprite(resource);
 		this.model = WorldBuilderModel.getInstance();
-		//this.renderer = new WorldBuilderRenderer(new Pane(), new BorderPane());
 	}
 	
 	public void setWorld(World world) {
 		model.setWorld(world);
-	}
+	}	
 	
+	public World getWorld() {
+		return model.getWorld();
+	}	
+	
+	public int getCurrentType() {
+		return model.getCurrentType();
+	}
 	
     /**
      * Register the rendering engine for the world builder
@@ -48,15 +47,29 @@ public class WorldBuilderController {
         renderer.start();
     }
     
-    public void setCurrentResource(ResourceType resource, int type) {
+    public ResourceType getCurrentResource() {
+    	return model.getCurrentResource();
+    }
+    
+    public static void setCurrentResource(ResourceType resource, int type) {
         Object[] current = model.setCurrentResource(resource, type);
         if (current[0] == "tile") {
-            this.renderer.setCurrentTileSelected(resource);
-        } else if (current[1] == "entity") {
+            renderer.setCurrentTileSelected(resource);
+        } else if (current[0] == "entity") {
             renderer.setCurrentEntitySelected(resource);
         }
     }
     
-    MissionHandler missions = MissionHandler.getInstance();
+    public void notifyTileEndHovering() {
+    	renderer.notifyTileEndHovering();
+    }
+    
+    public void notifyTileHovered(int x, int y) {
+    	renderer.notifyTileHovered(x, y);
+    }
+    
+    public void notifyTileClicked(int x, int y) {
+    	renderer.notifyTileClicked(x, y);
+    }
 	
 }

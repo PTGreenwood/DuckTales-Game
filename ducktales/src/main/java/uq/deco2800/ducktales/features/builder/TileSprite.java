@@ -25,8 +25,9 @@ public class TileSprite extends ImageView {
     private static final double SPRITE_WIDTH = 174 * SCALE;
 
     private ResourceType tileType;
-    private WorldBuilderManager manager; // The manager that this sprite reports to
+    private WorldBuilderModel manager; // The manager that this sprite reports to
     private Image sprite; // The image of the tile
+    private WorldBuilderController controller;
 
     /**
      * Creates a tile sprite with the given type
@@ -34,7 +35,7 @@ public class TileSprite extends ImageView {
      *          The type of this tile
      */
     public TileSprite(ResourceType type) {
-        this.manager = WorldBuilderManager.getInstance();
+        this.manager = WorldBuilderModel.getInstance();
         this.tileType = type;
 
         this.sprite = ResourceSpriteRegister.getInstance().getResourceImage(tileType);
@@ -51,7 +52,7 @@ public class TileSprite extends ImageView {
      */
     private void setupMouseEventHandlers() {
         this.setOnMouseClicked(event -> {
-            manager.setCurrentResource(tileType, manager.TILE);
+            WorldBuilderController.setCurrentResource(tileType, manager.TILE);
         });
     }
 

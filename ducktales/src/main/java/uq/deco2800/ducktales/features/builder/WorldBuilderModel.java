@@ -14,14 +14,15 @@ import static uq.deco2800.ducktales.resources.ResourceType.*;
  * Entities can be added on later in future implementations
  *
  * Created by Khoi on 19/08/2016.
+ * Modified by Gabrielle Hodge, 18/9/2016. To convert to MVC
  */
 public class WorldBuilderModel {	
     private static final WorldBuilderModel INSTANCE = new WorldBuilderModel();
     /**
      * CONSTANTS
      */
-    public final int TILE = 1;
-    public final int ENTITY = 2;
+    protected final int TILE = 1;
+    protected final int ENTITY = 2;
 
 
     private World world;
@@ -33,7 +34,7 @@ public class WorldBuilderModel {
     public static WorldBuilderModel getInstance() { return INSTANCE; }
     
     /**
-     * Constructor of the {@link WorldBuilderManager} class
+     * Constructor of the {@link WorldBuilderModel} class
      */
     private WorldBuilderModel() {
     }
@@ -55,7 +56,7 @@ public class WorldBuilderModel {
      * @param world
      *          The world to be edited
      */
-    public void setWorld(World world) {
+    protected void setWorld(World world) {
         this.world = world;
     }
 
@@ -63,7 +64,7 @@ public class WorldBuilderModel {
      * Get the world for this canvas
      * @return the world of the WorldBuilder canvas
      */
-    public World getWorld() { 
+    protected World getWorld() { 
     	return world; 
     }
 
@@ -71,7 +72,7 @@ public class WorldBuilderModel {
      * Get the current resource currently managed by the user
      * @return the type of resource currently managed by the user
      */
-    public ResourceType getCurrentResource() {
+    protected ResourceType getCurrentResource() {
         return currentResource;
     }
 
@@ -80,7 +81,7 @@ public class WorldBuilderModel {
      * @param resource
      *          The type of resource that is being managed
      */
-    public Object[] setCurrentResource(ResourceType resource, int type) {
+    protected Object[] setCurrentResource(ResourceType resource, int type) {
         currentResource = resource;
         currentType = type;
         String name = "";
@@ -89,7 +90,7 @@ public class WorldBuilderModel {
         } else if (type == this.ENTITY) {
             name = "entity";
         }
-        System.out.println("Current resource is: " + resource.toString());
+        //System.out.println("Current resource is: " + resource.toString());
         return new Object[] {name, resource};
     }
 }
