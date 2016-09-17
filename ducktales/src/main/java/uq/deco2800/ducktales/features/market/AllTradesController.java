@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +15,10 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
 public class AllTradesController {
+	
+	private static final Logger LOGGER = Logger.getLogger(
+			AllTradesController.class.getName() );
+
 	
 	private MarketManager marketManager;
 	
@@ -59,40 +65,54 @@ public class AllTradesController {
 				System.err.println("tradePane is null ");
 			}
 			
-			Label itemNameLabel = 
-					(Label) tradePane.lookup("#itemNameLabel");
 			
-			itemNameLabel.setText(trade.getItemName());
-			
-			Label quantityLabel = (Label) tradePane.lookup("#quantityLabel");
-			
-			if (quantityLabel == null) {
-				System.err.println("quantityLabel is null ");
+			try {
+				
+				Label itemNameLabel = 
+						(Label) tradePane.lookup("#itemNameLabel");
+				
+				itemNameLabel.setText(trade.getItemName());
+				
+			} catch(NullPointerException exception) {
+				
+				LOGGER.log(Level.SEVERE, exception.toString(), exception);
+				
 			}
 			
-			quantityLabel.setText("Amount: " + trade.getQuantity().toString());
 			
-			Label userLabel = (Label) tradePane.lookup("#userLabel");
-			
-			if (userLabel == null) {
-				System.err.println("userLabel is null ");
+			try {
+				Label quantityLabel = 
+						(Label) tradePane.lookup("#quantityLabel");
+				
+				quantityLabel.setText("Amount: " + 
+						trade.getQuantity().toString());
+				
+			} catch(NullPointerException exception) {
+				LOGGER.log(Level.SEVERE, exception.toString(), exception);
 			}
 			
-			userLabel.setText("User: " + trade.getUserName());
 			
-			if (allTradesGridPane == null) {
-				System.err.println("allTradesGridPane is null ");
+			try {
+				Label userLabel = (Label) tradePane.lookup("#userLabel");
+				userLabel.setText("User: " + trade.getUserName());
+				
+			} catch(NullPointerException exception) {
+				LOGGER.log(Level.SEVERE, exception.toString(), exception);
 			}
 			
 			GridPane.setRowIndex(tradePane, row);
             GridPane.setColumnIndex(tradePane, column);
 			
-			allTradesGridPane.getChildren().add(tradePane);
+            try {
+            	allTradesGridPane.getChildren().add(tradePane);
+            } catch(NullPointerException exception) {
+            	LOGGER.log(Level.SEVERE, exception.toString(), exception);
+            }
+			
 			
 			} catch (IOException exception) {
-				
+				LOGGER.log(Level.SEVERE, exception.toString(), exception);
 			}
-			
 			
 			column++;
 			
