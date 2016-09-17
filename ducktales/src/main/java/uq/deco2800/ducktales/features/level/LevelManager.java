@@ -46,4 +46,14 @@ public class LevelManager {
 	public void hideLevel() {
 		this.level.setVisible(false);
 	}
+	//@mattyleggy, added this is for in-game keyboard handler
+	public void toggleLevel() {
+		if (this.level.isVisible())
+			hideLevel();
+		else
+			showLevel();
+	}
+	public boolean isVisible() {
+		return this.level.isVisible();
+	}
 }
