@@ -17,8 +17,7 @@ public class Builder extends Job {
     protected static int mentorIntelligence = 10;
     protected static String jobName = "Builder";
     protected static final JobType JOBTYPE = JobType.BUILDER;
-    public Builder(int requiredStrength, int requiredIntelligence, int mentorStrength, 
-            int mentorIntelligence, String jobName, JobType JOBTYPE) {
+    public Builder() {
 		super(requiredStrength, requiredIntelligence, 
                         mentorStrength, mentorIntelligence, 
                         jobName, JOBTYPE);

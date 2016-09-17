@@ -15,12 +15,12 @@ import static org.junit.Assert.*;
  * @author Eduardo
  */
 public class BuilderTest {
-    private Builder builder;
+    private Builder builder = new Builder();
     @Test
     public void BuilderTest() {
         Peon peon = new Peon(10, 10);
         
-        assertEquals(peon.getJob(),"unemployed");
+        assertEquals(peon.getJob(),"Jobless");
         
         
         boolean BuilderQualified = builder.isQualified(peon);
