@@ -15,12 +15,12 @@ import static org.junit.Assert.*;
  */
 public class LumberjackTest {
 
-    private Lumberjack lumberjack;
+    private Lumberjack lumberjack = new Lumberjack();
     @Test
     public void lumberjackTest(){
         /*instantiating a peon*/
         Peon peon = new Peon(10, 10);
-        assertEquals(peon.getJob(), "unemployed");
+        assertEquals(peon.getJob(), "Jobless");
         
         /**
          * Qualification of the peon as a builder
@@ -42,7 +42,7 @@ public class LumberjackTest {
     @Test
     public void lumberTest(){
         Peon peon = new Peon(10, 10);
-        assertEquals(peon.getJob(), "unemployed");
+        assertEquals(peon.getJob(), "Jobless");
         peon.setStrength(lumberjack.getRequiredStrength()+1);
         peon.setIntelligence(lumberjack.getRequiredIntelligence()+1);
         assertTrue(lumberjack.isQualified(peon));
