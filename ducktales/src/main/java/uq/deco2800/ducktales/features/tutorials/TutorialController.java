@@ -47,6 +47,26 @@ public class TutorialController {
 	@FXML
 	private Button marketPlace;	
 	
+	private void createTutorial(BorderPane borderPane, AnchorPane tutorialMain, String mainTutorilAddress, String subTutorialAddress) throws Exception {
+		
+		rightPane.getChildren().removeAll(tutorial1,tutorial2,tutorial3);
+		URL location = getClass().getResource(mainTutorilAddress);
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(location);
+		borderPane = loader.load();
+		
+		URL locationMain = getClass().getResource(subTutorialAddress);
+		FXMLLoader loaderMain = new FXMLLoader();
+		loaderMain.setLocation(locationMain);		
+		tutorialMain = loaderMain.load();	
+		
+		borderPane.setPrefHeight(rightPane.getHeight());
+		borderPane.setPrefWidth(rightPane.getWidth());
+		borderPane.setCenter(tutorialMain);
+		
+		rightPane.getChildren().add(borderPane);	
+	}
+	
 	/**
 	 * Start tutorial1
 	 * 

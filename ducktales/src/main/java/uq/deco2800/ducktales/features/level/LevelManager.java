@@ -31,10 +31,8 @@ public class LevelManager {
 		pb1 = levelMain.getProgressIndicator();		
 		VBox levelVBox = new VBox(5);
 		System.out.println("Current level = " + levelMain.getLevel());
-		levelVBox.getChildren().addAll(levelDisplay,pb1);
-		
-		level.getChildren().add(levelVBox);
-				
+		levelVBox.getChildren().addAll(levelDisplay,pb1);		
+		level.getChildren().add(levelVBox);				
 	}
 	
 	/**
