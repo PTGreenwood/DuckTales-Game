@@ -107,6 +107,10 @@ public class MarketManager {
     	return marketModel.getInventoryAmountForItem(item);
     }
     
+    public String getUserName() {
+    	return marketModel.getUserName();
+    }
+    
 
     /**
      * Replaces the vista displayed in the vista holder with a new vista.

@@ -36,7 +36,7 @@
                      </children>
                   </AnchorPane>
                   <Pane fx:id="chosenItemPicture" layoutX="384.0" layoutY="22.0" prefHeight="143.0" prefWidth="143.0" style="-fx-background-color: #FFFFFF;" />
-                  <ComboBox fx:id="quantityCombo" layoutX="191.0" layoutY="139.0" prefHeight="27.0" prefWidth="180.0" style="-fx-background-color: white;" />
+                  <ComboBox fx:id="quantityCombo" layoutX="191.0" layoutY="139.0" onAction="#quantitySelected" prefHeight="27.0" prefWidth="180.0" style="-fx-background-color: white;" />
                   <ComboBox fx:id="itemNameCombo" layoutX="191.0" layoutY="61.0" onAction="#itemSelected" prefHeight="27.0" prefWidth="180.0" style="-fx-background-color: white;" />
                   <Label layoutX="191.0" layoutY="33.0" text="Item Name" textFill="WHITE">
                      <font>
@@ -48,7 +48,7 @@
                         <Font name="Free Pixel Regular" size="20.0" />
                      </font>
                   </Label>
-                  <Button fx:id="placeOfferBtn" layoutX="192.0" layoutY="196.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="180.0" style="-fx-background-color: #1a1935; -fx-background-radius: 0px; -fx-border-color: white;" styleClass="menu" text="Place Offer" textFill="WHITE">
+                  <Button fx:id="placeOfferBtn" layoutX="192.0" layoutY="196.0" mnemonicParsing="false" onAction="#placeOffer" prefHeight="38.0" prefWidth="180.0" style="-fx-background-color: #1a1935; -fx-background-radius: 0px; -fx-border-color: white;" styleClass="menu" text="Place Offer" textFill="WHITE">
                      <font>
                         <Font name="Free Pixel Regular" size="20.0" />
                      </font>

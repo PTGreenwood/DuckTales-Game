@@ -52,23 +52,27 @@ public class PlaceTradeController {
 		Set<String> inventoryItemNames = 
 				this.marketManager.getUserInventoryItemNames();
 		
-		// Get the quantity of each the user has
-		
-		
 		// Populate the item name combo box
 		
 		for (String itemName: inventoryItemNames) {
 			itemNameCombo.getItems().add(itemName);
 		}
 		
+		// Set the user name label to the current user text
+		userLabel.setText("User: " + this.marketManager.getUserName());
+		
+		
 	}
 	
 	@FXML
 	void itemSelected() {
 		
-		// Update the itemNameLabel
 		String selectedItemName = itemNameCombo.getValue();
-		//
+		
+		// Set the quantityLabel to the default
+		quantityLabel.setText("Quantity");
+		
+		// Update the itemNameLabel
 		itemNameLabel.setText(selectedItemName);
 		
 		// Load the required possible quantities in the quantity combobox.
@@ -80,6 +84,33 @@ public class PlaceTradeController {
 		
 		for (int i = 1; i <= maxAmount; i++) {
 			quantityCombo.getItems().add(i);
+		}
+		
+	}
+	
+	@FXML
+	void quantitySelected() {
+		
+		// Update the quantity Label
+		quantityLabel.setText("Amount: " + 
+				quantityCombo.getValue().toString());	
+	}
+	
+	@FXML
+	void placeOffer() {
+		
+		// Get the values in item Name and quantity
+		String itemName = itemNameCombo.getValue();
+		
+		Integer quantity = quantityCombo.getValue();
+		
+		if (itemName != null && quantity != null) {
+			// place a new offer
+			System.out.println("Place offer button pressed");
+		} else {
+			// place a new offer
+			System.out.println("Requirements not met");
+			
 		}
 		
 	}

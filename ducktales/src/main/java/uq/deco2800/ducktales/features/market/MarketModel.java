@@ -87,6 +87,10 @@ public class MarketModel {
 		
 	}
 	
+	public String getUserName() {
+		return "jSmith";
+	}
+	
 	
 	
 
