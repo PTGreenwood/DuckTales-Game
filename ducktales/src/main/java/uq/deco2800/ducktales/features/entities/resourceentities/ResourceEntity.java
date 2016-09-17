@@ -49,7 +49,7 @@ public abstract class ResourceEntity extends WorldEntity {
 	 * 
 	 * @return Returns the ResourceType that the Resource will use
 	 */
-	protected static ResourceType rare(ResourceType[] TYPES){
+	public static ResourceType rare(ResourceType[] TYPES){
 		Random randomGenerator = new Random();
 		int randomInt = randomGenerator.nextInt(100);
 		if(randomInt < 5){

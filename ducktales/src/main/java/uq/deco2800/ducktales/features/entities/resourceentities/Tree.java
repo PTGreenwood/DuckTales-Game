@@ -32,7 +32,7 @@ public class Tree extends ResourceEntity{
 		 * set the value of the Resource to be double.
 		 */
 		if(this.getType() == TYPES[TYPES.length-1]){
-			this.setValue(200);
+			this.setValue(2*DEFVALUE);
 		}
 	}
 	//Runnable that is in charge of growing the tree
