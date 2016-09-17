@@ -20,6 +20,7 @@ public class CommunityBuilding extends Building {
 	// Size of the building
 	public static final int X_LENGTH = 2;
 	public static final int Y_LENGTH = 2;
+	
 	public static final boolean PASSABILITY = false;
 	
 	/**

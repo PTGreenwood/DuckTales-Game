@@ -9,6 +9,13 @@ import org.junit.Test;
 
 import uq.deco2800.ducktales.World;
 
+/**
+ * Test class for the WorldBuilderLoop class. 
+ * 
+ * @author Gabbi
+ *
+ */
+
 public class WorldBuilderLoopTest {
 	
 	/**

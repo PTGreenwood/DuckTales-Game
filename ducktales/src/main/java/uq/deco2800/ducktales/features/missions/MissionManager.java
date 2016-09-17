@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ScrollPane;
@@ -25,19 +26,27 @@ import uq.deco2800.ducktales.features.level.LevelHandler;
 /**
  * Handles in-game mission methods.
  * 
+ *@author Naehyung Kim
  *
  */
 public class MissionManager {
 	
+	/** Main window */
 	@FXML	
 	private AnchorPane missionWindow;
 	
+	/** Right Pand of the window */
 	@FXML
 	private AnchorPane rightPane;
+	
+	/** Buttons on left Pane */
+	@FXML
+	private Button Missions, MissionProgress;
 	
 	private BorderPane gameMission1;
 	private BorderPane achievement;
 	
+	/** Initialize classes */
 	AchievementHandler achievementMain = AchievementHandler.getInstance();
 	MissionHandler missionMain = MissionHandler.getInstance();
 	LevelHandler levelMain = LevelHandler.getInstance();
@@ -48,8 +57,7 @@ public class MissionManager {
 	 * 
 	 * @param event
 	 * @throws Exception
-	 */
-	
+	 */	
 	@FXML
 	public void startMission1(ActionEvent event) throws Exception {
 		
@@ -78,12 +86,13 @@ public class MissionManager {
 	}
 		
 	/**
-	 * Starts achievement.
+	 * Starts Mission Progress
+	 * .
 	 * @param event
 	 * @throws Exception
 	 */
 	@FXML
-	public void startachievement(ActionEvent event) throws Exception {
+	public void startMissionProgress(ActionEvent event) throws Exception {
 		
 		removeAllPane();
 		URL location = getClass().getResource("/missions/achievement.fxml");
@@ -91,18 +100,8 @@ public class MissionManager {
 		loader.setLocation(location);
 		achievement = loader.load();
 		
-		//GridPane achieveGrid = new GridPane();		
-				
-		//Label pi1Label = new Label("Mission Progress");
 		ProgressIndicator  pi1 = new ProgressIndicator();
 		pi1 = piMain.getProgressIndicator();
-		//VBox achieveVBox1 = new VBox();
-		//achieveVBox1.getChildren().addAll(pi1,pi1Label);	
-		
-		/*achieveGrid.setVgap(10);
-		achieveGrid.setPadding(new Insets(10, 10, 10, 10));
-		achieveGrid.add(achieveVBox1, 0, 1);
-		*/
 		setTitleOnTop(achievement,"Mission Progress");
 		
 		achievement.setCenter(pi1);		
@@ -112,7 +111,14 @@ public class MissionManager {
 		rightPane.getChildren().add(achievement);
 	}	
 	
-	private HBox createMission(String missionName, int missionNumber){
+	/**
+	 * Create mission with label with String and tick box
+	 * 
+	 * @param missionName
+	 * @param missionNumber
+	 * @return
+	 */
+	private HBox createMission(String missionName, int missionNumber) {
 		Label mission = new Label(missionName);
 		mission.setFont(new Font("Arial", 24));
 		ImageView missionBox = new ImageView();
@@ -122,31 +128,63 @@ public class MissionManager {
 		return missionHBox;
 	}
 	
-	private void setTitleOnTop(BorderPane borderPane, String title){
+	/**
+	 * Set the title on the top of the borderPane
+	 * 
+	 * @param borderPane
+	 * @param title
+	 */
+	private void setTitleOnTop(BorderPane borderPane, String title) {
 		Label titleLabel = new Label(title);
 		titleLabel.setFont(new Font("Arial", 36));
 		borderPane.setTop(titleLabel);
 		borderPane.setAlignment(titleLabel, Pos.CENTER);
 	}
 	
-	private void removeAllPane(){
+	/**
+	 * Remove all panes
+	 * 
+	 */
+	private void removeAllPane() {
 		rightPane.getChildren().removeAll(gameMission1,achievement);
 	}
 	
-	public void missionCompletedAction(int missionNumber){
+	/**
+	 * Actions when the certain mission is completed
+	 * 
+	 * @param missionNumber
+	 */
+	public void missionCompletedAction(int missionNumber) {
     	
     	//Untick mission2 box in Achievement window of Gamebeta when marketplace is clicked
 		missionMain.MissionImageCompleted(missionNumber);
         //Increment percentage of progress indicator in achievement
         missionMain.countNumberOfCompletedMissions();
-            
-        
+        //If progress indicator is full then level up
+        if(levelMain.getProgressIndicator().getProgress() == 1.0) {
+        	levelMain.levelUp();
+        }        
+        System.out.println("Mission " + (missionNumber + 1) + " Completed!");
     }
 	
+	/**
+	 * Show and Hide mission main window
+	 * 
+	 */
 	public void showMission() {
     	this.missionWindow.setVisible(true);
 	}
 	public void hideMission() {
 		this.missionWindow.setVisible(false);
+	}
+	//@mattyleggy, added this is for in-game keyboard handler
+	public void toggleMission() {
+		if (this.missionWindow.isVisible())
+			hideMission();
+		else
+			showMission();
+	}
+	public boolean isVisible() {
+		return this.missionWindow.isVisible();
 	}
 }

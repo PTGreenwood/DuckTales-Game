@@ -20,6 +20,7 @@ public class Church extends Building {
 	// Size of a church
 	public static final int X_LENGTH = 2;
 	public static final int Y_LENGTH = 2;
+	
 	public static final boolean PASSABILITY = false;
 	
 	/**
