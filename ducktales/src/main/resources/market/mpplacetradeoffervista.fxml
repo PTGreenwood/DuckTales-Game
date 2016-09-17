@@ -48,7 +48,7 @@
                         <Font name="Free Pixel Regular" size="20.0" />
                      </font>
                   </Label>
-                  <Button fx:id="placeOfferBtn" layoutX="192.0" layoutY="196.0" mnemonicParsing="false" onAction="#placeOffer" prefHeight="38.0" prefWidth="180.0" style="-fx-background-color: #1a1935; -fx-background-radius: 0px; -fx-border-color: white;" styleClass="menu" text="Place Offer" textFill="WHITE">
+                  <Button fx:id="placeOfferBtn" layoutX="192.0" layoutY="196.0" mnemonicParsing="false" onMouseReleased="#placeOffer" prefHeight="38.0" prefWidth="180.0" style="-fx-background-color: #1a1935; -fx-background-radius: 0px; -fx-border-color: white;" styleClass="menu" text="Place Offer" textFill="WHITE">
                      <font>
                         <Font name="Free Pixel Regular" size="20.0" />
                      </font>

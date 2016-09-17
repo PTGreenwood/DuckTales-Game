@@ -26,7 +26,6 @@ public class PlaceTradeController {
 	@FXML
 	private Button placeOfferBtn;
 	
-	
 	@FXML
 	private Label itemNameLabel;
 	
@@ -38,6 +37,10 @@ public class PlaceTradeController {
 	
 	private MarketManager marketManager;
 	
+	/**
+	 * Constructor for the PlaceTradeController. Conducts tasks before the 
+	 * view is initialized.
+	 */
 	public PlaceTradeController() {
 		
 		this.marketManager = MarketVistaNavigator.getMainController();
@@ -45,6 +48,9 @@ public class PlaceTradeController {
 		
 	}
 	
+	/**
+	 * Conducts tasks once the view has been initialized.
+	 */
 	@FXML
 	public void initialize() {
 		
@@ -64,6 +70,10 @@ public class PlaceTradeController {
 		
 	}
 	
+	/**
+	 * Updates the example labels when an item from the item name 
+	 * combo box is selected.
+	 */
 	@FXML
 	void itemSelected() {
 		
@@ -88,6 +98,10 @@ public class PlaceTradeController {
 		
 	}
 	
+	/**
+	 * Updates the example labels when an amount from the quantity 
+	 * combo box is selected.
+	 */
 	@FXML
 	void quantitySelected() {
 		
@@ -96,6 +110,9 @@ public class PlaceTradeController {
 				quantityCombo.getValue().toString());	
 	}
 	
+	/**
+	 * Places the new trade offer created by the user.
+	 */
 	@FXML
 	void placeOffer() {
 		
