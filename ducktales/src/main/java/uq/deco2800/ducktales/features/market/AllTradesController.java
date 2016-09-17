@@ -3,12 +3,8 @@ package uq.deco2800.ducktales.features.market;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
-import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import javax.annotation.CheckForNull;
-
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -24,7 +20,8 @@ public class AllTradesController {
 	
 	private MarketManager marketManager;
 	
-	private static String TRADE_PANE = "/market/mpalltradestradepane.fxml";
+	private static final String TRADE_PANE = 
+			"/market/mpalltradestradepane.fxml";
 	
 	private URL path;
 	
@@ -36,7 +33,6 @@ public class AllTradesController {
 	
 	public AllTradesController() {
 		this.marketManager = MarketVistaNavigator.getMainController();
-		System.out.println("AllTradesController created");
 		
 	}
 	
@@ -86,14 +82,8 @@ public class AllTradesController {
 			
 				allTradesGridPane.getChildren().add(tradePane);
            
-
-			} catch (IOException exception) {
+			} catch (IOException | NullPointerException exception) {
 				LOGGER.log(Level.SEVERE, exception.toString(), exception);
-			
-			} catch(NullPointerException exception) {
-				
-				LOGGER.log(Level.SEVERE, exception.toString(), exception);
-				
 			}
 			
 			column++;
