@@ -33,13 +33,13 @@ public class DuckTalesLauncher extends Application {
 		FXMLLoader fxmlLoader = new FXMLLoader();
 		fxmlLoader.setLocation(location);
 		
-		System.out.println(location.toString());
+		System.out.println(location.openStream().read());
 		
 		Parent root = fxmlLoader.load(location.openStream());
 		
 		Scene scene = new Scene(root, 1295, 737);
 		
-		System.out.println(String.valueOf(contentPane.getHeight()));
+		System.out.println("hdkghdjhdjghdjh");
 		
 		
 		DuckTalesController ducktalesController = fxmlLoader.getController(); // link the controller to the FXML file

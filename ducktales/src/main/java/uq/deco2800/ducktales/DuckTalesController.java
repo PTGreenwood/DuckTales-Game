@@ -15,6 +15,7 @@ import uq.deco2800.ducktales.deprecated.OldGameManager;
 import uq.deco2800.ducktales.features.weather.Weather;
 import uq.deco2800.ducktales.features.weather.WeatherEffect;
 import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
+import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.features.builder.WorldBuilderController;
 import uq.deco2800.ducktales.features.builder.WorldBuilderModel;
 import uq.deco2800.ducktales.features.builder.WorldBuilderModel;
@@ -61,7 +62,7 @@ public class DuckTalesController implements Initializable {
 
 	private boolean running = false;
 	private ResourceSpriteRegister tileRegister;
-	private GameManager oldGameManager;
+	private OldGameManager oldGameManager;
 	private WorldBuilderModel worldBuilderManager;
 	private WorldBuilderController worldBuilderController;
 
@@ -82,17 +83,17 @@ public class DuckTalesController implements Initializable {
 	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		tileRegister = ResourceSpriteRegister.getInstance();
-		//oldGameManager = GameManager(contentPane);
-
 		
-		//System.out.println(contentPane.getHeight());
+		tileRegister = ResourceSpriteRegister.getInstance();
+		//oldGameManager = OldGameManager.getInstance();
+		System.out.println(location);
+		System.out.println(resources);
+		
+		//System.out.println(contentPane.getId());
 		worldBuilderManager = WorldBuilderModel.getInstance();
 		worldBuilderController = new WorldBuilderController();
 		
-
 		//worldBuilderManager = WorldBuilderManager.getInstance();
-		System.out.println(String.valueOf(contentPane.getHeight()));
 
 		// Set the handlers for the game panes
 		contentPane.setOnMousePressed(new MousePressedHandler());
