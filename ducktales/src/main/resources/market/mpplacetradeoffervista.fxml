@@ -13,9 +13,9 @@
    <children>
       <VBox prefHeight="350.0" prefWidth="550.0">
          <children>
-            <AnchorPane prefHeight="353.0" prefWidth="550.0" style="-fx-background-color: #1b1464;">
+            <AnchorPane prefHeight="470.0" prefWidth="550.0" style="-fx-background-color: #1b1464;">
                <children>
-                  <AnchorPane layoutX="349.0" prefHeight="470.0" prefWidth="236.0" style="-fx-background-color: #1a1935;">
+                  <AnchorPane layoutX="314.0" prefHeight="470.0" prefWidth="236.0" style="-fx-background-color: #1a1935;">
                      <children>
                         <Label fx:id="itemNameLabel" layoutX="22.0" layoutY="242.0" text="Item Name" textFill="WHITE">
                            <font>
@@ -40,14 +40,14 @@
                         <Pane fx:id="itemPictureRegion" layoutX="19.0" layoutY="19.0" prefHeight="199.0" prefWidth="202.0" style="-fx-background-color: #FFFFFF;" />
                      </children>
                   </AnchorPane>
-                  <ComboBox fx:id="quantityCombo" layoutX="29.0" layoutY="174.0" onAction="#quantitySelected" prefHeight="40.0" prefWidth="290.0" style="-fx-background-color: white;" />
-                  <ComboBox fx:id="itemNameCombo" layoutX="29.0" layoutY="76.0" onAction="#itemSelected" prefHeight="40.0" prefWidth="290.0" style="-fx-background-color: white;" />
-                  <Label layoutX="29.0" layoutY="48.0" text="Item Name" textFill="WHITE">
+                  <ComboBox fx:id="quantityCombo" layoutX="24.0" layoutY="174.0" onAction="#quantitySelected" prefHeight="40.0" prefWidth="270.0" style="-fx-background-color: white;" />
+                  <ComboBox fx:id="itemNameCombo" layoutX="24.0" layoutY="76.0" onAction="#itemSelected" prefHeight="40.0" prefWidth="270.0" style="-fx-background-color: white;" />
+                  <Label layoutX="24.0" layoutY="48.0" text="Item Name" textFill="WHITE">
                      <font>
                         <Font name="Press Start 2P" size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="29.0" layoutY="144.0" text="Quantity" textFill="WHITE">
+                  <Label layoutX="24.0" layoutY="144.0" text="Quantity" textFill="WHITE">
                      <font>
                         <Font name="Press Start 2P" size="14.0" />
                      </font>
