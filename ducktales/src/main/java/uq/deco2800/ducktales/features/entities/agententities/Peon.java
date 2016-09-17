@@ -40,16 +40,25 @@ public class Peon extends AgentEntity {
 	private List<PeonBuffType> buffs = new ArrayList<PeonBuffType>(); //access debuff by PeonBuffType.BUFFNAME
 
 	// Job related information
-	private String job;
-	String jobString = "Jobless";
-	private double qualification;
-	private boolean mentorStatus;
 
-	private int treesChopped; //trees Peon has chopped, used in Lumberjack.java
+	private String job = "Jobless";
+	String jobless  = "Jobless";
+	private double qualification = 0;
+	private boolean mentorStatus = false;
 
+	/**
+	 * how many trees the Peon has chopped (used in Lumberjack.java)
+	 */
+	private int treesChopped;
+        
+        /**
+         * how many buildings the Peon has created (used in Builder.java)
+         */
+        private int buildingsMade;
 	// affinity bounds
 	private static final int DEFAULT_MAX = 10;
 	private static final int DEFAULT_MIN = 1;
+
 
 	/**
 	 * @param x
@@ -71,6 +80,7 @@ public class Peon extends AgentEntity {
 		this.job = "Jobless";
 
 		this.goalPoints = new ArrayList<Point>();
+                this.buildingsMade = 0;
 	}
 
 	/**
@@ -168,25 +178,34 @@ public class Peon extends AgentEntity {
 	 *
 	 * @param job
 	 */
-	public void applyForJob(Job job) {
-		if (job.isQualified(this))
-			this.setJob(job.toString());
-	}
+    public String applyForJob(Job job){
+            if (job.isQualified(this)){
+                    this.setJob(job.toString());
+                    return "You're hired!";
+            } else if (	this.getStrength()<job.getRequiredStrength()
+                    &&		this.getIntelligence()<job.getRequiredIntelligence()){
+                    return "Peon is not qualified in both aspects";
+            } else if (this.getStrength()<job.getRequiredStrength()){
+                    return "Peon strength is not high enough";
+            } else {
+                    return "Peon intelligence is not high enough";
+            }
+    }
 
 	/**
 	 * Peon quits job if it has one
 	 *
 	 * @param job
 	 */
-	public void quitJob(Job job) {
-		if (this.getJob() != jobString)
-			this.setJob(jobString);
+	public void quitJob() {
+		if (this.getJob() != jobless)
+			this.setJob(jobless);
 	}
 
 	/**
 	 * Check if Peon finished the current job
 	 *
-	 * everytime Peon completes a task they will gain attributes that affects
+	 * every time Peon completes a task they will gain attributes that affects
 	 * job completion time
 	 */
 	public void checkJobFinshed() {
@@ -242,6 +261,9 @@ public class Peon extends AgentEntity {
 	public int getStrength() {
 		return strength;
 	}
+        public void setStrength(int strength){
+            this.strength=strength;
+        }
 
 	/**
 	 * Increase the peon's intelligence through experience
@@ -255,6 +277,9 @@ public class Peon extends AgentEntity {
 	public int getIntelligence() {
 		return intelligence;
 	}
+        public void setIntelligence(int intellgience){
+            this.intelligence=intelligence;
+        }
 
 	/**
 	 * Add one to treesChopped
@@ -271,7 +296,6 @@ public class Peon extends AgentEntity {
 	public int getTreesChopped() {
 		return this.treesChopped;
 	}
-
 	/**
 	 * add a debuff to Peon
 	 */
@@ -324,6 +348,10 @@ public class Peon extends AgentEntity {
 		return this.buffs;
 	}
 
+        
+        public int getBuildingsMade() {
+            return this.buildingsMade;
+        }
 	@Override
 	public void tick() {
 		if (goalPoints.isEmpty()) {
@@ -383,7 +411,6 @@ public class Peon extends AgentEntity {
 	private void weatherEffect() {
 		//need to be implemented
 	}
-
 	/**
 	 * function that check the status of Peon to add buff/debuff
 	 * 	- hunger/thirst threshold
