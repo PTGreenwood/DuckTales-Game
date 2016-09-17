@@ -235,4 +235,7 @@ public class MarketManager {
 		else
 			showMarketPlace();
 	}
+	public boolean isVisible() {
+		return this.marketplacePane.isVisible();
+	}
 }

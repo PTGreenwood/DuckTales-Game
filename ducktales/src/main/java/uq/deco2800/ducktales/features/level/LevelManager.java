@@ -53,4 +53,7 @@ public class LevelManager {
 		else
 			showLevel();
 	}
+	public boolean isVisible() {
+		return this.level.isVisible();
+	}
 }

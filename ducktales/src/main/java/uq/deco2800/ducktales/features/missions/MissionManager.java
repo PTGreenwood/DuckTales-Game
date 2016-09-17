@@ -184,4 +184,7 @@ public class MissionManager {
 		else
 			showMission();
 	}
+	public boolean isVisible() {
+		return this.missionWindow.isVisible();
+	}
 }
