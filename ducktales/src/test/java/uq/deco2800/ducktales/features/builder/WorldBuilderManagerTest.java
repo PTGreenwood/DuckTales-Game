@@ -8,6 +8,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -35,9 +36,14 @@ public class WorldBuilderManagerTest {
 	/**
 	 * Basic test for the WorldBuilderManager class, checks the set and get world methods.
 	 */
+	@Before
+	public void setup() {
+		mockWorld = Mockito.mock(World.class);
+	}
+	
 	@Test
 	public void worldTest(){
-		mockWorld = Mockito.mock(World.class);
+		
 		
 		WorldBuilderManager testManager = WorldBuilderManager.getInstance();
 		
