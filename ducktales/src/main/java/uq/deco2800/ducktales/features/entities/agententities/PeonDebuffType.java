@@ -5,5 +5,5 @@ package uq.deco2800.ducktales.features.entities.agententities;
  * @author Jin Shin
  */
 public enum PeonDebuffType {
-  HUNGER, THIRST, COLD, HOT
+  HUNGRY,THIRSTY, SICKLY, NEAR_DEATH, STARVING, PARCHED
 }

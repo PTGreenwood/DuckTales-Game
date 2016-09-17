@@ -63,11 +63,11 @@ public class PeonTest {
     assertTrue("peon speed should be parameter", peon.getSpeed() == 0.10);
     peon.choppedATree();
     assertTrue("method should add 1 to the peon treesChopped", peon.getTreesChopped() == 1);
-    peon.addDebuff(PeonDebuffType.HUNGER);
-    assertTrue("peon now should have a HUNGER debuff", peon.getDebuffs().get(0).toString() == "HUNGER");
-    peon.addDebuff(PeonDebuffType.THIRST);
+    peon.addDebuff(PeonDebuffType.HUNGRY);
+    assertTrue("peon now should have a HUNGER debuff", peon.getDebuffs().get(0).toString() == "HUNGRY");
+    peon.addDebuff(PeonDebuffType.THIRSTY);
     assertTrue("peon now should have two debuffs", peon.getDebuffs().size() == 2);
-    peon.removeDebuff(PeonDebuffType.HUNGER);
+    peon.removeDebuff(PeonDebuffType.HUNGRY);
     assertTrue("peon now should not have HUNGER debuff so only one debuff", peon.getDebuffs().size() == 1);
   }
 }
