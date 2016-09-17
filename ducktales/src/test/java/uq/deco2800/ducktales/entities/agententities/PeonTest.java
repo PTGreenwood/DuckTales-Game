@@ -68,12 +68,16 @@ public class PeonTest {
     assertTrue("peon now should have a HUNGER debuff", peon.getDebuffs().get(0).toString() == "HUNGRY");
     peon.addDebuff(PeonDebuffType.THIRSTY);
     assertTrue("peon now should have two debuffs", peon.getDebuffs().size() == 2);
+    peon.addDebuff(PeonDebuffType.HUNGRY);
+    assertTrue("no duplicate is allowed in debuffs", peon.getDebuffs().size() == 2);
     peon.removeDebuff(PeonDebuffType.HUNGRY);
     assertTrue("peon now should not have HUNGER debuff so only one debuff", peon.getDebuffs().size() == 1);
     peon.addBuff(PeonBuffType.STUFFED);
     assertTrue("peon now should have a STUFFED buff", peon.getBuffs().get(0).toString() == "STUFFED");
     peon.addBuff(PeonBuffType.HYDRATED);
     assertTrue("peon now should have two buffs", peon.getBuffs().size() == 2);
+    peon.addBuff(PeonBuffType.STUFFED);
+    assertTrue("no duplicate is allowed in buffs", peon.getBuffs().size() == 2);
     peon.removeBuff(PeonBuffType.STUFFED);
     assertTrue("peon now should only have one buff left", peon.getBuffs().size() == 1);
   }
