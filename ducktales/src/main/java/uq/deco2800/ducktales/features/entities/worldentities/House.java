@@ -13,11 +13,14 @@ public class House extends Building {
 	// BuildingMenuSprite type
 	private static final ResourceType TYPE = ResourceType.HOUSE;
 
-	private int health =1000;
+	// Building health - starting value
+	private int health = 1000;
 	
 	// Building size
-	private static final int X_LENGTH = 2;
-	private static final int Y_LENGTH = 2;
+	public static final int X_LENGTH = 2;
+	public static final int Y_LENGTH = 2;
+	
+	public static final boolean PASSABILITY = false;
 
 	/**
 	 * Initialise a new house. Requires the location of the house
@@ -27,6 +30,14 @@ public class House extends Building {
 	 */
 	public House(double x, double y) {
 		super(x, y, X_LENGTH, Y_LENGTH, TYPE);
+		health = 1000;
+	}
+		
+	/**
+	 * Update the WorldEntity properties with those of a house.
+	 */
+	protected void specifications() {
+		specifications(2, 4, 2, production.NULL, 0, health);
 	}
 	
 	/**
@@ -35,27 +46,8 @@ public class House extends Building {
 	 * 
 	 * @param NewValue, new health of the building
 	 */
-	public void ChangeHealth(int NewValue){
-		if (NewValue >0){
-			this.health =NewValue;
-		}
-	}
-	
-	/**
-	 * Method to access the 'health' of the house. Returns the integer 
-	 * value of the health.
-	 * 
-	 * @return the health of the house.
-	 */
-	public int GetHealth(){
-		return health;
-	}
-	
-	/**
-	 * Update the WorldEntity properties with those of a house.
-	 */
-	protected void specifications() {
-		specifications(2, 4, 2, production.NULL, 0);
+	protected void changeHealthBuilding(int newValue){
+		health = newValue;
 	}
 
 	/**

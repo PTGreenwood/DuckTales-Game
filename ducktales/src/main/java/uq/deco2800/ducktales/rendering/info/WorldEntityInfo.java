@@ -51,7 +51,13 @@ public class WorldEntityInfo {
             {2, 2}, // butcher
             {2, 2}, // community building
             {2, 2}, // bakery
-            {2, 2} // construction
+            {2, 2}, // construction
+            {5, 5},  // SAWMILL
+            {2, 2}, // forge
+            {2, 2}, //house
+            {2, 2}, //observatory
+            {5, 5}, //mine
+            {2, 2} // hospital
 
     };
     private ResourceType[] buildingNames = {
@@ -59,7 +65,13 @@ public class WorldEntityInfo {
             BUTCHER,
             COMMUNITY_BUILDING,
             BAKERY,
-            CONSTRUCTION
+            CONSTRUCTION, 
+            SAWMILL, 
+            FORGE,
+            HOUSE,
+            OBSERVATORY,
+            MINE,
+            HOSPITAL
     };
 
     /**

@@ -12,9 +12,14 @@ public class LongBox extends Building {
 	// BuildingMenuSprite type
 	private static final ResourceType TYPE = ResourceType.LONG_BOX;
 	
+	// Building health - starting value
+	private int health = 600;
+	
 	// Long Box size
-	private static final int X_LENGTH = 2;
-	private static final int Y_LENGTH = 1;
+	public static final int X_LENGTH = 2;
+	public static final int Y_LENGTH = 1;
+	
+	public static final boolean PASSABILITY = false;
 
 	/**
 	 * Initialise a new long box. Requires the location of the long box
@@ -24,13 +29,24 @@ public class LongBox extends Building {
 	 */
 	public LongBox(int x, int y) {
 		super(x, y, X_LENGTH, Y_LENGTH, TYPE);
+		health = 600;
 	}
 
 	/**
 	 * Update the WorldEntity properties with those of a long box.
 	 */
 	protected void specifications() {
-		specifications(2, 2, 2, production.NULL, 0);
+		specifications(2, 2, 2, production.NULL, 0, health);
+	}
+	
+	/**
+	 * Update the 'health' of the long box. Requires an integer value of 
+	 * the new health to be passed.
+	 * 
+	 * @param NewValue, new health of the building
+	 */
+	protected void changeHealthBuilding(int newValue){
+		health = newValue;
 	}
 	
 	/**

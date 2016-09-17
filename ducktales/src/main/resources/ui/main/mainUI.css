@@ -1,10 +1,18 @@
+@font-face {
+    src: url('../../fonts/PressStart2P.ttf');
+}
+
 .gamePane {
-    -fx-background-color: #F0EDE4;
+    
 
 }
 .leftPane {
-    -fx-background-color: #735032;
+    
 }
-.bottomPane {
-    -fx-background-color: #735032;
+
+/*
+.bottomPane {	
+	-fx-background-image: url("../../hud/hud.png");
+	-fx-background-size: 200px auto;
 }
+*/

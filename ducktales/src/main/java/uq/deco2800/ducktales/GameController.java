@@ -15,12 +15,16 @@ import uq.deco2800.ducktales.features.level.LevelManager;
 import uq.deco2800.ducktales.features.market.MarketManager;
 import uq.deco2800.ducktales.features.market.MarketVistaNavigator;
 import uq.deco2800.ducktales.features.time.TimeManager;
+import uq.deco2800.ducktales.features.weather.*;
 import uq.deco2800.ducktales.rendering.worlddisplay.WorldDisplayManager;
 import uq.deco2800.ducktales.features.missions.MissionManager;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import org.slf4j.Logger; 
+import org.slf4j.LoggerFactory; 
 
 /**
  * <p>
@@ -45,7 +49,7 @@ public class GameController implements Initializable{
     /** The main pane where everything is loaded into */
     @FXML
     private AnchorPane rootPane;
-
+    
     /** The main UI elements */
     @FXML
     private AnchorPane leftPane;
@@ -53,12 +57,16 @@ public class GameController implements Initializable{
     private AnchorPane bottomPane;
     @FXML
     private AnchorPane worldPane;
+    
     @FXML
     private Button closeButton;
 
     /** The Primary Manager of the game, that manages game GUI logic */
     private GameManager gameManager;
-
+    
+    /** implementing a logger, to catch ioe exception */
+    private static Logger logger = LoggerFactory.getLogger(GameController.class);
+    
     /** The Secondary Managers of the game, each managing an FXML loader */
     private MarketManager marketManager;
     
@@ -90,8 +98,10 @@ public class GameController implements Initializable{
         gameManager = new GameManager(this.rootPane); // = new GameManager(loadedWorld) for later
 
         // Load each FXML element into the root pane on by one, and retrieve
-        // their respective controllers
-        loadWorldDisplay();
+        // their respective controllers        
+        
+        loadWorldDisplay();    
+        loadWeatherDisplay();
         loadHUD();
         loadMarketPlace();
         loadMissions();
@@ -113,8 +123,7 @@ public class GameController implements Initializable{
         gameManager.setTimeManager(this.timeManager);
 
         // Now officially call the game starting method from Game Manager
-        gameManager.startGame();
-
+        gameManager.startGame();        
         // Game Controller's job of setting up the UI is done.
     }
 
@@ -194,19 +203,43 @@ public class GameController implements Initializable{
         try {
             Pane worldPane = loader.load();
             this.worldDisplayManager = loader.getController();
-
+            
             // add the world pane to the root pane
             rootPane.getChildren().add(worldPane);
-
             // Set the sizing for world pane
             AnchorPane.setLeftAnchor(worldPane, 0.0);
             AnchorPane.setRightAnchor(worldPane, 0.0);
             AnchorPane.setTopAnchor(worldPane, 0.0);
             AnchorPane.setBottomAnchor(worldPane, 0.0);
-
         } catch (IOException e) {
             System.err.println("unable to load world display");
             //e.printStackTrace();
+        }
+    }
+    
+   
+    /**
+     * @mattyleggy
+     * Overlay the weather pane on top of the main game pane.
+     */
+    private void loadWeatherDisplay() {
+        URL location = getClass().getResource("/weather/weatherEffects.fxml");
+        FXMLLoader loader = new FXMLLoader(location);
+        try {
+            Pane weatherPane = loader.load();     
+
+            // add the weather pane to the root pane
+            rootPane.getChildren().add(weatherPane);           
+            weatherPane.setOpacity(0.7);
+            this.worldDisplayManager.changeWeather(new Rain(), weatherPane);
+            // Set the sizing for world pane
+            AnchorPane.setLeftAnchor(weatherPane, 0.0);
+            AnchorPane.setRightAnchor(weatherPane, 0.0);
+            AnchorPane.setTopAnchor(weatherPane, 0.0);
+            AnchorPane.setBottomAnchor(weatherPane, 0.0);
+            
+        } catch (IOException e) {
+            System.err.println("unable to load weather effects");
         }
     }
 
@@ -254,7 +287,7 @@ public class GameController implements Initializable{
 
         } catch (IOException e) {
             System.err.println("unable to load time display");
-            e.printStackTrace();
+            logger.info("Unable to load time display:" + e);
         }
 
     }
@@ -286,7 +319,7 @@ public class GameController implements Initializable{
 
         } catch (IOException e) {
             System.err.println("Unable to load Marketplace");
-            e.printStackTrace();
+            logger.info("Unable to load Marketplace:" + e);
         }
     }
     
@@ -315,7 +348,7 @@ public class GameController implements Initializable{
 
         } catch (IOException e) {
             System.err.println("Unable to load Missions");
-            e.printStackTrace();
+            logger.info("Unable to load Missions:" + e);
         }
     }
     
@@ -343,7 +376,7 @@ public class GameController implements Initializable{
 
         } catch (IOException e) {
             System.err.println("Unable to load Level");
-            e.printStackTrace();
+            logger.info("Unable to load level:" + e);
         }
     }
     
@@ -370,8 +403,10 @@ public class GameController implements Initializable{
 
         } catch (IOException e) {
             System.err.println("Unable to load Achievement");
-            e.printStackTrace();
+            logger.info("Unable to load Achievment:" + e);;
         }
     }
+    
+
       
 }

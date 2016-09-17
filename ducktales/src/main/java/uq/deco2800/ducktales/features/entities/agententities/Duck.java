@@ -12,6 +12,13 @@ public class Duck extends Animal {
 
     private boolean canLayEggs = false; // Whether the duck can lay eggs.
     private boolean canDropFeathers = false; // Whether the duck can drop feathers.
+
+    /*
+    Whether the duck can drop resources. This is only temporary while other resources are yet to be developed. The
+    resource will only be dropped when the animal is dead.
+     */
+    private boolean canDropResource = false;
+
     private Peon opponent; // The peon that the animal will battle.
     private EntityManager opponentList; // List of possible opponents.
 
@@ -26,9 +33,8 @@ public class Duck extends Animal {
     }
 
 
-
     /**
-     * Checks whether the duck can lay eggs. Ducks can only lay eggs if their health, hunger, and thirst meet satisfy
+     * Enables the duck to lay eggs. Ducks can only lay eggs if their health, hunger, and thirst meet satisfy
      * a certain threshold.
      */
     public void layEggs() {
@@ -38,11 +44,21 @@ public class Duck extends Animal {
     }
 
     /**
-     * Enables the duck to drop feathers.
+     * Enables the duck to drop feathers. Ducks can only drop feathers when they are dead.
      */
     public void dropFeathers() {
-        if (this.isDead()) {
+        if (this.isDead() == true) {
             this.canDropFeathers = true;
+        }
+    }
+
+    /**
+     * Enables the duck to drop resources. Ducks can only drop resources when they are dead.
+     * Note that this is only a temporary method.
+     */
+    public void dropResource() {
+        if (this.isDead() == true) {
+            this.canDropResource = true;
         }
     }
 
@@ -64,5 +80,15 @@ public class Duck extends Animal {
      */
     public boolean canDropFeathers() {
         return canDropFeathers;
+    }
+
+    /**
+     * Returns whether the duck can drop a resource. This is only temporary as other resources have not yet been
+     * implemented.
+     *
+     * @return canDropResource
+     */
+    public boolean canDropResource() {
+        return canDropResource;
     }
 }

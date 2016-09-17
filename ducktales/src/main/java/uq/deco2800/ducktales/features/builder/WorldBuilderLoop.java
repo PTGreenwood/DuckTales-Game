@@ -18,7 +18,7 @@ public class WorldBuilderLoop implements Runnable {
 	private AtomicBoolean quit;
 
     public WorldBuilderLoop(AtomicBoolean quit, int tick) {
-        this.world = WorldBuilderManager.getInstance().getWorld();
+        this.world = WorldBuilderModel.getInstance().getWorld();
         this.tick = tick;
         this.quit = quit;
     }

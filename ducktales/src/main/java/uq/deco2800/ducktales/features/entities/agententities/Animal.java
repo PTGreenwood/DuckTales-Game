@@ -18,16 +18,23 @@ import uq.deco2800.ducktales.util.Point;
 public class Animal extends AgentEntity {
 
     private static final int MINSTARTHEALTH = 20;
-    private static final int MINSTARTHUNGER = 20;
-    private static final int MINSTARTTHIRST = 20;
-    private static final int MINSTARTSTRENGTH = 5;
-
+    private static final int MAXSTARTHEALTH = 100;
+    private static final int MINSTARTHUNGER = 0;
+    private static final int MAXSTARTHUNGER = 50;
+    private static final int MINSTARTTHIRST = 0;
+    private static final int MAXSTARTTHIRST = 50;
+    private static final int MINSTARTSTRENGTH = 1;
+    private static final int MAXSTARTSTRENGTH = 20;
+    private static final int HUNGERINCREASERATE = 5; // Rate at which hunger will increase.
+    private static final int THIRSTINCREASERATE = 5; // Rate at which thirst will increase.
+    private static final int HEALTHDECREASERATE = 5; // Rate at which health will decrease.
     protected int health; // The animal's state of health.
     protected int hunger; // The animal's state of hunger.
     protected int thirst; // The animal's state of thirst.
     protected int strength; // The animal's strength.
     protected double speed; // The animal's movement speed.
     protected ResourceType type; // The type of the animal
+    private int time = 0; // Interval in game minutes with which attributes will decrease.
     private boolean canBeKilled; // Determines whether the animal can be killed.
     private boolean outOfZone; // Determines whether the animal is out of its zone
     private boolean isDead = false; // Whether the animal is dead.
@@ -88,13 +95,14 @@ public class Animal extends AgentEntity {
             updateType(ResourceType.valueOf(getSprite()));
             point.moveToward(goalPoints.get(0), getSpeed());
         }
+        statusUpdate();
         calculateRenderingOrderValues();
     }
 
     /**
      * Determines the destination of the animal as well as the pathing to get to the destination.
      */
-    private List<Point> newGoalPoints() {
+    protected List<Point> newGoalPoints() {
         Random random = new Random();
         Point goalPoint = null;
         while (goalPoint == null || !OldGameManager.getInstance().getWorld().getTile(goalPoint).isPassable() &&
@@ -110,12 +118,28 @@ public class Animal extends AgentEntity {
     }
 
     /**
-     * Marks the animal as dead.
+     * Incrementally increases the hunger and thirst level of the animal.
+     */
+    private void statusUpdate() {
+        time += 1;
+        // the animal's hunger, thirst and/or health will be incremented every 3 minutes.
+        if (time == 180) {
+            setHunger(getHunger() + HUNGERINCREASERATE);
+            setThirst(getThirst() + THIRSTINCREASERATE);
+            if (getHunger() == 0 || getThirst() == 0) {
+                setHealth(getHealth() - HEALTHDECREASERATE);
+            }
+            time = 0; // reset timer until next update
+        }
+    }
+
+    /**
+     * Marks the animal as dead and removes itself from the entityManager.
      */
     public void setIsDead() {
         if (this.getHealth() <= 0) {
             this.isDead = true;
-//            entityManager.removeEntity(this);
+            entityManager.removeEntity(this);
         }
     }
 
@@ -134,52 +158,64 @@ public class Animal extends AgentEntity {
     }
 
     /**
-     * Sets the health that the animal is spawned with.
+     * Sets the health that the animal is spawned with. The animal's starting health value must be between
+     * MINSTARTHEALTH and MAXSTARTHEALTH inclusive.
      *
-     * @param startingHealth The starting health of the animal.
+     * @param startingHealth The starting health value of the animal.
      */
     protected void setStartingHealth(int startingHealth) {
         if (startingHealth < MINSTARTHEALTH) {
             setHealth(MINSTARTHEALTH);
+        } else if (startingHealth > MAXSTARTHEALTH) {
+            setHealth(MAXSTARTHEALTH);
         } else {
             setHealth(startingHealth);
         }
     }
 
     /**
-     * Sets the hunger state that the animal is spawned with.
+     * Sets the hunger state that the animal is spawned with.The animal's starting hunger level must be between
+     * MINSTARTHUNGER and MAXSTARTHUNGER inclusive.
      *
-     * @param startingHunger The starting hunger state of the animal.
+     * @param startingHunger The starting hunger level of the animal.
      */
     protected void setStartingHunger(int startingHunger) {
-        if (startingHunger < MINSTARTHUNGER) {
+        if (startingHunger <= MINSTARTHUNGER) {
             setHunger(MINSTARTHUNGER);
+        } else if (startingHunger >= MAXSTARTHUNGER) {
+            setHunger(MAXSTARTHUNGER);
         } else {
             setHunger(startingHunger);
         }
     }
 
     /**
-     * Sets the thirst state that the animal is spawned with.
+     * Sets the thirst state that the animal is spawned with. The animal's starting thirst level must be between
+     * MINSTARTTHIRST and MAXSTARTHUNGER inclusive.
      *
-     * @param startingThirst The starting thirst state of the animal.
+     * @param startingThirst The starting thirst level of the animal.
      */
     protected void setStartingThirst(int startingThirst) {
-        if (startingThirst < MINSTARTTHIRST) {
+        if (startingThirst <= MINSTARTTHIRST) {
             setThirst(MINSTARTTHIRST);
+        } else if (startingThirst >= MAXSTARTTHIRST) {
+            setThirst(MAXSTARTTHIRST);
         } else {
             setThirst(startingThirst);
         }
     }
 
     /**
-     * Sets the strength level that the animal is spawned with.
+     * Sets the strength level that the animal is spawned with. The animal's starting strength level must be between
+     * MINSTARTSTRENGTH and MAXSTARTSTRENGTH inclusive.
      *
      * @param startingStrength The starting strength level of the animal.
      */
     protected void setStartingStrength(int startingStrength) {
-        if (startingStrength < MINSTARTSTRENGTH) {
+        if (startingStrength <= MINSTARTSTRENGTH) {
             setStrength(MINSTARTSTRENGTH);
+        } else if (startingStrength >= MAXSTARTSTRENGTH) {
+            setStrength(MAXSTARTSTRENGTH);
         } else {
             setStrength(startingStrength);
         }
@@ -212,14 +248,15 @@ public class Animal extends AgentEntity {
     }
 
     /**
-     * Changes the animal's hunger level to the provided value.
+     * Changes the animal's hunger level to the provided value. The animal's hunger level must always be between 0
+     * and 100 inclusive, with 0 being
      *
      * @param newHunger The new hunger value.
      */
     public void setHunger(int newHunger) {
-        if (newHunger > 100) {
+        if (newHunger >= 100) {
             this.hunger = 100;
-        } else if (newHunger < 0) {
+        } else if (newHunger <= 0) {
             this.hunger = 0;
         } else {
             this.hunger = newHunger;
@@ -236,7 +273,8 @@ public class Animal extends AgentEntity {
     }
 
     /**
-     * Changes the animal's thirst level to the provided value.
+     * Changes the animal's thirst level to the provided value. Thirst level equalling 100 will cause negative
+     * effects on animal health, while thirst level equalling 0 will
      *
      * @param newThirst The new thirst value.
      */
@@ -260,14 +298,15 @@ public class Animal extends AgentEntity {
     }
 
     /**
-     * Changes the animal's health to the provided value.
+     * Changes the animal's health to the provided value. The animal's health must always be between 0 and 100
+     * inclusive.
      *
      * @param newHealth The new health value.
      */
     public void setHealth(int newHealth) {
-        if (newHealth > 100) {
+        if (newHealth >= 100) {
             this.health = 100;
-        } else if (newHealth < 0) {
+        } else if (newHealth <= 0) {
             this.health = 0;
         } else {
             this.health = newHealth;

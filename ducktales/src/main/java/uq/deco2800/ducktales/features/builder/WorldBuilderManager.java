@@ -15,6 +15,7 @@ import static uq.deco2800.ducktales.resources.ResourceType.*;
  *
  * Created by Khoi on 19/08/2016.
  */
+@Deprecated
 public class WorldBuilderManager {	
     private static final WorldBuilderManager INSTANCE = new WorldBuilderManager();
     /**

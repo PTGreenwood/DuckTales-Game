@@ -27,12 +27,14 @@ public class WorldBuilderRenderer extends AnimationTimer {
     /**
      * CONSTANTS
      */
-    private static final double TRANSPARENCY = 0.5;
+    @SuppressWarnings("unused")
+	private static final double TRANSPARENCY = 0.5;
     private static final ResourceType[] TILE_TYPES = {
         GRASS_1, GRASS_2, GRASS_3, GRASS_4
     };
     private static final ResourceType[] RESOURCE_TYPES = {
-        HOSPITAL, BAKERY, BARN
+        HOSPITAL, BAKERY, SAWMILL, BUTCHER, CHURCH, COMMUNITY_BUILDING, 
+        FORGE, HOUSE, MINE, OBSERVATORY, PASTURE
     };
     // The constants to layout the UI elements
     private static final double BUILDING_SCENE_H_PORTION = 85.0/100.0;
@@ -62,7 +64,7 @@ public class WorldBuilderRenderer extends AnimationTimer {
     /**
      * The manager for World builder
      */
-    WorldBuilderManager manager = WorldBuilderManager.getInstance();
+    WorldBuilderModel manager = WorldBuilderModel.getInstance();
     
     
     /*
@@ -234,7 +236,7 @@ public class WorldBuilderRenderer extends AnimationTimer {
      */
     private void createWorldEntityMenu(HBox worldEntityMenu) {
         for (int i = 0; i < RESOURCE_TYPES.length; i++) {
-            worldEntityMenu.getChildren().add(
+        	worldEntityMenu.getChildren().add(
                     new WorldEntitySprite(RESOURCE_TYPES[i]));
         }
     }

@@ -14,9 +14,13 @@ public class Barn extends Building {
 	// BuildingMenuSprite type
 	private static final ResourceType TYPE = ResourceType.BARN;
 	
+	// Building health - starting value
+	private int health = 900;
+	
 	// Barn size
 	public static final int X_LENGTH = 2;
 	public static final int Y_LENGTH = 2;
+	
 	public static final boolean PASSABILITY = false;
 	
 	/**
@@ -27,14 +31,24 @@ public class Barn extends Building {
 	 */
 	public Barn(double x, double y) {
 		super(x, y, X_LENGTH, Y_LENGTH, TYPE);
-		
+		health = 900;
 	}
 	
 	/**
 	 * Update the WorldEntity properties with those of a barn.
 	 */
 	protected void specifications() {
-		specifications(4, 10, 9, production.NULL, 0);
+		specifications(4, 10, 9, production.NULL, 0, health);
+	}
+	
+	/**
+	 * Update the 'health' of the barn. Requires an integer value of 
+	 * the new health to be passed.
+	 * 
+	 * @param NewValue, new health of the building
+	 */
+	protected void changeHealthBuilding(int newValue){
+		health = newValue;
 	}
 	
 	/**

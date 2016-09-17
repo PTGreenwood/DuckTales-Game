@@ -14,9 +14,14 @@ public class Forge extends Building {
 	// BuildingMenuSprite type
 	private static final ResourceType TYPE = ResourceType.FORGE;
 
+	// Building health - starting value
+	private int health = 1000;
+	
 	// Size of the building
-	private static final int X_LENGTH = 2;
-	private static final int Y_LENGTH = 2;
+	public static final int X_LENGTH = 2;
+	public static final int Y_LENGTH = 2;
+	
+	public static final boolean PASSABILITY = false;
 	
 	/**
 	 * Initialise a new forge. Requires the location of the forge
@@ -26,13 +31,24 @@ public class Forge extends Building {
 	 */
 	public Forge(double x, double y) {
 		super(x, y, X_LENGTH, Y_LENGTH, TYPE);
+		health = 1000;
 	}
 	
 	/**
 	 * Update the WorldEntity properties with those of a forge.
 	 */
 	protected void specifications() {
-		specifications (10, 6, 3, production.NULL, 0);
+		specifications (10, 6, 3, production.NULL, 0, health);
+	}
+	
+	/**
+	 * Update the 'health' of the forge. Requires an integer value of 
+	 * the new health to be passed.
+	 * 
+	 * @param NewValue, new health of the building
+	 */
+	protected void changeHealthBuilding(int newValue){
+		health = newValue;
 	}
 
 	/**

@@ -1,5 +1,7 @@
 package uq.deco2800.ducktales.features.market;
 
+import java.util.List;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -16,6 +18,8 @@ import javafx.scene.layout.VBox;
  *
  */
 public class MarketManager {
+	
+	private MarketModel marketModel;
 
 	/** The root pane where everything else is added onto */
 	@FXML
@@ -36,21 +40,25 @@ public class MarketManager {
     private Button placeATradeBtn;
     
     /** Selected navigation button background colour **/ 
-    private static final String BTN_SELECTED = "#0C8F8F";
+    private static final String BTN_SELECTED = "#1b1464";
+    
+    private static final String BTN_BORDER_COLOUR = "white";
     
     /** Deselected navigation button background colour **/
-    private static final String BTN_NOT_SELECTED = "#73B06F";
+    private static final String BTN_NOT_SELECTED = "#1a1935";
     
     /** Enum corresponding to the navigation buttons**/
     public enum Vista {
-    	CURRENTTRADES, YOURTRADES, YOUROFFERS, PLACEATRADE 
+    	ALLTRADES, YOURTRADES, YOUROFFERS, PLACEATRADE 
     }
     
     /**String for the background color**/
-    String backgroundColorString = "-fx-background-color:";
+    String backgroundColorString = "-fx-background-color: ";
+    
+    String btnColorString = "-fx-border-color: ";
     
     /** The enum of the currently selected navigation button.**/
-    private Vista selectedVista = Vista.CURRENTTRADES;
+    private Vista selectedVista = Vista.ALLTRADES;
     
     /**
      * Constructor for the MarketManager. Sets the Main Controller for the
@@ -60,7 +68,19 @@ public class MarketManager {
     	
     	// Set the controller that displays the vistas as child elements.
         MarketVistaNavigator.setMainController(this);
+        
+        // Create a new instance of the MarketModel
+        marketModel = new MarketModel();
     	
+    }
+    
+    @FXML
+	public void initialize() {
+    	MarketVistaNavigator.loadVista(MarketVistaNavigator.ALL_TRADES);
+    }
+    
+    public List<MocTrade> getAllTrades() {
+    	return this.marketModel.getAllTrades();
     }
 
     /**
@@ -79,10 +99,10 @@ public class MarketManager {
      */
     @FXML
     void viewCurrentTrades(ActionEvent event) {
-    	MarketVistaNavigator.loadVista(MarketVistaNavigator.CURRENT_TRADES);
+    	MarketVistaNavigator.loadVista(MarketVistaNavigator.ALL_TRADES);
     	
     	deselectButton(selectedVista);
-        selectButton(Vista.CURRENTTRADES);
+        selectButton(Vista.ALLTRADES);
     }
     
 	/**
@@ -134,20 +154,24 @@ public class MarketManager {
     public void deselectButton(Vista button) {
     	
     	switch (button) {
-    		case CURRENTTRADES: currentTradesBtn.setStyle(
-    				backgroundColorString+BTN_NOT_SELECTED);
+    		case ALLTRADES: currentTradesBtn.setStyle(
+    				backgroundColorString+BTN_NOT_SELECTED + "; " 
+    		+ btnColorString+BTN_BORDER_COLOUR);
     			break;
     			
     		case YOURTRADES: yourTradesBtn.setStyle(
-    				backgroundColorString+BTN_NOT_SELECTED);
+    				backgroundColorString+BTN_NOT_SELECTED + "; " 
+    			    		+ btnColorString+BTN_BORDER_COLOUR);
     			break;
     			
     		case YOUROFFERS: yourOffersBtn.setStyle(
-    				backgroundColorString+BTN_NOT_SELECTED);
+    				backgroundColorString+BTN_NOT_SELECTED + "; " 
+    			    		+ btnColorString+BTN_BORDER_COLOUR);
     			break;
     			
     		case PLACEATRADE: placeATradeBtn.setStyle(
-    				backgroundColorString+BTN_NOT_SELECTED);
+    				backgroundColorString+BTN_NOT_SELECTED + "; " 
+    			    		+ btnColorString+BTN_BORDER_COLOUR);
     			break;
     			
     		default: break;
@@ -165,23 +189,27 @@ public class MarketManager {
 	public void selectButton(Vista button) {
     	
 		switch (button) {
-    		case CURRENTTRADES: currentTradesBtn.setStyle(
-    				backgroundColorString+BTN_SELECTED);
-    			selectedVista = Vista.CURRENTTRADES;
+    		case ALLTRADES: currentTradesBtn.setStyle(
+    				backgroundColorString+BTN_SELECTED + "; " 
+    			    		+ btnColorString+BTN_BORDER_COLOUR);
+    			selectedVista = Vista.ALLTRADES;
     			break;
     			
     		case YOURTRADES: yourTradesBtn.setStyle(
-    				backgroundColorString+BTN_SELECTED);
+    				backgroundColorString+BTN_SELECTED + "; " 
+    			    		+ btnColorString+BTN_BORDER_COLOUR);
     			selectedVista = Vista.YOURTRADES;
     			break;
     			
     		case YOUROFFERS: yourOffersBtn.setStyle(
-    				backgroundColorString+BTN_SELECTED);
+    				backgroundColorString+BTN_SELECTED + "; " 
+    			    		+ btnColorString+BTN_BORDER_COLOUR);
     			selectedVista = Vista.YOUROFFERS;
     			break;
     			
     		case PLACEATRADE: placeATradeBtn.setStyle(
-    				backgroundColorString+BTN_SELECTED);
+    				backgroundColorString+BTN_SELECTED + "; " 
+    			    		+ btnColorString+BTN_BORDER_COLOUR);
     			selectedVista = Vista.PLACEATRADE;
     			break;
     			

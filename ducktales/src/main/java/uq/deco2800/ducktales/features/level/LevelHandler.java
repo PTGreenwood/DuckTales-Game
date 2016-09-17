@@ -5,55 +5,74 @@ import javafx.scene.control.ProgressBar;
 /**
  * Handles player level.
  * 
+ * @author Naehyung Kim
  *
  */
 public class LevelHandler {
+	
 	private static LevelHandler instance = new LevelHandler();
 	
+	//level integer
 	private int level;
+	//progress bar
 	private ProgressBar pb;
-	private double barProgress;
-
 
 	/**
 	 * Constructor of {@link Level}.
+	 * 
 	 * @return <CODE>INSTANCE</CODE>
 	 */
 	public static LevelHandler getInstance() {
 		return instance;		
 	}
 	
-	public LevelHandler(){
+	public LevelHandler() {
 		this.level = 1;
-		this.barProgress = 0;
 		this.pb = new ProgressBar(0.0);
 	}
 	
-	public void levelUp(){
+	/**
+	 * Level up 
+	 */
+	public void levelUp() {
 		this.level = this.level + 1;
-		this.barProgress = 0;
 		this.pb.setProgress(0);
 	}
 	
-	public void setLevel(int level){
+	/**
+	 * Set level
+	 * 
+	 * @param level
+	 */
+	public void setLevel(int level) {
 		this.level = level;
 	}
 	
-	public int getLevel(){
-		return this.level;
+	/**
+	 * Get level
+	 * 
+	 * @return level
+	 */
+	public int getLevel() {
+		return level;
 	}
 	
-	public void setProgressBar(double percentage){
+	/**
+	 * Set progress bar
+	 * 
+	 * @param percentage
+	 */
+	public void setProgressBar(double percentage) {
 		this.pb.setProgress(percentage);
-		this.barProgress = this.barProgress + percentage;
 	}
 	
-	public ProgressBar getProgressIndicator(){
+	/**
+	 * Return progress bar
+	 * 
+	 * @return progress bar
+	 */
+	public ProgressBar getProgressIndicator() {
 		return this.pb;
-	}
-	
-	public double getBarProgress(){
-		return this.barProgress;
 	}
 	
 }

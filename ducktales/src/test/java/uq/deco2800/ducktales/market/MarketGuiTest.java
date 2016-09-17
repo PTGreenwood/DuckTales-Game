@@ -19,29 +19,27 @@ import javafx.stage.Stage;
 import uq.deco2800.ducktales.features.market.MarketManager;
 import uq.deco2800.ducktales.features.market.MarketVistaNavigator;
 
+/**
+ * Conducts tests on the Graphics User Interface for the marketplace.
+ * @author Mark Belonogoff
+ *
+ */
 public class MarketGuiTest extends GuiTest {
 	
 	MarketManager marketManager;
 	Parent parent = null;
 	
-	
+	/**
+	 * Set up for TestFX.
+	 */
 	@Override
 	public Parent getRootNode() {
 		
-		Parent parent = null;
-		
-//		URL location = getClass().getResource((MarketVistaNavigator.MAIN));
-//
-//        FXMLLoader loader = new FXMLLoader(location);
-//        
-//        // Retrieve the controller;
-//        marketManager = loader.getController();
-		
+		// Attempt to create the root node.
 		try {
 			parent = FXMLLoader.load(getClass()
 					 .getResource(MarketVistaNavigator.MAIN));
 			
-			marketManager = MarketVistaNavigator.getMainController();
 			
 		} catch (IOException e) {
 			
@@ -52,10 +50,12 @@ public class MarketGuiTest extends GuiTest {
 		}
 		
 		return parent;
-
-		
 	}
 
+	/**
+	 * Checks that when a user Clicks the Current Trades button that
+	 * the correct view appears.
+	 */
     @Test 
     public void testSelectCurrentTrades() {
     	

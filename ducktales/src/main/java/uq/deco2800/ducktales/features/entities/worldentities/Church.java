@@ -14,9 +14,13 @@ public class Church extends Building {
 	// BuildingMenuSprite type
 	private static final ResourceType TYPE = ResourceType.CHURCH;
 	
+	// Building health - starting value
+	private int health = 1900;
+	
 	// Size of a church
 	public static final int X_LENGTH = 2;
 	public static final int Y_LENGTH = 2;
+	
 	public static final boolean PASSABILITY = false;
 	
 	/**
@@ -27,14 +31,24 @@ public class Church extends Building {
 	 */
 	public Church(double x, double y) {
 		super(x, y, X_LENGTH, Y_LENGTH, TYPE);
-		
+		health = 1900;
 	}
 	
 	/**
 	 * Update the WorldEntity properties with those of a church.
 	 */
 	protected void specifications() {
-		specifications(8, 10, 9, production.NULL, 0);
+		specifications(8, 10, 9, production.NULL, 0, health);
+	}
+	
+	/**
+	 * Update the 'health' of the church. Requires an integer value of 
+	 * the new health to be passed.
+	 * 
+	 * @param NewValue, new health of the building
+	 */
+	protected void changeHealthBuilding(int newValue){
+		health = newValue;
 	}
 	
 	/**

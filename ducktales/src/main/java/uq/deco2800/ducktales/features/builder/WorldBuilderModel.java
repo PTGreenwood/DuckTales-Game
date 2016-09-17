@@ -16,12 +16,12 @@ import static uq.deco2800.ducktales.resources.ResourceType.*;
  * Created by Khoi on 19/08/2016.
  */
 public class WorldBuilderModel {	
-    //private static final WorldBuilderManager INSTANCE = new WorldBuilderManager();
+    private static final WorldBuilderModel INSTANCE = new WorldBuilderModel();
     /**
      * CONSTANTS
      */
-    public static final int TILE = 1;
-    public static final int ENTITY = 2;
+    public final int TILE = 1;
+    public final int ENTITY = 2;
 
 
     private World world;
@@ -30,10 +30,12 @@ public class WorldBuilderModel {
 
     private int currentType = 0;
 
+    public static WorldBuilderModel getInstance() { return INSTANCE; }
+    
     /**
      * Constructor of the {@link WorldBuilderManager} class
      */
-    public WorldBuilderModel() {
+    private WorldBuilderModel() {
     }
 
     /**

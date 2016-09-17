@@ -15,13 +15,13 @@ import javafx.scene.layout.Pane;
 /**
  * Controller for builder package (part of MVC) architecture.
  * 
- * @author Gabbi
+ * @author Gabrielle Hodge, 43590526
  *
  */
 
 public class WorldBuilderController {
 	
-	private WorldBuilderManager manager; // The manager that this sprite reports to
+	private WorldBuilderModel manager; // The manager that this sprite reports to
 	private TileSprite tileSprite;
 	private WorldBuilderModel model;
 	private WorldBuilderRenderer renderer;
@@ -29,7 +29,7 @@ public class WorldBuilderController {
 	public WorldBuilderController() {
 		//this.manager = WorldBuilderManager.getInstance();
 		//this.tileSprite = new TileSprite(resource);
-		this.model = new WorldBuilderModel();
+		this.model = WorldBuilderModel.getInstance();
 		//this.renderer = new WorldBuilderRenderer(new Pane(), new BorderPane());
 	}
 	
