@@ -61,7 +61,13 @@ public class PlaceTradeController {
 			itemNameCombo.getItems().add(itemName);
 		}
 		
+	}
+	
+	@FXML
+	void itemSelected() {
 		
+		// Update the itemNameLabel
+		itemNameLabel.setText(itemNameCombo.getValue());
 		
 	}
 
