@@ -273,17 +273,17 @@ public class GameController implements Initializable{
 
         try {
             // load the FXML
-            HBox timeDisplay = loader.load();
+            AnchorPane timeDisplay = loader.load();
 
             // Retrieve the controller
             timeManager = loader.getController();
 
             // Add the time display to the GUI
-            rootPane.getChildren().add(timeDisplay);
+            leftPane.getChildren().add(timeDisplay);
 
             // Position the time display
-            AnchorPane.setTopAnchor(timeDisplay, 0.0);
-            AnchorPane.setRightAnchor(timeDisplay, 400.0);
+            AnchorPane.setTopAnchor(timeDisplay, 20.0);
+            AnchorPane.setLeftAnchor(timeDisplay, 20.0);
 
         } catch (IOException e) {
             System.err.println("unable to load time display");

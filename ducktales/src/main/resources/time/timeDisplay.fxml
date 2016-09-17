@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
 
-<HBox fx:id="timeDisplay" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="400.0" styleClass="timeDisplay" stylesheets="@timeDisplay.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uq.deco2800.ducktales.features.time.TimeManager">
-   <children>
-      <Label fx:id="timeDisplayText" styleClass="timeDisplayText" text="TIME DISPLAY TEXT">
-         <font>
-            <Font size="14.0" />
-         </font></Label>
-   </children>
-</HBox>
+<AnchorPane fx:id="timeDisplay" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="156.0" stylesheets="@timeDisplay.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uq.deco2800.ducktales.features.time.TimeManager">
+	<children>           
+      <Text fx:id="timeDisplayText" fill="WHITE" layoutX="9.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="displayText" text="TIME" textAlignment="CENTER" wrappingWidth="47.999998301267624" />
+      <Text fx:id="dayDisplayText" fill="WHITE" layoutX="58.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="displayText" text="DAY" textAlignment="CENTER" wrappingWidth="47.999998301267624" />
+	</children>
+</AnchorPane>
