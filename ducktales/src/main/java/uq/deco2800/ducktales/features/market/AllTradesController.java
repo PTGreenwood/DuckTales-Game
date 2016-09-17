@@ -7,6 +7,8 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.annotation.CheckForNull;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -59,59 +61,39 @@ public class AllTradesController {
 				
 				loader.setLocation(path);
 				
-			Pane tradePane = (Pane) loader.load();
+				Pane tradePane = (Pane) loader.load();
 			
-			if (tradePane == null) {
-				System.err.println("tradePane is null ");
-			}
-			
-			
-			try {
-				
 				Label itemNameLabel = 
-						(Label) tradePane.lookup("#itemNameLabel");
+					(Label) tradePane.lookup("#itemNameLabel");
 				
 				itemNameLabel.setText(trade.getItemName());
 				
-			} catch(NullPointerException exception) {
-				
-				LOGGER.log(Level.SEVERE, exception.toString(), exception);
-				
-			}
 			
 			
-			try {
 				Label quantityLabel = 
 						(Label) tradePane.lookup("#quantityLabel");
 				
 				quantityLabel.setText("Amount: " + 
-						trade.getQuantity().toString());
-				
-			} catch(NullPointerException exception) {
-				LOGGER.log(Level.SEVERE, exception.toString(), exception);
-			}
+					trade.getQuantity().toString());
 			
 			
-			try {
 				Label userLabel = (Label) tradePane.lookup("#userLabel");
 				userLabel.setText("User: " + trade.getUserName());
-				
-			} catch(NullPointerException exception) {
-				LOGGER.log(Level.SEVERE, exception.toString(), exception);
-			}
-			
-			GridPane.setRowIndex(tradePane, row);
-            GridPane.setColumnIndex(tradePane, column);
-			
-            try {
-            	allTradesGridPane.getChildren().add(tradePane);
-            } catch(NullPointerException exception) {
-            	LOGGER.log(Level.SEVERE, exception.toString(), exception);
-            }
 			
 			
+				GridPane.setRowIndex(tradePane, row);
+				GridPane.setColumnIndex(tradePane, column);
+			
+				allTradesGridPane.getChildren().add(tradePane);
+           
+
 			} catch (IOException exception) {
 				LOGGER.log(Level.SEVERE, exception.toString(), exception);
+			
+			} catch(NullPointerException exception) {
+				
+				LOGGER.log(Level.SEVERE, exception.toString(), exception);
+				
 			}
 			
 			column++;

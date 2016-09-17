@@ -1,7 +1,9 @@
 package uq.deco2800.ducktales.features.market;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Model that stores marketplace data
@@ -14,9 +16,11 @@ public class MarketModel {
 	
 	private List<MocTrade> allTrades;
 	
+	private HashMap<String, Integer> userInventory;
+	
 	public MarketModel() {
 		
-		// Create a list of MocTrades
+		// Create a list of MocTrades for All Trades
 		List<String> itemNames = new ArrayList<String>();
 		
 		itemNames.add("stone");
@@ -55,12 +59,36 @@ public class MarketModel {
 			
 		}
 		
+		// Create a HashMap of the user's inventory
+		userInventory = new HashMap<String, Integer>();
+		for (int i = 0; i < itemNames.size(); i++) {
+			int amount = 1 + i;
+			userInventory.put(itemNames.get(i), amount);
+		}
 		
 	}
 	
 	
 	public List<MocTrade> getAllTrades() {
 		return new ArrayList<MocTrade>(allTrades);
+	}
+	
+	public HashMap<String, Integer> getUserInventory() {
+		return userInventory;
+	}
+	
+	public Set<String> getUserInventoryItemNames() {
+		return userInventory.keySet();
+	}
+	
+	public int getInventoryAmountForItem(String item) {
+		
+		return userInventory.get(item);
+		
+	}
+	
+	public String getUserName() {
+		return "jSmith";
 	}
 	
 	
