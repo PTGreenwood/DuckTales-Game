@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import uq.deco2800.ducktales.util.SecondaryManager;
 
 /**
  * Manage all fxml action of the level
@@ -13,7 +14,7 @@ import javafx.scene.layout.VBox;
  * @author Naehyung Kim
  *
  */
-public class LevelManager {
+public class LevelManager implements SecondaryManager {
 	
 	@FXML 
 	private AnchorPane level;
@@ -57,4 +58,9 @@ public class LevelManager {
 	public boolean isVisible() {
 		return this.level.isVisible();
 	}
+	
+	@Override
+    public void reload() {
+
+    }
 }
