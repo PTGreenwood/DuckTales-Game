@@ -73,8 +73,8 @@ public class TimeManager implements SecondaryManager, Initializable, Tickable {
 
             // this is needed, since this UI update is called from another thread
             // (GameLoop runs on another thread and not the main FXApplication thread)
-            // TIME TEAM: ALL CALL TO UI CHANGES MUST GO INSIDE THIS METHOD CALL
-            // Enjoy coding - from Khoi :)
+            // IN REGARDS TO TIME ALL CALL TO UI CHANGES MUST GO INSIDE THIS METHOD CALL
+
             Platform.runLater(() -> {
                 timeDisplayText.setText(hour + ":" + minute);
                 dayDisplayText.setText("DAY "+day);
