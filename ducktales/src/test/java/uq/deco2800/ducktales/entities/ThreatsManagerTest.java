@@ -34,6 +34,7 @@ public class ThreatsManagerTest {
 		tempEffect = new Effect("Black Smoke");
 		tempEffect.setStartTimer(20, "Timer");
 		tempEffect.setEndTimer(50);
+		
 		effectsList.add(tempEffect);
 		
 		// Create Temp variable
@@ -74,15 +75,19 @@ public class ThreatsManagerTest {
 	 	enemiesList.add(tempEnemy);
 
 //		TM.threatsLvl1();
-//
+//		
+//		//Effects
 //		assertTrue("Effects list is incorrect",
 //				TM.returnEffects().get(0).toString().equals(effectsList.get(0).toString()));
 //		assertTrue("Effects list is incorrect",
 //				TM.returnEffects().get(1).toString().equals(effectsList.get(1).toString()));
+//		//Enemy
 //		assertTrue("Enemies list is incorrect",
 //				TM.returnEnemies().get(0).toString().equals(enemiesList.get(0).toString()));
 //		assertTrue("Enemies list is incorrect",
 //				TM.returnEnemies().get(1).toString().equals(enemiesList.get(1).toString()));
+//		assertTrue("Enemies list is incorrect",
+//				TM.returnEnemies().get(2).toString().equals(enemiesList.get(2).toString()));
 
 	}
 
@@ -102,7 +107,7 @@ public class ThreatsManagerTest {
 
 		// ------Effects---------
 		// Create Temp variable
-		tempEffect = new Effect("Rumble");
+		tempEffect = new Effect("Poison Cloud");
 		// Add parameters to temp variable
 		// ------------
 		tempEffect.setStartTimer(20, "Timer");
@@ -112,7 +117,7 @@ public class ThreatsManagerTest {
 		effectsList.add(tempEffect);
 
 		// Create Temp variable
-		tempEffect = new Effect("Cyanide");
+		tempEffect = new Effect("Rumble");
 		// Add parameters to temp variable
 		// ------------
 		tempEffect.setStartTimer(50, "Timer");
@@ -191,7 +196,7 @@ public class ThreatsManagerTest {
 		effectsList.add(tempEffect);
 
 		// Create Temp variable
-		tempEffect = new Effect("Poisson Cloud");
+		tempEffect = new Effect("Green Fel Fire");
 		// Add parameters to temp variable
 		// ------------
 		tempEffect.setStartTimer(50, "Timer");

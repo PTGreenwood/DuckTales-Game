@@ -1,6 +1,6 @@
 package uq.deco2800.ducktales.features.entities;
 
-import java.util.ArrayList;
+import java.util.*;
 import java.util.Random;
 
 import uq.deco2800.ducktales.World;
@@ -26,16 +26,11 @@ public class Threat {
 	private double xCord; // value to assign x coordinate
 	private double yCord; // value to assign y coordinate
 	
-	private double speed; // value to assign the threat's movement speed
+	private int speed; // value to assign the threat's movement speed
 	private int levelOfDamage; // the level of damage cause by a threat
 	
-	// The animation of a threat
-	private int startFrame; // the frame to start with regard to its direction
-	private int currentFrame;
-	private int tweenFrames; // the period between the current frame & the next one
-
 	// private HashMap<Image> enemyTypeRegister;
-	private ArrayList<String> imageStore;
+	//private ArrayList<String> imageStore;
 
 	protected boolean isPassable; // detects whether a tile is passable
 
@@ -173,14 +168,6 @@ public class Threat {
 		return this.name;
 	}
 
-	public double getX() {
-		return xCord;
-	}
-
-	public double getY() {
-		return yCord;
-	}
-
 	public void setXCord(double tempX) {
 		this.xCord = randomX;
 	}
@@ -194,10 +181,11 @@ public class Threat {
 	 * 
 	 * @return randomX
 	 */
-	public double setRandomX() {
+	public double getRandomX() {
 		int maxWidth = world.getWidth();
 		Random random = new Random();
 		randomX = random.nextInt(maxWidth) + 1;
+		// need condition statement to check if the randomX intersect w/ tile not passable
 		return randomX;
 	}
 
@@ -206,10 +194,11 @@ public class Threat {
 	 * 
 	 * @return randomY
 	 */
-	public double setRandomY() {
+	public double getRandomY() {
 		int maxHeight = world.getHeight();
 		Random random = new Random();
 		randomY = random.nextInt(maxHeight) + 1;
+		// need condition statement to check if the randomY intersect w/ tile not passable
 		return randomY;
 	}
 	
@@ -220,6 +209,18 @@ public class Threat {
 	public void setTheLevelOfDamage(int newLevelOfDamage) {
 		this.levelOfDamage = newLevelOfDamage;
 	}
+	
+	/**
+	 * Set the movement speed for a threat
+	 * @param newSpeed
+	 */
+	public void setTheSpeed(int newSpeed){
+		this.speed = newSpeed;
+	}
+	
+	public int getSpeed(){
+		return speed;
+	}
 
 	/**
 	 * A method return the value of isPassable.
@@ -229,11 +230,19 @@ public class Threat {
 		return isPassable;
 	}
 
-	public void addImage(String imageName) {
-		imageStore.add(imageName);
-		// imageStore.add(imageName);
-		// getClass()
-		// new Image(getClass().getResource(imageName).toString()));
+//	public void addImage(String imageName) {
+//		imageStore.add(imageName);
+//		// imageStore.add(imageName);
+//		// getClass()
+//		// new Image(getClass().getResource(imageName).toString()));
+//	}
+	
+	public double getX() {
+		return xCord;
+	}
+
+	public double getY() {
+		return yCord;
 	}
 	
 	// method to detect peon/enemy collisions
@@ -244,9 +253,5 @@ public class Threat {
 			peon.setHealth(newHealth);
 		}
 	}
-
-
-	
-	
 
 }
