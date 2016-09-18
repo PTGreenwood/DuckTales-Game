@@ -14,13 +14,13 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<GridPane hgap="14.0" maxHeight="+Infinity" maxWidth="+Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="500.0" style="-fx-background-color: #1b1464; -fx-border-color: white;" vgap="20.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane hgap="14.0" maxHeight="+Infinity" maxWidth="+Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="439.0" style="-fx-background-color: #1b1464; -fx-border-color: white;" vgap="20.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox maxHeight="+Infinity" maxWidth="+Infinity" minHeight="-Infinity" prefHeight="73.0" prefWidth="255.0" spacing="7.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
          <children>
-            <Label fx:id="messageLabel" prefHeight="28.0" prefWidth="236.0" text="Confirmation" textAlignment="CENTER" wrapText="true">
+            <Label fx:id="messageLabel" prefHeight="28.0" prefWidth="210.0" text="Confirmation" textAlignment="CENTER" wrapText="true">
                <font>
-                  <Font name="Press Start 2P" size="16.0" />
+                  <Font name="Free Pixel Regular" size="26.0" />
                </font>
                <textFill>
                   <LinearGradient endX="1.0" endY="1.0">
@@ -31,9 +31,9 @@
                   </LinearGradient>
                </textFill>
             </Label>
-            <Label fx:id="detailsLabel" prefHeight="29.0" prefWidth="456.0" text="Are you sure you would like to accept this trade?" wrapText="true">
+            <Label fx:id="detailsLabel" text="Are you sure you would like to accept this trade?" textAlignment="CENTER" wrapText="true">
                <font>
-                  <Font name="Press Start 2P" size="10.0" />
+                  <Font name="Free Pixel Regular" size="14.0" />
                </font>
                <textFill>
                   <LinearGradient endX="1.0" endY="1.0">
@@ -58,13 +58,13 @@
             </HBox>
             <Pane maxWidth="+Infinity" HBox.hgrow="ALWAYS">
                <children>
-                  <Button fx:id="cancelButton" cancelButton="true" layoutX="63.0" layoutY="-10.0" minWidth="80.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="120.0" style="-fx-background-radius: 0px; -fx-background-color: #1a1935; -fx-border-color: white;" text="Yes" textFill="WHITE">
+                  <Button fx:id="cancelButton" cancelButton="true" layoutX="63.0" layoutY="-10.0" minWidth="80.0" mnemonicParsing="false" style="-fx-background-radius: 0px; -fx-background-color: #1a1935; -fx-border-color: white;" text="Yes" textFill="WHITE">
                      <font>
-                        <Font name="Press Start 2P" size="14.0" />
+                        <Font name="Free Pixel Regular" size="16.0" />
                      </font></Button>
-                  <Button fx:id="okButton" layoutX="236.0" layoutY="-10.0" minWidth="80.0" mnemonicParsing="false" prefWidth="120.0" style="-fx-background-radius: 0px; -fx-background-color: #1a1935; -fx-border-color: white;" text="No" textFill="WHITE">
+                  <Button fx:id="okButton" layoutX="236.0" layoutY="-10.0" minWidth="80.0" mnemonicParsing="false" style="-fx-background-radius: 0px; -fx-background-color: #1a1935; -fx-border-color: white;" text="No" textFill="WHITE">
                      <font>
-                        <Font name="Press Start 2P" size="14.0" />
+                        <Font name="Free Pixel Regular" size="16.0" />
                      </font></Button>
                </children>
             </Pane>
