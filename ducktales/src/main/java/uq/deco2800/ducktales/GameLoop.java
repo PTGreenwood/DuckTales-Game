@@ -30,6 +30,7 @@ public class GameLoop implements Runnable {
 	private TimeManager timeManager;
 	private EntityManager entityManager;
 
+	private static boolean paused;
 	/**
 	 * Create a new game loop with the given quit control and game speed
 	 *
@@ -42,6 +43,7 @@ public class GameLoop implements Runnable {
 		GameLoop.baseGameSpeed = gameSpeed;
 		GameLoop.gameSpeed = gameSpeed;
 		this.quit = quit;
+		GameLoop.paused = false;
 
 	}
 
@@ -49,20 +51,23 @@ public class GameLoop implements Runnable {
 	public void run() {
 		while (!quit.get()) {
 			if (world != null && entityManager != null && timeManager != null ) {
-				// All the managers are ready to go
-				world.tick();
-				entityManager.tick();
-				timeManager.tick();
+
+				//Continue Loop if not paused
+				if(!GameLoop.paused) {
+					// All the managers are ready to go
+					world.tick();
+					entityManager.tick();
+					timeManager.tick();
+				}
 			} else {
 				System.err.println(" game loop not ready");
-			}
+			}	
 			try {
 				Thread.sleep(gameSpeed);
 			} catch (InterruptedException e) {
-				 logger.info("context", e);
+				logger.info("context", e);
 			}
 		}
-
 	}
 
 	/**
@@ -82,8 +87,22 @@ public class GameLoop implements Runnable {
 	 */
 	public static void setSpeedModifier(double modifier) {
 		gameSpeed = (int) (baseGameSpeed / modifier);
+		GameLoop.paused = false;
+		
 	}
-
+	
+	/** 
+	 * Modifies the gameLoop to keep going or not
+	 * 
+	 */
+	public static void pauseWorld() {
+		if(GameLoop.paused) {
+			GameLoop.paused = false;
+		} else {
+		GameLoop.paused = true;
+		}
+	}
+	
 	/**
 	 * Pass the handle of the Time Manager to the game loop
 	 *
@@ -102,36 +121,4 @@ public class GameLoop implements Runnable {
 	public void setEntityManager(EntityManager entityManager) {
 		this.entityManager = entityManager;
 	}
-
-	//	public static void setSpeed(int speed) {
-//		SpCon = speed;
-//	}
-
-//	/**
-//	 * 
-//	 * continues to add time functionality
-//	 * 
-//	 * @author danl256
-//	 */
-//	public static void SpeedControl(String code) {
-//		switch (code) {
-//		case "mallard":
-//			//gameSpeed = baseGameSpeed;
-//			//SpCon = 50; // set time scale to default
-//			break;
-//
-//		case "canvasback":
-//			SpCon = 33; // set time scale to 1.5151x
-//			break;
-//
-//		case "merganser":
-//			SpCon = 20; // set time scale to 2.5x
-//			break;
-//
-//		default:
-//			break;
-//		}
-//
-//	}
-
 }
