@@ -3,55 +3,57 @@ package uq.deco2800.ducktales.features.market;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
-import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import javax.annotation.CheckForNull;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 
-public class AllTradesController {
+public class MyTradesController {
 	
 	private static final Logger LOGGER = Logger.getLogger(
-			AllTradesController.class.getName());
+			MyTradesController.class.getName());
 	
 	private MarketManager marketManager;
 	
-	private static String TRADE_PANE = "/market/mpalltradestradepane.fxml";
+	private static String MY_TRADE_PANE = "/market/mpmytradespane.fxml";
 	
 	private URL path;
 	
 	@FXML
-	private StackPane currentTradeVistaPropId;
+	private GridPane yourTradesGridPane;
 	
-	@FXML
-	private GridPane allTradesGridPane;
-	
-	public AllTradesController() {
+	public MyTradesController() {
 		this.marketManager = MarketVistaNavigator.getMainController();
 		
+		System.out.println("MyTradesController called");
 	}
+	
 	
 	@FXML
 	public void initialize() {
 		
-		List<MocTrade> allTrades = this.marketManager.getAllTrades();
+		System.out.println("MyTradesController initialize() called");
+		
+		List<MocTrade> yourTrades = 
+				this.marketManager.getTradesForLoggedInUser();
+		
+		System.out.println("yourTrades.size() = " + yourTrades.size());
 				
-		path = getClass().getResource(TRADE_PANE);
+		path = getClass().getResource(MY_TRADE_PANE);
+		
+		System.out.println("path = " + path);
 		
 		int row = 0;
 		int column = 0;
-		for(int i=0; i < allTrades.size(); i++) {
+		for(int i=0; i < yourTrades.size(); i++) {
 			
 			FXMLLoader loader = new FXMLLoader();
 			
-			MocTrade trade = allTrades.get(i);
+			MocTrade trade = yourTrades.get(i);
 			try {
 				
 				loader.setLocation(path);
@@ -63,25 +65,18 @@ public class AllTradesController {
 				
 				itemNameLabel.setText(trade.getItemName());
 				
-			
-			
 				Label quantityLabel = 
 						(Label) tradePane.lookup("#quantityLabel");
 				
 				quantityLabel.setText("Amount: " + 
 					trade.getQuantity().toString());
 			
-			
-				Label userLabel = (Label) tradePane.lookup("#userLabel");
-				userLabel.setText("User: " + trade.getUserName());
-			
-			
 				GridPane.setRowIndex(tradePane, row);
 				GridPane.setColumnIndex(tradePane, column);
 			
-				allTradesGridPane.getChildren().add(tradePane);
-           
-
+				yourTradesGridPane.getChildren().add(tradePane);
+	       
+	
 			} catch (IOException exception) {
 				LOGGER.log(Level.SEVERE, exception.toString(), exception);
 			

@@ -10,7 +10,7 @@
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="146.0" prefWidth="270.0" style="-fx-background-color: #1a1935; -fx-border-color: white;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Region fx:id="itemPictureRegion" layoutX="18.0" layoutY="22.0" prefHeight="74.0" prefWidth="72.0" style="-fx-background-color: #ffffffff;" />
-      <Button layoutX="102.0" layoutY="75.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="151.0" style="-fx-background-color: #1b1464; -fx-border-color: white;" text="View Offers" textFill="WHITE">
+      <Button fx:id="viewOffersBtn" layoutX="102.0" layoutY="75.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="151.0" style="-fx-background-color: #1b1464; -fx-border-color: white;" text="View Offers" textFill="WHITE">
          <font>
             <Font name="Press Start 2P" size="10.0" />
          </font>
@@ -35,7 +35,7 @@
             <Font name="Press Start 2P" size="10.0" />
          </font>
       </Label>
-      <Button layoutX="102.0" layoutY="105.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="151.0" style="-fx-background-color: #1b1464; -fx-border-color: white;" text="Delete" textFill="WHITE">
+      <Button fx:id="deleteBtn" layoutX="102.0" layoutY="105.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="151.0" style="-fx-background-color: #1b1464; -fx-border-color: white;" text="Delete" textFill="WHITE">
          <font>
             <Font name="Press Start 2P" size="10.0" />
          </font>

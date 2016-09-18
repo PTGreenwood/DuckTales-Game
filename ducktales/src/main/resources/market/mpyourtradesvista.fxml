@@ -7,11 +7,11 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 
-<StackPane fx:id="yourTradeVista" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uq.deco2800.ducktales.features.market.YourTradesController">
+<StackPane fx:id="yourTradeVista" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uq.deco2800.ducktales.features.market.MyTradesController">
    <children>
       <ScrollPane prefHeight="350.0" prefWidth="550.0">
          <content>
-            <GridPane prefHeight="470.0" prefWidth="530.0" style="-fx-background-color: #1b1464; -fx-border-color: white;">
+            <GridPane fx:id="yourTradesGridPane" prefHeight="470.0" prefWidth="530.0" style="-fx-background-color: #1b1464; -fx-border-color: white;">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

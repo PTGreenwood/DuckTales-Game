@@ -39,7 +39,7 @@ public class MarketModel {
 		
 		List<String> userNames = new ArrayList<String>();
 		
-		userNames.add("JSmith");
+		userNames.add(userName);
 		userNames.add("KanyeNest");
 		userNames.add("ABeakman");
 		
@@ -119,18 +119,28 @@ public class MarketModel {
 	}
 	
 	
+	public List<MocTrade> getTradesForLoggedInUser() {
+		return this.userTrades;
+	}
+	
+	
 	private void updateUserTrades() {
-		
-		List<MocTrade> userTrades = new ArrayList<MocTrade>();
 		
 		for (int i = 0; i < allTrades.size(); i++) {
 			
-			if (!userTrades.contains(allTrades.get(i))) {
-				
-				if (allTrades.get(i).getUserName().equals(userName)) {
-					// Add to the userTradesList
-					userTrades.add(allTrades.get(i));
-				}
+			MocTrade posted = allTrades.get(i);
+			
+			System.out.println("All Trade User = " 
+					+ posted.getUserName());
+			
+			System.out.println("userName = " + userName );
+			
+			System.out.println("Equals? " + 
+					userName.equals(posted.getUserName()) + "\n");
+			
+			if (userName.equals(posted.getUserName())) {
+				// Add to the userTradesList
+				userTrades.add(allTrades.get(i));
 				
 			}
 			

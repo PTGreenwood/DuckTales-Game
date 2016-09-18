@@ -115,6 +115,10 @@ public class MarketManager {
     	marketModel.createNewTradeOffer(item, amount);
     }
     
+    public List<MocTrade> getTradesForLoggedInUser() {
+    	return this.marketModel.getTradesForLoggedInUser();
+    }
+    
 
     /**
      * Replaces the vista displayed in the vista holder with a new vista.
