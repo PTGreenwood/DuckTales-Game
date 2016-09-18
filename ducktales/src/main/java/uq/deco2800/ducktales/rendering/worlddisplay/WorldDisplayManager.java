@@ -115,7 +115,7 @@ public class WorldDisplayManager implements Initializable, SecondaryManager {
         	//Commented out for easy change
         	
             //if(nightTime) {
-                pane.setStyle("-fx-background-image: url('time/nightTime.png')"); //Uncomment this for nightTime
+                //pane.setStyle("-fx-background-image: url('time/nightTime.png')"); //Uncomment this for nightTime
             //} else {
                 pane.setStyle("-fx-background-image: url('time/dayTime.png')"); //Uncomment this for dayTime
             //}
