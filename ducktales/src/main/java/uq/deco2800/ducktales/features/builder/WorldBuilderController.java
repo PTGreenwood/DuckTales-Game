@@ -15,10 +15,9 @@ import uq.deco2800.ducktales.resources.ResourceType;
 public class WorldBuilderController {
 	
 	// Constants 
-	public final int TILE = 1;
-    public final int ENTITY = 2;
+	public static final int TILE = 1;
+    public static final int ENTITY = 2;
 	
-	private TileSprite tileSprite;
 	private static WorldBuilderModel model;
 	private static WorldBuilderRenderer renderer;
 	
@@ -27,7 +26,7 @@ public class WorldBuilderController {
 	 * with the current instance of WorldBuilderModel.
 	 */
 	public WorldBuilderController() {
-		this.model = WorldBuilderModel.getInstance();
+		WorldBuilderController.model = WorldBuilderModel.getInstance();
 	}
 	
 	/**
@@ -62,8 +61,8 @@ public class WorldBuilderController {
      * @param renderer
      *          The rendering engine
      */
-    public void setRenderer(WorldBuilderRenderer renderer) {
-        this.renderer = renderer;
+    public static void setRenderer(WorldBuilderRenderer renderer) {
+        WorldBuilderController.renderer = renderer;
         renderer.start();
     }
     

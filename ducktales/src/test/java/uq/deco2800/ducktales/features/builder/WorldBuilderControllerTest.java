@@ -37,12 +37,15 @@ public class WorldBuilderControllerTest {
 		
 		WorldBuilderController.setCurrentResource(ResourceType.BAKERY, 2);
 		assertEquals(testController.getCurrentResource(), ResourceType.BAKERY);
+		assertEquals(testController.getCurrentType(), 2);
 		
 		WorldBuilderController.setCurrentResource(ResourceType.GRASS_3, 1);
 		assertEquals(testController.getCurrentResource(), ResourceType.GRASS_3);
+		assertEquals(testController.getCurrentType(), 1);
 		
 		WorldBuilderController.setCurrentResource(ResourceType.HOUSE, 5);
 		assertEquals(testController.getCurrentResource(), ResourceType.HOUSE);
+		assertEquals(testController.getCurrentType(), 5);
 	}
 	
 	@Test
@@ -64,12 +67,15 @@ public class WorldBuilderControllerTest {
 		
 		WorldBuilderController.setCurrentResource(ResourceType.BAKERY, 2);
 		assertEquals(testController.getCurrentResource(), ResourceType.BAKERY);
+		assertEquals(testController.getCurrentType(), 2);
 		
 		WorldBuilderController.setCurrentResource(ResourceType.GRASS_3, 1);
 		assertEquals(testController.getCurrentResource(), ResourceType.GRASS_3);
+		assertEquals(testController.getCurrentType(), 1);
 		
 		WorldBuilderController.setCurrentResource(ResourceType.HOUSE, 5);
 		assertEquals(testController.getCurrentResource(), ResourceType.HOUSE);
+		assertEquals(testController.getCurrentType(), 5);
 		
 		testController.notifyTileClicked(1, 1);
 		
@@ -84,12 +90,15 @@ public class WorldBuilderControllerTest {
 		
 		WorldBuilderController.setCurrentResource(ResourceType.BAKERY, 2);
 		assertEquals(testController.getCurrentResource(), ResourceType.BAKERY);
+		assertEquals(testController.getCurrentType(), 2);
 		
 		WorldBuilderController.setCurrentResource(ResourceType.GRASS_3, 1);
 		assertEquals(testController.getCurrentResource(), ResourceType.GRASS_3);
+		assertEquals(testController.getCurrentType(), 1);
 		
 		WorldBuilderController.setCurrentResource(ResourceType.HOUSE, 5);
-		assertEquals(testController.getCurrentResource(), ResourceType.HOUSE);		
+		assertEquals(testController.getCurrentResource(), ResourceType.HOUSE);
+		assertEquals(testController.getCurrentType(), 5);	
 		
 		testController.notifyTileHovered(1, 1);
 		
@@ -104,11 +113,14 @@ public class WorldBuilderControllerTest {
 		
 		WorldBuilderController.setCurrentResource(ResourceType.BAKERY, 2);
 		assertEquals(testController.getCurrentResource(), ResourceType.BAKERY);
+		assertEquals(testController.getCurrentType(), 2);
 		
 		WorldBuilderController.setCurrentResource(ResourceType.GRASS_3, 1);
 		assertEquals(testController.getCurrentResource(), ResourceType.GRASS_3);
+		assertEquals(testController.getCurrentType(), 1);
 		
 		WorldBuilderController.setCurrentResource(ResourceType.HOUSE, 5);
 		assertEquals(testController.getCurrentResource(), ResourceType.HOUSE);
+		assertEquals(testController.getCurrentType(), 5);
 	}
 }
