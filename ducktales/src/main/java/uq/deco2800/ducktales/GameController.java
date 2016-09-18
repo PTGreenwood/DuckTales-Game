@@ -187,7 +187,6 @@ public class GameController implements Initializable{
     public void hideAllInfoWindows() {
         marketManager.hideMarketPlace();
         missionManager.hideMission();
-        levelManager.hideLevel();
         achievementManager.hideAchievement();
         closeButton.setVisible(false);
     }
@@ -378,10 +377,7 @@ public class GameController implements Initializable{
             
             // position the level pane
             AnchorPane.setTopAnchor(root, 60.0);
-            AnchorPane.setLeftAnchor(root, 20.0);
-            
-            // initially hide it first
-            levelManager.hideLevel();
+            AnchorPane.setLeftAnchor(root, 20.0);            
 
         } catch (IOException e) {
             System.err.println("Unable to load Level");

@@ -17,6 +17,8 @@ public class AchievementHandler {
 	/** Achievement Score */
 	private int intAchieve;
 	
+	LevelHandler levelHandler = LevelHandler.getInstance();
+	
 	/**
 	 * Constructor of {@link Achievement}.
 	 * 
@@ -101,27 +103,27 @@ public class AchievementHandler {
 	    {
 	    //some award, resource boost or multiplier, possible duck god or god skin
 	    }
-	    if(LevelHandler.level == 1)
+	    if(levelHandler.getLevel() == 1)
 	    {
 	    	this.achieveVeasy();
 	    }
-	    if(LevelHandler.level == 5)
+	    if(levelHandler.getLevel() == 5)
 	    {
 	    	this.achieveEasy();
 	    }
-	    if(LevelHandler.level == 10)
+	    if(levelHandler.getLevel() == 10)
 	    {
 	    	this.achieveMedium();
 	    }
-	    if(LevelHandler.level == 15)
+	    if(levelHandler.getLevel() == 15)
 	    {
 	    	this.achieveHard();
 	    }
-	    if(LevelHandler.level == 25)
+	    if(levelHandler.getLevel() == 25)
 	    {
 	    	this.achieveVhard();
 	    }
-	    if(LevelHandler.level == 1)
+	    if(levelHandler.getLevel() == 1)
 	    {
 	        //resource reward
 	    }
