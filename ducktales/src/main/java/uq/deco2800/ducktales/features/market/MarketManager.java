@@ -39,7 +39,7 @@ public class MarketManager {
     @FXML
     private Button yourOffersBtn;
     @FXML
-    private Button placeATradeBtn;
+    private Button placeNewTradeBtn;
     
     /** Selected navigation button background colour **/ 
     private static final String BTN_SELECTED = "#1b1464";
@@ -51,7 +51,7 @@ public class MarketManager {
     
     /** Enum corresponding to the navigation buttons**/
     public enum Vista {
-    	ALLTRADES, YOURTRADES, YOUROFFERS, PLACEATRADE 
+    	ALLTRADES, YOURTRADES, YOUROFFERS, PLACENEWTRADE 
     }
     
     /**String for the background color**/
@@ -109,6 +109,10 @@ public class MarketManager {
     
     public String getUserName() {
     	return marketModel.getUserName();
+    }
+    
+    public void createNewTradeOffer(String item, int amount) {
+    	marketModel.createNewTradeOffer(item, amount);
     }
     
 
@@ -171,7 +175,7 @@ public class MarketManager {
     	MarketVistaNavigator.loadVista(MarketVistaNavigator.PLACE_A_TRADE);
     	
     	deselectButton(selectedVista);
-        selectButton(Vista.PLACEATRADE);
+        selectButton(Vista.PLACENEWTRADE);
     }
     
     /**
@@ -198,7 +202,7 @@ public class MarketManager {
     			    		+ btnColorString+BTN_BORDER_COLOUR);
     			break;
     			
-    		case PLACEATRADE: placeATradeBtn.setStyle(
+    		case PLACENEWTRADE: placeNewTradeBtn.setStyle(
     				backgroundColorString+BTN_NOT_SELECTED + "; " 
     			    		+ btnColorString+BTN_BORDER_COLOUR);
     			break;
@@ -236,10 +240,10 @@ public class MarketManager {
     			selectedVista = Vista.YOUROFFERS;
     			break;
     			
-    		case PLACEATRADE: placeATradeBtn.setStyle(
+    		case PLACENEWTRADE: placeNewTradeBtn.setStyle(
     				backgroundColorString+BTN_SELECTED + "; " 
     			    		+ btnColorString+BTN_BORDER_COLOUR);
-    			selectedVista = Vista.PLACEATRADE;
+    			selectedVista = Vista.PLACENEWTRADE;
     			break;
     			
     		default: break;

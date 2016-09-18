@@ -16,7 +16,11 @@ public class MarketModel {
 	
 	private List<MocTrade> allTrades;
 	
+	private List<MocTrade> userTrades;
+	
 	private HashMap<String, Integer> userInventory;
+	
+	private String userName = "jSmith";
 	
 	public MarketModel() {
 		
@@ -40,8 +44,9 @@ public class MarketModel {
 		userNames.add("ABeakman");
 		
 		allTrades = new ArrayList<MocTrade>();
+		userTrades = new ArrayList<MocTrade>();
 		
-		for (int i = 0; i < 6; i++) {
+		for (int i = 0; i < 5; i++) {
 			// create some moc trades
 			
 			String mocItem = itemNames.get(i % itemNames.size());
@@ -58,6 +63,8 @@ public class MarketModel {
 			allTrades.add(mocTrade);
 			
 		}
+		
+		updateUserTrades();
 		
 		// Create a HashMap of the user's inventory
 		userInventory = new HashMap<String, Integer>();
@@ -92,6 +99,44 @@ public class MarketModel {
 	}
 	
 	
+	public void createNewTradeOffer(String item, int amount) {
+		// Create a new trade
+		MocTrade trade = new MocTrade(item, amount, 
+				this.userName, null);
+		
+		allTrades.add(trade);
+		userTrades.add(trade);
+		
+		// Update the inventory
+		if (amount >= userInventory.get(item)) {
+			// Remove item from inventory
+			userInventory.remove(item);
+		} else {
+			userInventory.put(item, userInventory.get(item) - amount);
+		}
+		
+		
+	}
+	
+	
+	private void updateUserTrades() {
+		
+		List<MocTrade> userTrades = new ArrayList<MocTrade>();
+		
+		for (int i = 0; i < allTrades.size(); i++) {
+			
+			if (!userTrades.contains(allTrades.get(i))) {
+				
+				if (allTrades.get(i).getUserName().equals(userName)) {
+					// Add to the userTradesList
+					userTrades.add(allTrades.get(i));
+				}
+				
+			}
+			
+		}
+		
+	}
 	
 
 }
