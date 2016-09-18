@@ -5,38 +5,51 @@ import java.util.concurrent.*;
 
 import uq.deco2800.ducktales.features.entities.agententities.Peon;
 import uq.deco2800.ducktales.resources.ResourceType;
-
+/**
+ * A Tree. Class containing all properties and specifications of a 
+ * tree.
+ * 
+ * @author Andrew Georgiou, 4318457 
+ *
+ */
 public class Tree extends ResourceEntity{
 	
 	private static final ResourceType[] TYPES = {TREE_1, TREE_2, TREE_3};
-	/*Scheduler for growing trees. Currently will grow every minute.	
-	 *  
-	 * (Can be changed to fit with the methods in Time class when implemented)
-	 */
+	//Scheduler for growing trees. Set to grow every in game season(24min real time).	
 	private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 	
+	/**
+	 * Initialise a new tree. Requires the location of the tree 
+	 *  to be passed.
+	 * @param x, x location of the tree
+	 * @param y, y location of the tree
+	 */	
 	public Tree(double x, double y) {
 		super(x, y, 1, 1, rare(TYPES), DEFVALUE);		
 		//Scheduling the runnable to run every minute in real time.
-		scheduler.scheduleAtFixedRate(createRunnable(this), 60, 60, TimeUnit.SECONDS);
+		scheduler.scheduleAtFixedRate(createRunnable(this), 24, 24, TimeUnit.MINUTES);
 		/*If the tree is the last type in the list, which will always be the rare,
 		 * set the value of the Resource to be double.
-		 * 
-		 * (Hard coded to 200 because a balance of resource values has not been discussed yet.)
 		 */
 		if(this.getType() == TYPES[TYPES.length-1]){
-			this.setValue(200);
+			this.setValue(2*DEFVALUE);
 		}
 	}
 	//Runnable that is in charge of growing the tree
 	private Runnable createRunnable(Tree tree){	
 		Runnable aRunnable = new Runnable(){
 			public void run(){
-				tree.increaseValue(10);
+				tree.increaseValue(50);
 				System.out.println(value);
 			}
 		};
 		return aRunnable;
+	}
+	/*Function added to avoid error in Lumberjack class
+	 * will possibly be removed later.
+	 */
+	public void lumber(Peon loggers){
+		
 	}
 
 	@Override
@@ -47,33 +60,4 @@ public class Tree extends ResourceEntity{
 	public boolean isPassable() {
 		return false;
 	}
-	public void lumber(Peon loggers){
-		this.decreaseValue(5);
-		//this.isStump = true;
-	}
-	
-	/*private boolean isStump = false;        // Whether the tree was lumbered and Leave a stump
-
-	public int timber = 20;                 //define how many timber peon can get from this tree
-
-	// if the tree is lumbered, increase the amount of wood resources and set the tree to stump
-	
-
-	//* Returns whether the tree is stump.
-	private boolean isStump = false;        // Whether the tree was lumbered and Leave a stump
-
-	public int timber = 20;                 //define how many timber peon can get from this tree
-
-	// if the tree is lumbered, increase the amount of wood resources and set the tree to stump
-	public void lumber(Peon loggers){
-
-		this.isStump = true;
-	}
-
-	//* Returns whether the tree is stump.
-
-	public boolean isStump() {
-		return this.isStump;
-	}
-	*/
 }

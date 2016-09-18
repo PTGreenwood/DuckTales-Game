@@ -6,9 +6,16 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
+/**
+ * Manage all fxml action of market place tutorial
+ * 
+ * @author Naehyung Kim
+ *
+ */
 public class Tutorial3Controller {
 	@FXML
 	private BorderPane mainBorder;
@@ -19,7 +26,15 @@ public class Tutorial3Controller {
 	
 	private AnchorPane pane1, pane2;
 	
+	@FXML
+	private Label labelTop;
 	
+	/**
+	 * Display next page
+	 * 
+	 * @param event
+	 * @throws Exception
+	 */
 	@FXML
 	private void tutorial3Next(ActionEvent event) throws Exception {
 		
@@ -33,6 +48,12 @@ public class Tutorial3Controller {
 		mainBorder.setCenter(pane1);		
 	}
 	
+	/**
+	 * Display previous page
+	 * 
+	 * @param event
+	 * @throws Exception
+	 */
 	@FXML
 	private void tutorial3Previous(ActionEvent event) throws Exception {
 		

@@ -45,7 +45,6 @@ public class WeatherEvents {
 	 * @param weatherChance
 	 */
 	public void remove(WeatherChance weatherChance) {
-
 		weatherEvents.remove(weatherChance);
 	}
 

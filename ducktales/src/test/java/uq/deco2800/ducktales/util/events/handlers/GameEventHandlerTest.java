@@ -1,55 +1,61 @@
 package uq.deco2800.ducktales.util.events.handlers;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import java.lang.reflect.Field;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.junit.Test;
-import org.junit.Ignore;
+import org.mockito.Mockito;
 
-import uq.deco2800.ducktales.DuckTalesLauncher;
 import uq.deco2800.ducktales.GameManager;
-import uq.deco2800.ducktales.World;
-import uq.deco2800.ducktales.features.builder.WorldBuilderLoop;
-import uq.deco2800.ducktales.features.builder.WorldBuilderManager;
-import uq.deco2800.ducktales.features.entities.worldentities.Bakery;
-import uq.deco2800.ducktales.features.entities.worldentities.Constructor;
+
+/**
+ * Test class for the GameEventHandler. Uses mockito to create dummy 
+ * GameManager instance.
+ * 
+ * @author Gabrielle Hodge, 43590526
+ *
+ */
 
 public class GameEventHandlerTest {
 	
 	/**
-	 * Test having 1 building
+	 * Test GameEventHandler. Basic test, check if the gameManager is accessed 
+	 * and set properly
 	 */
-	@Ignore
 	@Test
 	public void basicTest() {
 		
-		//GameManager gameTestManager = DuckTalesLauncher.main([]).GameEventHandlerTest;
+		// Create a mocked GameManager
+		GameManager gameTestManager = Mockito.mock(GameManager.class);
 		
-		// test = new GameManager(null);
-		//GameEventHandler testHandler = new GameEventHandler(test);
+		// Create a new GameEventHandler using mocked GameManager
+		GameEventHandler testHandler = new GameEventHandler(gameTestManager);
 		
-		Field testAccess;
+		//Use reflection to access protected gameManager parameter
+		Field field;
 		try {
-			// Check the quit field
-			
-			
-			testAccess = GameEventHandler.class.getDeclaredField("gameManager");
-			testAccess.setAccessible(true);
-					
-//			try {
-//				try {
-//					//assertTrue("event handler incorrect", 
-//						//	testAccess.get(testHandler).equals(test));
-//				} catch (IllegalAccessException e) {
-//					e.printStackTrace();
-//				}
-//			} catch (IllegalArgumentException e) {
-//				e.printStackTrace();
-//			}
-		} catch (NoSuchFieldException e) {
+			try {
+				// Access gameManager field and set to accessible
+				field = GameEventHandler.class.getDeclaredField("gameManager");
+				field.setAccessible(true);
+				
+				try {
+					// Get the value of gameManager parameter
+					GameManager value = (GameManager) field.get(testHandler);
+					// Check if gameManager parameter and gameManager passed are 
+					// equal
+					assertEquals(gameTestManager, value);
+				} catch (IllegalArgumentException | IllegalAccessException e) {
+					e.printStackTrace();
+				}
+			} catch (NoSuchFieldException | SecurityException e) {
+				e.printStackTrace();
+			}
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 	}
+		
 }

@@ -9,26 +9,14 @@ import java.io.IOException;
 import java.net.URL;
 
 /**
- * This class manages all the UI components of the HUD for the game
- * such as controlling when and where to display the cursor image, and changing the HUD
- * UI elements along the way as appropriate
- *
- * TODO: MOVE THIS CLASS TO FXML LOADER IMPLEMENTATION AS HUD GETS MORE COMPLICATED
- *
- * Created on 7/09/2016.
- * @author khoiphan21
+ * Weather Manager
  */
 public class WeatherManager implements SecondaryManager {
 
-    /**
-     * Creates a manager for the HUD. Setup the HUD by instantiating helper managers
-     */
     public WeatherManager(AnchorPane rootPane, AnchorPane leftPane, AnchorPane bottomPane) {
        
     }
-
-
-
+    
     @Override
     public void reload() {
 

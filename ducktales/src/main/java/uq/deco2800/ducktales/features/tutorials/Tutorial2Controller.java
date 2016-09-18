@@ -6,9 +6,16 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
+/**
+ * Manage all fxml action of buildings tutorial
+ * 
+ * @author Naehyung Kim
+ *
+ */
 public class Tutorial2Controller {
 	
 	@FXML
@@ -20,7 +27,15 @@ public class Tutorial2Controller {
 	
 	private AnchorPane pane1, pane2;
 	
+	@FXML
+	private Label labelTop;
 	
+	/**
+	 * Display next page
+	 * 
+	 * @param event
+	 * @throws Exception
+	 */
 	@FXML
 	private void tutorial2Next(ActionEvent event) throws Exception {
 		
@@ -34,9 +49,14 @@ public class Tutorial2Controller {
 		mainBorder.setCenter(pane1);		
 	}
 	
+	/**
+	 * Display previous page
+	 * 
+	 * @param event
+	 * @throws Exception
+	 */
 	@FXML
-	private void tutorial2Previous(ActionEvent event) throws Exception {
-		
+	private void tutorial2Previous(ActionEvent event) throws Exception {		
 		
 		URL location = getClass().getResource("/tutorials/tutorial2Pane0.fxml");
 		FXMLLoader loader = new FXMLLoader();

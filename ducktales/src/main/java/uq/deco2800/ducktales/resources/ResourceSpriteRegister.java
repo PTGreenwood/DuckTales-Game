@@ -179,8 +179,7 @@ public class ResourceSpriteRegister {
 		
 		
 		//addResource(FARM, "/farm.png");
-		//addResource(QUARRY, "/quarry.png");
-		
+		addResource(QUARRY, "/buildings/quarry.png");
 		addResource(PASTURE, "/buildings/pasture.png");
 		addResource(HOSPITAL, "/buildings/hospital.png");
 		addResource(BUTCHER, "/buildings/butcher.png");
@@ -193,9 +192,8 @@ public class ResourceSpriteRegister {
 		addResource(FORGE, "/buildings/forge.png");
 		addResource(OBSERVATORY, "/buildings/observatory.png");
 		addResource(MINE, "/buildings/mine.png");
-
-		//addResource(CEMETERY, "/cemetery.png");
-		//addResource(FARMHOUSE, "/farm+barn.png");
+		addResource(CEMETERY, "/buildings/cemetery_small.png");
+		addResource(FARM, "/buildings/farmhouse.png");
 		//addResource(c, "/barn.png");
 		
 

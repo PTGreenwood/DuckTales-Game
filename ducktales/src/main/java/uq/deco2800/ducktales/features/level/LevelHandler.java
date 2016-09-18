@@ -1,59 +1,94 @@
 package uq.deco2800.ducktales.features.level;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.control.ProgressBar;
 
 /**
  * Handles player level.
  * 
+ * @author Naehyung Kim
  *
  */
 public class LevelHandler {
-	private static LevelHandler instance = new LevelHandler();
 	
-	private int level;
-	private ProgressBar pb;
-	private double barProgress;
+	private static LevelHandler instance = new LevelHandler();
+		
+	private SimpleIntegerProperty level = new SimpleIntegerProperty(this, "level");
 
+	private ProgressBar pb;
 
 	/**
 	 * Constructor of {@link Level}.
+	 * 
 	 * @return <CODE>INSTANCE</CODE>
 	 */
 	public static LevelHandler getInstance() {
 		return instance;		
 	}
 	
-	public LevelHandler(){
-		this.level = 1;
-		this.barProgress = 0;
+	
+	public LevelHandler() {
+		level.set(1);;
 		this.pb = new ProgressBar(0.0);
 	}
 	
-	public void levelUp(){
-		this.level = this.level + 1;
-		this.barProgress = 0;
+	/**
+	 * Level up 
+	 */
+	public void levelUp() {
+		this.level.set(level.get()+1);;
 		this.pb.setProgress(0);
 	}
 	
-	public void setLevel(int level){
-		this.level = level;
+	/**
+	 * Set level
+	 * 
+	 * @param level
+	 */
+	public void setLevel(int level) {
+		this.level.set(level);;
+
 	}
 	
-	public int getLevel(){
+	/**
+	 * Get level
+	 * 
+	 * @return level.get()
+	 */
+	public int getLevel() {
+		return level.get();
+	}
+	
+	/**
+	 * Return IntergerProperty
+	 * 
+	 * @return level
+	 */
+	public IntegerProperty valueProperty() {
 		return level;
 	}
 	
-	public void setProgressBar(double percentage){
+	/**
+	 * Set progress bar
+	 * 
+	 * @param percentage
+	 */
+	public void setProgressBar(double percentage) {
 		this.pb.setProgress(percentage);
-		this.barProgress = this.barProgress + percentage;
 	}
 	
-	public ProgressBar getProgressIndicator(){
+	/**
+	 * Return progress bar
+	 * 
+	 * @return progress bar
+	 */
+	public ProgressBar getProgressBar() {
 		return this.pb;
 	}
 	
-	public double getBarProgress(){
-		return this.barProgress;
+	public void addProgressBar(double percentage) {
+		this.pb.setProgress(this.pb.getProgress() + percentage);
 	}
 	
 }

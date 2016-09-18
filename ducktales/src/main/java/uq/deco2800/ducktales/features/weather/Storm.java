@@ -12,7 +12,7 @@ public class Storm extends Weather {
 	}
 	
 	public WeatherEffect getWeatherEffect() {
-		WeatherEffect weatherEffect = new WeatherEffect();
+		WeatherEffect weatherEffect = new WeatherEffect(this.toString()+".gif");
 		return weatherEffect;
 	}
 	
