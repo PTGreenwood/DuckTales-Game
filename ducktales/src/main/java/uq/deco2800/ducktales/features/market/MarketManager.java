@@ -111,6 +111,10 @@ public class MarketManager {
     	return marketModel.getUserName();
     }
     
+    public HashMap<MocTrade, MocTrade> getUserOffers() {
+    	return marketModel.getUserOffers();
+    }
+    
     public void createNewTradeOffer(String item, int amount) {
     	marketModel.createNewTradeOffer(item, amount);
     }
@@ -150,7 +154,6 @@ public class MarketManager {
     @FXML
     void viewYourTrades(ActionEvent event) {
         MarketVistaNavigator.loadVista(MarketVistaNavigator.YOUR_TRADES);
-        
         
         deselectButton(selectedVista);
         selectButton(Vista.YOURTRADES);
