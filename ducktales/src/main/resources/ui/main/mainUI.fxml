@@ -24,7 +24,7 @@
             </Pane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="bottomPane" layoutX="1050.0" layoutY="50" styleClass="bottomPane" />
+      <AnchorPane fx:id="bottomPane" layoutX="1076.0" layoutY="20" styleClass="bottomPane" />
       <AnchorPane fx:id="worldPane" prefHeight="200.0" prefWidth="200.0" styleClass="gamePane" AnchorPane.bottomAnchor="180.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <Button fx:id="closeButton" mnemonicParsing="false" onAction="#hideAllInfoWindows" prefHeight="30.0" prefWidth="30.0" text="X" AnchorPane.rightAnchor="0.0" />
    </children>

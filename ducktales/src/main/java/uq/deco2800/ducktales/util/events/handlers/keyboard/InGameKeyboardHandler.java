@@ -57,7 +57,7 @@ public class InGameKeyboardHandler extends GameEventHandler
 	private void hideMenus() {
 		gameManager.getMarketManager().hideMarketPlace();
 		gameManager.getMissionManager().hideMission();
-		gameManager.getLevelManager().hideLevel();
+		//gameManager.getLevelManager().hideLevel();
 		gameManager.getAchievementManager().hideAchievement();
 	}
 
@@ -82,7 +82,9 @@ public class InGameKeyboardHandler extends GameEventHandler
 			displayManager.moveWorld(Direction.UP);
 			System.err.println("moving UP in Handler");
 			break;
-		case M:			
+		case M:
+			//mission completed action
+			gameManager.getMissionManager().missionCompletedAction(2);
 			visible = gameManager.getMarketManager().isVisible();
 			hideMenus();			
 			if (visible)
@@ -98,15 +100,19 @@ public class InGameKeyboardHandler extends GameEventHandler
 			else 
 				gameManager.getMissionManager().showMission();
 			break;
-		case L:
+		/*case L:
+			//mission completed action
+			gameManager.getMissionManager().missionCompletedAction(0);
 			visible = gameManager.getLevelManager().isVisible();
 			hideMenus();
 			if (visible)
 				gameManager.getLevelManager().hideLevel();
 			else 
 				gameManager.getLevelManager().showLevel();
-			break;
+			break;*/
 		case H:
+			//mission completed action
+			gameManager.getMissionManager().missionCompletedAction(1);
 			visible = gameManager.getAchievementManager().isVisible();
 			hideMenus();
 			if (visible)

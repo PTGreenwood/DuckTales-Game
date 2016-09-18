@@ -1,5 +1,7 @@
 package uq.deco2800.ducktales.features.level;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.control.ProgressBar;
 
 /**
@@ -11,10 +13,9 @@ import javafx.scene.control.ProgressBar;
 public class LevelHandler {
 	
 	private static LevelHandler instance = new LevelHandler();
-	
-	//level integer
-	private int level;
-	//progress bar
+		
+	private SimpleIntegerProperty level = new SimpleIntegerProperty(this, "level");
+
 	private ProgressBar pb;
 
 	/**
@@ -26,8 +27,9 @@ public class LevelHandler {
 		return instance;		
 	}
 	
+	
 	public LevelHandler() {
-		this.level = 1;
+		level.set(1);;
 		this.pb = new ProgressBar(0.0);
 	}
 	
@@ -35,7 +37,7 @@ public class LevelHandler {
 	 * Level up 
 	 */
 	public void levelUp() {
-		this.level = this.level + 1;
+		this.level.set(level.get()+1);;
 		this.pb.setProgress(0);
 	}
 	
@@ -45,15 +47,25 @@ public class LevelHandler {
 	 * @param level
 	 */
 	public void setLevel(int level) {
-		this.level = level;
+		this.level.set(level);;
+
 	}
 	
 	/**
 	 * Get level
 	 * 
-	 * @return level
+	 * @return level.get()
 	 */
 	public int getLevel() {
+		return level.get();
+	}
+	
+	/**
+	 * Return IntergerProperty
+	 * 
+	 * @return level
+	 */
+	public IntegerProperty valueProperty() {
 		return level;
 	}
 	
@@ -71,8 +83,12 @@ public class LevelHandler {
 	 * 
 	 * @return progress bar
 	 */
-	public ProgressBar getProgressIndicator() {
+	public ProgressBar getProgressBar() {
 		return this.pb;
+	}
+	
+	public void addProgressBar(double percentage) {
+		this.pb.setProgress(this.pb.getProgress() + percentage);
 	}
 	
 }
