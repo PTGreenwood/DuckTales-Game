@@ -98,6 +98,31 @@ public class WorldDisplayManager implements Initializable, SecondaryManager {
      * @param world
      *          The game world
      */
+	
+    
+	/**
+	 * 
+	 * Change the current day 'overlay' to that of Day or Night
+	 * 
+	 *  
+	 */
+	public void changeLightLevel(Pane pane) {
+        if (this.gameManager.getTimeManager() == null) {
+            System.err.println("time manager is still empty");
+        } else {
+        	//This will change once it's all worked out.
+            //boolean nightTime = this.gameManager.getTimeManager().isNight();
+        	//Commented out for easy change
+        	
+            //if(nightTime) {
+                pane.setStyle("-fx-background-image: url('time/nightTime.png')"); //Uncomment this for nightTime
+            //} else {
+                pane.setStyle("-fx-background-image: url('time/dayTime.png')"); //Uncomment this for dayTime
+            //}
+        }
+
+	}
+	
     public void setWorld(World world) {
         this.world = world;
     }
@@ -170,29 +195,5 @@ public class WorldDisplayManager implements Initializable, SecondaryManager {
                 break;
         }
     }
-    
-	
-	/**
-	 * 
-	 * Change the current day 'overlay' to that of Day or Night
-	 * 
-	 * @param isNight
-	 * 			boolean to notify whether is night or not
-	 *  
-	 */
-	public void changeLightLevel(boolean nightTime, Pane pane) {
-        if (this.gameManager.getTimeManager() == null) {
-            System.err.println("time manager is still empty");
-        } else {
-            boolean nightTime2 = this.gameManager.getTimeManager().isNight();
 
-            // = true;
-            if(nightTime2) {
-                pane.setStyle("-fx-background-image: url('time/nightTime.png')");
-            } else {
-                pane.setStyle("-fx-background-image: url('time/dayTime.png')");
-            }
-        }
-
-	}
 }

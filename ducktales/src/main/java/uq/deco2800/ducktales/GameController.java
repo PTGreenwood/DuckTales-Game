@@ -233,10 +233,9 @@ public class GameController implements Initializable{
 		   //add dayNight pane to the root pane
 		   rootPane.getChildren().add(daynightPane);
 		   //daynightPane.setOpacity(100);
-		   int nightTime = this.timeManager.getGameTimeObject().getHour();
 
            try {
-               this.worldDisplayManager.changeLightLevel(true, daynightPane);
+               this.worldDisplayManager.changeLightLevel(daynightPane);
            } catch (Exception e) {
                e.printStackTrace();
                System.err.println("FAILED TO GET DAY/NIGHT");

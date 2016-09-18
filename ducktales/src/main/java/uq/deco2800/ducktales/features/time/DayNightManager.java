@@ -1,4 +1,5 @@
 package uq.deco2800.ducktales.features.time;
+import uq.deco2800.ducktales.util.Tickable;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
@@ -10,8 +11,9 @@ import java.net.URL;
 
 /**
  * Day/Nightime Manager
+ * Not in use... Yet
  */
-public class DayNightManager implements SecondaryManager {
+public class DayNightManager implements SecondaryManager, Tickable {
 
     public DayNightManager(AnchorPane rootPane, AnchorPane leftPane, AnchorPane bottomPane) {
        
@@ -20,5 +22,11 @@ public class DayNightManager implements SecondaryManager {
     @Override
     public void reload() {
 
+    }
+    
+    @Override
+    public void tick() {
+    	
+    	
     }
 }

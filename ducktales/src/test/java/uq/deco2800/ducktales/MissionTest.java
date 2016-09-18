@@ -42,7 +42,7 @@ public class MissionTest extends ApplicationTest{
 	 * Test for Missions Button 
 	 *
 	 */
-	//@Test
+	@Test
 	public void checkMissions() {		
 		
 		clickOn("#Missions");
@@ -55,7 +55,7 @@ public class MissionTest extends ApplicationTest{
 	 * Test for Mission Progress Button 
 	 *
 	 */
-	//@Test
+	@Test
 	public void checkMissionProgress() {
 		
 		clickOn("#MissionProgress");
