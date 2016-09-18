@@ -3,19 +3,19 @@ package uq.deco2800.ducktales.features.jobframework;
 import uq.deco2800.ducktales.features.entities.agententities.Peon;
 
 /**
- * Generates the Builder job
+ * Generates the Farmer job
  * 
- * @author Edward Liao (eduardlio on github and slack)
+ * @author Nicolas Turner (TheFractal on github and Fractal on slack)
  */
-public class Builder extends Job {
-    protected static int requiredStrength = 7;
-    protected static int requiredIntelligence = 5;
-    protected static int mentorStrength = 14;
-    protected static int mentorIntelligence = 10;
-    protected static String jobName = "Builder";
-    protected static final JobType JOBTYPE = JobType.BUILDER;
+public class Farmer extends Job {
+    protected static int requiredStrength = 3;
+    protected static int requiredIntelligence = 4;
+    protected static int mentorStrength = 6;
+    protected static int mentorIntelligence = 8;
+    protected static String jobName = "Farmer";
+    protected static final JobType JOBTYPE = JobType.FARMER;
     
-    public Builder() {
+    public Farmer() {
 		super(requiredStrength, requiredIntelligence, 
                         mentorStrength, mentorIntelligence, 
                         jobName, JOBTYPE);
@@ -23,18 +23,16 @@ public class Builder extends Job {
 
     /**
      * Defines whether or not the given peon is 
-     * qualified to become a mentor as a Lumberjack
+     * qualified to become a mentor as a Farmer
      * 
      * @param peon
      * @return true iff peon strength >= mentor strength
      *          &&  peon intelligence >= mentor intelligence
-     *          &&  peon has chopped 15 trees
      */
     @Override
     public boolean canBeMentor(Peon peon){
         if (peon.getStrength()>= this.getMentorStrength()
                 && peon.getIntelligence()>=this.getMentorIntelligence()
-                && peon.getBuildingsMade()>=20
                 ){
             return true;
         }
