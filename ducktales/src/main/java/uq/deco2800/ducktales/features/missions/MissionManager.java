@@ -46,6 +46,8 @@ public class MissionManager {
 	private BorderPane gameMission1;
 	private BorderPane achievement;
 	
+	private Label titleLabel;
+	
 	/** Initialize classes */
 	AchievementHandler achievementMain = AchievementHandler.getInstance();
 	MissionHandler missionMain = MissionHandler.getInstance();
@@ -135,8 +137,9 @@ public class MissionManager {
 	 * @param title
 	 */
 	private void setTitleOnTop(BorderPane borderPane, String title) {
-		Label titleLabel = new Label(title);
-		titleLabel.setFont(new Font("Arial", 36));
+		titleLabel = new Label(title);
+		titleLabel.setId("titleLabel");
+		titleLabel.setFont(new Font("Press Start 2P", 36));
 		borderPane.setTop(titleLabel);
 		borderPane.setAlignment(titleLabel, Pos.CENTER);
 	}
@@ -160,8 +163,10 @@ public class MissionManager {
 		missionMain.MissionImageCompleted(missionNumber);
         //Increment percentage of progress indicator in achievement
         missionMain.countNumberOfCompletedMissions();
+        //Increment percentage of progress bar of level
+        levelMain.addProgressBar(0.5);
         //If progress indicator is full then level up
-        if(levelMain.getProgressIndicator().getProgress() == 1.0) {
+        if(levelMain.getProgressBar().getProgress() == 1.0) {
         	levelMain.levelUp();
         }        
         System.out.println("Mission " + (missionNumber + 1) + " Completed!");

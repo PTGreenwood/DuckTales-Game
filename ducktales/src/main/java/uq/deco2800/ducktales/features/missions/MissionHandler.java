@@ -102,8 +102,7 @@ public class MissionHandler {
 			}						
 		}
 		MissionHandler.numberOfCompletedMissions = numberOfCompletedMissions;
-		piMain.setProgressPercentage(numberOfCompletedMissions/3);		
-		levelMain.setProgressBar(numberOfCompletedMissions/2);
+		piMain.setProgressPercentage(numberOfCompletedMissions/3);
 	}
 	
 	/**

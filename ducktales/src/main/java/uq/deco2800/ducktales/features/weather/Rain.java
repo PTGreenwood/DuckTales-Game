@@ -7,6 +7,7 @@ package uq.deco2800.ducktales.features.weather;
  *
  */
 public class Rain extends Weather {
+	@Override
 	public WeatherEffect getWeatherEffect() {
 		WeatherEffect weatherEffect = new WeatherEffect("rain.gif");		
 		return weatherEffect;
@@ -30,11 +31,6 @@ public class Rain extends Weather {
 	}
 	
 	public boolean requiresObjectUpdate() {
-		return true;
-	}
-	
-	@Override
-	public String toString() {
-		return this.getClass().getSimpleName().toLowerCase();
+		return false;
 	}
 }

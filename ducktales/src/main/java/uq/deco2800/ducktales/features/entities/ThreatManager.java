@@ -154,10 +154,8 @@ public class ThreatManager {
 		tempEnemy.setRandomX();
 		tempEnemy.setRandomY();
 		tempEnemy.checkCollision();
+		tempEnemy.setTheLevelOfDamage(50);
 		enemiesList.add(tempEnemy);
-		int evilDuckValue = enemiesList.indexOf("Evil Duck");
-		Enemy evilDuck = enemiesList.get(evilDuckValue);
-
 	}
 
 	/**

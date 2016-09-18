@@ -33,7 +33,8 @@ public class WorldBuilderRenderer extends AnimationTimer {
     };
     private static final ResourceType[] RESOURCE_TYPES = {
         HOSPITAL, BAKERY, SAWMILL, BUTCHER, CHURCH, COMMUNITY_BUILDING, 
-        FORGE, HOUSE, MINE, OBSERVATORY, PASTURE
+        FORGE, HOUSE, MINE, OBSERVATORY, PASTURE, CEMETERY, QUARRY, FARM, 
+        
     };
     // The constants to layout the UI elements
     private static final double BUILDING_SCENE_H_PORTION = 85.0/100.0;
