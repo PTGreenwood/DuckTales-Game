@@ -13,8 +13,8 @@ public class FarmerTest {
     @Test
     public void Test() {
         Peon peon = new Peon(10, 10);
-        peon.setStrength(50);
-        peon.setIntelligence(50);
+        peon.setStrength(farmer.getRequiredStrength()+1);
+        peon.setIntelligence(farmer.getRequiredIntelligence()+1);
         
         assertEquals(peon.getJob(),"Jobless");
         
@@ -32,4 +32,25 @@ public class FarmerTest {
             assertEquals(peon.applyForJob(farmer),"Peon intelligence is not high enough");
         }
     }
+    @Test
+    public void FarmerMentorTest(){
+        Peon peon = new Peon(10, 10);
+        peon.setStrength(farmer.getMentorStrength()-1);
+        peon.setIntelligence(farmer.getMentorIntelligence()-1);
+        peon.applyForJob(farmer);
+        // peon doesn't have the intelligence or strength to be mentor
+        assertFalse(farmer.canBeMentor(peon));
+        // peon has the intelligence but not the strength
+        peon.setIntelligence(farmer.getMentorIntelligence()+1);
+        assertFalse(farmer.canBeMentor(peon));
+        // peon has the strength but not the intelligence
+        peon.setStrength(farmer.getMentorStrength()+1);
+        peon.setIntelligence(farmer.getMentorIntelligence()-1);
+        assertFalse(farmer.canBeMentor(peon));
+        // peon has enough in both
+        peon.setStrength(farmer.getMentorStrength()+1);
+        peon.setIntelligence(farmer.getMentorIntelligence()+1);
+        assertTrue(farmer.canBeMentor(peon));
+    }
+        
 }

@@ -76,27 +76,32 @@ public class LumberjackTest {
         assertEquals(10, peon.getTreesChopped());
     }
     @Test
-    public void LumberMentorTest(){
+    public void BuilderMentorTest(){
         Peon peon = new Peon(10, 10);
-        assertEquals(peon.getJob(), "Jobless");
+        peon.setStrength(lumberjack.getMentorStrength()-1);
+        peon.setIntelligence(lumberjack.getMentorIntelligence()-1);
+        peon.applyForJob(lumberjack);
+        assertFalse(peon.getMentorStatus());
+        // peon doesn't have the intelligence or strength to be mentor
+        assertFalse(lumberjack.canBeMentor(peon));
+        // peon has the intelligence but not the strength
+        peon.setIntelligence(lumberjack.getMentorIntelligence()+1);
+        assertFalse(lumberjack.canBeMentor(peon));
+        // peon has the strength but not the intelligence
+        peon.setStrength(lumberjack.getMentorStrength()+1);
+        peon.setIntelligence(lumberjack.getMentorIntelligence()-1);
+        assertFalse(lumberjack.canBeMentor(peon));
+        // peon has enough in both but didn't build chop enough trees
         peon.setStrength(lumberjack.getMentorStrength()+1);
         peon.setIntelligence(lumberjack.getMentorIntelligence()+1);
-        
-        // shouldn't be a mentor yet
-        assertFalse(peon.getMentorStatus());
-        // can't be a mentor yet
         assertFalse(lumberjack.canBeMentor(peon));
-        // hasn't cut enough trees
-        assertFalse(peon.getTreesChopped()>=15);
-        int count = 0;
+        // can be mentor
         Tree tree = new Tree(11,11);
-        while (count < 15){
+        for (int i = 0; i<21; i++){
             lumberjack.chop(peon, tree);
-            count++;
         }
-        // should have chopped 15 trees
-        assertTrue(peon.getTreesChopped()>=15);
-        // should be able to be a mentor
+        peon.setStrength(lumberjack.getMentorStrength()+1);
+        peon.setIntelligence(lumberjack.getMentorIntelligence()+1);
         assertTrue(lumberjack.canBeMentor(peon));
     }
 }
