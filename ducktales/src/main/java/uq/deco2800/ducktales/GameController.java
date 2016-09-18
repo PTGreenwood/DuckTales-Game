@@ -376,7 +376,7 @@ public class GameController implements Initializable{
             rootPane.getChildren().add(root);
             
             // position the level pane
-            AnchorPane.setTopAnchor(root, 60.0);
+            AnchorPane.setTopAnchor(root, 70.0);
             AnchorPane.setLeftAnchor(root, 20.0);            
 
         } catch (IOException e) {

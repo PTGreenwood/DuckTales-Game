@@ -83,8 +83,12 @@ public class LevelHandler {
 	 * 
 	 * @return progress bar
 	 */
-	public ProgressBar getProgressIndicator() {
+	public ProgressBar getProgressBar() {
 		return this.pb;
+	}
+	
+	public void addProgressBar(double percentage) {
+		this.pb.setProgress(this.pb.getProgress() + percentage);
 	}
 	
 }

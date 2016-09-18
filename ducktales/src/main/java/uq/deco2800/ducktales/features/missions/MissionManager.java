@@ -163,8 +163,10 @@ public class MissionManager {
 		missionMain.MissionImageCompleted(missionNumber);
         //Increment percentage of progress indicator in achievement
         missionMain.countNumberOfCompletedMissions();
+        //Increment percentage of progress bar of level
+        levelMain.addProgressBar(0.5);
         //If progress indicator is full then level up
-        if(levelMain.getProgressIndicator().getProgress() == 1.0) {
+        if(levelMain.getProgressBar().getProgress() == 1.0) {
         	levelMain.levelUp();
         }        
         System.out.println("Mission " + (missionNumber + 1) + " Completed!");

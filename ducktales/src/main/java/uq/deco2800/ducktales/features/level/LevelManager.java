@@ -8,6 +8,7 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import uq.deco2800.ducktales.util.SecondaryManager;
 
 /**
@@ -37,8 +38,10 @@ public class LevelManager implements SecondaryManager {
 	 */
 	public void startLevel() {		
 		levelText.setText("Level : ");
+		levelText.setFont(new Font("Press Start 2P", 16));
 		levelDisplay.textProperty().bind(Bindings.convert(levelMain.valueProperty()));
-		pb1 = levelMain.getProgressIndicator();		
+		levelDisplay.setFont(new Font("Press Start 2P", 16));
+		pb1 = levelMain.getProgressBar();		
 		HBox levelHBox = new HBox(5);
 		VBox levelVBox = new VBox(5);
 		levelHBox.getChildren().addAll(levelText, levelDisplay);
