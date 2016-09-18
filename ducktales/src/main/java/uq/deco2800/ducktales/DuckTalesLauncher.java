@@ -10,6 +10,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import uq.deco2800.ducktales.deprecated.ui.MenuKeyboardHandler;
 
+
 /**
  * Launcher class for DuckTales.
  * 
@@ -38,6 +39,7 @@ public class DuckTalesLauncher extends Application {
 		//primaryStage.setFullScreen(true);
 		primaryStage.setScene(scene);		
 		scene.addEventHandler(KeyEvent.KEY_PRESSED, new MenuKeyboardHandler(ducktalesController));
+		//scene.addEventHandler(KeyEvent.Key_PRESSED, new KeyboardEventHandlerBeta(ducktalesController));
 		primaryStage.setMinWidth(1200);
 		primaryStage.setMinHeight(700);
 //		primaryStage.setOnCloseRequest(e -> ducktalesController.stopGame());

@@ -186,6 +186,7 @@ public class OldGameController {
     
 
     private void setupKeyboardEventHandlers() {
+    	
         KeyboardEventHandlerBeta keyboardHandler = new KeyboardEventHandlerBeta(this.renderer);
 
         rootPane.setOnKeyPressed(keyboardHandler);
