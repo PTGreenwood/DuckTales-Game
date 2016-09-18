@@ -15,7 +15,9 @@ import uq.deco2800.ducktales.features.level.LevelManager;
 import uq.deco2800.ducktales.features.market.MarketManager;
 import uq.deco2800.ducktales.features.market.MarketVistaNavigator;
 import uq.deco2800.ducktales.features.time.TimeManager;
+import uq.deco2800.ducktales.features.time.*;
 import uq.deco2800.ducktales.features.weather.*;
+
 import uq.deco2800.ducktales.rendering.worlddisplay.WorldDisplayManager;
 import uq.deco2800.ducktales.features.missions.MissionManager;
 
@@ -102,6 +104,7 @@ public class GameController implements Initializable{
         
         loadWorldDisplay();    
         loadWeatherDisplay();
+        loadDayNightDisplay();
         loadHUD();
         loadMarketPlace();
         loadMissions();
@@ -216,7 +219,31 @@ public class GameController implements Initializable{
         }
     }
     
-   
+    /**
+     * Overlay another pane, below other panes for day/night effect
+     */
+   public void loadDayNightDisplay() {
+	   URL location = getClass().getResource("/time/daynightEffect.fxml");
+	   FXMLLoader loader = new FXMLLoader(location);
+	   
+	   try {
+		   Pane daynightPane = loader.load();
+		   
+		   //add dayNight pane to the root pane
+		   rootPane.getChildren().add(daynightPane);
+		   //daynightPane.setOpacity(100);
+		   int nightTime = this.timeManager.getGameTimeObject().getHour();
+		   this.worldDisplayManager.changeLightLevel(true, daynightPane);
+		   
+		   // Set the sizing for world pane
+		   AnchorPane.setLeftAnchor(daynightPane,  0.0);
+		   AnchorPane.setRightAnchor(daynightPane, 0.0);
+		   AnchorPane.setTopAnchor(daynightPane, 0.0);
+		   AnchorPane.setBottomAnchor(daynightPane, 0.0);
+	   } catch (IOException e) {
+		   System.err.println("unable to set day/night effect");
+	   }
+   }
     /**
      * @mattyleggy
      * Overlay the weather pane on top of the main game pane.
@@ -242,6 +269,7 @@ public class GameController implements Initializable{
         }
     }
 
+    
     /**
      * Load the HUD Information into the current panes
      */

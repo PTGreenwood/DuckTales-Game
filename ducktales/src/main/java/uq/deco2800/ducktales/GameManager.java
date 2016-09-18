@@ -278,7 +278,7 @@ public class GameManager {
     }
 
     public TimeManager getTimeManager() {
-        return timeManager;
+        return this.timeManager;
     }
 
     public void setTimeManager(TimeManager timeManager) {

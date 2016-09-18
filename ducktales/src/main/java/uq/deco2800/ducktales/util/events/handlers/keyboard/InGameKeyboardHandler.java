@@ -158,7 +158,7 @@ public class InGameKeyboardHandler extends GameEventHandler
 			break;
 				
 		default:
-			System.out.println("Key " + code);
+			//System.out.println("Key " + code);
 			break;
 		}
 

@@ -9,6 +9,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import uq.deco2800.ducktales.util.SecondaryManager;
 import uq.deco2800.ducktales.util.Tickable;
+import uq.deco2800.ducktales.GameManager;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -18,7 +19,6 @@ import java.util.ResourceBundle;
  * This manager controls the time display by retrieving time info from GameTime
  *
  * Created on 9/09/2016.
- * @author khoiphan21
  */
 public class TimeManager implements SecondaryManager, Initializable, Tickable {
 
@@ -79,7 +79,27 @@ public class TimeManager implements SecondaryManager, Initializable, Tickable {
                 timeDisplayText.setText(hour + ":" + minute);
                 dayDisplayText.setText("DAY "+day);
             });
-
+            
         }
     }
+    
+	/** 
+	 * Is it night time or day time?
+	 * 
+	 * @return true if night time. False if day time
+	 */
+	public boolean isNight() {
+		//if((gameTime.getHour() >= 5)) { //||
+				//(gameTime.getHour() <= gameTime.season.getTimeDayBreak())) {
+			return true;
+		//} else {
+			//return false;
+		//}
+		
+	}
+	
+    public GameTime getGameTimeObject() {
+    	return this.gameTime;
+    }
+    
 }
