@@ -8,9 +8,9 @@ package uq.deco2800.ducktales.features.inventory;
 public class InventoryManager {
 
     
-    public int woodAmount = 0;
-    public int oresAmount = 0;
-    public int foodAmount = 0;
+    private int woodAmount = 0;
+    private int oresAmount = 0;
+    private int foodAmount = 0;
 
     public InventoryManager(int wood, int ores, int food) {
         //* Initialize a inventory container */
