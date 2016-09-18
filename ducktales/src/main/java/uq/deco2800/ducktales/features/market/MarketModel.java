@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
-import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Model that stores marketplace data
@@ -19,11 +18,6 @@ public class MarketModel {
 	
 	private List<MocTrade> userTrades;
 	
-	private List<String> itemNames = new ArrayList<String>();;
-	
-	/** Key: Trade Request by other user, Value: User's offer for item  */
-	private HashMap<MocTrade, MocTrade> userOffers;
-	
 	private HashMap<String, Integer> userInventory;
 	
 	private String userName = "jSmith";
@@ -31,7 +25,7 @@ public class MarketModel {
 	public MarketModel() {
 		
 		// Create a list of MocTrades for All Trades
-		itemNames = new ArrayList<String>();
+		List<String> itemNames = new ArrayList<String>();
 		
 		itemNames.add("stone");
 		itemNames.add("lumber");
@@ -79,8 +73,6 @@ public class MarketModel {
 			userInventory.put(itemNames.get(i), amount);
 		}
 		
-		createPendingOffers();
-		
 	}
 	
 	
@@ -100,10 +92,6 @@ public class MarketModel {
 		
 		return userInventory.get(item);
 		
-	}
-	
-	public HashMap<MocTrade, MocTrade> getUserOffers() {
-		return this.userOffers;
 	}
 	
 	public String getUserName() {
@@ -126,6 +114,7 @@ public class MarketModel {
 		} else {
 			userInventory.put(item, userInventory.get(item) - amount);
 		}
+		
 		
 	}
 	
@@ -159,31 +148,5 @@ public class MarketModel {
 		
 	}
 	
-	private void createPendingOffers() {
-		
-		userOffers = new HashMap<MocTrade, MocTrade>();
-		
-		for (int i = 0; i < allTrades.size() - 1; i++) {
-			MocTrade trade = allTrades.get(i);
-			
-			if (!userTrades.contains(trade)) {
-				// Create a trade offer by the user for the 
-				
-				int itemIndex = 
-						ThreadLocalRandom.current().nextInt(0, 
-								itemNames.size());
-				
-				MocTrade userOffer = new MocTrade(itemNames.get(itemIndex), 
-						ThreadLocalRandom.current().nextInt(0, 11), 
-						userName, null);
-				
-				// Add the offer to the 
-				userOffers.put(trade, userOffer);
-				
-			}
-			
-		}
-		
-	}
-	
+
 }
