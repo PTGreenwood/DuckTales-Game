@@ -13,6 +13,8 @@ import uq.deco2800.ducktales.GameLoop;
  * controller but I can't think of another way of how to make it work without
  * it.
  * 
+ * Note: Is old Keyboard Handler. Use InGameKeyboardHandler Instead - pgwood
+ * 
  * @author mattyleggy
  * 
  * tagged on time control functionality begins at ///////////
@@ -27,6 +29,7 @@ public class MenuKeyboardHandler implements EventHandler<KeyEvent> {
 	public MenuKeyboardHandler(DuckTalesController controller) {
 		this.controller = controller;
 	}
+
 
 	@Override
 	public void handle(KeyEvent event) {
@@ -81,6 +84,5 @@ public class MenuKeyboardHandler implements EventHandler<KeyEvent> {
 			break;
 		}
 	}
-
-	
 }
+	
