@@ -21,6 +21,7 @@ import javafx.scene.layout.VBox;
  */
 public class MarketManager {
 	
+	/** The model that stores and handles access to the market data */
 	private MarketModel marketModel;
 
 	/** The root pane where everything else is added onto */
@@ -44,6 +45,7 @@ public class MarketManager {
     /** Selected navigation button background colour **/ 
     private static final String BTN_SELECTED = "#1b1464";
     
+    /** The border colour of the buttons when selected. */
     private static final String BTN_BORDER_COLOUR = "white";
     
     /** Deselected navigation button background colour **/
@@ -57,6 +59,7 @@ public class MarketManager {
     /**String for the background color**/
     String backgroundColorString = "-fx-background-color: ";
     
+    /** The javafx styling prefix for colouring g */
     String btnColorString = "-fx-border-color: ";
     
     /** The enum of the currently selected navigation button.**/
@@ -76,6 +79,9 @@ public class MarketManager {
     	
     }
     
+    /**
+	 * Continues set up once initial GUI elements have been created.
+	 */
     @FXML
 	public void initialize() {
     	MarketVistaNavigator.loadVista(MarketVistaNavigator.ALL_TRADES);
@@ -99,10 +105,23 @@ public class MarketManager {
     	return marketModel.getUserInventory();
     }
     
+    /**
+     * Returns the name of the items currently in the user's inventory.
+     *  
+     * @return name of items in inventory.
+     */
     public Set<String> getUserInventoryItemNames() {
     	return marketModel.getUserInventoryItemNames();
     }
     
+    /**
+     * 
+     * Returns the amount of a particular item in inventory.
+     * 
+     * @param item The name of the inventory item.
+     * 
+     * @return The amount of the item in the user's inventory.
+     */
     public int getInventoryAmountForItem(String item) {
     	return marketModel.getInventoryAmountForItem(item);
     }

@@ -12,29 +12,47 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
+/**
+ * Handles the logic behind mpalltradesvista.fxml
+ * 
+ * @author Mark Belonogoff
+ *
+ */
 public class AllTradesController {
 	
+	/** Logger for the class */
 	private static final Logger LOGGER = Logger.getLogger(
 			AllTradesController.class.getName());
 	
+	/** The overall managing controller */
 	private MarketManager marketManager;
 	
+	/** The file path to the panes that will appear in the grid pane */
 	private static final String TRADE_PANE = 
 			"/market/mpalltradestradepane.fxml";
 	
+	/** The path to the dynamic resources */
 	private URL path;
 	
+	/** The stack pane id */
 	@FXML
 	private StackPane currentTradeVistaPropId;
 	
+	/** THe grid pane id */ 
 	@FXML
 	private GridPane allTradesGridPane;
 	
+	/**
+	 * Creates a new instance of the AllTradesController.
+	 */
 	public AllTradesController() {
 		this.marketManager = MarketVistaNavigator.getMainController();
 		
 	}
 	
+	/**
+	 * Continues set up once initial GUI elements have been created.
+	 */
 	@FXML
 	public void initialize() {
 		
@@ -60,8 +78,6 @@ public class AllTradesController {
 				
 				itemNameLabel.setText(trade.getItemName());
 				
-			
-			
 				Label quantityLabel = 
 						(Label) tradePane.lookup("#quantityLabel");
 				
