@@ -1,5 +1,8 @@
 package uq.deco2800.ducktales.features.achievements;
 
+
+import uq.deco2800.ducktales.features.inventory.InventoryManager;
+import uq.deco2800.ducktales.features.level.LevelHandler;
 import uq.deco2800.ducktales.features.missions.MissionHandler;
 
 /**
@@ -49,6 +52,7 @@ public class AchievementHandler {
 		this.intAchieve = intAchieve;
 	}
 	
+	
 	//Sets value for varying difficulties of achievements, 
 	//for each specific difficulty adds specified value to the achievement score
 	public void achieveVeasy() {
@@ -93,6 +97,35 @@ public class AchievementHandler {
 	    {
 	    this.achieveVhard();
 	    }
+	    if(MissionHandler.numberOfCompletedMissions == 50)
+	    {
+	    //some award, resource boost or multiplier, possible duck god or god skin
+	    }
+	    if(LevelHandler.level == 1)
+	    {
+	    	this.achieveVeasy();
+	    }
+	    if(LevelHandler.level == 5)
+	    {
+	    	this.achieveEasy();
+	    }
+	    if(LevelHandler.level == 10)
+	    {
+	    	this.achieveMedium();
+	    }
+	    if(LevelHandler.level == 15)
+	    {
+	    	this.achieveHard();
+	    }
+	    if(LevelHandler.level == 25)
+	    {
+	    	this.achieveVhard();
+	    }
+	    if(LevelHandler.level == 1)
+	    {
+	        //resource reward
+	    }
+	    
 	    
     //	if(InventoryManager.getWoodAmount() >= 100){
 	//		this.achieveVeasy();

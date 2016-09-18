@@ -12,9 +12,13 @@ public class LevelHandler {
 	
 	private static LevelHandler instance = new LevelHandler();
 	
+
+	//public static int level;
+
 	//level integer
-	private int level;
+	public static int level;
 	//progress bar
+
 	private ProgressBar pb;
 
 	/**
@@ -26,8 +30,9 @@ public class LevelHandler {
 		return instance;		
 	}
 	
+
 	public LevelHandler() {
-		this.level = 1;
+		LevelHandler.level = 1;
 		this.pb = new ProgressBar(0.0);
 	}
 	
@@ -35,7 +40,7 @@ public class LevelHandler {
 	 * Level up 
 	 */
 	public void levelUp() {
-		this.level = this.level + 1;
+		LevelHandler.level = LevelHandler.level + 1;
 		this.pb.setProgress(0);
 	}
 	
@@ -45,7 +50,8 @@ public class LevelHandler {
 	 * @param level
 	 */
 	public void setLevel(int level) {
-		this.level = level;
+		LevelHandler.level = level;
+
 	}
 	
 	/**

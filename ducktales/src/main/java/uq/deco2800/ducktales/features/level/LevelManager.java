@@ -1,10 +1,12 @@
 package uq.deco2800.ducktales.features.level;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import uq.deco2800.ducktales.util.SecondaryManager;
 
 /**
  * Manage all fxml action of the level
@@ -12,10 +14,14 @@ import javafx.scene.layout.VBox;
  * @author Naehyung Kim
  *
  */
-public class LevelManager {
+public class LevelManager implements SecondaryManager {
 	
 	@FXML 
 	private AnchorPane level;
+	@FXML
+	private Label levelDisplay;
+	@FXML
+	private ProgressBar pb1;
 	
 	/** Initialize classes */	
 	LevelHandler levelMain = LevelHandler.getInstance();
@@ -25,16 +31,12 @@ public class LevelManager {
 	 * 
 	 */
 	public void startLevel() {		
-		
-		Label levelDisplay = new Label("Level : " + levelMain.getLevel());	
-		ProgressBar  pb1 = new ProgressBar();
+		levelDisplay.setText("Level : " + levelMain.getLevel());
 		pb1 = levelMain.getProgressIndicator();		
 		VBox levelVBox = new VBox(5);
 		System.out.println("Current level = " + levelMain.getLevel());
-		levelVBox.getChildren().addAll(levelDisplay,pb1);
-		
-		level.getChildren().add(levelVBox);
-				
+		levelVBox.getChildren().addAll(levelDisplay,pb1);		
+		level.getChildren().add(levelVBox);				
 	}
 	
 	/**
@@ -56,4 +58,9 @@ public class LevelManager {
 	public boolean isVisible() {
 		return this.level.isVisible();
 	}
+	
+	@Override
+    public void reload() {
+
+    }
 }

@@ -8,7 +8,7 @@
 
 <BorderPane fx:id="mainBorder" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uq.deco2800.ducktales.features.tutorials.Tutorial3Controller">
    <top>
-      <Label text="Trading System" BorderPane.alignment="CENTER">
+      <Label fx:id="labelTop" text="Trading System" BorderPane.alignment="CENTER">
          <font>
             <Font name="Arial" size="36.0" />
          </font>

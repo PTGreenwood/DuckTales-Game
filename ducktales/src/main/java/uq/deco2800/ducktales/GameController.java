@@ -273,17 +273,17 @@ public class GameController implements Initializable{
 
         try {
             // load the FXML
-            HBox timeDisplay = loader.load();
+            AnchorPane timeDisplay = loader.load();
 
             // Retrieve the controller
             timeManager = loader.getController();
 
             // Add the time display to the GUI
-            rootPane.getChildren().add(timeDisplay);
+            leftPane.getChildren().add(timeDisplay);
 
             // Position the time display
-            AnchorPane.setTopAnchor(timeDisplay, 0.0);
-            AnchorPane.setRightAnchor(timeDisplay, 400.0);
+            AnchorPane.setTopAnchor(timeDisplay, 20.0);
+            AnchorPane.setLeftAnchor(timeDisplay, 20.0);
 
         } catch (IOException e) {
             System.err.println("unable to load time display");
@@ -337,13 +337,17 @@ public class GameController implements Initializable{
             // load the FXML
             AnchorPane root = loader.load();
             
+            // retrieve the controller
             missionManager = loader.getController();
 
+            // add the mission pane to the GUI
             rootPane.getChildren().add(root);
-
-            AnchorPane.setTopAnchor(root, 0.0);
-            AnchorPane.setRightAnchor(root, 30.0);
-
+            
+            // position the mission pane
+            AnchorPane.setTopAnchor(root, 20.0);
+            AnchorPane.setRightAnchor(root, 230.0);
+            
+            // initially hide it first
             missionManager.hideMission();
 
         } catch (IOException e) {
@@ -364,14 +368,19 @@ public class GameController implements Initializable{
             // load the FXML
             AnchorPane root = loader.load();
             
+            // retrieve the controller
             levelManager = loader.getController();
+            
             levelManager.startLevel();
             
+            // add the level pane to the GUI
             rootPane.getChildren().add(root);
-
-            AnchorPane.setTopAnchor(root, 0.0);
-            AnchorPane.setLeftAnchor(root, 170.0);
-
+            
+            // position the level pane
+            AnchorPane.setTopAnchor(root, 60.0);
+            AnchorPane.setLeftAnchor(root, 20.0);
+            
+            // initially hide it first
             levelManager.hideLevel();
 
         } catch (IOException e) {
@@ -392,13 +401,17 @@ public class GameController implements Initializable{
             // load the FXML
             AnchorPane root = loader.load();
             
+            // retrieve the controller
             achievementManager = loader.getController();
             
+            // add the achievement pane to the GUI
             rootPane.getChildren().add(root);
-
-            AnchorPane.setTopAnchor(root, 0.0);
-            AnchorPane.setRightAnchor(root, 30.0);
-
+            
+            // position the achievement pane
+            AnchorPane.setTopAnchor(root, 20.0);
+            AnchorPane.setRightAnchor(root, 230.0);
+            
+            // initially hide it first
             achievementManager.hideAchievement();
 
         } catch (IOException e) {

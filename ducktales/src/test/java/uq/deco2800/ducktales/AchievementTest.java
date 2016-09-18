@@ -14,7 +14,17 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * Tests the GUI for Achievements
+ * @author Naehyung Kim
+ *
+ */
 public class AchievementTest extends ApplicationTest {
+	
+	/**
+	 * Set up testFx
+	 * 
+	 */
 	@Override
     public void start(Stage stage) throws Exception {
 		URL location = getClass().getResource("/achievements/achievementMain.fxml");
@@ -28,22 +38,36 @@ public class AchievementTest extends ApplicationTest {
 		stage.show();
     }
 	
+	/**
+	 * Test for mission achievement Button 
+	 *
+	 */
 	@Test
-	public void checkBasicInterface() {		
+	public void checkAchievementMission() {		
 		
 		clickOn("#achievementMissionBtn");
 		
 		verifyThat("#achievementMissionBtn", hasText("Mission Achievement"));
+		//verifyThat("#titleLabel", hasText("Mission Achievement"));
 	}
 	
+	/**
+	 * Test for level achievement Button 
+	 *
+	 */
 	@Test
-	public void checkBuildings() {
+	public void checkAchievementLevel() {
 		
 		clickOn("#achievementLevelBtn");
 		
 		verifyThat("#achievementLevelBtn", hasText("Level Achievement"));
+		//verifyThat("#titleLabel", hasText("Level Achievement"));
 	}
-
+	
+	/**
+	 * Tests if there is any null on the buttons
+	 * 
+	 */
 	@Test
     public void testIsNotNull() {
         
