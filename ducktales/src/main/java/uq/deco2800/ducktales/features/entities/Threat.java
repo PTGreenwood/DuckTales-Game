@@ -236,7 +236,10 @@ public class Threat {
 		// new Image(getClass().getResource(imageName).toString()));
 	}
 	
-	// method to detect peon/enemy collisions
+	/**
+	 * Method to detect peon/enemy collisions
+	 */
+
 	public void checkCollision() {
 		int currentHealth = peon.getHealth();
 		int newHealth = currentHealth - levelOfDamage;

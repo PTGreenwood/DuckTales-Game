@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package uq.deco2800.ducktales.jobframework;
 
 import org.junit.Test;
@@ -11,21 +6,20 @@ import uq.deco2800.ducktales.features.jobframework.Builder;
 import static org.junit.Assert.*;
 
 /**
- *
  * @author Eduardo
  */
 public class BuilderTest {
     private Builder builder = new Builder();
     @Test
-    public void BuilderTest() {
+    public void Test() {
         Peon peon = new Peon(10, 10);
-        
+        peon.setStrength(50);
+        peon.setIntelligence(50);
         assertEquals(peon.getJob(),"Jobless");
         
-        
-        boolean BuilderQualified = builder.isQualified(peon);
-        assertEquals(BuilderQualified, builder.isQualified(peon));
-        if (BuilderQualified){
+        boolean Qualified = builder.isQualified(peon);
+        assertEquals(Qualified, builder.isQualified(peon));
+        if (Qualified){
             assertEquals(peon.applyForJob(builder), "You're hired!");
             assertEquals(peon.getJob(), "Builder");
         } else if ( peon.getStrength()<builder.getRequiredStrength()
