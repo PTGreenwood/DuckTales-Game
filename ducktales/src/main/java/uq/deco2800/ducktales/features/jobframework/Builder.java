@@ -20,7 +20,10 @@ public class Builder extends Job {
                         mentorStrength, mentorIntelligence, 
                         jobName, JOBTYPE);
     }
-
+    public void build(Peon peon){
+        // TODO implementation with Buildings
+        peon.madeABuilding();
+    }
     /**
      * Defines whether or not the given peon is 
      * qualified to become a mentor as a Lumberjack

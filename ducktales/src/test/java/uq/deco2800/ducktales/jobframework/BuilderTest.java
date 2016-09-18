@@ -31,4 +31,31 @@ public class BuilderTest {
             assertEquals(peon.applyForJob(builder),"Peon intelligence is not high enough");
         }
     }
+    @Test
+    public void BuilderMentorTest(){
+        Peon peon = new Peon(10, 10);
+        peon.setStrength(builder.getMentorStrength()-1);
+        peon.setIntelligence(builder.getMentorIntelligence()-1);
+        peon.applyForJob(builder);
+        // peon doesn't have the intelligence or strength to be mentor
+        assertFalse(builder.canBeMentor(peon));
+        // peon has the intelligence but not the strength
+        peon.setIntelligence(builder.getMentorIntelligence()+1);
+        assertFalse(builder.canBeMentor(peon));
+        // peon has the strength but not the intelligence
+        peon.setStrength(builder.getMentorStrength()+1);
+        peon.setIntelligence(builder.getMentorIntelligence()-1);
+        assertFalse(builder.canBeMentor(peon));
+        // peon has enough in both but didn't build enough buildings
+        peon.setStrength(builder.getMentorStrength()+1);
+        peon.setIntelligence(builder.getMentorIntelligence()+1);
+        assertFalse(builder.canBeMentor(peon));
+        // can be mentor
+        for (int i = 0; i<21; i++){
+            builder.build(peon);
+        }
+        peon.setStrength(builder.getMentorStrength()+1);
+        peon.setIntelligence(builder.getMentorIntelligence()+1);
+        assertTrue(builder.canBeMentor(peon));
+    }
 }

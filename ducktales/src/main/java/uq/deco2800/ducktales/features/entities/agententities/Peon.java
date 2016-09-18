@@ -266,7 +266,7 @@ public class Peon extends AgentEntity {
 	public int getIntelligence() {
 		return intelligence;
 	}
-        public void setIntelligence(int intellgience){
+        public void setIntelligence(int intelligence){
             this.intelligence=intelligence;
         }
 
@@ -336,8 +336,16 @@ public class Peon extends AgentEntity {
 	public List<PeonBuffType> getBuffs() {
 		return this.buffs;
 	}
-
-
+        /**
+         * Increases amount of buildings made
+         */
+        public void madeABuilding(){
+            this.buildingsMade++;
+        }
+        /**
+         * 
+         * @return amount of buildings made
+         */
         public int getBuildingsMade() {
             return this.buildingsMade;
         }
