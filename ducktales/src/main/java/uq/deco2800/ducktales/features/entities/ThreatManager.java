@@ -1,6 +1,7 @@
 package uq.deco2800.ducktales.features.entities;
 
 import uq.deco2800.ducktales.World;
+
 import java.util.*;
 
 /**
@@ -11,8 +12,8 @@ import java.util.*;
  *
  */
 public class ThreatManager {
-	private ArrayList<Effect> effectsList = new ArrayList<Effect>();
-	private ArrayList<Enemy> enemiesList = new ArrayList<Enemy>();
+	public static ArrayList<Effect> effectsList = new ArrayList<Effect>();
+	public static ArrayList<Enemy> enemiesList = new ArrayList<Enemy>();
 
 	// Temp variables
 	private Effect tempEffect;
@@ -35,22 +36,21 @@ public class ThreatManager {
 		tempEffect = new Effect("Black Smoke");
 		tempEffect.setStartTimer(20, timer);
 		tempEffect.setEndTimer(50);
-		tempEffect.setRandomX();
-		tempEffect.setRandomY();
+		tempEffect.getRandomX();
+		tempEffect.getRandomY();
 		tempEffect.setTheLevelOfDamage(20);
 		//tempEffect.checkCollision();
 		effectsList.add(tempEffect);
 		int blackSmokeValue = effectsList.indexOf("Black Smoke");
 		Effect blackSmoke = effectsList.get(blackSmokeValue);
-
+		//ThreatSprite blackSmokeSprite = new ThreatSprite();
+		//ThreatSprite.add(blackSmokeSprite);
+		
 		// Create Temp variable
 		tempEffect = new Effect("Shake");
 		tempEffect.setStartTimer(50, timer);
 		tempEffect.setEndTimer(100);
-		tempEffect.setRandomX();
-		tempEffect.setRandomY();
-		tempEffect.setTheLevelOfDamage(25);
-		//tempEffect.checkCollision();
+		//tempEffect.setTheLevelOfDamage(25);
 		effectsList.add(tempEffect);
 		int shakeValue = effectsList.indexOf("Shake");
 		Effect shake = effectsList.get(shakeValue);
@@ -59,10 +59,10 @@ public class ThreatManager {
 		// Create Temp variable
 		tempEnemy = new Enemy("Raccoon");
 		// affects people and animals
-		// Add parameters to temp variable
-		// ------------
 		tempEnemy.setStartTimer(20, timer);
 		tempEnemy.setEndTimer(50);
+		tempEnemy.getRandomX();
+		tempEnemy.getRandomY();
 		// Add temp variable to list
 		enemiesList.add(tempEnemy);
 
@@ -73,16 +73,18 @@ public class ThreatManager {
 		// ------------
 		tempEnemy.setStartTimer(20, timer);
 		tempEnemy.setEndTimer(50);
+		tempEnemy.getRandomX();
+		tempEnemy.getRandomY();
 		// Add temp variable to list
 		enemiesList.add(tempEnemy);
 
 		// Create Temp variable
 		tempEnemy = new Enemy("Wild Villager");
 		// affects buildings
-		// Add parameters to temp variable
-		// ------------
 		tempEnemy.setStartTimer(20, timer);
 		tempEnemy.setEndTimer(50);
+		tempEnemy.getRandomX();
+		tempEnemy.getRandomY();
 		// Add temp variable to list
 		enemiesList.add(tempEnemy);
 	}
@@ -97,23 +99,27 @@ public class ThreatManager {
 
 		// ------Effects---------
 		// Create Temp variable
-		tempEffect = new Effect("Rumble");
-		// Add parameters to temp variable
-		// ------------
+		tempEffect = new Effect("Poison Cloud");
 		tempEffect.setStartTimer(20, timer);
 		tempEffect.setEndTimer(50);
-
-		// Add temp variable to list
+		tempEffect.getRandomX();
+		tempEffect.getRandomY();
+		tempEffect.setTheLevelOfDamage(30);
+		//tempEffect.checkCollision();
 		effectsList.add(tempEffect);
-
-		// Create Temp variable
-		tempEffect = new Effect("Cyanide");
-		// Add parameters to temp variable
-		// ------------
+		int poisonCloudValue = effectsList.indexOf("Poison Cloud");
+		Effect poisonCloud = effectsList.get(poisonCloudValue);
+		
+		tempEffect = new Effect("Rumble");
 		tempEffect.setStartTimer(50, timer);
 		tempEffect.setEndTimer(100);
-		// Add temp variable to list
+		tempEffect.getRandomX();
+		tempEffect.getRandomY();
+		tempEffect.setTheLevelOfDamage(30);
+		//tempEffect.checkCollision();
 		effectsList.add(tempEffect);
+		int rumbleValue = effectsList.indexOf("Rumble");
+		Effect rumble = effectsList.get(rumbleValue);
 
 		// -------Enemies--------
 		// Create Temp variable
@@ -151,13 +157,11 @@ public class ThreatManager {
 		// Add parameters to temp variable
 		tempEnemy.setStartTimer(20, "Timer");
 		tempEnemy.setEndTimer(50);
-		tempEnemy.setRandomX();
-		tempEnemy.setRandomY();
+		tempEnemy.getRandomX();
+		tempEnemy.getRandomY();
 		tempEnemy.checkCollision();
+		tempEnemy.setTheLevelOfDamage(50);
 		enemiesList.add(tempEnemy);
-		int evilDuckValue = enemiesList.indexOf("Evil Duck");
-		Enemy evilDuck = enemiesList.get(evilDuckValue);
-
 	}
 
 	/**
@@ -180,7 +184,7 @@ public class ThreatManager {
 		effectsList.add(tempEffect);
 
 		// Create Temp variable
-		tempEffect = new Effect("Poisson Cloud");
+		tempEffect = new Effect("Green Fel Fire");
 		// Add parameters to temp variable
 		// ------------
 		tempEffect.setStartTimer(50, timer);
@@ -284,16 +288,16 @@ public class ThreatManager {
 	 * 
 	 * @return The current list of enemies created
 	 */
-	public ArrayList<Enemy> returnEnemies() {
-		return this.enemiesList;
+	public static ArrayList<Enemy> returnEnemies() {
+		return enemiesList;
 	}
 
 	/**
 	 * 
 	 * @return The current list of Effects created.
 	 */
-	public ArrayList<Effect> returnEffects() {
-		return this.effectsList;
+	public static ArrayList<Effect> returnEffects() {
+		return effectsList;
 	}
 
 	public void setWorld(World world) {

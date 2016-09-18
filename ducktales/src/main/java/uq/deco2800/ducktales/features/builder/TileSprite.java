@@ -9,6 +9,8 @@ import uq.deco2800.ducktales.resources.ResourceType;
  * This class represents a sprite of a tile, to be displayed in the UI in
  * World builder. It will contain event handlers which will notify the
  * WorldBuilderManager when it is clicked on
+ * 
+ * Part of the view implementation of the Builder package
  *
  * Created on 28/08/2016.
  *
@@ -23,8 +25,9 @@ public class TileSprite extends ImageView {
     private static final double SPRITE_WIDTH = 174 * SCALE;
 
     private ResourceType tileType;
-    private WorldBuilderManager manager; // The manager that this sprite reports to
+    private WorldBuilderModel manager; // The manager that this sprite reports to
     private Image sprite; // The image of the tile
+    private WorldBuilderController controller;
 
     /**
      * Creates a tile sprite with the given type
@@ -32,7 +35,7 @@ public class TileSprite extends ImageView {
      *          The type of this tile
      */
     public TileSprite(ResourceType type) {
-        this.manager = WorldBuilderManager.getInstance();
+        this.manager = WorldBuilderModel.getInstance();
         this.tileType = type;
 
         this.sprite = ResourceSpriteRegister.getInstance().getResourceImage(tileType);
@@ -43,9 +46,13 @@ public class TileSprite extends ImageView {
         setupMouseEventHandlers();
     }
 
+    /**
+     * Add an action/event 
+     * 
+     */
     private void setupMouseEventHandlers() {
         this.setOnMouseClicked(event -> {
-            manager.setCurrentResource(tileType, manager.TILE);
+            WorldBuilderController.setCurrentResource(tileType, manager.TILE);
         });
     }
 

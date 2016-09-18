@@ -14,33 +14,29 @@ import static uq.deco2800.ducktales.resources.ResourceType.*;
  * Entities can be added on later in future implementations
  *
  * Created by Khoi on 19/08/2016.
+ * Modified by Gabrielle Hodge, 18/9/2016. To convert to MVC
  */
-public class WorldBuilderManager {
-    private static final WorldBuilderManager INSTANCE = new WorldBuilderManager();
+public class WorldBuilderModel {	
+    private static final WorldBuilderModel INSTANCE = new WorldBuilderModel();
     /**
      * CONSTANTS
      */
-    public static final int TILE = 1;
-    public static final int ENTITY = 2;
+    protected final int TILE = 1;
+    protected final int ENTITY = 2;
 
 
     private World world;
-    private WorldBuilderRenderer renderer;
+    //private WorldBuilderRenderer renderer;
     private ResourceType currentResource = NONE;
 
     private int currentType = 0;
 
+    public static WorldBuilderModel getInstance() { return INSTANCE; }
+    
     /**
-     * Returns the instance of {@link WorldBuilderManager}.
-     *
-     * @return Returns the instance of WorldBuilderManager
+     * Constructor of the {@link WorldBuilderModel} class
      */
-    public static WorldBuilderManager getInstance() { return INSTANCE; }
-
-    /**
-     * Constructor of the {@link WorldBuilderManager} class
-     */
-    private WorldBuilderManager() {
+    private WorldBuilderModel() {
     }
 
     /**
@@ -50,18 +46,8 @@ public class WorldBuilderManager {
      *
      * @return the integer value represent the type of resource being managed
      */
-    public int getCurrentType() {
+    protected int getCurrentType() {
         return this.currentType;
-    }
-
-    /**
-     * Register the rendering engine for the world builder
-     * @param renderer
-     *          The rendering engine
-     */
-    public void setRenderer(WorldBuilderRenderer renderer) {
-        this.renderer = renderer;
-        renderer.start();
     }
 
     /**
@@ -70,7 +56,7 @@ public class WorldBuilderManager {
      * @param world
      *          The world to be edited
      */
-    public void setWorld(World world) {
+    protected void setWorld(World world) {
         this.world = world;
     }
 
@@ -78,13 +64,15 @@ public class WorldBuilderManager {
      * Get the world for this canvas
      * @return the world of the WorldBuilder canvas
      */
-    public World getWorld() { return world; };
+    protected World getWorld() { 
+    	return world; 
+    }
 
     /**
      * Get the current resource currently managed by the user
      * @return the type of resource currently managed by the user
      */
-    public ResourceType getCurrentResource() {
+    protected ResourceType getCurrentResource() {
         return currentResource;
     }
 
@@ -93,17 +81,16 @@ public class WorldBuilderManager {
      * @param resource
      *          The type of resource that is being managed
      */
-    public void setCurrentResource(ResourceType resource, int type) {
+    protected Object[] setCurrentResource(ResourceType resource, int type) {
         currentResource = resource;
         currentType = type;
+        String name = "";
         if (type == this.TILE) {
-            renderer.setCurrentTileSelected(resource);
+           name = "tile";
         } else if (type == this.ENTITY) {
-            renderer.setCurrentEntitySelected(resource);
+            name = "entity";
         }
-
-        System.out.println("Current resource is: " + resource.toString());
+        //System.out.println("Current resource is: " + resource.toString());
+        return new Object[] {name, resource};
     }
-
-
 }

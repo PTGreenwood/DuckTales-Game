@@ -14,7 +14,8 @@ import uq.deco2800.ducktales.deprecated.OldGameManager;
 import uq.deco2800.ducktales.features.weather.Weather;
 import uq.deco2800.ducktales.features.weather.WeatherEffect;
 import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
-import uq.deco2800.ducktales.features.builder.WorldBuilderManager;
+import uq.deco2800.ducktales.features.builder.WorldBuilderController;
+import uq.deco2800.ducktales.features.builder.WorldBuilderModel;
 import uq.deco2800.ducktales.features.builder.WorldBuilderRenderer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -49,7 +50,9 @@ public class DuckTalesController implements Initializable {
 	private boolean running = false;
 	private ResourceSpriteRegister tileRegister;
 	private OldGameManager oldGameManager;
-	private WorldBuilderManager worldBuilderManager;
+	
+	private WorldBuilderController worldBuilderController;
+	private WorldBuilderModel worldBuilderManager;
 
 	// UI for World Builder
 	private BorderPane worldBuilderPane;
@@ -70,7 +73,8 @@ public class DuckTalesController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		tileRegister = ResourceSpriteRegister.getInstance();
 		oldGameManager = OldGameManager.getInstance();
-		worldBuilderManager = WorldBuilderManager.getInstance();
+		worldBuilderController = new WorldBuilderController();
+		worldBuilderManager = WorldBuilderModel.getInstance();
 
 		// Set the handlers for the game panes
 		contentPane.setOnMousePressed(new MousePressedHandler());
@@ -257,9 +261,9 @@ public class DuckTalesController implements Initializable {
 					+ worldBuilderPane.getWidth() + ", " + worldBuilderPane.getHeight());
 
 			// Set the world for the builder
-			worldBuilderManager.setWorld(new World("World Builder", 20, 20));
+			worldBuilderController.setWorld(new World("World Builder", 20, 20));
 			// Initiate the rendering engine for WorldBuilder
-			worldBuilderManager.setRenderer(new WorldBuilderRenderer(
+			worldBuilderController.setRenderer(new WorldBuilderRenderer(
 					contentPane, worldBuilderPane));
 
 			// Adding to right pane
