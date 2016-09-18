@@ -13,12 +13,14 @@ public class PriestTest {
     @Test
     public void Test() {
         Peon peon = new Peon(10, 10);
+        peon.setStrength(50);
+        peon.setIntelligence(50);
         
         assertEquals(peon.getJob(),"Jobless");
         
-        boolean BuilderQualified = priest.isQualified(peon);
-        assertEquals(BuilderQualified, priest.isQualified(peon));
-        if (BuilderQualified){
+        boolean Qualified = priest.isQualified(peon);
+        assertEquals(Qualified, priest.isQualified(peon));
+        if (Qualified){
             assertEquals(peon.applyForJob(priest), "You're hired!");
             assertEquals(peon.getJob(), "Priest");
         } else if ( peon.getStrength()<priest.getRequiredStrength()

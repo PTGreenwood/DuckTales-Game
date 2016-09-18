@@ -13,12 +13,14 @@ public class DoctorTest {
     @Test
     public void Test() {
         Peon peon = new Peon(10, 10);
+        peon.setStrength(50);
+        peon.setIntelligence(50);
         
         assertEquals(peon.getJob(),"Jobless");
         
-        boolean BuilderQualified = doctor.isQualified(peon);
-        assertEquals(BuilderQualified, doctor.isQualified(peon));
-        if (BuilderQualified){
+        boolean Qualified = doctor.isQualified(peon);
+        assertEquals(Qualified, doctor.isQualified(peon));
+        if (Qualified){
             assertEquals(peon.applyForJob(doctor), "You're hired!");
             assertEquals(peon.getJob(), "Doctor");
         } else if ( peon.getStrength()<doctor.getRequiredStrength()

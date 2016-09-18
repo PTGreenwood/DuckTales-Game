@@ -13,7 +13,7 @@ public class Priest extends Job {
     protected static int requiredIntelligence = 9;
     protected static int mentorStrength = 5;
     protected static int mentorIntelligence = 14;
-    protected static String jobName = "Doctor";
+    protected static String jobName = "Priest";
     protected static final JobType JOBTYPE = JobType.PRIEST;
     
     public Priest() {
