@@ -15,9 +15,13 @@ public class Cemetery extends Building {
 	// BuildingMenuSprite type
 	private static final ResourceType TYPE = ResourceType.CEMETERY;
 
+	// Building health - starting value
+	private int health = 500;
+	
 	// Size of a cemetery
 	public static final int X_LENGTH = 2;
 	public static final int Y_LENGTH = 2;
+	
 	public static final boolean PASSABILITY = false;
 	
 	/**
@@ -28,13 +32,24 @@ public class Cemetery extends Building {
 	 */
 	public Cemetery(double x, double y) {
 		super(x, y, X_LENGTH, Y_LENGTH, TYPE);
+		health = 500;
 	}
 	
 	/**
 	 * Update the WorldEntity properties with those of a cemetery.
 	 */
 	protected void specifications() {
-		specifications(2, 4, 2, production.NULL, 0);
+		specifications(2, 4, 2, production.NULL, 0, health);
+	}
+	
+	/**
+	 * Update the 'health' of the cemetery. Requires an integer value of 
+	 * the new health to be passed.
+	 * 
+	 * @param NewValue, new health of the building
+	 */
+	protected void changeHealthBuilding(int newValue){
+		health = newValue;
 	}
 
 	/**

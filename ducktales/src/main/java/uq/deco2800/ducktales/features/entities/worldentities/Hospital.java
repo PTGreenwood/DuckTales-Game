@@ -10,14 +10,18 @@ import uq.deco2800.ducktales.resources.ResourceType;
  *
  */
 public class Hospital extends Building {
-	
 
 	// BuildingMenuSprite type
 	private static final ResourceType TYPE = ResourceType.HOSPITAL;
 
+	// Building health - starting value
+	private int health = 1800;
+	
 	// Size of the hospital
-	private static final int X_LENGTH = 2;
-	private static final int Y_LENGTH = 2;
+	public static final int X_LENGTH = 2;
+	public static final int Y_LENGTH = 2;
+	
+	public static final boolean PASSABILITY = false;
 	
 	/**
 	 * Initialise a new hospital. Requires the location of the hospital
@@ -27,13 +31,24 @@ public class Hospital extends Building {
 	 */
 	public Hospital(double x, double y) {
 		super(x, y, X_LENGTH, Y_LENGTH, TYPE);
+		health = 1800;
 	}
 	
 	/**
 	 * Update the WorldEntity properties with those of a hospital.
 	 */
 	protected void specifications() {
-		specifications(12, 8, 5, production.NULL, 0);
+		specifications(12, 8, 5, production.NULL, 0, health);
+	}
+	
+	/**
+	 * Update the 'health' of the hospital. Requires an integer value of 
+	 * the new health to be passed.
+	 * 
+	 * @param NewValue, new health of the building
+	 */
+	protected void changeHealthBuilding(int newValue){
+		health = newValue;
 	}
 
 	/**

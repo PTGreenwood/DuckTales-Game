@@ -14,9 +14,14 @@ public class Sawmill extends Building {
 	// BuildingMenuSprite type
 	private static final ResourceType TYPE = ResourceType.SAWMILL;
 	
+	// Building health - starting value
+	private int health = 1400;
+	
 	// Sawmill size
-	private static final int X_LENGTH = 5;
-	private static final int Y_LENGTH = 5;
+	public static final int X_LENGTH = 5;
+	public static final int Y_LENGTH = 5;
+	
+	public static final boolean PASSABILITY = false;
 
 	/**
 	 * Initialise a new sawmill. Requires the location of the sawmill
@@ -26,14 +31,24 @@ public class Sawmill extends Building {
 	 */
 	public Sawmill(double x, double y) {
 		super(x, y, X_LENGTH, Y_LENGTH, TYPE);
-		
+		health = 1400;
 	}
 
 	/**
 	 * Update the WorldEntity properties with those of a sawmill.
 	 */
 	protected void specifications() {
-		specifications(4, 8, 3, production.WOOD, 5);
+		specifications(4, 8, 3, production.WOOD, 5, health);
+	}
+	
+	/**
+	 * Update the 'health' of the sawmill. Requires an integer value of 
+	 * the new health to be passed.
+	 * 
+	 * @param NewValue, new health of the building
+	 */
+	protected void changeHealthBuilding(int newValue){
+			health = newValue;
 	}
 	
 	/**

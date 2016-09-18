@@ -14,10 +14,14 @@ public class Quarry extends Building {
 	// BuildingMenuSprite type
 	private static final ResourceType TYPE = ResourceType.QUARRY;
 	
-	// Size of the building
-	private static final int X_LENGTH = 5;
-	private static final int Y_LENGTH = 5;
+	// Building health - starting value
+	private int health = 1300;
 	
+	// Size of the building
+	public static final int X_LENGTH = 5;
+	public static final int Y_LENGTH = 5;
+	
+	public static final boolean PASSABILITY = false;
 	
 	/**
 	 * Initialise a new quarry. Requires the location of the quarry
@@ -27,14 +31,24 @@ public class Quarry extends Building {
 	 */
 	public Quarry(double x, double y) {
 		super(x, y, X_LENGTH, Y_LENGTH, TYPE);
-		
+		health = 1300;
 	}
 	
 	/**
 	 * Update the WorldEntity properties with those of a quarry.
 	 */
 	protected void specifications() {
-		specifications(8, 6, 5, production.STONE, 5);
+		specifications(8, 6, 5, production.STONE, 5, health);
+	}
+	
+	/**
+	 * Update the 'health' of the quarry. Requires an integer value of 
+	 * the new health to be passed.
+	 * 
+	 * @param NewValue, new health of the building
+	 */
+	protected void changeHealthBuilding(int newValue){
+		health = newValue;
 	}
 	
 	/**

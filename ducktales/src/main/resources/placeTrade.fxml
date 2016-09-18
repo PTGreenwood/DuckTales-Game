@@ -46,34 +46,34 @@
                   </Button>
                   <AnchorPane layoutX="206.0" prefHeight="400.0" prefWidth="434.0" style="-fx-background-color: #85C1BE;">
                      <children>
-                        <AnchorPane layoutX="9.0" layoutY="14.0" prefHeight="372.0" prefWidth="410.0" style="-fx-background-color: #0C8F8F;">
+                        <AnchorPane layoutX="9.0" layoutY="14.0" prefHeight="372.0" prefWidth="410.0" style="-fx-background-color: #1b1464; -fx-border-color: white;">
                            <children>
                               <Pane layoutX="217.0" layoutY="51.0" prefHeight="162.0" prefWidth="162.0" style="-fx-background-color: #FFFFFF;" />
-                              <ComboBox layoutX="17.0" layoutY="107.0" prefHeight="27.0" prefWidth="180.0" style="-fx-background-color: #EDD75A;" />
-                              <ComboBox layoutX="17.0" layoutY="185.0" prefHeight="27.0" prefWidth="180.0" style="-fx-background-color: #EDD75A;" />
-                              <TextField alignment="TOP_LEFT" layoutX="17.0" layoutY="69.0" prefHeight="35.0" prefWidth="180.0" style="-fx-background-color: #0C8F8F;">
+                              <ComboBox layoutX="17.0" layoutY="107.0" prefHeight="27.0" prefWidth="180.0" style="-fx-background-color: white;" />
+                              <ComboBox layoutX="17.0" layoutY="185.0" prefHeight="27.0" prefWidth="180.0" style="-fx-background-color: white;" />
+                              <TextField alignment="TOP_LEFT" layoutX="17.0" layoutY="69.0" prefHeight="35.0" prefWidth="180.0" style="-fx-background-color: #1b1464;">
                                  <font>
                                     <Font name="Helvetica Neue Bold" size="18.0" />
                                  </font>
                               </TextField>
                               <Label layoutX="19.0" layoutY="74.0" text="Item Name" textFill="WHITE">
                                  <font>
-                                    <Font name="Helvetica Neue Bold" size="20.0" />
+                                    <Font name="Free Pixel Regular" size="24.0" />
                                  </font>
                               </Label>
-                              <TextField alignment="TOP_LEFT" layoutX="17.0" layoutY="147.0" prefHeight="35.0" prefWidth="180.0" style="-fx-background-color: #0C8F8F;">
+                              <TextField alignment="TOP_LEFT" layoutX="17.0" layoutY="147.0" prefHeight="35.0" prefWidth="180.0" style="-fx-background-color: #1b1464;">
                                  <font>
                                     <Font name="Helvetica Neue Bold" size="18.0" />
                                  </font>
                               </TextField>
                               <Label layoutX="19.0" layoutY="152.0" text="Quantity" textFill="WHITE">
                                  <font>
-                                    <Font name="Helvetica Neue Bold" size="20.0" />
+                                    <Font name="Free Pixel Regular" size="24.0" />
                                  </font>
                               </Label>
-                              <Button layoutX="17.0" layoutY="246.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="362.0" style="-fx-background-color: #73B06F; -fx-background-radius: 0px;" styleClass="menu" text="Place a Trade" textFill="#edd75a">
+                              <Button layoutX="17.0" layoutY="246.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="362.0" style="-fx-background-color: #1a1935; -fx-background-radius: 0px; -fx-border-color: white;" styleClass="menu" text="Place a Trade" textFill="WHITE">
                                  <font>
-                                    <Font name="Helvetica Neue Bold" size="20.0" />
+                                    <Font name="Free Pixel Regular" size="26.0" />
                                  </font>
                               </Button>
                            </children>

@@ -11,13 +11,17 @@ import uq.deco2800.ducktales.resources.ResourceType;
  */
 public class Farm extends Building {
 	
-
 	// BuildingMenuSprite type
 	private static final ResourceType TYPE = ResourceType.FARM;
 
+	// Building health - starting value
+	private int health = 900;
+	
 	// Size of the building
-	private static final int X_LENGTH = 5;
-	private static final int Y_LENGTH = 5;
+	public static final int X_LENGTH = 5;
+	public static final int Y_LENGTH = 5;
+	
+	public static final boolean PASSABILITY = false;
 	
 	/**
 	 * Initialise a new farm. Requires the location of the farm 
@@ -27,14 +31,25 @@ public class Farm extends Building {
 	 */
 	public Farm(double x, double y) {
 		super(x, y, X_LENGTH, Y_LENGTH, TYPE);
+		health = 900;
 	}
 	
 	/**
 	 * Update the WorldEntity properties with those of a farm.
 	 */
 	protected void specifications() {
-		specifications(8, 10, 9, production.FOOD, 5);
+		specifications(8, 10, 9, production.FOOD, 5, health);
 	}
+	
+	/**
+	 * Update the 'health' of the farm. Requires an integer value of 
+	 * the new health to be passed.
+	 * 
+	 * @param NewValue, new health of the building
+	 */
+	protected void changeHealthBuilding(int newValue){
+		health = newValue;
+	}	
 
 	/**
 	 * Method to update farm at each discrete simulation step.

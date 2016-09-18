@@ -14,9 +14,13 @@ public class Box extends Building {
 	// BuildingMenuSprite type
 	private static final ResourceType TYPE = ResourceType.BOX;
 
+	// Building health - starting value
+	private int health = 400;
+	
 	// Size of a box
 	public static final int X_LENGTH = 1;
 	public static final int Y_LENGTH = 1;
+	
 	public static final boolean PASSABILITY = false;
 	
 	/**
@@ -27,13 +31,24 @@ public class Box extends Building {
 	 */
 	public Box(int x, int y) {
 		super(x, y, X_LENGTH, Y_LENGTH, TYPE);
+		health = 400;
 	}
 	
 	/**
 	 * Update the WorldEntity properties with those of a box.
 	 */
 	protected void specifications() {
-		specifications(2, 2, 4, production.NULL, 0);
+		specifications(2, 2, 4, production.NULL, 0, health);
+	}
+	
+	/**
+	 * Update the 'health' of the box. Requires an integer value of 
+	 * the new health to be passed.
+	 * 
+	 * @param NewValue, new health of the building
+	 */
+	protected void changeHealthBuilding(int newValue){
+		health = newValue;
 	}
 
 	/**

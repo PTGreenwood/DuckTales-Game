@@ -89,24 +89,24 @@ public class ResourceSpriteRegister {
 
 		// Agent entities
 		addResource(PEON, "/peon.png");
+		
 		addResource(DUCK, "/duck.png");
 		addResource(DUCK_1_1, "/animal/duck_1_1.png");
-		addResource(DUCKDOWN0, "/animal/duck/DUCKDown0.png");
-		addResource(DUCKDOWN1, "/animal/duck/DUCKDown1.png");
-		addResource(DUCKUP0, "/animal/duck/DUCKUp0.png");
-		addResource(DUCKUP1, "/animal/duck/DUCKUp1.png");
-		addResource(DUCKLEFT0, "/animal/duck/DUCKLeft0.png");
-		addResource(DUCKLEFT1, "/animal/duck/DUCKLeft1.png");
-		addResource(DUCKRIGHT0, "/animal/duck/DUCKRight0.png");
-		addResource(DUCKRIGHT1, "/animal/duck/DUCKRight1.png");
+
+		addResource(DUCKDown0, "/animal/duck/DUCKDown0.png");
+		addResource(DUCKDown1, "/animal/duck/DUCKDown1.png");
+		addResource(DUCKUp0, "/animal/duck/DUCKUp0.png");
+		addResource(DUCKUp1, "/animal/duck/DUCKUp1.png");
+		addResource(DUCKLeft0, "/animal/duck/DUCKLeft0.png");
+		addResource(DUCKLeft1, "/animal/duck/DUCKLeft1.png");
+		addResource(DUCKRight0, "/animal/duck/DUCKRight0.png");
+		addResource(DUCKRight1, "/animal/duck/DUCKRight1.png");
+		
         addResource(SHEEP, "/animal/sheep_with_wool.png");
 
 		addResource(COW, "/cow.png");
 		addResource(COW_FRONT_RIGHT, "/animal/cow_front_right.png");
-		// the following will be uncommented once the relevant resources
-		// are created and added to the game, @team pokeducks
-
-		// addResource(COWUpRight, "/COWUpRight.png");
+    	// addResource(COWUpRight, "/COWUpRight.png");
 		// addResource(COWUpLeft, "/COWUpLeft.png");
 		// addResource(COWDownRight, "/COWDownRight.png");
 		// addResource(COWDownLeft, "/COWDownLeft.png");
@@ -126,25 +126,25 @@ public class ResourceSpriteRegister {
 		// note from creator of ResourceType: please remember to use the enums from
 		// ResourceType enum class instead of the previous String implementation
 		
-		//addResource(MINE, "/mine.png");
-		//addResource(FARM, "/farm.png");
-		//addResource(QUARRY, "/quarry.png");
 		
+		//addResource(FARM, "/farm.png");
+		addResource(QUARRY, "/buildings/quarry.png");
 		addResource(PASTURE, "/buildings/pasture.png");
 		addResource(HOSPITAL, "/buildings/hospital.png");
 		addResource(BUTCHER, "/buildings/butcher.png");
 		addResource(BAKERY, "/buildings/bakery.png");
 		addResource(COMMUNITY_BUILDING, "/buildings/community_building.png");
-		addResource(CONSTRUCTION, "/buildings/construction.png");
-
-		addResource(HOUSE, "/house.png");
-		addResource(SAWMILL, "/sawmill.png");
-
-		//addResource(CEMETERY, "/cemetery.png");
-		//addResource(FARMHOUSE, "/farm+barn.png");
-		//addResource(BARN, "/barn.png");
-		//addResource(FORGE, "/forge.png");
-		//addResource(OBSERVATORY, "/observatory.png");
+		addResource(CONSTRUCTION, "/buildings/construction2.png");
+		addResource(CHURCH, "/buildings/church.png");
+		addResource(HOUSE, "/buildings/house.png");
+		addResource(SAWMILL, "/buildings/sawmill.png");
+		addResource(FORGE, "/buildings/forge.png");
+		addResource(OBSERVATORY, "/buildings/observatory.png");
+		addResource(MINE, "/buildings/mine.png");
+		addResource(CEMETERY, "/buildings/cemetery_small.png");
+		addResource(FARM, "/buildings/farmhouse.png");
+		//addResource(c, "/barn.png");
+		
 
 	}
 

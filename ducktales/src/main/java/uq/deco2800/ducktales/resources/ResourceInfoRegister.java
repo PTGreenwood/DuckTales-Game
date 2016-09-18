@@ -6,8 +6,18 @@ import uq.deco2800.ducktales.features.entities.agententities.Duck;
 import uq.deco2800.ducktales.features.entities.agententities.Sheep;
 import uq.deco2800.ducktales.features.entities.worldentities.Bakery;
 import uq.deco2800.ducktales.features.entities.worldentities.Butcher;
+import uq.deco2800.ducktales.features.entities.worldentities.Cemetery;
+import uq.deco2800.ducktales.features.entities.worldentities.Church;
 import uq.deco2800.ducktales.features.entities.worldentities.CommunityBuilding;
+import uq.deco2800.ducktales.features.entities.worldentities.Farm;
+import uq.deco2800.ducktales.features.entities.worldentities.Forge;
+import uq.deco2800.ducktales.features.entities.worldentities.Hospital;
+import uq.deco2800.ducktales.features.entities.worldentities.House;
+import uq.deco2800.ducktales.features.entities.worldentities.Mine;
+import uq.deco2800.ducktales.features.entities.worldentities.Observatory;
 import uq.deco2800.ducktales.features.entities.worldentities.Pasture;
+import uq.deco2800.ducktales.features.entities.worldentities.Quarry;
+import uq.deco2800.ducktales.features.entities.worldentities.Sawmill;
 
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -48,11 +58,20 @@ public class ResourceInfoRegister {
         entityInformation = new ConcurrentHashMap<>();
 
         // Start registering entity sizes here
-        register(BAKERY, Bakery.X_LENGTH, Bakery.Y_LENGTH, Bakery.PASSABLILITY);
+        register (BAKERY, Bakery.X_LENGTH, Bakery.Y_LENGTH, Bakery.PASSABLILITY);
         register (BUTCHER, Butcher.X_LENGTH, Butcher.Y_LENGTH, Butcher.PASSABILITY);
+        register (CEMETERY, Cemetery.X_LENGTH, Cemetery.Y_LENGTH, Cemetery.PASSABILITY);
+        register (CHURCH, Church.X_LENGTH, Church.Y_LENGTH, Church.PASSABILITY);
         register (COMMUNITY_BUILDING, CommunityBuilding.X_LENGTH, CommunityBuilding.Y_LENGTH, CommunityBuilding.PASSABILITY);
+        register (FARM, Farm.X_LENGTH, Farm.Y_LENGTH, Farm.PASSABILITY);
+        register (FORGE, Forge.X_LENGTH, Forge.Y_LENGTH, Forge.PASSABILITY);
+        register (HOSPITAL, Hospital.X_LENGTH, Hospital.Y_LENGTH, Hospital.PASSABILITY);
+        register (HOUSE, House.X_LENGTH, House.Y_LENGTH, House.PASSABILITY);
+        register (MINE, Mine.X_LENGTH, Mine.Y_LENGTH, Mine.PASSABILITY);
+        register (OBSERVATORY, Observatory.X_LENGTH, Observatory.Y_LENGTH, Observatory.PASSABILITY);
         register (PASTURE, Pasture.X_LENGTH, Pasture.Y_LENGTH, Pasture.PASSABILITY);
-
+        register (QUARRY, Quarry.X_LENGTH, Quarry.Y_LENGTH, Quarry.PASSABILITY);
+        register (SAWMILL, Sawmill.X_LENGTH, Sawmill.Y_LENGTH, Sawmill.PASSABILITY);    
     }
 
     /**
@@ -119,17 +138,47 @@ public class ResourceInfoRegister {
 
         // Check for all world entities here
         switch (entityType) {
+        	case BAKERY:
+        		entity = new Bakery(x, y);
+        		break;
             case BUTCHER:
                 entity = new Butcher(x, y);
+                break;
+            case CEMETERY:
+                entity = new Cemetery(x, y);
                 break;
             case COMMUNITY_BUILDING:
                 entity = new CommunityBuilding(x, y);
                 break;
-            case BAKERY:
-                entity = new Bakery(x, y);
+            case CHURCH:
+                entity = new Church(x, y);
+                break;
+            case FARM:
+                entity = new Farm(x, y);
+                break;
+            case FORGE:
+                entity = new Forge(x, y);
+                break;
+            case HOSPITAL:
+                entity = new Hospital(x, y);
+                break;
+            case HOUSE:
+                entity = new House(x, y);
+                break;
+            case MINE:
+                entity = new Mine(x, y);
+                break;
+            case OBSERVATORY:
+                entity = new Observatory(x, y);
                 break;
             case PASTURE:
                 entity = new Pasture(x, y);
+                break;
+            case QUARRY:
+                entity = new Quarry(x, y);
+                break;
+            case SAWMILL:
+                entity = new Sawmill(x, y);
                 break;
             case CONSTRUCTION:
                 break;

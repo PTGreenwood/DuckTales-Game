@@ -14,9 +14,13 @@ public class Butcher extends Building {
 	// BuildingMenuSprite type
 	private static final ResourceType TYPE = ResourceType.BUTCHER;
 	
+	// Building health - starting value
+	private int health = 750;
+	
 	// Building size
 	public static final int X_LENGTH = 2;
 	public static final int Y_LENGTH = 2;
+	
 	public static final boolean PASSABILITY = false;
 	
 	/**
@@ -27,14 +31,24 @@ public class Butcher extends Building {
 	 */
 	public Butcher(double x, double y) {
 		super(x, y, X_LENGTH, Y_LENGTH, TYPE);
-		
+		health = 750;
 	}
 	
 	/**
 	 * Update the WorldEntity properties with those of a butcher.
 	 */
 	protected void specifications() {
-		specifications(4, 8, 7, production.NULL, 0);
+		specifications(4, 8, 7, production.NULL, 0, health);
+	}
+	
+	/**
+	 * Update the 'health' of the butcher. Requires an integer value of 
+	 * the new health to be passed.
+	 * 
+	 * @param NewValue, new health of the building
+	 */
+	protected void changeHealthBuilding(int newValue){
+		health = newValue;
 	}
 	
 	/**
