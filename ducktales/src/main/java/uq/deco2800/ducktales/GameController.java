@@ -104,13 +104,13 @@ public class GameController implements Initializable{
         
         loadWorldDisplay();    
         loadWeatherDisplay();
-        loadDayNightDisplay();
         loadHUD();
         loadMarketPlace();
         loadMissions();
         loadLevel();
         loadAchievement();
         loadTimeDisplay();
+        loadDayNightDisplay(); // This must be after loading TimeDisplay
 
         loadEntities(); // Note: this 'loader method' should be called LAST
 
@@ -123,7 +123,6 @@ public class GameController implements Initializable{
         gameManager.setLevelManager(this.levelManager);
         gameManager.setAchievementManager(this.achievementManager);
         gameManager.setEntityManager(this.entityManager);
-        gameManager.setTimeManager(this.timeManager);
 
         // Now officially call the game starting method from Game Manager
         gameManager.startGame();        
@@ -205,6 +204,8 @@ public class GameController implements Initializable{
         try {
             Pane worldPane = loader.load();
             this.worldDisplayManager = loader.getController();
+
+            worldDisplayManager.setGameManager(this.gameManager);
             
             // add the world pane to the root pane
             rootPane.getChildren().add(worldPane);
@@ -233,9 +234,15 @@ public class GameController implements Initializable{
 		   rootPane.getChildren().add(daynightPane);
 		   //daynightPane.setOpacity(100);
 		   int nightTime = this.timeManager.getGameTimeObject().getHour();
-		   this.worldDisplayManager.changeLightLevel(true, daynightPane);
-		   
-		   // Set the sizing for world pane
+
+           try {
+               this.worldDisplayManager.changeLightLevel(true, daynightPane);
+           } catch (Exception e) {
+               e.printStackTrace();
+               System.err.println("FAILED TO GET DAY/NIGHT");
+           }
+
+           // Set the sizing for world pane
 		   AnchorPane.setLeftAnchor(daynightPane,  0.0);
 		   AnchorPane.setRightAnchor(daynightPane, 0.0);
 		   AnchorPane.setTopAnchor(daynightPane, 0.0);
@@ -304,6 +311,8 @@ public class GameController implements Initializable{
 
             // Retrieve the controller
             timeManager = loader.getController();
+
+            gameManager.setTimeManager(this.timeManager);
 
             // Add the time display to the GUI
             leftPane.getChildren().add(timeDisplay);

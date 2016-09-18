@@ -181,12 +181,18 @@ public class WorldDisplayManager implements Initializable, SecondaryManager {
 	 *  
 	 */
 	public void changeLightLevel(boolean nightTime, Pane pane) {
-		//boolean nightTime2 = this.gameManager.getTimeManager().isNight();
-		// = true;
-		if(nightTime) {
-			pane.setStyle("-fx-background-image: url('time/nightTime.png')");
-		} else {
-			pane.setStyle("-fx-background-image: url('time/dayTime.png')");
-		}		
+        if (this.gameManager.getTimeManager() == null) {
+            System.err.println("time manager is still empty");
+        } else {
+            boolean nightTime2 = this.gameManager.getTimeManager().isNight();
+
+            // = true;
+            if(nightTime2) {
+                pane.setStyle("-fx-background-image: url('time/nightTime.png')");
+            } else {
+                pane.setStyle("-fx-background-image: url('time/dayTime.png')");
+            }
+        }
+
 	}
 }

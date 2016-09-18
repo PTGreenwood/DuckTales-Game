@@ -52,7 +52,7 @@ public class TutorialTest extends ApplicationTest {
 	 * Test for Basic interface Button 
 	 *
 	 */
-	@Test
+	//@Test
 	public void checkBasicInterface() {		
 		
 		clickOn("#basicInter");
@@ -67,7 +67,7 @@ public class TutorialTest extends ApplicationTest {
 	 * Test for Buildings Button 
 	 *
 	 */
-	@Test
+	//@Test
 	public void checkBuildings() {
 		
 		clickOn("#buildings");
@@ -80,7 +80,7 @@ public class TutorialTest extends ApplicationTest {
 	 * Test for MarketPlace Button 
 	 *
 	 */
-	@Test
+	//@Test
 	public void checkMarketPlace() {
 		
 		clickOn("#marketPlace");
