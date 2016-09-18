@@ -39,16 +39,6 @@ public class DuckTalesController implements Initializable {
 	private AnchorPane mainMenuPane;
 
 
-
-
-
-
-
-
-
-
-
-
 	/**
 	 * TO BE REMOVED EVENTUALLY
 	 * @deprecated

@@ -15,7 +15,9 @@ import uq.deco2800.ducktales.features.level.LevelManager;
 import uq.deco2800.ducktales.features.market.MarketManager;
 import uq.deco2800.ducktales.features.market.MarketVistaNavigator;
 import uq.deco2800.ducktales.features.time.TimeManager;
+import uq.deco2800.ducktales.features.time.*;
 import uq.deco2800.ducktales.features.weather.*;
+
 import uq.deco2800.ducktales.rendering.worlddisplay.WorldDisplayManager;
 import uq.deco2800.ducktales.features.missions.MissionManager;
 
@@ -108,6 +110,7 @@ public class GameController implements Initializable{
         loadLevel();
         loadAchievement();
         loadTimeDisplay();
+        loadDayNightDisplay(); // This must be after loading TimeDisplay
 
         loadEntities(); // Note: this 'loader method' should be called LAST
 
@@ -120,7 +123,6 @@ public class GameController implements Initializable{
         gameManager.setLevelManager(this.levelManager);
         gameManager.setAchievementManager(this.achievementManager);
         gameManager.setEntityManager(this.entityManager);
-        gameManager.setTimeManager(this.timeManager);
 
         // Now officially call the game starting method from Game Manager
         gameManager.startGame();        
@@ -202,6 +204,8 @@ public class GameController implements Initializable{
         try {
             Pane worldPane = loader.load();
             this.worldDisplayManager = loader.getController();
+
+            worldDisplayManager.setGameManager(this.gameManager);
             
             // add the world pane to the root pane
             rootPane.getChildren().add(worldPane);
@@ -216,7 +220,36 @@ public class GameController implements Initializable{
         }
     }
     
-   
+    /**
+     * Overlay another pane, below other panes for day/night effect
+     */
+   public void loadDayNightDisplay() {
+	   URL location = getClass().getResource("/time/daynightEffect.fxml");
+	   FXMLLoader loader = new FXMLLoader(location);
+	   
+	   try {
+		   Pane daynightPane = loader.load();
+		   
+		   //add dayNight pane to the root pane
+		   rootPane.getChildren().add(daynightPane);
+		   //daynightPane.setOpacity(100);
+
+           try {
+               this.worldDisplayManager.changeLightLevel(daynightPane);
+           } catch (Exception e) {
+               e.printStackTrace();
+               System.err.println("FAILED TO GET DAY/NIGHT");
+           }
+
+           // Set the sizing for world pane
+		   AnchorPane.setLeftAnchor(daynightPane,  0.0);
+		   AnchorPane.setRightAnchor(daynightPane, 0.0);
+		   AnchorPane.setTopAnchor(daynightPane, 0.0);
+		   AnchorPane.setBottomAnchor(daynightPane, 0.0);
+	   } catch (IOException e) {
+		   System.err.println("unable to set day/night effect");
+	   }
+   }
     /**
      * @mattyleggy
      * Overlay the weather pane on top of the main game pane.
@@ -242,6 +275,7 @@ public class GameController implements Initializable{
         }
     }
 
+    
     /**
      * Load the HUD Information into the current panes
      */
@@ -276,6 +310,8 @@ public class GameController implements Initializable{
 
             // Retrieve the controller
             timeManager = loader.getController();
+
+            gameManager.setTimeManager(this.timeManager);
 
             // Add the time display to the GUI
             leftPane.getChildren().add(timeDisplay);

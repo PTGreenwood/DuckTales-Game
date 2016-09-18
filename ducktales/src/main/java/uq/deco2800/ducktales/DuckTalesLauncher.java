@@ -34,7 +34,6 @@ public class DuckTalesLauncher extends Application {
 		Scene scene = new Scene(root, 1295, 737);
 		
 		DuckTalesController ducktalesController = fxmlLoader.getController(); // link the controller to the FXML file
-
 		primaryStage.setTitle("DuckTales v" + version);
 		//primaryStage.setFullScreen(true);
 		primaryStage.setScene(scene);		

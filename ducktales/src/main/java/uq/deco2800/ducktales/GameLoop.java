@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import uq.deco2800.ducktales.features.entities.EntityManager;
 import uq.deco2800.ducktales.features.time.TimeManager;
+import uq.deco2800.ducktales.features.time.DayNightManager;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -29,6 +30,7 @@ public class GameLoop implements Runnable {
 	/** The secondary managers of the game */
 	private TimeManager timeManager;
 	private EntityManager entityManager;
+	private DayNightManager daynightManager; //not in use currently
 
 	private static boolean paused;
 	/**
@@ -45,6 +47,7 @@ public class GameLoop implements Runnable {
 		this.quit = quit;
 		GameLoop.paused = false;
 
+		
 	}
 
 	@Override
@@ -58,6 +61,8 @@ public class GameLoop implements Runnable {
 					world.tick();
 					entityManager.tick();
 					timeManager.tick();
+					
+					
 				}
 			} else {
 				System.err.println(" game loop not ready");
@@ -120,5 +125,18 @@ public class GameLoop implements Runnable {
 	 */
 	public void setEntityManager(EntityManager entityManager) {
 		this.entityManager = entityManager;
+	}
+	
+	/**
+	 * 
+	 * Pass the handle of the DayNight Manager to the game loop
+	 * Currently not in use, but will add in later once more things
+	 * have been worked out
+	 * 
+	 * @param daynightManager
+	 * 			The DayNight Manager of the game
+	 */
+	public void setDayNightManager(DayNightManager daynightManager) {
+		this.daynightManager = daynightManager;
 	}
 }

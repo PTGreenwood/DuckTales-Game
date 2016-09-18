@@ -48,6 +48,7 @@ public class GameTime implements Tickable {
 		this.minute = 0; // Set the minutes of the time.
 	}
 
+
 	/**
 	 * Gets the current hour of the Time
 	 *
