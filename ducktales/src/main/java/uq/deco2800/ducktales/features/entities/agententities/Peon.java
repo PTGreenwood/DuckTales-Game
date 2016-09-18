@@ -27,12 +27,12 @@ public class Peon extends AgentEntity {
 	private static final ResourceType TYPE = ResourceType.PEON;
 	private List<Point> goalPoints;
 
-	private int time;
-	private double speed;
-	private int health;
-	private int hunger;
-	private int thirst;
-	private int resource;
+	private int time = 0;
+	private double speed = 0.05;
+	private int health = 1000;
+	private int hunger = 100;
+	private int thirst = 100;
+	private int resource = 0;
 	private int strength;
 	private int intelligence;
 
@@ -49,8 +49,8 @@ public class Peon extends AgentEntity {
 	/**
 	 * how many trees the Peon has chopped (used in Lumberjack.java)
 	 */
-	private int treesChopped;
-        
+	private int treesChopped = 0;
+
         /**
          * how many buildings the Peon has created (used in Builder.java)
          */
@@ -66,19 +66,8 @@ public class Peon extends AgentEntity {
 	 */
 	public Peon(int x, int y) {
 		super(x, y, 1, 1, TYPE);
-		this.time = 0;
-		this.health = 1000;
-		this.hunger = 100;
-		this.thirst = 100;
 		this.strength = RANDOM.nextInt((DEFAULT_MAX - DEFAULT_MIN) + 1) + DEFAULT_MIN;
 		this.intelligence = RANDOM.nextInt((DEFAULT_MAX - DEFAULT_MIN) + 1) + DEFAULT_MIN;
-		this.speed = 0.05;
-		this.resource = 0;
-		this.treesChopped = 0;
-		this.qualification = 0;
-		this.mentorStatus = false;
-		this.job = "Jobless";
-
 		this.goalPoints = new ArrayList<Point>();
                 this.buildingsMade = 0;
 	}
@@ -348,7 +337,7 @@ public class Peon extends AgentEntity {
 		return this.buffs;
 	}
 
-        
+
         public int getBuildingsMade() {
             return this.buildingsMade;
         }
