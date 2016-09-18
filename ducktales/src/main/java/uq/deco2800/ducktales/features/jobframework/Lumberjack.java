@@ -59,6 +59,7 @@ public class Lumberjack extends Job {
         }
         return false;
     }
+   
     /**
      * Define peon lumber the tree, peon will 
      * get the value of resources
@@ -67,10 +68,11 @@ public class Lumberjack extends Job {
      * peon finished lumber a tree
      */    
     public void treeResources(Peon peon){
-		if (peon.getTreesChopped()>0){
+		while (peon.getTreesChopped()>0){
     		for (int i=0; i<1; i++){
-    			peon.getResources();
-    		}
-    	}	   		   		
-	}
+    			peon.setResource(peon.getTreesChopped());
+    			}
+    		break;
+		}	   		   		
+	} 
 }

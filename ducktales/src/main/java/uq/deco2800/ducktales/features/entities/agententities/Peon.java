@@ -138,7 +138,19 @@ public class Peon extends AgentEntity {
 	public double getSpeed() {
 		return this.speed;
 	}
-
+	
+	/**
+	 * Set up an value of peon can carry the 
+	 * resource start up from 0
+	 * @param newResource
+	 */	
+	public void setResource(int newResource) {
+		if (newResource> 1) {
+			this.resource = newResource;
+		} else  {
+			this.resource = 0;
+		}
+	}	
 	/**
 	 * Return the Peon's resource value
 	 *
@@ -147,7 +159,7 @@ public class Peon extends AgentEntity {
 	public int getResources() {
 		return resource;
 	}
-
+	
 	/**
 	 * Stores what job the peon has
 	 *

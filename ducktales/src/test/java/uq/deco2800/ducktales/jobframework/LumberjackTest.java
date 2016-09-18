@@ -21,8 +21,7 @@ public class LumberjackTest {
     public void lumberjackTest(){
         /*instantiating a peon*/
         Peon peon = new Peon(10, 10);
-        assertEquals(peon.getJob(), "Jobless");
-        
+        assertEquals(peon.getJob(), "Jobless");     
         /**
          * Qualification of the peon as a builder
          */
@@ -99,9 +98,10 @@ public class LumberjackTest {
         Tree tree = new Tree(11,11);
         for (int i = 0; i<21; i++){
             lumberjack.chop(peon, tree);
-        }
+        }     
         peon.setStrength(lumberjack.getMentorStrength()+1);
         peon.setIntelligence(lumberjack.getMentorIntelligence()+1);
         assertTrue(lumberjack.canBeMentor(peon));
+   
     }
 }
