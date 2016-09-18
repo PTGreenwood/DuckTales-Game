@@ -126,18 +126,33 @@ public class MarketManager {
     	return marketModel.getInventoryAmountForItem(item);
     }
     
+    /** Returns the user name of the current user */
     public String getUserName() {
     	return marketModel.getUserName();
     }
     
+    /**
+     *  returns the offers that a user has made and the corresponding trade.
+     */
     public HashMap<MocTrade, MocTrade> getUserOffers() {
     	return marketModel.getUserOffers();
     }
     
+    /**
+     * Creates a new trade offer for the given item type and amount.
+     * 
+     * @param item The type of the item begin offered.
+     * @param amount The amount of offered item.
+     */
     public void createNewTradeOffer(String item, int amount) {
     	marketModel.createNewTradeOffer(item, amount);
     }
     
+    /**
+     * Returns the trades that the user has posted.
+     * 
+     * @return The trades that a user has posted.
+     */
     public List<MocTrade> getTradesForLoggedInUser() {
     	return this.marketModel.getTradesForLoggedInUser();
     }

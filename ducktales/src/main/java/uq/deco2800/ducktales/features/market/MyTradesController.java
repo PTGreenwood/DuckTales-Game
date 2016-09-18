@@ -27,6 +27,7 @@ public class MyTradesController {
 	/** The path to the dynamic resources */
 	private URL path;
 	
+	/** The grid that stores the user's trades */
 	@FXML
 	private GridPane yourTradesGridPane;
 	

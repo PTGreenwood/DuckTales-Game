@@ -13,6 +13,12 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
+/**
+ * Handles the logic behind mpyouroffersvista.fxml.fxml
+ * 
+ * @author Mark Belonogoff
+ *
+ */
 public class PendingOffersController {
 	
 	/** The overall managing controller */

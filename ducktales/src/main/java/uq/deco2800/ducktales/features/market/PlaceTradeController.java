@@ -142,6 +142,9 @@ public class PlaceTradeController {
 	
 	}
 	
+	/** 
+	 * Updates all the necessary views.
+	 */
 	void updateView() {
 		
 		clearView();
@@ -161,6 +164,9 @@ public class PlaceTradeController {
 		
 	}
 	
+	/**
+	 * Clears the current view.
+	 */
 	void clearView() {
 		itemNameCombo.getSelectionModel().clearSelection();
 		itemNameCombo.setValue(null);

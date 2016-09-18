@@ -15,8 +15,10 @@ public class MarketModel {
 	
 	//TODO: Add data structure for items: id, name, function to add / delete
 	
+	/** The list of trades that have been posted on the server. */
 	private List<MocTrade> allTrades;
 	
+	/** The trades that the current user has created. */
 	private List<MocTrade> userTrades;
 	
 	private List<String> itemNames = new ArrayList<String>();;
