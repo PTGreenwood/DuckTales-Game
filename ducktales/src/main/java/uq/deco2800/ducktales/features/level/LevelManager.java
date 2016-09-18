@@ -30,9 +30,7 @@ public class LevelManager {
 	 * 
 	 */
 	public void startLevel() {		
-		Platform.runLater(() -> {
-			levelDisplay.setText("Level : " + levelMain.getLevel());
-        });
+		levelDisplay.setText("Level : " + levelMain.getLevel());
 		pb1 = levelMain.getProgressIndicator();		
 		VBox levelVBox = new VBox(5);
 		System.out.println("Current level = " + levelMain.getLevel());
