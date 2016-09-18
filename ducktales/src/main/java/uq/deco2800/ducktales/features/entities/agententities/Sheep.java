@@ -46,7 +46,7 @@ public class Sheep extends Animal {
      * satisfy a certain threshold.
      */
     public void produceMutton() {
-        if (this.getHealth() >= 85 && this.getHunger() >= 85 && this.getThirst() >= 85) {
+        if (this.isDead() == true) {
             this.canProduceMutton = true;
         }
     }

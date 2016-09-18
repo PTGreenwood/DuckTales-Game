@@ -46,9 +46,9 @@ public class Cow extends Animal {
      * satisfy a certain threshold.
      */
     public void produceBeef() {
-        if (this.getHealth() >= 85 && this.getHunger() >= 85 && this.getThirst() >= 85) {
+        if (this.isDead() == true) {
             this.canProduceBeef = true;
-        } 
+        }
     }
 
     // Getter methods below
