@@ -15,22 +15,33 @@ import javafx.scene.layout.Pane;
 
 public class PendingOffersController {
 	
+	/** The overall managing controller */
 	private MarketManager marketManager;
 	
+	/** The file path to the panes that will appear in the grid pane */
 	private static String OFFER_PANE = "/market/mppendingofferpane.fxml";
 	
+	/** The path to the dynamic resources */
 	private URL path;
 	
+	/** Logger for the class */
 	private static final Logger LOGGER = Logger.getLogger(
 			PendingOffersController.class.getName());
 	
+	/** Stores the UI elements user's offer */
 	@FXML
 	private GridPane yourOffersGridPane;
 	
+	/**
+	 * Creates a new instance of the AllTradesController.
+	 */
 	public PendingOffersController() {
 		this.marketManager = MarketVistaNavigator.getMainController();
 	}
 	
+	/**
+	 * Continues set up once initial GUI elements have been created.
+	 */
 	@FXML
 	public void initialize() {
 		HashMap<MocTrade, MocTrade> userOffers 
