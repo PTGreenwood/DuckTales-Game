@@ -139,7 +139,7 @@ public class MissionManager {
 	private void setTitleOnTop(BorderPane borderPane, String title) {
 		titleLabel = new Label(title);
 		titleLabel.setId("titleLabel");
-		titleLabel.setFont(new Font("Arial", 36));
+		titleLabel.setFont(new Font("Press Start 2P", 36));
 		borderPane.setTop(titleLabel);
 		borderPane.setAlignment(titleLabel, Pos.CENTER);
 	}
