@@ -61,7 +61,7 @@ public class PlaceTradeGUITest extends GuiTest {
 	/**
 	 * Tests that selecting an item and quantity updates the associated labels.
 	 */
-	@Test 
+	@Test
     public void testSelectItem() {
 		
 		String item = "stone";
