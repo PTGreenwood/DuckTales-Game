@@ -1,10 +1,16 @@
 package uq.deco2800.ducktales.features.landscape.tiles;
+
 import uq.deco2800.ducktales.resources.ResourceType;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-
+/**
+ * Tests for the Tile class.
+ * 
+ * @author Oliver Yule
+ *
+ */
 public class TileTest {
 
 	@Test
