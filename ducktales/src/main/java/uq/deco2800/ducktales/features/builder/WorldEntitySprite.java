@@ -42,14 +42,14 @@ public class WorldEntitySprite extends ImageView {
     private int[][] sizeInTileUnit;
 
     private ResourceType entityType;
-    private WorldBuilderManager manager;
+    private WorldBuilderModel manager;
     // remove code smell as being flagged as unused
     @SuppressWarnings("unused")
 	private ResourceSpriteRegister register;
     private Image sprite;
 
     public WorldEntitySprite(ResourceType type) {
-        this.manager = WorldBuilderManager.getInstance();
+        this.manager = WorldBuilderModel.getInstance();
         this.entityType = type;
         this.register = ResourceSpriteRegister.getInstance();
 
@@ -74,7 +74,7 @@ public class WorldEntitySprite extends ImageView {
 
     private void setMouseEventHandler() {
         this.setOnMouseClicked(event -> {
-            manager.setCurrentResource(this.entityType, manager.ENTITY);
+            WorldBuilderController.setCurrentResource(this.entityType, manager.ENTITY);
         });
     }
 
