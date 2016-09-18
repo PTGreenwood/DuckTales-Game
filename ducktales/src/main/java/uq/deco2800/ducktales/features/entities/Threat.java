@@ -28,9 +28,6 @@ public class Threat {
 	
 	private int speed; // value to assign the threat's movement speed
 	private int levelOfDamage; // the level of damage cause by a threat
-	
-	// private HashMap<Image> enemyTypeRegister;
-	//private ArrayList<String> imageStore;
 
 	protected boolean isPassable; // detects whether a tile is passable
 
@@ -117,7 +114,7 @@ public class Threat {
 	 */
 	public boolean hasThreatEnded() {
 		this.currentTime = System.currentTimeMillis();
-		if (endTimer == currentTime && hasEndTimer) {
+		if (endTimer >= currentTime && hasEndTimer) {
 			// Change HasEndTimer to false (Not sure if if stat will break)
 			return true;
 		} else {
@@ -131,7 +128,7 @@ public class Threat {
 	 */
 	public boolean shouldThreatStart() {
 		this.currentTime = System.currentTimeMillis();
-		if (startTimer == currentTime && hasStartTimer) {
+		if (startTimer >= currentTime && hasStartTimer) {
 			// Change HasStarTimer to false (Not sure if if stat will break)
 			return true;
 		} else {
