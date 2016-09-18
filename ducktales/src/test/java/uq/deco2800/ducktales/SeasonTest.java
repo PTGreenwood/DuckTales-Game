@@ -13,7 +13,7 @@ public class SeasonTest {
 	//DuckClock clock = new DuckClock();
 	GameTime gameTime = new GameTime();
 	
-	@Test // For firstTest testing (not sure yet :S)
+	@Test // For firstTest testing
 	public void getSeasonVariables() {
 		
 		Season correctSeason = Season.AUTUMN;

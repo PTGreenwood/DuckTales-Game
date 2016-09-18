@@ -1,5 +1,8 @@
 package uq.deco2800.ducktales.features.seasons;
 
+import uq.deco2800.ducktales.features.time.GameTime;
+import uq.deco2800.ducktales.features.time.TimeManager;
+
 /**
  * Holds the initial enum data set.
  * 

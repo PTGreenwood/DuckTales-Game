@@ -40,10 +40,9 @@ public class GameTime implements Tickable {
 		this.season = Season.SPRING;
 
 		// Considering making this just one number and mathing it to get the
-		// right time
-		// depending on day and year. Can then also have total time in place. I
-		// spose I
-		// could just math the total time off years and days...
+		// right time depending on day and year. Can then also have total time
+		// in place. I suppose I could just math the total time off years and
+		// days...
 
 		this.hour = 0; // Set the hour of the time
 		this.minute = 0; // Set the minutes of the time.
@@ -157,7 +156,7 @@ public class GameTime implements Tickable {
 	 * @return Season: currentSeason of world
 	 */
 	public Season getCurrentSeason() {
-		return this.season;
+		return season;
 	}
 
 	/**
@@ -203,7 +202,7 @@ public class GameTime implements Tickable {
 	 * Print out a String that has the Current Hour, Current Minute and Current
 	 * Day Number
 	 *
-	 * @return a lame string telling the current time for lame debug
+	 * @return a string telling the current time
 	 */
 	public String printGameTime() {
 		int h = hour;
@@ -212,5 +211,180 @@ public class GameTime implements Tickable {
 		int y = this.year;
 
 		return "Current Time is: " + h + ":" + m + " Day: " + d + " Year: " + y;
+	}
+
+	/**
+	 * Returns the percent chance of the fire weather event occurring as an
+	 * integer. This chance is different depending on the season.
+	 * 
+	 * @return a integer of the percent chance of fire
+	 */
+	public int getChanceOfFire() {
+		int chance = 0;
+		switch (this.getCurrentSeason()) {
+		case SPRING:
+			chance = 10;
+			break;
+		case SUMMER:
+			chance = 30;
+			break;
+		case AUTUMN:
+			chance = 10;
+			break;
+		case WINTER:
+			chance = 5;
+			break;
+		}
+		return chance;
+	}
+	
+	/**
+	 * Returns the percent chance of the rain weather event occurring as an
+	 * integer. This chance is different depending on the season.
+	 * 
+	 * @return a integer of the percent chance of rain
+	 */
+	public int getChanceOfRain() {
+		int chance = 0;
+		switch (getCurrentSeason()) {
+		case SPRING:
+			chance = 50;
+			break;
+		case SUMMER:
+			chance = 20;
+			break;
+		case AUTUMN:
+			chance = 30;
+			break;
+		case WINTER:
+			chance = 70;
+			break;
+		}
+		return chance;
+	}
+	
+	/**
+	 * Returns the percent chance of the cyclone weather event occurring as an
+	 * integer. This chance is different depending on the season.
+	 * 
+	 * @return a integer of the percent chance of a cyclone
+	 */
+	public int getChanceOfCyclone() {
+		int chance = 0;
+		switch (getCurrentSeason()) {
+		case SPRING:
+			chance = 20;
+			break;
+		case SUMMER:
+			chance = 10;
+			break;
+		case AUTUMN:
+			chance = 5;
+			break;
+		case WINTER:
+			chance = 5;
+			break;
+		}
+		return chance;
+	}
+	
+	/**
+	 * Returns the percent chance of the tornado weather event occurring as an
+	 * integer. This chance is different depending on the season.
+	 * 
+	 * @return a integer of the percent chance of a tornado
+	 */
+	public int getChanceOfTornado() {
+		int chance = 0;
+		switch (getCurrentSeason()) {
+		case SPRING:
+			chance = 20;
+			break;
+		case SUMMER:
+			chance = 10;
+			break;
+		case AUTUMN:
+			chance = 5;
+			break;
+		case WINTER:
+			chance = 5;
+			break;
+		}
+		return chance;
+	}
+	
+	/**
+	 * Returns the percent chance of the lightning weather event occurring as an
+	 * integer. This chance is different depending on the season.
+	 * 
+	 * @return a integer of the percent chance of lightning
+	 */
+	public int getChanceOfLightning() {
+		int chance = 0;
+		switch (getCurrentSeason()) {
+		case SPRING:
+			chance = 10;
+			break;
+		case SUMMER:
+			chance = 30;
+			break;
+		case AUTUMN:
+			chance = 10;
+			break;
+		case WINTER:
+			chance = 40;
+			break;
+		}
+		return chance;
+	}
+	
+	/**
+	 * Returns the percent chance of the thunder weather event occurring as an
+	 * integer. This chance is different depending on the season.
+	 * 
+	 * @return a integer of the percent chance of thunder
+	 */
+	public int getChanceOfThunder() {
+		int chance = 0;
+		switch (getCurrentSeason()) {
+		case SPRING:
+			chance = 10;
+			break;
+		case SUMMER:
+			chance = 30;
+			break;
+		case AUTUMN:
+			chance = 10;
+			break;
+		case WINTER:
+			chance = 40;
+			break;
+		}
+		return chance;
+	}
+	
+	/**
+	 * Returns the percent chance of the whirlpool weather event occurring as an
+	 * integer. This chance is different depending on the season.
+	 * 
+	 * @return a integer of the percent chance of a whirlpool
+	 */
+	public int getChanceOfWhirlpool() {
+		int chance = 0;
+		switch (getCurrentSeason()) {
+		case SPRING:
+			chance = 10;
+			break;
+		case SUMMER:
+			chance = 10;
+			break;
+		case AUTUMN:
+			chance = 10;
+			break;
+		case WINTER:
+			chance = 10;
+			break;
+		}
+		return chance;
 	}
 }

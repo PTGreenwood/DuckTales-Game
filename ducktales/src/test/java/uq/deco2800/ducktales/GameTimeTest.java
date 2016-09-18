@@ -196,4 +196,36 @@ public class GameTimeTest {
 
 		assertEquals(gameTime.printGameTime(), correctPrintOut);
 	}
+	
+	@Test //Testing the getChanceOf weather methods provide the correct output in winter.
+	public void testCorrectChanceOfWeather1() {
+
+		GameTime gameTime = new GameTime();
+		Season winter = Season.WINTER;
+		gameTime.setSeason(winter);
+
+		assertEquals(gameTime.getChanceOfFire(), 5);
+		assertEquals(gameTime.getChanceOfRain(), 70);
+		assertEquals(gameTime.getChanceOfCyclone(), 5);
+		assertEquals(gameTime.getChanceOfTornado(), 5);
+		assertEquals(gameTime.getChanceOfLightning(), 40);
+		assertEquals(gameTime.getChanceOfThunder(), 40);
+		assertEquals(gameTime.getChanceOfWhirlpool(), 10);
+	}
+	
+	@Test ////Testing the getChanceOf weather methods provide the correct output in summer.
+	public void testCorrectChanceOfWeather2() {
+
+		GameTime gameTime = new GameTime();
+		Season summer = Season.SUMMER;
+		gameTime.setSeason(summer);
+		
+		assertEquals(gameTime.getChanceOfFire(), 30);
+		assertEquals(gameTime.getChanceOfRain(), 20);
+		assertEquals(gameTime.getChanceOfCyclone(), 10);
+		assertEquals(gameTime.getChanceOfTornado(), 10);
+		assertEquals(gameTime.getChanceOfLightning(), 30);
+		assertEquals(gameTime.getChanceOfThunder(), 30);
+		assertEquals(gameTime.getChanceOfWhirlpool(), 10);
+	}
 }
