@@ -46,7 +46,7 @@ public class RainGod extends DuckGods {
 	}
     		
 	public void giveaward() {
-		if(isWorshiped= true){
+		if(isWorshiped == true){
        /**Peon.speed= Peon.speed*2;
 		*need to change Speed visibility to public
 		*more award details
