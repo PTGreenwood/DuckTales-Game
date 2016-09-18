@@ -1,9 +1,20 @@
-.menuButtons {
-    -fx-background-color: #BF834E;
-    -fx-background-radius: 20;
+@font-face {
+    src: url('../../fonts/PressStart2P.ttf');
 }
 
-.menu {
-    -fx-background-color: #F2D6A2;
-    -fx-background-radius: 20;
+#menuPane {
+    -fx-background-image: url("../../hud/hud.png");
+    -fx-background-size: 100% auto;    
+}
+
+.optionButton {
+	-fx-font-family: "Press Start 2P";
+	-fx-font-size: 7px;
+	-fx-background-color: transparent;
+	-fx-text-fill: white;
+}
+
+.optionButton:hover {
+	-fx-text-fill: #fff568;
+	-fx-cursor: hand;	
 }

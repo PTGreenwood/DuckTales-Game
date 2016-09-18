@@ -51,14 +51,14 @@ public class GameSound {
 		
 		catch(LineUnavailableException lue){logger.info(lineUnavailable, lue);}
 		catch(UnsupportedAudioFileException uafe){logger.info("Unsupported Audio File", uafe);}
-		catch(IOException ioe){ ioe.printStackTrace();}
+		catch(IOException ioe){ logger.info("IOException", ioe);}
 		clip.start();
 		
 		{
 			try{
 				Thread.sleep(50);
 				}
-			catch(InterruptedException ie){ie.printStackTrace();}
+			catch(InterruptedException ie){logger.info("Interrupted Exception"+ie);}
 			
 		} while(clip.isActive());
 	}

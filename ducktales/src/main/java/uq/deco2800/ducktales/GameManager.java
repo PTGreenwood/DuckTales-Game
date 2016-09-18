@@ -4,6 +4,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import uq.deco2800.ducktales.features.achievements.AchievementManager;
 import uq.deco2800.ducktales.features.entities.EntityManager;
+import uq.deco2800.ducktales.features.entities.ThreatManager;
 import uq.deco2800.ducktales.features.hud.HUDManager;
 import uq.deco2800.ducktales.features.hud.menu.MenuManager;
 import uq.deco2800.ducktales.features.level.LevelManager;
@@ -75,6 +76,7 @@ public class GameManager {
     private CursorManager cursorManager;
     private EntityManager entityManager;
     private TimeManager timeManager;
+    private ThreatManager threatManager;
 
     /**
      * Instantiate an empty game manager and create a new default world
@@ -129,6 +131,10 @@ public class GameManager {
         entityManager.setTilesManager(worldDisplayManager.getTilesManager());
         entityManager.setWorldDisplay(worldDisplayManager.getWorldDisplay());
         entityManager.startRoutine();
+
+        // Start the manager of all the horrible threats in the world.
+        threatManager = new ThreatManager();
+        threatManager.setWorld(this.world);
 
         // This is needed since rendered tiles will be on top of HUD :(
         hudManager.bringGUIToFront();

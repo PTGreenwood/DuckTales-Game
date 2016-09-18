@@ -13,13 +13,20 @@ import uq.deco2800.ducktales.resources.ResourceType;
  */
 public abstract class ResourceEntity extends WorldEntity {
 
-	//Default starting value of Resource nodes, subject to change pending further discussion
-	//made public static to final, to fix code vulnerability 
+	//Default starting value of Resource nodes
 	public static final int DEFVALUE = 100;
 	//Actual, editable value the Resources nodes will take
 	public int value;
 
-
+	/**
+	 * Main constructor of the Resource Entity class.
+	 * @param x, x location of the resource
+	 * @param y, y location of the resource
+	 * @param lengthX, length of the resource (x direction) 
+	 * @param lengthY, length of the resource (y direction)
+	 * @param type, resource type
+	 * @param value, the amount that can be harvested from the resource
+	 */
 	protected ResourceEntity(double x, double y, int lengthX, int lengthY, ResourceType type, int value) {
 		super(x, y, lengthX, lengthY, type);
 		this.value = value;
@@ -42,7 +49,7 @@ public abstract class ResourceEntity extends WorldEntity {
 	 * 
 	 * @return Returns the ResourceType that the Resource will use
 	 */
-	protected static ResourceType rare(ResourceType[] TYPES){
+	public static ResourceType rare(ResourceType[] TYPES){
 		Random randomGenerator = new Random();
 		int randomInt = randomGenerator.nextInt(100);
 		if(randomInt < 5){

@@ -4,6 +4,8 @@ import org.junit.Test;
 
 import uq.deco2800.ducktales.features.entities.EntityManager;
 import uq.deco2800.ducktales.features.entities.agententities.Peon;
+import uq.deco2800.ducktales.features.entities.agententities.PeonDebuffType;
+import uq.deco2800.ducktales.features.entities.agententities.PeonBuffType;
 import uq.deco2800.ducktales.resources.*;
 
 import static org.junit.Assert.*;
@@ -42,8 +44,8 @@ public class PeonTest {
     assertTrue("peon health should be 1000 if parameter is greater than 1000", peon.getHealth() == 1000);
     peon.setHealth(-1);
     assertTrue("peon health should be 0 if parameter is less than 0", peon.getHealth() == 0);
-    peon.setHealth(0);
-    assertTrue("peon health should be parameter", peon.getHealth() == 0);
+    peon.setHealth(50);
+    assertTrue("peon health should be parameter", peon.getHealth() == 50);
     peon.setHunger(101);
     assertTrue("peon hunger should be 100 if parameter is greater than 100", peon.getHunger() == 100);
     peon.setHunger(-1);
@@ -54,7 +56,29 @@ public class PeonTest {
     assertTrue("peon thirst should be 100 if parameter is greater than 100", peon.getThirst() == 100);
     peon.setThirst(-1);
     assertTrue("peon thirst should be 0 if parameter is less than 0", peon.getThirst() == 0);
+    peon.setThirst(50);
+    assertTrue("peon thirst should be parameter", peon.getThirst() == 50);
+    peon.setSpeed(-1);
+    assertTrue("peon speed should be 0 if parameter is less than 0", peon.getSpeed() == 0);
+    peon.setSpeed(0.10);
+    assertTrue("peon speed should be parameter", peon.getSpeed() == 0.10);
     peon.choppedATree();
     assertTrue("method should add 1 to the peon treesChopped", peon.getTreesChopped() == 1);
+    peon.addDebuff(PeonDebuffType.HUNGRY);
+    assertTrue("peon now should have a HUNGER debuff", peon.getDebuffs().get(0).toString() == "HUNGRY");
+    peon.addDebuff(PeonDebuffType.THIRSTY);
+    assertTrue("peon now should have two debuffs", peon.getDebuffs().size() == 2);
+    peon.addDebuff(PeonDebuffType.HUNGRY);
+    assertTrue("no duplicate is allowed in debuffs", peon.getDebuffs().size() == 2);
+    peon.removeDebuff(PeonDebuffType.HUNGRY);
+    assertTrue("peon now should not have HUNGER debuff so only one debuff", peon.getDebuffs().size() == 1);
+    peon.addBuff(PeonBuffType.STUFFED);
+    assertTrue("peon now should have a STUFFED buff", peon.getBuffs().get(0).toString() == "STUFFED");
+    peon.addBuff(PeonBuffType.HYDRATED);
+    assertTrue("peon now should have two buffs", peon.getBuffs().size() == 2);
+    peon.addBuff(PeonBuffType.STUFFED);
+    assertTrue("no duplicate is allowed in buffs", peon.getBuffs().size() == 2);
+    peon.removeBuff(PeonBuffType.STUFFED);
+    assertTrue("peon now should only have one buff left", peon.getBuffs().size() == 1);
   }
 }

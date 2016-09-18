@@ -16,7 +16,7 @@ public class Lumberjack extends Job {
     protected static int mentorStrength = 12;
     protected static int mentorIntelligence = 2;
     protected static String jobName = "Lumberjack";
-    protected static final JobType JOBTYPE = JobType.LUMBJERJACK;
+    protected static final JobType JOBTYPE = JobType.LUMBERJACK;
 
     public Lumberjack() {
         super(requiredStrength, requiredIntelligence, 
