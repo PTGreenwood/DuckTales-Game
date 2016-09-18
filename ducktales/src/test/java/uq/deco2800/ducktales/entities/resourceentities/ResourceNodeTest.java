@@ -122,10 +122,12 @@ public class ResourceNodeTest {
 	public void RareTest(){
 		ResourceType[] TYPES1 = {TREE_1, TREE_2, TREE_3};
 		ResourceType[] TYPES2 = {ROCK_1, ROCK_2};
-		assertTrue("Valid ResourceType", ResourceEntity.rare(TYPES1) == TREE_1 
-				|| ResourceEntity.rare(TYPES1) == TREE_2 
-				|| ResourceEntity.rare(TYPES1) == TREE_3);
-		assertTrue("Valid ResourceType", ResourceEntity.rare(TYPES2) == ROCK_1 
-				|| ResourceEntity.rare(TYPES1) == ROCK_2);
+		ResourceType type1 = ResourceEntity.rare(TYPES1);
+		ResourceType type2 = ResourceEntity.rare(TYPES2);
+		assertTrue("Valid ResourceType", type1.equals(TREE_1) 
+				|| type1.equals(TREE_2) 
+				|| type1.equals(TREE_3));
+		assertTrue("Valid ResourceType", type2.equals(ROCK_1) 
+				|| type2.equals(ROCK_2));
 	}
 }
