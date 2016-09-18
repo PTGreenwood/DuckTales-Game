@@ -68,7 +68,7 @@ public class Lumberjack extends Job {
      */    
     public void treeResources(Peon peon){
 		if (peon.getTreesChopped()>0){
-    		for (int i=1; i>0; i++){
+    		for (int i=0; i<1; i++){
     			peon.getResources();
     		}
     	}	   		   		

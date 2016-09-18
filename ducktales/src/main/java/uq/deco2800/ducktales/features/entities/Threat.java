@@ -59,7 +59,7 @@ public class Threat {
 	}
 
 	public void setWorld(World world) {
-
+		//Need to implement
 	}
 
 	/**
@@ -165,11 +165,11 @@ public class Threat {
 		return this.name;
 	}
 
-	public void setXCord(double tempX) {
+	public void setXCord() {
 		this.xCord = randomX;
 	}
 
-	public void setYCord(double tempY) {
+	public void setYCord() {
 		this.yCord = randomY;
 	}
 
@@ -249,7 +249,7 @@ public class Threat {
 	public void checkCollision() {
 		int currentHealth = peon.getHealth();
 		int newHealth = currentHealth - levelOfDamage;
-		if ((this.getX() == peon.getX() && (this.getY() == peon.getY()))) {
+		if ((this.getX() >= peon.getX() && (this.getY() >= peon.getY()))) {
 			peon.setHealth(newHealth);
 		}
 	}
