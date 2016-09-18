@@ -181,7 +181,7 @@ public class Threat {
 	public double getRandomX() {
 		int maxWidth = world.getWidth();
 		Random random = new Random();
-		randomX = random.nextInt(maxWidth) + 1;
+		randomX = (double) random.nextInt(maxWidth) + 1;
 		// need condition statement to check if the randomX intersect w/ tile not passable
 		return randomX;
 	}
@@ -194,7 +194,7 @@ public class Threat {
 	public double getRandomY() {
 		int maxHeight = world.getHeight();
 		Random random = new Random();
-		randomY = random.nextInt(maxHeight) + 1;
+		randomY = (double) random.nextInt(maxHeight) + 1;
 		// need condition statement to check if the randomY intersect w/ tile not passable
 		return randomY;
 	}

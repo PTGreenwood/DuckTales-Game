@@ -90,8 +90,8 @@ public class AStar {
 	}
 
 	private static double heuristicCostEstimate(Tuple node, Tuple goal) {
-		return (double) Math.pow(node.x - goal.x, 2) 
-				+ (double) Math.pow(node.y - goal.y, 2);
+		return (double) Math.pow( (double) node.x - goal.x, 2) 
+				+  Math.pow( (double) node.y - goal.y, 2);
 	}
 
 	private static List<Tuple> getAdjacentNodes(Tuple tuple, World world) {
