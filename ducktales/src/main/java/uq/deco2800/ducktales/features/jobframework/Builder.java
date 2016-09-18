@@ -1,14 +1,11 @@
 package uq.deco2800.ducktales.features.jobframework;
 
-import uq.deco2800.ducktales.features.entities.resourceentities.Tree;
 import uq.deco2800.ducktales.features.entities.agententities.Peon;
 
 /**
  * Generates the Builder job
  * 
  * @author Edward Liao (eduardlio on github and slack)
- *
- *I think this is the correct way of doing things. Will need to be checked.
  */
 public class Builder extends Job {
     protected static int requiredStrength = 7;
@@ -17,12 +14,16 @@ public class Builder extends Job {
     protected static int mentorIntelligence = 10;
     protected static String jobName = "Builder";
     protected static final JobType JOBTYPE = JobType.BUILDER;
+    
     public Builder() {
 		super(requiredStrength, requiredIntelligence, 
                         mentorStrength, mentorIntelligence, 
                         jobName, JOBTYPE);
     }
-
+    public void build(Peon peon){
+        // TODO implementation with Buildings
+        peon.madeABuilding();
+    }
     /**
      * Defines whether or not the given peon is 
      * qualified to become a mentor as a Lumberjack

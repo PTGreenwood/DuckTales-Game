@@ -32,7 +32,7 @@ public class MissionTest extends ApplicationTest{
 		loader.setLocation(location);
 		Parent root = loader.load(location.openStream());
 		Scene tutorialScene = new Scene(root, 1200, 600);
-		
+
 		stage.setTitle("Mission");
 		stage.setScene(tutorialScene);
 		stage.show();

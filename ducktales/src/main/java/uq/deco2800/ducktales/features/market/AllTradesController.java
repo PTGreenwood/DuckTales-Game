@@ -15,8 +15,7 @@ import javafx.scene.layout.StackPane;
 public class AllTradesController {
 	
 	private static final Logger LOGGER = Logger.getLogger(
-			AllTradesController.class.getName() );
-
+			AllTradesController.class.getName());
 	
 	private MarketManager marketManager;
 	
@@ -40,11 +39,8 @@ public class AllTradesController {
 	public void initialize() {
 		
 		List<MocTrade> allTrades = this.marketManager.getAllTrades();
-		
-		
 				
 		path = getClass().getResource(TRADE_PANE);
-		
 		
 		int row = 0;
 		int column = 0;

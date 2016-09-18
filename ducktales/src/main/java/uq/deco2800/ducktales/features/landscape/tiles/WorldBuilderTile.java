@@ -3,7 +3,8 @@ package uq.deco2800.ducktales.features.landscape.tiles;
 import javafx.scene.image.ImageView;
 import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
-import uq.deco2800.ducktales.features.builder.WorldBuilderManager;
+import uq.deco2800.ducktales.features.builder.WorldBuilderController;
+import uq.deco2800.ducktales.features.builder.WorldBuilderModel;
 import uq.deco2800.ducktales.features.builder.WorldBuilderRenderer;
 
 import static uq.deco2800.ducktales.resources.ResourceType.*;
@@ -29,13 +30,10 @@ public class WorldBuilderTile extends ImageView {
     private ResourceType hoverType = BLANK;
 
     // The controller for the World Builder
-    private WorldBuilderManager manager = WorldBuilderManager.getInstance();
-    // The rendering engine
-    private WorldBuilderRenderer renderer;
+    private WorldBuilderController controller = new WorldBuilderController();
 
-    public WorldBuilderTile(WorldBuilderRenderer renderer, int xPos, int yPos) {
+    public WorldBuilderTile(int xPos, int yPos) {
         super();
-        this.renderer = renderer;
         this.xPos = xPos;
         this.yPos = yPos;
 
@@ -66,11 +64,11 @@ public class WorldBuilderTile extends ImageView {
          * Handlers for mouse-click events
          */
         this.setOnMouseClicked(event -> {
-            if (manager.getCurrentType() == manager.TILE) {
+            if (controller.getCurrentType() == controller.TILE) {
                 this.currentType = hoverType;
                 this.setImage(currentType);
-            } else if (manager.getCurrentType() == manager.ENTITY) {
-                renderer.notifyTileClicked(this.xPos, this.yPos);
+            } else if (controller.getCurrentType() == controller.ENTITY) {
+                controller.notifyTileClicked(this.xPos, this.yPos);
             }
 
         });
@@ -79,20 +77,20 @@ public class WorldBuilderTile extends ImageView {
          * Handlers for mouse hovering events
          */
         this.setOnMouseEntered(event -> {
-            if (manager.getCurrentType() == manager.TILE) {
+            if (controller.getCurrentType() == controller.TILE) {
                 // A tile is currently being managed
                 this.setImage(hoverType);
-            } else if (manager.getCurrentType() == manager.ENTITY) {
+            } else if (controller.getCurrentType() == controller.ENTITY) {
                 // An entity is currently being managed
-                renderer.notifyTileHovered(this.xPos, this.yPos);
+                controller.notifyTileHovered(this.xPos, this.yPos);
             }
 
         });
         this.setOnMouseExited(event -> {
-            if (manager.getCurrentType() == manager.TILE) {
+            if (controller.getCurrentType() == controller.TILE) {
                 this.setImage(currentType);
-            } else if (manager.getCurrentType() == manager.ENTITY) {
-                renderer.notifyTileEndHovering();
+            } else if (controller.getCurrentType() == controller.ENTITY) {
+                controller.notifyTileEndHovering();
             }
 
         });

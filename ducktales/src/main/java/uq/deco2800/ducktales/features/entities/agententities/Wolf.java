@@ -2,6 +2,7 @@ package uq.deco2800.ducktales.features.entities.agententities;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import uq.deco2800.ducktales.features.entities.EntityManager;
 import uq.deco2800.ducktales.resources.ResourceType;
@@ -29,8 +30,10 @@ public class Wolf extends Animal {
 
     public Wolf(int x, int y) {
         super(x, y, ResourceType.WOLF, 1, 1, 1, 1, 0.05);
-        int var = (int) (Math.random() * 100);
-        int var2 = (int) (Math.random() * 50);
+        Random random = new Random();
+        Random random2 = new Random();
+        int var = random.nextInt(100);
+        int var2 = random2.nextInt(50);
         setStartingHealth(var);
         setStartingHunger(var);
         setStartingThirst(var);

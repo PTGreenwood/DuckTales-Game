@@ -117,8 +117,7 @@ public class Animal extends AgentEntity {
         return goalPoints;
     }
 
-    /**
-     * Incrementally increases the hunger and thirst level of the animal.
+    /**     * Incrementally increases the hunger and thirst level of the animal.
      */
     private void statusUpdate() {
         time += 1;
@@ -139,7 +138,7 @@ public class Animal extends AgentEntity {
     public void setIsDead() {
         if (this.getHealth() <= 0) {
             this.isDead = true;
-            entityManager.removeEntity(this);
+//            entityManager.removeEntity(this);
         }
     }
 
@@ -149,12 +148,12 @@ public class Animal extends AgentEntity {
      * @param opponent The peon to be attacked.
      */
     public void attack(Peon opponent) {
-        if (this.getOutOfZone()) {
+        if (this.getOutOfZone() == true) {
             opponent.setHealth(opponent.getHealth() - this.getStrength());
         }
-        if (opponent.getHealth() <= 0) {
+//        if (opponent.getHealth() <= 0) {
 //            entityManager.removeEntity(opponent);
-        }
+//        }
     }
 
     /**
@@ -222,14 +221,6 @@ public class Animal extends AgentEntity {
     }
 
     /**
-     * Enables the animal to be killed.
-     */
-    public void killAnimal() {
-        this.canBeKilled = true;
-//        entityManager.removeEntity(this);
-    }
-
-    /**
      * Changes the animal's image to the provided value.
      *
      * @param newType The new image to be rendered.
@@ -239,17 +230,9 @@ public class Animal extends AgentEntity {
     }
 
     /**
-     * Returns the animal's current state of hunger.
-     *
-     * @return hunger The animal's hunger.
-     */
-    public int getHunger() {
-        return hunger;
-    }
-
-    /**
      * Changes the animal's hunger level to the provided value. The animal's hunger level must always be between 0
-     * and 100 inclusive, with 0 being
+     * and 100 inclusive. Hunger level equalling 100 will cause negative effects on animal health, while thirst level
+     * equalling 0 means that the animal is not hungry.
      *
      * @param newHunger The new hunger value.
      */
@@ -263,18 +246,11 @@ public class Animal extends AgentEntity {
         }
     }
 
-    /**
-     * Returns the animal's current state of thirst.
-     *
-     * @return thirst The animal's thirst.
-     */
-    public int getThirst() {
-        return thirst;
-    }
 
     /**
-     * Changes the animal's thirst level to the provided value. Thirst level equalling 100 will cause negative
-     * effects on animal health, while thirst level equalling 0 will
+     * Changes the animal's thirst level to the provided value. The animal's thirst level must always be between 0
+     * and 100 inclusive.   Thirst level equalling 100 will cause negative effects on animal health, while thirst
+     * level equalling 0 means that the animal is not thirsty.
      *
      * @param newThirst The new thirst value.
      */
@@ -286,15 +262,6 @@ public class Animal extends AgentEntity {
         } else {
             this.thirst = newThirst;
         }
-    }
-
-    /**
-     * Returns the animal's current health.
-     *
-     * @return health The animal's current health.
-     */
-    public int getHealth() {
-        return health;
     }
 
     /**
@@ -313,7 +280,43 @@ public class Animal extends AgentEntity {
         }
     }
 
+    /**
+     * Changes the animal's strength level to the provided value.
+     *
+     * @param newStrength The new strength value.
+     */
+    public void setStrength(int newStrength) {
+        this.strength = newStrength;
+    }
+
     // Getter Methods Below
+
+    /**
+     * Returns the animal's current health.
+     *
+     * @return health The animal's current health.
+     */
+    public int getHealth() {
+        return health;
+    }
+
+    /**
+     * Returns the animal's current state of hunger.
+     *
+     * @return hunger The animal's hunger.
+     */
+    public int getHunger() {
+        return hunger;
+    }
+
+    /**
+     * Returns the animal's current state of thirst.
+     *
+     * @return thirst The animal's thirst.
+     */
+    public int getThirst() {
+        return thirst;
+    }
 
     /**
      * Returns the animal's strength.
@@ -322,15 +325,6 @@ public class Animal extends AgentEntity {
      */
     public int getStrength() {
         return strength;
-    }
-
-    /**
-     * Changes the animal's strength level to the provided value.
-     *
-     * @param newStrength The new strength value.
-     */
-    public void setStrength(int newStrength) {
-        this.strength = newStrength;
     }
 
     /**
