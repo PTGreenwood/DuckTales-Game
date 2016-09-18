@@ -46,7 +46,7 @@ public class WorldBuilderModel {
      *
      * @return the integer value represent the type of resource being managed
      */
-    public int getCurrentType() {
+    protected int getCurrentType() {
         return this.currentType;
     }
 

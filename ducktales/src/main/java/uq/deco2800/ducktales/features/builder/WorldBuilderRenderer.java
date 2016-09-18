@@ -21,6 +21,8 @@ import static uq.deco2800.ducktales.resources.ResourceType.*;
 
 /**
  * Created by Khoi on 19/08/2016.
+ * 
+ * Modified 18/9/2016, for MVC
  */
 public class WorldBuilderRenderer extends AnimationTimer {
 
