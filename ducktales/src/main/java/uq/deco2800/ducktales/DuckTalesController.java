@@ -5,6 +5,10 @@ import java.util.ResourceBundle;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import javax.ws.rs.WebApplicationException;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+
 import javafx.scene.layout.*;
 import uq.deco2800.ducktales.deprecated.OldGameController;
 import uq.deco2800.ducktales.deprecated.ui.*;
@@ -14,6 +18,8 @@ import uq.deco2800.ducktales.deprecated.OldGameManager;
 import uq.deco2800.ducktales.features.weather.Weather;
 import uq.deco2800.ducktales.features.weather.WeatherEffect;
 import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
+import uq.deco2800.singularity.clients.ducktales.DucktalesClient;
+import uq.deco2800.singularity.common.representations.User;
 import uq.deco2800.ducktales.features.builder.WorldBuilderController;
 import uq.deco2800.ducktales.features.builder.WorldBuilderModel;
 import uq.deco2800.ducktales.features.builder.WorldBuilderRenderer;
@@ -83,6 +89,8 @@ public class DuckTalesController implements Initializable {
 		contentPane.setOnMouseMoved(new MouseMovedHandler());
 		gameWindow.setOnKeyPressed(new KeyboardHandler());
 		gameWindow.setOnKeyReleased(new KeyboardHandler());
+		
+		
 	}
 
 	/**
