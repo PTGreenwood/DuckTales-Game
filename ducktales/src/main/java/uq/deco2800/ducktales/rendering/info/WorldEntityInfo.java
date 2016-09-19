@@ -57,7 +57,11 @@ public class WorldEntityInfo {
             {2, 2}, //house
             {2, 2}, //observatory
             {5, 5}, //mine
-            {2, 2} // hospital
+            {2, 2}, // hospital
+            {2, 2}, // cemetery
+            {2, 2}, // church
+            {5, 5}, // farmhouse
+            {5, 5} // quarry
 
     };
     private ResourceType[] buildingNames = {
@@ -71,7 +75,11 @@ public class WorldEntityInfo {
             HOUSE,
             OBSERVATORY,
             MINE,
-            HOSPITAL
+            HOSPITAL,
+            CEMETERY,
+            CHURCH,
+            FARM,
+            QUARRY
     };
 
     /**

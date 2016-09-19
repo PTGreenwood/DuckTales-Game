@@ -87,9 +87,9 @@ public class OldGameController {
         renderer.setManager(manager);
 
         // Setup the inventory display
-        inventoryManager = new InventoryManager(
-                woodLabel, foodLabel, oresLabel
-        );
+        //inventoryManager = new InventoryManager(
+        //        woodLabel, foodLabel, oresLabel
+        //);
         manager.setInventoryManager(inventoryManager);
 
         // Officially start the game engine
@@ -180,12 +180,13 @@ public class OldGameController {
     /**
      * Records achievements and increases level.
      * 
-     * @param mission number
+    * @param mission number
      * 			Index of achievement completed.
      */
     
 
     private void setupKeyboardEventHandlers() {
+    	
         KeyboardEventHandlerBeta keyboardHandler = new KeyboardEventHandlerBeta(this.renderer);
 
         rootPane.setOnKeyPressed(keyboardHandler);

@@ -38,7 +38,6 @@ public class PeonTest {
     assertNotNull("Qualification cannot be null", peon.getQualification());
     assertNotNull("Tree choppsed cannot be null", peon.getTreesChopped());
     assertNotNull("Mentor status cannot be null", peon.getMentorStatus());
-
     //Test attributes setters
     peon.setHealth(1001);
     assertTrue("peon health should be 1000 if parameter is greater than 1000", peon.getHealth() == 1000);
@@ -62,6 +61,8 @@ public class PeonTest {
     assertTrue("peon speed should be 0 if parameter is less than 0", peon.getSpeed() == 0);
     peon.setSpeed(0.10);
     assertTrue("peon speed should be parameter", peon.getSpeed() == 0.10);
+    peon.setResource(10);
+    assertTrue("Peon resource value should be parameter", peon.getResources() == 10);
     peon.choppedATree();
     assertTrue("method should add 1 to the peon treesChopped", peon.getTreesChopped() == 1);
     peon.addDebuff(PeonDebuffType.HUNGRY);

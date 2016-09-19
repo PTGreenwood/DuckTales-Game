@@ -8,8 +8,11 @@ import uq.deco2800.ducktales.World;
 import uq.deco2800.ducktales.features.landscape.tiles.TilesManager;
 import uq.deco2800.ducktales.features.weather.Weather;
 import uq.deco2800.ducktales.features.weather.WeatherEffect;
+import uq.deco2800.ducktales.features.time.TimeManager;
+import uq.deco2800.ducktales.features.time.DayNight;
 import uq.deco2800.ducktales.util.SecondaryManager;
 import uq.deco2800.ducktales.rendering.worlddisplay.WorldDisplayRenderer.*;
+
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -88,13 +91,38 @@ public class WorldDisplayManager implements Initializable, SecondaryManager {
 		pane.setStyle("-fx-background-image: url('"+sprite+"')");
 		System.out.println("Weather set to: "+weather.toString().toUpperCase());
 	}
-
+	
     /**
      * Pass a handle of the game world to this manager
      *
      * @param world
      *          The game world
      */
+	
+    
+	/**
+	 * 
+	 * Change the current day 'overlay' to that of Day or Night
+	 * 
+	 *  
+	 */
+	public void changeLightLevel(Pane pane) {
+        if (this.gameManager.getTimeManager() == null) {
+            System.err.println("time manager is still empty");
+        } else {
+        	//This will change once it's all worked out.
+            //boolean nightTime = this.gameManager.getTimeManager().isNight();
+        	//Commented out for easy change
+        	
+            //if(nightTime) {
+                //pane.setStyle("-fx-background-image: url('time/nightTime.png')"); //Uncomment this for nightTime
+            //} else {
+                pane.setStyle("-fx-background-image: url('time/dayTime.png')"); //Uncomment this for dayTime
+            //}
+        }
+
+	}
+	
     public void setWorld(World world) {
         this.world = world;
     }
@@ -167,4 +195,5 @@ public class WorldDisplayManager implements Initializable, SecondaryManager {
                 break;
         }
     }
+
 }

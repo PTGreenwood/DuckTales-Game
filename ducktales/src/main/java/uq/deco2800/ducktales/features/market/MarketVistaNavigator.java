@@ -26,6 +26,7 @@ public class MarketVistaNavigator {
     public static final String PLACE_A_TRADE = 
     		"/market/mpplacetradeoffervista.fxml";
     
+    /** The current Vista  selected. */
     private static String currentVista = null;
 
     /** The main market layout controller. */
@@ -56,8 +57,7 @@ public class MarketVistaNavigator {
      */
     public static void loadVista(String fxml) {
     	
-    	System.err.println("loadVista fxml input is " + fxml);
-    	
+    	// Prevent necessarily reloading the vista
     	if (currentVista == null || !currentVista.equals(fxml)) {
     		
     		try {
