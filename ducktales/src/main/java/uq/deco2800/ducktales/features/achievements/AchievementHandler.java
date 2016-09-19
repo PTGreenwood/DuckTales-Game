@@ -75,6 +75,13 @@ public class AchievementHandler {
 	    this.intAchieve = this.intAchieve + 100;
     }
     
+    
+    /**
+     * Contains all achievements.
+     * 
+     * @author Justin Kuhnel
+     * 
+     */
    public void achievementHolder() {
 	   if(MissionHandler.numberOfCompletedMissions == 1)
 	    {
