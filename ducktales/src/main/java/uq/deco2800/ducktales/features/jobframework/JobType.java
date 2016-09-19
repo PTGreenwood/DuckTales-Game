@@ -5,5 +5,5 @@ package uq.deco2800.ducktales.features.jobframework;
  * @author Eddie
  */
 public enum JobType {
-        LUMBJERJACK, MINER
+        LUMBERJACK, MINER, BUILDER, DOCTOR, FARMER, PRIEST
 }

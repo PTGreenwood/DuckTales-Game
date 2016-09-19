@@ -11,15 +11,15 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <Button layoutX="23.0" layoutY="78.0" mnemonicParsing="false" onAction="#startTutorial1" text="Basic Interface" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="50.0">
+                  <Button fx:id="basicInter" layoutX="10.0" layoutY="45.0" mnemonicParsing="false" onAction="#startTutorial1" text="Basic Interface" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="45.0">
                      <font>
                         <Font name="Pixel Arial 11" size="12.0" />
                      </font></Button>
-                  <Button layoutX="22.0" layoutY="116.0" mnemonicParsing="false" onAction="#startTutorial2" text="Buildings" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="110.0">
+                  <Button fx:id="buildings" layoutX="22.0" layoutY="116.0" mnemonicParsing="false" onAction="#startTutorial2" text="Buildings" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="110.0">
                      <font>
                         <Font name="Pixel Arial 11" size="12.0" />
                      </font></Button>
-                  <Button layoutX="22.0" layoutY="155.0" mnemonicParsing="false" onAction="#startTutorial3" text="Trading System" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="170.0">
+                  <Button fx:id="marketPlace" layoutX="22.0" layoutY="155.0" mnemonicParsing="false" onAction="#startTutorial3" text="Trading System" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="170.0">
                      <font>
                         <Font name="Pixel Arial 11" size="12.0" />
                      </font></Button>

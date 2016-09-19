@@ -10,20 +10,23 @@ import uq.deco2800.ducktales.resources.ResourceType;
  */
 public abstract class Building extends WorldEntity {
 	
-	protected static int TIME;
+	// Constants for building parameters
+	protected static int time;
 	
-	protected static int WOODRESOURCES;
+	protected static int woodResources;
 
-	protected static int STONERESOURCES;
+	protected static int stoneResources;
 	
 	// Otherwise external classes cannot access type (even using method below)
 	public enum production {
 		NULL, WOOD, STONE, ORE, FOOD
 	}
 	
-	protected static production PRODUCTIONTYPE;
+	protected static production productionType;
 	
-	protected static int PRODUCTIONAMOUNT;
+	protected static int productionAmount;
+	
+	protected static int health;
 
 	/**
 	 * Main constructor of the class.
@@ -36,7 +39,6 @@ public abstract class Building extends WorldEntity {
 	protected Building(double x, double y, int lengthX, int lengthY, 
 			ResourceType type) {
 		super(x, y, lengthX, lengthY, type);
-		specifications();
 	}
 		
 	/**
@@ -45,7 +47,8 @@ public abstract class Building extends WorldEntity {
 	 * @return int representing time to construct
 	 */
 	public int timeToBuild() {
-		return TIME;
+		specifications();
+		return time;
 	}
 	
 	/**
@@ -55,7 +58,8 @@ public abstract class Building extends WorldEntity {
 	 * @return the int of wood required
 	 */
 	public int resourcesBuildWood() {
-		return WOODRESOURCES;
+		specifications();
+		return woodResources;
 	}
 	
 	/**
@@ -65,7 +69,8 @@ public abstract class Building extends WorldEntity {
 	 * @return the int of stone required
 	 */
 	public int resourcesBuildStone() {
-		return STONERESOURCES;
+		specifications();
+		return stoneResources;
 	}
 	
 	/**
@@ -75,7 +80,8 @@ public abstract class Building extends WorldEntity {
 	 * @return the int of wood returned
 	 */
 	public int resourcesReturnWood() {
-		return (int) (0.5*WOODRESOURCES);
+		specifications();
+		return (int) (0.5*woodResources);
 	}
 	
 	/**
@@ -85,7 +91,8 @@ public abstract class Building extends WorldEntity {
 	 * @return the int of stone returned
 	 */
 	public int resourcesReturnStone() {
-		return (int) (0.5*STONERESOURCES);
+		specifications();
+		return (int) (0.5*stoneResources);
 	}
 	
 	/**
@@ -95,7 +102,8 @@ public abstract class Building extends WorldEntity {
 	 * @return the enum of the resource type
 	 */
 	public production resourcesProductionType() {
-		return PRODUCTIONTYPE;
+		specifications();
+		return productionType;
 	}
 	
 	/**
@@ -105,12 +113,65 @@ public abstract class Building extends WorldEntity {
 	 * @return the int of the resource amount
 	 */
 	public int resourcesProductionAmount() {
-		return PRODUCTIONAMOUNT;
+		specifications();
+		return productionAmount;
 	}
 	
 	/**
 	 * Update the variables with the building specifications, when the 
-	 * building is called.
+	 * building is called. Moved updating function to building class to 
+	 * remove duplicated code errors throughout the building class.
+	 * 
+	 * @param stone, the amount of stone to build
+	 * @param wood, the amount of wood to build
+	 * @param time, the amount of time to build
+	 * @param produce, the production type produced by the building
+	 * @param amount, the amount of the resource produced
+	 * @param health, the health of the building
+	 *  
+	 */
+	protected static void specifications(int stone, int wood, int timeSet, 
+			production produce, int amount, int healthSet) {
+		woodResources = wood;
+		stoneResources = stone;
+		time = timeSet;
+		productionType = produce;
+		productionAmount = amount;
+		health = healthSet;
+	}
+
+	/**
+	 * Calls the above specification method which updates the variables 
+	 * as required. Called by both building and constructor classes.
 	 */
 	protected abstract void specifications();
+	
+	/**
+	 * Calls the changeHealthBuilding method which updates the 
+	 * health of the building.
+	 */
+	protected abstract void changeHealthBuilding(int newHealth);
+	
+	/**
+	 * Method to access the 'health' of the building. Returns the integer  
+	 * value of the health.
+	 * 
+	 * @return the health of the building.
+	 */
+	public int getHealth() {
+		specifications();
+		return health;
+	}
+	
+	/**
+	 * Update the 'health' of the quarry. Requires an integer value of 
+	 * the new health to be passed.
+	 * 
+	 * @param NewValue, new health of the building
+	 */
+	public void changeHealth(int newValue){
+		if (newValue > 0){
+			changeHealthBuilding(newValue);
+		}
+	}
 }

@@ -2,6 +2,7 @@ package uq.deco2800.ducktales.features.duckgods;
 
 import javax.swing.ImageIcon;
 
+import uq.deco2800.ducktales.features.entities.agententities.Peon;
 
 /**
  * Individual class for the Wind God
@@ -11,31 +12,55 @@ import javax.swing.ImageIcon;
  */
 public class WindGod extends DuckGods {
 	
-	private boolean isWorshiped =false;
-	private boolean isSelected = false;
+	protected boolean isBuilt     = false;  
+	protected boolean isWorshiped = false;
+	protected boolean isSelected  = false;
+	
+	/** this feature is waited to be build
 	private boolean noConflict = true;
+	*/
 	  
 	public WindGod(String name, String bonus, ImageIcon image) {
-    	super();
-    }
+		super();
+	}
+	 
+	public void build() {
+		/**wait for church to be built
+		 * if(isset(church)){
+		 */
+			isBuilt= true;
+		}
+		//}
+	public void selected(){
+	    /**needs to check mouseListener to see if it's clicked
+	     if(clicked)
+	     */
+		isSelected = true;
+	}
 	
-    public boolean isbuilt() {
-    	return true;
-    }
-    
-    public boolean isWorshiped () {
-		//if(isbuilt=true)
+	public void worship()  {
+		if(isBuilt==true && isSelected==true)
 		{
-    		return true;
-    	}
+		isWorshiped = true;
+		}
 	}
     		
 	public void giveaward() {
-		//while 
+		if(isWorshiped == true){
+       /**Peon.speed= Peon.speed*2;
+		*need to change Speed visibility to public
+		*more award details
+		*/
+		}
+		
 	}
 	
-    public void givepenalty() {
-    	
-    }  
+	public void givepenalty() {
+		if(isSelected==true&&isWorshiped==false){
+	  /**Peon.speed= Peon.speed*0.8;
+	   *need to change Speed visibility to public
+	   *more penalty detail
+	   */
+	}}  
         
 }

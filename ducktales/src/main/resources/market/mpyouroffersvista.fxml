@@ -1,107 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.canvas.Canvas?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.text.Font?>
 
-<StackPane fx:id="vista1" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane fx:id="yourOffersVista" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uq.deco2800.ducktales.features.market.PendingOffersController">
    <children>
-      <GridPane prefHeight="372.0" prefWidth="410.0" style="-fx-background-color: #0C8F8F;">
-         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints maxHeight="265.0" minHeight="10.0" prefHeight="203.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="176.0" minHeight="10.0" prefHeight="169.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="77.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
-         </rowConstraints>
-         <children>
-            <Canvas height="108.0" width="204.0" />
-            <Pane prefHeight="63.0" prefWidth="140.0" style="-fx-background-color: #4ECC44;">
-               <children>
-                  <TextField layoutX="83.0" layoutY="8.0" prefHeight="10.0" prefWidth="100.0" style="-fx-background-color: #4ECC44;">
-                     <font>
-                        <Font size="12.0" />
-                     </font>
-                  </TextField>
-                  <Label layoutX="86.0" layoutY="10.0" text="Item Name" textFill="#0c8f8f">
-                     <font>
-                        <Font name="Helvetica Neue Bold" size="16.0" />
-                     </font>
-                  </Label>
-                  <TextField layoutX="83.0" layoutY="32.0" prefHeight="4.0" prefWidth="100.0" style="-fx-background-color: #4ECC44;">
-                     <font>
-                        <Font size="12.0" />
-                     </font>
-                  </TextField>
-                  <Label layoutX="87.0" layoutY="35.0" text="Quantity" textFill="#0c8f8f">
-                     <font>
-                        <Font size="12.0" />
-                     </font>
-                  </Label>
-                  <TextField layoutX="83.0" layoutY="56.0" prefHeight="10.0" prefWidth="100.0" style="-fx-background-color: #4ECC44;">
-                     <font>
-                        <Font size="12.0" />
-                     </font>
-                  </TextField>
-                  <Label layoutX="88.0" layoutY="59.0" text="User" textFill="#0c8f8f">
-                     <font>
-                        <Font size="12.0" />
-                     </font>
-                  </Label>
-                  <Region layoutX="10.0" layoutY="13.0" prefHeight="68.0" prefWidth="64.0" style="-fx-background-color: #ffffffff;" />
-                  <Region layoutX="10.0" layoutY="99.0" prefHeight="68.0" prefWidth="64.0" style="-fx-background-color: #ffffffff;" />
-                  <TextField layoutX="83.0" layoutY="97.0" prefHeight="10.0" prefWidth="100.0" style="-fx-background-color: #4ECC44;">
-                     <font>
-                        <Font size="12.0" />
-                     </font>
-                  </TextField>
-                  <Label layoutX="86.0" layoutY="98.0" text="Your Item" textFill="#0c8f8f">
-                     <font>
-                        <Font name="Helvetica Neue Bold" size="16.0" />
-                     </font>
-                  </Label>
-                  <TextField layoutX="83.0" layoutY="122.0" prefHeight="4.0" prefWidth="100.0" style="-fx-background-color: #4ECC44;">
-                     <font>
-                        <Font size="12.0" />
-                     </font>
-                  </TextField>
-                  <Label layoutX="88.0" layoutY="126.0" text="Quantity" textFill="#0c8f8f">
-                     <font>
-                        <Font size="12.0" />
-                     </font>
-                  </Label>
-                  <TextField layoutX="83.0" layoutY="145.0" prefHeight="10.0" prefWidth="100.0" style="-fx-background-color: #4ECC44;">
-                     <font>
-                        <Font size="12.0" />
-                     </font>
-                  </TextField>
-                  <Label layoutX="88.0" layoutY="149.0" text="Delete" textFill="#0c8f8f">
-                     <font>
-                        <Font size="12.0" />
-                     </font>
-                  </Label>
-               </children>
+      <ScrollPane prefHeight="350.0" prefWidth="550.0">
+         <content>
+            <GridPane fx:id="yourOffersGridPane" prefHeight="470.0" prefWidth="530.0" style="-fx-background-color: #1b1464; -fx-border-color: white;">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="265.0" minHeight="10.0" prefHeight="203.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="176.0" minHeight="10.0" prefHeight="169.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="77.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+               </rowConstraints>
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
-               <GridPane.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </GridPane.margin>
-            </Pane>
-         </children>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-      </GridPane>
+            </GridPane>
+         </content>
+      </ScrollPane>
    </children>
 </StackPane>

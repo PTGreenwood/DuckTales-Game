@@ -4,29 +4,27 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="gameWindow" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="737.0" prefWidth="1295.0" stylesheets="@ducktales.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uq.deco2800.ducktales.DuckTalesController">
+<AnchorPane fx:id="gameWindow" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="737.0" prefWidth="1295.0" stylesheets="@ducktales.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uq.deco2800.ducktales.DuckTalesController">
 	<children>
 		<AnchorPane fx:id="mainMenuPane" layoutY="-2.0" minHeight="0.0" minWidth="0.0" prefHeight="737.0" prefWidth="1295.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 			<children>
-				<ImageView fx:id="mainLogo" fitHeight="344.0" fitWidth="541.0" layoutX="91.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
+				<ImageView fx:id="mainLogo" fitHeight="272.0" fitWidth="457.0" layoutX="438.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true">
 					<image>
 						<Image url="@ducktaleslogo.png" />
 					</image>
 				</ImageView>
-				<Button fx:id="startGameBtn" layoutX="648.0" layoutY="257.0" mnemonicParsing="false" onAction="#startGame" prefHeight="45.0" prefWidth="500" styleClass="buttonImage" textAlignment="CENTER" AnchorPane.bottomAnchor="435.0" />
-				<Button fx:id="buildWorldBtn" layoutX="648.0" layoutY="332.0" mnemonicParsing="false" onAction="#buildWorld" prefHeight="45.0" prefWidth="500" styleClass="buttonImage" textAlignment="CENTER" />
-				<Button fx:id="tutorialBtn" layoutX="648.0" layoutY="407.0" mnemonicParsing="false" onAction="#tutorial" prefHeight="45.0" prefWidth="500" styleClass="buttonImage" textAlignment="CENTER" />
-				<Button fx:id="achievementsBtn" layoutX="648.0" layoutY="557.0" mnemonicParsing="false" onAction="#missionAndAchievement" prefHeight="45.0" prefWidth="500" styleClass="buttonImage" textAlignment="CENTER" />
-				<Button fx:id="marketplaceBtn" layoutX="648.0" layoutY="482.0" mnemonicParsing="false" onAction="#showMarketplace" prefHeight="45.0" prefWidth="500" styleClass="buttonImage" textAlignment="CENTER" />
-				<Button fx:id="quitBtn" layoutX="648.0" layoutY="632.0" mnemonicParsing="false" onAction="#quitApplication" prefHeight="45.0" prefWidth="500" styleClass="buttonImage" textAlignment="CENTER" />            	
+				<Button fx:id="startGameBtn" layoutX="467.0" layoutY="350.0" mnemonicParsing="false" onAction="#startGame" prefHeight="45.0" prefWidth="500" styleClass="buttonImage" text="PLAY" textAlignment="left" AnchorPane.bottomAnchor="342.0" />
+				<Button fx:id="buildWorldBtn" layoutX="467.0" layoutY="397.0" mnemonicParsing="false" onAction="#buildWorld" prefHeight="45.0" prefWidth="500" styleClass="buttonImage" text="BUILD WORLD" />
+				<Button fx:id="tutorialBtn" layoutX="467.0" layoutY="442.0" mnemonicParsing="false" onAction="#tutorial" prefHeight="45.0" prefWidth="500" styleClass="buttonImage" text="TUTORIAL" />
+				<Button fx:id="achievementsBtn" layoutX="467.0" layoutY="532.0" mnemonicParsing="false" onAction="#missionAndAchievement" prefHeight="45.0" prefWidth="500" styleClass="buttonImage" text="ACHIEVEMENTS" />
+				<Button fx:id="marketplaceBtn" layoutX="467.0" layoutY="487.0" mnemonicParsing="false" onAction="#showMarketplace" prefHeight="45.0" prefWidth="500" styleClass="buttonImage" text="MARKETPLACE" />
+				<Button fx:id="quitBtn" layoutX="467.0" layoutY="577.0" mnemonicParsing="false" onAction="#quitApplication" prefHeight="45.0" prefWidth="500" styleClass="buttonImage" text="EXIT" />
+           		<Text fill="WHITE" layoutX="478.0" layoutY="684.0" strokeType="OUTSIDE" strokeWidth="0.0" text="© 2016 DECO GAMES" />            	
 			</children>
 		</AnchorPane>
 		<AnchorPane fx:id="contentPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="737.0" prefWidth="1295.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-			<children>						
-            	<Pane fx:id="weatherEffectPane" mouseTransparent="true" opacity="0.7" prefHeight="744.0" prefWidth="1303.0" />            	
-			</children>
 		</AnchorPane>
 	</children>
 </AnchorPane>

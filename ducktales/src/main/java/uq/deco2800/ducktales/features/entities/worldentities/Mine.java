@@ -3,7 +3,8 @@ package uq.deco2800.ducktales.features.entities.worldentities;
 import uq.deco2800.ducktales.resources.ResourceType;
 
 /**
- * A Mine. Creates Ore
+ * A Mine. Creates Ore, Class containing all properties and specifications of a 
+ * mine.
  * 
  * @author Gabrielle Hodge, 43590526 
  *
@@ -13,8 +14,14 @@ public class Mine extends Building {
 	// BuildingMenuSprite type
 	private static final ResourceType TYPE = ResourceType.MINE;
 
-	private static final int X_LENGTH = 5;
-	private static final int Y_LENGTH = 5;
+	// Building health - starting value
+	private int health = 1300;
+	
+	// Mine size
+	public static final int X_LENGTH = 5;
+	public static final int Y_LENGTH = 5;
+	
+	public static final boolean PASSABILITY = false;
 	
 	/**
 	 * Initialise a new mine. Requires the location of the mine
@@ -24,17 +31,24 @@ public class Mine extends Building {
 	 */
 	public Mine(double x, double y) {
 		super(x, y, X_LENGTH, Y_LENGTH, TYPE);
+		health = 1300;
 	}
 	
 	/**
 	 * Update the WorldEntity properties with those of a mine.
 	 */
 	protected void specifications() {
-		Building.STONERESOURCES = 10;
-		Building.WOODRESOURCES = 6;
-		Building.TIME = 3;
-		Building.PRODUCTIONTYPE = production.ORE;
-		Building.PRODUCTIONAMOUNT = 5;
+		specifications(10, 6, 3, production.ORE, 5, health);
+	}
+	
+	/**
+	 * Update the 'health' of the mine. Requires an integer value of 
+	 * the new health to be passed.
+	 * 
+	 * @param NewValue, new health of the building
+	 */
+	protected void changeHealthBuilding(int newValue){
+		health = newValue;
 	}
 
 	/**

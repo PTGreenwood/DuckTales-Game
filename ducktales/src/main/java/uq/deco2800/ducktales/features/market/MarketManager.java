@@ -1,5 +1,9 @@
 package uq.deco2800.ducktales.features.market;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Set;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -16,6 +20,9 @@ import javafx.scene.layout.VBox;
  *
  */
 public class MarketManager {
+	
+	/** The model that stores and handles access to the market data */
+	private MarketModel marketModel;
 
 	/** The root pane where everything else is added onto */
 	@FXML
@@ -33,24 +40,30 @@ public class MarketManager {
     @FXML
     private Button yourOffersBtn;
     @FXML
-    private Button placeATradeBtn;
+    private Button placeNewTradeBtn;
     
     /** Selected navigation button background colour **/ 
-    private static final String BTN_SELECTED = "#0C8F8F";
+    private static final String BTN_SELECTED = "#1b1464";
+    
+    /** The border colour of the buttons when selected. */
+    private static final String BTN_BORDER_COLOUR = "white";
     
     /** Deselected navigation button background colour **/
-    private static final String BTN_NOT_SELECTED = "#73B06F";
+    private static final String BTN_NOT_SELECTED = "#1a1935";
     
     /** Enum corresponding to the navigation buttons**/
     public enum Vista {
-    	CURRENTTRADES, YOURTRADES, YOUROFFERS, PLACEATRADE 
+    	ALLTRADES, YOURTRADES, YOUROFFERS, PLACENEWTRADE 
     }
     
     /**String for the background color**/
-    String backgroundColorString = "-fx-background-color:";
+    String backgroundColorString = "-fx-background-color: ";
+    
+    /** The javafx styling prefix for colouring g */
+    String btnColorString = "-fx-border-color: ";
     
     /** The enum of the currently selected navigation button.**/
-    private Vista selectedVista = Vista.CURRENTTRADES;
+    private Vista selectedVista = Vista.ALLTRADES;
     
     /**
      * Constructor for the MarketManager. Sets the Main Controller for the
@@ -60,8 +73,90 @@ public class MarketManager {
     	
     	// Set the controller that displays the vistas as child elements.
         MarketVistaNavigator.setMainController(this);
+        
+        // Create a new instance of the MarketModel
+        marketModel = new MarketModel();
     	
     }
+    
+    /**
+	 * Continues set up once initial GUI elements have been created.
+	 */
+    @FXML
+	public void initialize() {
+    	MarketVistaNavigator.loadVista(MarketVistaNavigator.ALL_TRADES);
+    }
+    
+    /**
+     * Returns all the trades posted on the server.
+     * 
+     * @return A list of posted trades
+     */
+    public List<MocTrade> getAllTrades() {
+    	return this.marketModel.getAllTrades();
+    }
+    
+    /**
+     * Returns a map of the user's inventory.
+     * 
+     * @return map of user inventory
+     */
+    public HashMap<String, Integer> getUserInventory() {
+    	return marketModel.getUserInventory();
+    }
+    
+    /**
+     * Returns the name of the items currently in the user's inventory.
+     *  
+     * @return name of items in inventory.
+     */
+    public Set<String> getUserInventoryItemNames() {
+    	return marketModel.getUserInventoryItemNames();
+    }
+    
+    /**
+     * 
+     * Returns the amount of a particular item in inventory.
+     * 
+     * @param item The name of the inventory item.
+     * 
+     * @return The amount of the item in the user's inventory.
+     */
+    public int getInventoryAmountForItem(String item) {
+    	return marketModel.getInventoryAmountForItem(item);
+    }
+    
+    /** Returns the user name of the current user */
+    public String getUserName() {
+    	return marketModel.getUserName();
+    }
+    
+    /**
+     *  returns the offers that a user has made and the corresponding trade.
+     */
+    public HashMap<MocTrade, MocTrade> getUserOffers() {
+    	return marketModel.getUserOffers();
+    }
+    
+    /**
+     * Creates a new trade offer for the given item type and amount.
+     * 
+     * @param item The type of the item begin offered.
+     * @param amount The amount of offered item.
+     */
+    public void createNewTradeOffer(String item, int amount) {
+    	marketModel.createNewTradeOffer(item, amount);
+    }
+    
+    /**
+     * Returns the trades that the user has posted.
+     * 
+     * @return The trades that a user has posted.
+     */
+    public List<MocTrade> getTradesForLoggedInUser() {
+    	return this.marketModel.getTradesForLoggedInUser();
+    }
+    
 
     /**
      * Replaces the vista displayed in the vista holder with a new vista.
@@ -79,10 +174,10 @@ public class MarketManager {
      */
     @FXML
     void viewCurrentTrades(ActionEvent event) {
-    	MarketVistaNavigator.loadVista(MarketVistaNavigator.CURRENT_TRADES);
+    	MarketVistaNavigator.loadVista(MarketVistaNavigator.ALL_TRADES);
     	
     	deselectButton(selectedVista);
-        selectButton(Vista.CURRENTTRADES);
+        selectButton(Vista.ALLTRADES);
     }
     
 	/**
@@ -93,7 +188,6 @@ public class MarketManager {
     @FXML
     void viewYourTrades(ActionEvent event) {
         MarketVistaNavigator.loadVista(MarketVistaNavigator.YOUR_TRADES);
-        
         
         deselectButton(selectedVista);
         selectButton(Vista.YOURTRADES);
@@ -122,7 +216,7 @@ public class MarketManager {
     	MarketVistaNavigator.loadVista(MarketVistaNavigator.PLACE_A_TRADE);
     	
     	deselectButton(selectedVista);
-        selectButton(Vista.PLACEATRADE);
+        selectButton(Vista.PLACENEWTRADE);
     }
     
     /**
@@ -134,20 +228,24 @@ public class MarketManager {
     public void deselectButton(Vista button) {
     	
     	switch (button) {
-    		case CURRENTTRADES: currentTradesBtn.setStyle(
-    				backgroundColorString+BTN_NOT_SELECTED);
+    		case ALLTRADES: currentTradesBtn.setStyle(
+    				backgroundColorString+BTN_NOT_SELECTED + "; " 
+    		+ btnColorString+BTN_BORDER_COLOUR);
     			break;
     			
     		case YOURTRADES: yourTradesBtn.setStyle(
-    				backgroundColorString+BTN_NOT_SELECTED);
+    				backgroundColorString+BTN_NOT_SELECTED + "; " 
+    			    		+ btnColorString+BTN_BORDER_COLOUR);
     			break;
     			
     		case YOUROFFERS: yourOffersBtn.setStyle(
-    				backgroundColorString+BTN_NOT_SELECTED);
+    				backgroundColorString+BTN_NOT_SELECTED + "; " 
+    			    		+ btnColorString+BTN_BORDER_COLOUR);
     			break;
     			
-    		case PLACEATRADE: placeATradeBtn.setStyle(
-    				backgroundColorString+BTN_NOT_SELECTED);
+    		case PLACENEWTRADE: placeNewTradeBtn.setStyle(
+    				backgroundColorString+BTN_NOT_SELECTED + "; " 
+    			    		+ btnColorString+BTN_BORDER_COLOUR);
     			break;
     			
     		default: break;
@@ -165,24 +263,28 @@ public class MarketManager {
 	public void selectButton(Vista button) {
     	
 		switch (button) {
-    		case CURRENTTRADES: currentTradesBtn.setStyle(
-    				backgroundColorString+BTN_SELECTED);
-    			selectedVista = Vista.CURRENTTRADES;
+    		case ALLTRADES: currentTradesBtn.setStyle(
+    				backgroundColorString+BTN_SELECTED + "; " 
+    			    		+ btnColorString+BTN_BORDER_COLOUR);
+    			selectedVista = Vista.ALLTRADES;
     			break;
     			
     		case YOURTRADES: yourTradesBtn.setStyle(
-    				backgroundColorString+BTN_SELECTED);
+    				backgroundColorString+BTN_SELECTED + "; " 
+    			    		+ btnColorString+BTN_BORDER_COLOUR);
     			selectedVista = Vista.YOURTRADES;
     			break;
     			
     		case YOUROFFERS: yourOffersBtn.setStyle(
-    				backgroundColorString+BTN_SELECTED);
+    				backgroundColorString+BTN_SELECTED + "; " 
+    			    		+ btnColorString+BTN_BORDER_COLOUR);
     			selectedVista = Vista.YOUROFFERS;
     			break;
     			
-    		case PLACEATRADE: placeATradeBtn.setStyle(
-    				backgroundColorString+BTN_SELECTED);
-    			selectedVista = Vista.PLACEATRADE;
+    		case PLACENEWTRADE: placeNewTradeBtn.setStyle(
+    				backgroundColorString+BTN_SELECTED + "; " 
+    			    		+ btnColorString+BTN_BORDER_COLOUR);
+    			selectedVista = Vista.PLACENEWTRADE;
     			break;
     			
     		default: break;
@@ -199,5 +301,15 @@ public class MarketManager {
 	}
 	public void hideMarketPlace() {
 		this.marketplacePane.setVisible(false);
+	}
+	//@mattyleggy, added this in for keyboard handlers
+	public void toggleMarketPlace() {
+		if (this.marketplacePane.isVisible())
+			hideMarketPlace();
+		else
+			showMarketPlace();
+	}
+	public boolean isVisible() {
+		return this.marketplacePane.isVisible();
 	}
 }

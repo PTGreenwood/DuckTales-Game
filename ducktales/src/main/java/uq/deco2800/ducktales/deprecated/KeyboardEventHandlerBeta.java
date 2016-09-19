@@ -6,6 +6,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import uq.deco2800.ducktales.deprecated.GameRendererBeta;
 
+
 /**
  * Created by Khoi on 4/09/2016.
  */
@@ -38,6 +39,8 @@ public class KeyboardEventHandlerBeta implements EventHandler<KeyEvent> {
 
     private void handleKeyPressed(KeyCode code) {
         switch (code) {
+        
+        	//Move World
             case A:
                 renderer.moveWorld(GameRendererBeta.Direction.LEFT);
                 break;
@@ -51,6 +54,9 @@ public class KeyboardEventHandlerBeta implements EventHandler<KeyEvent> {
                 renderer.moveWorld(GameRendererBeta.Direction.UP);
                 System.err.println("moving UP in Handler");
                 break;
+                
+        default:
+        	break;
         }
     }
 
@@ -59,6 +65,8 @@ public class KeyboardEventHandlerBeta implements EventHandler<KeyEvent> {
             case A:case D:case S:case W:
                 renderer.stopMoveWorld();
                 break;
+		default:
+			break;
         }
 
     }

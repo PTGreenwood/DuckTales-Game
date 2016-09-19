@@ -3,6 +3,7 @@ package uq.deco2800.ducktales.features.hud.menu;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import uq.deco2800.ducktales.features.hud.menu.animal.AnimalMenuSprite;
@@ -29,7 +30,9 @@ public class MenuManager implements Initializable, SecondaryManager{
      */
     // TODO: TO ADD NEW BUILDINGS, REGISTER THEIR NAMES HERE
     private static final ResourceType[] BUILDINGS = {
-            BUTCHER, COMMUNITY_BUILDING, BAKERY, PASTURE
+    		BAKERY, BUTCHER, CEMETERY, CHURCH, COMMUNITY_BUILDING, FARM, 
+    		FORGE, HOSPITAL, HOUSE, 
+            MINE, OBSERVATORY, PASTURE, QUARRY, SAWMILL,
     };
     // TODO: TO ADD NEW ANIMALS, REGISTER THEIR NAMES HERE
     private static final ResourceType[] ANIMALS = {
@@ -44,11 +47,9 @@ public class MenuManager implements Initializable, SecondaryManager{
     @FXML
     private AnchorPane menuPane; // The parent Node for all menus
     @FXML
-    private HBox buildingsMenu;
+    private GridPane buildingsMenu;
     @FXML
-    private HBox animalsMenu;
-    @FXML
-    private VBox menuButtons;
+    private GridPane animalsMenu;
 
     /** The lists of menu sprites */
     private ArrayList<BuildingMenuSprite> buildingMenuSprites;
@@ -133,17 +134,20 @@ public class MenuManager implements Initializable, SecondaryManager{
     private void setupAnimalsMenu() {
         if (animalsMenu.getChildren().size() == 0) {
             /*
-             * Firstly add all animal sprites to the menu first
-             */
-            animalsMenu.getChildren().addAll(animalMenuSprites);
-
-            /*
              * Then adjust the size of the sprites accordingly
              */
             // TODO IMPLEMENT THIS
+        	int column = 0;
+        	int row = 0;
             for (int i = 0; i < animalMenuSprites.size(); i++) {
                 AnimalMenuSprite sprite = animalMenuSprites.get(i);
-
+                animalsMenu.add(sprite,column,row);                
+                if (column==1) {
+            		column=0;
+            		row++;
+            	} else {
+            		column++;
+            	}
                 // STUB METHOD - set max height for the sprites
 //                sprite.setFitHeight(animalsMenu.getHeight());
             }
@@ -159,18 +163,28 @@ public class MenuManager implements Initializable, SecondaryManager{
             /*
              * Firstly add all building sprites to the menu first
              */
-            buildingsMenu.getChildren().addAll(buildingMenuSprites);
-
+            //buildingsMenu.getChildren().addAll(buildingMenuSprites);
+            
             /*
              * Then adjust the size of the sprites accordingly
              */
             // Get the officially defined scale from the rendering manager
-            double uiScale = RenderingInformation.UI_SCALE;
-
+            //double uiScale = RenderingInformation.UI_SCALE;
+        	double uiScale = 0.5;
+            int column = 0;
+            int row = 0;
             // adjust the size of the sprites
-            for (int i = 0; i < buildingMenuSprites.size(); i++) {
+            for (int i = 0; i < buildingMenuSprites.size(); i++) {   	
+            	
                 BuildingMenuSprite sprite = buildingMenuSprites.get(i);
-
+                //@mattyleggy - adding to grid pane instead of HBox...                
+                buildingsMenu.add(sprite,column,row);                
+                if (column==1) {
+            		column=0;
+            		row++;
+            	} else {
+            		column++;
+            	}
                 // Get the size of the building in tile-unit first
                 int xLength = 0;
                 int yLength = 0;

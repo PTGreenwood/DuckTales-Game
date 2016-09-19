@@ -1,9 +1,57 @@
 package uq.deco2800.ducktales.resources;
 
+import java.util.concurrent.ConcurrentHashMap;
+
 import javafx.scene.image.Image;
 
-import java.util.concurrent.ConcurrentHashMap;
 import static uq.deco2800.ducktales.resources.ResourceType.*;
+
+import static uq.deco2800.ducktales.resources.ResourceType.BAKERY;
+import static uq.deco2800.ducktales.resources.ResourceType.BLANK;
+import static uq.deco2800.ducktales.resources.ResourceType.BOX;
+import static uq.deco2800.ducktales.resources.ResourceType.BUTCHER;
+import static uq.deco2800.ducktales.resources.ResourceType.CHURCH;
+import static uq.deco2800.ducktales.resources.ResourceType.COMMUNITY_BUILDING;
+import static uq.deco2800.ducktales.resources.ResourceType.CONSTRUCTION;
+import static uq.deco2800.ducktales.resources.ResourceType.COW;
+import static uq.deco2800.ducktales.resources.ResourceType.COW_FRONT_RIGHT;
+import static uq.deco2800.ducktales.resources.ResourceType.CYAN;
+import static uq.deco2800.ducktales.resources.ResourceType.CYAN_CROSSED;
+import static uq.deco2800.ducktales.resources.ResourceType.DUCK;
+import static uq.deco2800.ducktales.resources.ResourceType.DUCKDown0;
+import static uq.deco2800.ducktales.resources.ResourceType.DUCKDown1;
+import static uq.deco2800.ducktales.resources.ResourceType.DUCKLeft0;
+import static uq.deco2800.ducktales.resources.ResourceType.DUCKLeft1;
+import static uq.deco2800.ducktales.resources.ResourceType.DUCKRight0;
+import static uq.deco2800.ducktales.resources.ResourceType.DUCKRight1;
+import static uq.deco2800.ducktales.resources.ResourceType.DUCKUp0;
+import static uq.deco2800.ducktales.resources.ResourceType.DUCKUp1;
+import static uq.deco2800.ducktales.resources.ResourceType.DUCK_1_1;
+import static uq.deco2800.ducktales.resources.ResourceType.FORGE;
+import static uq.deco2800.ducktales.resources.ResourceType.GRASS_1;
+import static uq.deco2800.ducktales.resources.ResourceType.GRASS_2;
+import static uq.deco2800.ducktales.resources.ResourceType.GRASS_3;
+import static uq.deco2800.ducktales.resources.ResourceType.GRASS_4;
+import static uq.deco2800.ducktales.resources.ResourceType.HOSPITAL;
+import static uq.deco2800.ducktales.resources.ResourceType.HOUSE;
+import static uq.deco2800.ducktales.resources.ResourceType.LONG_BOX;
+import static uq.deco2800.ducktales.resources.ResourceType.MINE;
+import static uq.deco2800.ducktales.resources.ResourceType.OBSERVATORY;
+import static uq.deco2800.ducktales.resources.ResourceType.PASTURE;
+import static uq.deco2800.ducktales.resources.ResourceType.PEON;
+import static uq.deco2800.ducktales.resources.ResourceType.ROCK_1;
+import static uq.deco2800.ducktales.resources.ResourceType.ROCK_2;
+import static uq.deco2800.ducktales.resources.ResourceType.SAWMILL;
+import static uq.deco2800.ducktales.resources.ResourceType.SHEEP;
+import static uq.deco2800.ducktales.resources.ResourceType.SHEEPRight0;
+import static uq.deco2800.ducktales.resources.ResourceType.SHEEPRight1;
+import static uq.deco2800.ducktales.resources.ResourceType.TREE_1;
+import static uq.deco2800.ducktales.resources.ResourceType.TREE_2;
+import static uq.deco2800.ducktales.resources.ResourceType.TREE_3;
+import static uq.deco2800.ducktales.resources.ResourceType.VOID;
+import static uq.deco2800.ducktales.resources.ResourceType.WATER;
+import static uq.deco2800.ducktales.resources.ResourceType.WOOD_BOX;
+import static uq.deco2800.ducktales.resources.ResourceType.YELLOW;
 
 
 /**
@@ -89,33 +137,36 @@ public class ResourceSpriteRegister {
 
 		// Agent entities
 		addResource(PEON, "/peon.png");
+		
 		addResource(DUCK, "/duck.png");
 		addResource(DUCK_1_1, "/animal/duck_1_1.png");
-		addResource(DUCKDOWN0, "/animal/duck/DUCKDown0.png");
-		addResource(DUCKDOWN1, "/animal/duck/DUCKDown1.png");
-		addResource(DUCKUP0, "/animal/duck/DUCKUp0.png");
-		addResource(DUCKUP1, "/animal/duck/DUCKUp1.png");
-		addResource(DUCKLEFT0, "/animal/duck/DUCKLeft0.png");
-		addResource(DUCKLEFT1, "/animal/duck/DUCKLeft1.png");
-		addResource(DUCKRIGHT0, "/animal/duck/DUCKRight0.png");
-		addResource(DUCKRIGHT1, "/animal/duck/DUCKRight1.png");
+
+		addResource(DUCKDown0, "/animal/duck/DUCKDown0.png");
+		addResource(DUCKDown1, "/animal/duck/DUCKDown1.png");
+		addResource(DUCKUp0, "/animal/duck/DUCKUp0.png");
+		addResource(DUCKUp1, "/animal/duck/DUCKUp1.png");
+		addResource(DUCKLeft0, "/animal/duck/DUCKLeft0.png");
+		addResource(DUCKLeft1, "/animal/duck/DUCKLeft1.png");
+		addResource(DUCKRight0, "/animal/duck/DUCKRight0.png");
+		addResource(DUCKRight1, "/animal/duck/DUCKRight1.png");
+
+		addResource(SHEEPDown0, "/animal/sheep/SHEEPDown0.png");
+		addResource(SHEEPDown1, "/animal/sheep/SHEEPDown1.png");
+		addResource(SHEEPUp0, "/animal/sheep/SHEEPUp0.png");
+		addResource(SHEEPUp1, "/animal/sheep/SHEEPUp1.png");
+		addResource(SHEEPLeft0, "/animal/sheep/SHEEPLeft0.png");
+		addResource(SHEEPLeft1, "/animal/sheep/SHEEPLeft1.png");
+		addResource(SHEEPRight0, "/animal/sheep/SHEEPRight0.png");
+		addResource(SHEEPRight1, "/animal/sheep/SHEEPRight1.png");
+		
         addResource(SHEEP, "/animal/sheep_with_wool.png");
 
 		addResource(COW, "/cow.png");
 		addResource(COW_FRONT_RIGHT, "/animal/cow_front_right.png");
-		// the following will be uncommented once the relevant resources
-		// are created and added to the game, @team pokeducks
-
-		// addResource(COWUpRight, "/COWUpRight.png");
+    	// addResource(COWUpRight, "/COWUpRight.png");
 		// addResource(COWUpLeft, "/COWUpLeft.png");
 		// addResource(COWDownRight, "/COWDownRight.png");
 		// addResource(COWDownLeft, "/COWDownLeft.png");
-
-		// addResource(SHEEP, "/sheep.png");
-		// addResource(SHEEPUpRight, "/SHEEPUpRight.png");
-		// addResource(SHEEPUpLeft, "/SHEEPUpLeft.png");
-		// addResource(SHEEPDownRight, "/SHEEPDownRight.png");
-		// addResource(SHEEPDownLeft, "/SHEEPDownLeft.png");
 
 		// Buildings
 
@@ -126,25 +177,25 @@ public class ResourceSpriteRegister {
 		// note from creator of ResourceType: please remember to use the enums from
 		// ResourceType enum class instead of the previous String implementation
 		
-		//addResource(MINE, "/mine.png");
-		//addResource(FARM, "/farm.png");
-		//addResource(QUARRY, "/quarry.png");
 		
+		//addResource(FARM, "/farm.png");
+		addResource(QUARRY, "/buildings/quarry.png");
 		addResource(PASTURE, "/buildings/pasture.png");
 		addResource(HOSPITAL, "/buildings/hospital.png");
 		addResource(BUTCHER, "/buildings/butcher.png");
 		addResource(BAKERY, "/buildings/bakery.png");
 		addResource(COMMUNITY_BUILDING, "/buildings/community_building.png");
-		addResource(CONSTRUCTION, "/buildings/construction.png");
-
-		addResource(HOUSE, "/house.png");
-		addResource(SAWMILL, "/sawmill.png");
-
-		//addResource(CEMETERY, "/cemetery.png");
-		//addResource(FARMHOUSE, "/farm+barn.png");
-		//addResource(BARN, "/barn.png");
-		//addResource(FORGE, "/forge.png");
-		//addResource(OBSERVATORY, "/observatory.png");
+		addResource(CONSTRUCTION, "/buildings/construction2.png");
+		addResource(CHURCH, "/buildings/church.png");
+		addResource(HOUSE, "/buildings/house.png");
+		addResource(SAWMILL, "/buildings/sawmill.png");
+		addResource(FORGE, "/buildings/forge.png");
+		addResource(OBSERVATORY, "/buildings/observatory.png");
+		addResource(MINE, "/buildings/mine.png");
+		addResource(CEMETERY, "/buildings/cemetery_small.png");
+		addResource(FARM, "/buildings/farmhouse.png");
+		//addResource(c, "/barn.png");
+		
 
 	}
 

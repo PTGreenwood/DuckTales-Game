@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="marketplacePane" prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uq.deco2800.ducktales.features.market.MarketManager">
+<VBox id="marketplacePanePropId" fx:id="marketplacePane" prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uq.deco2800.ducktales.features.market.MarketManager">
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <children>
@@ -16,32 +16,32 @@
             <Font size="18.0" />
           </font>
         </Label>
-            <AnchorPane prefHeight="400.0" prefWidth="206.0" style="-fx-background-color: #85C1BE;">
+            <AnchorPane prefHeight="405.0" prefWidth="266.0" style="-fx-background-color: black;">
                <children>
-                  <Button fx:id="currentTradesBtn" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#viewCurrentTrades" prefHeight="75.0" prefWidth="180.0" style="-fx-background-color: #0C8F8F; -fx-background-radius: 0px;" styleClass="menu" text="Current Trades" textFill="#edd75a">
+                  <Button fx:id="currentTradesBtn" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#viewCurrentTrades" prefHeight="75.0" prefWidth="245.0" style="-fx-background-color: #1b1464; -fx-background-radius: 0px; -fx-border-color: white;" styleClass="menu" text="All Trades" textFill="WHITE">
                      <font>
-                        <Font name="Helvetica Neue Bold" size="20.0" />
+                        <Font name="Press Start 2P" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="yourTradesBtn" layoutX="14.0" layoutY="114.0" mnemonicParsing="false" onAction="#viewYourTrades" prefHeight="75.0" prefWidth="180.0" style="-fx-background-color: #73B06F; -fx-background-radius: 0px;" text="Your Trades" textFill="#edd75a">
+                  <Button fx:id="yourTradesBtn" layoutX="14.0" layoutY="114.0" mnemonicParsing="false" onAction="#viewYourTrades" prefHeight="75.0" prefWidth="245.0" style="-fx-background-color: #1a1935; -fx-background-radius: 0px; -fx-border-color: white;" text="My Trades" textFill="WHITE">
                      <font>
-                        <Font name="Helvetica Neue Bold" size="20.0" />
+                        <Font name="Press Start 2P" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="yourOffersBtn" layoutX="14.0" layoutY="214.0" mnemonicParsing="false" onAction="#viewOffersTrades" prefHeight="75.0" prefWidth="180.0" style="-fx-background-radius: 0px; -fx-background-color: #73B06F;" text="Your Offers" textFill="#edd75a">
+                  <Button fx:id="yourOffersBtn" layoutX="14.0" layoutY="214.0" mnemonicParsing="false" onAction="#viewOffersTrades" prefHeight="75.0" prefWidth="245.0" style="-fx-background-radius: 0px; -fx-background-color: #1a1935; -fx-border-color: white;" text="Pending Offers" textFill="WHITE">
                      <font>
-                        <Font name="Helvetica Neue Bold" size="20.0" />
+                        <Font name="Press Start 2P" size="12.0" />
                      </font>
                   </Button>
                </children>
             </AnchorPane>
-            <Button fx:id="placeATradeBtn" layoutX="14.0" layoutY="311.0" mnemonicParsing="false" onAction="#viewPlaceATrade" prefHeight="75.0" prefWidth="180.0" style="-fx-background-radius: 0px; -fx-background-color: #73B06F;" text="Place a Trade" textFill="#edd75a">
+            <AnchorPane layoutX="261.0" prefHeight="405.0" prefWidth="595.0" style="-fx-background-color: black;" />
+            <StackPane id="vistaHolderPropId" fx:id="vistaHolder" layoutX="288.0" layoutY="15.0" prefHeight="375.0" prefWidth="550.0" style="-fx-background-color: #1b1464; -fx-border-color: white;" />
+            <Button fx:id="placeNewTradeBtn" layoutX="14.0" layoutY="313.0" mnemonicParsing="false" onAction="#viewPlaceATrade" prefHeight="75.0" prefWidth="245.0" style="-fx-background-radius: 0px; -fx-background-color: #1a1935; -fx-border-color: white;" text="Place New Trade" textFill="WHITE">
                <font>
-                  <Font name="Helvetica Neue Bold" size="20.0" />
+                  <Font name="Press Start 2P" size="12.0" />
                </font>
             </Button>
-            <AnchorPane layoutX="206.0" prefHeight="400.0" prefWidth="564.0" style="-fx-background-color: #85C1BE;" />
-            <StackPane fx:id="vistaHolder" layoutX="208.0" layoutY="15.0" prefHeight="372.0" prefWidth="550.0" style="-fx-background-color: #0C8F8F;" />
       </children>
     </AnchorPane>
   </children>
