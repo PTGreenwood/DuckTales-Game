@@ -121,7 +121,6 @@ public class EntityManager implements Tickable {
      */
     public void addWorldEntity(ResourceType entityType, int x, int y) {
         Entity entity = ResourceInfoRegister.getEntity(entityType, x, y);
-
         // Check if the entity has been registered
         if (entity != null) {
             // Get the size of the given entity
@@ -249,8 +248,7 @@ public class EntityManager implements Tickable {
     }
 
     @Override
-    public void tick() {
-
+    public void tick() {	
     }
 
 
