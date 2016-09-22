@@ -2,12 +2,16 @@ package uq.deco2800.ducktales.features.entities;
 
 import java.util.ArrayList;
 
+import org.apache.commons.lang3.tuple.Pair;
+
 import javafx.scene.layout.Pane;
 import uq.deco2800.ducktales.GameManager;
 import uq.deco2800.ducktales.World;
+import uq.deco2800.ducktales.features.entities.worldentities.Building;
 import uq.deco2800.ducktales.features.landscape.tiles.TileSprite;
 import uq.deco2800.ducktales.features.landscape.tiles.TilesManager;
 import uq.deco2800.ducktales.rendering.RenderingInformation;
+import uq.deco2800.ducktales.rendering.worlddisplay.WorldDisplayManager;
 import uq.deco2800.ducktales.resources.ResourceInfoRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.Tickable;
@@ -248,7 +252,7 @@ public class EntityManager implements Tickable {
     }
 
     @Override
-    public void tick() {	
+    public void tick() {
     }
 
 

@@ -1,7 +1,10 @@
 package uq.deco2800.ducktales.features.entities.worldentities;
 
+import uq.deco2800.ducktales.rendering.sprites.BuildingSprite;
 import uq.deco2800.ducktales.resources.ResourceType;
 import static uq.deco2800.ducktales.resources.ResourceType.*;
+
+import java.util.Random;
 
 /**
  * A Bakery. Class containing all properties and specifications of a 
@@ -24,6 +27,8 @@ public class Bakery extends Building {
 
 	/** The passability of this building */
 	public static final boolean PASSABLILITY = false;
+	
+	int count = 0;
 
 	/**
 	 * Initialise a new bakery. Requires the location of the bakery
@@ -62,6 +67,13 @@ public class Bakery extends Building {
 	 */
 	@Override
 	public void tick() {
+		Random random = new Random();
+		if (random.nextInt() < 10 && count == 0) {
+			//updateType(CEMETERY);
+			System.out.println("now a cemctery");
+			count = 1;
+			BuildingSprite update = new BuildingSprite(CEMETERY);
+		}
 		// To be implemented if there is to be animation of construction 
 	}	
 }

@@ -1,6 +1,9 @@
 package uq.deco2800.ducktales;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
+import org.apache.commons.lang3.tuple.Pair;
 
 import uq.deco2800.ducktales.features.entities.Entity;
 import uq.deco2800.ducktales.features.entities.agententities.AgentEntity;
@@ -134,7 +137,6 @@ public class World implements Tickable {
 		if (!entities.contains(entity)) {
 			// Add the entity
 			entities.add(entity);
-
 			// Set the tiles' worldEntity value and passability value
 			for (int x = 0; x < xLength; x++) {
 				for (int y = 0; y < yLength; y++) {
@@ -167,6 +169,15 @@ public class World implements Tickable {
 	 */
 	public int getEntitiesNumber() {
 		return this.entities.size();
+	}
+	
+	public HashMap<Object, Pair<Integer, Integer>> getEntities() {
+		HashMap<Object, Pair<Integer,Integer>> entitiesMap = new HashMap<Object, Pair<Integer, Integer>>();
+		for (Entity x : this.entities) {
+			Pair<Integer, Integer> pair = Pair.of((int) x.getX(), (int) x.getY());			
+			entitiesMap.put(x, pair);
+		}
+		return entitiesMap;
 	}
 
 	/**
@@ -203,6 +214,8 @@ public class World implements Tickable {
 					continue;
 				} else {
 					// This tile has something in it
+					System.out.println(startX-x);
+					System.out.println(tile.getTileType());
 					return false;
 				}
 			}
