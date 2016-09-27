@@ -1,6 +1,7 @@
 package uq.deco2800.ducktales.features.entities;
 
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 import javafx.scene.layout.Pane;
 import uq.deco2800.ducktales.GameManager;
@@ -8,6 +9,7 @@ import uq.deco2800.ducktales.World;
 import uq.deco2800.ducktales.features.landscape.tiles.TileSprite;
 import uq.deco2800.ducktales.features.landscape.tiles.TilesManager;
 import uq.deco2800.ducktales.rendering.RenderingInformation;
+import uq.deco2800.ducktales.rendering.sprites.SpritesFactory;
 import uq.deco2800.ducktales.resources.ResourceInfoRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.Tickable;
@@ -58,7 +60,7 @@ public class EntityManager implements Tickable {
 
     /**
      * Start the entity manager's cycles. First task is to check world for
-     * entities, and create the corresponding sprites
+     * entities, and createEntitySprite the corresponding sprites
      */
     public void startRoutine() {
         // Load the size register
@@ -97,7 +99,12 @@ public class EntityManager implements Tickable {
 
             // Add the sprite of the entity to the sprites list, and set the
             // position of that sprite
-            EntitySprite sprite = new EntitySprite(entitySprites.size(), entity.getType());
+            EntitySprite sprite = SpritesFactory.createEntitySprite(entitySprites.size(), entityType);
+            if (sprite == null) {
+                System.err.println("Sprite of type " + entityType + "" +
+                        " is not yet registered in SpritesFactory");
+                return;
+            }
             entitySprites.add(sprite);
             setupSprite(sprite, x, y);
             worldDisplay.getChildren().add(sprite);
@@ -137,7 +144,12 @@ public class EntityManager implements Tickable {
 
                 // Add the sprite of the entity to the sprites list, and set the
                 // position of that sprite
-                EntitySprite sprite = new EntitySprite(entitySprites.size(), entity.getType());
+                EntitySprite sprite = SpritesFactory.createEntitySprite(entitySprites.size(), entity.getType());
+                if (sprite == null) {
+                    System.err.println("Sprite of type " + entityType + "" +
+                            " is not yet registered in SpritesFactory");
+                    return;
+                }
                 entitySprites.add(sprite);
                 setupSprite(sprite, x, y);
                 worldDisplay.getChildren().add(sprite);
@@ -255,7 +267,7 @@ public class EntityManager implements Tickable {
 
 
     /**
-     * Check the given world for any existing entities, and create sprites for
+     * Check the given world for any existing entities, and createEntitySprite sprites for
      * each of them, and add the sprites to the world pane accordingly
      *
      * @param world

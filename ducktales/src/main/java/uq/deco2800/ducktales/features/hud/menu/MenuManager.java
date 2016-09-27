@@ -30,7 +30,7 @@ public class MenuManager implements Initializable, SecondaryManager{
      */
     // TODO: TO ADD NEW BUILDINGS, REGISTER THEIR NAMES HERE
     private static final ResourceType[] BUILDINGS = {
-    		BAKERY, BUTCHER, CEMETERY, CHURCH, COMMUNITY_BUILDING, FARM, 
+    		BAKERY, BUTCHER, CEMETERY, CHURCH, COMMUNITY_BUILDING, FARM,
     		FORGE, HOSPITAL, HOUSE, 
             MINE, OBSERVATORY, PASTURE, QUARRY, SAWMILL,
     };

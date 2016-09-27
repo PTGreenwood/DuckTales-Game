@@ -174,6 +174,7 @@ public class ResourceSpriteRegister {
 		addResource(BAKERY, "/buildings/bakery.png");
 		addResource(COMMUNITY_BUILDING, "/buildings/community_building.png");
 		addResource(CONSTRUCTION, "/buildings/construction2.png");
+		addResource(CONSTRUCTION_2, "/buildings/construction1_small.png");
 		addResource(CHURCH, "/buildings/church.png");
 		addResource(HOUSE, "/buildings/house.png");
 		addResource(SAWMILL, "/buildings/sawmill.png");
