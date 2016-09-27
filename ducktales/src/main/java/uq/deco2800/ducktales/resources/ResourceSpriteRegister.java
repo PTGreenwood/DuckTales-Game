@@ -69,7 +69,7 @@ import static uq.deco2800.ducktales.resources.ResourceType.YELLOW;
  *
  * This class is a singleton -- to get an instance of this class, you must call
  * ResourceSpriteRegister.getInstance(); you cannot instantiate it.
- * 
+ *
  * @author Anonymousthing, khoiphan21
  */
 public class ResourceSpriteRegister {
@@ -78,7 +78,7 @@ public class ResourceSpriteRegister {
 
 	/**
 	 * Returns the instance of {@link ResourceSpriteRegister}.
-	 * 
+	 *
 	 * @return Returns an instance of ResourceSpriteRegister.
 	 */
 	public static ResourceSpriteRegister getInstance() {
@@ -89,7 +89,7 @@ public class ResourceSpriteRegister {
 	 * The base height for a 1*1 tile.
 	 */
 	public static final int TILE_HEIGHT = 100;
-	
+
 	/**
 	 * The base width for a 1*1 tile.
 	 */
@@ -98,46 +98,98 @@ public class ResourceSpriteRegister {
 	// As we're a static instance we use a ConcurrentHashMap to prevent
 	// potential threading issues
 	private ConcurrentHashMap<ResourceType, Image> resourceTypeRegister;
-	private int currentCount;
 
 	private ResourceSpriteRegister() {
 		resourceTypeRegister = new ConcurrentHashMap<>();
-		currentCount = 0;
 
+		addTileResources();
+
+		addLandscapeResources();
+
+		addMiscellaneousResources();
+
+		addAgentEntitiesResources();
+
+		addBuildingResources();
+
+	}
+
+
+	/**
+	 * Adds a resource to the register.
+	 *
+	 * @param type
+	 *            The type of the resource
+	 * @param imageName
+	 *            The file name of the corresponding image
+	 */
+	private void addResource ( ResourceType type, String imageName) {
+		if (resourceTypeRegister.containsKey(type)) {
+			throw new RuntimeException(
+					"Attempted to add an already registered ResourceTypeInfo \""
+							+ type + "\" to a ResourceSpriteRegister");
+		}
+		resourceTypeRegister.put(type,
+				new Image(getClass().getResource(imageName).toString()));
+	};
+
+	/**
+	 * Retrieves the Image of the specified resource
+	 *
+	 * @param resourceType
+	 *            The type of the resource
+	 * @return The sprite Image of the resource
+	 */
+	public Image getResourceImage(ResourceType resourceType) {
+		if (!resourceTypeRegister.containsKey(resourceType))
+			throw new RuntimeException(
+					"Attempted to access non-registered ResourceTypeInfo of tile type \""
+							+ resourceType + "\" from a ResourceSpriteRegister");
+		return resourceTypeRegister.get(resourceType);
+	}
+
+
+	/**
+	 * Add the resources for the tiles
+	 */
+	private void addTileResources() {
 		// GROUND TILES
 		addResource(GRASS_1, "/tiles/grass_1.png");
 		addResource(GRASS_2, "/tiles/grass_2.png");
 		addResource(GRASS_3, "/tiles/grass_3.png");
 		addResource(GRASS_4, "/tiles/grass_4.png");
+	}
 
-		// OLD Ground tiles
+	/**
+	 * Add the resources for the buildings into the register
+	 */
+	private void addBuildingResources() {
+		//To be uncommented as the relevant graphics are created
 
-		/*---Landscape resources---*/
-		
-		addResource(VOID, "/black.png");
-		addResource(CYAN, "/cyan.png");
-		addResource(CYAN_CROSSED, "/cyan_crossed.png");
-		addResource(YELLOW, "/yellow.png");
+		//addResource(FARM, "/farm.png");
+		addResource(QUARRY, "/buildings/quarry.png");
+		addResource(PASTURE, "/buildings/pasture.png");
+		addResource(HOSPITAL, "/buildings/hospital.png");
+		addResource(BUTCHER, "/buildings/butcher.png");
+		addResource(BAKERY, "/buildings/bakery.png");
+		addResource(COMMUNITY_BUILDING, "/buildings/community_building.png");
+		addResource(CONSTRUCTION, "/buildings/construction2.png");
+		addResource(CHURCH, "/buildings/church.png");
+		addResource(HOUSE, "/buildings/house.png");
+		addResource(SAWMILL, "/buildings/sawmill.png");
+		addResource(FORGE, "/buildings/forge.png");
+		addResource(OBSERVATORY, "/buildings/observatory.png");
+		addResource(MINE, "/buildings/mine.png");
+		addResource(CEMETERY, "/buildings/cemetery_small.png");
+		addResource(FARM, "/buildings/farmhouse.png");
+		//addResource(c, "/barn.png");
 
-		addResource(WATER, "/water.png");
-		addResource(BLANK, "/blank.png");
+	}
 
-		// OLD Landscape entities
-
-		
-		/*---Object resources---*/
-		addResource(BOX, "/box2.png");
-		addResource(LONG_BOX, "/longbox.png");
-		addResource(WOOD_BOX, "/wood_stock.png");
-		addResource(TREE_1, "/tree_1.png");
-		addResource(TREE_2, "/tree_2.png");
-		addResource(TREE_3, "/tree_3.png");
-		addResource(ROCK_1, "/rock_1.png");
-		addResource(ROCK_2, "/rock_2.png");
-
+	private void addAgentEntitiesResources() {
 		// Agent entities
 		addResource(PEON, "/peon.png");
-		
+
 		addResource(DUCK, "/duck.png");
 		addResource(DUCK_1_1, "/animal/duck_1_1.png");
 
@@ -158,78 +210,43 @@ public class ResourceSpriteRegister {
 		addResource(SHEEPLeft1, "/animal/sheep/SHEEPLeft1.png");
 		addResource(SHEEPRight0, "/animal/sheep/SHEEPRight0.png");
 		addResource(SHEEPRight1, "/animal/sheep/SHEEPRight1.png");
-		
-        addResource(SHEEP, "/animal/sheep_with_wool.png");
+
+		addResource(SHEEP, "/animal/sheep_with_wool.png");
 
 		addResource(COW, "/cow.png");
 		addResource(COW_FRONT_RIGHT, "/animal/cow_front_right.png");
-    	// addResource(COWUpRight, "/COWUpRight.png");
+		// addResource(COWUpRight, "/COWUpRight.png");
 		// addResource(COWUpLeft, "/COWUpLeft.png");
 		// addResource(COWDownRight, "/COWDownRight.png");
 		// addResource(COWDownLeft, "/COWDownLeft.png");
-
-		// Buildings
-
-		
-		/*---Building resources---*/
-		
-		//To be uncommented as the relevant graphics are created
-		// note from creator of ResourceType: please remember to use the enums from
-		// ResourceType enum class instead of the previous String implementation
-		
-		
-		//addResource(FARM, "/farm.png");
-		addResource(QUARRY, "/buildings/quarry.png");
-		addResource(PASTURE, "/buildings/pasture.png");
-		addResource(HOSPITAL, "/buildings/hospital.png");
-		addResource(BUTCHER, "/buildings/butcher.png");
-		addResource(BAKERY, "/buildings/bakery.png");
-		addResource(COMMUNITY_BUILDING, "/buildings/community_building.png");
-		addResource(CONSTRUCTION, "/buildings/construction2.png");
-		addResource(CHURCH, "/buildings/church.png");
-		addResource(HOUSE, "/buildings/house.png");
-		addResource(SAWMILL, "/buildings/sawmill.png");
-		addResource(FORGE, "/buildings/forge.png");
-		addResource(OBSERVATORY, "/buildings/observatory.png");
-		addResource(MINE, "/buildings/mine.png");
-		addResource(CEMETERY, "/buildings/cemetery_small.png");
-		addResource(FARM, "/buildings/farmhouse.png");
-		//addResource(c, "/barn.png");
-		
-
 	}
 
 	/**
-	 * Adds a resource to the register.
-	 * 
-	 * @param type
-	 *            The type of the resource
-	 * @param imageName
-	 *            The file name of the corresponding image
+	 * Add the resources for landscape items such as rocks and trees
 	 */
-	private void addResource ( ResourceType type, String imageName) {
-		if (resourceTypeRegister.containsKey(type)) {
-			throw new RuntimeException(
-					"Attempted to add an already registered ResourceTypeInfo \""
-							+ type + "\" to a ResourceSpriteRegister");
-		}
-		resourceTypeRegister.put(type,
-				new Image(getClass().getResource(imageName).toString()));
-	};
+	private void addLandscapeResources() {
+		/*---Object resources---*/
+		addResource(BOX, "/box2.png");
+		addResource(LONG_BOX, "/longbox.png");
+		addResource(WOOD_BOX, "/wood_stock.png");
+		addResource(TREE_1, "/tree_1.png");
+		addResource(TREE_2, "/tree_2.png");
+		addResource(TREE_3, "/tree_3.png");
+		addResource(ROCK_1, "/rock_1.png");
+		addResource(ROCK_2, "/rock_2.png");
+	}
 
 	/**
-	 * Retrieves the Image of the specified resource
-	 * 
-	 * @param resourceType
-	 *            The type of the resource
-	 * @return The sprite Image of the resource
+	 * Miscellaneous resources - probably used for testing or debugging
 	 */
-	public Image getResourceImage(ResourceType resourceType) {
-		if (!resourceTypeRegister.containsKey(resourceType))
-			throw new RuntimeException(
-					"Attempted to access non-registered ResourceTypeInfo of tile type \""
-							+ resourceType + "\" from a ResourceSpriteRegister");
-		return resourceTypeRegister.get(resourceType);
+	private void addMiscellaneousResources() {
+		addResource(VOID, "/black.png");
+		addResource(CYAN, "/cyan.png");
+		addResource(CYAN_CROSSED, "/cyan_crossed.png");
+		addResource(YELLOW, "/yellow.png");
+
+		addResource(WATER, "/water.png");
+		addResource(BLANK, "/blank.png");
 	}
 
 }
