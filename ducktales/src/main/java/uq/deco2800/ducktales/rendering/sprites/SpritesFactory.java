@@ -100,12 +100,6 @@ public class SpritesFactory {
         sprite.setupAnimation(1.0); // Set up the actual animation, passing the duration
         sprite.startAnimation(); // Start the actual animation
 
-        // Setup the size of the sheep
-        sprite.setFitHeight(sprite.getLayoutBounds().getHeight() *
-                RenderingInformation.ANIMAL_SCALE);
-        sprite.setFitWidth(sprite.getLayoutBounds().getWidth() *
-                RenderingInformation.ANIMAL_SCALE);
-
         return sprite;
     }
 }
