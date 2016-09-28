@@ -14,8 +14,7 @@ import static uq.deco2800.ducktales.resources.ResourceType.CHURCH;
 import static uq.deco2800.ducktales.resources.ResourceType.COMMUNITY_BUILDING;
 import static uq.deco2800.ducktales.resources.ResourceType.CONSTRUCTION;
 import static uq.deco2800.ducktales.resources.ResourceType.COW;
-import static uq.deco2800.ducktales.resources.ResourceType.COWLeft0;
-import static uq.deco2800.ducktales.resources.ResourceType.COWRight0;
+import static uq.deco2800.ducktales.resources.ResourceType.COW_FRONT_RIGHT;
 import static uq.deco2800.ducktales.resources.ResourceType.CYAN;
 import static uq.deco2800.ducktales.resources.ResourceType.CYAN_CROSSED;
 import static uq.deco2800.ducktales.resources.ResourceType.DUCK;
@@ -213,8 +212,11 @@ public class ResourceSpriteRegister {
 		addResource(SHEEP, "/animal/sheep_with_wool.png");
 
 		addResource(COW, "/animal/cow/COW.png");
-		addResource(COWLeft0, "/animal/cow/COWLeft0.png");
-		addResource(COWRight0, "animal/cow/COWRight0.png");
+		// addResource(COWUpRight, "/COWUpRight.png");
+		// addResource(COWUpLeft, "/COWUpLeft.png");
+		// addResource(COWDownRight, "/COWDownRight.png");
+		// addResource(COWDownLeft, "/COWDownLeft.png");
+
 	}	
 	
 	/**

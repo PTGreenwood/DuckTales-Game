@@ -660,8 +660,6 @@ public class SpritesFactory {
         ResourceSpriteRegister register = ResourceSpriteRegister.getInstance();
         imageList.add(register.getResourceImage(ResourceType.COW));
         // BELOW THIS SHOULD BE THE REMAINING COW SPRITES TO CREATE THE ANIMATION
-        imageList.add(register.getResourceImage(ResourceType.COWLeft0));
-        imageList.add(register.getResourceImage(ResourceType.COWRight0));
 
         // After all images are set up, now call these methods to set up the
         // actual animation code
