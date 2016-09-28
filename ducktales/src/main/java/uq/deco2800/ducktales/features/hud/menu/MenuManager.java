@@ -1,23 +1,35 @@
 package uq.deco2800.ducktales.features.hud.menu;
 
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import uq.deco2800.ducktales.features.hud.menu.animal.AnimalMenuSprite;
-import uq.deco2800.ducktales.features.hud.menu.building.BuildingMenuSprite;
-import uq.deco2800.ducktales.rendering.RenderingInformation;
-import uq.deco2800.ducktales.rendering.info.WorldEntityInfo;
-import uq.deco2800.ducktales.resources.ResourceType;
-import uq.deco2800.ducktales.util.SecondaryManager;
-
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import static uq.deco2800.ducktales.resources.ResourceType.*;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
+import uq.deco2800.ducktales.features.hud.menu.animal.AnimalMenuSprite;
+import uq.deco2800.ducktales.features.hud.menu.building.BuildingMenuSprite;
+import uq.deco2800.ducktales.rendering.info.WorldEntityInfo;
+import uq.deco2800.ducktales.resources.ResourceType;
+import uq.deco2800.ducktales.util.SecondaryManager;
+
+import static uq.deco2800.ducktales.resources.ResourceType.BAKERY;
+import static uq.deco2800.ducktales.resources.ResourceType.BUTCHER;
+import static uq.deco2800.ducktales.resources.ResourceType.CEMETERY;
+import static uq.deco2800.ducktales.resources.ResourceType.CHURCH;
+import static uq.deco2800.ducktales.resources.ResourceType.COMMUNITY_BUILDING;
+import static uq.deco2800.ducktales.resources.ResourceType.DUCK;
+import static uq.deco2800.ducktales.resources.ResourceType.FARM;
+import static uq.deco2800.ducktales.resources.ResourceType.FORGE;
+import static uq.deco2800.ducktales.resources.ResourceType.HOSPITAL;
+import static uq.deco2800.ducktales.resources.ResourceType.HOUSE;
+import static uq.deco2800.ducktales.resources.ResourceType.MINE;
+import static uq.deco2800.ducktales.resources.ResourceType.OBSERVATORY;
+import static uq.deco2800.ducktales.resources.ResourceType.PASTURE;
+import static uq.deco2800.ducktales.resources.ResourceType.QUARRY;
+import static uq.deco2800.ducktales.resources.ResourceType.SAWMILL;
+import static uq.deco2800.ducktales.resources.ResourceType.SHEEP;
 
 /**
  * This manager manages the menu section of the HUD
@@ -36,7 +48,7 @@ public class MenuManager implements Initializable, SecondaryManager{
     };
     // TODO: TO ADD NEW ANIMALS, REGISTER THEIR NAMES HERE
     private static final ResourceType[] ANIMALS = {
-            SHEEP
+            SHEEP, DUCK
     };
     // enum to check which is selected, a BUILDING or an ANIMAL
     public enum MenuType {

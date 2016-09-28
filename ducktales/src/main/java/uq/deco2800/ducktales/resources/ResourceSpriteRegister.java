@@ -188,7 +188,7 @@ public class ResourceSpriteRegister {
 		// Agent entities
 		addResource(PEON, "/peon.png");
 
-		addResource(DUCK, "/duck.png");
+		addResource(DUCK, "/animal/duck/DUCKDown0.png");
 		addResource(DUCK_1_1, "/animal/duck_1_1.png");
 
 		addResource(DUCKDown0, "/animal/duck/DUCKDown0.png");
