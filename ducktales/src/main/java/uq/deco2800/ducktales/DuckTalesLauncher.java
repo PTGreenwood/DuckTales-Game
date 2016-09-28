@@ -26,8 +26,6 @@ import uq.deco2800.singularity.common.representations.User;
  */
 public class DuckTalesLauncher extends Application {
 	private String version = "0.1";
-	
-	public DucktalesClient client;
 
 	@FXML
 	private static AnchorPane contentPane;
@@ -46,18 +44,6 @@ public class DuckTalesLauncher extends Application {
 		Parent root = fxmlLoader.load(location.openStream());
 		
 		Scene scene = new Scene(root, 1295, 737);	
-		
-		// Create an instance of the DuckTalesClient
-		client = new DucktalesClient(null, 8080);
-		
-		User test = new User("mcDuck", "Ducky", "Mc", "DuckFace", "duckLyfe");
-		
-		try {
-			client.createUser(test);
-		} catch (JsonProcessingException | WebApplicationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
 		DuckTalesController ducktalesController = fxmlLoader.getController(); // link the controller to the FXML file
 		primaryStage.setTitle("DuckTales v" + version);

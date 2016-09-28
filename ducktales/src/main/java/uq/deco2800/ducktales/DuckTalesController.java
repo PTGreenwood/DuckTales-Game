@@ -5,10 +5,6 @@ import java.util.ResourceBundle;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import javax.ws.rs.WebApplicationException;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-
 import javafx.scene.layout.*;
 import uq.deco2800.ducktales.deprecated.OldGameController;
 import uq.deco2800.ducktales.deprecated.ui.*;
@@ -68,6 +64,8 @@ public class DuckTalesController implements Initializable {
 
 	public Stage tutorialStage;
 	public Stage marketplaceStage;
+	
+	public DucktalesClient client;
 
 	/**
 	 * Main constructor of the {@link DuckTalesController} class.
@@ -90,6 +88,8 @@ public class DuckTalesController implements Initializable {
 		gameWindow.setOnKeyPressed(new KeyboardHandler());
 		gameWindow.setOnKeyReleased(new KeyboardHandler());
 		
+		// Create an instance of the duckTales Restful Client
+		client = new DucktalesClient();
 		
 	}
 
