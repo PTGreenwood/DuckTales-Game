@@ -212,6 +212,7 @@ public class ResourceSpriteRegister {
 
 		addResource(SHEEP, "/animal/sheep_with_wool.png");
 
+		addResource(COW_1, "/animal/COW.png");
 		addResource(COW, "/animal/cow/COW.png");
 		addResource(COWLeft0, "/animal/cow/COWLeft0.png");
 		addResource(COWRight0, "animal/cow/COWRight0.png");
