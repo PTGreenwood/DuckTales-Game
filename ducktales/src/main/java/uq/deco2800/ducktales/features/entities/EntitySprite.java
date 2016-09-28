@@ -2,6 +2,7 @@ package uq.deco2800.ducktales.features.entities;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import uq.deco2800.ducktales.rendering.sprites.Sprite;
 import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
 
@@ -12,7 +13,7 @@ import uq.deco2800.ducktales.resources.ResourceType;
  * Created on 8/09/2016.
  * @author khoiphan21
  */
-public class EntitySprite extends ImageView {
+public class EntitySprite extends Sprite {
 
     /** The index of this sprite which corresponds to the index of the entity */
     private int index;
@@ -24,6 +25,8 @@ public class EntitySprite extends ImageView {
     private ResourceSpriteRegister resource;
 
     public EntitySprite(int index, ResourceType entityType) {
+        super(); // Call this to activate the Timeline
+
         this.index = index;
         this.entityType = entityType;
         this.resource = ResourceSpriteRegister.getInstance();
