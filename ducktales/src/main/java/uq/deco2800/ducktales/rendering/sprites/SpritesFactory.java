@@ -453,7 +453,7 @@ public class SpritesFactory {
         ResourceSpriteRegister register = ResourceSpriteRegister.getInstance();
 
         // Now add all the images representing the animation here, one-by-one
-        //imageList.add(register.getResourceImage(ResourceType.DIRT_1));  DOES NOT WORK
+        //imageList.add(register.getResourceImage(ResourceType.DIRT_1));
         imageList.add(register.getResourceImage(ResourceType.CONSTRUCTION_2));
         imageList.add(register.getResourceImage(ResourceType.CONSTRUCTION));
         imageList.add(register.getResourceImage(ResourceType.OBSERVATORY));
