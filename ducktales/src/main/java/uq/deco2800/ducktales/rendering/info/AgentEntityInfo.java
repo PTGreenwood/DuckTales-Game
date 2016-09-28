@@ -21,7 +21,7 @@ public class AgentEntityInfo {
 
     /** REGISTERED AGENT TYPES */
     private static final ResourceType[] agentTypes = {
-        SHEEP, COW_1, DUCK_1_1
+        SHEEP, COW, DUCK_1_1
     };
 
     /** The variable containing the information of each agent type */

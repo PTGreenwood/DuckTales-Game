@@ -32,7 +32,7 @@ public enum ResourceType {
 
         DUCKDown0, DUCKDown1, DUCKLeft0, DUCKLeft1, DUCKRight0, DUCKRight1, DUCKUp0, DUCKUp1,
 
-        COW, COWLeft0, COWRight0, COW_1,
+        COW, COWLeft0, COWRight0,
 
         SHEEPUp0, SHEEPUp1, SHEEPDown0, SHEEPDown1, SHEEPLeft0, SHEEPLeft1, SHEEPRight0, SHEEPRight1, SHEEP,
 
