@@ -1,15 +1,10 @@
 package uq.deco2800.ducktales;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
-import org.apache.commons.lang3.tuple.Pair;
 
 import uq.deco2800.ducktales.features.entities.Entity;
-import uq.deco2800.ducktales.features.entities.agententities.AgentEntity;
 
-import uq.deco2800.ducktales.features.entities.worldentities.Bakery;
-import uq.deco2800.ducktales.features.entities.worldentities.WorldEntity;
 import uq.deco2800.ducktales.resources.ResourceInfoRegister;
 import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 
@@ -169,15 +164,6 @@ public class World implements Tickable {
 	 */
 	public int getEntitiesNumber() {
 		return this.entities.size();
-	}
-	
-	public HashMap<Object, Pair<Integer, Integer>> getEntities() {
-		HashMap<Object, Pair<Integer,Integer>> entitiesMap = new HashMap<Object, Pair<Integer, Integer>>();
-		for (Entity x : this.entities) {
-			Pair<Integer, Integer> pair = Pair.of((int) x.getX(), (int) x.getY());			
-			entitiesMap.put(x, pair);
-		}
-		return entitiesMap;
 	}
 
 	/**
