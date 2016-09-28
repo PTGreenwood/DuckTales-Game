@@ -37,6 +37,8 @@ public class SpritesFactory {
                 return createSheep(index, ResourceType.SHEEP);
             case DUCK:
                 return createDuck(index, ResourceType.DUCK);
+            case COW:
+            	return createCow(index, ResourceType.COW);
             case HOSPITAL:
                 return createHospital(index, ResourceType.HOSPITAL);
             case BAKERY:
@@ -656,7 +658,7 @@ public class SpritesFactory {
         // Setup the frames for the animation
         List<Image> imageList = new ArrayList<>();
         ResourceSpriteRegister register = ResourceSpriteRegister.getInstance();
-        imageList.add(register.getResourceImage(ResourceType.COW_FRONT_RIGHT));
+        imageList.add(register.getResourceImage(ResourceType.COW));
         // BELOW THIS SHOULD BE THE REMAINING COW SPRITES TO CREATE THE ANIMATION
 
         // After all images are set up, now call these methods to set up the
