@@ -17,6 +17,9 @@ public class Quarry extends Building {
 	// Building health - starting value
 	private int health = 1300;
 	
+	// Building production - starting amount
+	private int productionAmount = 5;
+	
 	// Size of the building
 	public static final int X_LENGTH = 5;
 	public static final int Y_LENGTH = 5;
@@ -32,13 +35,14 @@ public class Quarry extends Building {
 	public Quarry(double x, double y) {
 		super(x, y, X_LENGTH, Y_LENGTH, TYPE);
 		health = 1300;
+		productionAmount = 5;
 	}
 	
 	/**
 	 * Update the WorldEntity properties with those of a quarry.
 	 */
 	protected void specifications() {
-		specifications(8, 6, 5, production.STONE, 5, health);
+		specifications(8, 6, 5, production.STONE, productionAmount, health);
 	}
 	
 	/**
@@ -52,14 +56,14 @@ public class Quarry extends Building {
 	}
 	
 	/**
-	 * Method to update a quarry at each discrete simulation step.
+	 * Method to update the production amount of a quarry. Feature of an 
+	 * upgraded quarry. Requires an integer value of the produce to be passed.
 	 * 
-	 * Note sure if any implementation will be used. To be determined later
-	 * May implement for only some of the classes (hence left in the individual 
-	 * buildings class files).
+	 * @param newProduce, the new production amount
 	 */
-	@Override
-	public void tick() {
-		// To be implemented if there is to be animation of construction
+	public void upgradeProduce(int newProduce) {
+		if (newProduce >= 0) {
+			productionAmount = newProduce;
+		}
 	}
 }

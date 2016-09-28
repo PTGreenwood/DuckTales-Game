@@ -80,7 +80,7 @@ public class GameManager {
     private ThreatManager threatManager;
     private InventoryManager inventoryContainer;
     /**
-     * Instantiate an empty game manager and create a new default world
+     * Instantiate an empty game manager and createEntitySprite a new default world
      */
     public GameManager(Pane root) {
         // Instantiate an empty game manager without a pre-loaded world.
