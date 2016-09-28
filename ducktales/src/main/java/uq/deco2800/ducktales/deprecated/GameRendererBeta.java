@@ -41,7 +41,7 @@ public class GameRendererBeta extends AnimationTimer {
     };
     // TODO: TO ADD NEW ANIMALS, REGISTER THEIR NAMES HERE
     private static final ResourceType[] ANIMALS = {
-        SHEEP, COW, DUCK_1_1
+        SHEEP, COW_FRONT_RIGHT, DUCK_1_1
     };
 
     /** Variables to control movement of the world scene */
