@@ -138,7 +138,19 @@ public class Peon extends AgentEntity {
 	public double getSpeed() {
 		return this.speed;
 	}
-
+	
+	/**
+	 * Set up an value of peon can carry the 
+	 * resource start up from 0
+	 * @param newResource
+	 */	
+	public void setResource(int newResource) {
+		if (newResource> 1) {
+			this.resource = newResource;
+		} else  {
+			this.resource = 0;
+		}
+	}	
 	/**
 	 * Return the Peon's resource value
 	 *
@@ -147,7 +159,7 @@ public class Peon extends AgentEntity {
 	public int getResources() {
 		return resource;
 	}
-
+	
 	/**
 	 * Stores what job the peon has
 	 *
@@ -266,7 +278,7 @@ public class Peon extends AgentEntity {
 	public int getIntelligence() {
 		return intelligence;
 	}
-        public void setIntelligence(int intellgience){
+        public void setIntelligence(int intelligence){
             this.intelligence=intelligence;
         }
 
@@ -336,8 +348,16 @@ public class Peon extends AgentEntity {
 	public List<PeonBuffType> getBuffs() {
 		return this.buffs;
 	}
-
-
+        /**
+         * Increases amount of buildings made
+         */
+        public void madeABuilding(){
+            this.buildingsMade++;
+        }
+        /**
+         * 
+         * @return amount of buildings made
+         */
         public int getBuildingsMade() {
             return this.buildingsMade;
         }

@@ -32,4 +32,24 @@ public class MinerTest {
             assertEquals(peon.applyForJob(miner),"Peon intelligence is not high enough");
         }
     }
+    @Test
+    public void MinerMentorTest(){
+        Peon peon = new Peon(10, 10);
+        peon.setStrength(miner.getMentorStrength()-1);
+        peon.setIntelligence(miner.getMentorIntelligence()-1);
+        peon.applyForJob(miner);
+        // peon doesn't have the intelligence or strength to be mentor
+        assertFalse(miner.canBeMentor(peon));
+        // peon has the intelligence but not the strength
+        peon.setIntelligence(miner.getMentorIntelligence()+1);
+        assertFalse(miner.canBeMentor(peon));
+        // peon has the strength but not the intelligence
+        peon.setStrength(miner.getMentorStrength()+1);
+        peon.setIntelligence(miner.getMentorIntelligence()-1);
+        assertFalse(miner.canBeMentor(peon));
+        // can be mentor
+        peon.setStrength(miner.getMentorStrength()+1);
+        peon.setIntelligence(miner.getMentorIntelligence()+1);
+        assertTrue(miner.canBeMentor(peon));
+    }
 }

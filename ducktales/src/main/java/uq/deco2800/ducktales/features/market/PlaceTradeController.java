@@ -54,19 +54,7 @@ public class PlaceTradeController {
 	@FXML
 	public void initialize() {
 		
-		// Get the list of item Name
-		Set<String> inventoryItemNames = 
-				this.marketManager.getUserInventoryItemNames();
-		
-		// Populate the item name combo box
-		
-		for (String itemName: inventoryItemNames) {
-			itemNameCombo.getItems().add(itemName);
-		}
-		
-		// Set the user name label to the current user text
-		userLabel.setText("User: " + this.marketManager.getUserName());
-		
+		updateView();
 		
 	}
 	
@@ -79,22 +67,27 @@ public class PlaceTradeController {
 		
 		String selectedItemName = itemNameCombo.getValue();
 		
-		// Set the quantityLabel to the default
-		quantityLabel.setText("Quantity");
-		
-		// Update the itemNameLabel
-		itemNameLabel.setText(selectedItemName);
-		
-		// Load the required possible quantities in the quantity combobox.
-		int maxAmount = marketManager.getInventoryAmountForItem(
-				selectedItemName);
-		
-		// Clear the contents of the quantity combobox.
-		quantityCombo.getItems().clear();
-		
-		for (int i = 1; i <= maxAmount; i++) {
-			quantityCombo.getItems().add(i);
+		if (selectedItemName != null) {
+			// Set the quantityLabel to the default
+			quantityLabel.setText("Quantity");
+			
+			// Update the itemNameLabel
+			itemNameLabel.setText(selectedItemName);
+			
+			// Load the required possible quantities in the quantity combobox.
+			int maxAmount = marketManager.getInventoryAmountForItem(
+					selectedItemName);
+			
+			// Clear the contents of the quantity combobox.
+			quantityCombo.getItems().clear();
+			
+			for (int i = 1; i <= maxAmount; i++) {
+				quantityCombo.getItems().add(i);
+			}
+			
 		}
+		
+		
 		
 	}
 	
@@ -105,9 +98,20 @@ public class PlaceTradeController {
 	@FXML
 	void quantitySelected() {
 		
-		// Update the quantity Label
-		quantityLabel.setText("Amount: " + 
-				quantityCombo.getValue().toString());	
+		Integer quantity = quantityCombo.getValue();
+		
+		
+		if (quantity != null) {
+			// Update the quantity Label
+			quantityLabel.setText("Amount: " + 
+					quantityCombo.getValue().toString());
+			
+		} else {
+			// Set the quantityLabel to the default
+			quantityLabel.setText("Quantity");
+		}
+		
+			
 	}
 	
 	/**
@@ -130,6 +134,47 @@ public class PlaceTradeController {
 			
 		}
 		
+		// Create a new trade
+		marketManager.createNewTradeOffer(itemName, quantity);
+		
+		// Update the view
+		updateView();
+	
+	}
+	
+	/** 
+	 * Updates all the necessary views.
+	 */
+	void updateView() {
+		
+		clearView();
+		
+		// Get the list of item Name
+		Set<String> inventoryItemNames = 
+				this.marketManager.getUserInventoryItemNames();
+		
+		// Populate the item name combo box
+		
+		for (String itemName: inventoryItemNames) {
+			itemNameCombo.getItems().add(itemName);
+		}
+		
+		// Set the user name label to the current user text
+		userLabel.setText("User: " + this.marketManager.getUserName());
+		
+	}
+	
+	/**
+	 * Clears the current view.
+	 */
+	void clearView() {
+		itemNameCombo.getSelectionModel().clearSelection();
+		itemNameCombo.setValue(null);
+		quantityCombo.getSelectionModel().clearSelection();
+		quantityCombo.setValue(null);
+		
+		itemNameCombo.getItems().clear();
+		quantityCombo.getItems().clear();
 	}
 
 }

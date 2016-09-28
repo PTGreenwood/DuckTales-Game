@@ -53,7 +53,7 @@ public class FireGod extends DuckGods {
 	}
     		
 	public void giveaward() {
-		if(isWorshiped= true){
+		if(isWorshiped == true){
        /**Peon.speed= Peon.speed*2;
 		*need to change Speed visibility to public
 		*/
@@ -62,7 +62,7 @@ public class FireGod extends DuckGods {
 	}
 	
 	public void givepenalty() {
-		if(isSelected=true&&isWorshiped==false){
+		if(isSelected==true&&isWorshiped==false){
 	  /**Peon.speed= Peon.speed*0.8;
 	   *need to change Speed visibility to public
 	   *more penalty detail

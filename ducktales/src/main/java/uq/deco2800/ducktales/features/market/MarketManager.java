@@ -21,6 +21,7 @@ import javafx.scene.layout.VBox;
  */
 public class MarketManager {
 	
+	/** The model that stores and handles access to the market data */
 	private MarketModel marketModel;
 
 	/** The root pane where everything else is added onto */
@@ -39,11 +40,12 @@ public class MarketManager {
     @FXML
     private Button yourOffersBtn;
     @FXML
-    private Button placeATradeBtn;
+    private Button placeNewTradeBtn;
     
     /** Selected navigation button background colour **/ 
     private static final String BTN_SELECTED = "#1b1464";
     
+    /** The border colour of the buttons when selected. */
     private static final String BTN_BORDER_COLOUR = "white";
     
     /** Deselected navigation button background colour **/
@@ -51,12 +53,13 @@ public class MarketManager {
     
     /** Enum corresponding to the navigation buttons**/
     public enum Vista {
-    	ALLTRADES, YOURTRADES, YOUROFFERS, PLACEATRADE 
+    	ALLTRADES, YOURTRADES, YOUROFFERS, PLACENEWTRADE 
     }
     
     /**String for the background color**/
     String backgroundColorString = "-fx-background-color: ";
     
+    /** The javafx styling prefix for colouring g */
     String btnColorString = "-fx-border-color: ";
     
     /** The enum of the currently selected navigation button.**/
@@ -76,6 +79,9 @@ public class MarketManager {
     	
     }
     
+    /**
+	 * Continues set up once initial GUI elements have been created.
+	 */
     @FXML
 	public void initialize() {
     	MarketVistaNavigator.loadVista(MarketVistaNavigator.ALL_TRADES);
@@ -99,16 +105,56 @@ public class MarketManager {
     	return marketModel.getUserInventory();
     }
     
+    /**
+     * Returns the name of the items currently in the user's inventory.
+     *  
+     * @return name of items in inventory.
+     */
     public Set<String> getUserInventoryItemNames() {
     	return marketModel.getUserInventoryItemNames();
     }
     
+    /**
+     * 
+     * Returns the amount of a particular item in inventory.
+     * 
+     * @param item The name of the inventory item.
+     * 
+     * @return The amount of the item in the user's inventory.
+     */
     public int getInventoryAmountForItem(String item) {
     	return marketModel.getInventoryAmountForItem(item);
     }
     
+    /** Returns the user name of the current user */
     public String getUserName() {
     	return marketModel.getUserName();
+    }
+    
+    /**
+     *  returns the offers that a user has made and the corresponding trade.
+     */
+    public HashMap<MocTrade, MocTrade> getUserOffers() {
+    	return marketModel.getUserOffers();
+    }
+    
+    /**
+     * Creates a new trade offer for the given item type and amount.
+     * 
+     * @param item The type of the item begin offered.
+     * @param amount The amount of offered item.
+     */
+    public void createNewTradeOffer(String item, int amount) {
+    	marketModel.createNewTradeOffer(item, amount);
+    }
+    
+    /**
+     * Returns the trades that the user has posted.
+     * 
+     * @return The trades that a user has posted.
+     */
+    public List<MocTrade> getTradesForLoggedInUser() {
+    	return this.marketModel.getTradesForLoggedInUser();
     }
     
 
@@ -143,7 +189,6 @@ public class MarketManager {
     void viewYourTrades(ActionEvent event) {
         MarketVistaNavigator.loadVista(MarketVistaNavigator.YOUR_TRADES);
         
-        
         deselectButton(selectedVista);
         selectButton(Vista.YOURTRADES);
         
@@ -171,7 +216,7 @@ public class MarketManager {
     	MarketVistaNavigator.loadVista(MarketVistaNavigator.PLACE_A_TRADE);
     	
     	deselectButton(selectedVista);
-        selectButton(Vista.PLACEATRADE);
+        selectButton(Vista.PLACENEWTRADE);
     }
     
     /**
@@ -198,7 +243,7 @@ public class MarketManager {
     			    		+ btnColorString+BTN_BORDER_COLOUR);
     			break;
     			
-    		case PLACEATRADE: placeATradeBtn.setStyle(
+    		case PLACENEWTRADE: placeNewTradeBtn.setStyle(
     				backgroundColorString+BTN_NOT_SELECTED + "; " 
     			    		+ btnColorString+BTN_BORDER_COLOUR);
     			break;
@@ -236,10 +281,10 @@ public class MarketManager {
     			selectedVista = Vista.YOUROFFERS;
     			break;
     			
-    		case PLACEATRADE: placeATradeBtn.setStyle(
+    		case PLACENEWTRADE: placeNewTradeBtn.setStyle(
     				backgroundColorString+BTN_SELECTED + "; " 
     			    		+ btnColorString+BTN_BORDER_COLOUR);
-    			selectedVista = Vista.PLACEATRADE;
+    			selectedVista = Vista.PLACENEWTRADE;
     			break;
     			
     		default: break;
