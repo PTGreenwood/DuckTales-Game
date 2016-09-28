@@ -61,7 +61,7 @@ public class Mine extends Building {
 	 * 
 	 * @param newProduce, the new production amount
 	 */
-	protected void upgradeProduce(int newProduce) {
+	public void upgradeProduce(int newProduce) {
 		if (newProduce >= 0) {
 			productionAmount = newProduce;
 		}

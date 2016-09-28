@@ -383,6 +383,19 @@ public class BuildingTest {
 		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
 		entity3.changeHealth(-10);
 		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
+		
+		// Check change health, valid (decrease)
+		entity3.upgradeProduce(10);
+		assertTrue("Incorrect Health", entity3.resourcesProductionAmount() == 10);
+		// Check change health, invalid (=0)
+		entity3.upgradeProduce(0);
+		assertTrue("Incorrect Health", entity3.resourcesProductionAmount() == 0);
+		// Check change health, valid (increase)
+		entity3.upgradeProduce(978000);
+		assertTrue("Incorrect Health", entity3.resourcesProductionAmount() == 978000);
+		// Check change health, invalid (<0)
+		entity3.upgradeProduce(-10);
+		assertTrue("Incorrect Health", entity3.resourcesProductionAmount() == 978000);
 	}
 	
 	/**
@@ -627,6 +640,19 @@ public class BuildingTest {
 		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
 		entity3.changeHealth(-10);
 		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
+		
+		// Check change health, valid (decrease)
+		entity3.upgradeProduce(10);
+		assertTrue("Incorrect Health", entity3.resourcesProductionAmount() == 10);
+		// Check change health, invalid (=0)
+		entity3.upgradeProduce(0);
+		assertTrue("Incorrect Health", entity3.resourcesProductionAmount() == 0);
+		// Check change health, valid (increase)
+		entity3.upgradeProduce(978000);
+		assertTrue("Incorrect Health", entity3.resourcesProductionAmount() == 978000);
+		// Check change health, invalid (<0)
+		entity3.upgradeProduce(-10);
+		assertTrue("Incorrect Health", entity3.resourcesProductionAmount() == 978000);
 	}
 	
 	/**
@@ -815,6 +841,19 @@ public class BuildingTest {
 		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
 		entity3.changeHealth(-10);
 		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
+		
+		// Check change health, valid (decrease)
+		entity3.upgradeProduce(10);
+		assertTrue("Incorrect Health", entity3.resourcesProductionAmount() == 10);
+		// Check change health, invalid (=0)
+		entity3.upgradeProduce(0);
+		assertTrue("Incorrect Health", entity3.resourcesProductionAmount() == 0);
+		// Check change health, valid (increase)
+		entity3.upgradeProduce(978000);
+		assertTrue("Incorrect Health", entity3.resourcesProductionAmount() == 978000);
+		// Check change health, invalid (<0)
+		entity3.upgradeProduce(-10);
+		assertTrue("Incorrect Health", entity3.resourcesProductionAmount() == 978000);
 	}
 	
 	/**
@@ -1119,6 +1158,19 @@ public class BuildingTest {
 		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
 		entity3.changeHealth(-10);
 		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
+		
+		// Check change health, valid (decrease)
+		entity3.upgradeProduce(10);
+		assertTrue("Incorrect Health", entity3.resourcesProductionAmount() == 10);
+		// Check change health, invalid (=0)
+		entity3.upgradeProduce(0);
+		assertTrue("Incorrect Health", entity3.resourcesProductionAmount() == 0);
+		// Check change health, valid (increase)
+		entity3.upgradeProduce(978000);
+		assertTrue("Incorrect Health", entity3.resourcesProductionAmount() == 978000);
+		// Check change health, invalid (<0)
+		entity3.upgradeProduce(-10);
+		assertTrue("Incorrect Health", entity3.resourcesProductionAmount() == 978000);
 	}
 	
 	/**
