@@ -639,4 +639,32 @@ public class SpritesFactory {
 
         return sprite;
     }
+    
+    /**
+     * Create and return a generic cow sprite.
+     * @param index
+     *     The index of the sprite
+     * @param entityType
+     *     The type of the sprite
+     *
+     * @return the sprite of a generic duck
+     */
+    private static EntitySprite createCow(int index, ResourceType entityType) {
+        // The sprite to be returned
+        EntitySprite sprite = new EntitySprite(index, entityType);
+
+        // Setup the frames for the animation
+        List<Image> imageList = new ArrayList<>();
+        ResourceSpriteRegister register = ResourceSpriteRegister.getInstance();
+        imageList.add(register.getResourceImage(ResourceType.COW_FRONT_RIGHT));
+        // BELOW THIS SHOULD BE THE REMAINING COW SPRITES TO CREATE THE ANIMATION
+
+        // After all images are set up, now call these methods to set up the
+        // actual animation code
+        sprite.setImageList(imageList); // Give the interpolator the list of images
+        sprite.setupAnimation(1.0); // Set up the actual animation, passing the duration
+        sprite.startAnimation(); // Start the actual animation
+
+        return sprite;
+    }
 }
