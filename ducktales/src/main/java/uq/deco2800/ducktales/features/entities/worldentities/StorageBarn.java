@@ -1,6 +1,7 @@
 package uq.deco2800.ducktales.features.entities.worldentities;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.commons.lang3.tuple.Triple;
 
@@ -97,7 +98,7 @@ public class StorageBarn extends Building {
 	 * 
 	 * @return the storage barn capacity, and current inventory.
 	 */
-	public ArrayList<Triple<production, Integer, Integer>> getStorage() {
+	public List<Triple<production, Integer, Integer>> getStorage() {
 		return storage;
 	}
 	

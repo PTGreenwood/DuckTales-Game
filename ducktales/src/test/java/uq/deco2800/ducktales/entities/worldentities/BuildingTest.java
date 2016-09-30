@@ -145,6 +145,8 @@ public class BuildingTest {
 		assertEquals(entity3.getStorage().toString(), "[(WOOD,20,20), (STONE,15,0), (ORE,30,23), (FOOD,25,15)]");
 		entity3.addGoods(production.ORE, -10);
 		assertEquals(entity3.getStorage().toString(), "[(WOOD,20,20), (STONE,15,0), (ORE,30,13), (FOOD,25,15)]");
+		entity3.addGoods(null, -10);
+		assertEquals(entity3.getStorage().toString(), "[(WOOD,20,20), (STONE,15,0), (ORE,30,13), (FOOD,25,15)]");
 	}
 	
 	/**
