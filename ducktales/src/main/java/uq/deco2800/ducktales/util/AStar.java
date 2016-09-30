@@ -78,7 +78,8 @@ public class AStar {
 		Tuple min = null;
 
 		for (Tuple tuple : tuples) {
-			double tupleFScore = fScores.getOrDefault(tuple, Double.MAX_VALUE / 2);
+			double tupleFScore = 
+					fScores.getOrDefault(tuple, Double.MAX_VALUE / 2);
 			if (tupleFScore < minF) {
 				minF = tupleFScore;
 				min = tuple;
@@ -89,7 +90,8 @@ public class AStar {
 	}
 
 	private static double heuristicCostEstimate(Tuple node, Tuple goal) {
-		return Math.pow(node.x - goal.x, 2) + Math.pow(node.y - goal.y, 2);
+		return (double) Math.pow( (double) node.x - goal.x, 2) 
+				+  Math.pow( (double) node.y - goal.y, 2);
 	}
 
 	private static List<Tuple> getAdjacentNodes(Tuple tuple, World world) {

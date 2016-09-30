@@ -174,4 +174,16 @@ public abstract class Building extends WorldEntity {
 			changeHealthBuilding(newValue);
 		}
 	}
+	
+	/**
+	 * Method to update butcher at each discrete simulation step.
+	 * 
+	 * Note sure if any implementation will be used. To be determined later
+	 * May implement for only some of the classes (hence left in the individual 
+	 * buildings class files).
+	 */
+	@Override
+	public void tick() {
+		// Not required
+	}
 }

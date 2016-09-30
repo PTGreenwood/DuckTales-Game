@@ -1,6 +1,5 @@
 package uq.deco2800.ducktales.rendering.sprites;
 
-import javafx.scene.image.ImageView;
 import uq.deco2800.ducktales.resources.ResourceType;
 
 /**
@@ -12,7 +11,7 @@ import uq.deco2800.ducktales.resources.ResourceType;
  *
  * @author khoiphan21
  */
-public class BuildingSprite extends ImageView{
+public class BuildingSprite extends Sprite {
     /** The type of this building */
     protected ResourceType buildingType;
 

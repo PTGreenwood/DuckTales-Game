@@ -1,9 +1,57 @@
 package uq.deco2800.ducktales.resources;
 
+import java.util.concurrent.ConcurrentHashMap;
+
 import javafx.scene.image.Image;
 
-import java.util.concurrent.ConcurrentHashMap;
 import static uq.deco2800.ducktales.resources.ResourceType.*;
+
+import static uq.deco2800.ducktales.resources.ResourceType.BAKERY;
+import static uq.deco2800.ducktales.resources.ResourceType.BLANK;
+import static uq.deco2800.ducktales.resources.ResourceType.BOX;
+import static uq.deco2800.ducktales.resources.ResourceType.BUTCHER;
+import static uq.deco2800.ducktales.resources.ResourceType.CHURCH;
+import static uq.deco2800.ducktales.resources.ResourceType.COMMUNITY_BUILDING;
+import static uq.deco2800.ducktales.resources.ResourceType.CONSTRUCTION;
+import static uq.deco2800.ducktales.resources.ResourceType.COW;
+import static uq.deco2800.ducktales.resources.ResourceType.COW_FRONT_RIGHT;
+import static uq.deco2800.ducktales.resources.ResourceType.CYAN;
+import static uq.deco2800.ducktales.resources.ResourceType.CYAN_CROSSED;
+import static uq.deco2800.ducktales.resources.ResourceType.DUCK;
+import static uq.deco2800.ducktales.resources.ResourceType.DUCKDown0;
+import static uq.deco2800.ducktales.resources.ResourceType.DUCKDown1;
+import static uq.deco2800.ducktales.resources.ResourceType.DUCKLeft0;
+import static uq.deco2800.ducktales.resources.ResourceType.DUCKLeft1;
+import static uq.deco2800.ducktales.resources.ResourceType.DUCKRight0;
+import static uq.deco2800.ducktales.resources.ResourceType.DUCKRight1;
+import static uq.deco2800.ducktales.resources.ResourceType.DUCKUp0;
+import static uq.deco2800.ducktales.resources.ResourceType.DUCKUp1;
+import static uq.deco2800.ducktales.resources.ResourceType.DUCK_1_1;
+import static uq.deco2800.ducktales.resources.ResourceType.FORGE;
+import static uq.deco2800.ducktales.resources.ResourceType.GRASS_1;
+import static uq.deco2800.ducktales.resources.ResourceType.GRASS_2;
+import static uq.deco2800.ducktales.resources.ResourceType.GRASS_3;
+import static uq.deco2800.ducktales.resources.ResourceType.GRASS_4;
+import static uq.deco2800.ducktales.resources.ResourceType.HOSPITAL;
+import static uq.deco2800.ducktales.resources.ResourceType.HOUSE;
+import static uq.deco2800.ducktales.resources.ResourceType.LONG_BOX;
+import static uq.deco2800.ducktales.resources.ResourceType.MINE;
+import static uq.deco2800.ducktales.resources.ResourceType.OBSERVATORY;
+import static uq.deco2800.ducktales.resources.ResourceType.PASTURE;
+import static uq.deco2800.ducktales.resources.ResourceType.PEON;
+import static uq.deco2800.ducktales.resources.ResourceType.ROCK_1;
+import static uq.deco2800.ducktales.resources.ResourceType.ROCK_2;
+import static uq.deco2800.ducktales.resources.ResourceType.SAWMILL;
+import static uq.deco2800.ducktales.resources.ResourceType.SHEEP;
+import static uq.deco2800.ducktales.resources.ResourceType.SHEEPRight0;
+import static uq.deco2800.ducktales.resources.ResourceType.SHEEPRight1;
+import static uq.deco2800.ducktales.resources.ResourceType.TREE_1;
+import static uq.deco2800.ducktales.resources.ResourceType.TREE_2;
+import static uq.deco2800.ducktales.resources.ResourceType.TREE_3;
+import static uq.deco2800.ducktales.resources.ResourceType.VOID;
+import static uq.deco2800.ducktales.resources.ResourceType.WATER;
+import static uq.deco2800.ducktales.resources.ResourceType.WOOD_BOX;
+import static uq.deco2800.ducktales.resources.ResourceType.YELLOW;
 
 
 /**
@@ -21,7 +69,7 @@ import static uq.deco2800.ducktales.resources.ResourceType.*;
  *
  * This class is a singleton -- to get an instance of this class, you must call
  * ResourceSpriteRegister.getInstance(); you cannot instantiate it.
- * 
+ *
  * @author Anonymousthing, khoiphan21
  */
 public class ResourceSpriteRegister {
@@ -30,7 +78,7 @@ public class ResourceSpriteRegister {
 
 	/**
 	 * Returns the instance of {@link ResourceSpriteRegister}.
-	 * 
+	 *
 	 * @return Returns an instance of ResourceSpriteRegister.
 	 */
 	public static ResourceSpriteRegister getInstance() {
@@ -41,7 +89,7 @@ public class ResourceSpriteRegister {
 	 * The base height for a 1*1 tile.
 	 */
 	public static final int TILE_HEIGHT = 100;
-	
+
 	/**
 	 * The base width for a 1*1 tile.
 	 */
@@ -50,109 +98,26 @@ public class ResourceSpriteRegister {
 	// As we're a static instance we use a ConcurrentHashMap to prevent
 	// potential threading issues
 	private ConcurrentHashMap<ResourceType, Image> resourceTypeRegister;
-	private int currentCount;
 
 	private ResourceSpriteRegister() {
 		resourceTypeRegister = new ConcurrentHashMap<>();
-		currentCount = 0;
 
-		// GROUND TILES
-		addResource(GRASS_1, "/tiles/grass_1.png");
-		addResource(GRASS_2, "/tiles/grass_2.png");
-		addResource(GRASS_3, "/tiles/grass_3.png");
-		addResource(GRASS_4, "/tiles/grass_4.png");
+		addTileResources();
 
-		// OLD Ground tiles
+		addLandscapeResources();
 
-		/*---Landscape resources---*/
-		
-		addResource(VOID, "/black.png");
-		addResource(CYAN, "/cyan.png");
-		addResource(CYAN_CROSSED, "/cyan_crossed.png");
-		addResource(YELLOW, "/yellow.png");
+		addMiscellaneousResources();
 
-		addResource(WATER, "/water.png");
-		addResource(BLANK, "/blank.png");
+		addAgentEntitiesResources();
 
-		// OLD Landscape entities
-
-		
-		/*---Object resources---*/
-		addResource(BOX, "/box2.png");
-		addResource(LONG_BOX, "/longbox.png");
-		addResource(WOOD_BOX, "/wood_stock.png");
-		addResource(TREE_1, "/tree_1.png");
-		addResource(TREE_2, "/tree_2.png");
-		addResource(TREE_3, "/tree_3.png");
-		addResource(ROCK_1, "/rock_1.png");
-		addResource(ROCK_2, "/rock_2.png");
-
-		// Agent entities
-		addResource(PEON, "/peon.png");
-		
-		addResource(DUCK, "/duck.png");
-		addResource(DUCK_1_1, "/animal/duck_1_1.png");
-
-		addResource(DUCKDown0, "/animal/duck/DUCKDown0.png");
-		addResource(DUCKDown1, "/animal/duck/DUCKDown1.png");
-		addResource(DUCKUp0, "/animal/duck/DUCKUp0.png");
-		addResource(DUCKUp1, "/animal/duck/DUCKUp1.png");
-		addResource(DUCKLeft0, "/animal/duck/DUCKLeft0.png");
-		addResource(DUCKLeft1, "/animal/duck/DUCKLeft1.png");
-		addResource(DUCKRight0, "/animal/duck/DUCKRight0.png");
-		addResource(DUCKRight1, "/animal/duck/DUCKRight1.png");
-		
-        addResource(SHEEP, "/animal/sheep_with_wool.png");
-
-		addResource(COW, "/cow.png");
-		addResource(COW_FRONT_RIGHT, "/animal/cow_front_right.png");
-    	// addResource(COWUpRight, "/COWUpRight.png");
-		// addResource(COWUpLeft, "/COWUpLeft.png");
-		// addResource(COWDownRight, "/COWDownRight.png");
-		// addResource(COWDownLeft, "/COWDownLeft.png");
-
-		// addResource(SHEEP, "/sheep.png");
-		// addResource(SHEEPUpRight, "/SHEEPUpRight.png");
-		// addResource(SHEEPUpLeft, "/SHEEPUpLeft.png");
-		// addResource(SHEEPDownRight, "/SHEEPDownRight.png");
-		// addResource(SHEEPDownLeft, "/SHEEPDownLeft.png");
-
-		// Buildings
-
-		
-		/*---Building resources---*/
-		
-		//To be uncommented as the relevant graphics are created
-		// note from creator of ResourceType: please remember to use the enums from
-		// ResourceType enum class instead of the previous String implementation
-		
-		
-		//addResource(FARM, "/farm.png");
-		//addResource(QUARRY, "/quarry.png");
-		
-		addResource(PASTURE, "/buildings/pasture.png");
-		addResource(HOSPITAL, "/buildings/hospital.png");
-		addResource(BUTCHER, "/buildings/butcher.png");
-		addResource(BAKERY, "/buildings/bakery.png");
-		addResource(COMMUNITY_BUILDING, "/buildings/community_building.png");
-		addResource(CONSTRUCTION, "/buildings/construction2.png");
-		addResource(CHURCH, "/buildings/church.png");
-		addResource(HOUSE, "/buildings/house.png");
-		addResource(SAWMILL, "/buildings/sawmill.png");
-		addResource(FORGE, "/buildings/forge.png");
-		addResource(OBSERVATORY, "/buildings/observatory.png");
-		addResource(MINE, "/buildings/mine.png");
-
-		//addResource(CEMETERY, "/cemetery.png");
-		//addResource(FARMHOUSE, "/farm+barn.png");
-		//addResource(c, "/barn.png");
-		
+		addBuildingResources();
 
 	}
 
+
 	/**
 	 * Adds a resource to the register.
-	 * 
+	 *
 	 * @param type
 	 *            The type of the resource
 	 * @param imageName
@@ -170,7 +135,7 @@ public class ResourceSpriteRegister {
 
 	/**
 	 * Retrieves the Image of the specified resource
-	 * 
+	 *
 	 * @param resourceType
 	 *            The type of the resource
 	 * @return The sprite Image of the resource
@@ -181,6 +146,106 @@ public class ResourceSpriteRegister {
 					"Attempted to access non-registered ResourceTypeInfo of tile type \""
 							+ resourceType + "\" from a ResourceSpriteRegister");
 		return resourceTypeRegister.get(resourceType);
+	}
+
+
+	/**
+	 * Add the resources for the tiles
+	 */
+	private void addTileResources() {
+		// GROUND TILES
+		addResource(GRASS_1, "/tiles/grass_1.png");
+		addResource(GRASS_2, "/tiles/grass_2.png");
+		addResource(GRASS_3, "/tiles/grass_3.png");
+		addResource(GRASS_4, "/tiles/grass_4.png");
+	}
+
+	/**
+	 * Add the resources for the buildings into the register
+	 */
+	private void addBuildingResources() {
+		//To be uncommented as the relevant graphics are created
+
+		addResource(QUARRY, "/buildings/quarry.png");
+		addResource(PASTURE, "/buildings/pasture.png");
+		addResource(HOSPITAL, "/buildings/hospital.png");
+		addResource(BUTCHER, "/buildings/butcher.png");
+		addResource(BAKERY, "/buildings/bakery.png");
+		addResource(COMMUNITY_BUILDING, "/buildings/community_building.png");
+		addResource(CONSTRUCTION, "/buildings/construction2.png");
+		addResource(CONSTRUCTION_2, "/buildings/construction1_small.png");
+		addResource(CHURCH, "/buildings/church.png");
+		addResource(HOUSE, "/buildings/house.png");
+		addResource(SAWMILL, "/buildings/sawmill.png");
+		addResource(FORGE, "/buildings/forge.png");
+		addResource(OBSERVATORY, "/buildings/observatory.png");
+		addResource(MINE, "/buildings/mine.png");
+		addResource(CEMETERY, "/buildings/cemetery_small.png");
+		addResource(FARM, "/buildings/farmhouse.png");
+	}
+
+	private void addAgentEntitiesResources() {
+		// Agent entities
+		addResource(PEON, "/peon.png");
+
+		addResource(DUCK, "/animal/duck/DUCKDown0.png");
+		addResource(DUCK_1_1, "/animal/duck_1_1.png");
+
+		addResource(DUCKDown0, "/animal/duck/DUCKDown0.png");
+		addResource(DUCKDown1, "/animal/duck/DUCKDown1.png");
+		addResource(DUCKUp0, "/animal/duck/DUCKUp0.png");
+		addResource(DUCKUp1, "/animal/duck/DUCKUp1.png");
+		addResource(DUCKLeft0, "/animal/duck/DUCKLeft0.png");
+		addResource(DUCKLeft1, "/animal/duck/DUCKLeft1.png");
+		addResource(DUCKRight0, "/animal/duck/DUCKRight0.png");
+		addResource(DUCKRight1, "/animal/duck/DUCKRight1.png");
+
+		addResource(SHEEPDown0, "/animal/sheep/SHEEPDown0.png");
+		addResource(SHEEPDown1, "/animal/sheep/SHEEPDown1.png");
+		addResource(SHEEPUp0, "/animal/sheep/SHEEPUp0.png");
+		addResource(SHEEPUp1, "/animal/sheep/SHEEPUp1.png");
+		addResource(SHEEPLeft0, "/animal/sheep/SHEEPLeft0.png");
+		addResource(SHEEPLeft1, "/animal/sheep/SHEEPLeft1.png");
+		addResource(SHEEPRight0, "/animal/sheep/SHEEPRight0.png");
+		addResource(SHEEPRight1, "/animal/sheep/SHEEPRight1.png");
+
+		addResource(SHEEP, "/animal/sheep_with_wool.png");
+
+		addResource(COW, "/cow.png");
+		addResource(COW_FRONT_RIGHT, "/animal/cow_front_right.png");
+		// addResource(COWUpRight, "/COWUpRight.png");
+		// addResource(COWUpLeft, "/COWUpLeft.png");
+		// addResource(COWDownRight, "/COWDownRight.png");
+		// addResource(COWDownLeft, "/COWDownLeft.png");
+
+	}	
+	
+	/**
+	 * Add the resources for landscape items such as rocks and trees
+	 */
+	private void addLandscapeResources() {
+		/*---Object resources---*/
+		addResource(BOX, "/box2.png");
+		addResource(LONG_BOX, "/longbox.png");
+		addResource(WOOD_BOX, "/wood_stock.png");
+		addResource(TREE_1, "/tree_1.png");
+		addResource(TREE_2, "/tree_2.png");
+		addResource(TREE_3, "/tree_3.png");
+		addResource(ROCK_1, "/rock_1.png");
+		addResource(ROCK_2, "/rock_2.png");
+	}
+
+	/**
+	 * Miscellaneous resources - probably used for testing or debugging
+	 */
+	private void addMiscellaneousResources() {
+		addResource(VOID, "/black.png");
+		addResource(CYAN, "/cyan.png");
+		addResource(CYAN_CROSSED, "/cyan_crossed.png");
+		addResource(YELLOW, "/yellow.png");
+
+		addResource(WATER, "/water.png");
+		addResource(BLANK, "/blank.png");
 	}
 
 }

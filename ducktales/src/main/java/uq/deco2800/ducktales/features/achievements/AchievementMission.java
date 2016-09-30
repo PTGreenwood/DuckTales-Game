@@ -62,7 +62,7 @@ public class AchievementMission {
 			AchievementMissionImage.setImage(silver);
 			setAchievementMissionText();
 			
-		} else if (missionHandler.getNumberOfCompletedMissions() > 3){
+		} else if (missionHandler.getNumberOfCompletedMissions() > 2){
 			
 			AchievementMissionImage.setImage(gold);
 			setAchievementMissionText();

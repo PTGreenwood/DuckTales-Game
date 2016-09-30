@@ -48,17 +48,4 @@ public class LongBox extends Building {
 	protected void changeHealthBuilding(int newValue){
 		health = newValue;
 	}
-	
-	/**
-	 * Method to update the long box at each discrete simulation step.
-	 * 
-	 * Note sure if any implementation will be used. To be determined later
-	 * May implement for only some of the classes (hence left in the individual 
-	 * buildings class files).
-	 */
-	@Override
-	public void tick() {
-		// To be implemented if there is to be animation of construction
-	}
-	
 }

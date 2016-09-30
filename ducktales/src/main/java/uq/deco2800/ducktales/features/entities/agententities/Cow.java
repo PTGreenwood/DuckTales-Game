@@ -1,5 +1,7 @@
 package uq.deco2800.ducktales.features.entities.agententities;
 
+import java.util.Random;
+
 import uq.deco2800.ducktales.features.entities.EntityManager;
 import uq.deco2800.ducktales.resources.ResourceType;
 
@@ -19,7 +21,8 @@ public class Cow extends Animal {
     // Cow attributes will be set in the AnimalManagerClass
     public Cow(int x, int y) {
         super(x, y, ResourceType.COW, 1, 1, 1, 1, 0.05);
-        int var = (int) (Math.random() * 100);
+        Random random = new Random();
+        int var = random.nextInt(100);
         setStartingHealth(var);
         setStartingHunger(var);
         setStartingThirst(var);
@@ -43,9 +46,9 @@ public class Cow extends Animal {
      * satisfy a certain threshold.
      */
     public void produceBeef() {
-        if (this.getHealth() >= 85 && this.getHunger() >= 85 && this.getThirst() >= 85) {
+        if (this.isDead() == true) {
             this.canProduceBeef = true;
-        } 
+        }
     }
 
     // Getter methods below

@@ -1,15 +1,18 @@
 package uq.deco2800.ducktales.features.seasons;
 
+import uq.deco2800.ducktales.features.time.GameTime;
+import uq.deco2800.ducktales.features.time.TimeManager;
+
 /**
  * Holds the initial enum data set.
  * 
  */
 
 public enum Season {
-	SPRING("Spring", 1.0f, 13, 20, 7, 5),//HumidityLevel, MinTemperature, MaxTemperature, TimeNightFall, TimeDayBreak), 
-	SUMMER("Summer", 0.7f, 16, 26, 9, 3),
-	AUTUMN("Autumn", 0.2f, 10, 15, 8, 4),
-	WINTER("Winter", 0.5f, 6, 14, 4, 6);
+	SPRING("Spring", 1.0f, 13, 20, 7, 6),//HumidityLevel, MinTemperature, MaxTemperature, TimeNightFall, TimeDayBreak), 
+	SUMMER("Summer", 0.7f, 16, 26, 9, 4),
+	AUTUMN("Autumn", 0.2f, 10, 15, 8, 5),
+	WINTER("Winter", 0.5f, 6, 14, 5, 7);
 	
 	//Variable declaration for each Season
 	private final String name;

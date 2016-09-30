@@ -7,6 +7,7 @@ import org.junit.Test;
 import uq.deco2800.ducktales.features.entities.worldentities.Bakery;
 import uq.deco2800.ducktales.features.entities.worldentities.Building.production;
 import uq.deco2800.ducktales.features.entities.worldentities.Constructor;
+import uq.deco2800.ducktales.features.entities.worldentities.Farm;
 import uq.deco2800.ducktales.features.entities.worldentities.Forge;
 import uq.deco2800.ducktales.features.entities.worldentities.House;
 import uq.deco2800.ducktales.features.entities.worldentities.Sawmill;
@@ -77,6 +78,7 @@ public class ConstructorTest {
 		Bakery bakery = new Bakery(2,2);
 		House house = new House(4,7);
 		Sawmill sawmill = new Sawmill(7, 1);
+		Farm farm = new Farm(3, 8);
 		
 		// Check get stone, for bakery
 		assertTrue("Bakery getStone incorrect!", constructor.getStone(bakery) 
@@ -122,5 +124,18 @@ public class ConstructorTest {
 		bakery.changeHealth(-10);
 		assertTrue("Correct Health, bakery invalid update", bakery.getHealth() 
 				== 10);
+		
+		// Check change health, valid (decrease)
+		farm.upgradeProduce(10);
+		assertTrue("Incorrect Health", farm.resourcesProductionAmount() == 10);
+		// Check change health, invalid (=0)
+		sawmill.upgradeProduce(0);
+		assertTrue("Incorrect Health", sawmill.resourcesProductionAmount() == 0);
+		// Check change health, valid (increase)
+		sawmill.upgradeProduce(978000);
+		assertTrue("Incorrect Health", sawmill.resourcesProductionAmount() == 978000);
+		// Check change health, invalid (<0)
+		farm.upgradeProduce(-10);
+		assertTrue("Incorrect Health", farm.resourcesProductionAmount() == 10);
 	}
 }

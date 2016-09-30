@@ -16,23 +16,29 @@ public class Lumberjack extends Job {
     protected static int mentorStrength = 12;
     protected static int mentorIntelligence = 2;
     protected static String jobName = "Lumberjack";
-    protected static final JobType JOBTYPE = JobType.LUMBJERJACK;
-    public Lumberjack(int requiredStrength, int requiredIntelligence, int mentorStrength, 
-            int mentorIntelligence, String jobName, JobType JOBTYPE) {
-		super(requiredStrength, requiredIntelligence, 
+    protected static final JobType JOBTYPE = JobType.LUMBERJACK;
+
+    public Lumberjack() {
+        super(requiredStrength, requiredIntelligence, 
                         mentorStrength, mentorIntelligence, 
                         jobName, JOBTYPE);
     }
-    // chops a tree
+    /**
+     * Chops a tree and adds to the peon's resource thing
+     * @param peon
+     * @param tree 
+     */
     public void chop(Peon peon, Tree tree){
         // the lumber method from Tree.java
         tree.lumber(peon);
         // increase the peon's strength by 2
         peon.StrengthExp(2);
+        // increase the amount of trees chopped
         peon.choppedATree();
         if (peon.getTreesChopped()>=10){
             peon.IntelligenceExp(1);
         }
+        // TODO: INTERACT WITH THE TREE CLASS
     }
     /**
      * Defines whether or not the given peon is 
@@ -53,6 +59,7 @@ public class Lumberjack extends Job {
         }
         return false;
     }
+   
     /**
      * Define peon lumber the tree, peon will 
      * get the value of resources
@@ -61,10 +68,11 @@ public class Lumberjack extends Job {
      * peon finished lumber a tree
      */    
     public void treeResources(Peon peon){
-		if (peon.getTreesChopped()>0){
-    		for (int i=1; i>0; i++){
-    			peon.getResources();
-    		}
-    	}	   		   		
-	}
+		while (peon.getTreesChopped()>0){
+    		for (int i=0; i<1; i++){
+    			peon.setResource(peon.getTreesChopped());
+    			}
+    		break;
+		}	   		   		
+	} 
 }

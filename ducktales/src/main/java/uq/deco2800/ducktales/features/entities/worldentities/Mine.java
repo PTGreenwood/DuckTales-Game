@@ -17,6 +17,9 @@ public class Mine extends Building {
 	// Building health - starting value
 	private int health = 1300;
 	
+	// Building produce - starting value
+	private int productionAmount = 5;
+	
 	// Mine size
 	public static final int X_LENGTH = 5;
 	public static final int Y_LENGTH = 5;
@@ -32,13 +35,14 @@ public class Mine extends Building {
 	public Mine(double x, double y) {
 		super(x, y, X_LENGTH, Y_LENGTH, TYPE);
 		health = 1300;
+		productionAmount = 5;
 	}
 	
 	/**
 	 * Update the WorldEntity properties with those of a mine.
 	 */
 	protected void specifications() {
-		specifications(10, 6, 3, production.ORE, 5, health);
+		specifications(10, 6, 3, production.ORE, productionAmount, health);
 	}
 	
 	/**
@@ -50,16 +54,16 @@ public class Mine extends Building {
 	protected void changeHealthBuilding(int newValue){
 		health = newValue;
 	}
-
+	
 	/**
-	 * Method to update mine at each discrete simulation step.
+	 * Method to update the production amount of a mine. Feature of an 
+	 * upgraded mine. Requires an integer value of the produce to be passed.
 	 * 
-	 * Note sure if any implementation will be used. To be determined later
-	 * May implement for only some of the classes (hence left in the individual 
-	 * buildings class files).
+	 * @param newProduce, the new production amount
 	 */
-	@Override
-	public void tick() {
-		// To be implemented if there is to be animation of construction
+	public void upgradeProduce(int newProduce) {
+		if (newProduce >= 0) {
+			productionAmount = newProduce;
+		}
 	}
 }

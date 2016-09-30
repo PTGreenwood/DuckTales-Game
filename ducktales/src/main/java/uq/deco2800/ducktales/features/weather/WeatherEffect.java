@@ -14,10 +14,6 @@ public class WeatherEffect {
 	//sprite file name
 	private String fileName;
 	
-	public WeatherEffect() {
-		//need to remove this one.
-	}
-		
 	/**
 	 * @param name
 	 * 			name of the sprite

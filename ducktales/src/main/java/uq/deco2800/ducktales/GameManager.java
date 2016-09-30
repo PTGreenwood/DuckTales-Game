@@ -7,6 +7,7 @@ import uq.deco2800.ducktales.features.entities.EntityManager;
 import uq.deco2800.ducktales.features.entities.ThreatManager;
 import uq.deco2800.ducktales.features.hud.HUDManager;
 import uq.deco2800.ducktales.features.hud.menu.MenuManager;
+import uq.deco2800.ducktales.features.inventory.InventoryManager;
 import uq.deco2800.ducktales.features.level.LevelManager;
 import uq.deco2800.ducktales.features.market.MarketManager;
 import uq.deco2800.ducktales.features.time.TimeManager;
@@ -77,9 +78,9 @@ public class GameManager {
     private EntityManager entityManager;
     private TimeManager timeManager;
     private ThreatManager threatManager;
-
+    private InventoryManager inventoryContainer;
     /**
-     * Instantiate an empty game manager and create a new default world
+     * Instantiate an empty game manager and createEntitySprite a new default world
      */
     public GameManager(Pane root) {
         // Instantiate an empty game manager without a pre-loaded world.
@@ -359,5 +360,14 @@ public class GameManager {
      */
     public MenuType getMenuSelected() {
         return this.menuSelected;
+    }
+
+
+    /* Instantiate an empty Inventory container for resources */
+    public void setInventoryManager(InventoryManager inventoryManager) {
+        this.inventoryContainer = inventoryManager;
+    }
+    public InventoryManager getInventoryContainer() {
+        return inventoryContainer;
     }
 }

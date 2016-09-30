@@ -9,6 +9,8 @@ import uq.deco2800.ducktales.features.jobframework.Job;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.AStar;
 import uq.deco2800.ducktales.util.Point;
+import uq.deco2800.ducktales.features.entities.agententities.PeonDebuffType;
+import uq.deco2800.ducktales.features.entities.agententities.PeonBuffType;
 
 /**
  * Class representing the worker.
@@ -22,37 +24,41 @@ import uq.deco2800.ducktales.util.Point;
 public class Peon extends AgentEntity {
 
 	private static final Random RANDOM = new Random();
-
 	private static final ResourceType TYPE = ResourceType.PEON;
-
 	private List<Point> goalPoints;
 
-	//Peon stats
 	private int time = 0;
-	private double speed;
+	private double speed = 0.05;
 	private int health = 1000;
 	private int hunger = 100;
 	private int thirst = 100;
-	private int resource= 0;
-
-	// affinity
+	private int resource = 0;
 	private int strength;
 	private int intelligence;
 
+	private List<PeonDebuffType> debuffs = new ArrayList<PeonDebuffType>(); //access debuff by PeonDebuffType.DEBUFFNAME
+	private List<PeonBuffType> buffs = new ArrayList<PeonBuffType>(); //access debuff by PeonBuffType.BUFFNAME
+
 	// Job related information
+
 	private String job = "Jobless";
-	String jobString = "Jobless";
+	String jobless  = "Jobless";
 	private double qualification = 0;
 	private boolean mentorStatus = false;
 
 	/**
 	 * how many trees the Peon has chopped (used in Lumberjack.java)
 	 */
-	private int treesChopped;
+	private int treesChopped = 0;
 
+        /**
+         * how many buildings the Peon has created (used in Builder.java)
+         */
+        private int buildingsMade;
 	// affinity bounds
 	private static final int DEFAULT_MAX = 10;
 	private static final int DEFAULT_MIN = 1;
+
 
 	/**
 	 * @param x
@@ -60,11 +66,10 @@ public class Peon extends AgentEntity {
 	 */
 	public Peon(int x, int y) {
 		super(x, y, 1, 1, TYPE);
-		strength = RANDOM.nextInt((DEFAULT_MAX - DEFAULT_MIN) + 1) + DEFAULT_MIN;
-		intelligence = RANDOM.nextInt((DEFAULT_MAX - DEFAULT_MIN) + 1) + DEFAULT_MIN;
-		this.speed = 0.05;
+		this.strength = RANDOM.nextInt((DEFAULT_MAX - DEFAULT_MIN) + 1) + DEFAULT_MIN;
+		this.intelligence = RANDOM.nextInt((DEFAULT_MAX - DEFAULT_MIN) + 1) + DEFAULT_MIN;
 		this.goalPoints = new ArrayList<Point>();
-		this.treesChopped = 0;
+                this.buildingsMade = 0;
 	}
 
 	/**
@@ -133,7 +138,19 @@ public class Peon extends AgentEntity {
 	public double getSpeed() {
 		return this.speed;
 	}
-
+	
+	/**
+	 * Set up an value of peon can carry the 
+	 * resource start up from 0
+	 * @param newResource
+	 */	
+	public void setResource(int newResource) {
+		if (newResource> 1) {
+			this.resource = newResource;
+		} else  {
+			this.resource = 0;
+		}
+	}	
 	/**
 	 * Return the Peon's resource value
 	 *
@@ -142,7 +159,7 @@ public class Peon extends AgentEntity {
 	public int getResources() {
 		return resource;
 	}
-
+	
 	/**
 	 * Stores what job the peon has
 	 *
@@ -162,25 +179,34 @@ public class Peon extends AgentEntity {
 	 *
 	 * @param job
 	 */
-	public void applyForJob(Job job) {
-		if (job.isQualified(this))
-			this.setJob(job.toString());
-	}
+    public String applyForJob(Job job){
+            if (job.isQualified(this)){
+                    this.setJob(job.toString());
+                    return "You're hired!";
+            } else if (	this.getStrength()<job.getRequiredStrength()
+                    &&		this.getIntelligence()<job.getRequiredIntelligence()){
+                    return "Peon is not qualified in both aspects";
+            } else if (this.getStrength()<job.getRequiredStrength()){
+                    return "Peon strength is not high enough";
+            } else {
+                    return "Peon intelligence is not high enough";
+            }
+    }
 
 	/**
 	 * Peon quits job if it has one
 	 *
 	 * @param job
 	 */
-	public void quitJob(Job job) {
-		if (this.getJob() != jobString)
-			this.setJob(jobString);
+	public void quitJob() {
+		if (this.getJob() != jobless)
+			this.setJob(jobless);
 	}
 
 	/**
 	 * Check if Peon finished the current job
 	 *
-	 * everytime Peon completes a task they will gain attributes that affects
+	 * every time Peon completes a task they will gain attributes that affects
 	 * job completion time
 	 */
 	public void checkJobFinshed() {
@@ -236,6 +262,9 @@ public class Peon extends AgentEntity {
 	public int getStrength() {
 		return strength;
 	}
+        public void setStrength(int strength){
+            this.strength=strength;
+        }
 
 	/**
 	 * Increase the peon's intelligence through experience
@@ -249,6 +278,9 @@ public class Peon extends AgentEntity {
 	public int getIntelligence() {
 		return intelligence;
 	}
+        public void setIntelligence(int intelligence){
+            this.intelligence=intelligence;
+        }
 
 	/**
 	 * Add one to treesChopped
@@ -265,7 +297,70 @@ public class Peon extends AgentEntity {
 	public int getTreesChopped() {
 		return this.treesChopped;
 	}
+	/**
+	 * add a debuff to Peon
+	 */
+	public void addDebuff(PeonDebuffType _debuff) {
+		if (!debuffs.contains(_debuff)) { debuffs.add(_debuff); }
+	}
 
+	/**
+	 *	remove a debuff from Peon
+	 */
+	 public void removeDebuff(PeonDebuffType _debuff) {
+		 int index = debuffs.indexOf(_debuff);
+
+		 if (index != -1) { debuffs.remove(index); }
+	 }
+
+	/**
+	 * return all debuffs that Peon has
+	 * 	- to access each debuff in the arraylist use ArrayList built-in functions
+	 *		such as .get(index) or .contains(var name)
+	 *		when .get(index) used to compare to string use .get(index).toString() method
+	 */
+	public List<PeonDebuffType> getDebuffs() {
+		return this.debuffs;
+	}
+
+	/**
+	 * add a buff to Peon
+	 */
+	public void addBuff(PeonBuffType _buff) {
+		if (!buffs.contains(_buff)) { buffs.add(_buff); }
+	}
+
+	/**
+	 *	remove a buff from Peon
+	 */
+	 public void removeBuff(PeonBuffType _buff) {
+		 int index = buffs.indexOf(_buff);
+
+		 if (index != -1) { buffs.remove(index); }
+	 }
+
+	/**
+	 * return all buffs that Peon has
+	 * 	- to access each buff in the arraylist use ArrayList built-in functions
+	 *		such as .get(index) or .contains(var name)
+	 *		when .get(index) used to compare to string use .get(index).toString() method
+	 */
+	public List<PeonBuffType> getBuffs() {
+		return this.buffs;
+	}
+        /**
+         * Increases amount of buildings made
+         */
+        public void madeABuilding(){
+            this.buildingsMade++;
+        }
+        /**
+         * 
+         * @return amount of buildings made
+         */
+        public int getBuildingsMade() {
+            return this.buildingsMade;
+        }
 	@Override
 	public void tick() {
 		if (goalPoints.isEmpty()) {
@@ -325,7 +420,6 @@ public class Peon extends AgentEntity {
 	private void weatherEffect() {
 		//need to be implemented
 	}
-
 	/**
 	 * function that check the status of Peon to add buff/debuff
 	 * 	- hunger/thirst threshold

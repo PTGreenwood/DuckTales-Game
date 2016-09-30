@@ -42,6 +42,8 @@ public class AchievementManager {
 	private BorderPane achievementsMission;
 	private BorderPane achievementsLevel;
 	
+	private Label titleLabel;
+	
 	/** Initialize classes */	
 	AchievementHandler achievementMain = AchievementHandler.getInstance();
 	AchievementMission achievementMission = AchievementMission.getInstance();
@@ -70,7 +72,7 @@ public class AchievementManager {
 		achievementMissionLabel = achievementMission.getAchievementMissionLabel();		
 		achievementMissionLabel.setFont(new Font("Arial", 24));
 		
-		setTitleOnTop(achievementsMission,"Mission Achievements");
+		setTitleOnTop(achievementsMission,"Mission");
 		achievementsMission.setCenter(achievementMissionImage);
 		achievementsMission.setBottom(achievementMissionLabel);
 		achievementsMission.setAlignment(achievementMissionLabel, Pos.CENTER);
@@ -100,7 +102,7 @@ public class AchievementManager {
 		achievementLevelLabel = achievementLevel.getAchievementLevelLabel();		
 		achievementLevelLabel.setFont(new Font("Arial", 24));
 		
-		setTitleOnTop(achievementsLevel,"Level Achievements");
+		setTitleOnTop(achievementsLevel,"Level");
 		achievementsLevel.setCenter(achievementLevelImage);
 		achievementsLevel.setBottom(achievementLevelLabel);
 		achievementsLevel.setAlignment(achievementLevelLabel, Pos.CENTER);
@@ -117,8 +119,9 @@ public class AchievementManager {
 	 */
 	private void setTitleOnTop(BorderPane borderPane, String title){
 		
-		Label titleLabel = new Label(title);
-		titleLabel.setFont(new Font("Arial", 36));
+		titleLabel = new Label(title);
+		titleLabel.setId("titleLabel");
+		titleLabel.setFont(new Font("Press Start 2P", 36));
 		borderPane.setTop(titleLabel);
 		borderPane.setAlignment(titleLabel, Pos.CENTER);
 	}
