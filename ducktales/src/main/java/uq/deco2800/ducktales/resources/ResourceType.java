@@ -43,6 +43,8 @@ public enum ResourceType {
         HOUSE, SAWMILL, CEMETERY, BARN, FORGE, HOSPITAL, OBSERVATORY, FARM,
         MINE, QUARRY, CHURCH,
         CONSTRUCTION_2, STORAGEBARN,
+        // For buildings animation
+        BUTCHER_1, BUTCHER_2, BUTCHER_3, BUTCHER_4, BUTCHER_5,
 
 
         // Miscellaneous

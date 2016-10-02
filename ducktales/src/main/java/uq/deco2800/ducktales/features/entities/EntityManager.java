@@ -1,7 +1,6 @@
 package uq.deco2800.ducktales.features.entities;
 
 import java.util.ArrayList;
-import java.util.logging.Logger;
 
 import javafx.scene.layout.Pane;
 import uq.deco2800.ducktales.GameManager;
@@ -9,6 +8,7 @@ import uq.deco2800.ducktales.World;
 import uq.deco2800.ducktales.features.landscape.tiles.TileSprite;
 import uq.deco2800.ducktales.features.landscape.tiles.TilesManager;
 import uq.deco2800.ducktales.rendering.RenderingInformation;
+import uq.deco2800.ducktales.rendering.sprites.EntitySprite;
 import uq.deco2800.ducktales.rendering.sprites.SpritesFactory;
 import uq.deco2800.ducktales.resources.ResourceInfoRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
