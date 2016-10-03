@@ -14,6 +14,8 @@ import uq.deco2800.ducktales.deprecated.OldGameManager;
 import uq.deco2800.ducktales.features.weather.Weather;
 import uq.deco2800.ducktales.features.weather.WeatherEffect;
 import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
+import uq.deco2800.singularity.clients.ducktales.DucktalesClient;
+import uq.deco2800.singularity.common.representations.User;
 import uq.deco2800.ducktales.features.builder.WorldBuilderController;
 import uq.deco2800.ducktales.features.builder.WorldBuilderModel;
 import uq.deco2800.ducktales.features.builder.WorldBuilderRenderer;
@@ -62,6 +64,8 @@ public class DuckTalesController implements Initializable {
 
 	public Stage tutorialStage;
 	public Stage marketplaceStage;
+	
+	public DucktalesClient client;
 
 	/**
 	 * Main constructor of the {@link DuckTalesController} class.
@@ -83,6 +87,10 @@ public class DuckTalesController implements Initializable {
 		contentPane.setOnMouseMoved(new MouseMovedHandler());
 		gameWindow.setOnKeyPressed(new KeyboardHandler());
 		gameWindow.setOnKeyReleased(new KeyboardHandler());
+		
+		// Create an instance of the duckTales Restful Client
+		client = new DucktalesClient();
+		
 	}
 
 	/**
