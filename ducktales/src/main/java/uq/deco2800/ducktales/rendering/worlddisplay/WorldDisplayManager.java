@@ -56,7 +56,7 @@ public class WorldDisplayManager implements Initializable, SecondaryManager {
 
     @Override
     public void reload() {
-
+    	//initializeWorld();
     }
 
     /**

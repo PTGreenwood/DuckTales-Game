@@ -41,7 +41,9 @@ public enum ResourceType {
         // Buildings
         PASTURE, BUTCHER, BAKERY, COMMUNITY_BUILDING, CONSTRUCTION,
         HOUSE, SAWMILL, CEMETERY, BARN, FORGE, HOSPITAL, OBSERVATORY, FARM,
-        MINE, QUARRY, CHURCH,  
+        MINE, QUARRY, CHURCH,
+        CONSTRUCTION_2, STORAGEBARN,
+
 
         // Miscellaneous
         BOX, LONG_BOX, WOOD_BOX

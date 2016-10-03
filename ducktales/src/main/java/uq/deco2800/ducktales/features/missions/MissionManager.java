@@ -73,8 +73,8 @@ public class MissionManager {
 		
 		missions.setVgap(10);
 		missions.add(createMission("1.Click level button :  ", 0), 0, 1);
-		missions.add(createMission("2.Click achievement button :  ", 1), 0, 2);		
-		missions.add(createMission("3.Click marketplace button :  ", 2), 0, 3);
+		missions.add(createMission("2.Open Achievement :  ", 1), 0, 2);		
+		missions.add(createMission("3.Open Marketplace :  ", 2), 0, 3);
 		
 		ScrollPane scroll = new ScrollPane(missions);
 		
