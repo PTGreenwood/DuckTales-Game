@@ -64,11 +64,10 @@ public class Sprite extends ImageView{
      * For example, if the list of images has 60 frames, and duration is set to
      * 1 second, the animation will be played at 60 frames per second (60 FPS)
      *
-     * The default cycle count is Timeline.INDEFINITE, i.e. the animation will
-     * keep on looping non-stop
+     * The default cycle count is 1, i.e. the animation will not loop at all
      *
      * @param duration
-     *          The duration of the whole animation
+     *          The duration of the whole animation, in seconds
      */
     public void setupAnimation(double duration) {
         // Initiate the duration of the animation
@@ -84,7 +83,7 @@ public class Sprite extends ImageView{
 
         // Re-initialise the timeline
         timeline = new Timeline(startKeyFrame, endKeyFrame);
-        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.setCycleCount(1);
     }
 
     /**
@@ -98,16 +97,28 @@ public class Sprite extends ImageView{
     }
 
     /**
-     * Start the animation of this sprite when it is idle
+     * Start the current animation of this sprite
      */
     public void startAnimation() {
         this.timeline.play();
     }
 
     /**
-     * Stop animating this sprite temporarily
+     * Stop animating this sprite
      */
     public void stopAnimation() {
         this.timeline.stop();
     }
+
+    /**
+     * Temporarily pause the animation of this sprite
+     */
+    public void pauseAnimation() {
+        this.timeline.pause();
+    }
+
+    public void resetInterpolator() {
+        this.interpolator = new SpriteInterpolator(this.imageList);
+    }
+
 }

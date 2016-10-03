@@ -143,14 +143,6 @@ public class MarketModel {
 			
 			MocTrade posted = allTrades.get(i);
 			
-			System.out.println("All Trade User = " 
-					+ posted.getUserName());
-			
-			System.out.println("userName = " + userName );
-			
-			System.out.println("Equals? " + 
-					userName.equals(posted.getUserName()) + "\n");
-			
 			if (userName.equals(posted.getUserName())) {
 				// Add to the userTradesList
 				userTrades.add(allTrades.get(i));

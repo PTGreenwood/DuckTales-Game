@@ -2,6 +2,10 @@ package uq.deco2800.ducktales;
 
 import java.net.URL;
 
+import javax.ws.rs.WebApplicationException;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +15,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 //import uq.deco2800.ducktales.deprecated.ui.MenuKeyboardHandler;
+import uq.deco2800.singularity.clients.ducktales.DucktalesClient;
+import uq.deco2800.singularity.common.representations.User;
 
 
 /**
@@ -27,6 +33,7 @@ public class DuckTalesLauncher extends Application {
 	public static void main(String[] args) {
 		launch(args);
 	}
+	
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -36,7 +43,7 @@ public class DuckTalesLauncher extends Application {
 				
 		Parent root = fxmlLoader.load(location.openStream());
 		
-		Scene scene = new Scene(root, 1295, 737);		
+		Scene scene = new Scene(root, 1295, 737);	
 		
 		DuckTalesController ducktalesController = fxmlLoader.getController(); // link the controller to the FXML file
 		primaryStage.setTitle("DuckTales v" + version);

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javafx.scene.image.Image;
-import uq.deco2800.ducktales.features.entities.EntitySprite;
 import uq.deco2800.ducktales.features.time.GameTime;
 import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
@@ -16,6 +15,8 @@ import uq.deco2800.ducktales.resources.ResourceType;
  * @author khoiphan21
  */
 public class SpritesFactory {
+    /** CONSTANTS */
+    private static int TOTAL_CONSTRUCTION_TIME = 3; // In seconds
 
 	static int initTime;
 	static GameTime gameTime = new GameTime();
@@ -33,12 +34,15 @@ public class SpritesFactory {
         // TODO SEPARATE INTO ANIMALS AND BUILDINGS
     	initTime = gameTime.getCurrentDay();
         switch (spriteType) {
+            // ANIMALS
             case SHEEP:
                 return createSheep(index, ResourceType.SHEEP);
             case DUCK:
                 return createDuck(index, ResourceType.DUCK);
             case COW:
             	return createCow(index, ResourceType.COW);
+
+            // BUILDINGS
             case HOSPITAL:
                 return createHospital(index, ResourceType.HOSPITAL);
             case BAKERY:
@@ -101,7 +105,7 @@ public class SpritesFactory {
         // After all images are set up, now call these methods to set up the
         // actual animation code
         sprite.setImageList(imageList); // Give the interpolator the list of images
-        sprite.setupAnimation(5*60); // Set up the actual animation, passing the duration
+        sprite.setupAnimation(5* TOTAL_CONSTRUCTION_TIME); // Set up the actual animation, passing the duration
         sprite.startAnimation(); // Start the actual animation
 
         return sprite;
@@ -134,7 +138,7 @@ public class SpritesFactory {
         // After all images are set up, now call these methods to set up the
         // actual animation code
         sprite.setImageList(imageList); // Give the interpolator the list of images
-        sprite.setupAnimation(4*60); // Set up the actual animation, passing the duration
+        sprite.setupAnimation(4* TOTAL_CONSTRUCTION_TIME); // Set up the actual animation, passing the duration
         sprite.startAnimation(); // Start the actual animation
 
         return sprite;
@@ -167,7 +171,7 @@ public class SpritesFactory {
         // After all images are set up, now call these methods to set up the
         // actual animation code
         sprite.setImageList(imageList); // Give the interpolator the list of images
-        sprite.setupAnimation(9*60); // Set up the actual animation, passing the duration
+        sprite.setupAnimation(9* TOTAL_CONSTRUCTION_TIME); // Set up the actual animation, passing the duration
         sprite.startAnimation(); // Start the actual animation
 
         return sprite;
@@ -185,23 +189,33 @@ public class SpritesFactory {
      */
     private static EntitySprite createButcher(int index, ResourceType type) {
         // The sprite to be returned
-        EntitySprite sprite = new EntitySprite(index, type);
+        BuildingSprite sprite = new BuildingSprite(index, type);
 
-        // Setup the frames for the animation
-        List<Image> imageList = new ArrayList<>();
+        // Setup the frames for the construction animation
+        List<Image> constructionFrames = new ArrayList<>();
+        List<Image> idleFrames = new ArrayList<>();
         ResourceSpriteRegister register = ResourceSpriteRegister.getInstance();
 
-        // Now add all the images representing the animation here, one-by-one
-        //imageList.add(register.getResourceImage(ResourceType.DIRT_1));  DOES NOT WORK
-        imageList.add(register.getResourceImage(ResourceType.CONSTRUCTION_2));
-        imageList.add(register.getResourceImage(ResourceType.CONSTRUCTION));
-        imageList.add(register.getResourceImage(ResourceType.BUTCHER));
+        // Now add all the images representing the construction animation here
+        constructionFrames.add(register.getResourceImage(ResourceType.CONSTRUCTION_2));
+        constructionFrames.add(register.getResourceImage(ResourceType.CONSTRUCTION));
+        constructionFrames.add(register.getResourceImage(ResourceType.BUTCHER));
+
+        // Add all the frames for the idle animation
+        idleFrames.add(register.getResourceImage(ResourceType.BUTCHER_1));
+        idleFrames.add(register.getResourceImage(ResourceType.BUTCHER_2));
+        idleFrames.add(register.getResourceImage(ResourceType.BUTCHER_3));
+        idleFrames.add(register.getResourceImage(ResourceType.BUTCHER_4));
+        idleFrames.add(register.getResourceImage(ResourceType.BUTCHER_5));
 
         // After all images are set up, now call these methods to set up the
         // actual animation code
-        sprite.setImageList(imageList); // Give the interpolator the list of images
-        sprite.setupAnimation(7*60); // Set up the actual animation, passing the duration
-        sprite.startAnimation(); // Start the actual animation
+        sprite.setupConstructionAnimation(constructionFrames, TOTAL_CONSTRUCTION_TIME);
+        sprite.setupIdleAnimation(idleFrames, 1.0);
+
+        // Now play the construction animation. Idle animation will automatically
+        // play when construction animation is done
+        sprite.playConstructionAnimation();
 
         return sprite;
     }
@@ -233,7 +247,7 @@ public class SpritesFactory {
         // After all images are set up, now call these methods to set up the
         // actual animation code
         sprite.setImageList(imageList); // Give the interpolator the list of images
-        sprite.setupAnimation(2*60); // Set up the actual animation, passing the duration
+        sprite.setupAnimation(2* TOTAL_CONSTRUCTION_TIME); // Set up the actual animation, passing the duration
         sprite.startAnimation(); // Start the actual animation
 
         return sprite;
@@ -266,7 +280,7 @@ public class SpritesFactory {
         // After all images are set up, now call these methods to set up the
         // actual animation code
         sprite.setImageList(imageList); // Give the interpolator the list of images
-        sprite.setupAnimation(9*60); // Set up the actual animation, passing the duration
+        sprite.setupAnimation(9* TOTAL_CONSTRUCTION_TIME); // Set up the actual animation, passing the duration
         sprite.startAnimation(); // Start the actual animation
 
         return sprite;
@@ -299,7 +313,7 @@ public class SpritesFactory {
         // After all images are set up, now call these methods to set up the
         // actual animation code
         sprite.setImageList(imageList); // Give the interpolator the list of images
-        sprite.setupAnimation(8*60); // Set up the actual animation, passing the duration
+        sprite.setupAnimation(8* TOTAL_CONSTRUCTION_TIME); // Set up the actual animation, passing the duration
         sprite.startAnimation(); // Start the actual animation
 
         return sprite;
@@ -332,7 +346,7 @@ public class SpritesFactory {
         // After all images are set up, now call these methods to set up the
         // actual animation code
         sprite.setImageList(imageList); // Give the interpolator the list of images
-        sprite.setupAnimation(4*60); // Set up the actual animation, passing the duration
+        sprite.setupAnimation(4* TOTAL_CONSTRUCTION_TIME); // Set up the actual animation, passing the duration
         sprite.setAnimationCycleCount(1);
         sprite.startAnimation(); // Start the actual animation
 
@@ -366,7 +380,7 @@ public class SpritesFactory {
         // After all images are set up, now call these methods to set up the
         // actual animation code
         sprite.setImageList(imageList); // Give the interpolator the list of images
-        sprite.setupAnimation(3*60); // Set up the actual animation, passing the duration
+        sprite.setupAnimation(3* TOTAL_CONSTRUCTION_TIME); // Set up the actual animation, passing the duration
         sprite.startAnimation(); // Start the actual animation
 
         return sprite;
@@ -399,7 +413,7 @@ public class SpritesFactory {
         // After all images are set up, now call these methods to set up the
         // actual animation code
         sprite.setImageList(imageList); // Give the interpolator the list of images
-        sprite.setupAnimation(2*60); // Set up the actual animation, passing the duration
+        sprite.setupAnimation(2* TOTAL_CONSTRUCTION_TIME); // Set up the actual animation, passing the duration
         sprite.startAnimation(); // Start the actual animation
 
         return sprite;
@@ -432,7 +446,7 @@ public class SpritesFactory {
         // After all images are set up, now call these methods to set up the
         // actual animation code
         sprite.setImageList(imageList); // Give the interpolator the list of images
-        sprite.setupAnimation(3*60); // Set up the actual animation, passing the duration
+        sprite.setupAnimation(3* TOTAL_CONSTRUCTION_TIME); // Set up the actual animation, passing the duration
         sprite.startAnimation(); // Start the actual animation
 
         return sprite;
@@ -465,7 +479,7 @@ public class SpritesFactory {
         // After all images are set up, now call these methods to set up the
         // actual animation code
         sprite.setImageList(imageList); // Give the interpolator the list of images
-        sprite.setupAnimation(5*60); // Set up the actual animation, passing the duration
+        sprite.setupAnimation(5* TOTAL_CONSTRUCTION_TIME); // Set up the actual animation, passing the duration
         sprite.startAnimation(); // Start the actual animation
 
         return sprite;
@@ -498,7 +512,7 @@ public class SpritesFactory {
         // After all images are set up, now call these methods to set up the
         // actual animation code
         sprite.setImageList(imageList); // Give the interpolator the list of images
-        sprite.setupAnimation(4*60); // Set up the actual animation, passing the duration
+        sprite.setupAnimation(4* TOTAL_CONSTRUCTION_TIME); // Set up the actual animation, passing the duration
         sprite.startAnimation(); // Start the actual animation
 
         return sprite;
@@ -531,7 +545,7 @@ public class SpritesFactory {
         // After all images are set up, now call these methods to set up the
         // actual animation code
         sprite.setImageList(imageList); // Give the interpolator the list of images
-        sprite.setupAnimation(5*60); // Set up the actual animation, passing the duration
+        sprite.setupAnimation(5* TOTAL_CONSTRUCTION_TIME); // Set up the actual animation, passing the duration
         sprite.startAnimation(); // Start the actual animation
 
         return sprite;
@@ -564,7 +578,7 @@ public class SpritesFactory {
         // After all images are set up, now call these methods to set up the
         // actual animation code
         sprite.setImageList(imageList); // Give the interpolator the list of images
-        sprite.setupAnimation(3*60); // Set up the actual animation, passing the duration
+        sprite.setupAnimation(3* TOTAL_CONSTRUCTION_TIME); // Set up the actual animation, passing the duration
         sprite.startAnimation(); // Start the actual animation
 
         return sprite;

@@ -1,6 +1,6 @@
 package uq.deco2800.ducktales.entities.worldentities;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -66,6 +66,98 @@ public class BuildingTest {
 	 * that can be called/accessed. 
 	 */
 	@Test
+	public void storageBarnTest() {
+		// Instantiate 3 Houses
+		StorageBarn entity1 = new StorageBarn(2, 3);
+		StorageBarn entity2 = new StorageBarn(4, 5);
+		StorageBarn entity3 = new StorageBarn(1, 1);
+		
+		// Add house buildings to a list
+		List<Entity> entities = new ArrayList<Entity>();
+		entities.add(entity1);
+		entities.add(entity2);
+		entities.add(entity3);
+		
+		// Check that houses are sorted correctly
+		Collections.sort(entities);
+		
+		// Check that house 3 is 1st in list
+		assertTrue("Entity 3 incorrect!", entities.get(0).equals(entity3));
+		// Check that house 1 is 2nd in the list
+		assertTrue("Entity 1 incorrect!", entities.get(1).equals(entity1));
+		// Check that house 2 is 3rd in the list
+		assertTrue("Entity 2 incorrect!", entities.get(2).equals(entity2));
+		
+		// Check correct returned resources and time are accessed and returned
+		assertTrue("Wrong returned resources - wood", 
+				entity1.resourcesReturnWood() == (2));
+		assertTrue("Wrong resources to build - stone", 
+				entity3.resourcesBuildStone() == 4);
+		assertTrue("Wrong time to build", entity2.timeToBuild() == 7);
+		
+		// Check correct production type and amount
+		assertTrue("Wrong production type", entity1.resourcesProductionType() 
+				== production.NULL);
+		assertTrue("Wrong production amount", 
+				entity3.resourcesProductionAmount() == 0);
+		
+		// Check tick method, call for each house
+		entity1.tick();
+		entity2.tick();
+		entity3.tick();
+		
+		// Check that the objects are unchanged after tick called
+		assertTrue("Wrong returned resources - wood", 
+				entity1.resourcesReturnWood() == (2));
+		assertTrue("Wrong resources to build - stone", 
+				entity3.resourcesBuildStone() == 4);
+		assertTrue("Wrong time to build", entity2.timeToBuild() == 7);
+		
+		// Check the getHealth method for a house
+		assertTrue("Incorrect Health", entity3.getHealth() == 950);
+		
+		// Check change health, valid (decrease)
+		entity3.changeHealth(10);
+		assertTrue("Incorrect Health", entity3.getHealth() == 10);
+		// Check change health, invalid (=0)
+		entity3.changeHealth(0);
+		assertTrue("Incorrect Health", entity3.getHealth() == 10);
+		// Check change health, valid (increase)
+		entity3.changeHealth(978000);
+		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
+		// Check change health, invalid (<0)
+		entity3.changeHealth(-10);
+		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
+		
+		// Test getx and gety methods, house 3
+		assertTrue("Incorrect xLength", entity3.getXLength() == 5);
+		assertTrue("Incorrect yLength", entity3.getYLength() == 5);
+		
+		assertEquals(entity3.getStorage().toString(), "[(WOOD,20,0), (STONE,15,0), (ORE,10,0), (FOOD,25,0)]");
+		entity3.addGoods(production.FOOD, 15);
+		entity3.addGoods(production.ORE, 7);
+		assertEquals(entity3.getStorage().toString(), "[(WOOD,20,0), (STONE,15,0), (ORE,10,7), (FOOD,25,15)]");
+		entity3.addGoods(production.WOOD, 30);
+		assertEquals(entity3.getStorage().toString(), "[(WOOD,20,20), (STONE,15,0), (ORE,10,7), (FOOD,25,15)]");
+		entity3.upgradeBarn(production.ORE, 30);
+		assertEquals(entity3.getStorage().toString(), "[(WOOD,20,20), (STONE,15,0), (ORE,30,7), (FOOD,25,15)]");
+		entity3.addGoods(production.ORE, 16);
+		assertEquals(entity3.getStorage().toString(), "[(WOOD,20,20), (STONE,15,0), (ORE,30,23), (FOOD,25,15)]");
+		entity3.addGoods(production.ORE, -10);
+		assertEquals(entity3.getStorage().toString(), "[(WOOD,20,20), (STONE,15,0), (ORE,30,13), (FOOD,25,15)]");
+		entity3.addGoods(null, -10);
+		assertEquals(entity3.getStorage().toString(), "[(WOOD,20,20), (STONE,15,0), (ORE,30,13), (FOOD,25,15)]");
+		entity3.addGoods(production.ORE, 30);
+		assertEquals(entity3.getStorage().toString(), "[(WOOD,20,20), (STONE,15,0), (ORE,30,30), (FOOD,25,15)]");
+		entity3.addGoods(production.NULL, 10);
+		assertEquals(entity3.getStorage().toString(), "[(WOOD,20,20), (STONE,15,0), (ORE,30,30), (FOOD,25,15)]");
+	}
+	
+	/**
+	 * House test, check all the methods and parameters of House buildings 
+	 * that can be called/accessed. 
+	 */
+	@Test
 	public void houseTest() {
 		// Instantiate 3 Houses
 		House entity1 = new House(2, 3);
@@ -115,6 +207,152 @@ public class BuildingTest {
 		
 		// Check the getHealth method for a house
 		assertTrue("Incorrect Health", entity3.getHealth() == 1000);
+		
+		// Check change health, valid (decrease)
+		entity3.changeHealth(10);
+		assertTrue("Incorrect Health", entity3.getHealth() == 10);
+		// Check change health, invalid (=0)
+		entity3.changeHealth(0);
+		assertTrue("Incorrect Health", entity3.getHealth() == 10);
+		// Check change health, valid (increase)
+		entity3.changeHealth(978000);
+		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
+		// Check change health, invalid (<0)
+		entity3.changeHealth(-10);
+		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
+		
+		// Test getx and gety methods, house 3
+		assertTrue("Incorrect xLength", entity3.getXLength() == 2);
+		assertTrue("Incorrect yLength", entity3.getYLength() == 2);
+	}
+	
+	/**
+	 * School test, check all the methods and parameters of School buildings 
+	 * that can be called/accessed. 
+	 */
+	@Test
+	public void schoolTest() {
+		// Instantiate 3 Houses
+		School entity1 = new School(2, 3);
+		School entity2 = new School(4, 5);
+		School entity3 = new School(1, 1);
+		
+		// Add house buildings to a list
+		List<Entity> entities = new ArrayList<Entity>();
+		entities.add(entity1);
+		entities.add(entity2);
+		entities.add(entity3);
+		
+		// Check that houses are sorted correctly
+		Collections.sort(entities);
+		
+		// Check that house 3 is 1st in list
+		assertTrue("Entity 3 incorrect!", entities.get(0).equals(entity3));
+		// Check that house 1 is 2nd in the list
+		assertTrue("Entity 1 incorrect!", entities.get(1).equals(entity1));
+		// Check that house 2 is 3rd in the list
+		assertTrue("Entity 2 incorrect!", entities.get(2).equals(entity2));
+		
+		// Check correct returned resources and time are accessed and returned
+		assertTrue("Wrong returned resources - wood", 
+				entity1.resourcesReturnWood() == (4));
+		assertTrue("Wrong resources to build - stone", 
+				entity3.resourcesBuildStone() == 6);
+		assertTrue("Wrong time to build", entity2.timeToBuild() == 8);
+		
+		// Check correct production type and amount
+		assertTrue("Wrong production type", entity1.resourcesProductionType() 
+				== production.NULL);
+		assertTrue("Wrong production amount", 
+				entity3.resourcesProductionAmount() == 0);
+		
+		// Check tick method, call for each house
+		entity1.tick();
+		entity2.tick();
+		entity3.tick();
+		
+		// Check that the objects are unchanged after tick called
+		assertTrue("Wrong returned resources - wood", 
+				entity1.resourcesReturnWood() == (4));
+		assertTrue("Wrong resources to build - stone", 
+				entity3.resourcesBuildStone() == 6);
+		assertTrue("Wrong time to build", entity2.timeToBuild() == 8);
+		
+		// Check the getHealth method for a house
+		assertTrue("Incorrect Health", entity3.getHealth() == 1000);
+		
+		// Check change health, valid (decrease)
+		entity3.changeHealth(10);
+		assertTrue("Incorrect Health", entity3.getHealth() == 10);
+		// Check change health, invalid (=0)
+		entity3.changeHealth(0);
+		assertTrue("Incorrect Health", entity3.getHealth() == 10);
+		// Check change health, valid (increase)
+		entity3.changeHealth(978000);
+		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
+		// Check change health, invalid (<0)
+		entity3.changeHealth(-10);
+		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
+		
+		// Test getx and gety methods, house 3
+		assertTrue("Incorrect xLength", entity3.getXLength() == 5);
+		assertTrue("Incorrect yLength", entity3.getYLength() == 5);
+	}
+	
+	/**
+	 * Gymnasium test, check all the methods and parameters of gym buildings 
+	 * that can be called/accessed. 
+	 */
+	@Test
+	public void gymTest() {
+		// Instantiate 3 Houses
+		Gymnasium entity1 = new Gymnasium(2, 3);
+		Gymnasium entity2 = new Gymnasium(4, 5);
+		Gymnasium entity3 = new Gymnasium(1, 1);
+		
+		// Add house buildings to a list
+		List<Entity> entities = new ArrayList<Entity>();
+		entities.add(entity1);
+		entities.add(entity2);
+		entities.add(entity3);
+		
+		// Check that houses are sorted correctly
+		Collections.sort(entities);
+		
+		// Check that house 3 is 1st in list
+		assertTrue("Entity 3 incorrect!", entities.get(0).equals(entity3));
+		// Check that house 1 is 2nd in the list
+		assertTrue("Entity 1 incorrect!", entities.get(1).equals(entity1));
+		// Check that house 2 is 3rd in the list
+		assertTrue("Entity 2 incorrect!", entities.get(2).equals(entity2));
+		
+		// Check correct returned resources and time are accessed and returned
+		assertTrue("Wrong returned resources - wood", 
+				entity1.resourcesReturnWood() == (3));
+		assertTrue("Wrong resources to build - stone", 
+				entity3.resourcesBuildStone() == 8);
+		assertTrue("Wrong time to build", entity2.timeToBuild() == 6);
+		
+		// Check correct production type and amount
+		assertTrue("Wrong production type", entity1.resourcesProductionType() 
+				== production.NULL);
+		assertTrue("Wrong production amount", 
+				entity3.resourcesProductionAmount() == 0);
+		
+		// Check tick method, call for each house
+		entity1.tick();
+		entity2.tick();
+		entity3.tick();
+		
+		// Check that the objects are unchanged after tick called
+		assertTrue("Wrong returned resources - wood", 
+				entity1.resourcesReturnWood() == (3));
+		assertTrue("Wrong resources to build - stone", 
+				entity3.resourcesBuildStone() == 8);
+		assertTrue("Wrong time to build", entity2.timeToBuild() == 6);
+		
+		// Check the getHealth method for a house
+		assertTrue("Incorrect Health", entity3.getHealth() == 900);
 		
 		// Check change health, valid (decrease)
 		entity3.changeHealth(10);
