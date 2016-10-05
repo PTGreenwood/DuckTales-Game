@@ -12,10 +12,6 @@ import uq.deco2800.ducktales.features.entities.agententities.Peon;
  */
 public class LightGod extends DuckGods {
 	
-	protected boolean isBuilt     = false;  
-	protected boolean isWorshiped = false;
-	protected boolean isSelected  = false;
-	
 	/** this feature is waited to be build
 	private boolean noConflict = true;
 	*/
@@ -23,28 +19,7 @@ public class LightGod extends DuckGods {
 	public LightGod(String name, String bonus, ImageIcon image) {
 		super();
 	}
-	 
-	public void build() {
-		/**wait for church to be built
-		 * if(isset(church)){
-		 */
-			isBuilt= true;
-		}
-		//}
-	public void selected(){
-	    /**needs to check mouseListener to see if it's clicked
-	     if(clicked)
-	     */
-		isSelected = true;
-	}
-	
-	public void worship()  {
-		if(isBuilt==true && isSelected==true)
-		{
-		isWorshiped = true;
-		}
-	}
-    		
+
 	public void giveaward() {
 		if(isWorshiped == true){
        /**Peon.speed= Peon.speed*2;
