@@ -10,6 +10,7 @@ import uq.deco2800.ducktales.deprecated.GameRendererBeta;
 /**
  * Created by Khoi on 4/09/2016.
  */
+@Deprecated
 public class KeyboardEventHandlerBeta implements EventHandler<KeyEvent> {
 
     /**

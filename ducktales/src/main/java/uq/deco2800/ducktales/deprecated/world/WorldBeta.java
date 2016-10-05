@@ -12,6 +12,7 @@ import uq.deco2800.ducktales.util.Array2D;
  *
  * @author khoiphan21
  */
+@Deprecated
 public class WorldBeta {
     /**
      * CONSTANTS

@@ -61,7 +61,7 @@ public class WorldBuilderController {
      * @param renderer
      *          The rendering engine
      */
-    public static void setRenderer(WorldBuilderRenderer renderer) {
+    public void setRenderer(WorldBuilderRenderer renderer) {
         WorldBuilderController.renderer = renderer;
         renderer.start();
     }

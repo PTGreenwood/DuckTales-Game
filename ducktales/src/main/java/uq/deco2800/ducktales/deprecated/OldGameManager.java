@@ -13,6 +13,7 @@ import uq.deco2800.ducktales.World;
  * @author Leggy
  *
  */
+@Deprecated
 public class OldGameManager {
 
 	private static final OldGameManager INSTANCE = new OldGameManager();

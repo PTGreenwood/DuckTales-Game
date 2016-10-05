@@ -19,6 +19,7 @@ import javafx.scene.image.Image;
  * 
  * @author Leggy
  */
+@Deprecated
 public class OldGameRenderer extends AnimationTimer {
 
 	private GraphicsContext graphicsContext;

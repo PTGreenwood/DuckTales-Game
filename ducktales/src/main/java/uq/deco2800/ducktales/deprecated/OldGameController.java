@@ -26,6 +26,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * 
  * @author khoiphan21, leggy
  */
+@Deprecated
 public class OldGameController {
     /**
      * UI Elements loaded from FXML

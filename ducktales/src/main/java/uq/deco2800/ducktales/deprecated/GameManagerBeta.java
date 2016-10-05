@@ -20,7 +20,7 @@ import static uq.deco2800.ducktales.resources.ResourceType.*;
  *
  * @author khoiphan21
  */
-
+@Deprecated
 public class GameManagerBeta {
     /**
      * CONSTANTS

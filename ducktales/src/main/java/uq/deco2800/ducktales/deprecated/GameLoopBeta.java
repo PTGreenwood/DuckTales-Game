@@ -1,7 +1,7 @@
 package uq.deco2800.ducktales.deprecated;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory; 
+//import org.slf4j.Logger;
+//import org.slf4j.LoggerFactory;
 import uq.deco2800.ducktales.features.time.GameTime;
 
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -11,13 +11,14 @@ import java.util.concurrent.atomic.AtomicBoolean;
  *
  * @author Leggy, khoiphan21
  */
+@Deprecated
 public class GameLoopBeta implements Runnable {
 
     /** Variable to control the running state of the game */
     private AtomicBoolean quit;
     
     //added a logger to fix vulnerability 
-    private static Logger logger = LoggerFactory.getLogger(GameLoopBeta.class);
+//    private static Logger logger = LoggerFactory.getLogger(GameLoopBeta.class);
     
     /** Variable controlling how fast the game time is */
     private int tickTime;
@@ -43,7 +44,7 @@ public class GameLoopBeta implements Runnable {
             try {
                 Thread.sleep(tickTime);
             } catch (InterruptedException e) {
-            	logger.info("context", e);
+//            	logger.info("context", e);
             }
         }
     }
