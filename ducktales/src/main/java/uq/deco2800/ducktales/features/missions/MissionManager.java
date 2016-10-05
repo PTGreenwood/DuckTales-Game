@@ -72,7 +72,7 @@ public class MissionManager {
 		GridPane missions = new GridPane();		
 		
 		missions.setVgap(10);
-		missions.add(createMission("1.Click level button :  ", 0), 0, 1);
+		missions.add(createMission("1.Press T to open Tutorial :  ", 0), 0, 1);
 		missions.add(createMission("2.Open Achievement :  ", 1), 0, 2);		
 		missions.add(createMission("3.Open Marketplace :  ", 2), 0, 3);
 		
