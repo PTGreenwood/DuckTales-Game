@@ -1,6 +1,7 @@
 package uq.deco2800.ducktales.features.entities;
 
 import uq.deco2800.ducktales.World;
+import uq.deco2800.ducktales.rendering.sprites.EnemySprite;
 
 import java.util.*;
 
@@ -14,6 +15,8 @@ import java.util.*;
 public class ThreatManager {
 	public static ArrayList<Effect> effectsList = new ArrayList<Effect>();
 	public static ArrayList<Enemy> enemiesList = new ArrayList<Enemy>();
+	//list for enemy sprites to be stored in
+	public static ArrayList<EnemySprite> enemySpriteList = new ArrayList<EnemySprite>();
 
 	// Temp variables
 	private Effect tempEffect;
