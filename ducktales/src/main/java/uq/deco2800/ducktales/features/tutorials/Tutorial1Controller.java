@@ -1,5 +1,6 @@
 package uq.deco2800.ducktales.features.tutorials;
 
+import java.io.IOException;
 import java.net.URL;
 
 import javafx.event.ActionEvent;
@@ -37,7 +38,7 @@ public class Tutorial1Controller {
 	 * @throws Exception
 	 */
 	@FXML
-	private void tutorial1Next(ActionEvent event) throws Exception {
+	private void tutorial1Next(ActionEvent event) throws IOException {
 		
 		URL location = getClass().getResource("/tutorials/tutorial1Pane1.fxml");
 		FXMLLoader loader = new FXMLLoader();
