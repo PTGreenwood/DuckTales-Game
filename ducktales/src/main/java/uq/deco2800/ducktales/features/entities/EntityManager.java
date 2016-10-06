@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import javafx.scene.layout.Pane;
 import uq.deco2800.ducktales.GameManager;
 import uq.deco2800.ducktales.World;
+import uq.deco2800.ducktales.features.entities.agententities.Animal;
+import uq.deco2800.ducktales.features.hud.HUDManager;
+import uq.deco2800.ducktales.features.hud.menu.MenuManager;
 import uq.deco2800.ducktales.features.landscape.tiles.TileSprite;
 import uq.deco2800.ducktales.features.landscape.tiles.TilesManager;
 import uq.deco2800.ducktales.rendering.RenderingInformation;
@@ -30,6 +33,9 @@ public class EntityManager implements Tickable {
     /** List of the sprite of all entities in the game */
     private ArrayList<EntitySprite> entitySprites;
 
+    /** List of animals that have been registered in the HUD Menu */
+    private ArrayList<ResourceType> registeredAnimals;
+
     /** The game world */
     private World world;
 
@@ -47,6 +53,12 @@ public class EntityManager implements Tickable {
      */
     private EntityManager() {
         entitySprites = new ArrayList<>();
+
+        // Load the list of registered animals in the HUD Menu
+        registeredAnimals = new ArrayList<>();
+        for (int i = 0; i < MenuManager.ANIMALS.length; i++) {
+            registeredAnimals.add(MenuManager.ANIMALS[i]);
+        }
     }
 
     /**
@@ -92,7 +104,11 @@ public class EntityManager implements Tickable {
 
         // check if the entity has been registered
         if (entity != null) {
-            // Check if the entity is of
+            // Check if the entity is an agent entity registered in HUD Manager
+            if (registeredAnimals.contains(entityType)) {
+                Animal animal = (Animal) entity;
+                animal.setGameManager(this.gameManager);
+            }
 
             // Add that entity to the entities list
             world.addEntity(entity);
