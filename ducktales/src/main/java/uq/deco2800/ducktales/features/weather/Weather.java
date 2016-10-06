@@ -65,18 +65,18 @@ public abstract class Weather {
 	}
 	
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(Object other) {
 		
-		if (obj == null) {
+		if (other == null) {
 			return false;
 		}
 		
-		if (!Weather.class.isAssignableFrom(obj.getClass())) {
+		if (!(other instanceof Weather)) {
 			return false;
 		}
 		
-		final Weather other = (Weather) obj;
-		if (!this.toString().equals(other.toString())) {
+		final Weather otherWeather = (Weather) other;
+		if (!this.toString().equals(otherWeather)) {
 			return false;
 		}
 		

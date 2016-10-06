@@ -2,6 +2,8 @@ package uq.deco2800.ducktales.features.weather;
 
 import java.util.*;
 
+import javax.print.attribute.standard.MediaSize.Other;
+
 /**
  * @author mattyleggy
  *
@@ -62,18 +64,18 @@ public class WeatherEvents {
 	}
 	
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(Object other) {
 		
-		if (obj == null) {
+		if (other == null) {
 			return false;
 		}
 		
-		if (!WeatherEvents.class.isAssignableFrom(obj.getClass())) {
+		if (!(other instanceof WeatherEvents)) {
 			return false;
 		}
 		
-		final WeatherEvents other = (WeatherEvents) obj;
-		if (!this.getWeatherEvents().equals(other.getWeatherEvents())) {
+		final WeatherEvents otherEvent = (WeatherEvents) other;
+		if (!this.getWeatherEvents().equals(otherEvent.getWeatherEvents())) {
 			return false;
 		}
 		
