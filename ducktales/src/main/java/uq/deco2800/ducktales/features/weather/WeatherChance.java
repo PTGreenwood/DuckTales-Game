@@ -65,19 +65,19 @@ public class WeatherChance {
 	}
 	
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(Object other) {
 		
-		if (obj == null) {
+		if (other == null) {
 			return false;
 		}
 		
-		if (!WeatherChance.class.isAssignableFrom(obj.getClass())) {
+		if (!(other instanceof WeatherChance)) {
 			return false;
 		}
 		
-		final WeatherChance other = (WeatherChance) obj;
-		if (!this.weather.equals(other.weather) || 
-				this.chance != other.chance) {
+		final WeatherChance otherChance = (WeatherChance) other;
+		if (!this.weather.equals(otherChance.weather) || 
+				this.chance != otherChance.chance) {
 			return false;
 		}
 		

@@ -1,10 +1,8 @@
 package uq.deco2800.ducktales.features.market;
 
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
-
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -101,7 +99,7 @@ public class MarketManager {
      * 
      * @return map of user inventory
      */
-    public HashMap<String, Integer> getUserInventory() {
+    public Map<String, Integer> getUserInventory() {
     	return marketModel.getUserInventory();
     }
     
@@ -134,7 +132,7 @@ public class MarketManager {
     /**
      *  returns the offers that a user has made and the corresponding trade.
      */
-    public HashMap<MocTrade, MocTrade> getUserOffers() {
+    public Map<MocTrade, MocTrade> getUserOffers() {
     	return marketModel.getUserOffers();
     }
     
@@ -173,7 +171,7 @@ public class MarketManager {
      * @param event The action event of the Current Trades Button. 
      */
     @FXML
-    void viewCurrentTrades(ActionEvent event) {
+    void viewCurrentTrades() {
     	MarketVistaNavigator.loadVista(MarketVistaNavigator.ALL_TRADES);
     	
     	deselectButton(selectedVista);
@@ -186,7 +184,7 @@ public class MarketManager {
 	 * @param event The action event of the Your Trades Button.
 	 */
     @FXML
-    void viewYourTrades(ActionEvent event) {
+    void viewYourTrades() {
         MarketVistaNavigator.loadVista(MarketVistaNavigator.YOUR_TRADES);
         
         deselectButton(selectedVista);
@@ -200,7 +198,7 @@ public class MarketManager {
      * @param event The action event of the Offer Trades Button.
      */
     @FXML
-    void viewOffersTrades(ActionEvent event) {
+    void viewOffersTrades() {
     	MarketVistaNavigator.loadVista(MarketVistaNavigator.YOUR_OFFERS);
     	
     	deselectButton(selectedVista);
@@ -212,7 +210,7 @@ public class MarketManager {
 	 * @param event The action event of the Place Trades Button.
 	 */
     @FXML
-    void viewPlaceATrade(ActionEvent event) {
+    void viewPlaceATrade() {
     	MarketVistaNavigator.loadVista(MarketVistaNavigator.PLACE_A_TRADE);
     	
     	deselectButton(selectedVista);
@@ -263,27 +261,23 @@ public class MarketManager {
 	public void selectButton(Vista button) {
     	
 		switch (button) {
-    		case ALLTRADES: currentTradesBtn.setStyle(
-    				backgroundColorString+BTN_SELECTED + "; " 
-    			    		+ btnColorString+BTN_BORDER_COLOUR);
+    		case ALLTRADES: currentTradesBtn.setStyle(backgroundColorString+
+    				BTN_SELECTED + "; " + btnColorString+BTN_BORDER_COLOUR);
     			selectedVista = Vista.ALLTRADES;
     			break;
     			
-    		case YOURTRADES: yourTradesBtn.setStyle(
-    				backgroundColorString+BTN_SELECTED + "; " 
-    			    		+ btnColorString+BTN_BORDER_COLOUR);
+    		case YOURTRADES: yourTradesBtn.setStyle(backgroundColorString+
+    				BTN_SELECTED + "; " + btnColorString+BTN_BORDER_COLOUR);
     			selectedVista = Vista.YOURTRADES;
     			break;
     			
-    		case YOUROFFERS: yourOffersBtn.setStyle(
-    				backgroundColorString+BTN_SELECTED + "; " 
-    			    		+ btnColorString+BTN_BORDER_COLOUR);
+    		case YOUROFFERS: yourOffersBtn.setStyle(backgroundColorString+
+    				BTN_SELECTED + "; " + btnColorString+BTN_BORDER_COLOUR);
     			selectedVista = Vista.YOUROFFERS;
     			break;
     			
-    		case PLACENEWTRADE: placeNewTradeBtn.setStyle(
-    				backgroundColorString+BTN_SELECTED + "; " 
-    			    		+ btnColorString+BTN_BORDER_COLOUR);
+    		case PLACENEWTRADE: placeNewTradeBtn.setStyle(backgroundColorString+
+    				BTN_SELECTED + "; " + btnColorString+BTN_BORDER_COLOUR);
     			selectedVista = Vista.PLACENEWTRADE;
     			break;
     			
