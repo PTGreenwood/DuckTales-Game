@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -50,7 +51,7 @@ public class PendingOffersController {
 	 */
 	@FXML
 	public void initialize() {
-		HashMap<MocTrade, MocTrade> userOffers 
+		Map<MocTrade, MocTrade> userOffers 
 			= this.marketManager.getUserOffers();
 		
 		path = getClass().getResource(OFFER_PANE);
