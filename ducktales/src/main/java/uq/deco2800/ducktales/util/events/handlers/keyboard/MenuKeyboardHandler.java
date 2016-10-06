@@ -1,4 +1,4 @@
-package uq.deco2800.ducktales.deprecated.ui;
+package uq.deco2800.ducktales.util.events.handlers.keyboard;
 
 import javafx.event.EventHandler;
 import javafx.event.EventType;

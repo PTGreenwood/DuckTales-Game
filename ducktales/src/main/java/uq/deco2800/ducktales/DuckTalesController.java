@@ -4,7 +4,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.scene.layout.*;
-import uq.deco2800.ducktales.deprecated.ui.*;
 import uq.deco2800.singularity.clients.ducktales.DucktalesClient;
 import uq.deco2800.singularity.common.representations.User;
 import uq.deco2800.ducktales.features.builder.WorldBuilderController;
@@ -49,14 +48,6 @@ public class DuckTalesController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		worldBuilderController = new WorldBuilderController();
 
-		// Set the handlers for the game panes
-		contentPane.setOnMousePressed(new MousePressedHandler());
-		contentPane.setOnMouseReleased(new MouseReleasedHandler());
-		contentPane.setOnMouseDragged(new MouseDraggedHandler());
-		contentPane.setOnMouseMoved(new MouseMovedHandler());
-		gameWindow.setOnKeyPressed(new KeyboardHandler());
-		gameWindow.setOnKeyReleased(new KeyboardHandler());
-		
 		// Create an instance of the duckTales Restful Client
 		client = new DucktalesClient();
 		
