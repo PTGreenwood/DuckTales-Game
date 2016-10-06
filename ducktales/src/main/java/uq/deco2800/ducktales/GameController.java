@@ -252,8 +252,7 @@ public class GameController implements Initializable{
            try {
                this.worldDisplayManager.changeLightLevel(daynightPane);
            } catch (Exception e) {
-               e.printStackTrace();
-               System.err.println("FAILED TO GET DAY/NIGHT");
+        	   logger.error("FAILED TO GET DAY/NIGHT", e);
            }
 
            // Set the sizing for world pane
