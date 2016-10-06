@@ -64,6 +64,25 @@ public abstract class Weather {
 		return this.getClass().getSimpleName().toLowerCase();
 	}
 	
+	@Override
+	public boolean equals(Object obj) {
+		
+		if (obj == null) {
+			return false;
+		}
+		
+		if (!Weather.class.isAssignableFrom(obj.getClass())) {
+			return false;
+		}
+		
+		final Weather other = (Weather) obj;
+		if (!this.toString().equals(other)) {
+			return false;
+		}
+		
+		return true;
+	}
+	
 	@Override 
 	public int hashCode() {
 		return this.toString().hashCode();

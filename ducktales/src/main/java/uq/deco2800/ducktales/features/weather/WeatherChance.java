@@ -63,6 +63,26 @@ public class WeatherChance {
 	public String toString() {
 		return "" + chance + "% of " + weather.toString();
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		
+		if (obj == null) {
+			return false;
+		}
+		
+		if (!WeatherChance.class.isAssignableFrom(obj.getClass())) {
+			return false;
+		}
+		
+		final WeatherChance other = (WeatherChance) obj;
+		if (!this.weather.equals(other.weather) || 
+				this.chance != other.chance) {
+			return false;
+		}
+		
+		return true;
+	}
 
 	@Override
 	public int hashCode() {
