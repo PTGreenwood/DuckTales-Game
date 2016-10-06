@@ -60,6 +60,25 @@ public class WeatherEvents {
 		}
 		return "[" + returnString + "]";
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		
+		if (obj == null) {
+			return false;
+		}
+		
+		if (!WeatherEvents.class.isAssignableFrom(obj.getClass())) {
+			return false;
+		}
+		
+		final WeatherEvents other = (WeatherEvents) obj;
+		if (!this.getWeatherEvents().equals(other.getWeatherEvents())) {
+			return false;
+		}
+		
+		return true;
+	}
 
 	@Override
 	public int hashCode() {
