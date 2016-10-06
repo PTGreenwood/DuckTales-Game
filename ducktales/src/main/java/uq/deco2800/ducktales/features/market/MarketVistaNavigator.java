@@ -1,6 +1,8 @@
 package uq.deco2800.ducktales.features.market;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javafx.fxml.FXMLLoader;
 
@@ -15,6 +17,10 @@ import javafx.fxml.FXMLLoader;
  *
  */
 public class MarketVistaNavigator {
+	
+	/** Logger for the class */
+	private static final Logger LOGGER = Logger.getLogger(
+			MarketVistaNavigator.class.getName());
 	
 	/**
      * fxml layouts managed by the navigator.
@@ -39,6 +45,13 @@ public class MarketVistaNavigator {
      */
     public static void setMainController(MarketManager marketManager) {
     	MarketVistaNavigator.mainController = marketManager;
+    }
+    
+    /**
+     * Private constructor.
+     */
+    private MarketVistaNavigator() {
+    	
     }
     
     /**
@@ -69,8 +82,9 @@ public class MarketVistaNavigator {
                 
                 currentVista = fxml;
                 
-            } catch (IOException e) {
-                e.printStackTrace();
+            } catch (IOException exception) {
+            	
+            	LOGGER.log(Level.SEVERE, exception.toString(), exception);
             }
     		
     	}
