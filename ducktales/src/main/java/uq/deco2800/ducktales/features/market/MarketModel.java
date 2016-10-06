@@ -3,6 +3,7 @@ package uq.deco2800.ducktales.features.market;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -90,7 +91,7 @@ public class MarketModel {
 		return new ArrayList<MocTrade>(allTrades);
 	}
 	
-	public HashMap<String, Integer> getUserInventory() {
+	public Map<String, Integer> getUserInventory() {
 		return userInventory;
 	}
 	
@@ -104,7 +105,7 @@ public class MarketModel {
 		
 	}
 	
-	public HashMap<MocTrade, MocTrade> getUserOffers() {
+	public Map<MocTrade, MocTrade> getUserOffers() {
 		return this.userOffers;
 	}
 	
