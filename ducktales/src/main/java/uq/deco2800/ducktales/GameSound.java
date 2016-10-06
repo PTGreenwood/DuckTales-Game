@@ -58,7 +58,10 @@ public class GameSound {
 			try{
 				Thread.sleep(50);
 				}
-			catch(InterruptedException ie){logger.info("Interrupted Exception"+ie);}
+			catch(InterruptedException ie){
+				logger.info("Interrupted Exception"+ie);
+				Thread.currentThread().interrupt();
+				}
 			
 		} while(clip.isActive());
 	}
@@ -106,6 +109,7 @@ public class GameSound {
 				}
 			catch(InterruptedException ie) {
 				ie.printStackTrace();
+				Thread.currentThread().interrupt();
 				}
 			
 		} while(clip.isActive());

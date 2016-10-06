@@ -76,7 +76,7 @@ public abstract class Weather {
 		}
 		
 		final Weather other = (Weather) obj;
-		if (!this.toString().equals(other)) {
+		if (!this.toString().equals(other.toString())) {
 			return false;
 		}
 		
