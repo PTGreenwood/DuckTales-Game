@@ -71,6 +71,10 @@ public class SpritesFactory {
                 return createQuarry(index, ResourceType.QUARRY);
             case SAWMILL:
                 return createSawmill(index, ResourceType.SAWMILL);
+            case SCHOOL:
+                return createSchool(index, ResourceType.SCHOOL);
+            case GYMNASIUM:
+                return createGymnasium(index, ResourceType.GYMNASIUM);
             default:
                 return null;
         }
@@ -654,6 +658,72 @@ public class SpritesFactory {
         // Now play the construction animation. Idle animation will automatically
         // play when construction animation is done
         sprite.playConstructionAnimation();
+    }
+    
+    /**
+     * Create a school
+     *
+     * @param index
+     *          The index of the sprite
+     * @param type
+     *          The type of the sprite
+     *
+     * @return The EntitySprite representing a school
+     */
+    private static EntitySprite createSchool(int index, ResourceType type) {
+        // The sprite to be returned
+        EntitySprite sprite = new EntitySprite(index, type);
+
+        // Setup the frames for the animation
+        List<Image> imageList = new ArrayList<>();
+        ResourceSpriteRegister register = ResourceSpriteRegister.getInstance();
+
+        // Now add all the images representing the animation here, one-by-one
+        //imageList.add(register.getResourceImage(ResourceType.DIRT_1));  DOES NOT WORK
+        imageList.add(register.getResourceImage(ResourceType.CONSTRUCTION_2));
+        imageList.add(register.getResourceImage(ResourceType.CONSTRUCTION));
+        imageList.add(register.getResourceImage(ResourceType.SCHOOL));
+
+        // After all images are set up, now call these methods to set up the
+        // actual animation code
+        sprite.setImageList(imageList); // Give the interpolator the list of images
+        sprite.setupAnimation(3* TOTAL_CONSTRUCTION_TIME); // Set up the actual animation, passing the duration
+        sprite.startAnimation(); // Start the actual animation
+
+        return sprite;
+    }
+    
+    /**
+     * Create a gymnasium
+     *
+     * @param index
+     *          The index of the sprite
+     * @param type
+     *          The type of the sprite
+     *
+     * @return The EntitySprite representing a gymnasium
+     */
+    private static EntitySprite createGymnasium(int index, ResourceType type) {
+        // The sprite to be returned
+        EntitySprite sprite = new EntitySprite(index, type);
+
+        // Setup the frames for the animation
+        List<Image> imageList = new ArrayList<>();
+        ResourceSpriteRegister register = ResourceSpriteRegister.getInstance();
+
+        // Now add all the images representing the animation here, one-by-one
+        //imageList.add(register.getResourceImage(ResourceType.DIRT_1));  DOES NOT WORK
+        imageList.add(register.getResourceImage(ResourceType.CONSTRUCTION_2));
+        imageList.add(register.getResourceImage(ResourceType.CONSTRUCTION));
+        imageList.add(register.getResourceImage(ResourceType.GYMNASIUM));
+
+        // After all images are set up, now call these methods to set up the
+        // actual animation code
+        sprite.setImageList(imageList); // Give the interpolator the list of images
+        sprite.setupAnimation(3* TOTAL_CONSTRUCTION_TIME); // Set up the actual animation, passing the duration
+        sprite.startAnimation(); // Start the actual animation
+
+        return sprite;
     }
 
     /**

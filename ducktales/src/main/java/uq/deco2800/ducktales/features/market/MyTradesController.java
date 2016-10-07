@@ -37,7 +37,6 @@ public class MyTradesController {
 	public MyTradesController() {
 		this.marketManager = MarketVistaNavigator.getMainController();
 		
-		System.out.println("MyTradesController called");
 	}
 	
 	/**
@@ -46,16 +45,10 @@ public class MyTradesController {
 	@FXML
 	public void initialize() {
 		
-		System.out.println("MyTradesController initialize() called");
-		
 		List<MocTrade> userTrades = 
 				this.marketManager.getTradesForLoggedInUser();
-		
-		System.out.println("yourTrades.size() = " + userTrades.size());
 				
 		path = getClass().getResource(MY_TRADE_PANE);
-		
-		System.out.println("path = " + path);
 		
 		int row = 0;
 		int column = 0;
@@ -89,13 +82,8 @@ public class MyTradesController {
 				yourTradesGridPane.getChildren().add(tradePane);
 	       
 	
-			} catch (IOException exception) {
+			} catch (IOException | NullPointerException exception) {
 				LOGGER.log(Level.SEVERE, exception.toString(), exception);
-			
-			} catch(NullPointerException exception) {
-				
-				LOGGER.log(Level.SEVERE, exception.toString(), exception);
-				
 			}
 			
 			column++;

@@ -1,7 +1,5 @@
 package uq.deco2800.ducktales.features.market;
 
-import java.util.HashMap;
-import java.util.List;
 import java.util.Set;
 
 import javafx.fxml.FXML;
@@ -44,7 +42,6 @@ public class PlaceTradeController {
 	public PlaceTradeController() {
 		
 		this.marketManager = MarketVistaNavigator.getMainController();
-		System.out.println("PlaceTradeController created");
 		
 	}
 	
@@ -127,10 +124,9 @@ public class PlaceTradeController {
 		
 		if (itemName != null && quantity != null) {
 			// place a new offer
-			System.out.println("Place offer button pressed");
+			
 		} else {
-			// place a new offer
-			System.out.println("Requirements not met");
+			// requirements not met
 			
 		}
 		
