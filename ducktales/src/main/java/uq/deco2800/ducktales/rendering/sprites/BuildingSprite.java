@@ -24,6 +24,10 @@ public class BuildingSprite extends EntitySprite {
     private BuildingAnimation constructionAnimation; // animation during construction
     private BuildingAnimation idleAnimation; // when construction is done
 
+    /** Flags */
+    // Whether to automatically reverse the idle animation
+    private boolean autoReverse = true;
+
     /**
      * Create a sprite for a building
      *
@@ -57,8 +61,9 @@ public class BuildingSprite extends EntitySprite {
      * @param duration
      *          The duration of the animation
      */
-    public void setupIdleAnimation(List<Image> frames, double duration) {
+    public void setupIdleAnimation(List<Image> frames, double duration, boolean autoReverse) {
         this.idleAnimation = new BuildingAnimation(frames, duration);
+        this.autoReverse = autoReverse;
     }
 
     /**
@@ -90,7 +95,7 @@ public class BuildingSprite extends EntitySprite {
 
         // Create a new timeline with the new list of frames and interpolator
         createNewTimeline(duration, Timeline.INDEFINITE);
-        this.timeline.setAutoReverse(true);
+        this.timeline.setAutoReverse(this.autoReverse);
 
         timeline.play();
     }

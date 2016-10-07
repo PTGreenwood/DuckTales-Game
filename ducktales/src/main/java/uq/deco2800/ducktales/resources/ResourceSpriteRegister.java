@@ -131,7 +131,7 @@ public class ResourceSpriteRegister {
 		}
 		resourceTypeRegister.put(type,
 				new Image(getClass().getResource(imageName).toString()));
-	};
+	}
 
 	/**
 	 * Retrieves the Image of the specified resource
@@ -172,11 +172,7 @@ public class ResourceSpriteRegister {
 		addResource(SCHOOL, "/buildings/school.png");
 		addResource(GYMNASIUM, "/buildings/gymnasium.png");
 		addResource(BUTCHER, "/buildings/butcher.png");
-		addResource(BUTCHER_1, "/buildings/butcher/butcher_01.png");
-		addResource(BUTCHER_2, "/buildings/butcher/butcher_02.png");
-		addResource(BUTCHER_3, "/buildings/butcher/butcher_03.png");
-		addResource(BUTCHER_4, "/buildings/butcher/butcher_04.png");
-		addResource(BUTCHER_5, "/buildings/butcher/butcher_05.png");
+
 		addResource(BAKERY, "/buildings/bakery.png");
 		addResource(COMMUNITY_BUILDING, "/buildings/community_building.png");
 		addResource(CONSTRUCTION, "/buildings/construction2.png");
@@ -189,6 +185,74 @@ public class ResourceSpriteRegister {
 		addResource(MINE, "/buildings/mine.png");
 		addResource(CEMETERY, "/buildings/cemetery_small.png");
 		addResource(FARM, "/buildings/farmhouse.png");
+
+		addBuildingAnimationResources();
+	}
+
+	/**
+	 * Add the resources for animating buildings
+	 */
+	private void addBuildingAnimationResources() {
+		// Normal buildings' animations
+		// Bakery
+		addResource(BAKERY_1, "/buildings/bakery/bakery_1.png");
+		addResource(BAKERY_2, "/buildings/bakery/bakery_2.png");
+		addResource(BAKERY_3, "/buildings/bakery/bakery_3.png");
+		addResource(BAKERY_4, "/buildings/bakery/bakery_4.png");
+		addResource(BAKERY_5, "/buildings/bakery/bakery_5.png");
+		// Butcher
+		addResource(BUTCHER_1, "/buildings/butcher/butcher_1.png");
+		addResource(BUTCHER_2, "/buildings/butcher/butcher_2.png");
+		addResource(BUTCHER_3, "/buildings/butcher/butcher_3.png");
+		addResource(BUTCHER_4, "/buildings/butcher/butcher_4.png");
+		addResource(BUTCHER_5, "/buildings/butcher/butcher_5.png");
+		// Cemetery
+		addResource(CEMETERY_1, "/buildings/cemetery/cemetery_small_1.png");
+		addResource(CEMETERY_2, "/buildings/cemetery/cemetery_small_2.png");
+		addResource(CEMETERY_3, "/buildings/cemetery/cemetery_small_3.png");
+		addResource(CEMETERY_4, "/buildings/cemetery/cemetery_small_4.png");
+		addResource(CEMETERY_5, "/buildings/cemetery/cemetery_small_5.png");
+		addResource(CEMETERY_6, "/buildings/cemetery/cemetery_small_6.png");
+		addResource(CEMETERY_7, "/buildings/cemetery/cemetery_small_7.png");
+		addResource(CEMETERY_8, "/buildings/cemetery/cemetery_small_8.png");
+		addResource(CEMETERY_9, "/buildings/cemetery/cemetery_small_9.png");
+		addResource(CEMETERY_10, "/buildings/cemetery/cemetery_small_10.png");
+		addResource(CEMETERY_11, "/buildings/cemetery/cemetery_small_11.png");
+		addResource(CEMETERY_12, "/buildings/cemetery/cemetery_small_12.png");
+		addResource(CEMETERY_13, "/buildings/cemetery/cemetery_small_13.png");
+		addResource(CEMETERY_14, "/buildings/cemetery/cemetery_small_14.png");
+		addResource(CEMETERY_15, "/buildings/cemetery/cemetery_small_15.png");
+		addResource(CEMETERY_16, "/buildings/cemetery/cemetery_small_16.png");
+		// Church
+		addResource(CHURCH_1, "/buildings/church/church_1.png");
+		addResource(CHURCH_2, "/buildings/church/church_2.png");
+		addResource(CHURCH_3, "/buildings/church/church_3.png");
+		addResource(CHURCH_4, "/buildings/church/church_4.png");
+		addResource(CHURCH_5, "/buildings/church/church_5.png");
+		// Observatory
+		addResource(OBSERVATORY_1, "/buildings/observatory/observatory_1.png");
+		addResource(OBSERVATORY_2, "/buildings/observatory/observatory_2.png");
+		addResource(OBSERVATORY_3, "/buildings/observatory/observatory_3.png");
+		addResource(OBSERVATORY_4, "/buildings/observatory/observatory_4.png");
+		addResource(OBSERVATORY_5, "/buildings/observatory/observatory_5.png");
+		// Sawmill
+		addResource(SAWMILL_1, "/buildings/sawmill/sawmill_1.png");
+		addResource(SAWMILL_2, "/buildings/sawmill/sawmill_2.png");
+		addResource(SAWMILL_3, "/buildings/sawmill/sawmill_3.png");
+		addResource(SAWMILL_4, "/buildings/sawmill/sawmill_4.png");
+		addResource(SAWMILL_5, "/buildings/sawmill/sawmill_5.png");
+		addResource(SAWMILL_6, "/buildings/sawmill/sawmill_6.png");
+
+
+		// Advanced buildings' animations
+		// Butcher
+		addResource(ADV_BUTCHER_1, "/buildings/adv_butcher/adv_butcher_01.png");
+		addResource(ADV_BUTCHER_2, "/buildings/adv_butcher/adv_butcher_02.png");
+		addResource(ADV_BUTCHER_3, "/buildings/adv_butcher/adv_butcher_03.png");
+		addResource(ADV_BUTCHER_4, "/buildings/adv_butcher/adv_butcher_04.png");
+		addResource(ADV_BUTCHER_5, "/buildings/adv_butcher/adv_butcher_05.png");
+
+
 	}
 
 	private void addAgentEntitiesResources() {
