@@ -212,7 +212,7 @@ public class SpritesFactory {
 
         // After all images are set up, now call these methods to set up the
         // actual animation code
-        sprite.setupConstructionAnimation(constructionFrames, TOTAL_CONSTRUCTION_TIME);
+        sprite.setupConstructionAnimation(constructionFrames, 7*60);
         sprite.setupIdleAnimation(idleFrames, 1.0);
 
         // Now play the construction animation. Idle animation will automatically
