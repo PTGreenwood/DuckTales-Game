@@ -58,7 +58,10 @@ public class GameSound {
 			try{
 				Thread.sleep(50);
 				}
-			catch(InterruptedException ie){logger.info("Interrupted Exception"+ie);}
+			catch(InterruptedException ie){
+				logger.info("Interrupted Exception"+ie);
+				Thread.currentThread().interrupt();
+				}
 			
 		} while(clip.isActive());
 	}
@@ -90,13 +93,13 @@ public class GameSound {
 		}
 		
 		catch(LineUnavailableException lue){
-			lue.printStackTrace();
+			logger.info("Line unavailable", lue);
 			}
 		catch(UnsupportedAudioFileException uafe){
-			uafe.printStackTrace();
+			logger.info("Unsupported audio file", uafe);
 			}
 		catch(IOException ioe){ 
-			ioe.printStackTrace();
+			logger.info("IO Exception found with sound url", ioe);
 			}
 		clip.start();
 		
@@ -105,7 +108,8 @@ public class GameSound {
 				Thread.sleep(50);
 				}
 			catch(InterruptedException ie) {
-				ie.printStackTrace();
+				logger.info("Interupted Exception caught", ie);
+				Thread.currentThread().interrupt();
 				}
 			
 		} while(clip.isActive());

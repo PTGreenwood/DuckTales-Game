@@ -14,7 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-//import uq.deco2800.ducktales.deprecated.ui.MenuKeyboardHandler;
+//import uq.deco2800.ducktales.util.events.handlers.keyboard.MenuKeyboardHandler;
 import uq.deco2800.singularity.clients.ducktales.DucktalesClient;
 import uq.deco2800.singularity.common.representations.User;
 

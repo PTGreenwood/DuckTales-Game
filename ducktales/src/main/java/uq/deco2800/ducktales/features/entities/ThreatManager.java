@@ -12,8 +12,8 @@ import java.util.*;
  *
  */
 public class ThreatManager {
-	public static ArrayList<Effect> effectsList = new ArrayList<Effect>();
-	public static ArrayList<Enemy> enemiesList = new ArrayList<Enemy>();
+	protected static final ArrayList<Effect> effectsList = new ArrayList<Effect>();
+	protected static final ArrayList<Enemy> enemiesList = new ArrayList<Enemy>();
 
 	// Temp variables
 	private Effect tempEffect;
