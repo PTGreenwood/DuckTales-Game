@@ -1,21 +1,11 @@
 package uq.deco2800.ducktales.features.tutorials;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Font;
 
 /**
@@ -49,10 +39,10 @@ public class TutorialController {
 	@FXML
 	private Button previous;
 	
-	private final static String tutorialImage1 = "/tutorials/basicInterface1.png";
-	private final static String tutorialImage2 = "/tutorials/basicInterface2.png";
-	private final static String tutorialImage3 = "/tutorials/basicInterface3.png";
-	private final static String tutorialImage4 = "/tutorials/basicInterface4.png";
+	private String tutorialImage1 = "/tutorials/basicInterface1.png";
+	private String tutorialImage2 = "/tutorials/basicInterface2.png";
+	private String tutorialImage3 = "/tutorials/basicInterface3.png";
+	private String tutorialImage4 = "/tutorials/basicInterface4.png";
 	
 	@FXML
 	private void loadTutorial1(){
@@ -95,8 +85,7 @@ public class TutorialController {
 		);
 		next.setOnAction((event) -> 
 		    loadTutorial4()
-		);
-		
+		);		
 	}
 	
 	private void loadTutorial(String imageAddress, String text) {

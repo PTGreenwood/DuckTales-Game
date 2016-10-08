@@ -1,7 +1,6 @@
 package uq.deco2800.ducktales.features.achievements;
 
 
-import uq.deco2800.ducktales.features.inventory.InventoryManager;
 import uq.deco2800.ducktales.features.level.LevelHandler;
 import uq.deco2800.ducktales.features.missions.MissionHandler;
 
