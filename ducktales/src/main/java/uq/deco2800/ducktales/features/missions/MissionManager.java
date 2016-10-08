@@ -154,18 +154,24 @@ public class MissionManager {
 	 * @param missionNumber
 	 */
 	public void missionCompletedAction(int missionNumber) {
-    	
-    	//Untick mission2 box in Achievement window of Gamebeta when marketplace is clicked
+		
+		//Increment percentage of progress bar of level
+		if(missionMain.getCountCompletedMissions()[missionNumber] == 0) {			
+			levelMain.addProgressBar(0.5);
+			System.out.println("Mission " + (missionNumber + 1) + " Completed!");
+	    }
+		
+		//Untick mission2 box in Achievement window of Gamebeta when marketplace is clicked
 		missionMain.MissionImageCompleted(missionNumber);
+		
         //Increment percentage of progress indicator in achievement
         missionMain.countNumberOfCompletedMissions();
-        //Increment percentage of progress bar of level
-        levelMain.addProgressBar(0.5);
+        
         //If progress indicator is full then level up
         if(levelMain.getProgressBar().getProgress() >= 1.0) {
         	levelMain.levelUp();
         }        
-        System.out.println("Mission " + (missionNumber + 1) + " Completed!");
+        
     }
 	
 	/**
