@@ -57,45 +57,45 @@ public class TutorialController {
 	@FXML
 	private void loadTutorial1(){
 		loadTutorial(tutorialImage1, "Basic Interface 1");
-		previous.setOnAction((event) -> {
-			loadTutorial1();
-		});
-		next.setOnAction((event) -> {
-		    loadTutorial2();
-		});
+		previous.setOnAction((event) -> 
+			loadTutorial1()
+		);
+		next.setOnAction((event) -> 
+		    loadTutorial2()
+		);
 	}
 	
 	@FXML
 	private void loadTutorial2(){
 		loadTutorial(tutorialImage2, "Basic Interface 2");
-		previous.setOnAction((event) -> {
-			loadTutorial1();
-		});
-		next.setOnAction((event) -> {
-		    loadTutorial3();
-		});
+		previous.setOnAction((event) -> 
+			loadTutorial1()
+		);
+		next.setOnAction((event) -> 
+		    loadTutorial3()
+		);
 	}
 	
 	@FXML
 	private void loadTutorial3() {
 		loadTutorial(tutorialImage3, "Basic Interface 3");
-		previous.setOnAction((event) -> {
-			loadTutorial2();
-		});
-		next.setOnAction((event) -> {
-		    loadTutorial4();
-		});
+		previous.setOnAction((event) -> 
+			loadTutorial2()
+		);
+		next.setOnAction((event) -> 
+		    loadTutorial4()
+		);
 	}
 	
 	@FXML
 	private void loadTutorial4() {
 		loadTutorial(tutorialImage4, "Basic Interface 4");
-		previous.setOnAction((event) -> {
-			loadTutorial3();
-		});
-		next.setOnAction((event) -> {
-		    loadTutorial4();
-		});
+		previous.setOnAction((event) -> 
+			loadTutorial3()
+		);
+		next.setOnAction((event) -> 
+		    loadTutorial4()
+		);
 		
 	}
 	
