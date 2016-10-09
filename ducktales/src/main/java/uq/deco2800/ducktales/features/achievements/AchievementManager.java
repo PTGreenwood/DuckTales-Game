@@ -20,7 +20,7 @@ import uq.deco2800.ducktales.features.missions.MissionHandler;
  * Manage all fxml action of the achievement 
  * 
  * @author Naehyung Kim
- *
+ * 
  */
 public class AchievementManager {
 	
@@ -30,7 +30,7 @@ public class AchievementManager {
 	
 	/** Right Pane of the window */
 	@FXML
-	private AnchorPane rightPane;	
+	private AnchorPane rightPane;
 	
 	/** Buttons on left Pane */
 	@FXML
