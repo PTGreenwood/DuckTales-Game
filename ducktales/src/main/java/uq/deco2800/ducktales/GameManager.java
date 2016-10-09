@@ -11,6 +11,7 @@ import uq.deco2800.ducktales.features.inventory.InventoryManager;
 import uq.deco2800.ducktales.features.level.LevelManager;
 import uq.deco2800.ducktales.features.market.MarketManager;
 import uq.deco2800.ducktales.features.time.TimeManager;
+import uq.deco2800.ducktales.features.tutorials.TutorialController;
 import uq.deco2800.ducktales.rendering.worlddisplay.CursorManager;
 import uq.deco2800.ducktales.rendering.worlddisplay.WorldDisplayManager;
 import uq.deco2800.ducktales.features.missions.MissionManager;
@@ -74,13 +75,14 @@ public class GameManager {
     private MissionManager missionManager;
     private LevelManager levelManager;
     private AchievementManager achievementManager;
+    private TutorialController tutorialManager;
     private CursorManager cursorManager;
     private EntityManager entityManager;
     private TimeManager timeManager;
     private ThreatManager threatManager;
     private InventoryManager inventoryContainer;
     /**
-     * Instantiate an empty game manager and create a new default world
+     * Instantiate an empty game manager and createEntitySprite a new default world
      */
     public GameManager(Pane root) {
         // Instantiate an empty game manager without a pre-loaded world.
@@ -244,6 +246,14 @@ public class GameManager {
     
     public void setMissionManager(MissionManager missionManager) {
         this.missionManager = missionManager;
+    }
+    
+    public TutorialController getTutorialManager() {
+    	return tutorialManager;
+    }
+    
+    public void setTutorialManager(TutorialController tutorialManager) {
+    	this.tutorialManager = tutorialManager;
     }
     
     public LevelManager getLevelManager() {

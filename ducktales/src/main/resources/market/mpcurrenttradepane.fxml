@@ -9,22 +9,31 @@
 
 <Pane prefHeight="108.0" prefWidth="204.0" style="-fx-background-color: #1a1935; -fx-border-color: white;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TextField layoutX="83.0" layoutY="9.0" prefHeight="10.0" prefWidth="100.0" style="-fx-background-color: #1a1935;" />
-      <Label fx:id="itemNameLabels" layoutX="86.0" layoutY="10.0" text="Item Name" textFill="WHITE">
+      <TextField layoutX="83.0" layoutY="15.0" prefHeight="10.0" prefWidth="100.0" style="-fx-background-color: #1a1935;">
          <font>
-            <Font name="Free Pixel Regular" size="18.0" />
+            <Font name="Press Start 2P" size="10.0" />
+         </font></TextField>
+      <Label fx:id="itemNameLabels" layoutX="86.0" layoutY="20.0" text="Item Name" textFill="WHITE">
+         <font>
+            <Font name="Press Start 2P" size="10.0" />
          </font>
       </Label>
-      <TextField layoutX="83.0" layoutY="36.0" prefHeight="4.0" prefWidth="100.0" style="-fx-background-color: #1a1935;" />
-      <Label fx:id="quantityLabel" layoutX="87.0" layoutY="39.0" text="Quantity" textFill="WHITE">
+      <TextField layoutX="83.0" layoutY="36.0" prefHeight="4.0" prefWidth="100.0" style="-fx-background-color: #1a1935;">
          <font>
-            <Font name="Free Pixel Regular" size="16.0" />
+            <Font name="Press Start 2P" size="10.0" />
+         </font></TextField>
+      <Label fx:id="quantityLabel" layoutX="87.0" layoutY="45.0" text="Quantity" textFill="WHITE">
+         <font>
+            <Font name="Press Start 2P" size="10.0" />
          </font>
       </Label>
-      <TextField layoutX="83.0" layoutY="63.0" prefHeight="10.0" prefWidth="100.0" style="-fx-background-color: #1a1935;" />
+      <TextField layoutX="83.0" layoutY="63.0" prefHeight="10.0" prefWidth="100.0" style="-fx-background-color: #1a1935;">
+         <font>
+            <Font name="Press Start 2P" size="10.0" />
+         </font></TextField>
       <Label fx:id="userLabel" layoutX="88.0" layoutY="66.0" text="User" textFill="WHITE">
          <font>
-            <Font name="Free Pixel Regular" size="16.0" />
+            <Font name="Press Start 2P" size="10.0" />
          </font>
       </Label>
       <Region fx:id="itemPictureRegion" layoutX="10.0" layoutY="13.0" prefHeight="74.0" prefWidth="72.0" style="-fx-background-color: #ffffffff;" />

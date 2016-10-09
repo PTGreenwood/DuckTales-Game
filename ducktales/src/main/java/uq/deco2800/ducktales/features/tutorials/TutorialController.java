@@ -1,16 +1,11 @@
 package uq.deco2800.ducktales.features.tutorials;
 
-import java.net.URL;
-
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Font;
 
 /**
@@ -27,124 +22,113 @@ public class TutorialController {
 	
 	/** Right Pane of the window */
 	@FXML
-	private AnchorPane rightPane;
-	@FXML
-	private AnchorPane anchorTutorial1;	
+	private AnchorPane rightPane;	
 	
-	private AnchorPane tutorial1Main;
-	private AnchorPane tutorial2Main;
-	private AnchorPane tutorial3Main;
-	
-	private BorderPane tutorial1;
-	private BorderPane tutorial2;
-	private BorderPane tutorial3;
-	
-	/** Buttons on left Pane */
 	@FXML
-	private Button basicInter;
-	@FXML
-	private Button buildings;
-	@FXML
-	private Button marketPlace;	
+	private ImageView tutorialImage;
 	
-	private void createTutorial(BorderPane borderPane, AnchorPane tutorialMain, String mainTutorilAddress, String subTutorialAddress) throws Exception {
+	@FXML
+	private Label tutorialLabel;
+	
+	@FXML
+	private Label tutorialTitleLabel;
+	
+	@FXML
+	private Button next;
+	
+	@FXML
+	private Button previous;
+	
+	private String tutorialImage1 = "/tutorials/basicInterface1.png";
+	private String tutorialImage2 = "/tutorials/basicInterface2.png";
+	private String tutorialImage3 = "/tutorials/basicInterface3.png";
+	private String tutorialImage4 = "/tutorials/basicInterface4.png";
+	
+	@FXML
+	private void loadTutorial1(){
+		loadTutorial(tutorialImage1, "Basic Interface 1");
+		previous.setOnAction((event) -> 
+			loadTutorial1()
+		);
+		next.setOnAction((event) -> 
+		    loadTutorial2()
+		);
+	}
+	
+	@FXML
+	private void loadTutorial2(){
+		loadTutorial(tutorialImage2, "Basic Interface 2");
+		previous.setOnAction((event) -> 
+			loadTutorial1()
+		);
+		next.setOnAction((event) -> 
+		    loadTutorial3()
+		);
+	}
+	
+	@FXML
+	private void loadTutorial3() {
+		loadTutorial(tutorialImage3, "Basic Interface 3");
+		previous.setOnAction((event) -> 
+			loadTutorial2()
+		);
+		next.setOnAction((event) -> 
+		    loadTutorial4()
+		);
+	}
+	
+	@FXML
+	private void loadTutorial4() {
+		loadTutorial(tutorialImage4, "Basic Interface 4");
+		previous.setOnAction((event) -> 
+			loadTutorial3()
+		);
+		next.setOnAction((event) -> 
+		    loadTutorial4()
+		);		
+	}
+	
+	private void loadTutorial(String imageAddress, String text) {
 		
-		rightPane.getChildren().removeAll(tutorial1,tutorial2,tutorial3);
-		URL location = getClass().getResource(mainTutorilAddress);
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(location);
-		borderPane = loader.load();
+		Image image = new Image(imageAddress);
+						
+		tutorialImage.setImage(image);
+		tutorialLabel.setText(text);
+		tutorialLabel.setFont(new Font("Press Start 2P", 12));
+		showButtons();
 		
-		URL locationMain = getClass().getResource(subTutorialAddress);
-		FXMLLoader loaderMain = new FXMLLoader();
-		loaderMain.setLocation(locationMain);		
-		tutorialMain = loaderMain.load();	
-		
-		borderPane.setPrefHeight(rightPane.getHeight());
-		borderPane.setPrefWidth(rightPane.getWidth());
-		borderPane.setCenter(tutorialMain);
-		
-		rightPane.getChildren().add(borderPane);	
+	}
+	
+	public void showButtons() {
+		this.next.setVisible(true);
+		this.previous.setVisible(true);
+	}
+	
+	public void hideButtons() {
+		this.next.setVisible(false);
+		this.previous.setVisible(false);
 	}
 	
 	/**
-	 * Start tutorial1
-	 * 
-	 * @param event
-	 * @throws Exception
+	 * Show and hide main window
 	 */
-	@FXML
-	public void startTutorial1(ActionEvent event) throws Exception {
-		
-		rightPane.getChildren().removeAll(tutorial1,tutorial2,tutorial3);
-		URL location = getClass().getResource("/tutorials/tutorial1.fxml");
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(location);
-		tutorial1 = loader.load();
-		
-		URL locationBasicInterfaceMain = getClass().getResource("/tutorials/tutorial1Pane0.fxml");
-		FXMLLoader loaderBasicInterfaceMain = new FXMLLoader();
-		loaderBasicInterfaceMain.setLocation(locationBasicInterfaceMain);		
-		tutorial1Main = loaderBasicInterfaceMain.load();	
-		
-		tutorial1.setPrefHeight(rightPane.getHeight());
-		tutorial1.setPrefWidth(rightPane.getWidth());
-		tutorial1.setCenter(tutorial1Main);
-		
-		rightPane.getChildren().add(tutorial1);
+	public void showTutorial() {
+    	this.tutorialWindow.setVisible(true);
 	}
-	
-	/**
-	 * Start tutorial2
-	 * 	
-	 * @param event
-	 * @throws Exception
-	 */
-	@FXML
-	public void startTutorial2(ActionEvent event) throws Exception {
-		
-		rightPane.getChildren().removeAll(tutorial1,tutorial2,tutorial3);
-		URL location = getClass().getResource("/tutorials/tutorial2.fxml");
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(location);
-		tutorial2 = loader.load();
-		
-		URL locationBuildingMain = getClass().getResource("/tutorials/tutorial2Pane0.fxml");
-		FXMLLoader loaderBuildingMain = new FXMLLoader();
-		loaderBuildingMain.setLocation(locationBuildingMain);		
-		tutorial2Main = loaderBuildingMain.load();			
-		
-		tutorial2.setPrefHeight(rightPane.getHeight());
-		tutorial2.setPrefWidth(rightPane.getWidth());
-		tutorial2.setCenter(tutorial2Main);
-		
-		rightPane.getChildren().add(tutorial2);
+	public void hideTutorial() {
+		this.tutorialWindow.setVisible(false);
 	}
-	
+	//@mattyleggy, added this is for in-game keyboard handler
 	/**
-	 * Start tutorial3
-	 * 
-	 * @param event
-	 * @throws Exception
+	 * Toggle between visible and invisible for achievement window. 
 	 */
-	@FXML
-	public void startTutorial3(ActionEvent event) throws Exception {
-		
-		rightPane.getChildren().removeAll(tutorial1,tutorial2,tutorial3);
-		URL location = getClass().getResource("/tutorials/tutorial3.fxml");
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(location);
-		tutorial3 = loader.load();
-		
-		URL locationTradingMain = getClass().getResource("/tutorials/tutorial3Pane0.fxml");
-		FXMLLoader loaderTradingMain = new FXMLLoader();
-		loaderTradingMain.setLocation(locationTradingMain);		
-		tutorial3Main = loaderTradingMain.load();			
-		
-		tutorial3.setPrefHeight(rightPane.getHeight());
-		tutorial3.setPrefWidth(rightPane.getWidth());
-		tutorial3.setCenter(tutorial3Main);
-		
-		rightPane.getChildren().add(tutorial3);
-	}			
+	public void toggleAchievement() {
+		if (this.tutorialWindow.isVisible())
+			showTutorial();
+		else
+			hideTutorial();
+	}
+	public boolean isVisible() {
+		return this.tutorialWindow.isVisible();
+	}
 }

@@ -15,6 +15,7 @@ import uq.deco2800.ducktales.features.level.LevelManager;
 import uq.deco2800.ducktales.features.market.MarketManager;
 import uq.deco2800.ducktales.features.market.MarketVistaNavigator;
 import uq.deco2800.ducktales.features.time.TimeManager;
+import uq.deco2800.ducktales.features.tutorials.TutorialController;
 import uq.deco2800.ducktales.features.time.*;
 import uq.deco2800.ducktales.features.weather.*;
 
@@ -75,6 +76,7 @@ public class GameController implements Initializable{
     private MissionManager missionManager;
     private LevelManager levelManager;
     private AchievementManager achievementManager;
+    private TutorialController tutorialManager;
     
     private HUDManager hudManager;
     private WorldDisplayManager worldDisplayManager;
@@ -107,6 +109,7 @@ public class GameController implements Initializable{
         loadHUD();
         loadMarketPlace();
         loadMissions();
+        loadTutorial();
         loadLevel();
         loadAchievement();
         loadTimeDisplay();
@@ -123,7 +126,8 @@ public class GameController implements Initializable{
         gameManager.setLevelManager(this.levelManager);
         gameManager.setAchievementManager(this.achievementManager);
         gameManager.setEntityManager(this.entityManager);
-
+        gameManager.setTutorialManager(this.tutorialManager);
+        
         // Now officially call the game starting method from Game Manager
         gameManager.startGame();        
         // Game Controller's job of setting up the UI is done.
@@ -182,6 +186,16 @@ public class GameController implements Initializable{
     	missionManager.missionCompletedAction(1);
     }
     
+    @FXML
+    public void showTutorial() {
+    	
+    	hideAllInfoWindows();
+    	
+    	tutorialManager.showTutorial();
+    	closeButton.setVisible(true);
+    	missionManager.missionCompletedAction(0);
+    }
+    
     /**
      * Hide all information windows
      */
@@ -190,6 +204,7 @@ public class GameController implements Initializable{
         marketManager.hideMarketPlace();
         missionManager.hideMission();
         achievementManager.hideAchievement();
+        tutorialManager.hideTutorial();
         closeButton.setVisible(false);
     }
 
@@ -237,8 +252,7 @@ public class GameController implements Initializable{
            try {
                this.worldDisplayManager.changeLightLevel(daynightPane);
            } catch (Exception e) {
-               e.printStackTrace();
-               System.err.println("FAILED TO GET DAY/NIGHT");
+        	   logger.error("FAILED TO GET DAY/NIGHT", e);
            }
 
            // Set the sizing for world pane
@@ -325,6 +339,42 @@ public class GameController implements Initializable{
             logger.info("Unable to load time display:" + e);
         }
 
+    }
+    
+    /**
+     * Load the tutorial FXML into the game
+     */
+    @FXML
+    private void loadTutorial() {
+
+        URL location = getClass().getResource("/tutorial.fxml");
+
+        FXMLLoader loader = new FXMLLoader(location);
+
+        try {
+            // load the FXML
+            AnchorPane root = loader.load();
+            
+            // retrieve the controller
+            tutorialManager = loader.getController();
+
+            // add the mission pane to the GUI
+            rootPane.getChildren().add(root);
+            
+            // position the mission pane
+            AnchorPane.setTopAnchor(root, 20.0);
+            AnchorPane.setRightAnchor(root, 230.0);
+            
+            
+            tutorialManager.hideButtons();
+            // initially hide it first
+            tutorialManager.hideTutorial();
+            
+
+        } catch (IOException e) {
+            System.err.println("Unable to load Tutorial");
+            logger.info("Unable to load Tutorial:" + e);
+        }
     }
 
     /**

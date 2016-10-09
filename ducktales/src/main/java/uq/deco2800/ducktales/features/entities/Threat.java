@@ -28,9 +28,6 @@ public class Threat {
 	
 	private int speed; // value to assign the threat's movement speed
 	private int levelOfDamage; // the level of damage cause by a threat
-	
-	// private HashMap<Image> enemyTypeRegister;
-	//private ArrayList<String> imageStore;
 
 	protected boolean isPassable; // detects whether a tile is passable
 
@@ -62,7 +59,7 @@ public class Threat {
 	}
 
 	public void setWorld(World world) {
-
+		//Need to implement
 	}
 
 	/**
@@ -117,7 +114,7 @@ public class Threat {
 	 */
 	public boolean hasThreatEnded() {
 		this.currentTime = System.currentTimeMillis();
-		if (endTimer == currentTime && hasEndTimer) {
+		if (endTimer >= currentTime && hasEndTimer) {
 			// Change HasEndTimer to false (Not sure if if stat will break)
 			return true;
 		} else {
@@ -131,7 +128,7 @@ public class Threat {
 	 */
 	public boolean shouldThreatStart() {
 		this.currentTime = System.currentTimeMillis();
-		if (startTimer == currentTime && hasStartTimer) {
+		if (startTimer >= currentTime && hasStartTimer) {
 			// Change HasStarTimer to false (Not sure if if stat will break)
 			return true;
 		} else {
@@ -168,11 +165,11 @@ public class Threat {
 		return this.name;
 	}
 
-	public void setXCord(double tempX) {
+	public void setXCord() {
 		this.xCord = randomX;
 	}
 
-	public void setYCord(double tempY) {
+	public void setYCord() {
 		this.yCord = randomY;
 	}
 
@@ -184,7 +181,7 @@ public class Threat {
 	public double getRandomX() {
 		int maxWidth = world.getWidth();
 		Random random = new Random();
-		randomX = random.nextInt(maxWidth) + 1;
+		randomX = (double) random.nextInt(maxWidth) + 1;
 		// need condition statement to check if the randomX intersect w/ tile not passable
 		return randomX;
 	}
@@ -197,7 +194,7 @@ public class Threat {
 	public double getRandomY() {
 		int maxHeight = world.getHeight();
 		Random random = new Random();
-		randomY = random.nextInt(maxHeight) + 1;
+		randomY = (double) random.nextInt(maxHeight) + 1;
 		// need condition statement to check if the randomY intersect w/ tile not passable
 		return randomY;
 	}
@@ -252,7 +249,7 @@ public class Threat {
 	public void checkCollision() {
 		int currentHealth = peon.getHealth();
 		int newHealth = currentHealth - levelOfDamage;
-		if ((this.getX() == peon.getX() && (this.getY() == peon.getY()))) {
+		if ((this.getX() >= peon.getX() && (this.getY() >= peon.getY()))) {
 			peon.setHealth(newHealth);
 		}
 	}

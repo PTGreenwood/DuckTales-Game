@@ -71,6 +71,8 @@ public class GameLoop implements Runnable {
 				Thread.sleep(gameSpeed);
 			} catch (InterruptedException e) {
 				logger.info("context", e);
+				// Clean up state
+				Thread.currentThread().interrupt();
 			}
 		}
 	}

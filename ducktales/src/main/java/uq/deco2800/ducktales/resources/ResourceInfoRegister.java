@@ -11,6 +11,7 @@ import uq.deco2800.ducktales.features.entities.worldentities.Church;
 import uq.deco2800.ducktales.features.entities.worldentities.CommunityBuilding;
 import uq.deco2800.ducktales.features.entities.worldentities.Farm;
 import uq.deco2800.ducktales.features.entities.worldentities.Forge;
+import uq.deco2800.ducktales.features.entities.worldentities.Gymnasium;
 import uq.deco2800.ducktales.features.entities.worldentities.Hospital;
 import uq.deco2800.ducktales.features.entities.worldentities.House;
 import uq.deco2800.ducktales.features.entities.worldentities.Mine;
@@ -18,6 +19,7 @@ import uq.deco2800.ducktales.features.entities.worldentities.Observatory;
 import uq.deco2800.ducktales.features.entities.worldentities.Pasture;
 import uq.deco2800.ducktales.features.entities.worldentities.Quarry;
 import uq.deco2800.ducktales.features.entities.worldentities.Sawmill;
+import uq.deco2800.ducktales.features.entities.worldentities.School;
 
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -71,7 +73,9 @@ public class ResourceInfoRegister {
         register (OBSERVATORY, Observatory.X_LENGTH, Observatory.Y_LENGTH, Observatory.PASSABILITY);
         register (PASTURE, Pasture.X_LENGTH, Pasture.Y_LENGTH, Pasture.PASSABILITY);
         register (QUARRY, Quarry.X_LENGTH, Quarry.Y_LENGTH, Quarry.PASSABILITY);
-        register (SAWMILL, Sawmill.X_LENGTH, Sawmill.Y_LENGTH, Sawmill.PASSABILITY);    
+        register (SAWMILL, Sawmill.X_LENGTH, Sawmill.Y_LENGTH, Sawmill.PASSABILITY);
+        register (SCHOOL, School.X_LENGTH, School.Y_LENGTH, School.PASSABILITY);
+        register (GYMNASIUM, Gymnasium.X_LENGTH, Gymnasium.Y_LENGTH, Gymnasium.PASSABILITY);
     }
 
     /**
@@ -179,6 +183,12 @@ public class ResourceInfoRegister {
                 break;
             case SAWMILL:
                 entity = new Sawmill(x, y);
+                break;
+            case SCHOOL:
+                entity = new School(x, y);
+                break;
+            case GYMNASIUM:
+                entity = new Gymnasium(x, y);
                 break;
             case CONSTRUCTION:
                 break;

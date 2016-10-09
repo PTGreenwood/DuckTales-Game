@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import uq.deco2800.ducktales.deprecated.OldGameManager;
+import uq.deco2800.ducktales.GameManager;
 import uq.deco2800.ducktales.features.jobframework.Job;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.AStar;
@@ -22,6 +22,9 @@ import uq.deco2800.ducktales.features.entities.agententities.PeonBuffType;
  *
  */
 public class Peon extends AgentEntity {
+
+	/** The Main Manager of the game */
+	protected GameManager gameManager;
 
 	private static final Random RANDOM = new Random();
 	private static final ResourceType TYPE = ResourceType.PEON;
@@ -138,7 +141,19 @@ public class Peon extends AgentEntity {
 	public double getSpeed() {
 		return this.speed;
 	}
-
+	
+	/**
+	 * Set up an value of peon can carry the 
+	 * resource start up from 0
+	 * @param newResource
+	 */	
+	public void setResource(int newResource) {
+		if (newResource> 1) {
+			this.resource = newResource;
+		} else  {
+			this.resource = 0;
+		}
+	}	
 	/**
 	 * Return the Peon's resource value
 	 *
@@ -147,7 +162,7 @@ public class Peon extends AgentEntity {
 	public int getResources() {
 		return resource;
 	}
-
+	
 	/**
 	 * Stores what job the peon has
 	 *
@@ -183,8 +198,6 @@ public class Peon extends AgentEntity {
 
 	/**
 	 * Peon quits job if it has one
-	 *
-	 * @param job
 	 */
 	public void quitJob() {
 		if (this.getJob() != jobless)
@@ -266,7 +279,7 @@ public class Peon extends AgentEntity {
 	public int getIntelligence() {
 		return intelligence;
 	}
-        public void setIntelligence(int intellgience){
+        public void setIntelligence(int intelligence){
             this.intelligence=intelligence;
         }
 
@@ -336,44 +349,66 @@ public class Peon extends AgentEntity {
 	public List<PeonBuffType> getBuffs() {
 		return this.buffs;
 	}
-
-
+        /**
+         * Increases amount of buildings made
+         */
+        public void madeABuilding(){
+            this.buildingsMade++;
+        }
+        /**
+         * 
+         * @return amount of buildings made
+         */
         public int getBuildingsMade() {
             return this.buildingsMade;
         }
 	@Override
 	public void tick() {
-		if (goalPoints.isEmpty()) {
-			goalPoints = newGoalPoints();
-		} else if (point.distance(goalPoints.get(0)) < speed) {
-			point = goalPoints.remove(0);
-			OldGameManager.getInstance().getWorld().getTile(point).reset();
+		if (gameManager != null) {
 			if (goalPoints.isEmpty()) {
-				this.goalPoints = newGoalPoints();
+				goalPoints = newGoalPoints();
+			} else if (point.distance(goalPoints.get(0)) < speed) {
+				point = goalPoints.remove(0);
+				gameManager.getWorld().getTile(point).reset();
+				if (goalPoints.isEmpty()) {
+					this.goalPoints = newGoalPoints();
+				}
+			} else {
+				point.moveToward(goalPoints.get(0), speed);
 			}
-		} else {
-			point.moveToward(goalPoints.get(0), speed);
-		}
-		calculateRenderingOrderValues();
+			calculateRenderingOrderValues();
 
-		autoDecrease();
+			autoDecrease();
+		} else {
+			// this peon doesn't know who the main manager is
+			return;
+		}
+
 	}
 
 	private List<Point> newGoalPoints() {
 		Random random = new Random();
 		Point goalPoint = null;
-		while (goalPoint == null || !OldGameManager.getInstance().getWorld().getTile(goalPoint).isPassable()) {
+		while (goalPoint == null || !gameManager.getWorld().getTile(goalPoint).isPassable()) {
 			goalPoint = new Point(random.nextDouble() * 20, random.nextDouble() * 20);
 		}
 
-		List<AStar.Tuple> path = AStar.aStar(point, goalPoint, OldGameManager.getInstance().getWorld());
+		List<AStar.Tuple> path = AStar.aStar(point, goalPoint, gameManager.getWorld());
 		List<Point> goalPoints = new ArrayList<Point>();
 
 		for (AStar.Tuple tuple : path) {
 			goalPoints.add(new Point(tuple.getX(), tuple.getY()));
-			OldGameManager.getInstance().getWorld().getTile(tuple.getX(), tuple.getY()).makePath();
+			gameManager.getWorld().getTile(tuple.getX(), tuple.getY()).makePath();
 		}
 		return goalPoints;
+	}
+
+	/**
+	 * Give the peon the handle on the manager of the game
+	 * @param gameManager
+	 */
+	public void setGameManager(GameManager gameManager) {
+		this.gameManager = gameManager;
 	}
 
 	/**

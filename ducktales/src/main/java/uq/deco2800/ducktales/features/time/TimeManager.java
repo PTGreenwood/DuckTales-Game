@@ -64,24 +64,22 @@ public class TimeManager implements SecondaryManager, Initializable, Tickable {
 
 //        System.err.println("hour and minute: " + gameTime.getHour() + ", " + gameTime.getMinute());
 
-        if (gameTime != null) {
-            // Display the new time\
-        	final int year = gameTime.getCurrentYear();
-            final int day = gameTime.getCurrentDay();
-            final int hour = gameTime.getHour();
-            final String minute = String.format("%02d", gameTime.getMinute());
-            final String timeText = "Current Time is: " + hour + ":" + minute + ", Day " + day + " Year " + year;
-            
-            // this is needed, since this UI update is called from another thread
-            // (GameLoop runs on another thread and not the main FXApplication thread)
-            // IN REGARDS TO TIME ALL CALL TO UI CHANGES MUST GO INSIDE THIS METHOD CALL
+        // Display the new time\
+    	final int year = gameTime.getCurrentYear();
+        final int day = gameTime.getCurrentDay();
+        final int hour = gameTime.getHour();
+        final String minute = String.format("%02d", gameTime.getMinute());
+        final String timeText = "Current Time is: " + hour + ":" + minute + ", Day " + day + " Year " + year;
+        
+        // this is needed, since this UI update is called from another thread
+        // (GameLoop runs on another thread and not the main FXApplication thread)
+        // IN REGARDS TO TIME ALL CALL TO UI CHANGES MUST GO INSIDE THIS METHOD CALL
 
-            Platform.runLater(() -> {
-                timeDisplayText.setText(hour + ":" + minute);
-                dayDisplayText.setText("DAY "+day);
-            });
+        Platform.runLater(() -> {
+            timeDisplayText.setText(hour + ":" + minute);
+            dayDisplayText.setText("DAY "+day);
+        });
             
-        }
     }
     
 	/** 

@@ -2,11 +2,9 @@ package uq.deco2800.ducktales;
 
 import java.util.ArrayList;
 
-import uq.deco2800.ducktales.features.entities.Entity;
-import uq.deco2800.ducktales.features.entities.agententities.AgentEntity;
 
-import uq.deco2800.ducktales.features.entities.worldentities.Bakery;
-import uq.deco2800.ducktales.features.entities.worldentities.WorldEntity;
+import uq.deco2800.ducktales.features.entities.Entity;
+
 import uq.deco2800.ducktales.resources.ResourceInfoRegister;
 import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 
@@ -134,7 +132,6 @@ public class World implements Tickable {
 		if (!entities.contains(entity)) {
 			// Add the entity
 			entities.add(entity);
-
 			// Set the tiles' worldEntity value and passability value
 			for (int x = 0; x < xLength; x++) {
 				for (int y = 0; y < yLength; y++) {
@@ -203,6 +200,8 @@ public class World implements Tickable {
 					continue;
 				} else {
 					// This tile has something in it
+					System.out.println(startX-x);
+					System.out.println(tile.getTileType());
 					return false;
 				}
 			}
