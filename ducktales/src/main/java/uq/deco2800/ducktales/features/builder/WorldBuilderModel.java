@@ -21,12 +21,12 @@ public class WorldBuilderModel {
     /**
      * CONSTANTS
      */
-    protected final int TILE = 1;
-    protected final int ENTITY = 2;
+    protected static final int TILE = 1;
+    protected static final int ENTITY = 2;
 
 
     private World world;
-    //private WorldBuilderRenderer renderer;
+    
     private ResourceType currentResource = NONE;
 
     private int currentType = 0;
