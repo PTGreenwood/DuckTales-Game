@@ -21,12 +21,12 @@ public class WorldBuilderModel {
     /**
      * CONSTANTS
      */
-    protected final int TILE = 1;
-    protected final int ENTITY = 2;
+    protected static final int TILE = 1;
+    protected static final int ENTITY = 2;
 
 
     private World world;
-    //private WorldBuilderRenderer renderer;
+    
     private ResourceType currentResource = NONE;
 
     private int currentType = 0;
@@ -85,9 +85,9 @@ public class WorldBuilderModel {
         currentResource = resource;
         currentType = type;
         String name = "";
-        if (type == this.TILE) {
+        if (type == TILE) {
            name = "tile";
-        } else if (type == this.ENTITY) {
+        } else if (type == ENTITY) {
             name = "entity";
         }
         //System.out.println("Current resource is: " + resource.toString());

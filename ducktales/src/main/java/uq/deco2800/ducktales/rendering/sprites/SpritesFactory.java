@@ -153,7 +153,7 @@ public class SpritesFactory {
         setupBuildingSprite(
                 sprite,
                 type,
-                60*4, // from the time passed in the building class
+                60*4.0, // from the time passed in the building class
                 1.0, // Total time of idle animation
                 idleFrames,
                 true
@@ -226,7 +226,7 @@ public class SpritesFactory {
         setupBuildingSprite(
                 sprite,
                 type,
-                7*60,
+                7.0*60,
                 2.0, // Total time of idle animation
                 idleFrames,
                 false
@@ -275,7 +275,7 @@ public class SpritesFactory {
         setupBuildingSprite(
                 sprite,
                 type,
-                2*60,
+                2.0*60,
                 2.0, // Total time of idle animation
                 idleFrames,
                 false
@@ -311,7 +311,7 @@ public class SpritesFactory {
         setupBuildingSprite(
                 sprite,
                 type,
-                9*60,
+                9.0*60,
                 1.0, // Total time of idle animation
                 idleFrames,
                 true
@@ -513,7 +513,7 @@ public class SpritesFactory {
         setupBuildingSprite(
                 sprite,
                 type,
-                5*60,
+                5.0*60,
                 1.0, // Total time of idle animation
                 idleFrames,
                 true
@@ -616,7 +616,7 @@ public class SpritesFactory {
         setupBuildingSprite(
                 sprite,
                 type,
-                3*60,
+                3.0*60,
                 2.0, // Total time of idle animation
                 idleFrames,
                 true

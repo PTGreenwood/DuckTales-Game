@@ -15,9 +15,9 @@
 						<Image url="@ducktaleslogo.png" />
 					</image>
 				</ImageView>
-				<Button fx:id="startGameBtn" layoutX="467.0" layoutY="350.0" mnemonicParsing="false" onAction="#startGame" prefHeight="45.0" prefWidth="500" styleClass="buttonImage" text="PLAY" textAlignment="left" AnchorPane.bottomAnchor="342.0" />
-				<Button fx:id="buildWorldBtn" layoutX="467.0" layoutY="397.0" mnemonicParsing="false" onAction="#buildWorld" prefHeight="45.0" prefWidth="500" styleClass="buttonImage" text="BUILD WORLD" />
-				<Button fx:id="quitBtn" layoutX="467.0" layoutY="577.0" mnemonicParsing="false" onAction="#quitApplication" prefHeight="45.0" prefWidth="500" styleClass="buttonImage" text="EXIT" />
+				<Button fx:id="startGameBtn" layoutX="467.0" layoutY="435.0" mnemonicParsing="false" onAction="#startGame" prefHeight="45.0" prefWidth="500" styleClass="buttonImage" text="PLAY" textAlignment="left" AnchorPane.bottomAnchor="257.0" />
+				<Button fx:id="buildWorldBtn" layoutX="467.0" layoutY="485.0" mnemonicParsing="false" onAction="#buildWorld" prefHeight="45.0" prefWidth="500" styleClass="buttonImage" text="BUILD WORLD" />
+				<Button fx:id="quitBtn" layoutX="467.0" layoutY="535.0" mnemonicParsing="false" onAction="#quitApplication" prefHeight="45.0" prefWidth="500" styleClass="buttonImage" text="EXIT" />
            		<Text fill="WHITE" layoutX="478.0" layoutY="684.0" strokeType="OUTSIDE" strokeWidth="0.0" text="© 2016 DECO GAMES" />            	
 			</children>
 		</AnchorPane>
