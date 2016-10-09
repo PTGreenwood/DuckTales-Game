@@ -1,8 +1,10 @@
 package uq.deco2800.ducktales;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
@@ -11,6 +13,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.stage.Screen;
 import uq.deco2800.ducktales.features.achievements.AchievementManager;
 import uq.deco2800.ducktales.features.entities.EntityManager;
 import uq.deco2800.ducktales.features.hud.HUDManager;
@@ -86,6 +89,7 @@ public class GameController implements Initializable{
     
     private HUDManager hudManager;
     private WorldDisplayManager worldDisplayManager;
+    private WeatherManager weatherManager;
 
     private EntityManager entityManager;
 
@@ -110,14 +114,15 @@ public class GameController implements Initializable{
         // Load each FXML element into the root pane on by one, and retrieve
         // their respective controllers        
         
-        loadWorldDisplay();    
-        loadWeatherDisplay();
+        loadWorldDisplay(); 
+        
         loadHUD();
         loadMarketPlace();
         loadMissions();
         loadTutorial();
         loadLevel();
         loadAchievement();
+        loadWeatherDisplay();
         loadTimeDisplay();
         loadDayNightDisplay(); // This must be after loading TimeDisplay
 
@@ -132,7 +137,7 @@ public class GameController implements Initializable{
         gameManager.setLevelManager(this.levelManager);
         gameManager.setAchievementManager(this.achievementManager);
         gameManager.setEntityManager(this.entityManager);
-        gameManager.setTutorialManager(this.tutorialManager);
+        gameManager.setTutorialManager(this.tutorialManager);        
         
         // Now officially call the game starting method from Game Manager
         gameManager.startGame();        
@@ -275,11 +280,78 @@ public class GameController implements Initializable{
      * Overlay the weather pane on top of the main game pane.
      */
     private void loadWeatherDisplay() {
+    	URL location = getClass().getResource("/weather/weatherDisplay.fxml");
+
+        FXMLLoader loader = new FXMLLoader(location);
+
+        try {
+            // load the FXML
+            AnchorPane weatherDisplay = loader.load();
+
+            // Retrieve the controller
+            weatherManager = loader.getController();
+
+            gameManager.setWeatherManager(this.weatherManager);
+
+            // Add the time display to the GUI
+            weatherDisplay.setOpacity(0.5);
+            leftPane.getChildren().add(0,weatherDisplay);
+            
+            
+            
+
+            // Position the time display
+            AnchorPane.setLeftAnchor(weatherDisplay, 0.0);
+            AnchorPane.setRightAnchor(weatherDisplay, 0.0);
+            AnchorPane.setTopAnchor(weatherDisplay, 0.0);
+            AnchorPane.setBottomAnchor(weatherDisplay, 0.0);
+            
+            /*
+            int canvasHeight = 737;
+            int canvasWidth = 1295;   
+            
+            
+            Canvas mainCanvas = new Canvas(canvasWidth,canvasHeight);            
+            AnchorPane.setLeftAnchor(mainCanvas, 0.0);
+            AnchorPane.setRightAnchor(mainCanvas, 0.0);
+            AnchorPane.setTopAnchor(mainCanvas, 0.0);
+            AnchorPane.setBottomAnchor(mainCanvas, 0.0);
+            GraphicsContext ctx = mainCanvas.getGraphicsContext2D();
+            //weatherManager.tick();
+            Platform.runLater(() -> {            
+	    		for (int i=0; i < 1000; i++) {		
+	    			int randX = (int)Math.ceil(Math.random() * canvasWidth); 		
+	    			int randY = (int)Math.ceil(Math.random() * canvasHeight);		
+	    			int randD = (int)Math.floor(Math.random() * 7) - 3; //random direction between -3 && 3				
+	    			int randA = (int)(Math.random() * 5) + 10; //random acceleration
+	    			ctx.beginPath();            
+	                ctx.setFill(Color.GREEN);
+	                ctx.setStroke(Color.BLUE);
+	                ctx.arc(randX,randY,20,20,2*Math.PI,1);            
+	        		ctx.stroke();
+	        		ctx.fill();		
+	        		ctx.setLineWidth(2);
+	        		ctx.stroke();    
+	        		//ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+	    		}    		
+            });
+            */
+            
+
+        } catch (IOException e) {
+            System.err.println("unable to load weather display");
+            logger.info("Unable to load weather display:" + e);
+        }
+    	
+        /*
         URL location = getClass().getResource("/weather/weatherEffects.fxml");
         FXMLLoader loader = new FXMLLoader(location);
         try {
             Pane weatherPane = loader.load();     
 
+            weatherManager = loader.getController();
+            //gameManager.setWeatherManager(this.weatherManager);
+            
             // add the weather pane to the root pane
             //rootPane.getChildren().add(weatherPane);           
             weatherPane.setOpacity(0.7);
@@ -290,34 +362,7 @@ public class GameController implements Initializable{
             AnchorPane.setTopAnchor(weatherPane, 0.0);
             AnchorPane.setBottomAnchor(weatherPane, 0.0);
             
-            int canvasHeight = (int)rootPane.getHeight();
-            int canvasWidth = (int)rootPane.getWidth();
-            System.out.println(canvasHeight);
-            System.out.println(canvasWidth);
-            Canvas mainCanvas = new Canvas(canvasWidth,canvasHeight);            
-            AnchorPane.setLeftAnchor(mainCanvas, 0.0);
-            AnchorPane.setRightAnchor(mainCanvas, 0.0);
-            AnchorPane.setTopAnchor(mainCanvas, 0.0);
-            AnchorPane.setBottomAnchor(mainCanvas, 0.0);
-            GraphicsContext ctx = mainCanvas.getGraphicsContext2D();
-                
-    		for (int i=0; i < 1000; i++) {		
-    			int randX = (int)Math.ceil(Math.random() * canvasWidth); 		
-    			int randY = (int)Math.ceil(Math.random() * canvasHeight);		
-    			int randD = (int)Math.floor(Math.random() * 7) - 3; //random direction between -3 && 3				
-    			int randA = (int)(Math.random() * 5) + 10; //random acceleration
-    			ctx.beginPath();            
-                ctx.setFill(Color.GREEN);
-                ctx.setStroke(Color.BLUE);
-                ctx.arc(randX,randY,20,0,2*Math.PI,1);            
-        		ctx.stroke();
-        		ctx.fill();		
-        		ctx.setLineWidth(20);
-        		ctx.stroke();    
-        		//ctx.clearRect(0, 0, canvasWidth, canvasHeight);
-    		}
-    		
-            rootPane.getChildren().add(mainCanvas);
+            
             
             
             
@@ -325,6 +370,7 @@ public class GameController implements Initializable{
         } catch (IOException e) {
             System.err.println("unable to load weather effects");
         }
+        */
     }
 
     
