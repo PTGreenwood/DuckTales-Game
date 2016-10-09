@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import uq.deco2800.ducktales.deprecated.OldGameManager;
+import uq.deco2800.ducktales.GameManager;
 import uq.deco2800.ducktales.features.entities.EntityManager;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.AStar;
@@ -16,6 +16,9 @@ import uq.deco2800.ducktales.util.Point;
  * @author Josh Benavides
  */
 public class Animal extends AgentEntity {
+
+    /** The main manager of the game */
+    protected GameManager gameManager;
 
     private static final int MINSTARTHEALTH = 20;
     private static final int MAXSTARTHEALTH = 100;
@@ -103,18 +106,33 @@ public class Animal extends AgentEntity {
      * Determines the destination of the animal as well as the pathing to get to the destination.
      */
     protected List<Point> newGoalPoints() {
-        Random random = new Random();
-        Point goalPoint = null;
-        while (goalPoint == null || !OldGameManager.getInstance().getWorld().getTile(goalPoint).isPassable() &&
-                !OldGameManager.getInstance().getWorld().getTile(goalPoint).getTileType().equals(ResourceType.WATER)) {
-            goalPoint = new Point(random.nextDouble() * 20, random.nextDouble() * 20);
+        if (gameManager != null) {
+            // This animal has had a handle on the game manager
+            Random random = new Random();
+            Point goalPoint = null;
+            while (goalPoint == null || !gameManager.getWorld().getTile(goalPoint).isPassable() &&
+                    !gameManager.getWorld().getTile(goalPoint).getTileType().equals(ResourceType.WATER)) {
+                goalPoint = new Point(random.nextDouble() * 20, random.nextDouble() * 20);
+            }
+            List<AStar.Tuple> path = AStar.aStar(point, goalPoint, gameManager.getWorld());
+            List<Point> goalPoints = new ArrayList<Point>();
+            for (AStar.Tuple tuple : path) {
+                goalPoints.add(new Point(tuple.getX(), tuple.getY()));
+            }
+            return goalPoints;
+        } else {
+            return null;
         }
-        List<AStar.Tuple> path = AStar.aStar(point, goalPoint, OldGameManager.getInstance().getWorld());
-        List<Point> goalPoints = new ArrayList<Point>();
-        for (AStar.Tuple tuple : path) {
-            goalPoints.add(new Point(tuple.getX(), tuple.getY()));
-        }
-        return goalPoints;
+    }
+
+    /**
+     * Give the animal a handle on the main manager of the game
+     *
+     * @param gameManager
+     *          The main manager of the game
+     */
+    public void setGameManager(GameManager gameManager) {
+        this.gameManager = gameManager;
     }
 
     /**     * Incrementally increases the hunger and thirst level of the animal.

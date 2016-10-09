@@ -5,19 +5,15 @@ import java.net.URL;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.control.ProgressIndicator;
 import uq.deco2800.ducktales.features.achievements.AchievementHandler;
@@ -72,9 +68,9 @@ public class MissionManager {
 		GridPane missions = new GridPane();		
 		
 		missions.setVgap(10);
-		missions.add(createMission("1.Click level button :  ", 0), 0, 1);
-		missions.add(createMission("2.Click achievement button :  ", 1), 0, 2);		
-		missions.add(createMission("3.Click marketplace button :  ", 2), 0, 3);
+		missions.add(createMission("1.Press T to open Tutorial :  ", 0), 0, 1);
+		missions.add(createMission("2.Press H to open Achievement :  ", 1), 0, 2);		
+		missions.add(createMission("3.Press M to open Marketplace :  ", 2), 0, 3);
 		
 		ScrollPane scroll = new ScrollPane(missions);
 		
@@ -158,18 +154,24 @@ public class MissionManager {
 	 * @param missionNumber
 	 */
 	public void missionCompletedAction(int missionNumber) {
-    	
-    	//Untick mission2 box in Achievement window of Gamebeta when marketplace is clicked
+		
+		//Increment percentage of progress bar of level
+		if(missionMain.getCountCompletedMissions()[missionNumber] == 0) {			
+			levelMain.addProgressBar(0.5);
+			System.out.println("Mission " + (missionNumber + 1) + " Completed!");
+	    }
+		
+		//Untick mission2 box in Achievement window of Gamebeta when marketplace is clicked
 		missionMain.MissionImageCompleted(missionNumber);
+		
         //Increment percentage of progress indicator in achievement
         missionMain.countNumberOfCompletedMissions();
-        //Increment percentage of progress bar of level
-        levelMain.addProgressBar(0.5);
+        
         //If progress indicator is full then level up
         if(levelMain.getProgressBar().getProgress() >= 1.0) {
         	levelMain.levelUp();
         }        
-        System.out.println("Mission " + (missionNumber + 1) + " Completed!");
+        
     }
 	
 	/**

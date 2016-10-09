@@ -3,11 +3,15 @@ package uq.deco2800.ducktales.features.hud;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
+import uq.deco2800.ducktales.GameController;
 import uq.deco2800.ducktales.features.hud.menu.MenuManager;
 import uq.deco2800.ducktales.util.SecondaryManager;
 
 import java.io.IOException;
 import java.net.URL;
+
+import org.slf4j.Logger; 
+import org.slf4j.LoggerFactory; 
 
 /**
  * This class manages all the UI components of the HUD for the game
@@ -26,6 +30,9 @@ public class HUDManager implements SecondaryManager {
     private AnchorPane bottomPane;
     private AnchorPane leftPane;
 
+    /** implementing a logger, to catch ioe exception */
+    private static Logger logger = LoggerFactory.getLogger(HUDManager.class);
+    
     /** Helper managers */
     private MenuManager menuManager;
 
@@ -60,8 +67,7 @@ public class HUDManager implements SecondaryManager {
             AnchorPane.setRightAnchor(menuPane, 0.0);
             AnchorPane.setTopAnchor(menuPane, 0.0);
         } catch (IOException e) {
-            System.err.println("unable to load menu");
-            e.printStackTrace();
+        	logger.info("unable to load menu", e);
         }
     }
 

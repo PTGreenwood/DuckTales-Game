@@ -21,6 +21,12 @@ public abstract class DuckGods {
     protected String bonus;
     // The image to be rendered of the duck god.
     protected ImageIcon image;
+
+    /** flags to control the state of the god */
+    protected boolean isBuilt = false;
+    protected boolean isWorshiped = false;
+    protected boolean isSelected = false;
+
     
     /**
      * Main constructor of {@link DuckGods}.
@@ -47,4 +53,25 @@ public abstract class DuckGods {
     	return requiredSacrifice;
     	
     }
+
+    public void build() {
+        /**wait for chaoschurch to be built
+         * if(isset(chaoschurch)){
+         */
+        isBuilt= true;
     }
+    //}
+    public void selected(){
+        /**needs to check mouseListener to see if it's clicked
+         if(clicked)
+         */
+        isSelected = true;
+    }
+
+    public void worship()  {
+        if(isBuilt==true && isSelected==true)
+        {
+            isWorshiped = true;
+        }
+    }
+}
