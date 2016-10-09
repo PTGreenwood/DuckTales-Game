@@ -69,8 +69,8 @@ public class MissionManager {
 		
 		missions.setVgap(10);
 		missions.add(createMission("1.Press T to open Tutorial :  ", 0), 0, 1);
-		missions.add(createMission("2.Open Achievement :  ", 1), 0, 2);		
-		missions.add(createMission("3.Open Marketplace :  ", 2), 0, 3);
+		missions.add(createMission("2.Press H to open Achievement :  ", 1), 0, 2);		
+		missions.add(createMission("3.Press M to open Marketplace :  ", 2), 0, 3);
 		
 		ScrollPane scroll = new ScrollPane(missions);
 		

@@ -8,6 +8,16 @@ import uq.deco2800.ducktales.features.time.GameTime;
 import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
 
+import static uq.deco2800.ducktales.resources.ResourceType.DUCK;
+import static uq.deco2800.ducktales.resources.ResourceType.DUCKDown0;
+import static uq.deco2800.ducktales.resources.ResourceType.DUCKDown1;
+import static uq.deco2800.ducktales.resources.ResourceType.DUCKLeft0;
+import static uq.deco2800.ducktales.resources.ResourceType.DUCKLeft1;
+import static uq.deco2800.ducktales.resources.ResourceType.DUCKRight0;
+import static uq.deco2800.ducktales.resources.ResourceType.DUCKRight1;
+import static uq.deco2800.ducktales.resources.ResourceType.DUCKUp0;
+import static uq.deco2800.ducktales.resources.ResourceType.DUCKUp1;
+
 /**
  * This is the factory that will createEntitySprite and return sprites as requested
  *
@@ -38,7 +48,9 @@ public class SpritesFactory {
             case SHEEP:
                 return createSheep(index, ResourceType.SHEEP);
             case DUCK:
-                return createDuck(index, ResourceType.DUCK);
+                return createDuck(index, DUCK);
+            case COW:
+            	return createCow(index, ResourceType.COW);
 
             // BUILDINGS
             case HOSPITAL:
@@ -141,7 +153,7 @@ public class SpritesFactory {
         setupBuildingSprite(
                 sprite,
                 type,
-                60*4, // from the time passed in the building class
+                60*4.0, // from the time passed in the building class
                 1.0, // Total time of idle animation
                 idleFrames,
                 true
@@ -214,7 +226,7 @@ public class SpritesFactory {
         setupBuildingSprite(
                 sprite,
                 type,
-                7*60,
+                7.0*60,
                 2.0, // Total time of idle animation
                 idleFrames,
                 false
@@ -263,7 +275,7 @@ public class SpritesFactory {
         setupBuildingSprite(
                 sprite,
                 type,
-                2*60,
+                2.0*60,
                 2.0, // Total time of idle animation
                 idleFrames,
                 false
@@ -299,7 +311,7 @@ public class SpritesFactory {
         setupBuildingSprite(
                 sprite,
                 type,
-                9*60,
+                9.0*60,
                 1.0, // Total time of idle animation
                 idleFrames,
                 true
@@ -501,7 +513,7 @@ public class SpritesFactory {
         setupBuildingSprite(
                 sprite,
                 type,
-                5*60,
+                5.0*60,
                 1.0, // Total time of idle animation
                 idleFrames,
                 true
@@ -604,7 +616,7 @@ public class SpritesFactory {
         setupBuildingSprite(
                 sprite,
                 type,
-                3*60,
+                3.0*60,
                 2.0, // Total time of idle animation
                 idleFrames,
                 true
@@ -774,20 +786,50 @@ public class SpritesFactory {
      */
     private static EntitySprite createDuck(int index, ResourceType entityType) {
         // The sprite to be returned
+        AnimalSprite sprite = new AnimalSprite(index, entityType);
+
+        // Setup the frames for the roaming animation.
+        ResourceType[] roamingFrames = {
+        DUCK,
+        DUCKDown0,
+        DUCKDown1,
+        DUCKLeft0,
+        DUCKLeft1,
+        DUCKUp0,
+        DUCKUp1,
+        DUCKRight0,
+        DUCKRight1
+        };
+        // Setup the sprite with the given parameters
+        setupAnimalSprite(
+                sprite,
+                entityType,
+                1.0,
+                roamingFrames,
+                true
+        );
+
+        return sprite;
+    }
+
+    /**
+     * Create and return a generic cow sprite.
+     * @param index
+     *     The index of the sprite
+     * @param entityType
+     *     The type of the sprite
+     *
+     * @return the sprite of a generic duck
+     */
+    private static EntitySprite createCow(int index, ResourceType entityType) {
+        // The sprite to be returned
         EntitySprite sprite = new EntitySprite(index, entityType);
 
         // Setup the frames for the animation
         List<Image> imageList = new ArrayList<>();
         ResourceSpriteRegister register = ResourceSpriteRegister.getInstance();
-        imageList.add(register.getResourceImage(ResourceType.DUCK));
-        imageList.add(register.getResourceImage(ResourceType.DUCKDown0));
-        imageList.add(register.getResourceImage(ResourceType.DUCKDown1));
-        imageList.add(register.getResourceImage(ResourceType.DUCKLeft0));
-        imageList.add(register.getResourceImage(ResourceType.DUCKLeft1));
-        imageList.add(register.getResourceImage(ResourceType.DUCKUp0));
-        imageList.add(register.getResourceImage(ResourceType.DUCKUp1));
-        imageList.add(register.getResourceImage(ResourceType.DUCKRight0));
-        imageList.add(register.getResourceImage(ResourceType.DUCKRight1));
+        imageList.add(register.getResourceImage(ResourceType.COW));
+        // BELOW THIS SHOULD BE THE REMAINING COW SPRITES TO CREATE THE ANIMATION
 
         // After all images are set up, now call these methods to set up the
         // actual animation code
@@ -796,5 +838,42 @@ public class SpritesFactory {
         sprite.startAnimation(); // Start the actual animation
 
         return sprite;
+    }
+
+    /**
+     * Sets up the animal sprite with the given parameters.
+     * @param sprite
+     *         The sprite to be set up.
+     * @param animalType
+     *         The resourceType of the sprite to be set up.
+     * @param roamingAnimationTime
+     *         The duration of the roaming animation.
+     * @param roamingAnimationFrames
+     *         The key frames of the roaming animation.
+     * @param autoReverse
+     *         Whether the animation can move backwards.
+     */
+    private static void setupAnimalSprite(
+            AnimalSprite sprite,
+            ResourceType animalType,
+            double roamingAnimationTime,
+            ResourceType[] roamingAnimationFrames,
+            boolean autoReverse) {
+        // Setup the frames for the animations
+        List<Image> roamingFrames = new ArrayList<>();
+//        List<Image> deathFrames = new ArrayList<>();
+        ResourceSpriteRegister register = ResourceSpriteRegister.getInstance();
+
+        // Add all the frames for the roaming animation.
+        for (int i = 0; i < roamingAnimationFrames.length; i++) {
+            roamingFrames.add(register.getResourceImage(roamingAnimationFrames[i]));
+        }
+
+        // After all images are set up, now call these methods to set up the actual animation code.
+        sprite.setUpRoamingAnimation(roamingFrames, roamingAnimationTime, autoReverse);
+
+        // Now play the construction animation. Idle animation will automatically
+        // play when construction animation is done
+        sprite.playRoamingAnimation();
     }
 }

@@ -32,6 +32,7 @@ import static uq.deco2800.ducktales.resources.ResourceType.SAWMILL;
 import static uq.deco2800.ducktales.resources.ResourceType.SCHOOL;
 import static uq.deco2800.ducktales.resources.ResourceType.GYMNASIUM;
 import static uq.deco2800.ducktales.resources.ResourceType.SHEEP;
+import static uq.deco2800.ducktales.resources.ResourceType.COW;
 
 /**
  * This manager manages the menu section of the HUD
@@ -50,7 +51,7 @@ public class MenuManager implements Initializable, SecondaryManager{
     };
     // TODO: TO ADD NEW ANIMALS, REGISTER THEIR NAMES HERE
     private static final ResourceType[] ANIMALS = {
-            SHEEP, DUCK
+            SHEEP, DUCK, COW, 
     };
     // enum to check which is selected, a BUILDING or an ANIMAL
     public enum MenuType {
