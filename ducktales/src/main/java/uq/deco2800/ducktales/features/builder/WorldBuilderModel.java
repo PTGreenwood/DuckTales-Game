@@ -85,9 +85,9 @@ public class WorldBuilderModel {
         currentResource = resource;
         currentType = type;
         String name = "";
-        if (type == this.TILE) {
+        if (type == TILE) {
            name = "tile";
-        } else if (type == this.ENTITY) {
+        } else if (type == ENTITY) {
             name = "entity";
         }
         //System.out.println("Current resource is: " + resource.toString());
