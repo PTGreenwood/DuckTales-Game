@@ -3,11 +3,14 @@ package uq.deco2800.ducktales;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import uq.deco2800.ducktales.features.achievements.AchievementManager;
 import uq.deco2800.ducktales.features.entities.EntityManager;
 import uq.deco2800.ducktales.features.hud.HUDManager;
@@ -52,6 +55,9 @@ public class GameController implements Initializable{
     /** The main pane where everything is loaded into */
     @FXML
     private AnchorPane rootPane;
+    
+    //@FXML
+    //private Canvas mainCanvas;
     
     /** The main UI elements */
     @FXML
@@ -275,7 +281,7 @@ public class GameController implements Initializable{
             Pane weatherPane = loader.load();     
 
             // add the weather pane to the root pane
-            rootPane.getChildren().add(weatherPane);           
+            //rootPane.getChildren().add(weatherPane);           
             weatherPane.setOpacity(0.7);
             this.worldDisplayManager.changeWeather(new Rain(), weatherPane);
             // Set the sizing for world pane
@@ -283,6 +289,38 @@ public class GameController implements Initializable{
             AnchorPane.setRightAnchor(weatherPane, 0.0);
             AnchorPane.setTopAnchor(weatherPane, 0.0);
             AnchorPane.setBottomAnchor(weatherPane, 0.0);
+            
+            int canvasHeight = (int)rootPane.getHeight();
+            int canvasWidth = (int)rootPane.getWidth();
+            System.out.println(canvasHeight);
+            System.out.println(canvasWidth);
+            Canvas mainCanvas = new Canvas(canvasWidth,canvasHeight);            
+            AnchorPane.setLeftAnchor(mainCanvas, 0.0);
+            AnchorPane.setRightAnchor(mainCanvas, 0.0);
+            AnchorPane.setTopAnchor(mainCanvas, 0.0);
+            AnchorPane.setBottomAnchor(mainCanvas, 0.0);
+            GraphicsContext ctx = mainCanvas.getGraphicsContext2D();
+                
+    		for (int i=0; i < 1000; i++) {		
+    			int randX = (int)Math.ceil(Math.random() * canvasWidth); 		
+    			int randY = (int)Math.ceil(Math.random() * canvasHeight);		
+    			int randD = (int)Math.floor(Math.random() * 7) - 3; //random direction between -3 && 3				
+    			int randA = (int)(Math.random() * 5) + 10; //random acceleration
+    			ctx.beginPath();            
+                ctx.setFill(Color.GREEN);
+                ctx.setStroke(Color.BLUE);
+                ctx.arc(randX,randY,20,0,2*Math.PI,1);            
+        		ctx.stroke();
+        		ctx.fill();		
+        		ctx.setLineWidth(20);
+        		ctx.stroke();    
+        		//ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+    		}
+    		
+            rootPane.getChildren().add(mainCanvas);
+            
+            
+            
             
         } catch (IOException e) {
             System.err.println("unable to load weather effects");
