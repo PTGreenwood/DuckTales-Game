@@ -6,7 +6,7 @@ public class WeatherCanvas implements Tickable {
 
 	@Override
 	public void tick() {
-		System.out.println("abcd");		
+		//System.out.println("abcd");		
 	}
 
 }

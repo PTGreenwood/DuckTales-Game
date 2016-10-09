@@ -114,16 +114,19 @@ public class GameController implements Initializable{
         // Load each FXML element into the root pane on by one, and retrieve
         // their respective controllers        
         
-        loadWorldDisplay(); 
         
+        loadWorldDisplay(); 
+        loadWeatherDisplay();
         loadHUD();
+        
         loadMarketPlace();
         loadMissions();
         loadTutorial();
         loadLevel();
-        loadAchievement();
-        loadWeatherDisplay();
+        loadAchievement();        
+        
         loadTimeDisplay();
+        
         loadDayNightDisplay(); // This must be after loading TimeDisplay
 
         loadEntities(); // Note: this 'loader method' should be called LAST
@@ -234,7 +237,8 @@ public class GameController implements Initializable{
             worldDisplayManager.setGameManager(this.gameManager);
             
             // add the world pane to the root pane
-            rootPane.getChildren().add(worldPane);
+            
+            rootPane.getChildren().add(worldPane);            
             // Set the sizing for world pane
             AnchorPane.setLeftAnchor(worldPane, 0.0);
             AnchorPane.setRightAnchor(worldPane, 0.0);
@@ -286,7 +290,7 @@ public class GameController implements Initializable{
 
         try {
             // load the FXML
-            AnchorPane weatherDisplay = loader.load();
+            Pane weatherDisplay = loader.load();
 
             // Retrieve the controller
             weatherManager = loader.getController();
@@ -295,7 +299,8 @@ public class GameController implements Initializable{
 
             // Add the time display to the GUI
             weatherDisplay.setOpacity(0.5);
-            leftPane.getChildren().add(0,weatherDisplay);
+            weatherDisplay.setMouseTransparent(true);            
+            rootPane.getChildren().add(weatherDisplay);
             
             
             

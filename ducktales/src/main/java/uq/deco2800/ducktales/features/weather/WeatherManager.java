@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import uq.deco2800.ducktales.features.hud.menu.MenuManager;
 import uq.deco2800.ducktales.util.SecondaryManager;
@@ -22,7 +23,7 @@ import java.util.ResourceBundle;
 public class WeatherManager implements SecondaryManager, Initializable, Tickable {
 	private WeatherCanvas weatherCanvas;
 	@FXML
-	private AnchorPane weatherDisplay;
+	private Pane weatherDisplay;
     
 	private Canvas weatherDisplayCanvas;
     @Override
@@ -33,10 +34,11 @@ public class WeatherManager implements SecondaryManager, Initializable, Tickable
     @Override
 	public void initialize(URL location, ResourceBundle resources) {
 		weatherCanvas = new WeatherCanvas();	
+
 		int canvasHeight = 737;
         int canvasWidth = 1295;   
         
-        weatherDisplayCanvas = new Canvas(1295,737);
+        weatherDisplayCanvas = new Canvas(canvasWidth,canvasHeight);
                  
         AnchorPane.setLeftAnchor(weatherDisplayCanvas, 0.0);
         AnchorPane.setRightAnchor(weatherDisplayCanvas, 0.0);
@@ -45,7 +47,8 @@ public class WeatherManager implements SecondaryManager, Initializable, Tickable
         GraphicsContext ctx = weatherDisplayCanvas.getGraphicsContext2D();
         //weatherManager.tick();
         Platform.runLater(() -> {            
-    		for (int i=0; i < 1000; i++) {		
+    		for (int i=0; i < 1000; i++) {
+    			
     			int randX = (int)Math.ceil(Math.random() * canvasWidth); 		
     			int randY = (int)Math.ceil(Math.random() * canvasHeight);		
     			int randD = (int)Math.floor(Math.random() * 7) - 3; //random direction between -3 && 3				
@@ -61,7 +64,7 @@ public class WeatherManager implements SecondaryManager, Initializable, Tickable
         		//ctx.clearRect(0, 0, canvasWidth, canvasHeight);
     		}    		
         });
-        
+        weatherDisplayCanvas.setMouseTransparent(true);
         weatherDisplay.getChildren().add(weatherDisplayCanvas);
 	}
 
