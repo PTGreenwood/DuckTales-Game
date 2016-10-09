@@ -25,21 +25,6 @@
                      <font>
                         <Font name="Pixel Arial 11" size="12.0" />
                      </font></Button>
-                  <Button layoutX="113.0" layoutY="241.0" mnemonicParsing="false" text="Tutorial4" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="170.0">
-                     <font>
-                        <Font size="12.0" />
-                     </font>
-                  </Button>
-                  <Button layoutX="151.0" layoutY="395.0" mnemonicParsing="false" text="Tutorial6" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="270.0">
-                     <font>
-                        <Font size="12.0" />
-                     </font>
-                  </Button>
-                  <Button layoutX="128.0" layoutY="326.0" mnemonicParsing="false" text="Tutorial5" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="220.0">
-                     <font>
-                        <Font size="12.0" />
-                     </font>
-                  </Button>
                </children></AnchorPane>
           <AnchorPane fx:id="rightPane" minHeight="0.0" minWidth="0.0" prefHeight="392.0" prefWidth="196.0">
                <children>
