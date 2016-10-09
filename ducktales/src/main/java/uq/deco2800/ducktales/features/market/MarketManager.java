@@ -43,13 +43,13 @@ public class MarketManager {
     private Button placeNewTradeBtn;
     
     /** Selected navigation button background colour **/ 
-    private static final String BTN_SELECTED = "#1b1464";
+    private static final String BTN_SELECTED = "#80ab4a";
     
     /** The border colour of the buttons when selected. */
     private static final String BTN_BORDER_COLOUR = "white";
     
     /** Deselected navigation button background colour **/
-    private static final String BTN_NOT_SELECTED = "#1a1935";
+    private static final String BTN_NOT_SELECTED = "#C29161";
     
     /** Enum corresponding to the navigation buttons**/
     public enum Vista {
