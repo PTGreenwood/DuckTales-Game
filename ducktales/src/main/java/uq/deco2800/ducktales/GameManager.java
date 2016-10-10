@@ -12,6 +12,7 @@ import uq.deco2800.ducktales.features.level.LevelManager;
 import uq.deco2800.ducktales.features.market.MarketManager;
 import uq.deco2800.ducktales.features.time.TimeManager;
 import uq.deco2800.ducktales.features.tutorials.TutorialController;
+import uq.deco2800.ducktales.features.weather.WeatherManager;
 import uq.deco2800.ducktales.rendering.worlddisplay.CursorManager;
 import uq.deco2800.ducktales.rendering.worlddisplay.WorldDisplayManager;
 import uq.deco2800.ducktales.features.missions.MissionManager;
@@ -81,6 +82,7 @@ public class GameManager {
     private TimeManager timeManager;
     private ThreatManager threatManager;
     private InventoryManager inventoryContainer;
+    private WeatherManager weatherManager;
     /**
      * Instantiate an empty game manager and createEntitySprite a new default world
      */
@@ -291,9 +293,17 @@ public class GameManager {
     public TimeManager getTimeManager() {
         return timeManager;
     }
+    
+    public WeatherManager getWeatherManager() {
+    	return this.weatherManager;
+    }
 
     public void setTimeManager(TimeManager timeManager) {
         this.timeManager = timeManager;
+    }
+    
+    public void setWeatherManager(WeatherManager weatherManager) {
+        this.weatherManager = weatherManager;
     }
 
     /**
@@ -348,7 +358,8 @@ public class GameManager {
 
         // Pass the managers to the game loop
         gameLoop.setEntityManager(this.entityManager);
-        gameLoop.setTimeManager(this.timeManager);
+        gameLoop.setTimeManager(this.timeManager);        
+        gameLoop.setWeatherManager(this.weatherManager);        
         gameLoop.setWorld(this.world);
     }
 

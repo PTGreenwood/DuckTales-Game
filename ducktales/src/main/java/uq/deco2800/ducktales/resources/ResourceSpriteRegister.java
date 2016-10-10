@@ -242,6 +242,35 @@ public class ResourceSpriteRegister {
 		addResource(SAWMILL_4, "/buildings/sawmill/sawmill_4.png");
 		addResource(SAWMILL_5, "/buildings/sawmill/sawmill_5.png");
 		addResource(SAWMILL_6, "/buildings/sawmill/sawmill_6.png");
+		// Forge
+		addResource(FORGE_1, "/buildings/forge/forge_1.png");
+		addResource(FORGE_2, "/buildings/forge/forge_2.png");
+		addResource(FORGE_3, "/buildings/forge/forge_3.png");
+		addResource(FORGE_4, "/buildings/forge/forge_4.png");
+		addResource(FORGE_5, "/buildings/forge/forge_5.png");
+		// Gymnasium
+		addResource(GYMNASIUM_1, "/buildings/gymnasium/gymnasium_1.png");
+		addResource(GYMNASIUM_2, "/buildings/gymnasium/gymnasium_2.png");
+		addResource(GYMNASIUM_3, "/buildings/gymnasium/gymnasium_3.png");
+		addResource(GYMNASIUM_4, "/buildings/gymnasium/gymnasium_4.png");
+		addResource(GYMNASIUM_5, "/buildings/gymnasium/gymnasium_5.png");
+		// Hospital
+		addResource(HOSPITAL_1, "/buildings/hospital/hospital_1.png");
+		addResource(HOSPITAL_2, "/buildings/hospital/hospital_2.png");
+		addResource(HOSPITAL_3, "/buildings/hospital/hospital_3.png");
+		addResource(HOSPITAL_4, "/buildings/hospital/hospital_4.png");
+		addResource(HOSPITAL_5, "/buildings/hospital/hospital_5.png");
+		// House
+		addResource(HOUSE_1, "/buildings/house/house_1.png");
+		addResource(HOUSE_2, "/buildings/house/house_2.png");
+		addResource(HOUSE_3, "/buildings/house/house_3.png");
+		addResource(HOUSE_4, "/buildings/house/house_4.png");
+		addResource(HOUSE_5, "/buildings/house/house_5.png");
+		// Mine
+		addResource(MINE_1, "/buildings/mine/mine_1.png");
+		addResource(MINE_2, "/buildings/mine/mine_2.png");
+		addResource(MINE_3, "/buildings/mine/mine_3.png");
+		addResource(MINE_4, "/buildings/mine/mine_4.png");
 
 
 		// Advanced buildings' animations
@@ -251,7 +280,12 @@ public class ResourceSpriteRegister {
 		addResource(ADV_BUTCHER_3, "/buildings/adv_butcher/adv_butcher_03.png");
 		addResource(ADV_BUTCHER_4, "/buildings/adv_butcher/adv_butcher_04.png");
 		addResource(ADV_BUTCHER_5, "/buildings/adv_butcher/adv_butcher_05.png");
-
+		// Hospital
+		addResource(ADV_HOSPITAL_1, "/buildings/adv_hospital/adv_hospital_1.png");
+		addResource(ADV_HOSPITAL_2, "/buildings/adv_hospital/adv_hospital_2.png");
+		addResource(ADV_HOSPITAL_3, "/buildings/adv_hospital/adv_hospital_3.png");
+		addResource(ADV_HOSPITAL_4, "/buildings/adv_hospital/adv_hospital_4.png");
+		addResource(ADV_HOSPITAL_5, "/buildings/adv_hospital/adv_hospital_5.png");
 
 	}
 

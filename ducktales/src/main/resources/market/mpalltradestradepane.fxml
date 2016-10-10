@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.text.Font?>
 
-<Pane prefHeight="142.0" prefWidth="250.0" style="-fx-background-color: #1a1935; -fx-border-color: white;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+<Pane prefHeight="142.0" prefWidth="250.0" style="-fx-background-color: #71716F; -fx-border-color: #C29161; -fx-border-width: 3px;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TextField layoutX="83.0" layoutY="9.0" prefHeight="10.0" prefWidth="100.0" style="-fx-background-color: #1a1935;">
+      <TextField layoutX="83.0" layoutY="9.0" prefHeight="10.0" prefWidth="100.0" style="-fx-background-color: #71716F;">
          <font>
             <Font size="10.0" />
          </font></TextField>
@@ -19,7 +19,7 @@
             <Font name="Press Start 2P" size="12.0" />
          </font>
       </Label>
-      <TextField layoutX="83.0" layoutY="39.0" prefHeight="4.0" prefWidth="100.0" style="-fx-background-color: #1a1935;">
+      <TextField layoutX="83.0" layoutY="39.0" prefHeight="4.0" prefWidth="100.0" style="-fx-background-color: #71716F;">
          <font>
             <Font name="Press Start 2P" size="10.0" />
          </font></TextField>
@@ -28,7 +28,7 @@
             <Font name="Press Start 2P" size="10.0" />
          </font>
       </Label>
-      <TextField layoutX="83.0" layoutY="62.0" prefHeight="10.0" prefWidth="100.0" style="-fx-background-color: #1a1935;">
+      <TextField layoutX="83.0" layoutY="62.0" prefHeight="10.0" prefWidth="100.0" style="-fx-background-color: #71716F;">
          <font>
             <Font name="Press Start 2P" size="10.0" />
          </font></TextField>
@@ -38,7 +38,7 @@
          </font>
       </Label>
       <Region fx:id="itemPictureRegion" layoutX="10.0" layoutY="13.0" prefHeight="74.0" prefWidth="72.0" style="-fx-background-color: #ffffffff;" />
-      <Button layoutX="95.0" layoutY="106.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="156.0" style="-fx-background-color: #1b1464; -fx-border-color: white;" text="Place an Offer" textFill="WHITE">
+      <Button layoutX="95.0" layoutY="106.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="156.0" style="-fx-background-color: #80ab4a; -fx-border-radius: 0px;" text="Place an Offer" textFill="WHITE">
          <font>
             <Font name="Press Start 2P" size="10.0" />
          </font>

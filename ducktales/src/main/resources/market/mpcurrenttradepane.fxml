@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.text.Font?>
 
-<Pane prefHeight="108.0" prefWidth="204.0" style="-fx-background-color: #1a1935; -fx-border-color: white;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+<Pane prefHeight="108.0" prefWidth="204.0" style="-fx-background-color: #71716F; -fx-border-color: #C29161; -fx-border-width: 3px;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TextField layoutX="83.0" layoutY="15.0" prefHeight="10.0" prefWidth="100.0" style="-fx-background-color: #1a1935;">
+      <TextField layoutX="83.0" layoutY="15.0" prefHeight="10.0" prefWidth="100.0" style="-fx-background-color: #71716F;">
          <font>
             <Font name="Press Start 2P" size="10.0" />
          </font></TextField>
@@ -18,7 +18,7 @@
             <Font name="Press Start 2P" size="10.0" />
          </font>
       </Label>
-      <TextField layoutX="83.0" layoutY="36.0" prefHeight="4.0" prefWidth="100.0" style="-fx-background-color: #1a1935;">
+      <TextField layoutX="83.0" layoutY="36.0" prefHeight="4.0" prefWidth="100.0" style="-fx-background-color: #71716F;">
          <font>
             <Font name="Press Start 2P" size="10.0" />
          </font></TextField>
@@ -27,7 +27,7 @@
             <Font name="Press Start 2P" size="10.0" />
          </font>
       </Label>
-      <TextField layoutX="83.0" layoutY="63.0" prefHeight="10.0" prefWidth="100.0" style="-fx-background-color: #1a1935;">
+      <TextField layoutX="83.0" layoutY="63.0" prefHeight="10.0" prefWidth="100.0" style="-fx-background-color: #71716F;">
          <font>
             <Font name="Press Start 2P" size="10.0" />
          </font></TextField>
