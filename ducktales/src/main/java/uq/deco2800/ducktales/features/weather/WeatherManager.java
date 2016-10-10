@@ -20,22 +20,30 @@ import java.util.ResourceBundle;
 
 /**
  * Weather Manager
+ * 
+ * Handles all of the in-game weather effects and draws/renders them onto a
+ * canvas.
+ * 
+ * @author mattleggy
  */
 public class WeatherManager
 		implements SecondaryManager, Initializable, Tickable {
+	// may not need this any more...
 	private WeatherCanvas weatherCanvas;
+	// main weather display pane
 	@FXML
 	private Pane weatherDisplay;
-
+	// weather display
 	private Canvas weatherDisplayCanvas;
-
+	// list of shapes (weather effects)
 	private ArrayList<WeatherCanvasShape> shapes;
-
+	// main canvas context to draw on
 	private GraphicsContext context;
-
+	// height of the canvas
 	private int canvasHeight;
+	// width of the canvas
 	private int canvasWidth;
-	
+	// counter to keep track of ticks
 	private int tickCount;
 
 	@Override
@@ -59,35 +67,48 @@ public class WeatherManager
 		AnchorPane.setBottomAnchor(weatherDisplayCanvas, 0.0);
 		context = weatherDisplayCanvas.getGraphicsContext2D();
 		// weatherManager.tick();
-		for (int i = 0; i < 500; i++) {
+		for (int i = 0; i < 50; i++) {
 			int randX = (int) Math.ceil(Math.random() * canvasWidth);
 			int randY = (int) Math.ceil(Math.random() * canvasHeight);
-			int randD = (int) Math.floor(Math.random() * 7) - 3;
-			int randA = (int) (Math.random() * 5) + 10; // random acceleration
+			int randDirection = (int) Math.floor(Math.random() * 7) - 3;
+			int randAcceleration = (int) (Math.random() * 5) + 10; // random
+																	// acceleration
 			WeatherCanvasShape shape = new WeatherCanvasShape(randX, randY,
-					randD, randA);
+					randDirection, randAcceleration);
 			shapes.add(shape);
-			drawPositions(randX, randY);
+			drawPositions(randX, randY, randDirection);
 		}
 		weatherDisplayCanvas.setMouseTransparent(true);
 		weatherDisplay.getChildren().add(weatherDisplayCanvas);
 
 	}
 
-	private void drawPositions(int x, int y) {
+	/**
+	 * Draws the effects in the provided x and y coordinates and direction to
+	 * draw the weather effects on the canvas
+	 * 
+	 * @param x
+	 *            - X coordinate of the effect
+	 * @param y
+	 *            - Y coordinate of the effect
+	 * @param direction
+	 *            - which direction the effect will go
+	 */
+	private void drawPositions(int x, int y, int direction) {
 		context.beginPath();
 		context.setFill(Color.GREEN);
 		context.setStroke(Color.BLUE);
-		context.arc(x, y, 20, 20, 2 * Math.PI, 1);
+		context.strokeLine(x, y, x + direction, y + 30);
+		// context.arc(x, y, 20, 20, 2 * Math.PI, 1);
 		context.stroke();
 		context.fill();
-		context.setLineWidth(3);
+		context.setLineWidth(1);
 		context.stroke();
 	}
 
 	@Override
 	public void tick() {
-		if (tickCount == 5) {		
+		if (tickCount == 1) {
 			Platform.runLater(() -> {
 				context.clearRect(0, 0, canvasWidth, canvasHeight);
 				for (WeatherCanvasShape shape : shapes) {
@@ -101,9 +122,10 @@ public class WeatherManager
 					} else {
 						shape.setY((shape.getY() + shape.getAcceleration()));
 					}
-					drawPositions(shape.getX(), shape.getY());
+					drawPositions(shape.getX(), shape.getY(),
+							shape.getDirection());
 				}
-			});	
+			});
 			tickCount = 0;
 		}
 		tickCount++;
