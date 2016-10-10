@@ -5,13 +5,14 @@ import java.util.Random;
 
 import uq.deco2800.ducktales.World;
 import uq.deco2800.ducktales.features.entities.agententities.Peon;
+import uq.deco2800.ducktales.resources.ResourceType;
 
 /**
  * Handles game threats.
  * 
  *
  */
-public class Threat {
+public class Threat extends Entity{
 	String name;
 	String type;
 	private boolean hasStartTimer = false;
@@ -45,6 +46,7 @@ public class Threat {
 	 *             On invalid parameters.
 	 */
 	public Threat(String name, String type) {
+		super(1, 1, 1, 1, ResourceType.NONE);
 		if (name == null || name.isEmpty() || name.trim().isEmpty()) {
 			// Throw exception
 		} else {
@@ -219,12 +221,14 @@ public class Threat {
 		return speed;
 	}
 
-	/**
-	 * A method return the value of isPassable.
-	 * @return true or false
-	 */
-	public boolean tileIsPassable() {
-		return isPassable;
+	public boolean checkTile() {
+		boolean available = world.checkTileAvailability(getXInt(), getYInt(), getXLength(), getYLength());
+		if (available == true) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 
 //	public void addImage(String imageName) {
@@ -242,6 +246,16 @@ public class Threat {
 		return yCord;
 	}
 	
+	public int getXInt() {
+		int xInt = (int) xCord;
+		return xInt;
+	}
+	
+	public int getYInt() {
+		int yInt = (int) yCord;
+		return yInt;
+	}
+	
 	/**
 	 * Method to detect peon/enemy collisions
 	 */
@@ -252,6 +266,12 @@ public class Threat {
 		if ((this.getX() >= peon.getX() && (this.getY() >= peon.getY()))) {
 			peon.setHealth(newHealth);
 		}
+	}
+
+	@Override
+	public void tick() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
