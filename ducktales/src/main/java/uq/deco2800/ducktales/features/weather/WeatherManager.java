@@ -80,7 +80,6 @@ public class WeatherManager
 		}
 		weatherDisplayCanvas.setMouseTransparent(true);
 		weatherDisplay.getChildren().add(weatherDisplayCanvas);
-
 	}
 
 	/**
