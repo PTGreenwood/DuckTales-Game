@@ -18,7 +18,7 @@ import static uq.deco2800.ducktales.resources.ResourceType.*;
  */
 public class SpritesFactory {
     /** CONSTANTS */
-    private static int REAL_MINUTE = 60; // In seconds
+    private static int REAL_MINUTE = 1; // In seconds
 
 	static int initTime;
 	static GameTime gameTime = new GameTime();
