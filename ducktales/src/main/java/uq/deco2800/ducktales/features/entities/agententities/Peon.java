@@ -29,7 +29,7 @@ public class Peon extends AgentEntity {
 	/** The Main Manager of the game */
 	protected GameManager gameManager;
 	
-	private String Name;
+	private String name;
 
 	private static final Random RANDOM = new Random();
 	private static final ResourceType TYPE = ResourceType.PEON;
@@ -84,6 +84,7 @@ public class Peon extends AgentEntity {
                         RANDOM.nextInt((DEFAULT_MAX - DEFAULT_MIN) + 1) + DEFAULT_MIN;
 		this.goalPoints = new ArrayList<Point>();
 		this.buildingsMade = 0;
+                this.name = name;
 	}
 	/**
          * This method generates a new name based on a database of first 
@@ -92,32 +93,33 @@ public class Peon extends AgentEntity {
          * 
          * @return A unique string for peons so that they can be referenced 
          * later on
+         * @throws IOException
          */
 	public String generateName() throws IOException{
-        String firstName;
-        String lastName;
-        String name;
-        
-        int first = RANDOM.nextInt((5163 - 0) + 1) + 0;
-        int last = RANDOM.nextInt((5163 - 0) + 1) + 0;
-        
-        BufferedReader firstnames = 
-                new BufferedReader(new FileReader("firstnames.txt"));
-        BufferedReader lastnames = 
-                new BufferedReader(new FileReader("lastnames.txt"));
+            String firstName;
+            String lastName;
+            String name;
 
-        for(int i = 0; i < first-1; ++i){
-            firstnames.readLine();
+            int first = RANDOM.nextInt((5163 - 0) + 1) + 0;
+            int last = RANDOM.nextInt((5163 - 0) + 1) + 0;
+
+            BufferedReader firstnames = 
+                    new BufferedReader(new FileReader("firstnames.txt"));
+            BufferedReader lastnames = 
+                    new BufferedReader(new FileReader("lastnames.txt"));
+
+            for(int i = 0; i < first-1; ++i){
+                firstnames.readLine();
+            }
+            firstName = firstnames.readLine(); 
+
+            for(int i = 0; i < last-1; ++i){
+                lastnames.readLine();
+            }
+            lastName = lastnames.readLine(); 
+            name = firstName + " " + lastName;
+            return name;
         }
-        firstName = firstnames.readLine(); 
-       
-        for(int i = 0; i < last-1; ++i){
-            lastnames.readLine();
-        }
-        lastName = lastnames.readLine(); 
-        name = firstName + " " + lastName;
-        return name;
-    }
 	/**
 	 * Health limit is between 1000 and 0
 	 */
