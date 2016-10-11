@@ -1,5 +1,8 @@
 package uq.deco2800.ducktales.features.entities.agententities;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -25,6 +28,8 @@ public class Peon extends AgentEntity {
 
 	/** The Main Manager of the game */
 	protected GameManager gameManager;
+	
+	private String Name;
 
 	private static final Random RANDOM = new Random();
 	private static final ResourceType TYPE = ResourceType.PEON;
@@ -71,14 +76,48 @@ public class Peon extends AgentEntity {
 	 * @param x
 	 * @param y
 	 */
-	public Peon(int x, int y) {
+	public Peon(int x, int y, String name) {
 		super(x, y, 1, 1, TYPE);
-		this.strength = RANDOM.nextInt((DEFAULT_MAX - DEFAULT_MIN) + 1) + DEFAULT_MIN;
-		this.intelligence = RANDOM.nextInt((DEFAULT_MAX - DEFAULT_MIN) + 1) + DEFAULT_MIN;
+		this.strength = 
+                        RANDOM.nextInt((DEFAULT_MAX - DEFAULT_MIN) + 1) + DEFAULT_MIN;
+		this.intelligence = 
+                        RANDOM.nextInt((DEFAULT_MAX - DEFAULT_MIN) + 1) + DEFAULT_MIN;
 		this.goalPoints = new ArrayList<Point>();
 		this.buildingsMade = 0;
 	}
+	/**
+         * This method generates a new name based on a database of first 
+         * and last names. These names will also be unique identifiers for 
+         * future reference.
+         * 
+         * @return A unique string for peons so that they can be referenced 
+         * later on
+         */
+	public String generateName() throws IOException{
+        String firstName;
+        String lastName;
+        String name;
+        
+        int first = RANDOM.nextInt((5163 - 0) + 1) + 0;
+        int last = RANDOM.nextInt((5163 - 0) + 1) + 0;
+        
+        BufferedReader firstnames = 
+                new BufferedReader(new FileReader("firstnames.txt"));
+        BufferedReader lastnames = 
+                new BufferedReader(new FileReader("lastnames.txt"));
 
+        for(int i = 0; i < first-1; ++i){
+            firstnames.readLine();
+        }
+        firstName = firstnames.readLine(); 
+       
+        for(int i = 0; i < last-1; ++i){
+            lastnames.readLine();
+        }
+        lastName = lastnames.readLine(); 
+        name = firstName + " " + lastName;
+        return name;
+    }
 	/**
 	 * Health limit is between 1000 and 0
 	 */
@@ -236,7 +275,7 @@ public class Peon extends AgentEntity {
 	}
 
 	/**
-	 * Stores the level of qualification
+	 * Stores the level of qualification for a given job
 	 *
 	 * @param qualification
 	 */
@@ -311,25 +350,7 @@ public class Peon extends AgentEntity {
 		return this.treesChopped;
 	}
 
-	/**
-	 * add a debuff to Peon
-	 */
-	public void addDebuff(PeonDebuffType _debuff) {
-		if (!debuffs.contains(_debuff)) {
-			debuffs.add(_debuff);
-		}
-	}
-
-	/**
-	 * remove a debuff from Peon
-	 */
-	public void removeDebuff(PeonDebuffType _debuff) {
-		int index = debuffs.indexOf(_debuff);
-
-		if (index != -1) {
-			debuffs.remove(index);
-		}
-	}
+	
 
 	/**
 	 * return all debuffs that Peon has - to access each debuff in the arraylist
@@ -360,17 +381,6 @@ public class Peon extends AgentEntity {
 			buffs.remove(index);
 		}
 	}
-
-	/**
-	 * return all buffs that Peon has - to access each buff in the arraylist use
-	 * ArrayList built-in functions such as .get(index) or .contains(var name)
-	 * when .get(index) used to compare to string use .get(index).toString()
-	 * method
-	 */
-	public List<PeonBuffType> getBuffs() {
-		return this.buffs;
-	}
-
 	/**
 	 * Increases amount of buildings made
 	 */
