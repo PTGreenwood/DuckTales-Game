@@ -73,33 +73,33 @@ public class Animal extends AgentEntity {
      */
     @Override
     public void tick() {
-        if (goalPoints.isEmpty()) {
-            goalPoints = newGoalPoints();
-        } else if (point.distance(goalPoints.get(0)) < speed) {
-            point = goalPoints.remove(0);
-            if (goalPoints.isEmpty()) {
-                this.goalPoints = newGoalPoints();
-            }
-        } else {
-            String newDir = null;
-            if (goalPoints.get(0).getX() > point.getX()) {
-                newDir = "Left";
-            }
-            if (goalPoints.get(0).getX() < point.getX()) {
-                newDir = "Right";
-            }
-            if (goalPoints.get(0).getY() > point.getY()) {
-                newDir = "Down";
-            }
-            if (goalPoints.get(0).getY() < point.getY()) {
-                newDir = "Up";
-            }
-            setDirection(newDir);
-            updateType(ResourceType.valueOf(getSprite()));
-            point.moveToward(goalPoints.get(0), getSpeed());
-        }
-        statusUpdate();
-        calculateRenderingOrderValues();
+//        if (goalPoints.isEmpty()) {
+//            goalPoints = newGoalPoints();
+//        } else if (point.distance(goalPoints.get(0)) < speed) {
+//            point = goalPoints.remove(0);
+//            if (goalPoints.isEmpty()) {
+//                this.goalPoints = newGoalPoints();
+//            }
+//        } else {
+//            String newDir = null;
+//            if (goalPoints.get(0).getX() > point.getX()) {
+//                newDir = "Left";
+//            }
+//            if (goalPoints.get(0).getX() < point.getX()) {
+//                newDir = "Right";
+//            }
+//            if (goalPoints.get(0).getY() > point.getY()) {
+//                newDir = "Down";
+//            }
+//            if (goalPoints.get(0).getY() < point.getY()) {
+//                newDir = "Up";
+//            }
+//            setDirection(newDir);
+//            updateType(ResourceType.valueOf(getSprite()));
+//            point.moveToward(goalPoints.get(0), getSpeed());
+//        }
+//        statusUpdate();
+//        calculateRenderingOrderValues();
     }
 
     /**

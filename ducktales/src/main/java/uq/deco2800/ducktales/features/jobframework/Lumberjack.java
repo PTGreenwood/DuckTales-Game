@@ -21,7 +21,7 @@ public class Lumberjack extends Job {
     public Lumberjack() {
         super(requiredStrength, requiredIntelligence, 
                         mentorStrength, mentorIntelligence, 
-                        jobName, JOBTYPE);
+                        JOBTYPE);
     }
     /**
      * Chops a tree and adds to the peon's resource thing

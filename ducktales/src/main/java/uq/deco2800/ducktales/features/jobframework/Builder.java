@@ -18,7 +18,7 @@ public class Builder extends Job {
     public Builder() {
 		super(requiredStrength, requiredIntelligence, 
                         mentorStrength, mentorIntelligence, 
-                        jobName, JOBTYPE);
+                        JOBTYPE);
     }
     public void build(Peon peon){
         // TODO implementation with Buildings

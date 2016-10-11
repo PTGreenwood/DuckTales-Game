@@ -209,7 +209,6 @@ public class WorldBuilderRenderer extends AnimationTimer {
         // add the entity onto the building scene
         buildingScene.getChildren().add(entity);
         
-        //System.out.println("Entities added: " + addedEntities.toString());  
     }
 
     /**
@@ -322,10 +321,7 @@ public class WorldBuilderRenderer extends AnimationTimer {
         this.worldBuilderPane.getStylesheets().add("/builderStyle.css");
 
         // The pane where the world is rendered onto
-//        buildingScene.setPrefSize(
-//                renderingWidth * BUILDING_SCENE_H_PORTION,
-//                renderingHeight * BUILDING_SCENE_V_PORTION
-//        );
+
         buildingScene.getStyleClass().add("buildingScene");
 
         // The pane containing the tiles

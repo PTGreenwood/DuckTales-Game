@@ -80,6 +80,15 @@ public class MissionHandler {
 	}
 	
 	/**
+	 * Get countCompletedMissions
+	 * 
+	 * @return countCompletedMissions
+	 */
+	public int[] getCountCompletedMissions() {
+		return this.countCompletedMissions;
+	}
+	
+	/**
 	 * Get mission image
 	 * 
 	 * @param i
@@ -88,6 +97,7 @@ public class MissionHandler {
 	public ImageView getMissionImageCompleted(int i) {
 		return this.missionsArray.get(i);
 	}
+	
 	
 	/**
 	 * Check number of missions completed

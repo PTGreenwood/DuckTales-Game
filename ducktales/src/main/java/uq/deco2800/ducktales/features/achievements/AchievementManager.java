@@ -6,15 +6,12 @@ import java.net.URL;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ProgressIndicator;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import uq.deco2800.ducktales.features.level.LevelHandler;
 import uq.deco2800.ducktales.features.missions.MissionHandler;
@@ -23,7 +20,7 @@ import uq.deco2800.ducktales.features.missions.MissionHandler;
  * Manage all fxml action of the achievement 
  * 
  * @author Naehyung Kim
- *
+ * 
  */
 public class AchievementManager {
 	
@@ -33,11 +30,13 @@ public class AchievementManager {
 	
 	/** Right Pane of the window */
 	@FXML
-	private AnchorPane rightPane;	
+	private AnchorPane rightPane;
 	
 	/** Buttons on left Pane */
 	@FXML
-	private Button achievementMissionBtn, achievementLevelBtn;
+	private Button achievementMissionBtn;
+	@FXML
+	private Button achievementLevelBtn;
 	
 	private BorderPane achievementsMission;
 	private BorderPane achievementsLevel;
@@ -58,27 +57,33 @@ public class AchievementManager {
 	 * @throws Exception
 	 */
 	@FXML
-	private void startAchievementMission(ActionEvent event) throws Exception {
+	private void startAchievementMission() {
 		
 		removeAllPane();
 		URL location = getClass().getResource("/achievements/achievement.fxml");
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(location);
-		achievementsMission = loader.load();		
+		try {
+			achievementsMission = loader.load();
+			ImageView achievementMissionImage = new ImageView();		
+			achievementMissionImage = achievementMission.getAchievementMissionImage();
+			Label achievementMissionLabel = new Label();
+			achievementMissionLabel = achievementMission.getAchievementMissionLabel();		
+			achievementMissionLabel.setFont(new Font("Arial", 24));
+			
+			setTitleOnTop(achievementsMission,"Mission");
+			achievementsMission.setCenter(achievementMissionImage);
+			achievementsMission.setBottom(achievementMissionLabel);
+			achievementsMission.setAlignment(achievementMissionLabel, Pos.CENTER);
+			achievementsMission.setPrefHeight(rightPane.getHeight());
+			achievementsMission.setPrefWidth(rightPane.getWidth());		
+			rightPane.getChildren().add(achievementsMission);		
+		} catch (IOException e) {
+			System.err.println("Unable to start Achievement GUI");
+			e.printStackTrace();
+		}		
 		
-		ImageView achievementMissionImage = new ImageView();		
-		achievementMissionImage = achievementMission.getAchievementMissionImage();
-		Label achievementMissionLabel = new Label();
-		achievementMissionLabel = achievementMission.getAchievementMissionLabel();		
-		achievementMissionLabel.setFont(new Font("Arial", 24));
-		
-		setTitleOnTop(achievementsMission,"Mission");
-		achievementsMission.setCenter(achievementMissionImage);
-		achievementsMission.setBottom(achievementMissionLabel);
-		achievementsMission.setAlignment(achievementMissionLabel, Pos.CENTER);
-		achievementsMission.setPrefHeight(rightPane.getHeight());
-		achievementsMission.setPrefWidth(rightPane.getWidth());		
-		rightPane.getChildren().add(achievementsMission);				
+				
 	}	
 	
 	/**
@@ -88,27 +93,33 @@ public class AchievementManager {
 	 * @throws Exception
 	 */
 	@FXML
-	private void startAchievementLevel(ActionEvent event) throws Exception {
+	private void startAchievementLevel() {
 		
 		removeAllPane();
 		URL location = getClass().getResource("/achievements/achievementLevel.fxml");
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(location);
-		achievementsLevel = loader.load();
+		try {
+			achievementsLevel = loader.load();
+			ImageView achievementLevelImage = new ImageView();
+			achievementLevelImage = achievementLevel.getAchievementLevelImage();
+			Label achievementLevelLabel = new Label();
+			achievementLevelLabel = achievementLevel.getAchievementLevelLabel();		
+			achievementLevelLabel.setFont(new Font("Arial", 24));
+			
+			setTitleOnTop(achievementsLevel,"Level");
+			achievementsLevel.setCenter(achievementLevelImage);
+			achievementsLevel.setBottom(achievementLevelLabel);
+			achievementsLevel.setAlignment(achievementLevelLabel, Pos.CENTER);
+			achievementsLevel.setPrefHeight(rightPane.getHeight());
+			achievementsLevel.setPrefWidth(rightPane.getWidth());		
+			rightPane.getChildren().add(achievementsLevel);
+		} catch (IOException e) {
+			System.err.println("Unable to start Achievement GUI");
+			e.printStackTrace();
+		}
 		
-		ImageView achievementLevelImage = new ImageView();
-		achievementLevelImage = achievementLevel.getAchievementLevelImage();
-		Label achievementLevelLabel = new Label();
-		achievementLevelLabel = achievementLevel.getAchievementLevelLabel();		
-		achievementLevelLabel.setFont(new Font("Arial", 24));
-		
-		setTitleOnTop(achievementsLevel,"Level");
-		achievementsLevel.setCenter(achievementLevelImage);
-		achievementsLevel.setBottom(achievementLevelLabel);
-		achievementsLevel.setAlignment(achievementLevelLabel, Pos.CENTER);
-		achievementsLevel.setPrefHeight(rightPane.getHeight());
-		achievementsLevel.setPrefWidth(rightPane.getWidth());		
-		rightPane.getChildren().add(achievementsLevel);				
+						
 	}
 		
 	/**
