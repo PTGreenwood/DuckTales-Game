@@ -350,7 +350,25 @@ public class Peon extends AgentEntity {
 		return this.treesChopped;
 	}
 
-	
+	/**
+	 * add a debuff to Peon
+	 */
+	public void addDebuff(PeonDebuffType _debuff) {
+		if (!debuffs.contains(_debuff)) {
+			debuffs.add(_debuff);
+		}
+	}
+
+	/**
+	 * remove a debuff from Peon
+	 */
+	public void removeDebuff(PeonDebuffType _debuff) {
+		int index = debuffs.indexOf(_debuff);
+
+		if (index != -1) {
+			debuffs.remove(index);
+		}
+	}
 
 	/**
 	 * return all debuffs that Peon has - to access each debuff in the arraylist
@@ -381,6 +399,17 @@ public class Peon extends AgentEntity {
 			buffs.remove(index);
 		}
 	}
+
+	/**
+	 * return all buffs that Peon has - to access each buff in the arraylist use
+	 * ArrayList built-in functions such as .get(index) or .contains(var name)
+	 * when .get(index) used to compare to string use .get(index).toString()
+	 * method
+	 */
+	public List<PeonBuffType> getBuffs() {
+		return this.buffs;
+	}
+
 	/**
 	 * Increases amount of buildings made
 	 */
