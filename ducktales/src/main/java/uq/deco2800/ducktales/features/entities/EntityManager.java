@@ -45,7 +45,7 @@ public class EntityManager implements Tickable {
     /**
      * Main constructor of the {@link EntityManager} class
      */
-    private EntityManager() {
+    protected EntityManager() {
         entitySprites = new ArrayList<>();
     }
 

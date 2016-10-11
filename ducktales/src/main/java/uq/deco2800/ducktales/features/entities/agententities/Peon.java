@@ -28,7 +28,7 @@ public class Peon extends AgentEntity {
 
 	/** The Main Manager of the game */
 	protected GameManager gameManager;
-	
+
 	private String name;
 
 	private static final Random RANDOM = new Random();
@@ -55,7 +55,7 @@ public class Peon extends AgentEntity {
 
 	// Job related information
 
-	private JobType job =  JobType.JOBLESS;
+	private JobType job = JobType.JOBLESS;
 	private double qualification = 0;
 	private boolean mentorStatus = false;
 
@@ -78,48 +78,50 @@ public class Peon extends AgentEntity {
 	 */
 	public Peon(int x, int y, String name) {
 		super(x, y, 1, 1, TYPE);
-		this.strength = 
-                        RANDOM.nextInt((DEFAULT_MAX - DEFAULT_MIN) + 1) + DEFAULT_MIN;
-		this.intelligence = 
-                        RANDOM.nextInt((DEFAULT_MAX - DEFAULT_MIN) + 1) + DEFAULT_MIN;
+		this.strength = RANDOM.nextInt((DEFAULT_MAX - DEFAULT_MIN) + 1) + DEFAULT_MIN;
+		this.intelligence = RANDOM.nextInt((DEFAULT_MAX - DEFAULT_MIN) + 1) + DEFAULT_MIN;
 		this.goalPoints = new ArrayList<Point>();
 		this.buildingsMade = 0;
-                this.name = name;
+		this.name = name;
 	}
+
 	/**
-         * This method generates a new name based on a database of first 
-         * and last names. These names will also be unique identifiers for 
-         * future reference.
-         * 
-         * @return A unique string for peons so that they can be referenced 
-         * later on
-         * @throws IOException
-         */
-	public String generateName() throws IOException{
-            String firstName;
-            String lastName;
-            String name;
+	 * This method generates a new name based on a database of first and last
+	 * names. These names will also be unique identifiers for future reference.
+	 * 
+	 * @return A unique string for peons so that they can be referenced later on
+	 * @throws IOException
+	 */
+	public String generateName() throws IOException {
+		String firstName;
+		String lastName;
+		String name;
 
-            int first = RANDOM.nextInt((5163 - 0) + 1) + 0;
-            int last = RANDOM.nextInt((5163 - 0) + 1) + 0;
+		int first = RANDOM.nextInt((5163 - 0) + 1) + 0;
+		int last = RANDOM.nextInt((5163 - 0) + 1) + 0;
 
-            BufferedReader firstnames = 
-                    new BufferedReader(new FileReader("firstnames.txt"));
-            BufferedReader lastnames = 
-                    new BufferedReader(new FileReader("lastnames.txt"));
+		BufferedReader firstnames = new BufferedReader(new FileReader("firstnames.txt"));
 
-            for(int i = 0; i < first-1; ++i){
-                firstnames.readLine();
-            }
-            firstName = firstnames.readLine(); 
+		for (int i = 0; i < first - 1; ++i) {
+			firstnames.readLine();
+		}
+		firstName = firstnames.readLine();
 
-            for(int i = 0; i < last-1; ++i){
-                lastnames.readLine();
-            }
-            lastName = lastnames.readLine(); 
-            name = firstName + " " + lastName;
-            return name;
-        }
+		BufferedReader lastnames = new BufferedReader(new FileReader("lastnames.txt"));
+
+		for (int i = 0; i < last - 1; ++i) {
+			lastnames.readLine();
+		}
+		lastName = lastnames.readLine();
+
+		name = firstName + " " + lastName;
+
+		firstnames.close();
+		lastnames.close();
+
+		return name;
+	}
+
 	/**
 	 * Health limit is between 1000 and 0
 	 */
