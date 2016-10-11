@@ -6,6 +6,7 @@ import uq.deco2800.ducktales.features.jobframework.Doctor;
 import uq.deco2800.ducktales.features.jobframework.JobType;
 
 import static org.junit.Assert.*;
+import uq.deco2800.ducktales.features.entities.agententities.PeonDebuffType;
 
 /**
  * @author Nicolas Turner (TheFractal on github and Fractal on slack)
@@ -90,4 +91,14 @@ public class DoctorTest {
 
 		assertTrue(doctor.canBeMentor(peon));
 	}
+        
+        public void CompleteHealTest(){
+		Peon peon = new Peon(10, 10);
+                assertTrue(peon.getDebuffs().isEmpty());
+                peon.addDebuff(PeonDebuffType.HUNGRY);
+                peon.addDebuff(PeonDebuffType.NEAR_DEATH);
+                assertTrue(peon.getDebuffs().size()==2);
+                doctor.CompleteHeal(peon);
+                assertTrue(peon.getDebuffs().isEmpty());
+        }
 }
