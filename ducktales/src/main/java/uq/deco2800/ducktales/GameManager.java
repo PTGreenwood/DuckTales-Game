@@ -50,8 +50,8 @@ public class GameManager {
     /**
      * CONSTANTS
      */
-    private static final int DEFAULT_WORLD_WIDTH = 10;
-    private static final int DEFAULT_WORLD_HEIGHT = 10;
+    private static final int DEFAULT_WORLD_WIDTH = 30;
+    private static final int DEFAULT_WORLD_HEIGHT = 30;
     private static final int DEFAULT_GAME_SPEED = 10;
 
     /** The root of everything. */

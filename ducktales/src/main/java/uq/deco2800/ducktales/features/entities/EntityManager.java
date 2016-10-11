@@ -306,8 +306,7 @@ public class EntityManager implements Tickable {
             entity = world.getEntity(i);
             sprite = getEntitySprite(i);
             tileSprite = tilesManager.getTileSprite(
-                    (int) entity.getX(),
-                    (int) entity.getY()
+                    sprite.getxLocation(), sprite.getyLocation()
             );
 
             System.err.println("entity x: " + entity.getX() + ", y: " + entity.getY());
@@ -329,27 +328,26 @@ public class EntityManager implements Tickable {
             if (Math.abs(entity.getX() - sprite.getxLocation()) < EPSILON) {
                 // moving in the Y direction
                 double difference = Math.abs(entity.getY() - sprite.getyLocation());
-                System.err.println("x difference is: " + difference);
                 if (entity.getY() < sprite.getyLocation()) {
                     // Moving north-west
-                    sprite.setLayoutX(tileSprite.getLayoutX() - difference * maxDistanceX);
-                    sprite.setLayoutY(tileSprite.getLayoutY() - difference * maxDistanceY);
+                    sprite.setLayoutX(tileCenterX - difference * maxDistanceX);
+                    sprite.setLayoutY(tileCenterY - difference * maxDistanceY);
                 } else {
                     // Moving south-east
-                    sprite.setLayoutX(tileSprite.getLayoutX() + difference * maxDistanceX);
-                    sprite.setLayoutY(tileSprite.getLayoutY() + difference * maxDistanceY);
+                    sprite.setLayoutX(tileCenterX + difference * maxDistanceX);
+                    sprite.setLayoutY(tileCenterY + difference * maxDistanceY);
                 }
             } else if (Math.abs(entity.getY() - sprite.getyLocation()) < EPSILON) {
                 // moving in the X direction
                 double difference = Math.abs(entity.getX() - sprite.getxLocation());
                 if (entity.getX() < sprite.getxLocation()) {
                     // Moving north-east
-                    sprite.setLayoutX(tileSprite.getLayoutX() + difference * maxDistanceX);
-                    sprite.setLayoutY(tileSprite.getLayoutY() - difference * maxDistanceY);
+                    sprite.setLayoutX(tileCenterX + difference * maxDistanceX);
+                    sprite.setLayoutY(tileCenterY - difference * maxDistanceY);
                 } else {
                     // Moving south-west
-                    sprite.setLayoutX(tileSprite.getLayoutX() - difference * maxDistanceX);
-                    sprite.setLayoutY(tileSprite.getLayoutY() + difference * maxDistanceY);
+                    sprite.setLayoutX(tileCenterX - difference * maxDistanceX);
+                    sprite.setLayoutY(tileCenterY + difference * maxDistanceY);
 
                 }
             }
