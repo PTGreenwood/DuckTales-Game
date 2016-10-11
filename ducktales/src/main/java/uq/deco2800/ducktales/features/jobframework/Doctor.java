@@ -18,7 +18,7 @@ public class Doctor extends Job {
     public Doctor() {
 		super(requiredStrength, requiredIntelligence, 
                         mentorStrength, mentorIntelligence, 
-                        jobName, JOBTYPE);
+                        JOBTYPE);
     }
 
     /**

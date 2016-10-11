@@ -2,6 +2,7 @@ package uq.deco2800.ducktales.jobframework;
 
 import org.junit.Test;
 import uq.deco2800.ducktales.features.entities.agententities.Peon;
+import uq.deco2800.ducktales.features.jobframework.JobType;
 import uq.deco2800.ducktales.features.jobframework.Priest;
 import static org.junit.Assert.*;
 
@@ -17,7 +18,7 @@ public class PriestTest {
 		peon.setStrength(priest.getRequiredStrength() + 1);
 		peon.setIntelligence(priest.getRequiredIntelligence() + 1);
 
-		assertEquals(peon.getJob(), "Jobless");
+		assertEquals(peon.getJob(), JobType.JOBLESS);
 
 		boolean Qualified = priest.isQualified(peon);
 		assertEquals(Qualified, priest.isQualified(peon));

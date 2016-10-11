@@ -18,7 +18,7 @@ public class Farmer extends Job {
     public Farmer() {
 		super(requiredStrength, requiredIntelligence, 
                         mentorStrength, mentorIntelligence, 
-                        jobName, JOBTYPE);
+                        JOBTYPE);
     }
 
     /**

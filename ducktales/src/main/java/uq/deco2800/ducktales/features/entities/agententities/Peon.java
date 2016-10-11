@@ -6,6 +6,7 @@ import java.util.Random;
 
 import uq.deco2800.ducktales.GameManager;
 import uq.deco2800.ducktales.features.jobframework.Job;
+import uq.deco2800.ducktales.features.jobframework.JobType;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.AStar;
 import uq.deco2800.ducktales.util.Point;
@@ -49,8 +50,7 @@ public class Peon extends AgentEntity {
 
 	// Job related information
 
-	private String job = "Jobless";
-	String jobless = "Jobless";
+	private JobType job =  JobType.JOBLESS;
 	private double qualification = 0;
 	private boolean mentorStatus = false;
 
@@ -172,11 +172,11 @@ public class Peon extends AgentEntity {
 	 *
 	 * @param job
 	 */
-	public void setJob(String job) {
+	public void setJob(JobType job) {
 		this.job = job;
 	}
 
-	public String getJob() {
+	public JobType getJob() {
 		return job;
 	}
 
@@ -191,7 +191,7 @@ public class Peon extends AgentEntity {
 	 */
 	public String applyForJob(Job job) {
 		if (job.isQualified(this)) {
-			this.setJob(job.toString());
+			this.setJob(job.getJobName());
 			return "You're hired!";
 		} else if (this.getStrength() < job.getRequiredStrength()
 				&& this.getIntelligence() < job.getRequiredIntelligence()) {
@@ -210,8 +210,8 @@ public class Peon extends AgentEntity {
 	 * Peon quits job if it has one
 	 */
 	public void quitJob() {
-		if (this.getJob() != jobless)
-			this.setJob(jobless);
+		if (this.getJob() != JobType.JOBLESS)
+			this.setJob(JobType.JOBLESS);
 	}
 
 	/**

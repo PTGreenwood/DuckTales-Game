@@ -3,6 +3,8 @@ package uq.deco2800.ducktales.jobframework;
 import org.junit.Test;
 import uq.deco2800.ducktales.features.entities.agententities.Peon;
 import uq.deco2800.ducktales.features.jobframework.Farmer;
+import uq.deco2800.ducktales.features.jobframework.JobType;
+
 import static org.junit.Assert.*;
 
 /**
@@ -17,7 +19,7 @@ public class FarmerTest {
 		peon.setStrength(farmer.getRequiredStrength() + 1);
 		peon.setIntelligence(farmer.getRequiredIntelligence() + 1);
 
-		assertEquals(peon.getJob(), "Jobless");
+		assertEquals(peon.getJob(), JobType.JOBLESS);
 
 		boolean Qualified = farmer.isQualified(peon);
 		assertEquals(Qualified, farmer.isQualified(peon));

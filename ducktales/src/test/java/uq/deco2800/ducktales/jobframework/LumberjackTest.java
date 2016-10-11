@@ -8,6 +8,7 @@ package uq.deco2800.ducktales.jobframework;
 import org.junit.Test;
 import uq.deco2800.ducktales.features.entities.agententities.Peon;
 import uq.deco2800.ducktales.features.entities.resourceentities.Tree;
+import uq.deco2800.ducktales.features.jobframework.JobType;
 import uq.deco2800.ducktales.features.jobframework.Lumberjack;
 import static org.junit.Assert.*;
 
@@ -20,7 +21,7 @@ public class LumberjackTest {
 		peon.setStrength(lumberjack.getRequiredStrength() + 1);
 		peon.setIntelligence(lumberjack.getRequiredIntelligence() + 1);
 
-		assertEquals(peon.getJob(), "Jobless");
+		assertEquals(peon.getJob(), JobType.JOBLESS);
 
 		boolean Qualified = lumberjack.isQualified(peon);
 		assertEquals(Qualified, lumberjack.isQualified(peon));

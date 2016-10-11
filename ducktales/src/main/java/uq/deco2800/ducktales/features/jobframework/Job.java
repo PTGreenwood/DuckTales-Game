@@ -15,7 +15,6 @@ public abstract class Job {
 	protected int mentorStrength;
 	protected int mentorIntelligence;
 
-	protected String jobName;
 	protected JobType jobtype;
 
 	/**
@@ -25,10 +24,9 @@ public abstract class Job {
 	 * @param requiredIntelligence
 	 * @param mentorStrength
 	 * @param mentorIntelligence
-	 * @param jobName
 	 */
 	public Job(int requiredStrength, int requiredIntelligence, int mentorStrength, int mentorIntelligence,
-			String jobName, JobType jobtype) {
+			JobType jobtype) {
 		if (requiredStrength <= 0)
 			this.requiredStrength = 1;
 		if (requiredIntelligence <= 0)
@@ -41,7 +39,6 @@ public abstract class Job {
 		this.requiredIntelligence = requiredIntelligence;
 		this.mentorStrength = mentorStrength;
 		this.mentorIntelligence = mentorIntelligence;
-		this.jobName = jobName;
 		this.jobtype = jobtype;
 	}
 
@@ -50,8 +47,8 @@ public abstract class Job {
 	 * 
 	 * @return jobName
 	 */
-	public String getJobName() {
-		return jobName;
+	public JobType getJobName() {
+		return jobtype;
 	}
 
 	/**
@@ -147,7 +144,7 @@ public abstract class Job {
 	public boolean isQualified(Peon peon) {
 		if (peon.getStrength() >= this.getRequiredStrength()
 				&& peon.getIntelligence() >= this.getRequiredIntelligence()) {
-			peon.setJob(jobName);
+			peon.setJob(jobtype);
 			return true;
 		}
 		return false;
@@ -166,14 +163,5 @@ public abstract class Job {
 			return true;
 		}
 		return false;
-	}
-
-	/**
-	 * 
-	 * @return
-	 */
-	@Override
-	public String toString() {
-		return this.jobName;
 	}
 }

@@ -19,7 +19,7 @@ public class Priest extends Job {
     public Priest() {
 		super(requiredStrength, requiredIntelligence, 
                         mentorStrength, mentorIntelligence, 
-                        jobName, JOBTYPE);
+                        JOBTYPE);
     }
 
     /**
