@@ -8,6 +8,7 @@ import uq.deco2800.ducktales.World;
 import uq.deco2800.ducktales.features.entities.agententities.Animal;
 import uq.deco2800.ducktales.features.hud.HUDManager;
 import uq.deco2800.ducktales.features.hud.menu.MenuManager;
+import uq.deco2800.ducktales.features.landscape.tiles.Tile;
 import uq.deco2800.ducktales.features.landscape.tiles.TileSprite;
 import uq.deco2800.ducktales.features.landscape.tiles.TilesManager;
 import uq.deco2800.ducktales.rendering.RenderingInformation;
@@ -121,6 +122,10 @@ public class EntityManager implements Tickable {
                         " is not yet registered in SpritesFactory");
                 return;
             }
+            // IMPORTANT: set the x- and y-location of the sprite
+            sprite.setxLocation(x);
+            sprite.setyLocation(y);
+
             entitySprites.add(sprite);
             setupSprite(sprite, x, y);
             worldDisplay.getChildren().add(sprite);
@@ -165,6 +170,10 @@ public class EntityManager implements Tickable {
                             " is not yet registered in SpritesFactory");
                     return;
                 }
+                // Set x- and y-location of the sprite
+                sprite.setxLocation(x);
+                sprite.setyLocation(y);
+                
                 entitySprites.add(sprite);
                 setupSprite(sprite, x, y);
                 worldDisplay.getChildren().add(sprite);
@@ -277,6 +286,88 @@ public class EntityManager implements Tickable {
 
     @Override
     public void tick() {
+        updateSpriteLocations();
+    }
+
+    /**
+     * Update the location of the sprites based on the current location
+     * of the model of each sprite
+     */
+    private void updateSpriteLocations() {
+        // UPDATE THE LOCATION OF ALL ENTITY SPRITES
+        final double EPSILON = 0.0001;
+        Entity entity;
+        EntitySprite sprite;
+        TileSprite tileSprite;
+        for (int i = 0; i < entitySprites.size(); i++) {
+            // From now on, it shall be magic.
+
+            // Get the entity and its corresponding sprite, tile and tile sprite
+            entity = world.getEntity(i);
+            sprite = getEntitySprite(i);
+            tileSprite = tilesManager.getTileSprite(
+                    (int) Math.floor(entity.getX()),
+                    (int) Math.floor(entity.getY())
+            );
+
+//            System.err.println("entity x: " + entity.getX() + ", y: " + entity.getY());
+//            System.err.println("sprite x: " + sprite.getxLocation() + ", y: " + sprite.getyLocation());
+//            System.err.println("--\n");
+
+            // Now get the coordinates of the center of the tile
+            double tileCenterX = tileSprite.getLayoutX() +
+                    (tileSprite.getLayoutBounds().getWidth() / 2);
+            double tileCenterY = tileSprite.getLayoutY() +
+                    (tileSprite.getLayoutBounds().getHeight() / 2);
+
+            // Calculate the maximum travel distance in the X and Y directions
+            double maxDistanceX = tileCenterX - tileSprite.getLayoutX();
+            double maxDistanceY = tileCenterY - tileSprite.getLayoutY();
+
+            // Now check for the 4 cases representing the 4 different directions
+            // of movement
+            if (Math.abs(entity.getX() - sprite.getxLocation()) < EPSILON) {
+                // moving in the Y direction
+                double difference = Math.abs(entity.getY() - sprite.getyLocation());
+                System.err.println("x difference is: " + difference);
+                if (entity.getY() < sprite.getyLocation()) {
+                    // Moving north-west
+                    sprite.setLayoutX(tileSprite.getLayoutX() - difference * maxDistanceX);
+                    sprite.setLayoutY(tileSprite.getLayoutY() - difference * maxDistanceY);
+                } else {
+                    // Moving south-east
+                    sprite.setLayoutX(tileSprite.getLayoutX() + difference * maxDistanceX);
+                    sprite.setLayoutY(tileSprite.getLayoutY() + difference * maxDistanceY);
+                }
+            } else if (Math.abs(entity.getY() - sprite.getyLocation()) < EPSILON) {
+                // moving in the X direction
+                double difference = Math.abs(entity.getX() - sprite.getxLocation());
+                if (entity.getX() < sprite.getxLocation()) {
+                    // Moving north-east
+                    sprite.setLayoutX(tileSprite.getLayoutX() + difference * maxDistanceX);
+                    sprite.setLayoutY(tileSprite.getLayoutY() - difference * maxDistanceY);
+                } else {
+                    // Moving south-west
+                    sprite.setLayoutX(tileSprite.getLayoutX() - difference * maxDistanceX);
+                    sprite.setLayoutY(tileSprite.getLayoutY() + difference * maxDistanceY);
+
+                }
+            }
+
+            // Update the coordinates of the sprite if it has moved on to a new location
+            double xDifference = Math.abs(entity.getX() - sprite.getxLocation());
+            double yDifference = Math.abs(entity.getY() - sprite.getyLocation());
+            if (xDifference == 0.0) {
+                if (yDifference == 1.0) {
+                    sprite.setyLocation((int) entity.getY());
+                }
+            } else if (xDifference == 1.0) {
+                if (yDifference == 0.0) {
+                    sprite.setxLocation((int) entity.getX());
+                }
+            }
+
+        }
     }
 
 
