@@ -306,11 +306,11 @@ public class EntityManager implements Tickable {
             entity = world.getEntity(i);
             sprite = getEntitySprite(i);
             tileSprite = tilesManager.getTileSprite(
-                    (int) Math.floor(entity.getX()),
-                    (int) Math.floor(entity.getY())
+                    (int) entity.getX(),
+                    (int) entity.getY()
             );
 
-//            System.err.println("entity x: " + entity.getX() + ", y: " + entity.getY());
+            System.err.println("entity x: " + entity.getX() + ", y: " + entity.getY());
 //            System.err.println("sprite x: " + sprite.getxLocation() + ", y: " + sprite.getyLocation());
 //            System.err.println("--\n");
 

@@ -112,13 +112,17 @@ public class Animal extends AgentEntity {
             Point goalPoint = null;
             while (goalPoint == null || !gameManager.getWorld().getTile(goalPoint).isPassable() &&
                     !gameManager.getWorld().getTile(goalPoint).getTileType().equals(ResourceType.WATER)) {
-                goalPoint = new Point(random.nextDouble() * 20, random.nextDouble() * 20);
+                goalPoint = new Point(random.nextDouble() * gameManager.getWorld().getWidth(),
+                        random.nextDouble() * gameManager.getWorld().getHeight());
             }
             List<AStar.Tuple> path = AStar.aStar(point, goalPoint, gameManager.getWorld());
             List<Point> goalPoints = new ArrayList<Point>();
             for (AStar.Tuple tuple : path) {
                 goalPoints.add(new Point(tuple.getX(), tuple.getY()));
             }
+
+            System.err.println("Goal points: " + goalPoints);
+
             return goalPoints;
         } else {
             return null;

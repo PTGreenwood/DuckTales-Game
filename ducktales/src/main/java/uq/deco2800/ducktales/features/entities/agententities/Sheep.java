@@ -20,7 +20,7 @@ public class Sheep extends Animal {
 
     // Sheep attributes will be set in the AnimalManagerClass
     public Sheep(int x, int y) {
-        super(x, y, ResourceType.SHEEP, 1, 1, 1, 1, 0.05);
+        super(x, y, ResourceType.SHEEP, 1, 1, 1, 1, 0.01);
         Random random = new Random();
         int var = random.nextInt(100);
         setStartingHealth(var);
