@@ -15,8 +15,7 @@ public class Coordinate {
 	}
 
 	/**
-	 * returns the x and y values of the Coordinate in the form of a list
-	 * 
+	 * @return x and y values of the Coordinate in the form of a list
 	 */
 	public int[] getCoordinate() {
 		int[] coordinates = new int[2];
@@ -26,14 +25,14 @@ public class Coordinate {
 	}
 	
 	/**
-	 * returns the x value of the Coordinate in the form of an integer
+	 * @return x value of the Coordinate in the form of an integer
 	 */
 	public int getX() {
 		return x;
 	}
 
 	/**
-	 * returns the y value of the Coordinate in the form of an integer
+	 * @return y value of the Coordinate in the form of an integer
 	 */
 	public int getY() {
 		return y;

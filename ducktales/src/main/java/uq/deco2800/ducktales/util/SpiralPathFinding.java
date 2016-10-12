@@ -28,8 +28,9 @@ public class SpiralPathFinding {
 	 *            The length of the building
 	 * @param sizey
 	 *            The height of the building
+	 * @return List of coordinates
 	 */
-	private static ArrayList<Coordinate> getAllPossibleCoordinates(int x, int y, int sizex, int sizey) {
+	public static ArrayList<Coordinate> getAllPossibleCoordinates(int x, int y, int sizex, int sizey) {
 		int i;
 		int j;
 
@@ -48,7 +49,7 @@ public class SpiralPathFinding {
 	}
 
 	/**
-	 * Finds the next avaliable space that an object can be placed on the game
+	 * Finds the next available space that an object can be placed on the game
 	 * board
 	 *
 	 * @param x
@@ -61,8 +62,9 @@ public class SpiralPathFinding {
 	 *            The height of the building
 	 * @param world
 	 *            The Game world
+	 * @return A single Coordinate
 	 */
-	public Coordinate getFrontCoordinate(int x, int y, int sizex, int sizey, World world) {
+	public static Coordinate getFrontCoordinate(int x, int y, int sizex, int sizey, World world) {
 
 		ArrayList<Coordinate> allPossibleCoordinates = getAllPossibleCoordinates(x, y, sizex, sizey);
 
