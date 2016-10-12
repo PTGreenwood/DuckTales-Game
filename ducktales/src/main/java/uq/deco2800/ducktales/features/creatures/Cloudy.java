@@ -23,5 +23,7 @@ import java.io.IOException;
 	 /**Frame for sprite animation
 	 */
 	public void spriteAnimation {
+		//create an arraylist to loop over all images
+		Arraylist <images> frame;
  	}
  }
