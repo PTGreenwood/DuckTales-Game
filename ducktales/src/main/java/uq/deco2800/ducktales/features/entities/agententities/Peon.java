@@ -6,6 +6,7 @@ import java.util.Random;
 
 import uq.deco2800.ducktales.GameManager;
 import uq.deco2800.ducktales.features.jobframework.Job;
+import uq.deco2800.ducktales.features.jobframework.JobType;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.AStar;
 import uq.deco2800.ducktales.util.Point;
@@ -13,9 +14,8 @@ import uq.deco2800.ducktales.features.entities.agententities.PeonDebuffType;
 import uq.deco2800.ducktales.features.entities.agententities.PeonBuffType;
 
 /**
- * Class representing the worker.
- * Peon will have 1000 health, 100 hunger and thirst
- * hunger and thirst will decrease (be more hungry/thirsty) over time
+ * Class representing the worker. Peon will have 1000 health, 100 hunger and
+ * thirst hunger and thirst will decrease (be more hungry/thirsty) over time
  * lower hunger/thirst will affect its strength
  *
  * @author Leggy, Jin Shin
@@ -39,13 +39,18 @@ public class Peon extends AgentEntity {
 	private int strength;
 	private int intelligence;
 
-	private List<PeonDebuffType> debuffs = new ArrayList<PeonDebuffType>(); //access debuff by PeonDebuffType.DEBUFFNAME
-	private List<PeonBuffType> buffs = new ArrayList<PeonBuffType>(); //access debuff by PeonBuffType.BUFFNAME
+	private List<PeonDebuffType> debuffs = new ArrayList<PeonDebuffType>(); // access
+																			// debuff
+																			// by
+																			// PeonDebuffType.DEBUFFNAME
+	private List<PeonBuffType> buffs = new ArrayList<PeonBuffType>(); // access
+																		// debuff
+																		// by
+																		// PeonBuffType.BUFFNAME
 
 	// Job related information
 
-	private String job = "Jobless";
-	String jobless  = "Jobless";
+	private JobType job =  JobType.JOBLESS;
 	private double qualification = 0;
 	private boolean mentorStatus = false;
 
@@ -54,14 +59,13 @@ public class Peon extends AgentEntity {
 	 */
 	private int treesChopped = 0;
 
-        /**
-         * how many buildings the Peon has created (used in Builder.java)
-         */
-        private int buildingsMade;
+	/**
+	 * how many buildings the Peon has created (used in Builder.java)
+	 */
+	private int buildingsMade;
 	// affinity bounds
 	private static final int DEFAULT_MAX = 10;
 	private static final int DEFAULT_MIN = 1;
-
 
 	/**
 	 * @param x
@@ -72,7 +76,7 @@ public class Peon extends AgentEntity {
 		this.strength = RANDOM.nextInt((DEFAULT_MAX - DEFAULT_MIN) + 1) + DEFAULT_MIN;
 		this.intelligence = RANDOM.nextInt((DEFAULT_MAX - DEFAULT_MIN) + 1) + DEFAULT_MIN;
 		this.goalPoints = new ArrayList<Point>();
-                this.buildingsMade = 0;
+		this.buildingsMade = 0;
 	}
 
 	/**
@@ -100,7 +104,7 @@ public class Peon extends AgentEntity {
 			this.hunger = 100;
 		} else if (newValue >= 0) {
 			this.hunger = newValue;
-		} else if (newValue < 0 ) {
+		} else if (newValue < 0) {
 			this.hunger = 0;
 		}
 	}
@@ -117,7 +121,7 @@ public class Peon extends AgentEntity {
 			this.thirst = 100;
 		} else if (newValue >= 0) {
 			this.thirst = newValue;
-		} else if (newValue < 0 ) {
+		} else if (newValue < 0) {
 			this.thirst = 0;
 		}
 	}
@@ -127,8 +131,7 @@ public class Peon extends AgentEntity {
 	}
 
 	/**
-	 * Speed limit is between 0 and
-	 * speed 0 means no movement?
+	 * Speed limit is between 0 and speed 0 means no movement?
 	 */
 	public void setSpeed(double newSpeed) {
 		if (newSpeed < 0) {
@@ -141,19 +144,20 @@ public class Peon extends AgentEntity {
 	public double getSpeed() {
 		return this.speed;
 	}
-	
+
 	/**
-	 * Set up an value of peon can carry the 
-	 * resource start up from 0
+	 * Set up an value of peon can carry the resource start up from 0
+	 * 
 	 * @param newResource
-	 */	
+	 */
 	public void setResource(int newResource) {
-		if (newResource> 1) {
+		if (newResource > 1) {
 			this.resource = newResource;
-		} else  {
+		} else {
 			this.resource = 0;
 		}
-	}	
+	}
+
 	/**
 	 * Return the Peon's resource value
 	 *
@@ -162,46 +166,52 @@ public class Peon extends AgentEntity {
 	public int getResources() {
 		return resource;
 	}
-	
+
 	/**
 	 * Stores what job the peon has
 	 *
 	 * @param job
 	 */
-	public void setJob(String job) {
+	public void setJob(JobType job) {
 		this.job = job;
 	}
 
-	public String getJob() {
+	public JobType getJob() {
 		return job;
 	}
 
 	/**
+	 * May need to rework this? This functionality might be better inside of the
+	 * job selection window. Nick
+	 * 
 	 * Peon applies for job. If peon is qualified, it gets the job. Doesn't get
 	 * it otherwise.
 	 *
 	 * @param job
 	 */
-    public String applyForJob(Job job){
-            if (job.isQualified(this)){
-                    this.setJob(job.toString());
-                    return "You're hired!";
-            } else if (	this.getStrength()<job.getRequiredStrength()
-                    &&		this.getIntelligence()<job.getRequiredIntelligence()){
-                    return "Peon is not qualified in both aspects";
-            } else if (this.getStrength()<job.getRequiredStrength()){
-                    return "Peon strength is not high enough";
-            } else {
-                    return "Peon intelligence is not high enough";
-            }
-    }
+	public String applyForJob(Job job) {
+		if (job.isQualified(this)) {
+			this.setJob(job.getJobName());
+			return "You're hired!";
+		} else if (this.getStrength() < job.getRequiredStrength()
+				&& this.getIntelligence() < job.getRequiredIntelligence()) {
+			return "Peon is not qualified in both aspects";
+		} else if (this.getStrength() < job.getRequiredStrength()) {
+			return "Peon strength is not high enough";
+		} else {
+			return "Peon intelligence is not high enough";
+		}
+	}
 
 	/**
+	 * Will a peon ever be jobless again after he has been assigned a job? I
+	 * feel like this is a case that will never happen. Nick
+	 * 
 	 * Peon quits job if it has one
 	 */
 	public void quitJob() {
-		if (this.getJob() != jobless)
-			this.setJob(jobless);
+		if (this.getJob() != JobType.JOBLESS)
+			this.setJob(JobType.JOBLESS);
 	}
 
 	/**
@@ -211,18 +221,18 @@ public class Peon extends AgentEntity {
 	 * job completion time
 	 */
 	public void checkJobFinshed() {
-		//check if current job finishes
+		// check if current job finishes
 
-		//increase attribtues
+		// increase attribtues
 		increaseAttribute();
 	}
 
 	/**
-	 * Increase attributes that affects the job completion time
-	 *	- Strengh and Intelligence will increase according to its Job finished
+	 * Increase attributes that affects the job completion time - Strengh and
+	 * Intelligence will increase according to its Job finished
 	 */
 	public void increaseAttribute() {
-		//need to be implemented
+		// need to be implemented
 	}
 
 	/**
@@ -263,9 +273,10 @@ public class Peon extends AgentEntity {
 	public int getStrength() {
 		return strength;
 	}
-        public void setStrength(int strength){
-            this.strength=strength;
-        }
+
+	public void setStrength(int strength) {
+		this.strength = strength;
+	}
 
 	/**
 	 * Increase the peon's intelligence through experience
@@ -279,9 +290,10 @@ public class Peon extends AgentEntity {
 	public int getIntelligence() {
 		return intelligence;
 	}
-        public void setIntelligence(int intelligence){
-            this.intelligence=intelligence;
-        }
+
+	public void setIntelligence(int intelligence) {
+		this.intelligence = intelligence;
+	}
 
 	/**
 	 * Add one to treesChopped
@@ -298,27 +310,32 @@ public class Peon extends AgentEntity {
 	public int getTreesChopped() {
 		return this.treesChopped;
 	}
+
 	/**
 	 * add a debuff to Peon
 	 */
 	public void addDebuff(PeonDebuffType _debuff) {
-		if (!debuffs.contains(_debuff)) { debuffs.add(_debuff); }
+		if (!debuffs.contains(_debuff)) {
+			debuffs.add(_debuff);
+		}
 	}
 
 	/**
-	 *	remove a debuff from Peon
+	 * remove a debuff from Peon
 	 */
-	 public void removeDebuff(PeonDebuffType _debuff) {
-		 int index = debuffs.indexOf(_debuff);
+	public void removeDebuff(PeonDebuffType _debuff) {
+		int index = debuffs.indexOf(_debuff);
 
-		 if (index != -1) { debuffs.remove(index); }
-	 }
+		if (index != -1) {
+			debuffs.remove(index);
+		}
+	}
 
 	/**
-	 * return all debuffs that Peon has
-	 * 	- to access each debuff in the arraylist use ArrayList built-in functions
-	 *		such as .get(index) or .contains(var name)
-	 *		when .get(index) used to compare to string use .get(index).toString() method
+	 * return all debuffs that Peon has - to access each debuff in the arraylist
+	 * use ArrayList built-in functions such as .get(index) or .contains(var
+	 * name) when .get(index) used to compare to string use
+	 * .get(index).toString() method
 	 */
 	public List<PeonDebuffType> getDebuffs() {
 		return this.debuffs;
@@ -328,40 +345,47 @@ public class Peon extends AgentEntity {
 	 * add a buff to Peon
 	 */
 	public void addBuff(PeonBuffType _buff) {
-		if (!buffs.contains(_buff)) { buffs.add(_buff); }
+		if (!buffs.contains(_buff)) {
+			buffs.add(_buff);
+		}
 	}
 
 	/**
-	 *	remove a buff from Peon
+	 * remove a buff from Peon
 	 */
-	 public void removeBuff(PeonBuffType _buff) {
-		 int index = buffs.indexOf(_buff);
+	public void removeBuff(PeonBuffType _buff) {
+		int index = buffs.indexOf(_buff);
 
-		 if (index != -1) { buffs.remove(index); }
-	 }
+		if (index != -1) {
+			buffs.remove(index);
+		}
+	}
 
 	/**
-	 * return all buffs that Peon has
-	 * 	- to access each buff in the arraylist use ArrayList built-in functions
-	 *		such as .get(index) or .contains(var name)
-	 *		when .get(index) used to compare to string use .get(index).toString() method
+	 * return all buffs that Peon has - to access each buff in the arraylist use
+	 * ArrayList built-in functions such as .get(index) or .contains(var name)
+	 * when .get(index) used to compare to string use .get(index).toString()
+	 * method
 	 */
 	public List<PeonBuffType> getBuffs() {
 		return this.buffs;
 	}
-        /**
-         * Increases amount of buildings made
-         */
-        public void madeABuilding(){
-            this.buildingsMade++;
-        }
-        /**
-         * 
-         * @return amount of buildings made
-         */
-        public int getBuildingsMade() {
-            return this.buildingsMade;
-        }
+
+	/**
+	 * Increases amount of buildings made
+	 */
+	public void madeABuilding() {
+		this.buildingsMade++;
+	}
+
+	/**
+	 * 
+	 * @return amount of buildings made
+	 */
+	public int getBuildingsMade() {
+		return this.buildingsMade;
+	}
+
 	@Override
 	public void tick() {
 		if (gameManager != null) {
@@ -405,6 +429,7 @@ public class Peon extends AgentEntity {
 
 	/**
 	 * Give the peon the handle on the manager of the game
+	 * 
 	 * @param gameManager
 	 */
 	public void setGameManager(GameManager gameManager) {
@@ -412,15 +437,14 @@ public class Peon extends AgentEntity {
 	}
 
 	/**
-	 * function that auto decrease the Peon's hunger and thirst
-	 * 	- natural decrease hunger -= 2 and thirst -=3 every 3 hours
-	 *	- weather decrease
+	 * function that auto decrease the Peon's hunger and thirst - natural
+	 * decrease hunger -= 2 and thirst -=3 every 3 hours - weather decrease
 	 *
 	 */
 	private void autoDecrease() {
 		++time;
 
-		//natural decrease
+		// natural decrease
 		if (time == 180) {
 			hunger -= 2;
 			thirst -= 3;
@@ -429,17 +453,18 @@ public class Peon extends AgentEntity {
 	}
 
 	/**
-   * function that decrease the Peon's stats according to the weather
+	 * function that decrease the Peon's stats according to the weather
 	 * different weather will have different effect on peon's stats.
 	 */
 	private void weatherEffect() {
-		//need to be implemented
+		// need to be implemented
 	}
+
 	/**
-	 * function that check the status of Peon to add buff/debuff
-	 * 	- hunger/thirst threshold
+	 * function that check the status of Peon to add buff/debuff - hunger/thirst
+	 * threshold
 	 */
-	 private void checkPeonStatus() {
-		 //need to be implemented
-	 }
+	private void checkPeonStatus() {
+		// need to be implemented
+	}
 }

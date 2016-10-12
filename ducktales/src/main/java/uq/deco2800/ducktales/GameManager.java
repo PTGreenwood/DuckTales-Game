@@ -5,6 +5,7 @@ import javafx.scene.layout.Pane;
 import uq.deco2800.ducktales.features.achievements.AchievementManager;
 import uq.deco2800.ducktales.features.entities.EntityManager;
 import uq.deco2800.ducktales.features.entities.ThreatManager;
+import uq.deco2800.ducktales.features.helper.HelperManager;
 import uq.deco2800.ducktales.features.hud.HUDManager;
 import uq.deco2800.ducktales.features.hud.menu.MenuManager;
 import uq.deco2800.ducktales.features.inventory.InventoryManager;
@@ -12,6 +13,7 @@ import uq.deco2800.ducktales.features.level.LevelManager;
 import uq.deco2800.ducktales.features.market.MarketManager;
 import uq.deco2800.ducktales.features.time.TimeManager;
 import uq.deco2800.ducktales.features.tutorials.TutorialController;
+import uq.deco2800.ducktales.features.weather.WeatherManager;
 import uq.deco2800.ducktales.rendering.worlddisplay.CursorManager;
 import uq.deco2800.ducktales.rendering.worlddisplay.WorldDisplayManager;
 import uq.deco2800.ducktales.features.missions.MissionManager;
@@ -72,6 +74,7 @@ public class GameManager {
     private HUDManager hudManager;
     private MarketManager marketManager;
     private WorldDisplayManager worldDisplayManager;
+    private HelperManager helperManager;
     private MissionManager missionManager;
     private LevelManager levelManager;
     private AchievementManager achievementManager;
@@ -81,8 +84,10 @@ public class GameManager {
     private TimeManager timeManager;
     private ThreatManager threatManager;
     private InventoryManager inventoryContainer;
+    private WeatherManager weatherManager;
+    
     /**
-     * Instantiate an empty game manager and createEntitySprite a new default world
+     * Instantiate an empty game manager and createBuildingSprite a new default world
      */
     public GameManager(Pane root) {
         // Instantiate an empty game manager without a pre-loaded world.
@@ -240,6 +245,12 @@ public class GameManager {
         this.worldDisplayManager.setGameManager(this);
     }
 
+    public HelperManager getHelperManager() {
+    	return helperManager;
+    }
+    public void setHelperManager(HelperManager helperManager) {
+    	this.helperManager = helperManager;
+    }
     public MissionManager getMissionManager() {
         return missionManager;
     }
@@ -291,9 +302,17 @@ public class GameManager {
     public TimeManager getTimeManager() {
         return timeManager;
     }
+    
+    public WeatherManager getWeatherManager() {
+    	return this.weatherManager;
+    }
 
     public void setTimeManager(TimeManager timeManager) {
         this.timeManager = timeManager;
+    }
+    
+    public void setWeatherManager(WeatherManager weatherManager) {
+        this.weatherManager = weatherManager;
     }
 
     /**
@@ -348,7 +367,8 @@ public class GameManager {
 
         // Pass the managers to the game loop
         gameLoop.setEntityManager(this.entityManager);
-        gameLoop.setTimeManager(this.timeManager);
+        gameLoop.setTimeManager(this.timeManager);        
+        gameLoop.setWeatherManager(this.weatherManager);        
         gameLoop.setWorld(this.world);
     }
 

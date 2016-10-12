@@ -31,7 +31,6 @@ public class TileClickedHandler extends GameEventHandler
         entityManager = EntityManager.getInstance();
     }
 
-
     @Override
     public void handle(TileClickedEvent event) {
         if (gameManager.getCurrentEntityManaging() != ResourceType.NONE) {
@@ -43,13 +42,13 @@ public class TileClickedHandler extends GameEventHandler
             // Check what kind of entity is to be added
             if (menuSelected == MenuManager.MenuType.ANIMAL) {
                 // add an animal
-                entityManager.addEntity(
+                entityManager.addAnimal(
                         gameManager.getCurrentEntityManaging(),
                         event.getxPos(), event.getyPos()
                 );
             } else if (menuSelected == MenuManager.MenuType.BUILDING){
                 // Add a building
-                entityManager.addWorldEntity(
+                entityManager.addBuilding(
                         gameManager.getCurrentEntityManaging(),
                         event.getxPos(), event.getyPos()
                 );

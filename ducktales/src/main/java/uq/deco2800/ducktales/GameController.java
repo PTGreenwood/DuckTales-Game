@@ -1,15 +1,22 @@
 package uq.deco2800.ducktales;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.stage.Screen;
 import uq.deco2800.ducktales.features.achievements.AchievementManager;
 import uq.deco2800.ducktales.features.entities.EntityManager;
+import uq.deco2800.ducktales.features.helper.HelperManager;
 import uq.deco2800.ducktales.features.hud.HUDManager;
 import uq.deco2800.ducktales.features.level.LevelManager;
 import uq.deco2800.ducktales.features.market.MarketManager;
@@ -53,6 +60,9 @@ public class GameController implements Initializable{
     @FXML
     private AnchorPane rootPane;
     
+    //@FXML
+    //private Canvas mainCanvas;
+    
     /** The main UI elements */
     @FXML
     private AnchorPane leftPane;
@@ -73,6 +83,7 @@ public class GameController implements Initializable{
     /** The Secondary Managers of the game, each managing an FXML loader */
     private MarketManager marketManager;
     
+    private HelperManager helperManager;
     private MissionManager missionManager;
     private LevelManager levelManager;
     private AchievementManager achievementManager;
@@ -80,6 +91,7 @@ public class GameController implements Initializable{
     
     private HUDManager hudManager;
     private WorldDisplayManager worldDisplayManager;
+    private WeatherManager weatherManager;
 
     private EntityManager entityManager;
 
@@ -104,15 +116,20 @@ public class GameController implements Initializable{
         // Load each FXML element into the root pane on by one, and retrieve
         // their respective controllers        
         
-        loadWorldDisplay();    
+        
+        loadWorldDisplay(); 
         loadWeatherDisplay();
         loadHUD();
+        
         loadMarketPlace();
         loadMissions();
         loadTutorial();
         loadLevel();
-        loadAchievement();
+        loadAchievement();        
+        loadHelper();
+        
         loadTimeDisplay();
+        
         loadDayNightDisplay(); // This must be after loading TimeDisplay
 
         loadEntities(); // Note: this 'loader method' should be called LAST
@@ -126,7 +143,8 @@ public class GameController implements Initializable{
         gameManager.setLevelManager(this.levelManager);
         gameManager.setAchievementManager(this.achievementManager);
         gameManager.setEntityManager(this.entityManager);
-        gameManager.setTutorialManager(this.tutorialManager);
+        gameManager.setTutorialManager(this.tutorialManager);      
+        gameManager.setHelperManager(this.helperManager);
         
         // Now officially call the game starting method from Game Manager
         gameManager.startGame();        
@@ -223,7 +241,8 @@ public class GameController implements Initializable{
             worldDisplayManager.setGameManager(this.gameManager);
             
             // add the world pane to the root pane
-            rootPane.getChildren().add(worldPane);
+            
+            rootPane.getChildren().add(worldPane);            
             // Set the sizing for world pane
             AnchorPane.setLeftAnchor(worldPane, 0.0);
             AnchorPane.setRightAnchor(worldPane, 0.0);
@@ -269,13 +288,81 @@ public class GameController implements Initializable{
      * Overlay the weather pane on top of the main game pane.
      */
     private void loadWeatherDisplay() {
+    	URL location = getClass().getResource("/weather/weatherDisplay.fxml");
+
+        FXMLLoader loader = new FXMLLoader(location);
+
+        try {
+            // load the FXML
+            Pane weatherDisplay = loader.load();
+
+            // Retrieve the controller
+            weatherManager = loader.getController();
+
+            gameManager.setWeatherManager(this.weatherManager);
+
+            // Add the time display to the GUI
+            weatherDisplay.setOpacity(0.5);
+            weatherDisplay.setMouseTransparent(true);            
+            rootPane.getChildren().add(weatherDisplay);
+            
+            
+            
+
+            // Position the time display
+            AnchorPane.setLeftAnchor(weatherDisplay, 0.0);
+            AnchorPane.setRightAnchor(weatherDisplay, 0.0);
+            AnchorPane.setTopAnchor(weatherDisplay, 0.0);
+            AnchorPane.setBottomAnchor(weatherDisplay, 0.0);
+            
+            /*
+            int canvasHeight = 737;
+            int canvasWidth = 1295;   
+            
+            
+            Canvas mainCanvas = new Canvas(canvasWidth,canvasHeight);            
+            AnchorPane.setLeftAnchor(mainCanvas, 0.0);
+            AnchorPane.setRightAnchor(mainCanvas, 0.0);
+            AnchorPane.setTopAnchor(mainCanvas, 0.0);
+            AnchorPane.setBottomAnchor(mainCanvas, 0.0);
+            GraphicsContext ctx = mainCanvas.getGraphicsContext2D();
+            //weatherManager.tick();
+            Platform.runLater(() -> {            
+	    		for (int i=0; i < 1000; i++) {		
+	    			int randX = (int)Math.ceil(Math.random() * canvasWidth); 		
+	    			int randY = (int)Math.ceil(Math.random() * canvasHeight);		
+	    			int randD = (int)Math.floor(Math.random() * 7) - 3; //random direction between -3 && 3				
+	    			int randA = (int)(Math.random() * 5) + 10; //random acceleration
+	    			ctx.beginPath();            
+	                ctx.setFill(Color.GREEN);
+	                ctx.setStroke(Color.BLUE);
+	                ctx.arc(randX,randY,20,20,2*Math.PI,1);            
+	        		ctx.stroke();
+	        		ctx.fill();		
+	        		ctx.setLineWidth(2);
+	        		ctx.stroke();    
+	        		//ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+	    		}    		
+            });
+            */
+            
+
+        } catch (IOException e) {
+            System.err.println("unable to load weather display");
+            logger.info("Unable to load weather display:" + e);
+        }
+    	
+        /*
         URL location = getClass().getResource("/weather/weatherEffects.fxml");
         FXMLLoader loader = new FXMLLoader(location);
         try {
             Pane weatherPane = loader.load();     
 
+            weatherManager = loader.getController();
+            //gameManager.setWeatherManager(this.weatherManager);
+            
             // add the weather pane to the root pane
-            rootPane.getChildren().add(weatherPane);           
+            //rootPane.getChildren().add(weatherPane);           
             weatherPane.setOpacity(0.7);
             this.worldDisplayManager.changeWeather(new Rain(), weatherPane);
             // Set the sizing for world pane
@@ -284,9 +371,15 @@ public class GameController implements Initializable{
             AnchorPane.setTopAnchor(weatherPane, 0.0);
             AnchorPane.setBottomAnchor(weatherPane, 0.0);
             
+            
+            
+            
+            
+            
         } catch (IOException e) {
             System.err.println("unable to load weather effects");
         }
+        */
     }
 
     
@@ -363,7 +456,7 @@ public class GameController implements Initializable{
             
             // position the mission pane
             AnchorPane.setTopAnchor(root, 20.0);
-            AnchorPane.setRightAnchor(root, 230.0);
+            AnchorPane.setLeftAnchor(root, 250.0);
             
             
             tutorialManager.hideButtons();
@@ -430,7 +523,7 @@ public class GameController implements Initializable{
             
             // position the mission pane
             AnchorPane.setTopAnchor(root, 20.0);
-            AnchorPane.setRightAnchor(root, 230.0);
+            AnchorPane.setLeftAnchor(root, 250.0);
             
             // initially hide it first
             missionManager.hideMission();
@@ -472,6 +565,35 @@ public class GameController implements Initializable{
     }
     
     @FXML
+    private void loadHelper() {
+    	
+    	URL location = getClass().getResource("/helper/helper.fxml");
+    	
+    	FXMLLoader loader = new FXMLLoader(location);
+    	
+    	try {
+            // load the FXML
+            AnchorPane root = loader.load();
+            
+            // retrieve the controller
+            helperManager = loader.getController();
+            
+            // add the level pane to the GUI
+            rootPane.getChildren().add(root);
+            
+            // position the level pane
+            AnchorPane.setBottomAnchor(root, 10.0);
+            AnchorPane.setLeftAnchor(root, 350.0);            
+
+            helperManager.hideHelper();
+            
+        } catch (IOException e) {
+            System.err.println("Unable to load Helper");
+            logger.info("Unable to load Helper:" + e);
+        }
+    }
+    
+    @FXML
     private void loadAchievement() {
 
         URL location = getClass().getResource("/achievements/achievementMain.fxml");
@@ -491,7 +613,7 @@ public class GameController implements Initializable{
             
             // position the achievement pane
             AnchorPane.setTopAnchor(root, 20.0);
-            AnchorPane.setRightAnchor(root, 230.0);
+            AnchorPane.setLeftAnchor(root, 250.0);
             
             // initially hide it first
             achievementManager.hideAchievement();
