@@ -24,9 +24,12 @@ public class House extends Building {
 
 	/**
 	 * Initialise a new house. Requires the location of the house
-	 *  to be passed.
-	 * @param x, x location of the building
-	 * @param y, y location of the building
+	 *  to be passed. Location of the house must fall within the world, 
+	 *  and be unoccupied.
+	 * @param x, x location of the building, must be within the bounds 
+	 * of the world, and not have another building occupying the location.
+	 * @param y, y location of the building. must be within the bounds 
+	 * of the world, and not have another building occupying the location.
 	 */
 	public House(double x, double y) {
 		super(x, y, X_LENGTH, Y_LENGTH, TYPE);
@@ -50,5 +53,16 @@ public class House extends Building {
 	 */
 	protected void changeHealthBuilding(int newValue){
 		health = newValue;
+	}
+
+	/**
+	 * Upgrade produce for building, required for all buildings, by Building 
+	 * class. Possible use to extand/upgrade houses.
+	 * 
+	 * @throws UnsupportedOperationException, as this functionality is not 
+	 * supported for a house.
+	 */
+	protected void upgradeProduceBuilding(int newValue) {
+		throw new UnsupportedOperationException();
 	}
 }

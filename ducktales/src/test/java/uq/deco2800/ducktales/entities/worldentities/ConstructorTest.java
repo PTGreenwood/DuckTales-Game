@@ -127,15 +127,15 @@ public class ConstructorTest {
 		
 		// Check change health, valid (decrease)
 		farm.upgradeProduce(10);
-		assertTrue("Incorrect Health", farm.resourcesProductionAmount() == 10);
+		assertTrue("Incorrect produce", farm.resourcesProductionAmount() == 10);
 		// Check change health, invalid (=0)
 		sawmill.upgradeProduce(0);
-		assertTrue("Incorrect Health", sawmill.resourcesProductionAmount() == 0);
+		assertTrue("Incorrect produce", sawmill.resourcesProductionAmount() == 0);
 		// Check change health, valid (increase)
 		sawmill.upgradeProduce(978000);
-		assertTrue("Incorrect Health", sawmill.resourcesProductionAmount() == 978000);
+		assertTrue("Incorrect produce", sawmill.resourcesProductionAmount() == 978000);
 		// Check change health, invalid (<0)
 		farm.upgradeProduce(-10);
-		assertTrue("Incorrect Health", farm.resourcesProductionAmount() == 10);
+		assertTrue("Incorrect produce", farm.resourcesProductionAmount() == 10);
 	}
 }
