@@ -12,9 +12,16 @@ import java.io.IOException;
  
  public class Cloudy extends Creatures {
  
- public void loadImage {
- }
- 
+	/**Grabs the images of cloud creature
+	*/
+ 	public void loadImage (String path) throws IOException {
+		URL url = this.getResource (path);
+		Image img = ImageIO.read(url);
+		return img;
+ 	}
+ 	
+	 /**Frame for sprite animation
+	 */
 	public void spriteAnimation {
-  }
+ 	}
  }
