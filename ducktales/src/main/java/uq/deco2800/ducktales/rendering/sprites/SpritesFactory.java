@@ -777,7 +777,6 @@ public class SpritesFactory {
     private static AnimalSprite createSheep(int index, ResourceType entityType) {
         // The sprite to be returned
         AnimalSprite sprite = new AnimalSprite(index, entityType);
-<<<<<<< HEAD
 
         // Setup the frames for the roaming animation.
         ResourceType[] roamingFrames = {
@@ -791,7 +790,6 @@ public class SpritesFactory {
         ResourceType.SHEEPRight0,
         ResourceType.SHEEPRight1
         };
-=======
  
         // Setup the frames for the animation
         List<Image> imageList = new ArrayList<>();
@@ -806,7 +804,6 @@ public class SpritesFactory {
         imageList.add(register.getResourceImage(ResourceType.SHEEPUp1));
         imageList.add(register.getResourceImage(ResourceType.SHEEPRight0));
         imageList.add(register.getResourceImage(ResourceType.SHEEPRight1));
->>>>>>> 2f3c9da0c752f7efb2b53b3bdf83e2f45242caa3
 
         // Setup the sprite with the given parameters
         setupAnimalSprite(
