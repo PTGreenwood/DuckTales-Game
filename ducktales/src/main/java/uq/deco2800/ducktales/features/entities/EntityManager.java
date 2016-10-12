@@ -6,6 +6,7 @@ import javafx.scene.layout.Pane;
 import uq.deco2800.ducktales.GameManager;
 import uq.deco2800.ducktales.World;
 import uq.deco2800.ducktales.features.entities.agententities.Animal;
+import uq.deco2800.ducktales.features.entities.agententities.AnimalManager;
 import uq.deco2800.ducktales.features.hud.HUDManager;
 import uq.deco2800.ducktales.features.hud.menu.MenuManager;
 import uq.deco2800.ducktales.features.landscape.tiles.Tile;
@@ -13,6 +14,7 @@ import uq.deco2800.ducktales.features.landscape.tiles.TileSprite;
 import uq.deco2800.ducktales.features.landscape.tiles.TilesManager;
 import uq.deco2800.ducktales.rendering.RenderingInformation;
 import uq.deco2800.ducktales.rendering.sprites.EntitySprite;
+import uq.deco2800.ducktales.rendering.sprites.Sprite;
 import uq.deco2800.ducktales.rendering.sprites.SpritesFactory;
 import uq.deco2800.ducktales.resources.ResourceInfoRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
@@ -46,6 +48,9 @@ public class EntityManager implements Tickable {
     /** The other secondary managers */
     private TilesManager tilesManager;
 
+    /** Helper Managers instantiated by this class */
+    private AnimalManager animalManager;
+
     /** The registers */
     ResourceInfoRegister infoRegister;
 
@@ -60,6 +65,9 @@ public class EntityManager implements Tickable {
         for (int i = 0; i < MenuManager.ANIMALS.length; i++) {
             registeredAnimals.add(MenuManager.ANIMALS[i]);
         }
+
+        // Instantiate the helper managers
+        animalManager = new AnimalManager();
     }
 
     /**
@@ -82,6 +90,9 @@ public class EntityManager implements Tickable {
         if (this.world != null) {
             // Check the world for existing entities, and load them into the game
             loadExistingEntities(world);
+
+            // Give the handle of the world to the helper managers
+            animalManager.setWorld(this.world);
 
         } else {
             System.err.println("Entity Manager has not received a handle on World");
@@ -122,17 +133,34 @@ public class EntityManager implements Tickable {
                         " is not yet registered in SpritesFactory");
                 return;
             }
-            // IMPORTANT: set the x- and y-location of the sprite
-            sprite.setxLocation(x);
-            sprite.setyLocation(y);
+
+            // Setup the sprite
+            Sprite.setupAgentEntitySprite(sprite, x, y,
+                    gameManager.getWorldDisplayManager().getTilesManager());
 
             entitySprites.add(sprite);
-            setupSprite(sprite, x, y);
+
             worldDisplay.getChildren().add(sprite);
         } else {
             System.err.println("Entity type: " + entityType + " is not yet" +
                     "registered in EntityManager");
         }
+    }
+
+
+    /**
+     * Add the animal to the list of managed animals
+     *
+     * @param animalType
+     *          The type of the animal to be added
+     * @param x
+     *          The x-coordinate of the tile where the animal will be added onto
+     * @param y
+     *          The y-coordinate of the tile where the animal will be added onto
+     */
+    public void addAnimal(ResourceType animalType, int x, int y) {
+        animalManager.addAnimal(animalType, x, y, registeredAnimals);
+
     }
 
 
@@ -170,12 +198,13 @@ public class EntityManager implements Tickable {
                             " is not yet registered in SpritesFactory");
                     return;
                 }
-                // Set x- and y-location of the sprite
-                sprite.setxLocation(x);
-                sprite.setyLocation(y);
-                
+
+                // Setup the sprite
+                Sprite.setupAgentEntitySprite(sprite, x, y,
+                        gameManager.getWorldDisplayManager().getTilesManager());
+
                 entitySprites.add(sprite);
-                setupSprite(sprite, x, y);
+
                 worldDisplay.getChildren().add(sprite);
             } else {
                 System.err.println("location is not valid");
@@ -186,35 +215,35 @@ public class EntityManager implements Tickable {
         }
     }
 
-    /**
-     * Set up the sprite based on its given tile-unit location
-     *
-     * @param sprite
-     *          The sprite to be set up
-     * @param x
-     *          The x-coordinate of the sprite
-     * @param y
-     *          The y-coordinate of the sprite
-     */
-    private void setupSprite(EntitySprite sprite, int x, int y) {
-        // Set the fit width and height of the sprite, based on the given
-        // rendering scale
-        double mainScale = RenderingInformation.MAIN_SCALE_FACTOR;
-        sprite.setFitHeight(sprite.getImage().getHeight() * mainScale);
-        sprite.setFitWidth(sprite.getImage().getWidth() * mainScale);
-
-        // Adjust the offset of the sprite, so that it is at the middle of the
-        // bottom of the sprite
-        sprite.setX(-sprite.getFitWidth() / 2);
-        sprite.setY(-sprite.getFitHeight());
-
-        // Get the sprite of the tile at the given location
-        TileSprite tileSprite = tilesManager.getTileSprite(x, y);
-
-        // set the location of the entity sprite based on the given tile
-        sprite.setLayoutX(tileSprite.getLayoutX() + tileSprite.getFitWidth() / 2);
-        sprite.setLayoutY(tileSprite.getLayoutY() + tileSprite.getFitHeight());
-    }
+//    /**
+//     * Set up the sprite based on its given tile-unit location
+//     *
+//     * @param sprite
+//     *          The sprite to be set up
+//     * @param x
+//     *          The x-coordinate of the sprite
+//     * @param y
+//     *          The y-coordinate of the sprite
+//     */
+//    private void setupSprite(EntitySprite sprite, int x, int y) {
+//        // Set the fit width and height of the sprite, based on the given
+//        // rendering scale
+//        double mainScale = RenderingInformation.MAIN_SCALE_FACTOR;
+//        sprite.setFitHeight(sprite.getImage().getHeight() * mainScale);
+//        sprite.setFitWidth(sprite.getImage().getWidth() * mainScale);
+//
+//        // Adjust the offset of the sprite, so that it is at the middle of the
+//        // bottom of the sprite
+//        sprite.setX(-sprite.getFitWidth() / 2);
+//        sprite.setY(-sprite.getFitHeight());
+//
+//        // Get the sprite of the tile at the given location
+//        TileSprite tileSprite = tilesManager.getTileSprite(x, y);
+//
+//        // set the location of the entity sprite based on the given tile
+//        sprite.setLayoutX(tileSprite.getLayoutX() + tileSprite.getFitWidth() / 2);
+//        sprite.setLayoutY(tileSprite.getLayoutY() + tileSprite.getFitHeight());
+//    }
 
     /**
      * Get the number of entity sprites currently rendered into the world
@@ -255,12 +284,14 @@ public class EntityManager implements Tickable {
 
     /**
      * Pass this manager a handle on the Game Manager
+     * Will also pass this reference to other helper managers in this class
      *
      * @param gameManager
      *          The manager of the game
      */
     public void setGameManager(GameManager gameManager) {
         this.gameManager = gameManager;
+        this.animalManager.setGameManager(gameManager);
     }
 
     /**
@@ -286,87 +317,33 @@ public class EntityManager implements Tickable {
 
     @Override
     public void tick() {
-        updateSpriteLocations();
+//        updateSpriteLocations();
+        animalManager.updateSpriteLocations();
     }
 
-    /**
-     * Update the location of the sprites based on the current location
-     * of the model of each sprite
-     */
-    private void updateSpriteLocations() {
-        // UPDATE THE LOCATION OF ALL ENTITY SPRITES
-        final double EPSILON = 0.0001;
-        Entity entity;
-        EntitySprite sprite;
-        TileSprite tileSprite;
-        for (int i = 0; i < entitySprites.size(); i++) {
-            // From now on, it shall be magic.
-
-            // Get the entity and its corresponding sprite, tile and tile sprite
-            entity = world.getEntity(i);
-            sprite = getEntitySprite(i);
-            tileSprite = tilesManager.getTileSprite(
-                    sprite.getxLocation(), sprite.getyLocation()
-            );
-
-            System.err.println("entity x: " + entity.getX() + ", y: " + entity.getY());
-//            System.err.println("sprite x: " + sprite.getxLocation() + ", y: " + sprite.getyLocation());
-//            System.err.println("--\n");
-
-            // Now get the coordinates of the center of the tile
-            double tileCenterX = tileSprite.getLayoutX() +
-                    (tileSprite.getLayoutBounds().getWidth() / 2);
-            double tileCenterY = tileSprite.getLayoutY() +
-                    (tileSprite.getLayoutBounds().getHeight() / 2);
-
-            // Calculate the maximum travel distance in the X and Y directions
-            double maxDistanceX = tileCenterX - tileSprite.getLayoutX();
-            double maxDistanceY = tileCenterY - tileSprite.getLayoutY();
-
-            // Now check for the 4 cases representing the 4 different directions
-            // of movement
-            if (Math.abs(entity.getX() - sprite.getxLocation()) < EPSILON) {
-                // moving in the Y direction
-                double difference = Math.abs(entity.getY() - sprite.getyLocation());
-                if (entity.getY() < sprite.getyLocation()) {
-                    // Moving north-west
-                    sprite.setLayoutX(tileCenterX - difference * maxDistanceX);
-                    sprite.setLayoutY(tileCenterY - difference * maxDistanceY);
-                } else {
-                    // Moving south-east
-                    sprite.setLayoutX(tileCenterX + difference * maxDistanceX);
-                    sprite.setLayoutY(tileCenterY + difference * maxDistanceY);
-                }
-            } else if (Math.abs(entity.getY() - sprite.getyLocation()) < EPSILON) {
-                // moving in the X direction
-                double difference = Math.abs(entity.getX() - sprite.getxLocation());
-                if (entity.getX() < sprite.getxLocation()) {
-                    // Moving north-east
-                    sprite.setLayoutX(tileCenterX + difference * maxDistanceX);
-                    sprite.setLayoutY(tileCenterY - difference * maxDistanceY);
-                } else {
-                    // Moving south-west
-                    sprite.setLayoutX(tileCenterX - difference * maxDistanceX);
-                    sprite.setLayoutY(tileCenterY + difference * maxDistanceY);
-
-                }
-            }
-
-            // Update the coordinates of the sprite if it has moved on to a new location
-            double xDifference = Math.abs(entity.getX() - sprite.getxLocation());
-            double yDifference = Math.abs(entity.getY() - sprite.getyLocation());
-            if (xDifference == 0.0) {
-                if (yDifference == 1.0) {
-                    sprite.setyLocation((int) entity.getY());
-                }
-            } else if (xDifference == 1.0) {
-                if (yDifference == 0.0) {
-                    sprite.setxLocation((int) entity.getX());
-                }
-            }
-
-        }
-    }
+//    /**
+//     * Update the location of the sprites based on the current location
+//     * of the model of each sprite
+//     */
+//    private void updateSpriteLocations() {
+//        // UPDATE THE LOCATION OF ALL ENTITY SPRITES
+//        Entity entity;
+//        EntitySprite sprite;
+//        TileSprite tileSprite;
+//        for (int i = 0; i < entitySprites.size(); i++) {
+//            // Get the entity and its corresponding sprite, tile and tile sprite
+//            entity = world.getEntity(i);
+//            sprite = getEntitySprite(i);
+//            tileSprite = tilesManager.getTileSprite(
+//                    sprite.getxLocation(), sprite.getyLocation()
+//            );
+//
+//            // Now the magic happens: update the location of the sprite according to the
+//            // stored location of the model
+//            Sprite.updateSpriteLocation(entity, sprite, tileSprite);
+//
+//        }
+//    }
 
 
     /**

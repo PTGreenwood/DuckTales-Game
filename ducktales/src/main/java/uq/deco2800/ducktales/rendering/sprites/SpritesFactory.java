@@ -36,14 +36,6 @@ public class SpritesFactory {
         // TODO SEPARATE INTO ANIMALS AND BUILDINGS
     	initTime = gameTime.getCurrentDay();
         switch (spriteType) {
-            // ANIMALS
-            case SHEEP:
-                return createSheep(index, ResourceType.SHEEP);
-            case DUCK:
-                return createDuck(index, DUCK);
-            case COW:
-            	return createCow(index, ResourceType.COW);
-
             // BUILDINGS
             case HOSPITAL:
                 return createHospital(index, ResourceType.HOSPITAL);
@@ -79,6 +71,29 @@ public class SpritesFactory {
                 return createSchool(index, ResourceType.SCHOOL);
             case GYMNASIUM:
                 return createGymnasium(index, ResourceType.GYMNASIUM);
+            default:
+                return null;
+        }
+    }
+
+    /**
+     * Create a sprite of an animal with the given specs
+     *
+     * @param index
+     *          The index of the sprite
+     * @param type
+     *          The type of the animal sprite
+     *
+     * @return The animal sprite of the given type, storing the given index
+     */
+    public static AnimalSprite createAnimalSprite(int index, ResourceType type) {
+        switch(type) {
+            case SHEEP:
+                return createSheep(index, ResourceType.SHEEP);
+            case DUCK:
+                return createDuck(index, DUCK);
+            case COW:
+                return createCow(index, ResourceType.COW);
             default:
                 return null;
         }
@@ -749,9 +764,9 @@ public class SpritesFactory {
      *
      * @return the sprite of a generic sheep
      */
-    private static EntitySprite createSheep(int index, ResourceType entityType) {
+    private static AnimalSprite createSheep(int index, ResourceType entityType) {
         // The sprite to be returned
-        EntitySprite sprite = new EntitySprite(index, entityType);
+        AnimalSprite sprite = new AnimalSprite(index, entityType);
 
         // Setup the frames for the animation
         List<Image> imageList = new ArrayList<>();
@@ -785,7 +800,7 @@ public class SpritesFactory {
      *
      * @return the sprite of a generic duck
      */
-    private static EntitySprite createDuck(int index, ResourceType entityType) {
+    private static AnimalSprite createDuck(int index, ResourceType entityType) {
         // The sprite to be returned
         AnimalSprite sprite = new AnimalSprite(index, entityType);
 
@@ -822,9 +837,9 @@ public class SpritesFactory {
      *
      * @return the sprite of a generic duck
      */
-    private static EntitySprite createCow(int index, ResourceType entityType) {
+    private static AnimalSprite createCow(int index, ResourceType entityType) {
         // The sprite to be returned
-        EntitySprite sprite = new EntitySprite(index, entityType);
+        AnimalSprite sprite = new AnimalSprite(index, entityType);
 
         // Setup the frames for the animation
         List<Image> imageList = new ArrayList<>();

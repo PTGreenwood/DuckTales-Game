@@ -1,6 +1,7 @@
 package uq.deco2800.ducktales.resources;
 
 import uq.deco2800.ducktales.features.entities.Entity;
+import uq.deco2800.ducktales.features.entities.agententities.Animal;
 import uq.deco2800.ducktales.features.entities.agententities.Cow;
 import uq.deco2800.ducktales.features.entities.agententities.Duck;
 import uq.deco2800.ducktales.features.entities.agententities.Sheep;
@@ -194,20 +195,32 @@ public class ResourceInfoRegister {
                 break;
         }
 
+        return entity;
+    }
+
+    /**
+     *
+     * @param animalType
+     * @param x
+     * @param y
+     * @return
+     */
+    public static Animal getAnimal(ResourceType animalType, int x, int y) {
+        Animal animal = null;
         // Check for all agent entities here
-        switch(entityType) {
+        switch(animalType) {
             case SHEEP:
-                entity = new Sheep(x, y);
+                animal = new Sheep(x, y);
                 break;
             case COW:
-                entity = new Cow(x, y);
+                animal = new Cow(x, y);
                 break;
             case DUCK:
-                entity = new Duck(x, y);
+                animal = new Duck(x, y);
                 break;
         }
 
-        return entity;
+        return animal;
     }
 
     /**

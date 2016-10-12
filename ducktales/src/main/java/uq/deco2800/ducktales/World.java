@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import uq.deco2800.ducktales.features.entities.Entity;
 
+import uq.deco2800.ducktales.features.entities.agententities.Animal;
 import uq.deco2800.ducktales.resources.ResourceInfoRegister;
 import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 
@@ -34,7 +35,8 @@ public class World implements Tickable {
 	private Array2D<Tile> tiles;
 
 	/** The model for the actual game */
-	private ArrayList<Entity> entities; // All the entities in the game
+	private ArrayList<Entity> entities; // Note: will be gradually removed
+	private ArrayList<Animal> animals; // All the animals in the game
 
 	/** The registers */
 	private ResourceSpriteRegister tileRegister = ResourceSpriteRegister.getInstance();
@@ -53,6 +55,9 @@ public class World implements Tickable {
 
 		// Instantiates the list of entities
 		entities = new ArrayList<>();
+
+		// Instantiates the list of animals in the game
+		animals = new ArrayList<>();
 
 		for (int x = 0; x < width; x++) {
 			for (int y = 0; y < height; y++) {
@@ -110,6 +115,31 @@ public class World implements Tickable {
 			return;
 		}
 		entities.add(entity);
+	}
+
+	/**
+	 * Add an animal to the world
+	 *
+	 * @param animal
+	 * 			The animal to be added to the world
+	 */
+	public void addAnimal(Animal animal) {
+		if (animals.contains(animal)) {
+			throw new RuntimeException("Animal already exists in the game");
+		} else {
+			animals.add(animal);
+		}
+	}
+
+	/**
+	 * Get the animal with the given index
+	 *
+	 * @param index
+	 * 			The index of the animal
+	 * @return The animal at the given index
+	 */
+	public Animal getAnimal(int index) {
+		return animals.get(index);
 	}
 
 	/**
@@ -232,8 +262,13 @@ public class World implements Tickable {
 			}
 		}
 		// Update all the entities
+		// TODO: REPLACE GENERIC ENTITIES WITH SPECIFIC ENTITIES, AND REMOVE THIS
 		for (int i = 0; i < entities.size(); i++) {
 			entities.get(i).tick();
+		}
+		// Update all the animals
+		for (int i = 0; i < animals.size(); i++) {
+			animals.get(i).tick();
 		}
 	}
 
