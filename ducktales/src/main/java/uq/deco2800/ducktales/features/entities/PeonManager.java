@@ -3,6 +3,7 @@ package uq.deco2800.ducktales.features.entities;
 import java.util.ArrayList;
 
 import uq.deco2800.ducktales.features.entities.agententities.Peon;
+import uq.deco2800.ducktales.rendering.sprites.PeonSprite;
 
 /**
  * Manager for all the entities in the game.
@@ -12,6 +13,7 @@ import uq.deco2800.ducktales.features.entities.agententities.Peon;
 public class PeonManager extends EntityManager {
     
     private ArrayList<Peon> peonInstances;
+    private ArrayList<PeonSprite> peonSprites;
     
     private static final PeonManager INSTANCE = new PeonManager();
     
