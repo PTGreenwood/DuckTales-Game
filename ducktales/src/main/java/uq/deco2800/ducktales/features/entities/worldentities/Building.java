@@ -192,7 +192,7 @@ public abstract class Building extends WorldEntity {
 	 */
 	public void upgradeProduce(int newProduce) {
 		specifications();
-		if (newProduce >= 0 && productionType != production.NULL) {
+		if (newProduce >= 0) {
 			upgradeProduceBuilding(newProduce);
 		}
 	}
