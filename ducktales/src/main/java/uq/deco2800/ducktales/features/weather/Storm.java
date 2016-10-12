@@ -26,6 +26,12 @@ public class Storm extends Weather {
 		return true;
 	}
 	
+	//Storm occur while raining
+	@Override
+	public boolean is Raining() {
+		return true;
+	}
+	
 	@Override
 	public boolean isAmphibious() {
 		return isLand() && isWater();
