@@ -27,9 +27,12 @@ public class Bakery extends Building {
 
 	/**
 	 * Initialise a new bakery. Requires the location of the bakery
-	 *  to be passed.
-	 * @param x, x location of the building
-	 * @param y, y location of the building
+	 *  to be passed. Location of the bakery must fall within the world, 
+	 *  and be unoccupied.
+	 * @param x, x location of the building, must be within the bounds 
+	 * of the world, and not have another building occupying the location.
+	 * @param y, y location of the building. must be within the bounds 
+	 * of the world, and not have another building occupying the location.
 	 */
 	public Bakery(double x, double y) {
 		super(x, y, X_LENGTH, Y_LENGTH, TYPE);
@@ -45,11 +48,24 @@ public class Bakery extends Building {
 	
 	/**
 	 * Update the 'health' of the bakery. Requires an integer value of 
-	 * the new health to be passed.
+	 * the new health to be passed. The health of the building will be 
+	 * greater than or equal to 0.
 	 * 
-	 * @param NewValue, new health of the building
+	 * @param NewValue, new health of the building, will update the 
+	 *  health to newValue, or 0 if newValue is <0
 	 */
 	protected void changeHealthBuilding(int newValue){
 		health = newValue;
+	}
+	
+	/**
+	 * Upgrade produce for building, required for all buildings, by Building 
+	 * class. Possible use to extand/upgrade a bakery.
+	 * 
+	 * @throws UnsupportedOperationException, as this functionality is not 
+	 * required for a bakery.
+	 */
+	protected void upgradeProduceBuilding(int newValue) {
+		throw new UnsupportedOperationException();
 	}
 }

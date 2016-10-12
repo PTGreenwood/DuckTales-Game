@@ -65,7 +65,7 @@ public class BuildingTest {
 	 * House test, check all the methods and parameters of House buildings 
 	 * that can be called/accessed. 
 	 */
-	@Test
+	@Test(expected = UnsupportedOperationException.class)
 	public void storageBarnTest() {
 		// Instantiate 3 Houses
 		StorageBarn entity1 = new StorageBarn(2, 3);
@@ -151,13 +151,15 @@ public class BuildingTest {
 		assertEquals(entity3.getStorage().toString(), "[(WOOD,20,20), (STONE,15,0), (ORE,30,30), (FOOD,25,15)]");
 		entity3.addGoods(production.NULL, 10);
 		assertEquals(entity3.getStorage().toString(), "[(WOOD,20,20), (STONE,15,0), (ORE,30,30), (FOOD,25,15)]");
+		
+		entity3.upgradeProduce(10);
 	}
 	
 	/**
 	 * House test, check all the methods and parameters of House buildings 
 	 * that can be called/accessed. 
 	 */
-	@Test
+	@Test (expected = UnsupportedOperationException.class)
 	public void houseTest() {
 		// Instantiate 3 Houses
 		House entity1 = new House(2, 3);
@@ -224,13 +226,15 @@ public class BuildingTest {
 		// Test getx and gety methods, house 3
 		assertTrue("Incorrect xLength", entity3.getXLength() == 2);
 		assertTrue("Incorrect yLength", entity3.getYLength() == 2);
+		
+		entity3.upgradeProduce(10);
 	}
 	
 	/**
 	 * School test, check all the methods and parameters of School buildings 
 	 * that can be called/accessed. 
 	 */
-	@Test
+	@Test (expected = UnsupportedOperationException.class)
 	public void schoolTest() {
 		// Instantiate 3 Houses
 		School entity1 = new School(2, 3);
@@ -297,13 +301,15 @@ public class BuildingTest {
 		// Test getx and gety methods, house 3
 		assertTrue("Incorrect xLength", entity3.getXLength() == 5);
 		assertTrue("Incorrect yLength", entity3.getYLength() == 5);
+		
+		entity3.upgradeProduce(10);
 	}
 	
 	/**
 	 * Gymnasium test, check all the methods and parameters of gym buildings 
 	 * that can be called/accessed. 
 	 */
-	@Test
+	@Test (expected = UnsupportedOperationException.class)
 	public void gymTest() {
 		// Instantiate 3 Houses
 		Gymnasium entity1 = new Gymnasium(2, 3);
@@ -370,13 +376,15 @@ public class BuildingTest {
 		// Test getx and gety methods, house 3
 		assertTrue("Incorrect xLength", entity3.getXLength() == 2);
 		assertTrue("Incorrect yLength", entity3.getYLength() == 2);
+		
+		entity3.upgradeProduce(10);
 	}
 	
 	/**
 	 * Box test, check all the methods and parameters of Box buildings  
 	 * that can be called/accessed. 
 	 */
-	@Test
+	@Test (expected = UnsupportedOperationException.class)
 	public void boxTest() {
 		// Instantiate 3 new Boxes
 		Box entity1 = new Box(2, 3);
@@ -436,13 +444,15 @@ public class BuildingTest {
 		// Test getx and gety methods
 		assertTrue("Incorrect xLength", entity3.getXLength() == 1);
 		assertTrue("Incorrect yLength", entity3.getYLength() == 1);
+		
+		entity3.upgradeProduce(10);
 	}
 	
 	/**
 	 * LongBox test, check all the methods and parameters of LongBox buildings 
 	 * that can be called/accessed. 
 	 */
-	@Test
+	@Test (expected = UnsupportedOperationException.class)
 	public void longBoxTest(){
 		// Instantiate 3 new LongBox buildings
 		LongBox entity1 = new LongBox(2, 3);
@@ -501,13 +511,15 @@ public class BuildingTest {
 		// Test getx and gety methods
 		assertTrue("Incorrect xLength", entity3.getXLength() == 2);
 		assertTrue("Incorrect yLength", entity3.getYLength() == 1);
+		
+		entity3.upgradeProduce(10);
 	}
 	
 	/**
 	 * Barn test, check all the methods and parameters of Barn buildings 
 	 * that can be called/accessed. 
 	 */
-	@Test
+	@Test (expected = UnsupportedOperationException.class)
 	public void barnTest(){
 		// Instantiate 3 new Barns
 		Barn entity1 = new Barn(2, 3);
@@ -560,6 +572,8 @@ public class BuildingTest {
 		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
 		entity3.changeHealth(-10);
 		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
+		
+		entity3.upgradeProduce(10);
 	}
 	
 	/**
@@ -640,7 +654,7 @@ public class BuildingTest {
 	 * Observatory test, check all the methods and parameters of Observatory 
 	 * buildings that can be called/accessed. 
 	 */
-	@Test
+	@Test (expected = UnsupportedOperationException.class)
 	public void observatoryTest(){
 		// Instantiate 3 new Observatories
 		Observatory entity1 = new Observatory(2, 3);
@@ -695,13 +709,15 @@ public class BuildingTest {
 		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
 		entity3.changeHealth(-10);
 		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
+		
+		entity3.upgradeProduce(10);
 	}
 	
 	/**
 	 * Bakery test, check all the methods and parameters of Bakery buildings 
 	 * that can be called/accessed. 
 	 */
-	@Test
+	@Test (expected = UnsupportedOperationException.class)
 	public void bakeryTest(){
 		// Instantiate 3 new Bakeries
 		Bakery entity1 = new Bakery(2, 3);
@@ -756,13 +772,15 @@ public class BuildingTest {
 		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
 		entity3.changeHealth(-10);
 		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
+		
+		entity3.upgradeProduce(10);
 	}
 	
 	/**
 	 * Cemetery test, check all the methods and parameters of Cemetery 
 	 * buildings that can be called/accessed. 
 	 */
-	@Test
+	@Test (expected = UnsupportedOperationException.class)
 	public void cemeteryTest(){
 		// Instantiate 3 new cemeteries
 		Cemetery entity1 = new Cemetery(2, 3);
@@ -817,6 +835,8 @@ public class BuildingTest {
 		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
 		entity3.changeHealth(-10);
 		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
+		
+		entity3.upgradeProduce(10);
 	}
 	
 	/**
@@ -897,7 +917,7 @@ public class BuildingTest {
 	 * Forge test, check all the methods and parameters of Forge buildings 
 	 * that can be called/accessed. 
 	 */
-	@Test
+	@Test (expected = UnsupportedOperationException.class)
 	public void forgeTest(){
 		// Instantiate 3 new forges
 		Forge entity1 = new Forge(2, 3);
@@ -953,13 +973,15 @@ public class BuildingTest {
 		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
 		entity3.changeHealth(-10);
 		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
+		
+		entity3.upgradeProduce(10);
 	}
 	
 	/**
 	 * Hospital test, check all the methods and parameters of Hospital 
 	 * buildings that can be called/accessed. 
 	 */
-	@Test
+	@Test (expected = UnsupportedOperationException.class)
 	public void hospitalTest(){
 		// Instantiate 3 new hospitals
 		Hospital entity1 = new Hospital(2, 3);
@@ -1014,6 +1036,8 @@ public class BuildingTest {
 		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
 		entity3.changeHealth(-10);
 		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
+		
+		entity3.upgradeProduce(10);
 	}
 	
 	/**
@@ -1098,7 +1122,7 @@ public class BuildingTest {
 	 * Butcher test, check all the methods and parameters of Butcher buildings 
 	 * that can be called/accessed. 
 	 */
-	@Test
+	@Test (expected = UnsupportedOperationException.class)
 	public void butcherTest(){
 		// Instantiate 3 new butchers
 		Butcher entity1 = new Butcher(2, 3);
@@ -1153,13 +1177,15 @@ public class BuildingTest {
 		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
 		entity3.changeHealth(-10);
 		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
+		
+		entity3.upgradeProduce(10);
 	}
 	
 	/**
 	 * Church test, check all the methods and parameters of Church buildings 
 	 * that can be called/accessed. 
 	 */
-	@Test
+	@Test (expected = UnsupportedOperationException.class)
 	public void churchTest(){
 		// Instantiate 3 new Churches
 		Church entity1 = new Church(2, 3);
@@ -1213,13 +1239,15 @@ public class BuildingTest {
 		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
 		entity3.changeHealth(-10);
 		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
+		
+		entity3.upgradeProduce(10);
 	}
 	
 	/**
 	 * Community Building test, check all the methods and parameters of 
 	 * Community Buildings that can be called/accessed. 
 	 */
-	@Test
+	@Test (expected = UnsupportedOperationException.class)
 	public void communityBuildingTest(){
 		// Instantiate 3 new Community Buildings
 		CommunityBuilding entity1 = new CommunityBuilding(2, 3);
@@ -1274,13 +1302,15 @@ public class BuildingTest {
 		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
 		entity3.changeHealth(-10);
 		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
+		
+		entity3.upgradeProduce(10);
 	}
 	
 	/**
 	 * Pasture test, check all the methods and parameters of Pasture buildings 
 	 * that can be called/accessed. 
 	 */
-	@Test
+	@Test (expected = UnsupportedOperationException.class)
 	public void pastureTest(){
 		// Instantiate 3 new Pastures
 		Pasture entity1 = new Pasture(2, 3);
@@ -1335,6 +1365,8 @@ public class BuildingTest {
 		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
 		entity3.changeHealth(-10);
 		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
+		
+		entity3.upgradeProduce(10);
 	}
 	
 	/**
