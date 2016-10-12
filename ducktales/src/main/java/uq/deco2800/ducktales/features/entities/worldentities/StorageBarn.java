@@ -23,7 +23,8 @@ public class StorageBarn extends Building {
 	private int health = 950;
 			
 	// Building storage - starting
-	private ArrayList<Triple<production, Integer, Integer>> storage = new ArrayList<Triple<production, Integer, Integer>>();
+	private ArrayList<Triple<production, Integer, Integer>> storage = new 
+			ArrayList<Triple<production, Integer, Integer>>();
 	
 	// Building size
 	public static final int X_LENGTH = 5;
@@ -32,10 +33,13 @@ public class StorageBarn extends Building {
 	public static final boolean PASSABILITY = false;
 	
 	/**
-	 * Initialise a new storage barn. Requires the location of the storage barn 
-	 *  to be passed.
-	 * @param x, x location of the building
-	 * @param y, y location of the building
+	 * Initialise a new storage barn. Requires the location of the storage 
+	 * barn to be passed. Location of the house must fall within the world, 
+	 *  and be unoccupied.
+	 * @param x, x location of the building, must be within the bounds 
+	 * of the world, and not have another building occupying the location.
+	 * @param y, y location of the building. must be within the bounds 
+	 * of the world, and not have another building occupying the location.
 	 */
 	public StorageBarn(double x, double y) {
 		super(x, y, X_LENGTH, Y_LENGTH, TYPE);
@@ -55,10 +59,11 @@ public class StorageBarn extends Building {
 	}
 	
 	/**
-	 * Update the 'health' of the storage barn. Requires an integer value of 
-	 * the new health to be passed.
+	 * Update the 'health' of the storage barn. The health of the building 
+	 * will be greater than or equal to 0.
 	 * 
-	 * @param NewValue, new health of the building
+	 * @param NewValue, new health of the building, will update the 
+	 *  health to newValue, or 0 if newValue is <0
 	 */
 	protected void changeHealthBuilding(int newValue){
 		health = newValue;
@@ -119,5 +124,9 @@ public class StorageBarn extends Building {
 				storage.add(i, m);
 			}
 		}
+	}
+	
+	protected void upgradeProduceBuilding(int newValue) {
+		throw new UnsupportedOperationException();
 	}
 }

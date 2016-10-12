@@ -1,14 +1,17 @@
 package uq.deco2800.ducktales.features.entities;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javafx.scene.layout.Pane;
 import uq.deco2800.ducktales.GameManager;
 import uq.deco2800.ducktales.World;
-import uq.deco2800.ducktales.features.landscape.tiles.TileSprite;
+import uq.deco2800.ducktales.features.entities.agententities.AnimalManager;
+import uq.deco2800.ducktales.features.entities.worldentities.BuildingManager;
+import uq.deco2800.ducktales.features.hud.menu.MenuManager;
 import uq.deco2800.ducktales.features.landscape.tiles.TilesManager;
-import uq.deco2800.ducktales.rendering.RenderingInformation;
 import uq.deco2800.ducktales.rendering.sprites.EntitySprite;
+import uq.deco2800.ducktales.rendering.sprites.Sprite;
 import uq.deco2800.ducktales.rendering.sprites.SpritesFactory;
 import uq.deco2800.ducktales.resources.ResourceInfoRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
@@ -30,6 +33,9 @@ public class EntityManager implements Tickable {
     /** List of the sprite of all entities in the game */
     private ArrayList<EntitySprite> entitySprites;
 
+    /** List of animals that have been registered in the HUD Menu */
+    private ArrayList<ResourceType> registeredAnimals;
+
     /** The game world */
     private World world;
 
@@ -39,14 +45,28 @@ public class EntityManager implements Tickable {
     /** The other secondary managers */
     private TilesManager tilesManager;
 
+    /** Helper Managers instantiated by this class */
+    private AnimalManager animalManager;
+    private BuildingManager buildingManager;
+
     /** The registers */
     ResourceInfoRegister infoRegister;
 
     /**
      * Main constructor of the {@link EntityManager} class
      */
-    private EntityManager() {
+    protected EntityManager() {
         entitySprites = new ArrayList<>();
+
+        // Load the list of registered animals in the HUD Menu
+        registeredAnimals = new ArrayList<>();
+        for (int i = 0; i < MenuManager.ANIMALS.length; i++) {
+            registeredAnimals.add(MenuManager.ANIMALS[i]);
+        }
+
+        // Instantiate the helper managers
+        animalManager = new AnimalManager();
+        buildingManager = new BuildingManager();
     }
 
     /**
@@ -60,7 +80,7 @@ public class EntityManager implements Tickable {
 
     /**
      * Start the entity manager's cycles. First task is to check world for
-     * entities, and createEntitySprite the corresponding sprites
+     * entities, and createBuildingSprite the corresponding sprites
      */
     public void startRoutine() {
         // Load the size register
@@ -70,134 +90,55 @@ public class EntityManager implements Tickable {
             // Check the world for existing entities, and load them into the game
             loadExistingEntities(world);
 
+            // Give the handle of the world to the helper managers
+            animalManager.setWorld(this.world);
+            buildingManager.setWorld(this.world);
+
         } else {
             System.err.println("Entity Manager has not received a handle on World");
         }
     }
 
     /**
-     * Adds a new entity from the given type to the game, by creating a new
-     * instance of the entity type
+     * Add the animal to the list of managed animals, as well as render that
+     * animal into the game
      *
-     * @param entityType
-     *          The type of entity to be added
+     * @param animalType
+     *          The type of the animal to be added
      * @param x
-     *          The x-coordinate of the tile to add the entity to
+     *          The x-coordinate of the tile where the animal will be added onto
      * @param y
-     *          The y-coordinate of the tile to add the entity to
+     *          The y-coordinate of the tile where the animal will be added onto
      */
-    public void addEntity(ResourceType entityType, int x, int y) {
-        // Constructs a new entity from the given type
-        Entity entity = ResourceInfoRegister.getEntity(entityType, x, y);
-
-        // check if the entity has been registered
-        if (entity != null) {
-            // Check if the entity is of
-
-            // Add that entity to the entities list
-            world.addEntity(entity);
-
-            // Add the sprite of the entity to the sprites list, and set the
-            // position of that sprite
-            EntitySprite sprite = SpritesFactory.createEntitySprite(entitySprites.size(), entityType);
-            if (sprite == null) {
-                System.err.println("Sprite of type " + entityType + "" +
-                        " is not yet registered in SpritesFactory");
-                return;
-            }
-            entitySprites.add(sprite);
-            setupSprite(sprite, x, y);
-            worldDisplay.getChildren().add(sprite);
-        } else {
-            System.err.println("Entity type: " + entityType + " is not yet" +
-                    "registered in EntityManager");
-        }
-    }
-
-
-    /**
-     * Add the type of the given world entity to the world map, after checking
-     * the validity of the addition
-     *
-     * @param entityType
-     *          The type of world entity to be added
-     * @param x
-     *          The x-coordinate of the lead tile
-     * @param y
-     *          The y-coordinate of the lead tile
-     */
-    public void addWorldEntity(ResourceType entityType, int x, int y) {
-        Entity entity = ResourceInfoRegister.getEntity(entityType, x, y);
-        // Check if the entity has been registered
-        if (entity != null) {
-            // Get the size of the given entity
-            int xLength = infoRegister.getEntitySize(entityType, ResourceInfoRegister.X);
-            int yLength = infoRegister.getEntitySize(entityType, ResourceInfoRegister.Y);
-
-            // Check validity of that building
-            if (world.checkTileAvailability(x, y, xLength, yLength)) {
-                // It is valid to add this tile
-
-                // Add that entity to the entities list
-                world.addWorldEntity(entity, x, y, xLength, yLength);
-
-                // Add the sprite of the entity to the sprites list, and set the
-                // position of that sprite
-                EntitySprite sprite = SpritesFactory.createEntitySprite(entitySprites.size(), entity.getType());
-                if (sprite == null) {
-                    System.err.println("Sprite of type " + entityType + "" +
-                            " is not yet registered in SpritesFactory");
-                    return;
-                }
-                entitySprites.add(sprite);
-                setupSprite(sprite, x, y);
-                worldDisplay.getChildren().add(sprite);
-            } else {
-                System.err.println("location is not valid");
-            }
-        } else {
-            System.err.println("Entity type: " + entityType + " is not yet" +
-                    "registered in EntityManager");
-        }
+    public void addAnimal(ResourceType animalType, int x, int y) {
+        animalManager.addAnimal(animalType, x, y, registeredAnimals);
     }
 
     /**
-     * Set up the sprite based on its given tile-unit location
+     * Add a building to the list of managed buildings, as well as render that
+     * building into the game
      *
-     * @param sprite
-     *          The sprite to be set up
+     * @param buildingType
+     *          The type of the building to be added
      * @param x
-     *          The x-coordinate of the sprite
+     *          The x-coordinate of the tile where the building will be added
      * @param y
-     *          The y-coordinate of the sprite
+     *          The y-coordinate of that same tile
      */
-    private void setupSprite(EntitySprite sprite, int x, int y) {
-        // Set the fit width and height of the sprite, based on the given
-        // rendering scale
-        double mainScale = RenderingInformation.MAIN_SCALE_FACTOR;
-        sprite.setFitHeight(sprite.getImage().getHeight() * mainScale);
-        sprite.setFitWidth(sprite.getImage().getWidth() * mainScale);
-
-        // Adjust the offset of the sprite, so that it is at the middle of the
-        // bottom of the sprite
-        sprite.setX(-sprite.getFitWidth() / 2);
-        sprite.setY(-sprite.getFitHeight());
-
-        // Get the sprite of the tile at the given location
-        TileSprite tileSprite = tilesManager.getTileSprite(x, y);
-
-        // set the location of the entity sprite based on the given tile
-        sprite.setLayoutX(tileSprite.getLayoutX() + tileSprite.getFitWidth() / 2);
-        sprite.setLayoutY(tileSprite.getLayoutY() + tileSprite.getFitHeight());
+    public void addBuilding(ResourceType buildingType, int x, int y) {
+        buildingManager.addBuilding(buildingType, x, y);
     }
 
     /**
-     * Get the number of entity sprites currently rendered into the world
-     *
-     * @return the number of entity sprites rendered into the world
+     * Move all the entity sprites in the game by the given x- and y- amount
+     * @param xAmount
+     *          The amount to move in x-direction
+     * @param yAmount
+     *          The amount to move in y-direction
      */
-    public int getSpriteAmount() {
-        return entitySprites.size();
+    public void moveAllEntities(double xAmount, double yAmount) {
+        animalManager.moveAllAnimalsSprites(xAmount, yAmount);
+        buildingManager.moveAllBuildingSprites(xAmount, yAmount);
     }
 
     /**
@@ -211,15 +152,6 @@ public class EntityManager implements Tickable {
     }
 
     /**
-     * Removes an entity from the game.
-     *
-     * @param entity The entity to be removed.
-     */
-    public void removeEntity(Entity entity) {
-        world.removeEntity(entity);
-    }
-
-    /**
      * Set the world for this entity manager
      * @param world
      *          The game world
@@ -230,12 +162,17 @@ public class EntityManager implements Tickable {
 
     /**
      * Pass this manager a handle on the Game Manager
+     * Will also pass this reference to other helper managers in this class
      *
      * @param gameManager
      *          The manager of the game
      */
     public void setGameManager(GameManager gameManager) {
         this.gameManager = gameManager;
+
+        // Give the handle on game manager to secondary managers
+        this.animalManager.setGameManager(gameManager);
+        this.buildingManager.setGameManager(gameManager);
     }
 
     /**
@@ -261,11 +198,13 @@ public class EntityManager implements Tickable {
 
     @Override
     public void tick() {
+        animalManager.updateSpriteLocations();
     }
 
 
+
     /**
-     * Check the given world for any existing entities, and createEntitySprite sprites for
+     * Check the given world for any existing entities, and createBuildingSprite sprites for
      * each of them, and add the sprites to the world pane accordingly
      *
      * @param world
@@ -276,6 +215,7 @@ public class EntityManager implements Tickable {
             // There are some entities to make sprites for
         }
     }
+
 
 
 }

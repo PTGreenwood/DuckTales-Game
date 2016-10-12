@@ -28,9 +28,12 @@ public class Farm extends Building {
 	
 	/**
 	 * Initialise a new farm. Requires the location of the farm 
-	 *  to be passed.
-	 * @param x, x location of the building
-	 * @param y, y location of the building
+	 *  to be passed. Location of the farm must fall within the world, 
+	 *  and be unoccupied.
+	 * @param x, x location of the building, must be within the bounds 
+	 * of the world, and not have another building occupying the location.
+	 * @param y, y location of the building. must be within the bounds 
+	 * of the world, and not have another building occupying the location.
 	 */
 	public Farm(double x, double y) {
 		super(x, y, X_LENGTH, Y_LENGTH, TYPE);
@@ -47,9 +50,11 @@ public class Farm extends Building {
 	
 	/**
 	 * Update the 'health' of the farm. Requires an integer value of 
-	 * the new health to be passed.
+	 * the new health to be passed. The health of the building will be 
+	 * greater than or equal to 0.
 	 * 
-	 * @param NewValue, new health of the building
+	 * @param NewValue, new health of the building, will update the 
+	 *  health to newValue, or 0 if newValue is <0
 	 */
 	protected void changeHealthBuilding(int newValue){
 		health = newValue;
@@ -59,9 +64,10 @@ public class Farm extends Building {
 	 * Method to update the production amount of a farm. Feature of an 
 	 * upgraded farm. Requires an integer value of the produce to be passed.
 	 * 
-	 * @param newProduce, the new production amount
+	 * @param newProduce, the new production amount, greater than or equal ro 
+	 * 0.
 	 */
-	public void upgradeProduce(int newProduce) {
+	protected void upgradeProduceBuilding(int newProduce) {
 		if (newProduce >= 0) {
 			productionAmount = newProduce;
 		}
