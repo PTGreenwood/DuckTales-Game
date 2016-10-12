@@ -5,6 +5,7 @@ import javafx.scene.layout.Pane;
 import uq.deco2800.ducktales.features.achievements.AchievementManager;
 import uq.deco2800.ducktales.features.entities.EntityManager;
 import uq.deco2800.ducktales.features.entities.ThreatManager;
+import uq.deco2800.ducktales.features.entities.agententities.AnimalManager;
 import uq.deco2800.ducktales.features.hud.HUDManager;
 import uq.deco2800.ducktales.features.hud.menu.MenuManager;
 import uq.deco2800.ducktales.features.inventory.InventoryManager;
@@ -84,7 +85,7 @@ public class GameManager {
     private InventoryManager inventoryContainer;
     private WeatherManager weatherManager;
     /**
-     * Instantiate an empty game manager and createEntitySprite a new default world
+     * Instantiate an empty game manager and createBuildingSprite a new default world
      */
     public GameManager(Pane root) {
         // Instantiate an empty game manager without a pre-loaded world.

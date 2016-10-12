@@ -102,18 +102,7 @@ public class WorldDisplayRenderer extends AnimationTimer {
         }
 
         // move all the entities
-        for (int i = 0; i < entityManager.getSpriteAmount(); i++) {
-            sprite = entityManager.getEntitySprite(i);
-
-            if (sprite != null) {
-                // Move the sprite in the given direction
-                sprite.setLayoutX(sprite.getLayoutX() + xAmount);
-                sprite.setLayoutY(sprite.getLayoutY() + yAmount);
-            } else {
-                System.err.println("Failed to move entity sprites. Sprite not" +
-                        "yet initiated");
-            }
-        }
+        entityManager.moveAllEntities(xAmount, yAmount);
 
     }
 

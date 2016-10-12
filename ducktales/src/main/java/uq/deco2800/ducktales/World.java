@@ -5,6 +5,8 @@ import java.util.ArrayList;
 
 import uq.deco2800.ducktales.features.entities.Entity;
 
+import uq.deco2800.ducktales.features.entities.agententities.Animal;
+import uq.deco2800.ducktales.features.entities.worldentities.Building;
 import uq.deco2800.ducktales.resources.ResourceInfoRegister;
 import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 
@@ -34,7 +36,9 @@ public class World implements Tickable {
 	private Array2D<Tile> tiles;
 
 	/** The model for the actual game */
-	private ArrayList<Entity> entities; // All the entities in the game
+	private ArrayList<Entity> entities; // Note: will be gradually removed
+	private ArrayList<Animal> animals; // All the animals in the game
+	private ArrayList<Building> buildings; // All the buildings in the game
 
 	/** The registers */
 	private ResourceSpriteRegister tileRegister = ResourceSpriteRegister.getInstance();
@@ -53,6 +57,12 @@ public class World implements Tickable {
 
 		// Instantiates the list of entities
 		entities = new ArrayList<>();
+
+		// Instantiates the list of animals in the game
+		animals = new ArrayList<>();
+
+		// Instantiates the list of buildings in the game
+		buildings = new ArrayList<>();
 
 		for (int x = 0; x < width; x++) {
 			for (int y = 0; y < height; y++) {
@@ -113,25 +123,56 @@ public class World implements Tickable {
 	}
 
 	/**
-	 * Add the given world entity to the list of entities, and set the tiles that
+	 * Add an animal to the world
+	 *
+	 * @param animal
+	 * 			The animal to be added to the world
+	 */
+	public void addAnimal(Animal animal) {
+		if (animals.contains(animal)) {
+			throw new RuntimeException("Animal already exists in the game");
+		} else {
+			animals.add(animal);
+		}
+	}
+
+	/**
+	 * Get the animal with the given index
+	 *
+	 * @param index
+	 * 			The index of the animal
+	 * @return The animal at the given index
+	 */
+	public Animal getAnimal(int index) {
+		return animals.get(index);
+	}
+
+	/**
+	 * Add the given building to the list of buildings, and set the tiles that
 	 * it is on to its type, and its passability
 	 *
-	 * @param entity
+	 * @param building
 	 * 			The entity to be added
 	 * @param startX
 	 * 			The x-coordinate of the lead tile
 	 * @param startY
 	 * 			The y-coordinate of the lead tile
 	 * @param xLength
-	 * 			The x-length of the world entity
+	 * 			The x-length of the building
 	 * @param yLength
-	 * 			The y-length of the world entity
+	 * 			The y-length of the building
 	 */
-	public void addWorldEntity(Entity entity, int startX, int startY,
-							   int xLength, int yLength) {
-		if (!entities.contains(entity)) {
+	public void addBuilding(Building building, int startX, int startY,
+							int xLength, int yLength) {
+		if (!entities.contains(building)) {
 			// Add the entity
-			entities.add(entity);
+			if (buildings.contains(building)) {
+				throw new RuntimeException("This building has already " +
+						"been added to the world");
+			} else {
+				buildings.add(building);
+			}
+
 			// Set the tiles' worldEntity value and passability value
 			for (int x = 0; x < xLength; x++) {
 				for (int y = 0; y < yLength; y++) {
@@ -139,9 +180,9 @@ public class World implements Tickable {
 					Tile tile = tiles.get(startX - x, startY - y); // Get the tile
 
 					// Set world entity
-					tile.setWorldEntityType(entity.getType());
+					tile.setWorldEntityType(building.getType());
 					// Set passability
-					tile.setPassable(infoRegister.getPassability(entity.getType()));
+					tile.setPassable(infoRegister.getPassability(building.getType()));
 
 				}
 			}
@@ -232,8 +273,13 @@ public class World implements Tickable {
 			}
 		}
 		// Update all the entities
+		// TODO: REPLACE GENERIC ENTITIES WITH SPECIFIC ENTITIES, AND REMOVE THIS
 		for (int i = 0; i < entities.size(); i++) {
 			entities.get(i).tick();
+		}
+		// Update all the animals
+		for (int i = 0; i < animals.size(); i++) {
+			animals.get(i).tick();
 		}
 	}
 
