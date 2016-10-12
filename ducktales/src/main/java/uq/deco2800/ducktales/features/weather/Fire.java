@@ -29,6 +29,11 @@ public class Fire extends Weather {
 		return false;
 	}
 	
+	//Fire stops in rain
+	public boolean isRaining() {
+		return false;
+	}
+	
 	//Fire occurs on land only.
 	public boolean isAmphibious() {
 		return isLand() && isWater();

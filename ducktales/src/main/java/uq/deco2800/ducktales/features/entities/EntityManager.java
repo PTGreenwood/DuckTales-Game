@@ -55,7 +55,7 @@ public class EntityManager implements Tickable {
     /**
      * Main constructor of the {@link EntityManager} class
      */
-    private EntityManager() {
+    protected EntityManager() {
         entitySprites = new ArrayList<>();
 
         // Load the list of registered animals in the HUD Menu

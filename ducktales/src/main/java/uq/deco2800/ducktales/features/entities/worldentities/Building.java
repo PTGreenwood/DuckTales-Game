@@ -153,6 +153,12 @@ public abstract class Building extends WorldEntity {
 	protected abstract void changeHealthBuilding(int newHealth);
 	
 	/**
+	 * Calls the upgradeProduceBuilding method which updates the 
+	 * produce amount produced by the building.
+	 */
+	protected abstract void upgradeProduceBuilding(int newValue);
+	
+	/**
 	 * Method to access the 'health' of the building. Returns the integer  
 	 * value of the health.
 	 * 
@@ -164,8 +170,9 @@ public abstract class Building extends WorldEntity {
 	}
 	
 	/**
-	 * Update the 'health' of the quarry. Requires an integer value of 
-	 * the new health to be passed.
+	 * Update the 'health' of a buildings. Requires an integer value of 
+	 * the new health to be passed. Health will be greater than, or equal 
+	 * to 0.
 	 * 
 	 * @param NewValue, new health of the building
 	 */
@@ -176,11 +183,25 @@ public abstract class Building extends WorldEntity {
 	}
 	
 	/**
-	 * Method to update butcher at each discrete simulation step.
+	 * Method to update the production amount of a 'production' building. 
+	 * Requires an integer value of the produce to be passed. Production 
+	 * amounts are greater than, or equal to 0.
+	 * 
+	 * @param newProduce, the new production amount, greater than or equal to 
+	 * 0.
+	 */
+	public void upgradeProduce(int newProduce) {
+		specifications();
+		if (newProduce >= 0) {
+			upgradeProduceBuilding(newProduce);
+		}
+	}
+
+	/**
+	 * Method to update buildings at each discrete simulation step.
 	 * 
 	 * Note sure if any implementation will be used. To be determined later
-	 * May implement for only some of the classes (hence left in the individual 
-	 * buildings class files).
+	 * May implement for only some of the classes 
 	 */
 	@Override
 	public void tick() {
