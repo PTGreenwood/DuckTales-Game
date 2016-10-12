@@ -37,7 +37,7 @@ public class GameTime implements Tickable {
 
 		// As fixed variables are set for day and year
 		// So to will the season automatically start in Spring
-		this.season = Season.SPRING;
+		this.season = Season.Spring();
 
 		// Considering making this just one number and mathing it to get the
 		// right time depending on day and year. Can then also have total time
