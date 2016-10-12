@@ -22,6 +22,9 @@ public class SpritesFactory {
 
 	static int initTime;
 	static GameTime gameTime = new GameTime();
+	
+	// List to store index of peons, so that house can add 2 
+	static int peonIndexList = 0;
 
     /**
      * Create and return a sprite of the given building type
@@ -465,6 +468,9 @@ public class SpritesFactory {
                 idleFrames,
                 false
         );
+        for (int i = 0; i < 2; i++) {
+        	createAnimalSprite(peonIndexList + 1, ResourceType.SHEEP);
+        }
         return sprite;
     }
 
@@ -770,6 +776,8 @@ public class SpritesFactory {
         // The sprite to be returned
         AnimalSprite sprite = new AnimalSprite(index, entityType);
 
+        peonIndexList = index;
+        System.out.print(index); 
         // Setup the frames for the animation
         List<Image> imageList = new ArrayList<>();
         ResourceSpriteRegister register = ResourceSpriteRegister.getInstance();
