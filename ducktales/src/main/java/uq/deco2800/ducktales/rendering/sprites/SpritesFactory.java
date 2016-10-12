@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javafx.scene.image.Image;
+import uq.deco2800.ducktales.features.entities.EntityManager;
 import uq.deco2800.ducktales.features.time.GameTime;
 import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
@@ -23,9 +24,6 @@ public class SpritesFactory {
 	static int initTime;
 	static GameTime gameTime = new GameTime();
 	
-	// List to store index of peons, so that house can add 2 
-	static int peonIndexList = 0;
-
     /**
      * Create and return a sprite of the given building type
      *
@@ -468,8 +466,12 @@ public class SpritesFactory {
                 idleFrames,
                 false
         );
+        // Get current instance of the game manager
+        EntityManager man = EntityManager.getInstance();
+        // add 2 more peons into the game
         for (int i = 0; i < 2; i++) {
-        	createAnimalSprite(peonIndexList + 1, ResourceType.SHEEP);
+        	// add peons at location
+        	man.addAnimal(SHEEP, i, 0); //Note - currently sheep as peons don't exist :(
         }
         return sprite;
     }
@@ -775,9 +777,7 @@ public class SpritesFactory {
     private static AnimalSprite createSheep(int index, ResourceType entityType) {
         // The sprite to be returned
         AnimalSprite sprite = new AnimalSprite(index, entityType);
-
-        peonIndexList = index;
-        System.out.print(index); 
+ 
         // Setup the frames for the animation
         List<Image> imageList = new ArrayList<>();
         ResourceSpriteRegister register = ResourceSpriteRegister.getInstance();
