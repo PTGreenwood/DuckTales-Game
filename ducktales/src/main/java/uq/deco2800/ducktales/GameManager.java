@@ -85,7 +85,7 @@ public class GameManager {
     private InventoryManager inventoryContainer;
     private WeatherManager weatherManager;
     /**
-     * Instantiate an empty game manager and createEntitySprite a new default world
+     * Instantiate an empty game manager and createBuildingSprite a new default world
      */
     public GameManager(Pane root) {
         // Instantiate an empty game manager without a pre-loaded world.

@@ -48,7 +48,7 @@ public class TileClickedHandler extends GameEventHandler
                 );
             } else if (menuSelected == MenuManager.MenuType.BUILDING){
                 // Add a building
-                entityManager.addWorldEntity(
+                entityManager.addBuilding(
                         gameManager.getCurrentEntityManaging(),
                         event.getxPos(), event.getyPos()
                 );

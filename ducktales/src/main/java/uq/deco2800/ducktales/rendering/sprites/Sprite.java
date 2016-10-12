@@ -140,9 +140,9 @@ public class Sprite extends ImageView{
      * @param tilesManager
      *          The manager of all the tiles in the game
      */
-    public static void setupAgentEntitySprite(EntitySprite sprite,
-                                              int x, int y,
-                                              TilesManager tilesManager) {
+    public static void setupEntitySprite(EntitySprite sprite,
+                                         int x, int y,
+                                         TilesManager tilesManager) {
         // IMPORTANT: Setup the x-and y-locations of the sprite
         sprite.setxLocation(x);
         sprite.setyLocation(y);

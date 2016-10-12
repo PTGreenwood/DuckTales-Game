@@ -5,22 +5,7 @@ import uq.deco2800.ducktales.features.entities.agententities.Animal;
 import uq.deco2800.ducktales.features.entities.agententities.Cow;
 import uq.deco2800.ducktales.features.entities.agententities.Duck;
 import uq.deco2800.ducktales.features.entities.agententities.Sheep;
-import uq.deco2800.ducktales.features.entities.worldentities.Bakery;
-import uq.deco2800.ducktales.features.entities.worldentities.Butcher;
-import uq.deco2800.ducktales.features.entities.worldentities.Cemetery;
-import uq.deco2800.ducktales.features.entities.worldentities.Church;
-import uq.deco2800.ducktales.features.entities.worldentities.CommunityBuilding;
-import uq.deco2800.ducktales.features.entities.worldentities.Farm;
-import uq.deco2800.ducktales.features.entities.worldentities.Forge;
-import uq.deco2800.ducktales.features.entities.worldentities.Gymnasium;
-import uq.deco2800.ducktales.features.entities.worldentities.Hospital;
-import uq.deco2800.ducktales.features.entities.worldentities.House;
-import uq.deco2800.ducktales.features.entities.worldentities.Mine;
-import uq.deco2800.ducktales.features.entities.worldentities.Observatory;
-import uq.deco2800.ducktales.features.entities.worldentities.Pasture;
-import uq.deco2800.ducktales.features.entities.worldentities.Quarry;
-import uq.deco2800.ducktales.features.entities.worldentities.Sawmill;
-import uq.deco2800.ducktales.features.entities.worldentities.School;
+import uq.deco2800.ducktales.features.entities.worldentities.*;
 
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -128,84 +113,90 @@ public class ResourceInfoRegister {
      *
      * TODO FOR ENTITIES TEAMS, IMPLEMENT THIS TO ADD ALL YOUR ENTITIES IN
      *
-     * @param entityType
-     *          The type of entity to construct
+     * @param buildingType
+     *          The type of building to construct
      * @param x
-     *          The x-coordinate of the entity
+     *          The x-coordinate of the building
      * @param y
-     *          The y-coordinate of the entity
+     *          The y-coordinate of the building
      *
-     * @return an instance of the entity of the given type,
-     *          null if the entity is not yet registered
+     * @return an instance of the building of the given type,
+     *          null if the building is not yet registered
      */
-    public static Entity getEntity(ResourceType entityType, int x, int y) {
-        Entity entity = null;
+    public static Building createBuilding(ResourceType buildingType, int x, int y) {
+        Building building = null;
 
         // Check for all world entities here
-        switch (entityType) {
+        switch (buildingType) {
         	case BAKERY:
-        		entity = new Bakery(x, y);
+        		building = new Bakery(x, y);
         		break;
             case BUTCHER:
-                entity = new Butcher(x, y);
+                building = new Butcher(x, y);
                 break;
             case CEMETERY:
-                entity = new Cemetery(x, y);
+                building = new Cemetery(x, y);
                 break;
             case COMMUNITY_BUILDING:
-                entity = new CommunityBuilding(x, y);
+                building = new CommunityBuilding(x, y);
                 break;
             case CHURCH:
-                entity = new Church(x, y);
+                building = new Church(x, y);
                 break;
             case FARM:
-                entity = new Farm(x, y);
+                building = new Farm(x, y);
                 break;
             case FORGE:
-                entity = new Forge(x, y);
+                building = new Forge(x, y);
                 break;
             case HOSPITAL:
-                entity = new Hospital(x, y);
+                building = new Hospital(x, y);
                 break;
             case HOUSE:
-                entity = new House(x, y);
+                building = new House(x, y);
                 break;
             case MINE:
-                entity = new Mine(x, y);
+                building = new Mine(x, y);
                 break;
             case OBSERVATORY:
-                entity = new Observatory(x, y);
+                building = new Observatory(x, y);
                 break;
             case PASTURE:
-                entity = new Pasture(x, y);
+                building = new Pasture(x, y);
                 break;
             case QUARRY:
-                entity = new Quarry(x, y);
+                building = new Quarry(x, y);
                 break;
             case SAWMILL:
-                entity = new Sawmill(x, y);
+                building = new Sawmill(x, y);
                 break;
             case SCHOOL:
-                entity = new School(x, y);
+                building = new School(x, y);
                 break;
             case GYMNASIUM:
-                entity = new Gymnasium(x, y);
+                building = new Gymnasium(x, y);
                 break;
             case CONSTRUCTION:
                 break;
         }
 
-        return entity;
+        return building;
     }
 
     /**
+     * Get an animal of the given type, constructed with the given parameters
      *
      * @param animalType
+     *          The type of animal to be constructed
      * @param x
+     *          The x-coordinate of the animal in relation to the world size
      * @param y
-     * @return
+     *          The y-coordinate of the animal
+     *          
+     * @return The animal, constructed to the given specifications
+     *          null, if the animal is not registered
      */
-    public static Animal getAnimal(ResourceType animalType, int x, int y) {
+    public static Animal createAnimal(ResourceType animalType, int x, int y) {
         Animal animal = null;
         // Check for all agent entities here
         switch(animalType) {

@@ -1,7 +1,6 @@
 package uq.deco2800.ducktales.features.entities.agententities;
 
-import uq.deco2800.ducktales.GameManager;
-import uq.deco2800.ducktales.World;
+import uq.deco2800.ducktales.features.entities.SecondaryEntityManager;
 import uq.deco2800.ducktales.features.landscape.tiles.TileSprite;
 import uq.deco2800.ducktales.rendering.sprites.AnimalSprite;
 import uq.deco2800.ducktales.rendering.sprites.Sprite;
@@ -21,42 +20,16 @@ import java.util.List;
  * Created on 12/10/2016.
  * @author khoiphan21
  */
-public class AnimalManager {
+public class AnimalManager extends SecondaryEntityManager{
 
-    /** The main manager of the game */
-    private GameManager gameManager;
-
-    /** The main model of the game */
-    private World world;
-
-    /** The list of animals and their corresponding sprites */
+    /** The list of animal sprites */
     private List<AnimalSprite> animalSprites;
 
     /**
-     * Construct an animal manager with empty lists of animals and sprites
+     * Construct an animal manager with an empty list of animal sprites
      */
     public AnimalManager() {
         animalSprites = new ArrayList<>();
-    }
-
-    /**
-     * Give the animal manager a handle on the main game manager
-     *
-     * @param gameManager
-     *          The main manager of the game
-     */
-    public void setGameManager(GameManager gameManager) {
-        this.gameManager = gameManager;
-    }
-
-    /**
-     * Give the animal manager a handle on the game model - the world
-     *
-     * @param world
-     *          The model of the world
-     */
-    public void setWorld(World world) {
-        this.world = world;
     }
 
     /**
@@ -73,7 +46,7 @@ public class AnimalManager {
      */
     public void addAnimal(ResourceType type, int x, int y, ArrayList<ResourceType> registeredAnimals) {
         // Construct a new animal from the given type
-        Animal animal = ResourceInfoRegister.getAnimal(type, x, y);
+        Animal animal = ResourceInfoRegister.createAnimal(type, x, y);
 
         // check if the animal has been registered
         if (animal != null) {
@@ -98,7 +71,7 @@ public class AnimalManager {
             }
 
             // Setup the sprite
-            Sprite.setupAgentEntitySprite(sprite, x, y,
+            Sprite.setupEntitySprite(sprite, x, y,
                     gameManager.getWorldDisplayManager().getTilesManager());
 
             // Add the sprite to the array list
@@ -134,7 +107,25 @@ public class AnimalManager {
 
             }
         }
+    }
 
-
+    /**
+     * Move all the animal sprites by the given x- and y-amount
+     *
+     * @param xAmount
+     *          The amount to move in x-direction
+     * @param yAmount
+     *          The amount to move n y-direction
+     */
+    public void moveAllAnimalsSprites(double xAmount, double yAmount) {
+        for (AnimalSprite sprite : animalSprites) {
+            if (sprite != null) {
+                sprite.setLayoutX(sprite.getLayoutX() + xAmount);
+                sprite.setLayoutY(sprite.getLayoutY() + yAmount);
+            } else {
+                throw new RuntimeException("A sprite is not yet " +
+                        "instantiated");
+            }
+        }
     }
 }
