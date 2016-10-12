@@ -5,6 +5,7 @@ import javafx.scene.layout.Pane;
 import uq.deco2800.ducktales.features.achievements.AchievementManager;
 import uq.deco2800.ducktales.features.entities.EntityManager;
 import uq.deco2800.ducktales.features.entities.ThreatManager;
+import uq.deco2800.ducktales.features.helper.HelperManager;
 import uq.deco2800.ducktales.features.hud.HUDManager;
 import uq.deco2800.ducktales.features.hud.menu.MenuManager;
 import uq.deco2800.ducktales.features.inventory.InventoryManager;
@@ -73,6 +74,7 @@ public class GameManager {
     private HUDManager hudManager;
     private MarketManager marketManager;
     private WorldDisplayManager worldDisplayManager;
+    private HelperManager helperManager;
     private MissionManager missionManager;
     private LevelManager levelManager;
     private AchievementManager achievementManager;
@@ -83,6 +85,7 @@ public class GameManager {
     private ThreatManager threatManager;
     private InventoryManager inventoryContainer;
     private WeatherManager weatherManager;
+    
     /**
      * Instantiate an empty game manager and createEntitySprite a new default world
      */
@@ -242,6 +245,12 @@ public class GameManager {
         this.worldDisplayManager.setGameManager(this);
     }
 
+    public HelperManager getHelperManager() {
+    	return helperManager;
+    }
+    public void setHelperManager(HelperManager helperManager) {
+    	this.helperManager = helperManager;
+    }
     public MissionManager getMissionManager() {
         return missionManager;
     }
