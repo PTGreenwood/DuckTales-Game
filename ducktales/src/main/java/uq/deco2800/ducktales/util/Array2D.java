@@ -22,6 +22,7 @@ public class Array2D<T> {
 	@SuppressWarnings("unchecked")
 	public T get(int x, int y) {
 		if (x >= width || y >= height || x < 0 || y < 0) {
+			System.err.println("x and y requested: " + x + ", " + y);
 			throw new IndexOutOfBoundsException();
 		}
 		// This cast will always be safe as set() only takes values of type T
