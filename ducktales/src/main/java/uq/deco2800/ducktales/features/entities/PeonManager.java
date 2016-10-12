@@ -25,8 +25,14 @@ public class PeonManager extends EntityManager {
         return INSTANCE;
     }
     
-    public void addPeon(){
-        
+    /**
+     * x and y coordinates of the peon starting point.
+     * @param x 
+     * @param y 
+     */
+    public void addPeon(int x, int y){
+        // add peon sprite
+        // add peon
     }
 
     public void removePeon(String firstName, String lastName){
