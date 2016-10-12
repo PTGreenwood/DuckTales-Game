@@ -20,7 +20,7 @@ import uq.deco2800.ducktales.features.achievements.AchievementHandler;
 import uq.deco2800.ducktales.features.level.LevelHandler;
 
 /**
- * Handles in-game mission methods.
+ * Manages in-game mission methods.
  * 
  *@author Naehyung Kim
  *
