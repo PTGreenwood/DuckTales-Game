@@ -6,17 +6,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane fx:id="mainWindow" prefHeight="150.0" prefWidth="600.0" style="-fx-border-radius: 20; -fx-border-color: Brown;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.60" fx:controller="uq.deco2800.ducktales.features.helper.HelperManager">
+<AnchorPane fx:id="mainWindow" onMouseClicked="#helperLoad1" prefHeight="150.0" prefWidth="700.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: Brown; -fx-background-color: rgba(255, 255, 255, 0.5);" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uq.deco2800.ducktales.features.helper.HelperManager">
    <children>
-      <ImageView fx:id="helperImageView" fitHeight="125.0" fitWidth="125.0" layoutX="14.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="helperImageView" fitHeight="90.0" fitWidth="108.0" layoutX="27.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@helper.png" />
          </image>
       </ImageView>
-      <Label fx:id="helperLabel" layoutX="152.0" layoutY="23.0" prefHeight="105.0" prefWidth="400.0" text="  Welcome to Ducktales!">
+      <Label fx:id="helperLabel" layoutX="160.0" layoutY="30.0" prefHeight="90.0" prefWidth="502.0" text="  Welcome to Ducktales! Click me to continue the tutorial.">
          <font>
-            <Font name="System Bold" size="30.0" />
+            <Font name="System Bold" size="18.0" />
          </font>
       </Label>
    </children>
