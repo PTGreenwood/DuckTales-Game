@@ -51,6 +51,22 @@ public class WeatherChance {
 	}
 
 	/**
+	 * Update the chance of the weather event occurring.
+	 * 
+	 * @param chance
+	 *            the percent chance of the event occurring
+	 * @throws InvalidWeatherChanceException
+	 *             if the chance is < 0 or > 100
+	 */
+	public void setChance(int chance) throws InvalidWeatherChanceException {
+		if (chance < 0 || chance > 100) {
+			throw new InvalidWeatherChanceException(
+					"Chance must be >= 0 && <= 100");
+		}
+		this.chance = chance;
+	}
+
+	/**
 	 * Get the weather event
 	 * 
 	 * @return the weather event
@@ -63,24 +79,24 @@ public class WeatherChance {
 	public String toString() {
 		return "" + chance + "% of " + weather.toString();
 	}
-	
+
 	@Override
 	public boolean equals(Object other) {
-		
+
 		if (other == null) {
 			return false;
 		}
-		
+
 		if (!(other instanceof WeatherChance)) {
 			return false;
 		}
-		
+
 		final WeatherChance otherChance = (WeatherChance) other;
-		if (!this.weather.equals(otherChance.weather) || 
-				this.chance != otherChance.chance) {
+		if (!this.weather.equals(otherChance.weather)
+				|| this.chance != otherChance.chance) {
 			return false;
 		}
-		
+
 		return true;
 	}
 
