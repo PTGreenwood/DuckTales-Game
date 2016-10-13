@@ -11,7 +11,26 @@
 	-fx-font-family: "Press Start 2P";
 	-fx-font-size: 7px;
 	-fx-background-color: transparent;
-	-fx-text-fill: white;
+	-fx-text-fill: white;	
+	-fx-background-size: auto 14px;
+	-fx-background-position: center;
+	-fx-background-repeat: no-repeat;
+}
+
+#showBuildingsButton {
+	-fx-background-image: url("../../ui/hud/buildings.png");
+}
+
+#showBuildingsButton:hover {
+	-fx-background-image: url("../../ui/hud/buildings-hover.png");
+}
+
+#showAnimalsButton {
+	-fx-background-image: url("../../ui/hud/animals.png");
+}
+
+#showAnimalsButton:hover {
+	-fx-background-image: url("../../ui/hud/animals-hover.png");
 }
 
 .optionButton:hover {
