@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
+import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -67,6 +68,10 @@ public class MenuManager implements Initializable, SecondaryManager {
 	private AnchorPane menuPane; // The parent Node for all menus
 	@FXML
 	private Pane optionPane;
+	@FXML
+	private Button nextGridButton;
+	@FXML
+	private Button previousGridButton;
 
 	// building options list to be displayed in HUD
 	private ArrayList<GridPane> buildingOptionList;
@@ -85,6 +90,10 @@ public class MenuManager implements Initializable, SecondaryManager {
 	/** Helpers for rendering information */
 	private WorldEntityInfo worldEntityInfo;
 
+	// Current grid visible in the HUD
+	private String currentGrid;
+	private int currentGridIndex;
+
 	/**
 	 * This method is called when FXML Loader instantiates this class
 	 *
@@ -96,9 +105,62 @@ public class MenuManager implements Initializable, SecondaryManager {
 		this.worldEntityInfo = WorldEntityInfo.getInstance();
 		buildingOptionList = new ArrayList<>();
 		animalOptionList = new ArrayList<>();
+		nextGridButton.setVisible(false);
+		previousGridButton.setVisible(false);
 		// Instantiating and set up the menus
 		setupMenus();
+	}
 
+	/**
+	 * @author mattyleggy
+	 * 
+	 * @param grid
+	 *            the grid to set to be current
+	 * @param index
+	 *            the index of the list which is visible
+	 */
+	private void setCurrentGrid(String grid, int index) {
+		this.currentGrid = grid;
+		this.currentGridIndex = index;
+		
+		if (this.currentGridIndex == 0)
+			previousGridButton.setVisible(false);
+		else 
+			previousGridButton.setVisible(true);
+		
+		switch (this.currentGrid) {
+		case "buildings":
+			if (this.currentGridIndex == (buildingOptionList.size()-1))
+				nextGridButton.setVisible(false);
+			else
+				nextGridButton.setVisible(true);
+			break;
+		case "animals":
+			if (this.currentGridIndex == (animalOptionList.size()-1))
+				nextGridButton.setVisible(false);
+			else
+				nextGridButton.setVisible(true);
+			break;
+		}
+	}
+
+	/**
+	 * 
+	 * @author mattyleggy
+	 * 
+	 * @return the grid which is currently visible in the HUD
+	 */
+	private String getCurrentGrid() {
+		return this.currentGrid;
+	}
+
+	/**
+	 * @author mattyleggy
+	 * 
+	 * @return the grid index which is currently visible in the HUD
+	 */
+	private int getCurrentGridIndex() {
+		return this.currentGridIndex;
 	}
 
 	/**
@@ -107,10 +169,19 @@ public class MenuManager implements Initializable, SecondaryManager {
 	@FXML
 	public void showBuildingsMenu() {
 		if (buildingOptionList.size() > 0) {
-			this.clearOptionPane();
-			GridPane gridPane = buildingOptionList.get(0);
-			optionPane.getChildren().add(gridPane);
+			showBuildingMenuFromIndex(0);
 		}
+	}
+
+	/**
+	 * @param index
+	 *            index value of the array to load
+	 */
+	private void showBuildingMenuFromIndex(int index) {
+		this.clearOptionPane();
+		GridPane gridPane = buildingOptionList.get(index);
+		optionPane.getChildren().add(gridPane);
+		setCurrentGrid("buildings", index);
 	}
 
 	/**
@@ -119,9 +190,71 @@ public class MenuManager implements Initializable, SecondaryManager {
 	@FXML
 	public void showAnimalsMenu() {
 		if (animalOptionList.size() > 0) {
-			this.clearOptionPane();
-			GridPane gridPane = animalOptionList.get(0);
-			optionPane.getChildren().add(gridPane);
+			showAnimalMenuFromIndex(0);
+		}
+	}
+
+	/**
+	 * @param index
+	 *            index value of the array to load
+	 */
+	private void showAnimalMenuFromIndex(int index) {
+		this.clearOptionPane();
+		GridPane gridPane = animalOptionList.get(index);
+		optionPane.getChildren().add(gridPane);
+		setCurrentGrid("animals", index);
+	}
+
+	/**
+	 * @author mattyleggy
+	 * 
+	 *         Show the next Grid in the HUD
+	 */
+	@FXML
+	public void nextGrid() {
+		int currentIndex = this.getCurrentGridIndex();
+		int newIndex;
+		switch (this.getCurrentGrid()) {
+		case "buildings":
+			if (currentIndex < (this.buildingOptionList.size() - 1)) {
+				newIndex = currentIndex + 1;
+				this.showBuildingMenuFromIndex(newIndex);
+				setCurrentGrid("buildings", newIndex);
+			}
+			break;
+		case "animals":
+			if (currentIndex < (this.animalOptionList.size() - 1)) {
+				newIndex = currentIndex + 1;
+				this.showAnimalMenuFromIndex(newIndex);
+				setCurrentGrid("animals", newIndex);
+			}
+			break;
+		}
+	}
+
+	/**
+	 * @author mattyleggy
+	 * 
+	 *         Show the previous Grid in the HUD
+	 */
+	@FXML
+	public void previousGrid() {
+		int currentIndex = this.getCurrentGridIndex();
+		int newIndex;
+		if (currentIndex > 0) {
+			switch (this.getCurrentGrid()) {
+			case "buildings":
+				newIndex = currentIndex - 1;
+				this.showBuildingMenuFromIndex(newIndex);
+				setCurrentGrid("buildings", newIndex);
+
+				break;
+			case "animals":
+				newIndex = currentIndex - 1;
+				this.showAnimalMenuFromIndex(newIndex);
+				setCurrentGrid("animals", newIndex);
+				break;
+			}
 		}
 	}
 
@@ -131,8 +264,6 @@ public class MenuManager implements Initializable, SecondaryManager {
 	 * @author mattyleggy
 	 */
 	private void clearOptionPane() {
-		System.out.println(optionPane.getChildren().size());
-
 		for (int i = 0; i < optionPane.getChildren().size(); i++) {
 			optionPane.getChildren().remove(i);
 		}

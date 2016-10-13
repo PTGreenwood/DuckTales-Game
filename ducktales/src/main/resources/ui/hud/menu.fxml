@@ -2,17 +2,14 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.RowConstraints?>
 
 <AnchorPane fx:id="menuPane" prefHeight="667.0" prefWidth="200.0" stylesheets="@menu.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uq.deco2800.ducktales.features.hud.menu.MenuManager">
    <children>
-      <Button alignment="CENTER" layoutX="61.0" layoutY="203.0" mnemonicParsing="false" onAction="#showBuildingsMenu" prefHeight="25.0" prefWidth="35.0" styleClass="optionButton" text="B" />
-      <Button alignment="CENTER" layoutX="99.0" layoutY="203.0" mnemonicParsing="false" onAction="#showAnimalsMenu" prefHeight="25.0" prefWidth="35.0" styleClass="optionButton" text="A" />
-      <Button alignment="CENTER" layoutX="137.0" layoutY="203.0" mnemonicParsing="false" onAction="#showAnimalsMenu" prefHeight="25.0" prefWidth="35.0" styleClass="optionButton" text="&gt;" />
-      <Button alignment="CENTER" layoutX="19.0" layoutY="203.0" mnemonicParsing="false" onAction="#showAnimalsMenu" prefHeight="25.0" prefWidth="42.0" styleClass="optionButton" text="&lt;" />
-      <Pane fx:id="optionPane" layoutX="23.0" layoutY="228.0" prefHeight="402.0" prefWidth="152.0"></Pane>
+      <Button fx:id="showBuildingsButton" alignment="CENTER" layoutX="61.0" layoutY="202.0" mnemonicParsing="false" onAction="#showBuildingsMenu" prefHeight="25.0" prefWidth="35.0" styleClass="optionButton" text="" />
+      <Button fx:id="showAnimalsButton" alignment="CENTER" layoutX="99.0" layoutY="203.0" mnemonicParsing="false" onAction="#showAnimalsMenu" prefHeight="25.0" prefWidth="35.0" styleClass="optionButton" text="" />
+      <Button fx:id="nextGridButton" alignment="CENTER" layoutX="137.0" layoutY="203.0" mnemonicParsing="false" onAction="#nextGrid" prefHeight="25.0" prefWidth="35.0" styleClass="optionButton" text="&gt;" />
+      <Button fx:id="previousGridButton" alignment="CENTER" layoutX="19.0" layoutY="203.0" mnemonicParsing="false" onAction="#previousGrid" prefHeight="25.0" prefWidth="42.0" styleClass="optionButton" text="&lt;" />
+      <Pane fx:id="optionPane" layoutX="23.0" layoutY="228.0" prefHeight="402.0" prefWidth="152.0" />
    </children>
 </AnchorPane>
