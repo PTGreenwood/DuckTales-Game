@@ -30,7 +30,6 @@ public class FireGod extends DuckGods {
 		*need to change Speed visibility to public
 		*/
 		}
-		
 	}
 	
 	public void givepenalty() {
@@ -39,6 +38,7 @@ public class FireGod extends DuckGods {
 	   *need to change Speed visibility to public
 	   *more penalty detail
 	   */
-	}}  
+		}
+	}  
         
 }

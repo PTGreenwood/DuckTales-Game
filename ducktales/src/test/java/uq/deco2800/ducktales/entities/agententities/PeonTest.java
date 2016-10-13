@@ -20,7 +20,7 @@ public class PeonTest {
   @Test
   public void peonTest() {
     //Create Peon for testing
-    Peon peon = new Peon(10, 10);
+    Peon peon = new Peon(10, 10, "John Doe");
 
     //Test to see if Peon has no null attributes
     assertNotNull("Peon cannot be null", peon);

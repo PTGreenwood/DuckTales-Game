@@ -5,6 +5,8 @@ import java.util.ArrayList;
 
 import uq.deco2800.ducktales.features.entities.Entity;
 
+import uq.deco2800.ducktales.features.entities.agententities.Animal;
+import uq.deco2800.ducktales.features.entities.worldentities.Building;
 import uq.deco2800.ducktales.resources.ResourceInfoRegister;
 import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 
@@ -34,7 +36,9 @@ public class World implements Tickable {
 	private Array2D<Tile> tiles;
 
 	/** The model for the actual game */
-	private ArrayList<Entity> entities; // All the entities in the game
+	private ArrayList<Entity> entities; // Note: will be gradually removed
+	private ArrayList<Animal> animals; // All the animals in the game
+	private ArrayList<Building> buildings; // All the buildings in the game
 
 	/** The registers */
 	private ResourceSpriteRegister tileRegister = ResourceSpriteRegister.getInstance();
@@ -53,6 +57,12 @@ public class World implements Tickable {
 
 		// Instantiates the list of entities
 		entities = new ArrayList<>();
+
+		// Instantiates the list of animals in the game
+		animals = new ArrayList<>();
+
+		// Instantiates the list of buildings in the game
+		buildings = new ArrayList<>();
 
 		for (int x = 0; x < width; x++) {
 			for (int y = 0; y < height; y++) {
@@ -113,25 +123,56 @@ public class World implements Tickable {
 	}
 
 	/**
-	 * Add the given world entity to the list of entities, and set the tiles that
+	 * Add an animal to the world
+	 *
+	 * @param animal
+	 * 			The animal to be added to the world
+	 */
+	public void addAnimal(Animal animal) {
+		if (animals.contains(animal)) {
+			throw new RuntimeException("Animal already exists in the game");
+		} else {
+			animals.add(animal);
+		}
+	}
+
+	/**
+	 * Get the animal with the given index
+	 *
+	 * @param index
+	 * 			The index of the animal
+	 * @return The animal at the given index
+	 */
+	public Animal getAnimal(int index) {
+		return animals.get(index);
+	}
+
+	/**
+	 * Add the given building to the list of buildings, and set the tiles that
 	 * it is on to its type, and its passability
 	 *
-	 * @param entity
+	 * @param building
 	 * 			The entity to be added
 	 * @param startX
 	 * 			The x-coordinate of the lead tile
 	 * @param startY
 	 * 			The y-coordinate of the lead tile
 	 * @param xLength
-	 * 			The x-length of the world entity
+	 * 			The x-length of the building
 	 * @param yLength
-	 * 			The y-length of the world entity
+	 * 			The y-length of the building
 	 */
-	public void addWorldEntity(Entity entity, int startX, int startY,
-							   int xLength, int yLength) {
-		if (!entities.contains(entity)) {
+	public void addBuilding(Building building, int startX, int startY,
+							int xLength, int yLength) {
+		if (!entities.contains(building)) {
 			// Add the entity
-			entities.add(entity);
+			if (buildings.contains(building)) {
+				throw new RuntimeException("This building has already " +
+						"been added to the world");
+			} else {
+				buildings.add(building);
+			}
+
 			// Set the tiles' worldEntity value and passability value
 			for (int x = 0; x < xLength; x++) {
 				for (int y = 0; y < yLength; y++) {
@@ -139,9 +180,9 @@ public class World implements Tickable {
 					Tile tile = tiles.get(startX - x, startY - y); // Get the tile
 
 					// Set world entity
-					tile.setWorldEntityType(entity.getType());
+					tile.setWorldEntityType(building.getType());
 					// Set passability
-					tile.setPassable(infoRegister.getPassability(entity.getType()));
+					tile.setPassable(infoRegister.getPassability(building.getType()));
 
 				}
 			}
@@ -155,6 +196,18 @@ public class World implements Tickable {
 	 */
 	public void removeEntity(Entity entity) {
 		entities.remove(entity);
+	}
+
+	/**
+	 * Get the entity at the given index. For the current implementation,
+	 * the index of the entity and the index of the sprite will be the same
+	 * @param index
+	 * 			The index of the entity to be retrieved
+	 *
+	 * @return the entity at the given index
+	 */
+	public Entity getEntity(int index) {
+		return entities.get(index);
 	}
 
 	/**
@@ -220,113 +273,14 @@ public class World implements Tickable {
 			}
 		}
 		// Update all the entities
+		// TODO: REPLACE GENERIC ENTITIES WITH SPECIFIC ENTITIES, AND REMOVE THIS
 		for (int i = 0; i < entities.size(); i++) {
 			entities.get(i).tick();
 		}
+		// Update all the animals
+		for (int i = 0; i < animals.size(); i++) {
+			animals.get(i).tick();
+		}
 	}
 
-
-//	/**
-//	 * Instantiate the world with the given params, and the tile types are
-//	 * randomized between GRASS_1, GRASS_2 and GRASS_3
-//	 *
-//	 * Entities are also added
-//	 *
-//	 * @param name
-//	 *            The name of the World
-//	 * @param width
-//	 *            The width of the World
-//	 * @param height
-//	 *            The height of the World
-//	 */
-//	@Deprecated
-//	public World(String name, int width, int height) {
-//		tiles = new Array2D<Tile>(width, height);
-//
-//		ResourceType[] tileTypes = { GRASS_1, GRASS_2, GRASS_3 };
-//
-//		Random random = new Random();
-//
-//		for (int y = 0; y < height; y++) {
-//			for (int x = 0; x < width; x++) {
-//				// Changed 1 to 1.0 to remove bug, required at least 1 element to be
-//				// a double
-//				if (Math.sqrt(Math.pow(y + 1.0, 2) + Math.pow(x + 1.0, 2)) < 5) {
-//					// Make a basic lake.
-//					tiles.set(x, y, new Tile(WATER));
-//				} else {
-//					tiles.set(x, y, new Tile(tileTypes[random.nextInt(3)]));
-//				}
-//			}
-//		}
-//
-//		addEntity(new Bakery(13, 6));
-//		addEntity(new Box(4, 15));
-//
-//		addEntity(new Peon(3, 4));
-//		addEntity(new Peon(13, 17));
-//
-//		addEntity(new Duck(0, 10));
-//
-//
-////		addEntity(new Cow(8, 10));
-//		addEntity(new Tree(5, 10));
-//		addEntity(new Rock(15,15));
-//		addEntity(new Tree(10, 10));
-//	}
-
-
-//	/**
-//	 * Instantiates a World object with the specified parameters, with the tile
-//	 * type defaulting to the given type
-//	 *
-//	 * @param name
-//	 *            The name of the World
-//	 * @param width
-//	 *            The width of the World
-//	 * @param height
-//	 *            The height of the World
-//	 * @param baseTileType
-//	 *            The initial tile type to set every tile to
-//	 */
-//	public World(String name, int width, int height, ResourceType baseTileType) {
-//		tiles = new Array2D<Tile>(width, height);
-//
-//		Random random = new Random();
-//
-//		for (int x = 0; x < width; x++) {
-//			for (int y = 0; y < height; y++) {
-//				tiles.set(x, y, new Tile(baseTileType));
-//			}
-//		}
-//	}
-
-
-
-
-
-
-
-//	public void setTile(int x, int y, ResourceType tileType) {
-//		getTile(x, y).setTileType(tileType);
-//	}
-//
-//	public void addEntity(AgentEntity entity) {
-//		entityManager.addEntity(entity);
-//	}
-//
-//	public void addEntity(WorldEntity entity) {
-//		int entityX = (int) entity.getX();
-//		int entityY = (int) entity.getY();
-//
-//		int xMin = (int) (entity.getX() - entity.getXLength()) + 1;
-//		int yMin = (int) (entity.getY() - entity.getYLength()) + 1;
-//
-//		if (!(xMin >= 0 && entityX < getWidth() && yMin >= 0 && entityY < getHeight())) {
-//			System.out.println("CANNOT ADD WORLD ENTITY");
-//			return;
-//		}
-//		entityManager.addEntity(entity);
-//
-//	}
 }

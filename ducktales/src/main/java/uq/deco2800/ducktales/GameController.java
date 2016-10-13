@@ -16,6 +16,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import uq.deco2800.ducktales.features.achievements.AchievementManager;
 import uq.deco2800.ducktales.features.entities.EntityManager;
+import uq.deco2800.ducktales.features.helper.HelperManager;
 import uq.deco2800.ducktales.features.hud.HUDManager;
 import uq.deco2800.ducktales.features.level.LevelManager;
 import uq.deco2800.ducktales.features.market.MarketManager;
@@ -82,6 +83,7 @@ public class GameController implements Initializable{
     /** The Secondary Managers of the game, each managing an FXML loader */
     private MarketManager marketManager;
     
+    private HelperManager helperManager;
     private MissionManager missionManager;
     private LevelManager levelManager;
     private AchievementManager achievementManager;
@@ -124,6 +126,7 @@ public class GameController implements Initializable{
         loadTutorial();
         loadLevel();
         loadAchievement();        
+        loadHelper();
         
         loadTimeDisplay();
         
@@ -140,7 +143,8 @@ public class GameController implements Initializable{
         gameManager.setLevelManager(this.levelManager);
         gameManager.setAchievementManager(this.achievementManager);
         gameManager.setEntityManager(this.entityManager);
-        gameManager.setTutorialManager(this.tutorialManager);        
+        gameManager.setTutorialManager(this.tutorialManager);      
+        gameManager.setHelperManager(this.helperManager);
         
         // Now officially call the game starting method from Game Manager
         gameManager.startGame();        
@@ -452,7 +456,7 @@ public class GameController implements Initializable{
             
             // position the mission pane
             AnchorPane.setTopAnchor(root, 20.0);
-            AnchorPane.setRightAnchor(root, 230.0);
+            AnchorPane.setLeftAnchor(root, 250.0);
             
             
             tutorialManager.hideButtons();
@@ -519,7 +523,7 @@ public class GameController implements Initializable{
             
             // position the mission pane
             AnchorPane.setTopAnchor(root, 20.0);
-            AnchorPane.setRightAnchor(root, 230.0);
+            AnchorPane.setLeftAnchor(root, 250.0);
             
             // initially hide it first
             missionManager.hideMission();
@@ -561,6 +565,35 @@ public class GameController implements Initializable{
     }
     
     @FXML
+    private void loadHelper() {
+    	
+    	URL location = getClass().getResource("/helper/helper.fxml");
+    	
+    	FXMLLoader loader = new FXMLLoader(location);
+    	
+    	try {
+            // load the FXML
+            AnchorPane root = loader.load();
+            
+            // retrieve the controller
+            helperManager = loader.getController();
+            
+            // add the level pane to the GUI
+            rootPane.getChildren().add(root);
+            
+            // position the level pane
+            AnchorPane.setTopAnchor(root, 580.0);
+            AnchorPane.setLeftAnchor(root, 350.0);            
+
+            //helperManager.hideHelper();
+            
+        } catch (IOException e) {
+            System.err.println("Unable to load Helper");
+            logger.info("Unable to load Helper:" + e);
+        }
+    }
+    
+    @FXML
     private void loadAchievement() {
 
         URL location = getClass().getResource("/achievements/achievementMain.fxml");
@@ -580,7 +613,7 @@ public class GameController implements Initializable{
             
             // position the achievement pane
             AnchorPane.setTopAnchor(root, 20.0);
-            AnchorPane.setRightAnchor(root, 230.0);
+            AnchorPane.setLeftAnchor(root, 250.0);
             
             // initially hide it first
             achievementManager.hideAchievement();

@@ -6,6 +6,10 @@ import javafx.animation.Timeline;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
+import uq.deco2800.ducktales.features.entities.Entity;
+import uq.deco2800.ducktales.features.landscape.tiles.TileSprite;
+import uq.deco2800.ducktales.features.landscape.tiles.TilesManager;
+import uq.deco2800.ducktales.rendering.RenderingInformation;
 import uq.deco2800.ducktales.rendering.animation.SpriteInterpolator;
 
 import java.util.ArrayList;
@@ -120,5 +124,114 @@ public class Sprite extends ImageView{
     public void resetInterpolator() {
         this.interpolator = new SpriteInterpolator(this.imageList);
     }
+
+    /**
+     * Set up a given agent entity sprite. Tasks currently carried out:
+     *      1. Set the sprite's x- and y-locations (regarding world size)
+     *      2. Change the size of the sprite based on the main scale factor
+     *      3. Adjust the offset of the sprite to the bottom middle
+     *      4. set the location of the sprite based on the given tile
+     * @param sprite
+     *          The sprite to set up
+     * @param x
+     *          The x-location of the given tile
+     * @param y
+     *          The y-location of the given tile
+     * @param tilesManager
+     *          The manager of all the tiles in the game
+     */
+    public static void setupEntitySprite(EntitySprite sprite,
+                                         int x, int y,
+                                         TilesManager tilesManager) {
+        // IMPORTANT: Setup the x-and y-locations of the sprite
+        sprite.setxLocation(x);
+        sprite.setyLocation(y);
+
+        // Set the fit width and height of the sprite, based on the given
+        // rendering scale
+        double mainScale = RenderingInformation.MAIN_SCALE_FACTOR;
+        sprite.setFitHeight(sprite.getImage().getHeight() * mainScale);
+        sprite.setFitWidth(sprite.getImage().getWidth() * mainScale);
+
+        // Adjust the offset of the sprite, so that it is at the middle of the
+        // bottom of the sprite
+        sprite.setX(-sprite.getFitWidth() / 2);
+        sprite.setY(-sprite.getFitHeight());
+
+        // Get the sprite of the tile at the given location
+        TileSprite tileSprite = tilesManager.getTileSprite(x, y);
+
+        // set the location of the entity sprite based on the given tile
+        sprite.setLayoutX(tileSprite.getLayoutX() + tileSprite.getFitWidth() / 2);
+        sprite.setLayoutY(tileSprite.getLayoutY() + tileSprite.getFitHeight());
+    }
+
+    /**
+     * Update the location of the sprite of the given entity, based on the stored location
+     * of the entity's x- and y- coordinates
+     * @param entity
+     *          The model of the sprite
+     * @param sprite
+     *          The sprite whose location is to be updated
+     * @param tileSprite
+     *          The sprite of the tile where the location will be updated from
+     */
+    public static void updateSpriteLocation(Entity entity, EntitySprite sprite,
+                                            TileSprite tileSprite) {
+        final double EPSILON = 0.0001;
+
+        // Now get the coordinates of the center of the tile
+        double tileCenterX = tileSprite.getLayoutX() +
+                (tileSprite.getLayoutBounds().getWidth() / 2);
+        double tileCenterY = tileSprite.getLayoutY() +
+                (tileSprite.getLayoutBounds().getHeight() / 2);
+
+        // Calculate the maximum travel distance in the X and Y directions
+        double maxDistanceX = tileCenterX - tileSprite.getLayoutX();
+        double maxDistanceY = tileCenterY - tileSprite.getLayoutY();
+
+        // Now check for the 4 cases representing the 4 different directions
+        // of movement
+        if (Math.abs(entity.getX() - sprite.getxLocation()) < EPSILON) {
+            // moving in the Y direction
+            double difference = Math.abs(entity.getY() - sprite.getyLocation());
+            if (entity.getY() < sprite.getyLocation()) {
+                // Moving north-west
+                sprite.setLayoutX(tileCenterX - difference * maxDistanceX);
+                sprite.setLayoutY(tileCenterY - difference * maxDistanceY);
+            } else {
+                // Moving south-east
+                sprite.setLayoutX(tileCenterX + difference * maxDistanceX);
+                sprite.setLayoutY(tileCenterY + difference * maxDistanceY);
+            }
+        } else if (Math.abs(entity.getY() - sprite.getyLocation()) < EPSILON) {
+            // moving in the X direction
+            double difference = Math.abs(entity.getX() - sprite.getxLocation());
+            if (entity.getX() < sprite.getxLocation()) {
+                // Moving north-east
+                sprite.setLayoutX(tileCenterX + difference * maxDistanceX);
+                sprite.setLayoutY(tileCenterY - difference * maxDistanceY);
+            } else {
+                // Moving south-west
+                sprite.setLayoutX(tileCenterX - difference * maxDistanceX);
+                sprite.setLayoutY(tileCenterY + difference * maxDistanceY);
+
+            }
+        }
+
+        // Update the coordinates of the sprite if it has moved on to a new location
+        double xDifference = Math.abs(entity.getX() - sprite.getxLocation());
+        double yDifference = Math.abs(entity.getY() - sprite.getyLocation());
+        if (xDifference == 0.0) {
+            if (yDifference == 1.0) {
+                sprite.setyLocation((int) entity.getY());
+            }
+        } else if (xDifference == 1.0) {
+            if (yDifference == 0.0) {
+                sprite.setxLocation((int) entity.getX());
+            }
+        }
+    }
+
 
 }
