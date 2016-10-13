@@ -1,29 +1,23 @@
 package uq.deco2800.ducktales.features.seasons;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
-import javafx.application.Platform;
-import uq.deco2800.ducktales.features.time.GameTime;
-import uq.deco2800.ducktales.features.seasons.*;
 import uq.deco2800.ducktales.util.SecondaryManager;
+import uq.deco2800.ducktales.features.seasons.*;
+import uq.deco2800.ducktales.features.time.*;
 
-/**
+/* 
+ * The point of this Manager class is to control both
+ * TimeManager and SeasonManager and be the 'update controller'
+ * between the 2.
  * 
- * This Manager class handles Season changes, weather within each season and the chance
- * in which the weather events happen.
- * 
- * SeasonManager -> Season -> WeatherEvent -> WeatherChance
- * 
- * 
- *
  */
-public class SeasonManager implements SecondaryManager{
+public class CalendarManager implements SecondaryManager{
 
     /** The model for the game time */
     protected Season season;
+    public SeasonManager seasonManager;
+    public TimeManager timeManager;
 
-    public SeasonManager() {
+    public CalendarManager() {
     	/*
     	 * Needs to instantiate:
     	 * 
@@ -46,7 +40,7 @@ public class SeasonManager implements SecondaryManager{
      * 4 = Winter.
      */
     public void updateSeasoin() {
-
+    	
     }
     
     @Override
