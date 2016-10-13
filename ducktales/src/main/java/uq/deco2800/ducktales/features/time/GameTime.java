@@ -37,7 +37,7 @@ public class GameTime implements Tickable {
 
 		// As fixed variables are set for day and year
 		// So to will the season automatically start in Spring
-		this.season = Season.Spring();
+		//this.season = //Fix to be Sprig yet changeable on command
 
 		// Considering making this just one number and mathing it to get the
 		// right time depending on day and year. Can then also have total time
@@ -214,12 +214,14 @@ public class GameTime implements Tickable {
 		return "Current Time is: " + h + ":" + m + " Day: " + d + " Year: " + y;
 	}
 
+	/*
+	
 	/**
 	 * Returns the percent chance of the fire weather event occurring as an
 	 * integer. This chance is different depending on the season.
 	 * 
 	 * @return a integer of the percent chance of fire
-	 */
+	 
 	public int getChanceOfFire() {
 		int chance = 0;
 		switch (this.getCurrentSeason()) {
@@ -244,7 +246,7 @@ public class GameTime implements Tickable {
 	 * integer. This chance is different depending on the season.
 	 * 
 	 * @return a integer of the percent chance of rain
-	 */
+	 
 	public int getChanceOfRain() {
 		int chance = 0;
 		switch (getCurrentSeason()) {
@@ -269,7 +271,7 @@ public class GameTime implements Tickable {
 	 * integer. This chance is different depending on the season.
 	 * 
 	 * @return a integer of the percent chance of a cyclone
-	 */
+	 
 	public int getChanceOfCyclone() {
 		int chance = 0;
 		switch (getCurrentSeason()) {
@@ -294,7 +296,7 @@ public class GameTime implements Tickable {
 	 * integer. This chance is different depending on the season.
 	 * 
 	 * @return a integer of the percent chance of a tornado
-	 */
+	 
 	public int getChanceOfTornado() {
 		int chance = 0;
 		switch (getCurrentSeason()) {
@@ -319,7 +321,7 @@ public class GameTime implements Tickable {
 	 * integer. This chance is different depending on the season.
 	 * 
 	 * @return a integer of the percent chance of lightning
-	 */
+	 
 	public int getChanceOfLightning() {
 		int chance = 0;
 		switch (getCurrentSeason()) {
@@ -344,7 +346,7 @@ public class GameTime implements Tickable {
 	 * integer. This chance is different depending on the season.
 	 * 
 	 * @return a integer of the percent chance of thunder
-	 */
+	 
 	public int getChanceOfThunder() {
 		int chance = 0;
 		switch (getCurrentSeason()) {
@@ -369,7 +371,7 @@ public class GameTime implements Tickable {
 	 * integer. This chance is different depending on the season.
 	 * 
 	 * @return a integer of the percent chance of a whirlpool
-	 */
+	 
 	public int getChanceOfWhirlpool() {
 		int chance = 0;
 		switch (getCurrentSeason()) {
@@ -387,5 +389,5 @@ public class GameTime implements Tickable {
 			break;
 		}
 		return chance;
-	}
+	}*/
 }
