@@ -45,7 +45,8 @@ public class Quarry extends Building {
 	 * Update the WorldEntity properties with those of a quarry.
 	 */
 	protected void specifications() {
-		specifications(8, 6, 5, production.STONE, productionAmount, health);
+		specifications(8, 6, 5, production.STONE, productionAmount, health, 
+				null);
 	}
 	
 	/**
@@ -67,8 +68,28 @@ public class Quarry extends Building {
 	 * @param newProduce, the new production amount
 	 */
 	protected void upgradeProduceBuilding(int newProduce) {
-		if (newProduce >= 0) {
-			productionAmount = newProduce;
-		}
+		productionAmount = newProduce;
+	}
+	
+	/**
+	 * Upgrade stored resources for building, required for all buildings, by 
+	 * Building class. Possible use to extend/upgrade a quarry.
+	 * 
+	 * @throws UnsupportedOperationException, as this functionality is not 
+	 * required for a quarry.
+	 */
+	protected void upgradeBarnBarn(production upgradeType, int newStore) {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Add stored resources to the building, required for all buildings, by 
+	 * Building class. Possible use to extend/upgrade a quarry.
+	 * 
+	 * @throws UnsupportedOperationException, as this functionality is not 
+	 * required for a quarry.
+	 */
+	protected void addGoodsBarn(production storeType, int newStore) {
+		throw new UnsupportedOperationException();
 	}
 }
