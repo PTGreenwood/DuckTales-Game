@@ -45,7 +45,8 @@ public class Sawmill extends Building {
 	 * Update the WorldEntity properties with those of a sawmill.
 	 */
 	protected void specifications() {
-		specifications(4, 8, 3, production.WOOD, productionAmount, health);
+		specifications(4, 8, 3, production.WOOD, productionAmount, health, 
+				null);
 	}
 	
 	/**
@@ -67,8 +68,28 @@ public class Sawmill extends Building {
 	 * @param newProduce, the new production amount
 	 */
 	protected void upgradeProduceBuilding(int newProduce) {
-		if (newProduce >= 0) {
-			productionAmount = newProduce;
-		}
+		productionAmount = newProduce;
+	}
+	
+	/**
+	 * Upgrade stored resources for building, required for all buildings, by 
+	 * Building class. Possible use to extend/upgrade a sawmill.
+	 * 
+	 * @throws UnsupportedOperationException, as this functionality is not 
+	 * required for a sawmill.
+	 */
+	protected void upgradeBarnBarn(production upgradeType, int newStore) {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Add stored resources to the building, required for all buildings, by 
+	 * Building class. Possible use to extend/upgrade a sawmill.
+	 * 
+	 * @throws UnsupportedOperationException, as this functionality is not 
+	 * required for a sawmill.
+	 */
+	protected void addGoodsBarn(production storeType, int newStore) {
+		throw new UnsupportedOperationException();
 	}
 }
