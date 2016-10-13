@@ -202,11 +202,16 @@ public class Threat extends Entity{
 	}
 	
 	/**
-	 * Assign the level of damage for a threat
+	 * Each threat effect on the world entities' health differently.
+	 * This method is used to assign the level of damage for each threat.
 	 * @param damage
 	 */
 	public void setTheLevelOfDamage(int newLevelOfDamage) {
 		this.levelOfDamage = newLevelOfDamage;
+	}
+	
+	public int getTheLevelOfDamage(){
+		return levelOfDamage; 
 	}
 	
 	/**

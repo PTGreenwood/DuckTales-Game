@@ -7,154 +7,58 @@ import java.util.ArrayList;
 import uq.deco2800.ducktales.features.entities.Effect;
 import uq.deco2800.ducktales.features.entities.Enemy;
 import uq.deco2800.ducktales.features.entities.ThreatManager;
+import uq.deco2800.ducktales.features.entities.ThreatFactory;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class ThreatsManagerTest {
+	
+	/**
+	 * 
+	 */
+	@Test 
+	public void basicThreatTest(){
+		
+		Enemy enemy = new Enemy("Raccoon");
+		Effect efect = new Effect("Black Smoke");
 
-	ThreatManager TM = new ThreatManager();
+		assertNotNull("Enemy cannot be null.", enemy);
+		assertNotNull("Enemy's X coordinate cannot be null.", enemy.getX());
+		assertNotNull("Enemy's Y coordinate cannot be null.", enemy.getY());
+		assertNotNull("The enemy's level of damage cannot be null", enemy.getTheLevelOfDamage());
+		assertNotNull("The enemy's speed cannot be null.", enemy.getSpeed());
+		
+		assertNotNull("Effect cannot be null.", efect);
+		assertNotNull("Effect's X coordinate cannot be null.", efect.getX());
+		assertNotNull("Effect's Y coordinate cannot be null.", efect.getY());
+		assertNotNull("The effect's level of damage cannot be null", enemy.getTheLevelOfDamage());
+		assertNotNull("The effect's speed cannot be null.", enemy.getSpeed());
 
-	@Test // For level1 testing
+	}
+	
+	@Test 
+	public void testForLvl1(){
+		
+		Enemy enemy1 = new Enemy("Raccoon");
+		Enemy enemy2 = new Enemy("Beetle");
+		Enemy enemy3 = new Enemy("Wild Villager");
+		
+		Effect efect1 = new Effect("Shake");
+		Effect efect2 = new Effect("Black Smoke");
 
-	public void testLevel1() {
-
-		// Temp Variables
-		ArrayList<Effect> effectsList = new ArrayList<Effect>();
 		ArrayList<Enemy> enemiesList = new ArrayList<Enemy>();
-
-		effectsList.clear();
-		enemiesList.clear();
-
-		// Temp variables
-		Effect tempEffect;
-		Enemy tempEnemy;
-
-		// ------Effects---------
-		// Create Temp variable
-		tempEffect = new Effect("Black Smoke");
-		tempEffect.setStartTimer(20, "Timer");
-		tempEffect.setEndTimer(50);
+		enemiesList.add(enemy1);
+		enemiesList.add(enemy2);
+		enemiesList.add(enemy3);
 		
-		effectsList.add(tempEffect);
+		ArrayList<Effect> effectsList = new ArrayList<Effect>();
+		effectsList.add(efect1);
+		effectsList.add(efect2);
 		
-		// Create Temp variable
-		tempEffect = new Effect("Shake");
-		tempEffect.setStartTimer(50, "Timer");
-		tempEffect.setEndTimer(100);
-		effectsList.add(tempEffect);
-
-		// -------Enemies--------
-		//Create Temp variable
-	 	tempEnemy = new Enemy("Raccoon");
-	 	// affects people and animals
-	 	//Add parameters to temp variable
-	 	//------------
-	 	tempEnemy.setStartTimer(20,"Timer");
-	 	tempEnemy.setEndTimer(50);
-	 	//Add temp variable to list
-	 	enemiesList.add(tempEnemy);
-	 	
-	 	//Create Temp variable
-	 	tempEnemy = new Enemy("Beetle");
-	 	// affects resources
-	 	//Add parameters to temp variable
-	 	//------------
-	 	tempEnemy.setStartTimer(20,"Timer");
-	 	tempEnemy.setEndTimer(50);
-	 	//Add temp variable to list
-	 	enemiesList.add(tempEnemy);
-	 	
-	 	//Create Temp variable
-	 	tempEnemy = new Enemy("Wild Villager");
-	 	// affects buildings
-	 	//Add parameters to temp variable
-	 	//------------		 	
-	 	tempEnemy.setStartTimer(20, "Timer");
-	 	tempEnemy.setEndTimer(50);
-	 	//Add temp variable to list
-	 	enemiesList.add(tempEnemy);
-
-//		TM.threatsLvl1();
-//		
-//		//Effects
-//		assertTrue("Effects list is incorrect",
-//				TM.returnEffects().get(0).toString().equals(effectsList.get(0).toString()));
-//		assertTrue("Effects list is incorrect",
-//				TM.returnEffects().get(1).toString().equals(effectsList.get(1).toString()));
-//		//Enemy
-//		assertTrue("Enemies list is incorrect",
-//				TM.returnEnemies().get(0).toString().equals(enemiesList.get(0).toString()));
-//		assertTrue("Enemies list is incorrect",
-//				TM.returnEnemies().get(1).toString().equals(enemiesList.get(1).toString()));
-//		assertTrue("Enemies list is incorrect",
-//				TM.returnEnemies().get(2).toString().equals(enemiesList.get(2).toString()));
-
 	}
 
 	@Test
-	public void testLevel2() {
-
-		// Temp Variables
-		ArrayList<Effect> effectsList = new ArrayList<Effect>();
-		ArrayList<Enemy> enemiesList = new ArrayList<Enemy>();
-
-		effectsList.clear();
-		enemiesList.clear();
-
-		// Temp variables
-		Effect tempEffect;
-		Enemy tempEnemy;
-
-		// ------Effects---------
-		// Create Temp variable
-		tempEffect = new Effect("Poison Cloud");
-		// Add parameters to temp variable
-		// ------------
-		tempEffect.setStartTimer(20, "Timer");
-		tempEffect.setEndTimer(50);
-
-		// Add temp variable to list
-		effectsList.add(tempEffect);
-
-		// Create Temp variable
-		tempEffect = new Effect("Rumble");
-		// Add parameters to temp variable
-		// ------------
-		tempEffect.setStartTimer(50, "Timer");
-		tempEffect.setEndTimer(100);
-		// Add temp variable to list
-		effectsList.add(tempEffect);
-
-		// -------Enemies--------
-		//Create Temp variable
-	 	tempEnemy = new Enemy("Wolf");
-	 	// affects people and animals
-	 	//Add parameters to temp variable
-	 	//------------
-	 	tempEnemy.setStartTimer(20,"Timer");
-	 	tempEnemy.setEndTimer(50);
-	 	//Add temp variable to list
-	 	enemiesList.add(tempEnemy);
-	 	
-	 	//Create Temp variable
-	 	tempEnemy = new Enemy("Crow");
-	 	// affects resources
-	 	//Add parameters to temp variable
-	 	//------------
-	 	tempEnemy.setStartTimer(20,"Timer");
-	 	tempEnemy.setEndTimer(50);
-	 	//Add temp variable to list
-	 	enemiesList.add(tempEnemy);
-	 	
-	 	//Create Temp variable
-	 	tempEnemy = new Enemy("Gorilla");
-	 	// affects buildings
-	 	//Add parameters to temp variable
-	 	//------------		 	
-	 	tempEnemy.setStartTimer(20, "Timer");
-	 	tempEnemy.setEndTimer(50);
-	 	//Add temp variable to list
-	 	enemiesList.add(tempEnemy);
+	public void testForLvl2() {
 
 		// Temporary commented out due to errors
 //		TM.threatsLvl2();
@@ -171,7 +75,7 @@ public class ThreatsManagerTest {
 	}
 
 	@Test
-	public void testLevel3() {
+	public void testForLvl3() {
 
 		// Temp Variables
 		ArrayList<Effect> effectsList = new ArrayList<Effect>();
@@ -253,7 +157,7 @@ public class ThreatsManagerTest {
 	}
 
 	@Test
-	public void testLevel4() {
+	public void testForLvl4() {
 
 		// Temp Variables
 		ArrayList<Effect> effectsList = new ArrayList<Effect>();
