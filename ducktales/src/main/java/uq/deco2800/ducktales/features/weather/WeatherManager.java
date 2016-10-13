@@ -85,8 +85,8 @@ public class WeatherManager
 
 		weatherEvents = new WeatherEvents();
 		try {
-			weatherEvents.add(new WeatherChance(new Rain(), 10));
-			weatherEvents.add(new WeatherChance(new Snow(), 90));
+			weatherEvents.add(new WeatherChance(new Rain(), 5));
+			weatherEvents.add(new WeatherChance(new Snow(), 5));
 			// weatherEvents.add(new WeatherChance(new
 			// Storm(StormType.LIGHTNING), 30));
 		} catch (InvalidWeatherChanceException exception) {
@@ -115,7 +115,7 @@ public class WeatherManager
 	 */
 	private Weather getWeatherPossibility() {
 		Weather weather = this.weatherEvents.getWeatherPossibility();
-		System.out.println("Weather: " + weather.toString().toUpperCase());
+		System.out.println("Weather: " + weather);
 		return weather;
 	}
 
