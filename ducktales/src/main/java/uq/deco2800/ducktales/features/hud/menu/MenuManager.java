@@ -63,16 +63,16 @@ public class MenuManager implements Initializable, SecondaryManager {
 	@FXML
 	private AnchorPane menuPane; // The parent Node for all menus
 	@FXML
-	private GridPane buildingsMenu;
-	@FXML
-	private GridPane animalsMenu;
-	@FXML
 	private Pane optionPane;
 
+	//building options list to be displayed in HUD
 	private ArrayList<GridPane> buildingOptionList;
+	//animal options list to be displayed in HUD
 	private ArrayList<GridPane> animalOptionList;
 
+	//amount of rows in the options grid
 	private final int gridRows = 7;
+	//amount of columns in the options grid
 	private final int gridColumns = 2;
 
 	/** The lists of menu sprites */
@@ -102,11 +102,23 @@ public class MenuManager implements Initializable, SecondaryManager {
 	 * Show the buildings menu
 	 */
 	@FXML
-	public void showBuildingsMenu() {
-		optionPane.getChildren().clear();
-		GridPane gridPane = buildingOptionList.get(1);
-		setGridConstraints(gridPane);
-		optionPane.getChildren().add(gridPane);
+	public void showBuildingsMenu() {		
+		this.clearOptionPane();
+		GridPane gridPane = buildingOptionList.get(0);		
+		optionPane.getChildren().add(gridPane);		
+	}
+	
+	/**
+	 * Remove all components from the options pane.
+	 * 
+	 * @author mattyleggy
+	 */
+	private void clearOptionPane() {
+		System.out.println(optionPane.getChildren().size());
+		
+		for (int i=0; i < optionPane.getChildren().size(); i++) {
+			optionPane.getChildren().remove(i);
+		}
 	}
 
 	/**
@@ -114,8 +126,7 @@ public class MenuManager implements Initializable, SecondaryManager {
 	 */
 	@FXML
 	public void showAnimalsMenu() {
-		buildingsMenu.setVisible(false);
-		animalsMenu.setVisible(true);
+		
 	}
 
 	/**
@@ -151,17 +162,13 @@ public class MenuManager implements Initializable, SecondaryManager {
 		// Set up the menus
 		setupBuildingsMenu();
 		setupAnimalsMenu();
-
-		// Initially hide all the menus
-		buildingsMenu.setVisible(false);
-		animalsMenu.setVisible(false);
 	}
 
 	/**
 	 * Set up the animals menu
 	 */
 	private void setupAnimalsMenu() {
-		if (animalsMenu.getChildren().size() == 0) {
+		if (animalOptionList.size() == 0) {
 			/*
 			 * Then adjust the size of the sprites accordingly
 			 */
@@ -170,7 +177,7 @@ public class MenuManager implements Initializable, SecondaryManager {
 			int row = 0;
 			for (int i = 0; i < animalMenuSprites.size(); i++) {
 				AnimalMenuSprite sprite = animalMenuSprites.get(i);
-				animalsMenu.add(sprite, column, row);
+				//animalsMenu.add(sprite, column, row);
 				if (column == 1) {
 					column = 0;
 					row++;
@@ -191,20 +198,32 @@ public class MenuManager implements Initializable, SecondaryManager {
 		return gridPane;
 	}
 
-	private void setGridConstraints(GridPane gridPane) {
-		// set the column width
-		ColumnConstraints columnConstraints = new ColumnConstraints();
-		columnConstraints.setPrefWidth(100);
-
-		gridPane.getColumnConstraints().addAll(columnConstraints,
-				columnConstraints);
-
-		// set the row height
-		RowConstraints rowConstraints = new RowConstraints();
-		rowConstraints.setPrefHeight(57);		
-		gridPane.getRowConstraints().addAll(rowConstraints, rowConstraints,
-				rowConstraints, rowConstraints, rowConstraints, rowConstraints,
-				rowConstraints);
+	/**
+	 * 
+	 * Set the row and column constraints of the grid which will be placed in
+	 * the right hand side HUD.
+	 * 
+	 * @author mattyleggy
+	 * 
+	 * @param gridPane
+	 *            the GridPane to assign the constraints to
+	 */
+	private void setGridConstraints(ArrayList<GridPane> gridPaneList) {
+		for (GridPane gridPane : gridPaneList) {
+			// set the column width
+			ColumnConstraints columnConstraints = new ColumnConstraints();
+			columnConstraints.setPrefWidth(100);			
+			for (int i=0; i < this.gridColumns; i++) {
+				gridPane.getColumnConstraints().add(columnConstraints);
+			}
+			
+			// set the row height
+			RowConstraints rowConstraints = new RowConstraints();
+			rowConstraints.setPrefHeight(57);
+			for (int i=0; i < this.gridRows; i++) {
+				gridPane.getRowConstraints().add(rowConstraints);
+			}
+		}
 	}
 
 	/**
@@ -213,7 +232,7 @@ public class MenuManager implements Initializable, SecondaryManager {
 	 */
 	private void setupBuildingsMenu() {
 		// Check if the buildings menu has been instantiated before
-		if (buildingsMenu.getChildren().size() == 0) {
+		if (buildingOptionList.size() == 0) {
 			/*
 			 * Firstly add all building sprites to the menu first
 			 */
@@ -226,9 +245,9 @@ public class MenuManager implements Initializable, SecondaryManager {
 			// double uiScale = RenderingInformation.UI_SCALE;
 			double uiScale = 0.5;
 			int column = 0;
-			int row = 0;
-			GridPane currentGrid = null;
+			int row = 0;			
 			int currentIteration;
+			GridPane currentGrid = null;
 			// adjust the size of the sprites
 			for (int i = 0; i < buildingMenuSprites.size(); i++) {
 				currentIteration = i + 1;
@@ -238,19 +257,9 @@ public class MenuManager implements Initializable, SecondaryManager {
 					currentGrid = createGrid();
 					buildingOptionList.add(currentGrid);
 				}
-
-				// currentGrid =
-				// buildingOptionList.get(buildingOptionList.size() - 1);
-
+				
 				BuildingMenuSprite sprite = buildingMenuSprites.get(i);
-
-				currentGrid.add(sprite, column, row);
-				if (column == 1) {
-					column = 0;
-					row++;
-				} else {
-					column++;
-				}
+				
 				// Get the size of the building in tile-unit first
 				int xLength = 0;
 				int yLength = 0;
@@ -278,7 +287,16 @@ public class MenuManager implements Initializable, SecondaryManager {
 						(sprite.getSpriteHeight() / xLength) * uiScale);
 				sprite.setFitWidth(
 						(sprite.getSpriteWidth() / yLength) * uiScale);
+				
+				currentGrid.add(sprite, column, row);
+				if (column == 1) {
+					column = 0;
+					row++;
+				} else {
+					column++;
+				}
 			}
+			setGridConstraints(buildingOptionList);
 		}
 	}
 
