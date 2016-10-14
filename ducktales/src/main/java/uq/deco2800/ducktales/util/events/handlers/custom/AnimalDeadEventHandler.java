@@ -14,6 +14,9 @@ import uq.deco2800.ducktales.util.events.ui.AnimalDeadEvent;
  */
 public class AnimalDeadEventHandler extends GameEventHandler implements EventHandler<AnimalDeadEvent>{
 
+	/**
+	 * The type of this event
+	 */
 	public AnimalDeadEventHandler(GameManager gameManager) {
 		super(gameManager);
 		// REST OF CLASS TO BE CODED
