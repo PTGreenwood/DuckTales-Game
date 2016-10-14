@@ -9,7 +9,7 @@ import uq.deco2800.ducktales.resources.ResourceType;
  * @author Gabrielle Hodge, 43590526 
  *
  */
-public class Quarry extends Building {
+public class Quarry extends StorageProduceBuilding {
 
 	// BuildingMenuSprite type
 	private static final ResourceType TYPE = ResourceType.QUARRY;

@@ -5,7 +5,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import uq.deco2800.ducktales.features.entities.worldentities.Bakery;
-import uq.deco2800.ducktales.features.entities.worldentities.Building.production;
+import uq.deco2800.ducktales.features.entities.worldentities.StorageProduceBuilding.production;
 import uq.deco2800.ducktales.features.entities.worldentities.Constructor;
 import uq.deco2800.ducktales.features.entities.worldentities.Farm;
 import uq.deco2800.ducktales.features.entities.worldentities.Forge;
@@ -89,13 +89,6 @@ public class ConstructorTest {
 		// Check get time, for house
 		assertTrue("House getTime incorrect!", constructor.getTime(house) 
 				== (2));
-		// Check house get production amount
-		assertTrue("House getproductionAmount incorrect", 
-				constructor.getResourcesProductionAmount(house) == 0);
-		// Check house get production type
-		assertTrue("House getproductionType incorrect", 
-				constructor.getResourcesProductionType(house) == 
-				production.NULL);
 		// Check sawmill get production amount
 		assertTrue("Sawmill getproductionAmount incorrect", 
 				constructor.getResourcesProductionAmount(sawmill) == 5);

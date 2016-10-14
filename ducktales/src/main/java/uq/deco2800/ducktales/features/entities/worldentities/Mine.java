@@ -9,7 +9,7 @@ import uq.deco2800.ducktales.resources.ResourceType;
  * @author Gabrielle Hodge, 43590526 
  *
  */
-public class Mine extends Building {
+public class Mine extends StorageProduceBuilding {
 	
 	// BuildingMenuSprite type
 	private static final ResourceType TYPE = ResourceType.MINE;
