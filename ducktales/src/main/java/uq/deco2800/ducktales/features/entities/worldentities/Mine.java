@@ -45,7 +45,8 @@ public class Mine extends Building {
 	 * Update the WorldEntity properties with those of a mine.
 	 */
 	protected void specifications() {
-		specifications(10, 6, 3, production.ORE, productionAmount, health);
+		specifications(10, 6, 3, production.ORE, productionAmount, health, 
+				null);
 	}
 	
 	/**
@@ -67,8 +68,28 @@ public class Mine extends Building {
 	 * @param newProduce, the new production amount
 	 */
 	protected void upgradeProduceBuilding(int newProduce) {
-		if (newProduce >= 0) {
-			productionAmount = newProduce;
-		}
+		productionAmount = newProduce;
+	}
+	
+	/**
+	 * Upgrade stored resources for building, required for all buildings, by 
+	 * Building class. Possible use to extend/upgrade a mine.
+	 * 
+	 * @throws UnsupportedOperationException, as this functionality is not 
+	 * required for a mine.
+	 */
+	protected void upgradeBarnBarn(production upgradeType, int newStore) {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Add stored resources to the building, required for all buildings, by 
+	 * Building class. Possible use to extend/upgrade a mine.
+	 * 
+	 * @throws UnsupportedOperationException, as this functionality is not 
+	 * required for a mine.
+	 */
+	protected void addGoodsBarn(production storeType, int newStore) {
+		throw new UnsupportedOperationException();
 	}
 }

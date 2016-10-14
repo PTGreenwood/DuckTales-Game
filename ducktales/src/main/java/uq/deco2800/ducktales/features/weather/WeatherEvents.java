@@ -50,6 +50,15 @@ public class WeatherEvents {
 		weatherEvents.remove(weatherChance);
 	}
 
+	/**
+	 * Get the size of the Weather Events list
+	 * 
+	 * @return the size of the Weather Events list
+	 */
+	public int size() {
+		return weatherEvents.size();
+	}
+
 	@Override
 	public String toString() {
 		String returnString = "";
@@ -62,24 +71,47 @@ public class WeatherEvents {
 		}
 		return "[" + returnString + "]";
 	}
-	
+
 	@Override
 	public boolean equals(Object other) {
-		
+
 		if (other == null) {
 			return false;
 		}
-		
+
 		if (!(other instanceof WeatherEvents)) {
 			return false;
 		}
-		
+
 		final WeatherEvents otherEvent = (WeatherEvents) other;
 		if (!this.getWeatherEvents().equals(otherEvent.getWeatherEvents())) {
 			return false;
 		}
-		
+
 		return true;
+	}
+
+	/**
+	 * Get a random weather event based on the chance of that event occurring.
+	 * 
+	 * @return a random Weather event if there is a chance of one occurring
+	 *         otherwise null.
+	 */
+	public Weather getWeatherPossibility() {		
+		Random random = new Random();
+		int percent = random.nextInt(100) + 1; // random number from 1 - 100
+		ArrayList<WeatherChance> possibilities = new ArrayList<>();		
+		for (WeatherChance chance : this.weatherEvents) {
+			if (percent <= chance.getChance())
+				possibilities.add(chance);
+		}
+		
+		if (possibilities.size() > 0) {			
+			Random randomChance = new Random();			
+			int randomPick = randomChance.nextInt(possibilities.size());			
+			return possibilities.get(randomPick).getWeather();
+		}
+		return null;
 	}
 
 	@Override
@@ -91,13 +123,9 @@ public class WeatherEvents {
 	}
 
 	/*
-	@Override
-	public boolean equals(Object object) {
-		System.out.println("a");
-		if (!(object instanceof WeatherEvents))
-			return false;
-		WeatherEvents other = (WeatherEvents) object;		
-		return (this.getWeatherEvents().contains(other.getWeatherEvents()));
-	}
-	*/
+	 * @Override public boolean equals(Object object) { System.out.println("a");
+	 * if (!(object instanceof WeatherEvents)) return false; WeatherEvents other
+	 * = (WeatherEvents) object; return
+	 * (this.getWeatherEvents().contains(other.getWeatherEvents())); }
+	 */
 }
