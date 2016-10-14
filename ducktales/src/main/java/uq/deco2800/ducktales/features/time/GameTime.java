@@ -16,7 +16,6 @@ public class GameTime implements Tickable {
 	// Instantiate the GameTime
 	protected int day;
 	protected int year;
-	protected Season season;
 
 	private int hour;
 	private int minute;
@@ -156,9 +155,9 @@ public class GameTime implements Tickable {
 	 * 
 	 * @return Season: currentSeason of world
 	 */
-	public Season getCurrentSeason() {
-		return season;
-	}
+	///public Season getCurrentSeason() {
+//		return season;
+	//}
 
 	/**
 	 * Sets the current season to be a season passed in Note: must be of type
@@ -167,9 +166,9 @@ public class GameTime implements Tickable {
 	 * @param Season
 	 *            season: Spring, Summer, Autumn or Winter
 	 */
-	public void setSeason(Season season) {
-		this.season = season;
-	}
+	//public void setSeason(Season season) {
+	//	this.season = season;
+	//}
 
 	/**
 	 * Sets the current year of the Calendar to be whatever is passed in

@@ -13,13 +13,13 @@ import uq.deco2800.ducktales.features.time.TimeManager;
 public abstract class Season {
 
 	// Variable declaration for each Season
-	private String name;
-	private float humidityLevel;
-	private int minTemperature;
-	private int maxTemperature;
-	private int timeNightFall;
+	protected String name;
+	protected float humidityLevel;
+	protected int minTemperature;
+	protected int maxTemperature;
+	protected int timeNightFall;
 	// 24Hour time (integer is hour. so getHour() will be able to retrieve it
-	private int timeDayBreak;
+	protected int timeDayBreak;
 	// 24Hour time (integer is hour. so getHour() will be able to retrieve it
 
 	public Season() {
