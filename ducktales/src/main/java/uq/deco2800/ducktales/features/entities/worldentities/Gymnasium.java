@@ -41,7 +41,7 @@ public class Gymnasium extends Building {
 	 * Update the WorldEntity properties with those of a gymnasium.
 	 */
 	protected void specifications() {
-		specifications(8, 6, 6, production.NULL, 0, health);
+		specifications(8, 6, 6, production.NULL, 0, health, null);
 	}
 	
 	/**
@@ -65,6 +65,28 @@ public class Gymnasium extends Building {
 	 * required for a gymnasium.
 	 */
 	protected void upgradeProduceBuilding(int newValue) {
+		throw new UnsupportedOperationException();
+	}
+	
+	/**
+	 * Upgrade stored resources for building, required for all buildings, by 
+	 * Building class. Possible use to extend/upgrade a gymnasium.
+	 * 
+	 * @throws UnsupportedOperationException, as this functionality is not 
+	 * required for a gymnasium.
+	 */
+	protected void upgradeBarnBarn(production upgradeType, int newStore) {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Add stored resources to the building, required for all buildings, by 
+	 * Building class. Possible use to extend/upgrade a gymnasium.
+	 * 
+	 * @throws UnsupportedOperationException, as this functionality is not 
+	 * required for a gymnasium.
+	 */
+	protected void addGoodsBarn(production storeType, int newStore) {
 		throw new UnsupportedOperationException();
 	}
 }

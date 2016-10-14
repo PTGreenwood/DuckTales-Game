@@ -1,7 +1,6 @@
 package uq.deco2800.ducktales.features.entities.worldentities;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.apache.commons.lang3.tuple.Triple;
 
@@ -55,7 +54,7 @@ public class StorageBarn extends Building {
 	 * Update the WorldEntity properties with those of a storage barn.
 	 */
 	protected void specifications() {
-		specifications(4, 4, 7, production.NULL, 0, health);
+		specifications(4, 4, 7, production.NULL, 0, health, storage);
 	}
 	
 	/**
@@ -78,35 +77,26 @@ public class StorageBarn extends Building {
 	 * @param store, the type of produced material to be stored
 	 * @param amount, the amount to be stored
 	 */
-	public void addGoods(production store, Integer amount) {
+	protected void addGoodsBarn(production storeType, int newStore) {
 		for (int i = 0; i < storage.size(); i++) {
 			Triple<production, Integer, Integer> k = storage.get(i);
-			if (k.getLeft() == store && k.getMiddle() > k.getRight() 
-					+ amount) {
-				Triple<production, Integer, Integer> m = Triple.of(store, 
-						k.getMiddle(), k.getRight() + amount);
+			if (k.getLeft() == storeType && k.getMiddle() > k.getRight() 
+					+ newStore) {
+				Triple<production, Integer, Integer> m = Triple.of(storeType, 
+						k.getMiddle(), k.getRight() + newStore);
 				storage.remove(k);
 				storage.add(i, m);
-			} else if (k.getLeft() == store && k.getMiddle() <= k.getRight() 
-					+ amount) {
-				Triple<production, Integer, Integer> m = Triple.of(store, 
+			} else if (k.getLeft() == storeType && k.getMiddle() <= k.getRight() 
+					+ newStore) {
+				Triple<production, Integer, Integer> m = Triple.of(storeType, 
 						k.getMiddle(), k.getMiddle());
 				storage.remove(k);
 				storage.add(i, m);
 			}
 		}
+		
 	}
-	
-	/**
-	 * Method to retrieve the current amount, type and storage barn capacity 
-	 * for each production type.
-	 * 
-	 * @return the storage barn capacity, and current inventory.
-	 */
-	public List<Triple<production, Integer, Integer>> getStorage() {
-		return storage;
-	}
-	
+		
 	/**
 	 * Upgrade the barn, increase the storage capacity for a particular 
 	 * produced material.
@@ -114,19 +104,26 @@ public class StorageBarn extends Building {
 	 * @param store, the type of produced material to be stored
 	 * @param amount, the new capacity 
 	 */
-	public void upgradeBarn(production store, Integer amount) {
+	protected void upgradeBarnBarn(production upgradeType, int newStore) {
 		for (int i = 0; i < storage.size(); i++) {
 			Triple<production, Integer, Integer> k = storage.get(i);
-			if (k.getLeft() == store) {
-				Triple<production, Integer, Integer> m = Triple.of(store, 
-						amount, k.getRight());
+			if (k.getLeft() == upgradeType) {
+				Triple<production, Integer, Integer> m = Triple.of(upgradeType, 
+						newStore, k.getRight());
 				storage.remove(k);
 				storage.add(i, m);
 			}
 		}
 	}
 	
+	/**
+	 * Upgrade produce for building, required for all buildings, by Building 
+	 * class. Possible use to extend/upgrade a storage barn.
+	 * 
+	 * @throws UnsupportedOperationException, as this functionality is not 
+	 * required for a storage barn.
+	 */
 	protected void upgradeProduceBuilding(int newValue) {
 		throw new UnsupportedOperationException();
-	}
+	}		
 }

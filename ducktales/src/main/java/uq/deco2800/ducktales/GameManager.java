@@ -5,6 +5,7 @@ import javafx.scene.layout.Pane;
 import uq.deco2800.ducktales.features.achievements.AchievementManager;
 import uq.deco2800.ducktales.features.entities.EntityManager;
 import uq.deco2800.ducktales.features.entities.ThreatManager;
+import uq.deco2800.ducktales.features.entities.resourceentities.ResourceEntityManager;
 import uq.deco2800.ducktales.features.helper.HelperManager;
 import uq.deco2800.ducktales.features.hud.HUDManager;
 import uq.deco2800.ducktales.features.hud.menu.MenuManager;
@@ -18,6 +19,7 @@ import uq.deco2800.ducktales.rendering.worlddisplay.CursorManager;
 import uq.deco2800.ducktales.rendering.worlddisplay.WorldDisplayManager;
 import uq.deco2800.ducktales.features.missions.MissionManager;
 import uq.deco2800.ducktales.resources.ResourceType;
+import uq.deco2800.ducktales.util.events.handlers.custom.AnimalDeadEventHandler;
 import uq.deco2800.ducktales.util.events.handlers.custom.HUDDeselectedHandler;
 import uq.deco2800.ducktales.util.events.handlers.custom.MenuSelectedEventHandler;
 import uq.deco2800.ducktales.util.events.handlers.custom.TileClickedHandler;
@@ -27,6 +29,7 @@ import uq.deco2800.ducktales.util.events.handlers.mouse.InGameMouseClickedHandle
 import uq.deco2800.ducktales.util.events.handlers.mouse.InGameMouseMovedHandler;
 import uq.deco2800.ducktales.util.events.tile.TileClickedEvent;
 import uq.deco2800.ducktales.util.events.tile.TileEnteredEvent;
+import uq.deco2800.ducktales.util.events.ui.AnimalDeadEvent;
 import uq.deco2800.ducktales.util.events.ui.HUDDeselectedEvent;
 import uq.deco2800.ducktales.util.events.ui.MenuSelectedEvent;
 import uq.deco2800.ducktales.features.hud.menu.MenuManager.MenuType;
@@ -85,6 +88,7 @@ public class GameManager {
     private ThreatManager threatManager;
     private InventoryManager inventoryContainer;
     private WeatherManager weatherManager;
+    private ResourceEntityManager resourceEntityManager;
     
     /**
      * Instantiate an empty game manager and createBuildingSprite a new default world
@@ -298,6 +302,14 @@ public class GameManager {
     public void setEntityManager(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
+    
+    public ResourceEntityManager getResourceEntityManager() {
+    	return resourceEntityManager;
+    }
+    
+    public void setResourceEntityManager(ResourceEntityManager resourceEntityManager) {
+    	this.resourceEntityManager = resourceEntityManager;
+    }
 
     public TimeManager getTimeManager() {
         return timeManager;
@@ -336,7 +348,8 @@ public class GameManager {
                 new HUDDeselectedHandler(this);
         InGameKeyboardHandler keyboardHandler =
                 new InGameKeyboardHandler(this);
-
+        AnimalDeadEventHandler animalDeadEventHandler = 
+        		new AnimalDeadEventHandler(this); 
 
 
         // Handler for when a sprite in the menu is selected
@@ -353,6 +366,8 @@ public class GameManager {
         root.addEventHandler(HUDDeselectedEvent.HUD_DESELECTED_EVENT, hudDeselectedHandler);
         // Handler for all keyboard events
         root.addEventHandler(KeyEvent.ANY, keyboardHandler);
+        // Handler for when an animal dies
+        root.addEventHandler(AnimalDeadEvent.ANIMAL_DEAD_EVENT, animalDeadEventHandler);
     }
 
     /**

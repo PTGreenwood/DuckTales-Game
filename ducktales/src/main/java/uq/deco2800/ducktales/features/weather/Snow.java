@@ -1,40 +1,31 @@
 package uq.deco2800.ducktales.features.weather;
 
 /**
- * 
- * Weather type: FIRE
+ * Properties for weather type: SNOW 
  * 
  * @author mattyleggy
  *
  */
-public class Fire extends Weather {
-	public Fire() {
-		
-	}
-	
+public class Snow extends Weather {
 	@Override
 	public WeatherEffect getWeatherEffect() {
-		WeatherEffect weatherEffect = new WeatherEffect("fire.gif");
+		WeatherEffect weatherEffect = new WeatherEffect("rain.gif");		
 		return weatherEffect;
 	}
 	
-	//Fire occurs on land
+	//rain event occurs on land
 	@Override
 	public boolean isLand() {
 		return true;
-	}	
+	}
 	
-	//Fire does not occur on water
+	//rain event occurs on water
+	@Override
 	public boolean isWater() {
-		return false;
+		return true;
 	}
 	
-	//Fire stops in rain
-	public boolean isRaining() {
-		return false;
-	}
-	
-	//Fire occurs on land only.
+	//rain even occurs on both land and water
 	public boolean isAmphibious() {
 		return isLand() && isWater();
 	}
