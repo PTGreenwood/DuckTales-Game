@@ -10,6 +10,10 @@ import uq.deco2800.ducktales.resources.ResourceType;
  * @author Damian Maher
  */
 public class AnimalDeadEvent extends UIEvent{
+
+	/** the coordinates of the animal when it died */
+	private double deathX;
+	private double deathY;
 	
 	/** The event type */
     public static final EventType<AnimalDeadEvent> ANIMAL_DEAD_EVENT =
@@ -18,12 +22,15 @@ public class AnimalDeadEvent extends UIEvent{
     /**
      * Instantiate an event for when an animal dies
      *
-     * @param type
-     *          The type of entity that fired the event 
-     *          (the animal that died) 
+     * @param deathX
+     *          the X coordinate of the animal when it dies
+     * @param deathY
+     *          the Y coordinate of the animal when it dies
      */
-    public AnimalDeadEvent(ResourceType type, double deathX, double deathY) {
-    	super(type);
+    public AnimalDeadEvent(double deathX, double deathY) {
+    	super(ANIMAL_DEAD_EVENT);
+    	this.deathX = deathX;
+    	this.deathY = deathY;
     }
     
 }
