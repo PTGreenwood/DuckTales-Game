@@ -777,6 +777,19 @@ public class SpritesFactory {
     private static AnimalSprite createSheep(int index, ResourceType entityType) {
         // The sprite to be returned
         AnimalSprite sprite = new AnimalSprite(index, entityType);
+
+        // Setup the frames for the roaming animation.
+        ResourceType[] roamingFrames = {
+        ResourceType.SHEEP,
+        ResourceType.SHEEPDown0,
+        ResourceType.SHEEPDown1,
+        ResourceType.SHEEPLeft0,
+        ResourceType.SHEEPLeft1,
+        ResourceType.SHEEPUp0,
+        ResourceType.SHEEPUp1,
+        ResourceType.SHEEPRight0,
+        ResourceType.SHEEPRight1
+        };
  
         // Setup the frames for the animation
         List<Image> imageList = new ArrayList<>();
@@ -792,11 +805,14 @@ public class SpritesFactory {
         imageList.add(register.getResourceImage(ResourceType.SHEEPRight0));
         imageList.add(register.getResourceImage(ResourceType.SHEEPRight1));
 
-        // After all images are set up, now call these methods to set up the
-        // actual animation code
-        sprite.setImageList(imageList); // Give the interpolator the list of images
-        sprite.setupAnimation(1.0); // Set up the actual animation, passing the duration
-        sprite.startAnimation(); // Start the actual animation
+        // Setup the sprite with the given parameters
+        setupAnimalSprite(
+                sprite,
+                entityType,
+                1.0,
+                roamingFrames,
+                true
+        );
 
         return sprite;
     }
@@ -826,6 +842,7 @@ public class SpritesFactory {
         DUCKRight0,
         DUCKRight1
         };
+
         // Setup the sprite with the given parameters
         setupAnimalSprite(
                 sprite,

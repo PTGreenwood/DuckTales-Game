@@ -24,7 +24,7 @@ public class AnimalManager extends SecondaryEntityManager{
 
     /** The list of animal sprites */
     private List<AnimalSprite> animalSprites;
-
+    
     /**
      * Construct an animal manager with an empty list of animal sprites
      */

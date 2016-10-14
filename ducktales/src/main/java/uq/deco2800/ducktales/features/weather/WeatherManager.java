@@ -45,6 +45,10 @@ public class WeatherManager
 	private int canvasWidth;
 	// counter to keep track of ticks
 	private int tickCount;
+	// possible weather events
+	private WeatherEvents weatherEvents;
+	// current weather event
+	private Weather currentWeather;
 
 	@Override
 	public void reload() {
@@ -78,8 +82,41 @@ public class WeatherManager
 			shapes.add(shape);
 			drawPositions(randX, randY, randDirection);
 		}
+
+		weatherEvents = new WeatherEvents();
+		try {
+			weatherEvents.add(new WeatherChance(new Rain(), 10));
+			weatherEvents.add(new WeatherChance(new Snow(), 90));
+			// weatherEvents.add(new WeatherChance(new
+			// Storm(StormType.LIGHTNING), 30));
+		} catch (InvalidWeatherChanceException exception) {
+
+		}
+
+		currentWeather = getWeatherPossibility();
+
 		weatherDisplayCanvas.setMouseTransparent(true);
 		weatherDisplay.getChildren().add(weatherDisplayCanvas);
+	}
+
+	/**
+	 * Set the weather events
+	 * 
+	 * @param events
+	 */
+	private void setWeatherEvents(WeatherEvents events) {
+		this.weatherEvents = events;
+	}
+
+	/**
+	 * Get a weather event based on chance
+	 * 
+	 * @return
+	 */
+	private Weather getWeatherPossibility() {
+		Weather weather = this.weatherEvents.getWeatherPossibility();
+		System.out.println("Weather: " + weather);
+		return weather;
 	}
 
 	/**
@@ -94,6 +131,24 @@ public class WeatherManager
 	 *            - which direction the effect will go
 	 */
 	private void drawPositions(int x, int y, int direction) {
+		if (currentWeather instanceof Rain) {
+			drawRain(x, y, direction);
+		} else if (currentWeather instanceof Fire) {
+			drawFire(x, y, direction);
+		} else if (currentWeather instanceof Snow) {
+			drawSnow(x, y, direction);
+		}
+	}
+
+	/**
+	 * 
+	 * Draw rain onto the canvas
+	 * 
+	 * @param x
+	 * @param y
+	 * @param direction
+	 */
+	private void drawRain(int x, int y, int direction) {
 		context.beginPath();
 		context.setFill(Color.GREEN);
 		context.setStroke(Color.BLUE);
@@ -105,24 +160,63 @@ public class WeatherManager
 		context.stroke();
 	}
 
+	/**
+	 * 
+	 * Draw fire onto the canvas
+	 * 
+	 * @param x
+	 * @param y
+	 * @param direction
+	 */
+	private void drawFire(int x, int y, int direction) {
+		context.beginPath();
+		context.setStroke(Color.RED);
+		context.arc(x, y, 20, 20, 2 * Math.PI, 1);
+		context.stroke();
+		context.fill();
+		context.setLineWidth(20);
+		context.stroke();
+	}
+
+	/**
+	 * 
+	 * Draw snow onto the canvas
+	 * 
+	 * @param x
+	 * @param y
+	 * @param direction
+	 */
+	private void drawSnow(int x, int y, int direction) {
+		context.beginPath();
+		context.setStroke(Color.WHITE);
+		context.arc(x, y, 20, 20, 2 * Math.PI, 1);
+		context.stroke();
+		context.fill();
+		context.setLineWidth(10);
+		context.stroke();
+	}
+
 	@Override
 	public void tick() {
 		if (tickCount == 1) {
 			Platform.runLater(() -> {
 				context.clearRect(0, 0, canvasWidth, canvasHeight);
-				for (WeatherCanvasShape shape : shapes) {
-					if (shape.getX() > canvasWidth) {
-						shape.setX(-20);
-					} else {
-						shape.setX((shape.getX() + (shape.getDirection())));
+				if (weatherEvents.size() > 0) {
+					for (WeatherCanvasShape shape : shapes) {
+						if (shape.getX() > canvasWidth) {
+							shape.setX(-20);
+						} else {
+							shape.setX((shape.getX() + (shape.getDirection())));
+						}
+						if (shape.getY() > canvasHeight) {
+							shape.setY(-20);
+						} else {
+							shape.setY(
+									(shape.getY() + shape.getAcceleration()));
+						}
+						drawPositions(shape.getX(), shape.getY(),
+								shape.getDirection());
 					}
-					if (shape.getY() > canvasHeight) {
-						shape.setY(-20);
-					} else {
-						shape.setY((shape.getY() + shape.getAcceleration()));
-					}
-					drawPositions(shape.getX(), shape.getY(),
-							shape.getDirection());
 				}
 			});
 			tickCount = 0;

@@ -1,4 +1,4 @@
-package uq.deco2800.ducktales.resources;
+	package uq.deco2800.ducktales.resources;
 
 import uq.deco2800.ducktales.features.entities.Entity;
 import uq.deco2800.ducktales.features.entities.agententities.Animal;
