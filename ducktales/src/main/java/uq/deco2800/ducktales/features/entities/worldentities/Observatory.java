@@ -41,7 +41,7 @@ public class Observatory extends Building {
 	 * Update the WorldEntity properties with those of an observatory.
 	 */
 	protected void specifications() {
-		specifications(4, 10, 5, production.NULL, 0, health);
+		specifications(4, 10, 5, production.NULL, 0, health, null);
 	}
 	
 	/**
@@ -64,6 +64,28 @@ public class Observatory extends Building {
 	 * needed for an observatory.
 	 */
 	protected void upgradeProduceBuilding(int newValue) {
+		throw new UnsupportedOperationException();
+	}
+	
+	/**
+	 * Upgrade stored resources for building, required for all buildings, by 
+	 * Building class. Possible use to extend/upgrade an observatory.
+	 * 
+	 * @throws UnsupportedOperationException, as this functionality is not 
+	 * required for an observatory.
+	 */
+	protected void upgradeBarnBarn(production upgradeType, int newStore) {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Add stored resources to the building, required for all buildings, by 
+	 * Building class. Possible use to extend/upgrade an observatory.
+	 * 
+	 * @throws UnsupportedOperationException, as this functionality is not 
+	 * required for an observatory.
+	 */
+	protected void addGoodsBarn(production storeType, int newStore) {
 		throw new UnsupportedOperationException();
 	}
 }

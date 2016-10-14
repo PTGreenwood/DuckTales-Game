@@ -41,7 +41,7 @@ public class Butcher extends Building {
 	 * Update the WorldEntity properties with those of a butcher.
 	 */
 	protected void specifications() {
-		specifications(4, 8, 7, production.NULL, 0, health);
+		specifications(4, 8, 7, production.NULL, 0, health, null);
 	}
 	
 	/**
@@ -64,6 +64,28 @@ public class Butcher extends Building {
 	 * needed for a butcher.
 	 */
 	protected void upgradeProduceBuilding(int newValue) {
+		throw new UnsupportedOperationException();
+	}
+	
+	/**
+	 * Upgrade stored resources for building, required for all buildings, by 
+	 * Building class. Possible use to extend/upgrade a butcher.
+	 * 
+	 * @throws UnsupportedOperationException, as this functionality is not 
+	 * required for a butcher.
+	 */
+	protected void upgradeBarnBarn(production upgradeType, int newStore) {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Add stored resources to the building, required for all buildings, by 
+	 * Building class. Possible use to extend/upgrade a butcher.
+	 * 
+	 * @throws UnsupportedOperationException, as this functionality is not 
+	 * required for a butcher.
+	 */
+	protected void addGoodsBarn(production storeType, int newStore) {
 		throw new UnsupportedOperationException();
 	}
 }
