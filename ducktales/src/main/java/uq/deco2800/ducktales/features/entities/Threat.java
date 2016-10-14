@@ -34,6 +34,8 @@ public class Threat extends Entity{
 
 	private World world;
 	private Peon peon;
+	
+	
 
 	/**
 	 * Enemy takes a string name and a type of enemy which is Creature or Effect
@@ -236,13 +238,6 @@ public class Threat extends Entity{
 		}
 	}
 
-//	public void addImage(String imageName) {
-//		imageStore.add(imageName);
-//		// imageStore.add(imageName);
-//		// getClass()
-//		// new Image(getClass().getResource(imageName).toString()));
-//	}
-	
 	public double getX() {
 		return xCord;
 	}

@@ -13,29 +13,6 @@ import static org.junit.Assert.*;
 
 public class ThreatsManagerTest {
 	
-	/**
-	 * 
-	 */
-	@Test 
-	public void basicThreatTest(){
-		
-		Enemy enemy = new Enemy("Raccoon");
-		Effect efect = new Effect("Black Smoke");
-
-		assertNotNull("Enemy cannot be null.", enemy);
-		assertNotNull("Enemy's X coordinate cannot be null.", enemy.getX());
-		assertNotNull("Enemy's Y coordinate cannot be null.", enemy.getY());
-		assertNotNull("The enemy's level of damage cannot be null", enemy.getTheLevelOfDamage());
-		assertNotNull("The enemy's speed cannot be null.", enemy.getSpeed());
-		
-		assertNotNull("Effect cannot be null.", efect);
-		assertNotNull("Effect's X coordinate cannot be null.", efect.getX());
-		assertNotNull("Effect's Y coordinate cannot be null.", efect.getY());
-		assertNotNull("The effect's level of damage cannot be null", enemy.getTheLevelOfDamage());
-		assertNotNull("The effect's speed cannot be null.", enemy.getSpeed());
-
-	}
-	
 	@Test 
 	public void testForLvl1(){
 		
