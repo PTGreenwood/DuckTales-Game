@@ -41,7 +41,7 @@ public class Hospital extends Building {
 	 * Update the WorldEntity properties with those of a hospital.
 	 */
 	protected void specifications() {
-		specifications(12, 8, 5, production.NULL, 0, health);
+		specifications(12, 8, 5, production.NULL, 0, health, null);
 	}
 	
 	/**
@@ -58,12 +58,34 @@ public class Hospital extends Building {
 	
 	/**
 	 * Upgrade produce for building, required for all buildings, by Building 
-	 * class. Possible use to extand/upgrade hospitals.
+	 * class. Possible use to extend/upgrade hospitals.
 	 * 
 	 * @throws UnsupportedOperationException, as this functionality is not 
 	 * required for a hospital.
 	 */
 	protected void upgradeProduceBuilding(int newValue) {
+		throw new UnsupportedOperationException();
+	}
+	
+	/**
+	 * Upgrade stored resources for building, required for all buildings, by 
+	 * Building class. Possible use to extend/upgrade a hospital.
+	 * 
+	 * @throws UnsupportedOperationException, as this functionality is not 
+	 * required for a hospital.
+	 */
+	protected void upgradeBarnBarn(production upgradeType, int newStore) {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Add stored resources to the building, required for all buildings, by 
+	 * Building class. Possible use to extend/upgrade a hospital.
+	 * 
+	 * @throws UnsupportedOperationException, as this functionality is not 
+	 * required for a hospital.
+	 */
+	protected void addGoodsBarn(production storeType, int newStore) {
 		throw new UnsupportedOperationException();
 	}
 }
