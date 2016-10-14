@@ -1,8 +1,11 @@
 package uq.deco2800.ducktales.features.entities.resourceentities;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import uq.deco2800.ducktales.features.entities.EntityManager;
+import uq.deco2800.ducktales.rendering.sprites.AnimalSprite;
+import uq.deco2800.ducktales.rendering.sprites.Sprite;
 import uq.deco2800.ducktales.resources.ResourceType;
 
 /**
@@ -11,6 +14,9 @@ import uq.deco2800.ducktales.resources.ResourceType;
  * @author Damian Maher
  */
 public class ResourceEntityManager extends EntityManager {
+	
+    /** The list of resource sprites */
+    private List<Sprite> resourceSprites;
 	
     /**
      * Add a resource drop at the location specified, this method mainly is used
@@ -24,7 +30,7 @@ public class ResourceEntityManager extends EntityManager {
      * @param y
      *          The y-coordinate of the resource in regards to the world size
      */
-	public void dropResource(ResourceType type, int x, int y, ArrayList<ResourceType> registeredResources) {
-		
+	public void dropResource(ResourceType type, int x, int y) {
+		// TO BE COMPLETED
 	}
 }
