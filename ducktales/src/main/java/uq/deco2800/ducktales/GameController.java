@@ -242,8 +242,8 @@ public class GameController implements Initializable{
 
             // Set up the sizing for the root pane
             AnchorPane.setBottomAnchor(peonInformationDisplay, 20.0);
-            AnchorPane.setLeftAnchor(peonInformationDisplay, 20.0);
-            AnchorPane.setRightAnchor(peonInformationDisplay, 20.0);
+            AnchorPane.setLeftAnchor(peonInformationDisplay, 200.0);
+            AnchorPane.setRightAnchor(peonInformationDisplay, 200.0);
         } catch (IOException e) {
             throw new GameSetupException("Cannot load Peon Information Display");
         }
