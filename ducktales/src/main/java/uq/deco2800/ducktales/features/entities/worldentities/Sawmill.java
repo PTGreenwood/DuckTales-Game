@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import org.apache.commons.lang3.tuple.Triple;
 
-import uq.deco2800.ducktales.features.entities.worldentities.StorageProduceBuilding.production;
 import uq.deco2800.ducktales.resources.ResourceType;
 
 /**
@@ -49,7 +48,7 @@ public class Sawmill extends StorageProduceBuilding {
 		health = 1400;
 		productionAmount = 5;
 		storage.add(0, Triple.of(production.TIMBER, 50, 0));
-		storage.add(1, Triple.of(production.LUMBER, 50, 0));
+		storage.add(1, Triple.of(production.LUMBER, 50, 4));
 	}
 
 	/**
@@ -107,5 +106,14 @@ public class Sawmill extends StorageProduceBuilding {
 	protected void addGoodsBuilding(ArrayList<Triple<production, Integer, 
 			Integer>> newStore) {
 		storage = newStore;
+	}
+	
+	protected void produceMaterialBuilding() {
+		if (storage.get(1).getRight()>0 && storage.get(0).getRight()<storage.get(0).getMiddle()) {
+			this.addGoods(production.LUMBER, -1);
+			this.addGoods(production.TIMBER, storage.get(0).getRight()+2);
+			System.out.println(storage);
+		}
+		System.out.println(storage);
 	}
 }

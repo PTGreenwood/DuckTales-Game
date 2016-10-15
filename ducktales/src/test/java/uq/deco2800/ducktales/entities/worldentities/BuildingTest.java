@@ -1512,11 +1512,11 @@ public class BuildingTest {
 	public void SawmillUpgradeStoreTest() {
 		Sawmill entity = new Sawmill(1,1);
 		entity.upgradeBarn(production.LUMBER, 10);
-		assertEquals(entity.getStorage().toString(), "[(TIMBER,50,0), (LUMBER,10,0)]");
+		assertEquals(entity.getStorage().toString(), "[(TIMBER,50,0), (LUMBER,10,4)]");
 		entity.upgradeBarn(production.ORE, 10);
-		assertEquals(entity.getStorage().toString(), "[(TIMBER,50,0), (LUMBER,10,0)]");
+		assertEquals(entity.getStorage().toString(), "[(TIMBER,50,0), (LUMBER,10,4)]");
 		entity.upgradeBarn(production.TIMBER, 15);
-		assertEquals(entity.getStorage().toString(), "[(TIMBER,15,0), (LUMBER,10,0)]");
+		assertEquals(entity.getStorage().toString(), "[(TIMBER,15,0), (LUMBER,10,4)]");
 	}
 	
 	/**
@@ -1528,8 +1528,8 @@ public class BuildingTest {
 	public void SawmillsAddStoreTest() {
 		Sawmill entity = new Sawmill(1,1);
 		entity.addGoods(production.TIMBER, 10);
-		assertEquals(entity.getStorage().toString(), "[(TIMBER,50,10), (LUMBER,50,0)]");
+		assertEquals(entity.getStorage().toString(), "[(TIMBER,50,10), (LUMBER,50,4)]");
 		entity.addGoods(production.FOOD, 10);
-		assertEquals(entity.getStorage().toString(), "[(TIMBER,50,10), (LUMBER,50,0)]");
+		assertEquals(entity.getStorage().toString(), "[(TIMBER,50,10), (LUMBER,50,4)]");
 	}
 }

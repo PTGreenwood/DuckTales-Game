@@ -1,5 +1,7 @@
 package uq.deco2800.ducktales.features.entities.worldentities;
 
+import java.util.ArrayList;
+
 import uq.deco2800.ducktales.resources.ResourceType;
 
 /**
@@ -152,5 +154,18 @@ public abstract class Building extends WorldEntity {
 	@Override
 	public void tick() {
 		// Not required
+	}
+	
+	public StorageProduceBuilding toStorageProduceBuilding(Building building) {
+		ArrayList<ResourceType> produceStorageBuildings = new ArrayList<ResourceType>();
+		produceStorageBuildings.add(ResourceType.SAWMILL);
+		produceStorageBuildings.add(ResourceType.QUARRY);
+		produceStorageBuildings.add(ResourceType.MINE);
+		produceStorageBuildings.add(ResourceType.FARM);
+		produceStorageBuildings.add(ResourceType.STORAGEBARN);
+		if (produceStorageBuildings.contains(building.getType())) {
+			return (StorageProduceBuilding) building;
+		}
+		return null;
 	}
 }

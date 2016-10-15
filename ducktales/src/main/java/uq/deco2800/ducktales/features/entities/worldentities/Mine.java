@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import org.apache.commons.lang3.tuple.Triple;
 
-import uq.deco2800.ducktales.features.entities.worldentities.StorageProduceBuilding.production;
 import uq.deco2800.ducktales.resources.ResourceType;
 
 /**
@@ -105,5 +104,9 @@ public class Mine extends StorageProduceBuilding {
 	protected void addGoodsBuilding(ArrayList<Triple<production, Integer, 
 			Integer>> newStore) {
 		storage = newStore;
+	}
+	
+	protected void produceMaterialBuilding() {
+		throw new UnsupportedOperationException();
 	}
 }

@@ -109,6 +109,8 @@ public abstract class StorageProduceBuilding extends Building {
 	 */
 	protected abstract void upgradeProduceBuilding(int newValue);
 	
+	protected abstract void produceMaterialBuilding();
+	
 	/**
 	 * Method to update the production amount of a 'production' building. 
 	 * Requires an integer value of the produce to be passed. Production 
@@ -184,5 +186,9 @@ public abstract class StorageProduceBuilding extends Building {
 				upgradeStorageBuilding(storage);
 			}
 		}
+	}
+	
+	public void produceMaterial() {
+		produceMaterialBuilding();
 	}
 }

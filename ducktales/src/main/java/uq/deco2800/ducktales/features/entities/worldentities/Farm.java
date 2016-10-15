@@ -107,4 +107,8 @@ public class Farm extends StorageProduceBuilding {
 			Integer>> newStore) {
 		storage = newStore;
 	}
+	
+	protected void produceMaterialBuilding() {
+		throw new UnsupportedOperationException();
+	}
 }

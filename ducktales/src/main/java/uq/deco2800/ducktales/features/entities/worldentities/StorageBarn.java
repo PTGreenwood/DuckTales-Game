@@ -104,5 +104,9 @@ public class StorageBarn extends StorageProduceBuilding {
 	 */
 	protected void upgradeProduceBuilding(int newValue) {
 		throw new UnsupportedOperationException();
-	}		
+	}	
+	
+	protected void produceMaterialBuilding() {
+		throw new UnsupportedOperationException();
+	}
 }
