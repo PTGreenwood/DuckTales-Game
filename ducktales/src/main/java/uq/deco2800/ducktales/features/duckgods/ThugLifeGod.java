@@ -2,8 +2,6 @@ package uq.deco2800.ducktales.features.duckgods;
 
 import javax.swing.ImageIcon;
 
-import uq.deco2800.ducktales.features.entities.agententities.Peon;
-
 /**
  * Individual class for the ThugLife God
  * 

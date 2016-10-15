@@ -3,9 +3,7 @@ package uq.deco2800.ducktales.features.entities;
 import java.io.IOException;
 import java.util.HashMap;
 
-import uq.deco2800.ducktales.GameManager;
-import uq.deco2800.ducktales.World;
-import uq.deco2800.ducktales.features.entities.agententities.Peon;
+import uq.deco2800.ducktales.features.entities.peons.Peon;
 import uq.deco2800.ducktales.rendering.sprites.PeonSprite;
 import uq.deco2800.ducktales.rendering.sprites.Sprite;
 import uq.deco2800.ducktales.rendering.sprites.SpritesFactory;

@@ -2,13 +2,12 @@ package uq.deco2800.ducktales;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Set;
 
 
 import uq.deco2800.ducktales.features.entities.Entity;
 
 import uq.deco2800.ducktales.features.entities.agententities.Animal;
-import uq.deco2800.ducktales.features.entities.agententities.Peon;
+import uq.deco2800.ducktales.features.entities.peons.Peon;
 import uq.deco2800.ducktales.features.entities.worldentities.Building;
 import uq.deco2800.ducktales.features.entities.worldentities.StorageProduceBuilding;
 import uq.deco2800.ducktales.resources.ResourceInfoRegister;
@@ -17,9 +16,7 @@ import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.features.landscape.tiles.Tile;
-import uq.deco2800.ducktales.features.time.GameTime;
 import uq.deco2800.ducktales.util.*;
-import uq.deco2800.ducktales.util.exceptions.GameSetupException;
 
 import static uq.deco2800.ducktales.resources.ResourceType.*;
 

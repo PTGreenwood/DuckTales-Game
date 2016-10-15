@@ -1,20 +1,16 @@
-package uq.deco2800.ducktales.features.entities.agententities;
+package uq.deco2800.ducktales.features.entities.peons;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 import uq.deco2800.ducktales.GameManager;
+import uq.deco2800.ducktales.features.entities.agententities.AgentEntity;
 import uq.deco2800.ducktales.features.jobframework.Job;
 import uq.deco2800.ducktales.features.jobframework.JobType;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.AStar;
 import uq.deco2800.ducktales.util.Point;
-import uq.deco2800.ducktales.features.entities.agententities.PeonDebuffType;
-import uq.deco2800.ducktales.features.entities.agententities.PeonBuffType;
 
 /**
  * Class representing the worker. Peon will have 1000 health, 100 hunger and

@@ -3,7 +3,7 @@ package uq.deco2800.ducktales.util.events.handlers.peon;
 import javafx.event.EventHandler;
 import uq.deco2800.ducktales.GameManager;
 import uq.deco2800.ducktales.World;
-import uq.deco2800.ducktales.features.entities.agententities.Peon;
+import uq.deco2800.ducktales.features.entities.peons.Peon;
 import uq.deco2800.ducktales.features.hud.informationdisplay.peon.PeonInformationDisplayManager;
 import uq.deco2800.ducktales.util.events.handlers.GameEventHandler;
 import uq.deco2800.ducktales.util.events.peon.PeonClickedEvent;

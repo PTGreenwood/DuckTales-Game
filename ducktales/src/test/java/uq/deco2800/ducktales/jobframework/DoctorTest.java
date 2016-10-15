@@ -1,12 +1,12 @@
 package uq.deco2800.ducktales.jobframework;
 
 import org.junit.Test;
-import uq.deco2800.ducktales.features.entities.agententities.Peon;
+import uq.deco2800.ducktales.features.entities.peons.Peon;
 import uq.deco2800.ducktales.features.jobframework.Doctor;
 import uq.deco2800.ducktales.features.jobframework.JobType;
 
 import static org.junit.Assert.*;
-import uq.deco2800.ducktales.features.entities.agententities.PeonDebuffType;
+import uq.deco2800.ducktales.features.entities.peons.PeonDebuffType;
 
 /**
  * @author Nicolas Turner (TheFractal on github and Fractal on slack)
