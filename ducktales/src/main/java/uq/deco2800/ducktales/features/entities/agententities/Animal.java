@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 import uq.deco2800.ducktales.GameManager;
-import uq.deco2800.ducktales.features.entities.EntityManager;
+import uq.deco2800.ducktales.features.entities.MainEntityManager;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.AStar;
 import uq.deco2800.ducktales.util.Point;
@@ -43,7 +43,7 @@ public class Animal extends AgentEntity {
     private boolean isDead = false; // Whether the animal is dead.
     private String direction; // The direction that the animal is travelling.
     private List<Point> goalPoints;
-    private EntityManager entityManager = EntityManager.getInstance();
+    private MainEntityManager mainEntityManager = MainEntityManager.getInstance();
     // The variables below are used to alternate images for animation.
     private int animationStage; // Determines which of the two images per direction is rendered.
     private int currentAnimationTick;
@@ -155,12 +155,12 @@ public class Animal extends AgentEntity {
     }
 
     /**
-     * Marks the animal as dead and removes itself from the entityManager.
+     * Marks the animal as dead and removes itself from the mainEntityManager.
      */
     public void setIsDead() {
         if (this.getHealth() <= 0) {
             this.isDead = true;
-//            entityManager.removeEntity(this);
+//            mainEntityManager.removeEntity(this);
         }
     }
 
@@ -174,7 +174,7 @@ public class Animal extends AgentEntity {
             opponent.setHealth(opponent.getHealth() - this.getStrength());
         }
 //        if (opponent.getHealth() <= 0) {
-//            entityManager.removeEntity(opponent);
+//            mainEntityManager.removeEntity(opponent);
 //        }
     }
 

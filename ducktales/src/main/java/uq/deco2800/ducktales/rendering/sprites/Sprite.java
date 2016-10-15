@@ -130,7 +130,8 @@ public class Sprite extends ImageView{
      *      1. Set the sprite's x- and y-locations (regarding world size)
      *      2. Change the size of the sprite based on the main scale factor
      *      3. Adjust the offset of the sprite to the bottom middle
-     *      4. set the location of the sprite based on the given tile
+     *      4. set the actual rendered location of the sprite based on
+     *         the given tile
      * @param sprite
      *          The sprite to set up
      * @param x
