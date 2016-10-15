@@ -88,7 +88,7 @@ public class Peon extends AgentEntity {
 	 * @return A unique string for peons so that they can be referenced later on
 	 * @throws IOException
 	 */
-	public String generateName() throws IOException {
+	public static String generateName() throws IOException {
 		String firstName;
 		String lastName;
 		String name;

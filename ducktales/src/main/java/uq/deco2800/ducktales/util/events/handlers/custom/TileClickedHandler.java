@@ -53,8 +53,6 @@ public class TileClickedHandler extends GameEventHandler
                         event.getxPos(), event.getyPos()
                 );
             }
-
-
         }
 
     }

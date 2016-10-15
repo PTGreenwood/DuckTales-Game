@@ -13,7 +13,7 @@ import uq.deco2800.ducktales.resources.ResourceType;
  *
  * @author Damian Maher
  */
-public class ResourceEntityManager extends EntityManager {
+public class ResourceEntityManager {
 	
     /** The list of resource sprites */
     private List<Sprite> resourceSprites;

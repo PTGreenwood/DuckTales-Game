@@ -23,6 +23,17 @@ public class SpritesFactory {
 
 	static int initTime;
 	static GameTime gameTime = new GameTime();
+
+    /**
+     * Create a sprite of a peon, with the given name as the unique ID
+     * @param peonName
+     *          The name of the peon
+     *
+     * @return A peon sprite with the given name as unique ID
+     */
+    public static PeonSprite createPeonSprite(String peonName) {
+        return new PeonSprite(peonName);
+    }
 	
     /**
      * Create and return a sprite of the given building type
@@ -466,13 +477,7 @@ public class SpritesFactory {
                 idleFrames,
                 false
         );
-        // Get current instance of the game manager
-        EntityManager man = EntityManager.getInstance();
-        // add 2 more peons into the game
-        for (int i = 0; i < 2; i++) {
-        	// add peons at location
-        	man.addAnimal(SHEEP, i, 0); //Note - currently sheep as peons don't exist :(
-        }
+
         return sprite;
     }
 
