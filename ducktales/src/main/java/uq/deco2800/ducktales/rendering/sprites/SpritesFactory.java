@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javafx.scene.image.Image;
-import uq.deco2800.ducktales.features.entities.EntityManager;
 import uq.deco2800.ducktales.features.time.GameTime;
 import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
@@ -23,6 +22,21 @@ public class SpritesFactory {
 
 	static int initTime;
 	static GameTime gameTime = new GameTime();
+
+    /**
+     * Create a sprite of a peon, with the given name as the unique ID
+     * @param peonName
+     *          The name of the peon
+     *
+     * @return A peon sprite with the given name as unique ID
+     */
+    public static PeonSprite createPeonSprite(String peonName) {
+        PeonSprite sprite = new PeonSprite(peonName);
+        sprite.setImage(ResourceSpriteRegister.getInstance().getResourceImage(
+                ResourceType.PEON
+        ));
+        return sprite;
+    }
 	
     /**
      * Create and return a sprite of the given building type
@@ -466,13 +480,7 @@ public class SpritesFactory {
                 idleFrames,
                 false
         );
-        // Get current instance of the game manager
-        EntityManager man = EntityManager.getInstance();
-        // add 2 more peons into the game
-        for (int i = 0; i < 2; i++) {
-        	// add peons at location
-        	man.addAnimal(SHEEP, i, 0); //Note - currently sheep as peons don't exist :(
-        }
+
         return sprite;
     }
 

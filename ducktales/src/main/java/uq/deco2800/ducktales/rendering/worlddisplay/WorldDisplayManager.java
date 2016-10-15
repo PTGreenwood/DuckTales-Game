@@ -8,8 +8,6 @@ import uq.deco2800.ducktales.World;
 import uq.deco2800.ducktales.features.landscape.tiles.TilesManager;
 import uq.deco2800.ducktales.features.weather.Weather;
 import uq.deco2800.ducktales.features.weather.WeatherEffect;
-import uq.deco2800.ducktales.features.time.TimeManager;
-import uq.deco2800.ducktales.features.time.DayNight;
 import uq.deco2800.ducktales.util.SecondaryManager;
 import uq.deco2800.ducktales.rendering.worlddisplay.WorldDisplayRenderer.*;
 
@@ -72,7 +70,7 @@ public class WorldDisplayManager implements Initializable, SecondaryManager {
 
         // Load the rendering engine
         renderer.setTilesManager(tilesManager);
-        renderer.setEntityManager(gameManager.getEntityManager());
+        renderer.setMainEntityManager(gameManager.getMainEntityManager());
 
     }
     
