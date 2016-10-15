@@ -19,7 +19,8 @@ import uq.deco2800.ducktales.rendering.worlddisplay.CursorManager;
 import uq.deco2800.ducktales.rendering.worlddisplay.WorldDisplayManager;
 import uq.deco2800.ducktales.features.missions.MissionManager;
 import uq.deco2800.ducktales.resources.ResourceType;
-import uq.deco2800.ducktales.util.events.handlers.custom.AnimalDeadEventHandler;
+import uq.deco2800.ducktales.util.events.animal.AnimalDeadEvent;
+import uq.deco2800.ducktales.util.events.handlers.animal.AnimalDeadEventHandler;
 import uq.deco2800.ducktales.util.events.handlers.custom.HUDDeselectedHandler;
 import uq.deco2800.ducktales.util.events.handlers.custom.MenuSelectedEventHandler;
 import uq.deco2800.ducktales.util.events.handlers.custom.TileClickedHandler;
@@ -29,7 +30,6 @@ import uq.deco2800.ducktales.util.events.handlers.mouse.InGameMouseClickedHandle
 import uq.deco2800.ducktales.util.events.handlers.mouse.InGameMouseMovedHandler;
 import uq.deco2800.ducktales.util.events.tile.TileClickedEvent;
 import uq.deco2800.ducktales.util.events.tile.TileEnteredEvent;
-import uq.deco2800.ducktales.util.events.ui.AnimalDeadEvent;
 import uq.deco2800.ducktales.util.events.ui.HUDDeselectedEvent;
 import uq.deco2800.ducktales.util.events.ui.MenuSelectedEvent;
 import uq.deco2800.ducktales.features.hud.menu.MenuManager.MenuType;
@@ -314,7 +314,7 @@ public class GameManager {
     public TimeManager getTimeManager() {
         return timeManager;
     }
-    
+
     public WeatherManager getWeatherManager() {
     	return this.weatherManager;
     }
@@ -322,7 +322,7 @@ public class GameManager {
     public void setTimeManager(TimeManager timeManager) {
         this.timeManager = timeManager;
     }
-    
+
     public void setWeatherManager(WeatherManager weatherManager) {
         this.weatherManager = weatherManager;
     }
@@ -331,6 +331,8 @@ public class GameManager {
      * Set up the event handlers for the root pane of the game. The current
      * events being handled:
      *      1. A menu sprite is clicked on -> update cursor image
+     *      
+     *      8. When an animal dies -> drop a resource sprite and load death sprite
      */
     private void setupEventHandlers() {
         // Initialize the custom handlers
@@ -412,6 +414,7 @@ public class GameManager {
     public void setInventoryManager(InventoryManager inventoryManager) {
         this.inventoryContainer = inventoryManager;
     }
+    
     public InventoryManager getInventoryContainer() {
         return inventoryContainer;
     }

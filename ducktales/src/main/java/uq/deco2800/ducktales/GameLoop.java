@@ -31,7 +31,8 @@ public class GameLoop implements Runnable {
 	/** The secondary managers of the game */
 	private TimeManager timeManager;
 	private MainEntityManager mainEntityManager;
-	private DayNightManager daynightManager; //not in use currently
+
+	//private DayNightManager daynightManager; //not in use currently
 	private WeatherManager weatherManager;
 
 	private static boolean paused;
@@ -118,7 +119,7 @@ public class GameLoop implements Runnable {
 	 *
 	 * @param timeManager
 	 * 			The Time Manager of the game
-	 */
+	 **/
 	public void setTimeManager(TimeManager timeManager) {
 		this.timeManager = timeManager;
 	}
@@ -136,7 +137,7 @@ public class GameLoop implements Runnable {
 		this.mainEntityManager = mainEntityManager;
 	}
 	
-	/**
+	/*
 	 * 
 	 * Pass the handle of the DayNight Manager to the game loop
 	 * Currently not in use, but will add in later once more things
@@ -144,8 +145,8 @@ public class GameLoop implements Runnable {
 	 * 
 	 * @param daynightManager
 	 * 			The DayNight Manager of the game
-	 */
+	 *
 	public void setDayNightManager(DayNightManager daynightManager) {
 		this.daynightManager = daynightManager;
-	}
+	}*/
 }

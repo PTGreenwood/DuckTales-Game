@@ -1,5 +1,7 @@
 package uq.deco2800.ducktales.features.entities.worldentities;
 
+import java.util.ArrayList;
+
 import uq.deco2800.ducktales.resources.ResourceType;
 
 /**
@@ -152,5 +154,25 @@ public abstract class Building extends WorldEntity {
 	@Override
 	public void tick() {
 		// Not required
+	}
+	
+	/**
+	 * Method to return a valid StorageProduceBuilding, for a given Building. 
+	 * Will return null if the building is not of a valid type.
+	 * 
+	 * @param building, the building to attempt to convert type of
+	 * @return a valid StorageProduceBuilding or null
+	 */
+	public StorageProduceBuilding toStorageProduceBuilding(Building building) {
+		ArrayList<ResourceType> produceStorageBuildings = new ArrayList<ResourceType>();
+		produceStorageBuildings.add(ResourceType.SAWMILL);
+		produceStorageBuildings.add(ResourceType.QUARRY);
+		produceStorageBuildings.add(ResourceType.MINE);
+		produceStorageBuildings.add(ResourceType.FARM);
+		produceStorageBuildings.add(ResourceType.STORAGEBARN);
+		if (produceStorageBuildings.contains(building.getType())) {
+			return (StorageProduceBuilding) building;
+		}
+		return null;
 	}
 }
