@@ -18,6 +18,7 @@ import uq.deco2800.ducktales.features.weather.WeatherManager;
 import uq.deco2800.ducktales.rendering.worlddisplay.CursorManager;
 import uq.deco2800.ducktales.rendering.worlddisplay.WorldDisplayManager;
 import uq.deco2800.ducktales.features.missions.MissionManager;
+import uq.deco2800.ducktales.features.notifications.NotificationManager;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.events.handlers.custom.AnimalDeadEventHandler;
 import uq.deco2800.ducktales.util.events.handlers.custom.HUDDeselectedHandler;
@@ -78,6 +79,7 @@ public class GameManager {
     private MarketManager marketManager;
     private WorldDisplayManager worldDisplayManager;
     private HelperManager helperManager;
+    private NotificationManager notificationManager;
     private MissionManager missionManager;
     private LevelManager levelManager;
     private AchievementManager achievementManager;
@@ -254,6 +256,12 @@ public class GameManager {
     }
     public void setHelperManager(HelperManager helperManager) {
     	this.helperManager = helperManager;
+    }
+    public NotificationManager getNotificationManager() {
+    	return notificationManager;
+    }
+    public void setNotificationManager(NotificationManager notificationManager) {
+    	this.notificationManager = notificationManager;
     }
     public MissionManager getMissionManager() {
         return missionManager;

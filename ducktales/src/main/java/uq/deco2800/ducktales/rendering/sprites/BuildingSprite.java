@@ -1,11 +1,13 @@
 package uq.deco2800.ducktales.rendering.sprites;
 
 import javafx.animation.KeyFrame;
+
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.scene.image.Image;
 import javafx.util.Duration;
 import uq.deco2800.ducktales.resources.ResourceType;
+import uq.deco2800.ducktales.features.notifications.NotificationManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +25,7 @@ public class BuildingSprite extends EntitySprite {
     /** The sprites list for different types of animations */
     private BuildingAnimation constructionAnimation; // animation during construction
     private BuildingAnimation idleAnimation; // when construction is done
+    private NotificationManager notificationManager;
 
     /** Flags */
     // Whether to automatically reverse the idle animation
@@ -88,6 +91,10 @@ public class BuildingSprite extends EntitySprite {
      * Play the animation for the idle state of the building
      */
     public void playIdleAnimation() {
+    	
+    	this.notificationManager = new NotificationManager();
+    	notificationManager.buildingFinishedNotification();
+    	
         double duration = this.idleAnimation.duration;
 
         // Re-configure the image list and then the interpolator
