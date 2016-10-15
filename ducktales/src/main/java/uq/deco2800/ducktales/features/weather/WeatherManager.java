@@ -204,6 +204,7 @@ public class WeatherManager
 				if (weatherEvents.size() > 0) {
 					for (WeatherCanvasShape shape : shapes) {
 						if (shape.getX() > canvasWidth) {
+							//shape.setX((int) Math.ceil(Math.random() * canvasWidth));
 							shape.setX(-20);
 						} else {
 							shape.setX((shape.getX() + (shape.getDirection())));
