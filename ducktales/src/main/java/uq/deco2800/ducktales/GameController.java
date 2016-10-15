@@ -11,6 +11,7 @@ import uq.deco2800.ducktales.features.achievements.AchievementManager;
 import uq.deco2800.ducktales.features.entities.MainEntityManager;
 import uq.deco2800.ducktales.features.helper.HelperManager;
 import uq.deco2800.ducktales.features.hud.HUDManager;
+import uq.deco2800.ducktales.features.hud.informationdisplay.peon.PeonInformationDisplayManager;
 import uq.deco2800.ducktales.features.level.LevelManager;
 import uq.deco2800.ducktales.features.market.MarketManager;
 import uq.deco2800.ducktales.features.market.MarketVistaNavigator;
@@ -26,7 +27,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import org.slf4j.Logger; 
-import org.slf4j.LoggerFactory; 
+import org.slf4j.LoggerFactory;
+import uq.deco2800.ducktales.util.exceptions.GameSetupException;
 
 /**
  * <p>
@@ -84,6 +86,7 @@ public class GameController implements Initializable{
     private HUDManager hudManager;
     private WorldDisplayManager worldDisplayManager;
     private WeatherManager weatherManager;
+    private PeonInformationDisplayManager peonInformationDisplayManager;
 
     private MainEntityManager mainEntityManager;
 
@@ -107,11 +110,11 @@ public class GameController implements Initializable{
 
         // Load each FXML element into the root pane on by one, and retrieve
         // their respective controllers        
-        
-        
+
         loadWorldDisplay(); 
         loadWeatherDisplay();
         loadHUD();
+        loadPeonInformationDisplay();
         
         loadMarketPlace();
         loadMissions();
@@ -219,6 +222,34 @@ public class GameController implements Initializable{
     }
 
     /**
+     * Load the information display for peons.
+     *
+     * Initially this will be hidden - it will only be shown when a peon
+     * is clicked on
+     */
+    private void loadPeonInformationDisplay() {
+        URL location = getClass().getResource("/ui/hud/peonDisplay/peonDisplay.fxml");
+        FXMLLoader loader = new FXMLLoader(location);
+
+        try {
+            Pane peonInformationDisplay = loader.load();
+            this.peonInformationDisplayManager = loader.getController();
+
+            this.peonInformationDisplayManager.setGameManager(this.gameManager);
+
+            // Add the peon information display to the root pane
+            rootPane.getChildren().add(peonInformationDisplay);
+
+            // Set up the sizing for the root pane
+            AnchorPane.setBottomAnchor(peonInformationDisplay, 20.0);
+            AnchorPane.setLeftAnchor(peonInformationDisplay, 20.0);
+            AnchorPane.setRightAnchor(peonInformationDisplay, 20.0);
+        } catch (IOException e) {
+            throw new GameSetupException("Cannot load Peon Information Display");
+        }
+    }
+
+    /**
      * Load and show the game world
      */
     private void loadWorldDisplay() {
@@ -241,8 +272,7 @@ public class GameController implements Initializable{
             AnchorPane.setTopAnchor(worldPane, 0.0);
             AnchorPane.setBottomAnchor(worldPane, 0.0);
         } catch (IOException e) {
-            System.err.println("unable to load world display");
-            //e.printStackTrace();
+            throw new GameSetupException("Cannot load World Display");
         }
     }
     

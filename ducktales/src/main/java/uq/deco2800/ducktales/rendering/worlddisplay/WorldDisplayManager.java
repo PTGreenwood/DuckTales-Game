@@ -22,7 +22,7 @@ import java.util.ResourceBundle;
  * Created on 7/09/2016.
  * @author khoiphan21
  */
-public class WorldDisplayManager implements Initializable, SecondaryManager {
+public class WorldDisplayManager extends SecondaryManager implements Initializable {
     /** The pane where all world objects will be added to */
     @FXML
     private Pane worldDisplay;
@@ -50,11 +50,6 @@ public class WorldDisplayManager implements Initializable, SecondaryManager {
         renderer = new WorldDisplayRenderer();
         renderer.start();
 
-    }
-
-    @Override
-    public void reload() {
-    	//initializeWorld();
     }
 
     /**

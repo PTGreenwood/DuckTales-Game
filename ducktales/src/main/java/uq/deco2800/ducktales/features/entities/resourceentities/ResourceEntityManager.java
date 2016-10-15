@@ -5,13 +5,14 @@ import java.util.List;
 
 import uq.deco2800.ducktales.rendering.sprites.Sprite;
 import uq.deco2800.ducktales.resources.ResourceType;
+import uq.deco2800.ducktales.util.SecondaryManager;
 
 /**
  * Manager for all the resource entities in the game.
  *
  * @author Damian Maher
  */
-public class ResourceEntityManager {
+public class ResourceEntityManager extends SecondaryManager{
     /** The list of resource sprites */
     private List<Sprite> resourceSprites;
 

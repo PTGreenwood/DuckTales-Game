@@ -47,7 +47,7 @@ import static uq.deco2800.ducktales.resources.ResourceType.COW;
  *
  * Created on 7/09/2016.
  */
-public class MenuManager implements Initializable, SecondaryManager {
+public class MenuManager implements Initializable {
 	/**
 	 * CONSTANTS
 	 */
@@ -359,7 +359,7 @@ public class MenuManager implements Initializable, SecondaryManager {
 	 * 
 	 * @author mattyleggy
 	 * 
-	 * @param gridPane
+	 * @param gridPaneList
 	 *            the GridPane to assign the constraints to
 	 */
 	private void setGridConstraints(ArrayList<GridPane> gridPaneList) {
@@ -464,8 +464,4 @@ public class MenuManager implements Initializable, SecondaryManager {
 		return this.gridRows * this.gridColumns;
 	}
 
-	@Override
-	public void reload() {
-
-	}
 }

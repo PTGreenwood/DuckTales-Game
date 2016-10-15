@@ -10,6 +10,7 @@ import uq.deco2800.ducktales.rendering.sprites.PeonSprite;
 import uq.deco2800.ducktales.rendering.sprites.Sprite;
 import uq.deco2800.ducktales.rendering.sprites.SpritesFactory;
 import uq.deco2800.ducktales.resources.GeneralResourceRegister;
+import uq.deco2800.ducktales.util.SecondaryManager;
 import uq.deco2800.ducktales.util.exceptions.GameSetupException;
 
 /**
@@ -17,16 +18,14 @@ import uq.deco2800.ducktales.util.exceptions.GameSetupException;
  *
  * @author eduardlio, TheFractal, khoiphan21
  */
-public class PeonManager {
+public class PeonManager extends SecondaryManager{
 
-    /** The model of the game */
-    private World world;
-
-    /** The main manager of the game */
-    private GameManager gameManager;
-    
+    /** The list of peon sprites */
     private HashMap<String, PeonSprite> peonSprites;
 
+    /**
+     * Initialize a peon manager with initial sprite list capacity of 50
+     */
     public PeonManager() {
         peonSprites = new HashMap<>(50);
     }
@@ -72,26 +71,6 @@ public class PeonManager {
         // Now render that peon sprite into the game
         gameManager.getWorldDisplayManager().getWorldDisplay()
                 .getChildren().add(peonSprite);
-    }
-
-    /**
-     * Give the peon manager a handle on the game model
-     *
-     * @param world
-     *          The model of the game
-     */
-    public void setWorld(World world) {
-        this.world = world;
-    }
-
-    /**
-     * Give the peon manager a handle on the main game manager
-     *
-     * @param gameManager
-     *          The main manager of the game
-     */
-    public void setGameManager(GameManager gameManager) {
-        this.gameManager = gameManager;
     }
 
     /**

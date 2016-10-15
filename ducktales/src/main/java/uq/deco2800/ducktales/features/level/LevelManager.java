@@ -16,7 +16,7 @@ import uq.deco2800.ducktales.util.SecondaryManager;
  * @author Naehyung Kim
  *
  */
-public class LevelManager implements SecondaryManager {
+public class LevelManager extends SecondaryManager {
 	
 	@FXML 
 	private AnchorPane level;
@@ -70,8 +70,4 @@ public class LevelManager implements SecondaryManager {
 		return this.level.isVisible();
 	}
 	
-	@Override
-    public void reload() {
-
-    }
 }
