@@ -293,7 +293,7 @@ public class ResourceSpriteRegister {
 		/*
 		 * PEONS
 		 */
-		addResource(PEON, "/peon/jobs/builder.png");
+		addResource(PEON, "/peon/basic_peon.png");
 
 
 		/*
