@@ -140,7 +140,8 @@ public class GameController implements Initializable{
         gameManager.setMainEntityManager(this.mainEntityManager);
         gameManager.setTutorialManager(this.tutorialManager);      
         gameManager.setHelperManager(this.helperManager);
-        
+        gameManager.setPeonInformationDisplayManager(this.peonInformationDisplayManager);
+
         // Now officially call the game starting method from Game Manager
         gameManager.startGame();        
         // Game Controller's job of setting up the UI is done.

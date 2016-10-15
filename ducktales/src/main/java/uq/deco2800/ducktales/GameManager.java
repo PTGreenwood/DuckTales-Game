@@ -8,6 +8,7 @@ import uq.deco2800.ducktales.features.entities.ThreatManager;
 import uq.deco2800.ducktales.features.entities.resourceentities.ResourceEntityManager;
 import uq.deco2800.ducktales.features.helper.HelperManager;
 import uq.deco2800.ducktales.features.hud.HUDManager;
+import uq.deco2800.ducktales.features.hud.informationdisplay.peon.PeonInformationDisplayManager;
 import uq.deco2800.ducktales.features.hud.menu.MenuManager;
 import uq.deco2800.ducktales.features.inventory.InventoryManager;
 import uq.deco2800.ducktales.features.level.LevelManager;
@@ -89,6 +90,7 @@ public class GameManager {
     private InventoryManager inventoryContainer;
     private WeatherManager weatherManager;
     private ResourceEntityManager resourceEntityManager;
+    private PeonInformationDisplayManager peonInformationDisplayManager;
     
     /**
      * Instantiate an empty game manager and createBuildingSprite a new default world
@@ -327,6 +329,14 @@ public class GameManager {
         this.weatherManager = weatherManager;
     }
 
+    public PeonInformationDisplayManager getPeonInformationDisplayManager() {
+        return peonInformationDisplayManager;
+    }
+
+    public void setPeonInformationDisplayManager(PeonInformationDisplayManager peonInformationDisplayManager) {
+        this.peonInformationDisplayManager = peonInformationDisplayManager;
+    }
+
     /**
      * Set up the event handlers for the root pane of the game. The current
      * events being handled:
@@ -351,7 +361,8 @@ public class GameManager {
         InGameKeyboardHandler keyboardHandler =
                 new InGameKeyboardHandler(this);
         AnimalDeadEventHandler animalDeadEventHandler = 
-        		new AnimalDeadEventHandler(this); 
+        		new AnimalDeadEventHandler(this);
+
 
 
         // Handler for when a sprite in the menu is selected

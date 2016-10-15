@@ -157,7 +157,26 @@ public class World implements Tickable {
 			throw new RuntimeException("Peon name already exists. Please" +
 					"make sure peon name is checked when adding a new one");
 		}
+	}
 
+	/**
+	 * Retrieve the peon of the given name.
+	 *
+	 * @param peonName
+	 *			The name of the peon is a unique identifier used to
+	 *			Retrieve the peon. The sprite of the peon will have the
+	 *			same identifier
+	 *
+	 * @return The peon with the given name/identifier
+	 */
+	public Peon getPeon(String peonName) {
+		if (peons.containsKey(peonName)) {
+			return peons.get(peonName);
+		} else {
+			throw new RuntimeException("Fail to retrieve a peon. Peon with" +
+					" name: \"" + peonName + "\" has not been added to the" +
+					"game yet.");
+		}
 	}
 
 	/**

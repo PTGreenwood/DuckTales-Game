@@ -18,14 +18,6 @@ public class TileEvent extends Event {
     protected int xPos;
     protected int yPos;
 
-    public TileEvent(@NamedArg("eventType") EventType<? extends Event> eventType) {
-        super(eventType);
-    }
-
-    public TileEvent(@NamedArg("source") Object source, @NamedArg("target") EventTarget target, @NamedArg("eventType") EventType<? extends Event> eventType) {
-        super(source, target, eventType);
-    }
-
     public TileEvent(int xPos, int yPos) {
         super(TILE_EVENT);
         this.xPos = xPos;

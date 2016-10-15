@@ -63,18 +63,22 @@ public class PeonInformationDisplayManager
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Hide the display at first
-//        rootDisplay.setVisible(false);
+        rootDisplay.setVisible(false);
     }
 
     /**
      * Set the peon to display
      * @param peon
      */
-    public void setPeon(Peon peon) {
+    public void displayPeon(Peon peon) {
         this.peon = peon;
 
         // Show the display
         rootDisplay.setVisible(true);
+    }
+
+    public void changePeonJob() {
+
     }
 
 }
