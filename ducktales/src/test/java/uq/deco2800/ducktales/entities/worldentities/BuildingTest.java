@@ -1515,6 +1515,8 @@ public class BuildingTest {
 		assertEquals(entity.getStorage().toString(), "[(TIMBER,50,0), (LUMBER,10,0)]");
 		entity.upgradeBarn(production.ORE, 10);
 		assertEquals(entity.getStorage().toString(), "[(TIMBER,50,0), (LUMBER,10,0)]");
+		entity.upgradeBarn(production.TIMBER, 15);
+		assertEquals(entity.getStorage().toString(), "[(TIMBER,15,0), (LUMBER,10,0)]");
 	}
 	
 	/**
