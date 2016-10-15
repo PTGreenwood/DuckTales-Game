@@ -2,11 +2,9 @@ package uq.deco2800.ducktales.entities.agententities;
 
 import org.junit.Test;
 
-import uq.deco2800.ducktales.features.entities.EntityManager;
 import uq.deco2800.ducktales.features.entities.agententities.Peon;
 import uq.deco2800.ducktales.features.entities.agententities.PeonDebuffType;
 import uq.deco2800.ducktales.features.entities.agententities.PeonBuffType;
-import uq.deco2800.ducktales.resources.*;
 
 import static org.junit.Assert.*;
 
@@ -20,7 +18,7 @@ public class PeonTest {
   @Test
   public void peonTest() {
     //Create Peon for testing
-    Peon peon = new Peon(10, 10, "John Doe");
+    Peon peon = new Peon(10, 10);
 
     //Test to see if Peon has no null attributes
     assertNotNull("Peon cannot be null", peon);

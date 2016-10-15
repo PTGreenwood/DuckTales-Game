@@ -1,5 +1,9 @@
 package uq.deco2800.ducktales.features.entities.worldentities;
 
+import java.util.ArrayList;
+
+import org.apache.commons.lang3.tuple.Triple;
+
 import uq.deco2800.ducktales.resources.ResourceType;
 
 /**
@@ -9,7 +13,7 @@ import uq.deco2800.ducktales.resources.ResourceType;
  * @author Gabrielle Hodge, 43590526 
  *
  */
-public class Sawmill extends Building {
+public class Sawmill extends StorageProduceBuilding {
 	
 	// BuildingMenuSprite type
 	private static final ResourceType TYPE = ResourceType.SAWMILL;
@@ -19,6 +23,10 @@ public class Sawmill extends Building {
 	
 	// Building wood production - starting value
 	private int productionAmount = 5;
+	
+	// Sawmill storage - starting
+	private ArrayList<Triple<production, Integer, Integer>> storage = new 
+			ArrayList<Triple<production, Integer, Integer>>();
 	
 	// Sawmill size
 	public static final int X_LENGTH = 5;
@@ -39,14 +47,16 @@ public class Sawmill extends Building {
 		super(x, y, X_LENGTH, Y_LENGTH, TYPE);
 		health = 1400;
 		productionAmount = 5;
+		storage.add(0, Triple.of(production.TIMBER, 50, 0));
+		storage.add(1, Triple.of(production.LUMBER, 50, 4));
 	}
 
 	/**
 	 * Update the WorldEntity properties with those of a sawmill.
 	 */
 	protected void specifications() {
-		specifications(4, 8, 3, production.WOOD, productionAmount, health, 
-				null);
+		specifications(4, 8, 3, production.TIMBER, productionAmount, health, 
+				storage);
 	}
 	
 	/**
@@ -78,8 +88,12 @@ public class Sawmill extends Building {
 	 * @throws UnsupportedOperationException, as this functionality is not 
 	 * required for a sawmill.
 	 */
-	protected void upgradeBarnBarn(production upgradeType, int newStore) {
-		throw new UnsupportedOperationException();
+	protected void upgradeStorageBuilding(ArrayList<Triple<production, Integer, 
+			Integer>> newStore) {
+		if (newStore.contains(production.TIMBER) ||
+				newStore.contains(production.LUMBER)) {
+			storage = newStore;
+		}
 	}
 
 	/**
@@ -89,7 +103,21 @@ public class Sawmill extends Building {
 	 * @throws UnsupportedOperationException, as this functionality is not 
 	 * required for a sawmill.
 	 */
-	protected void addGoodsBarn(production storeType, int newStore) {
-		throw new UnsupportedOperationException();
+	protected void addGoodsBuilding(ArrayList<Triple<production, Integer, 
+			Integer>> newStore) {
+		storage = newStore;
+	}
+	
+	/**
+	 * Produce 'refined'/'processed' materials from raw materials. Requires 
+	 * the building to have some raw materials available to be processed, 
+	 * and for the building to have room to store the new materials.
+	 */
+	protected void produceMaterialBuilding() {
+		if (storage.get(1).getRight()>0 && storage.get(0).getRight()<storage.get(0).getMiddle()-1) {
+			this.addGoods(production.LUMBER, -1);
+			this.addGoods(production.TIMBER, 2);
+		}
+		System.out.println(storage);
 	}
 }

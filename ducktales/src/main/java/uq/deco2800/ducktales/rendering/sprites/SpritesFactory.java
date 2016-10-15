@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javafx.scene.image.Image;
-import uq.deco2800.ducktales.features.entities.EntityManager;
 import uq.deco2800.ducktales.features.time.GameTime;
 import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
@@ -23,6 +22,21 @@ public class SpritesFactory {
 
 	static int initTime;
 	static GameTime gameTime = new GameTime();
+
+    /**
+     * Create a sprite of a peon, with the given name as the unique ID
+     * @param peonName
+     *          The name of the peon
+     *
+     * @return A peon sprite with the given name as unique ID
+     */
+    public static PeonSprite createPeonSprite(String peonName) {
+        PeonSprite sprite = new PeonSprite(peonName);
+        sprite.setImage(ResourceSpriteRegister.getInstance().getResourceImage(
+                ResourceType.PEON
+        ));
+        return sprite;
+    }
 	
     /**
      * Create and return a sprite of the given building type
@@ -466,13 +480,7 @@ public class SpritesFactory {
                 idleFrames,
                 false
         );
-        // Get current instance of the game manager
-        EntityManager man = EntityManager.getInstance();
-        // add 2 more peons into the game
-        for (int i = 0; i < 2; i++) {
-        	// add peons at location
-        	man.addAnimal(SHEEP, i, 0); //Note - currently sheep as peons don't exist :(
-        }
+
         return sprite;
     }
 
@@ -777,6 +785,19 @@ public class SpritesFactory {
     private static AnimalSprite createSheep(int index, ResourceType entityType) {
         // The sprite to be returned
         AnimalSprite sprite = new AnimalSprite(index, entityType);
+
+        // Setup the frames for the roaming animation.
+        ResourceType[] roamingFrames = {
+        ResourceType.SHEEP,
+        ResourceType.SHEEPDown0,
+        ResourceType.SHEEPDown1,
+        ResourceType.SHEEPLeft0,
+        ResourceType.SHEEPLeft1,
+        ResourceType.SHEEPUp0,
+        ResourceType.SHEEPUp1,
+        ResourceType.SHEEPRight0,
+        ResourceType.SHEEPRight1
+        };
  
         // Setup the frames for the animation
         List<Image> imageList = new ArrayList<>();
@@ -792,11 +813,14 @@ public class SpritesFactory {
         imageList.add(register.getResourceImage(ResourceType.SHEEPRight0));
         imageList.add(register.getResourceImage(ResourceType.SHEEPRight1));
 
-        // After all images are set up, now call these methods to set up the
-        // actual animation code
-        sprite.setImageList(imageList); // Give the interpolator the list of images
-        sprite.setupAnimation(1.0); // Set up the actual animation, passing the duration
-        sprite.startAnimation(); // Start the actual animation
+        // Setup the sprite with the given parameters
+        setupAnimalSprite(
+                sprite,
+                entityType,
+                1.0,
+                roamingFrames,
+                true
+        );
 
         return sprite;
     }
@@ -826,6 +850,7 @@ public class SpritesFactory {
         DUCKRight0,
         DUCKRight1
         };
+
         // Setup the sprite with the given parameters
         setupAnimalSprite(
                 sprite,

@@ -24,7 +24,7 @@ public class AnimalManager extends SecondaryEntityManager{
 
     /** The list of animal sprites */
     private List<AnimalSprite> animalSprites;
-
+    
     /**
      * Construct an animal manager with an empty list of animal sprites
      */
@@ -44,7 +44,7 @@ public class AnimalManager extends SecondaryEntityManager{
      * @param y
      *          The y-coordinate of the animal in regards to the world size
      */
-    public void addAnimal(ResourceType type, int x, int y, ArrayList<ResourceType> registeredAnimals) {
+    public void addAnimal(ResourceType type, int x, int y) {
         // Construct a new animal from the given type
         Animal animal = ResourceInfoRegister.createAnimal(type, x, y);
 
@@ -78,7 +78,8 @@ public class AnimalManager extends SecondaryEntityManager{
             animalSprites.add(sprite);
 
             // Add the sprite to the world display
-            gameManager.getWorldDisplayManager().getWorldDisplay().getChildren().add(sprite);
+            gameManager.getWorldDisplayManager().getWorldDisplay()
+                    .getChildren().add(sprite);
 
         } else {
             throw new AnimalNotRegisteredException("The animal requested" +

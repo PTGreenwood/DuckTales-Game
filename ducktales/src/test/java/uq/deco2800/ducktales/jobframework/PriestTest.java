@@ -14,7 +14,7 @@ public class PriestTest {
 
 	@Test
 	public void qualificationTest() {
-		Peon peon = new Peon(10, 10, "John Doe");
+		Peon peon = new Peon(10, 10);
 		peon.setStrength(priest.getRequiredStrength() + 1);
 		peon.setIntelligence(priest.getRequiredIntelligence() + 1);
 
@@ -25,7 +25,7 @@ public class PriestTest {
 	}
 
 	public void applicationTest() {
-		Peon peon = new Peon(10, 10, "John Doe");
+		Peon peon = new Peon(10, 10);
 		peon.setStrength(priest.getRequiredStrength() + 1);
 		peon.setIntelligence(priest.getRequiredIntelligence() + 1);
 
@@ -34,7 +34,7 @@ public class PriestTest {
 	}
 
 	public void notQualifiedBothTest() {
-		Peon peon = new Peon(10, 10, "John Doe");
+		Peon peon = new Peon(10, 10);
 		peon.setStrength(priest.getRequiredStrength() - 1);
 		peon.setIntelligence(priest.getRequiredIntelligence() - 1);
 
@@ -42,7 +42,7 @@ public class PriestTest {
 	}
 
 	public void notQualifiedStrengthTest() {
-		Peon peon = new Peon(10, 10, "John Doe");
+		Peon peon = new Peon(10, 10);
 		peon.setStrength(priest.getRequiredStrength() - 1);
 		peon.setIntelligence(priest.getRequiredIntelligence() + 1);
 
@@ -50,7 +50,7 @@ public class PriestTest {
 	}
 
 	public void notQualifiedIntelligenceTest() {
-		Peon peon = new Peon(10, 10, "John Doe");
+		Peon peon = new Peon(10, 10);
 		peon.setStrength(priest.getRequiredStrength() + 1);
 		peon.setIntelligence(priest.getRequiredIntelligence() - 1);
 
@@ -59,7 +59,7 @@ public class PriestTest {
 
 	@Test
 	public void notQualifiedBothMentorTest() {
-		Peon peon = new Peon(10, 10, "John Doe");
+		Peon peon = new Peon(10, 10);
 		peon.setStrength(priest.getMentorStrength() - 1);
 		peon.setIntelligence(priest.getMentorIntelligence() - 1);
 		peon.applyForJob(priest);
@@ -68,14 +68,14 @@ public class PriestTest {
 	}
 
 	public void notQualifiedStrengthMentorTest() {
-		Peon peon = new Peon(10, 10, "John Doe");
+		Peon peon = new Peon(10, 10);
 		peon.setIntelligence(priest.getMentorIntelligence() + 1);
 
 		assertFalse(priest.canBeMentor(peon));
 	}
 
 	public void notQualifiedIntelligenceMentorTest() {
-		Peon peon = new Peon(10, 10, "John Doe");
+		Peon peon = new Peon(10, 10);
 		peon.setStrength(priest.getMentorStrength() + 1);
 		peon.setIntelligence(priest.getMentorIntelligence() - 1);
 
@@ -83,7 +83,7 @@ public class PriestTest {
 	}
 
 	public void qualifiedBothMentorTest() {
-		Peon peon = new Peon(10, 10, "John Doe");
+		Peon peon = new Peon(10, 10);
 		peon.setStrength(priest.getMentorStrength() + 1);
 		peon.setIntelligence(priest.getMentorIntelligence() + 1);
 

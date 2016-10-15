@@ -41,7 +41,7 @@ public class Forge extends Building {
 	 * Update the WorldEntity properties with those of a forge.
 	 */
 	protected void specifications() {
-		specifications (10, 6, 3, production.NULL, 0, health, null);
+		specifications (10, 6, 3, health);
 	}
 	
 	/**
@@ -54,38 +54,5 @@ public class Forge extends Building {
 	 */
 	protected void changeHealthBuilding(int newValue){
 		health = newValue;
-	}
-	
-	/**
-	 * Upgrade produce for building, required for all buildings, by Building 
-	 * class. Possible use to extend/upgrade a forge.
-	 * 
-	 * @throws UnsupportedOperationException, as this functionality is not 
-	 * required for a forge.
-	 */
-	protected void upgradeProduceBuilding(int newValue) {
-		throw new UnsupportedOperationException();
-	}
-	
-	/**
-	 * Upgrade stored resources for building, required for all buildings, by 
-	 * Building class. Possible use to extend/upgrade a forge.
-	 * 
-	 * @throws UnsupportedOperationException, as this functionality is not 
-	 * required for a forge.
-	 */
-	protected void upgradeBarnBarn(production upgradeType, int newStore) {
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * Add stored resources to the building, required for all buildings, by 
-	 * Building class. Possible use to extend/upgrade a forge.
-	 * 
-	 * @throws UnsupportedOperationException, as this functionality is not 
-	 * required for a forge.
-	 */
-	protected void addGoodsBarn(production storeType, int newStore) {
-		throw new UnsupportedOperationException();
 	}
 }

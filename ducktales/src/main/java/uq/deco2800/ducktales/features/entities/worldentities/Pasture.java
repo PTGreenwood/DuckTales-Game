@@ -40,7 +40,7 @@ public class Pasture extends Building {
 	 * Update the WorldEntity properties with those of a pasture.
 	 */
 	protected void specifications() {
-		specifications(2, 10, 4, production.NULL, 0, health, null);
+		specifications(2, 10, 4, health);
 	}
 	
 	/**
@@ -53,39 +53,5 @@ public class Pasture extends Building {
 	 */
 	protected void changeHealthBuilding(int newValue){
 		health = newValue;
-	}
-	
-	/**
-	 * Upgrade produce for building, required for all buildings, by Building 
-	 * class. Possible use to extand/upgrade pastures, if the production types 
-	 * is extended.
-	 * 
-	 * @throws UnsupportedOperationException, as this functionality is not 
-	 * supported for a pasture.
-	 */
-	protected void upgradeProduceBuilding(int newValue) {
-		throw new UnsupportedOperationException();
-	}
-	
-	/**
-	 * Upgrade stored resources for building, required for all buildings, by 
-	 * Building class. Possible use to extend/upgrade a pasture.
-	 * 
-	 * @throws UnsupportedOperationException, as this functionality is not 
-	 * required for a pasture.
-	 */
-	protected void upgradeBarnBarn(production upgradeType, int newStore) {
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * Add stored resources to the building, required for all buildings, by 
-	 * Building class. Possible use to extend/upgrade a pasture.
-	 * 
-	 * @throws UnsupportedOperationException, as this functionality is not 
-	 * required for a pasture.
-	 */
-	protected void addGoodsBarn(production storeType, int newStore) {
-		throw new UnsupportedOperationException();
 	}
 }

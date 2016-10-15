@@ -15,7 +15,7 @@ public class FarmerTest {
 
 	@Test
 	public void qualificationTest() {
-		Peon peon = new Peon(10, 10, "John Doe");
+		Peon peon = new Peon(10, 10);
 		peon.setStrength(farmer.getRequiredStrength() + 1);
 		peon.setIntelligence(farmer.getRequiredIntelligence() + 1);
 
@@ -26,7 +26,7 @@ public class FarmerTest {
 	}
 
 	public void applicationTest() {
-		Peon peon = new Peon(10, 10, "John Doe");
+		Peon peon = new Peon(10, 10);
 		peon.setStrength(farmer.getRequiredStrength() + 1);
 		peon.setIntelligence(farmer.getRequiredIntelligence() + 1);
 
@@ -35,7 +35,7 @@ public class FarmerTest {
 	}
 
 	public void notQualifiedBothTest() {
-		Peon peon = new Peon(10, 10, "John Doe");
+		Peon peon = new Peon(10, 10);
 		peon.setStrength(farmer.getRequiredStrength() - 1);
 		peon.setIntelligence(farmer.getRequiredIntelligence() - 1);
 
@@ -43,7 +43,7 @@ public class FarmerTest {
 	}
 
 	public void notQualifiedStrengthTest() {
-		Peon peon = new Peon(10, 10, "John Doe");
+		Peon peon = new Peon(10, 10);
 		peon.setStrength(farmer.getRequiredStrength() - 1);
 		peon.setIntelligence(farmer.getRequiredIntelligence() + 1);
 
@@ -51,7 +51,7 @@ public class FarmerTest {
 	}
 
 	public void notQualifiedIntelligenceTest() {
-		Peon peon = new Peon(10, 10, "John Doe");
+		Peon peon = new Peon(10, 10);
 		peon.setStrength(farmer.getRequiredStrength() + 1);
 		peon.setIntelligence(farmer.getRequiredIntelligence() - 1);
 
@@ -60,7 +60,7 @@ public class FarmerTest {
 
 	@Test
 	public void notQualifiedBothMentorTest() {
-		Peon peon = new Peon(10, 10, "John Doe");
+		Peon peon = new Peon(10, 10);
 		peon.setStrength(farmer.getMentorStrength() - 1);
 		peon.setIntelligence(farmer.getMentorIntelligence() - 1);
 		peon.applyForJob(farmer);
@@ -69,14 +69,14 @@ public class FarmerTest {
 	}
 
 	public void notQualifiedStrengthMentorTest() {
-		Peon peon = new Peon(10, 10, "John Doe");
+		Peon peon = new Peon(10, 10);
 		peon.setIntelligence(farmer.getMentorIntelligence() + 1);
 
 		assertFalse(farmer.canBeMentor(peon));
 	}
 
 	public void notQualifiedIntelligenceMentorTest() {
-		Peon peon = new Peon(10, 10, "John Doe");
+		Peon peon = new Peon(10, 10);
 		peon.setStrength(farmer.getMentorStrength() + 1);
 		peon.setIntelligence(farmer.getMentorIntelligence() - 1);
 
@@ -84,7 +84,7 @@ public class FarmerTest {
 	}
 
 	public void qualifiedBothMentorTest() {
-		Peon peon = new Peon(10, 10, "John Doe");
+		Peon peon = new Peon(10, 10);
 		peon.setStrength(farmer.getMentorStrength() + 1);
 		peon.setIntelligence(farmer.getMentorIntelligence() + 1);
 
