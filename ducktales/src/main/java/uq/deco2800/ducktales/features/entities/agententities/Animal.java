@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import javafx.event.Event;
 import uq.deco2800.ducktales.GameManager;
 import uq.deco2800.ducktales.features.entities.EntityManager;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.AStar;
 import uq.deco2800.ducktales.util.Point;
+import uq.deco2800.ducktales.util.events.animal.AnimalDeadEvent;
 
 /**
  * Base class for all animals.
@@ -158,10 +160,10 @@ public class Animal extends AgentEntity {
      * Marks the animal as dead and removes itself from the entityManager.
      */
     public void setIsDead() {
-        if (this.getHealth() <= 0) {
             this.isDead = true;
-//            entityManager.removeEntity(this);
-        }
+            // fire AnimalDeadEvent when an animal dies
+            // this.fireEvent(new AnimalDeadEvent(type, point.getX(), point.getY()));
+            // entityManager.removeEntity(this);
     }
 
     /**
