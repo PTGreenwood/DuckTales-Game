@@ -302,7 +302,7 @@ public class GameManager {
     public TimeManager getTimeManager() {
         return timeManager;
     }
-    
+
     public WeatherManager getWeatherManager() {
     	return this.weatherManager;
     }
@@ -310,7 +310,7 @@ public class GameManager {
     public void setTimeManager(TimeManager timeManager) {
         this.timeManager = timeManager;
     }
-    
+
     public void setWeatherManager(WeatherManager weatherManager) {
         this.weatherManager = weatherManager;
     }
@@ -397,6 +397,7 @@ public class GameManager {
     public void setInventoryManager(InventoryManager inventoryManager) {
         this.inventoryContainer = inventoryManager;
     }
+    
     public InventoryManager getInventoryContainer() {
         return inventoryContainer;
     }
