@@ -12,6 +12,7 @@ import uq.deco2800.ducktales.util.Tickable;
 import uq.deco2800.ducktales.GameManager;
 import uq.deco2800.ducktales.features.seasons.SeasonManager;
 import uq.deco2800.ducktales.rendering.worlddisplay.WorldDisplayManager;
+import uq.deco2800.ducktales.features.seasons.*;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -34,9 +35,12 @@ public class TimeManager implements SecondaryManager, Initializable, Tickable {
 
     /* The model for the game time */
     private GameTime gameTime;
+    private int seasonNumber;
     
     /* Manager for the Seasons ;) */
     public SeasonManager seasonManager;
+    
+
 
     /**
      * This method is called when GameController initializes the time display using
@@ -53,6 +57,8 @@ public class TimeManager implements SecondaryManager, Initializable, Tickable {
         // Start the game time
         gameTime = new GameTime();
         seasonManager = new SeasonManager();
+        seasonNumber = 0;
+            	
     }
 
 
@@ -74,6 +80,31 @@ public class TimeManager implements SecondaryManager, Initializable, Tickable {
         final String currentMinute = String.format("%02d", gameTime.getMinute());
         final String timeText = "Current Time is: " + currentHour + ":" + currentMinute +
         		", Day " + currentDay + " Year " + currentYear;
+        final int dayTracker = gameTime.getSeasonalDayTracker();
+
+        
+        //Variable to hold the current Season Number to get the appropriate season name from the
+        //season list held in seasonManager.getSeasonList();
+        if(gameTime.getSeasonalDayTracker() > 20) {
+     	   if(seasonNumber < 3) {
+     		   seasonNumber++;
+     		   System.out.println(this.seasonManager.getSeasonList().get(0).getSeasonalWeatherEvents().getWeatherEvents());
+     		  System.out.println(this.seasonManager.getSeasonList().get(1).getSeasonalWeatherEvents().getWeatherEvents());
+     		 System.out.println(this.seasonManager.getSeasonList().get(2).getSeasonalWeatherEvents().getWeatherEvents());
+     		 System.out.println(this.seasonManager.getSeasonList().get(3).getSeasonalWeatherEvents().getWeatherEvents());
+     	   } else {
+     		   seasonNumber = 0;
+     	   }
+     	   System.out.println("Old Season: " + seasonManager.getCurrentSeason());
+     	   this.seasonManager.updateSeason(seasonNumber); 
+     	   System.out.println("New Season: " + seasonManager.getCurrentSeason());
+     	   
+      	   gameTime.resetTracker();
+      	   
+        } else {
+     	 //Doesn't do anything if it's already the same season. Will save on processing time (I HOPE).
+        }
+        
         
         // this is needed, since this UI update is called from another thread
         // (GameLoop runs on another thread and not the main FXApplication thread)
@@ -83,26 +114,7 @@ public class TimeManager implements SecondaryManager, Initializable, Tickable {
             timeDisplayText.setText(currentHour + ":" + currentMinute);
             dayDisplayText.setText("DAY "+ currentDay);
         });
-        
-       //Variable to hold the current Season Number to get the appropriate season name from the
-       //season list held in seasonManager.getSeasonList();
-       int seasonNumber = ((currentDay / currentYear) % 20) - 1;
-        
-        if(seasonManager.getSeasonList().get(seasonNumber) == seasonManager.getCurrentSeason()) {
-        	//Doesn't do anything if it's already the same season. Will save on processing time (I HOPE).
-    	} else {
-    		for(int i = 0; i <= 3; i++) {
-    			if(seasonManager.getSeasonList().get(seasonNumber) == seasonManager.getCurrentSeason()) {
-    				seasonManager.updateSeason(seasonManager.getSeasonList().get(seasonNumber));
-    			} else {
-    				if(seasonNumber <= 3) {
-    					seasonNumber++;
-    				} else {
-    					seasonNumber = 0;
-    				}
-    			}
-    		}
-    	}
+
     }
     
 	/** 
@@ -156,4 +168,6 @@ public class TimeManager implements SecondaryManager, Initializable, Tickable {
     public SeasonManager getSeasonManager() {
     	return this.seasonManager;
     }
+    
+    
 }

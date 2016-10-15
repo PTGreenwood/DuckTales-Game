@@ -1,5 +1,11 @@
 package uq.deco2800.ducktales.features.seasons;
 
+import uq.deco2800.ducktales.features.weather.Fire;
+import uq.deco2800.ducktales.features.weather.InvalidWeatherChanceException;
+import uq.deco2800.ducktales.features.weather.Rain;
+import uq.deco2800.ducktales.features.weather.WeatherChance;
+import uq.deco2800.ducktales.features.weather.WeatherEvents;
+
 public class Winter extends Season {
 
 	// Re state the attributes here next to int humidityLevel (The int declares
@@ -9,14 +15,17 @@ public class Winter extends Season {
 	public Winter() {
 		super.name = "Winter";
 		super.humidityLevel = 0.5f;
-		super.maxTemperature = 6;
-		super.minTemperature = 14;
+		super.maxTemperature = 12;
+		super.currentTemperature = 7;
+		super.minTemperature = 4;
 		super.timeNightFall = 5;
 		super.timeDayBreak = 7;
 
+		super.weatherEvents = new WeatherEvents();
 		// If you've added things above then you have to add them here with a
 		// this.whateverItIs = whateverItIs;
 
 	}
+	
 
 }

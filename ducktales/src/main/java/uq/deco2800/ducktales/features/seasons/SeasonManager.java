@@ -22,12 +22,19 @@ import uq.deco2800.ducktales.util.SecondaryManager;
 public class SeasonManager{
 
     /* Implement all Season Types */
-    protected Season spring;
+    /*protected Season spring;
     protected Season summer;
     protected Season autumn;
     protected Season winter;
-    
-    private List<Season> seasonList = new ArrayList<Season>();
+    */
+	
+    /* Setup intial Season Stuff for Season Manager */
+    Season spring;
+	Season summer;
+	Season autumn;
+	Season winter;
+	
+    public List<Season> seasonList;
     public Season currentSeason;
     
     public SeasonManager() {
@@ -44,12 +51,24 @@ public class SeasonManager{
     	summer = new Summer();
     	autumn = new Autumn();
     	winter = new Winter();
-    	
+
     	this.currentSeason = spring;
     	
+    	this.seasonList = new ArrayList<Season>();
     	this.seasonList.addAll(Arrays.asList(spring, summer, autumn, winter));
+    	
+    	this.setupInitialWeatherEvents();
     }
-       
+    
+    /**
+     * Sets up initial weatherEvents and their chances for each Season
+     */
+    public void setupInitialWeatherEvents() {
+		for (Season seasonIterator : this.seasonList) {
+			seasonIterator.setRainWeather();
+			seasonIterator.setFireWeather();
+		}
+    }
     /**
      * Returns the Season that is currently being viewed in Game.
      * 
@@ -79,13 +98,8 @@ public class SeasonManager{
      * 3 = Autumn(Fall).
      * 4 = Winter.
      */
-    public void updateSeason(Season season) {
-    	
-    	this.currentSeason = season;
+    public void updateSeason(int seasonNumber) {
+    	this.currentSeason = seasonList.get(seasonNumber);
     }
     
-    //@Override
-   // public void reload() {
-
-   // }
 }
