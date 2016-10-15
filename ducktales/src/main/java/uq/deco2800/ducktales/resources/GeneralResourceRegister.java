@@ -3,7 +3,6 @@ package uq.deco2800.ducktales.resources;
 import uq.deco2800.ducktales.util.exceptions.GameSetupException;
 
 import java.io.*;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -14,7 +13,9 @@ import java.util.Random;
  * Created on 15/10/2016.
  */
 public class GeneralResourceRegister {
-    /** The lists of many first and last names to be used when generating peons */
+    /**
+     * The lists of many first and last names to be used when generating peons
+     */
     private List<String> firstNames;
     private List<String> lastNames;
 
@@ -43,7 +44,6 @@ public class GeneralResourceRegister {
         int last = random.nextInt(200);
 
 
-        
         return firstNames.get(first) + "" + lastNames.get(last);
     }
 
@@ -81,13 +81,11 @@ public class GeneralResourceRegister {
             lastNamesReader.close();
 
         } catch (FileNotFoundException e) {
-            throw new GameSetupException("Cannot find files while trying to" +
-                    " load names in GeneralResourceRegister: " + e.getMessage());
+            throw new GameSetupException(
+                    "Cannot find files while trying to" + " load names in GeneralResourceRegister: " + e.getMessage());
         } catch (IOException e) {
-            throw new RuntimeException("Error when trying to read the names" +
-                    "in the firstname.txt or lastname.txt files" +
-                    " in GeneralResourceRegister");
+            throw new RuntimeException("Error when trying to read the names"
+                    + "in the firstname.txt or lastname.txt files" + " in GeneralResourceRegister");
         }
     }
-
 }
