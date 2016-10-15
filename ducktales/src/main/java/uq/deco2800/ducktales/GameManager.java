@@ -19,6 +19,7 @@ import uq.deco2800.ducktales.rendering.worlddisplay.CursorManager;
 import uq.deco2800.ducktales.rendering.worlddisplay.WorldDisplayManager;
 import uq.deco2800.ducktales.features.missions.MissionManager;
 import uq.deco2800.ducktales.resources.ResourceType;
+import uq.deco2800.ducktales.util.events.animal.AnimalDeadEvent;
 import uq.deco2800.ducktales.util.events.handlers.custom.AnimalDeadEventHandler;
 import uq.deco2800.ducktales.util.events.handlers.custom.HUDDeselectedHandler;
 import uq.deco2800.ducktales.util.events.handlers.custom.MenuSelectedEventHandler;
@@ -29,7 +30,6 @@ import uq.deco2800.ducktales.util.events.handlers.mouse.InGameMouseClickedHandle
 import uq.deco2800.ducktales.util.events.handlers.mouse.InGameMouseMovedHandler;
 import uq.deco2800.ducktales.util.events.tile.TileClickedEvent;
 import uq.deco2800.ducktales.util.events.tile.TileEnteredEvent;
-import uq.deco2800.ducktales.util.events.ui.AnimalDeadEvent;
 import uq.deco2800.ducktales.util.events.ui.HUDDeselectedEvent;
 import uq.deco2800.ducktales.util.events.ui.MenuSelectedEvent;
 import uq.deco2800.ducktales.features.hud.menu.MenuManager.MenuType;

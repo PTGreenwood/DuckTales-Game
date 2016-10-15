@@ -1,7 +1,8 @@
-package uq.deco2800.ducktales.util.events.ui;
+package uq.deco2800.ducktales.util.events.animal;
 
 import javafx.event.EventType;
 import uq.deco2800.ducktales.resources.ResourceType;
+import uq.deco2800.ducktales.util.events.ui.UIEvent;
 
 /**
  * This event is fired whenever an animal dies, this class is intended

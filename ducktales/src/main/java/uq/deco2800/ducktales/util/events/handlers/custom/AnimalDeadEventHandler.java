@@ -3,8 +3,8 @@ package uq.deco2800.ducktales.util.events.handlers.custom;
 import javafx.event.EventHandler;
 import uq.deco2800.ducktales.GameManager;
 import uq.deco2800.ducktales.features.entities.resourceentities.ResourceEntityManager;
+import uq.deco2800.ducktales.util.events.animal.AnimalDeadEvent;
 import uq.deco2800.ducktales.util.events.handlers.GameEventHandler;
-import uq.deco2800.ducktales.util.events.ui.AnimalDeadEvent;
 
 /**
  * This handler will do the following tasks
