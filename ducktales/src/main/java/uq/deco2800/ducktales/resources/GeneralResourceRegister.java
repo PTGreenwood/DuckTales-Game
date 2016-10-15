@@ -39,8 +39,8 @@ public class GeneralResourceRegister {
     public String getRandomName() {
         Random random = new Random();
 
-        int first = random.nextInt(5163);
-        int last = random.nextInt(5163);
+        int first = random.nextInt(200);
+        int last = random.nextInt(200);
 
 
         
@@ -52,12 +52,9 @@ public class GeneralResourceRegister {
      */
     private void loadNameLists() {
         try {
-            String firstNameFileLocation = getClass().getResource(
-                    "/peon/firstnames.txt").toString().substring(5);
-            String lastNameFileLocation = getClass().getResource(
-                    "/peon/lastnames.txt").toString().substring(5);
-
-            System.err.println("first names location: " + firstNameFileLocation);
+            // TODO: fix this dodgy temporary path definition!
+            String firstNameFileLocation = "build/resources/main/peon/firstnames.txt";
+            String lastNameFileLocation = "build/resources/main/peon/lastnames.txt";
 
             BufferedReader firstNamesReader = new BufferedReader(new FileReader(
                new File(firstNameFileLocation)
@@ -69,6 +66,7 @@ public class GeneralResourceRegister {
             // Now start loading the first names and last names
             String firstName = firstNamesReader.readLine();
             while (firstName != null) {
+                System.err.println(firstName);
                 firstNames.add(firstName);
                 firstName = firstNamesReader.readLine();
             }

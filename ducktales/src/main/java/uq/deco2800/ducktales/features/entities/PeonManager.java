@@ -10,6 +10,7 @@ import uq.deco2800.ducktales.rendering.sprites.PeonSprite;
 import uq.deco2800.ducktales.rendering.sprites.Sprite;
 import uq.deco2800.ducktales.rendering.sprites.SpritesFactory;
 import uq.deco2800.ducktales.resources.GeneralResourceRegister;
+import uq.deco2800.ducktales.util.exceptions.GameSetupException;
 
 /**
  * Manager for all the entities in the game.
@@ -56,8 +57,14 @@ public class PeonManager {
         // Create the sprite of the given peon
     	PeonSprite peonSprite = SpritesFactory.createPeonSprite(name);
         // Setup the sprite
-        Sprite.setupEntitySprite(peonSprite, x, y,
-                gameManager.getWorldDisplayManager().getTilesManager());
+        if (gameManager != null) {
+            Sprite.setupEntitySprite(peonSprite, x, y,
+                    gameManager.getWorldDisplayManager().getTilesManager());
+        } else {
+            throw new GameSetupException("PeonManager has not received a handle" +
+                    " on GameManager");
+        }
+
 
         // Now add the sprite to the list of
         peonSprites.put(name, peonSprite);

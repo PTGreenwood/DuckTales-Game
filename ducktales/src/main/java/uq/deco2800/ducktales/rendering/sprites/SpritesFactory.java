@@ -31,7 +31,11 @@ public class SpritesFactory {
      * @return A peon sprite with the given name as unique ID
      */
     public static PeonSprite createPeonSprite(String peonName) {
-        return new PeonSprite(peonName);
+        PeonSprite sprite = new PeonSprite(peonName);
+        sprite.setImage(ResourceSpriteRegister.getInstance().getResourceImage(
+                ResourceType.PEON
+        ));
+        return sprite;
     }
 	
     /**
