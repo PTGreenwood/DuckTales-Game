@@ -19,7 +19,7 @@ public class Miner extends Job {
     public Miner() {
 		super(requiredStrength, requiredIntelligence, 
                         mentorStrength, mentorIntelligence, 
-                        jobName, JOBTYPE);
+                        JOBTYPE);
     }
 
     /**

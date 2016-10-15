@@ -25,9 +25,12 @@ public class Gymnasium extends Building {
 	
 	/**
 	 * Initialise a new gymnasium. Requires the location of the gymnasium
-	 *  to be passed.
-	 * @param x, x location of the building
-	 * @param y, y location of the building
+	 *  to be passed. Location of the gymnasium must fall within the world, 
+	 *  and be unoccupied.
+	 * @param x, x location of the building, must be within the bounds 
+	 * of the world, and not have another building occupying the location.
+	 * @param y, y location of the building. must be within the bounds 
+	 * of the world, and not have another building occupying the location.
 	 */
 	public Gymnasium(double x, double y) {
 		super(x, y, X_LENGTH, Y_LENGTH, TYPE);
@@ -38,16 +41,52 @@ public class Gymnasium extends Building {
 	 * Update the WorldEntity properties with those of a gymnasium.
 	 */
 	protected void specifications() {
-		specifications(8, 6, 6, production.NULL, 0, health);
+		specifications(8, 6, 6, production.NULL, 0, health, null);
 	}
 	
 	/**
 	 * Update the 'health' of the gymnasium. Requires an integer value of 
-	 * the new health to be passed.
+	 * the new health to be passed. Requires an integer value of 
+	 * the new health to be passed. The health of the building will be 
+	 * greater than or equal to 0.
 	 * 
-	 * @param NewValue, new health of the building
+	 * @param NewValue, new health of the building, will update the 
+	 *  health to newValue, or 0 if newValue is <0
 	 */
 	protected void changeHealthBuilding(int newValue){
 		health = newValue;
+	}
+	
+	/**
+	 * Upgrade produce for building, required for all buildings, by Building 
+	 * class. Possible use to extand/upgrade a gymnasium.
+	 * 
+	 * @throws UnsupportedOperationException, as this functionality is not 
+	 * required for a gymnasium.
+	 */
+	protected void upgradeProduceBuilding(int newValue) {
+		throw new UnsupportedOperationException();
+	}
+	
+	/**
+	 * Upgrade stored resources for building, required for all buildings, by 
+	 * Building class. Possible use to extend/upgrade a gymnasium.
+	 * 
+	 * @throws UnsupportedOperationException, as this functionality is not 
+	 * required for a gymnasium.
+	 */
+	protected void upgradeBarnBarn(production upgradeType, int newStore) {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Add stored resources to the building, required for all buildings, by 
+	 * Building class. Possible use to extend/upgrade a gymnasium.
+	 * 
+	 * @throws UnsupportedOperationException, as this functionality is not 
+	 * required for a gymnasium.
+	 */
+	protected void addGoodsBarn(production storeType, int newStore) {
+		throw new UnsupportedOperationException();
 	}
 }

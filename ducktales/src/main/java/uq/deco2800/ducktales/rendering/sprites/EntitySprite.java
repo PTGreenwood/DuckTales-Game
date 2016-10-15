@@ -24,6 +24,10 @@ public class EntitySprite extends Sprite {
     /** The sprite register */
     private ResourceSpriteRegister resource;
 
+    /** The tile-location of the sprite */
+    private int xLocation;
+    private int yLocation;
+
     public EntitySprite(int index, ResourceType entityType) {
         super(); // Call this to activate the Timeline
 
@@ -37,4 +41,19 @@ public class EntitySprite extends Sprite {
 
     }
 
+    public int getxLocation() {
+        return xLocation;
+    }
+
+    public void setxLocation(int xLocation) {
+        this.xLocation = xLocation;
+    }
+
+    public int getyLocation() {
+        return yLocation;
+    }
+
+    public void setyLocation(int yLocation) {
+        this.yLocation = yLocation;
+    }
 }

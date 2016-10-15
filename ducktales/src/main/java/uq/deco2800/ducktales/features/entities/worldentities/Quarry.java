@@ -28,9 +28,12 @@ public class Quarry extends Building {
 	
 	/**
 	 * Initialise a new quarry. Requires the location of the quarry
-	 *  to be passed.
-	 * @param x, x location of the building
-	 * @param y, y location of the building
+	 *  to be passed. Location of the quarry must fall within the world, 
+	 *  and be unoccupied.
+	 * @param x, x location of the building, must be within the bounds 
+	 * of the world, and not have another building occupying the location.
+	 * @param y, y location of the building. must be within the bounds 
+	 * of the world, and not have another building occupying the location.
 	 */
 	public Quarry(double x, double y) {
 		super(x, y, X_LENGTH, Y_LENGTH, TYPE);
@@ -42,14 +45,17 @@ public class Quarry extends Building {
 	 * Update the WorldEntity properties with those of a quarry.
 	 */
 	protected void specifications() {
-		specifications(8, 6, 5, production.STONE, productionAmount, health);
+		specifications(8, 6, 5, production.STONE, productionAmount, health, 
+				null);
 	}
 	
 	/**
 	 * Update the 'health' of the quarry. Requires an integer value of 
-	 * the new health to be passed.
+	 * the new health to be passed. The health of the building will be 
+	 * greater than or equal to 0.
 	 * 
-	 * @param NewValue, new health of the building
+	 * @param NewValue, new health of the building, will update the 
+	 *  health to newValue, or 0 if newValue is <0
 	 */
 	protected void changeHealthBuilding(int newValue){
 		health = newValue;
@@ -61,9 +67,29 @@ public class Quarry extends Building {
 	 * 
 	 * @param newProduce, the new production amount
 	 */
-	public void upgradeProduce(int newProduce) {
-		if (newProduce >= 0) {
-			productionAmount = newProduce;
-		}
+	protected void upgradeProduceBuilding(int newProduce) {
+		productionAmount = newProduce;
+	}
+	
+	/**
+	 * Upgrade stored resources for building, required for all buildings, by 
+	 * Building class. Possible use to extend/upgrade a quarry.
+	 * 
+	 * @throws UnsupportedOperationException, as this functionality is not 
+	 * required for a quarry.
+	 */
+	protected void upgradeBarnBarn(production upgradeType, int newStore) {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Add stored resources to the building, required for all buildings, by 
+	 * Building class. Possible use to extend/upgrade a quarry.
+	 * 
+	 * @throws UnsupportedOperationException, as this functionality is not 
+	 * required for a quarry.
+	 */
+	protected void addGoodsBarn(production storeType, int newStore) {
+		throw new UnsupportedOperationException();
 	}
 }

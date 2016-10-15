@@ -1,6 +1,7 @@
 package uq.deco2800.ducktales.features.jobframework;
 
 import uq.deco2800.ducktales.features.entities.agententities.Peon;
+import uq.deco2800.ducktales.features.entities.agententities.PeonDebuffType;
 
 /**
  * Generates the Doctor job
@@ -18,9 +19,22 @@ public class Doctor extends Job {
     public Doctor() {
 		super(requiredStrength, requiredIntelligence, 
                         mentorStrength, mentorIntelligence, 
-                        jobName, JOBTYPE);
+                        JOBTYPE);
     }
-
+    
+    /**
+     * Iff the doctor is qualified (high enough intelligence)
+     * Doctor completely heals the given peon
+     * Removes all of the debuffs from the given peon.
+     * @param peon 
+     */
+    public void CompleteHeal(Peon peon){
+        if (peon.getDebuffs().size()>0){
+            for(PeonDebuffType debuffs : peon.getDebuffs()){
+                peon.removeDebuff(debuffs);
+            }
+        }
+    }
     /**
      * Defines whether or not the given peon is 
      * qualified to become a mentor as a Doctor
