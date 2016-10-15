@@ -80,7 +80,7 @@ public class WorldDisplayManager implements Initializable, SecondaryManager {
 	 * @param weather
 	 * 			weather to change current scene to
 	 * @param pane
-	 * 			pane to place the weather effecst into
+	 * 			pane to place the weather effects into
 	 */
 	public void changeWeather(Weather weather, Pane pane) {
 		WeatherEffect weatherEffect = weather.getWeatherEffect();
@@ -105,8 +105,9 @@ public class WorldDisplayManager implements Initializable, SecondaryManager {
 	 *  
 	 */
 	public void changeLightLevel(Pane pane) {
-        if (this.gameManager.getTimeManager() == null) {
-            System.err.println("time manager is still empty");
+        //getTimeManager is now getCalendarManager.
+		if (this.gameManager.getTimeManager() == null) {
+            System.err.println("Time manager is still empty");
         } else {
         	//This will change once it's all worked out.
             //boolean nightTime = this.gameManager.getTimeManager().isNight();

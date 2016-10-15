@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane alignment="center" hgap="10" style="-fx-background-color: #1a1935; -fx-border-color: white;" vgap="10" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="uq.deco2800.ducktales.SignUpController">
+<padding><Insets bottom="10" left="25" right="25" top="25" /></padding>
+   <children>
+   
+   <Text fill="WHITE" style="-fx-font-size: 20px; -fx-font-family: Arial Black; -fx-fill: #818181; -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );" text="Welcome to marketplace" GridPane.columnSpan="2">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+    
+       <Label text="User Name:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+    
+       <TextField fx:id="username" style="-fx-background-color: #1a193;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+    
+       <Label text="Password:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+    
+       <PasswordField fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+       <Label text="Password again:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+    
+       <PasswordField fx:id="passwordField2" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+    <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="0" GridPane.rowIndex="4">
+       <children>
+              <Button onAction="#handleSignUpButtonAction" style="-fx-background-color: #1b1464; -fx-border-color: white;" text="Sign Up" textFill="WHITE" />
+       </children>
+   </HBox>
+   
+   <Text fx:id="actiontarget" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+   </children>
+   <columnConstraints>
+      <ColumnConstraints />
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+   </rowConstraints>
+    
+
+</GridPane>
+
+
+
