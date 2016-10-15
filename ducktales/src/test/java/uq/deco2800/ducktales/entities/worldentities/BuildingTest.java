@@ -1431,6 +1431,9 @@ public class BuildingTest {
 	public void FarmUpgradeStoreTest() {
 		Farm entity = new Farm(1,1);
 		entity.upgradeBarn(production.ORE, 10);
+		assertEquals(entity.getStorage().toString(), "[(FOOD,50,0)]");
+		entity.upgradeBarn(production.FOOD, 10);
+		assertEquals(entity.getStorage().toString(), "[(FOOD,10,0)]");
 	}
 	
 	/**
@@ -1454,7 +1457,10 @@ public class BuildingTest {
 	@Test
 	public void MineUpgradeStoreTest() {
 		Mine entity = new Mine(1,1);
+		entity.upgradeBarn(production.LUMBER, 10);
+		assertEquals(entity.getStorage().toString(), "[(ORE,50,0)]");
 		entity.upgradeBarn(production.ORE, 10);
+		assertEquals(entity.getStorage().toString(), "[(ORE,10,0)]");
 	}
 	
 	/**
@@ -1478,7 +1484,10 @@ public class BuildingTest {
 	@Test 
 	public void QuarryUpgradeStoreTest() {
 		Quarry entity = new Quarry(1,1);
-		entity.upgradeBarn(production.ORE, 10);
+		entity.upgradeBarn(production.LUMBER, 10);
+		assertEquals(entity.getStorage().toString(), "[(STONE,50,0)]");
+		entity.upgradeBarn(production.STONE, 10);
+		assertEquals(entity.getStorage().toString(), "[(STONE,10,0)]");
 	}
 	
 	/**
@@ -1502,10 +1511,10 @@ public class BuildingTest {
 	@Test 
 	public void SawmillUpgradeStoreTest() {
 		Sawmill entity = new Sawmill(1,1);
-		entity.addGoods(production.TIMBER, 10);
-		assertEquals(entity.getStorage().toString(), "[(TIMBER,50,10), (LUMBER,50,0)]");
-		entity.addGoods(production.FOOD, 10);
-		assertEquals(entity.getStorage().toString(), "[(TIMBER,50,10), (LUMBER,50,0)]");
+		entity.upgradeBarn(production.LUMBER, 10);
+		assertEquals(entity.getStorage().toString(), "[(TIMBER,50,0), (LUMBER,10,0)]");
+		entity.upgradeBarn(production.ORE, 10);
+		assertEquals(entity.getStorage().toString(), "[(TIMBER,50,0), (LUMBER,10,0)]");
 	}
 	
 	/**
@@ -1517,5 +1526,8 @@ public class BuildingTest {
 	public void SawmillsAddStoreTest() {
 		Sawmill entity = new Sawmill(1,1);
 		entity.addGoods(production.TIMBER, 10);
+		assertEquals(entity.getStorage().toString(), "[(TIMBER,50,10), (LUMBER,50,0)]");
+		entity.addGoods(production.FOOD, 10);
+		assertEquals(entity.getStorage().toString(), "[(TIMBER,50,10), (LUMBER,50,0)]");
 	}
 }

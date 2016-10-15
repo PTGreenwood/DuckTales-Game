@@ -174,7 +174,6 @@ public abstract class StorageProduceBuilding extends Building {
 	 */
 	public void upgradeBarn(production store, Integer amount) {
 		specifications();
-		System.out.println(storage);
 		for (int i = 0; i < storage.size(); i++) {
 			Triple<production, Integer, Integer> k = storage.get(i);
 			if (k.getLeft() == store) {
