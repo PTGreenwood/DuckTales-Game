@@ -66,7 +66,6 @@ public class GeneralResourceRegister {
             // Now start loading the first names and last names
             String firstName = firstNamesReader.readLine();
             while (firstName != null) {
-                System.err.println(firstName);
                 firstNames.add(firstName);
                 firstName = firstNamesReader.readLine();
             }
