@@ -322,6 +322,8 @@ public class ResourceSpriteRegister {
 		// addResource(COWDownRight, "/COWDownRight.png");
 		// addResource(COWDownLeft, "/COWDownLeft.png");
 
+		// animal death sprite resource
+		addResource(CLOUD, "/animal/cloud");
 	}	
 	
 	/**

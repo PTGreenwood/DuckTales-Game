@@ -4,11 +4,12 @@ import javafx.beans.NamedArg;
 import javafx.event.Event;
 import javafx.event.EventTarget;
 import javafx.event.EventType;
+import uq.deco2800.ducktales.features.entities.agententities.Animal;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.events.tile.TileEvent;
 
 /**
- * Author: Damian Maher.
+ * @author Damian Maher
  */
 
 public class AnimalEvent extends Event {
@@ -20,8 +21,8 @@ public class AnimalEvent extends Event {
     private double x;
     private double y;
     
-    /** the resource type (animal type) that triggered this event */
-    private ResourceType animalType;
+    /** the animal that triggered this event */
+    private Animal animalType;
     
     public AnimalEvent(@NamedArg("eventType") EventType<? extends Event> eventType) {
         super(eventType);
@@ -32,7 +33,7 @@ public class AnimalEvent extends Event {
         super(source, target, eventType);
     }
     
-    public AnimalEvent(ResourceType animalType, int x, int y) {
+    public AnimalEvent(Animal animalType, double x, double y) {
         super(ANIMAL_EVENT);
         this.animalType = animalType;
         this.x = x;
@@ -58,11 +59,11 @@ public class AnimalEvent extends Event {
     }
     
     /**
-     * Returns the ResourceType of an animal
+     * Returns the type of an animal
      * 
      * @return the ResourceType coordinate of an animal
      */
-    public ResourceType getResourceType() {
+    public Animal getAnimalType() {
     	return this.animalType;
     }
 }

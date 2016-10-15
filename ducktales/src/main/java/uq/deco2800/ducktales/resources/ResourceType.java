@@ -37,6 +37,8 @@ public enum ResourceType {
         SHEEPUp0, SHEEPUp1, SHEEPDown0, SHEEPDown1, SHEEPLeft0, SHEEPLeft1, SHEEPRight0, SHEEPRight1, SHEEP,
 
         WOLF,
+        
+        CLOUD,
 
         // Buildings
         PASTURE, BUTCHER, BAKERY, COMMUNITY_BUILDING, CONSTRUCTION,

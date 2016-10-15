@@ -30,7 +30,7 @@ public class ResourceEntityManager extends EntityManager {
      * @param y
      *          The y-coordinate of the resource in regards to the world size
      */
-	public void dropResource(ResourceType type, int x, int y) {
+	public void dropResource(ResourceType type, double x, double y) {
 		// TO BE COMPLETED
 	}
 }

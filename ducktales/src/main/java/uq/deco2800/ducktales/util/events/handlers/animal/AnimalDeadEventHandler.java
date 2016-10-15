@@ -9,9 +9,7 @@ import uq.deco2800.ducktales.util.events.handlers.GameEventHandler;
 /**
  * This handler will do the following tasks
  * 1. remove the animal sprite from the game and replace it with a death sprite
- * 2. place an animal resource sprite at the location of death
  *
- * Created on 1/09/2016.
  * @author Damian Maher
  */
 public class AnimalDeadEventHandler extends GameEventHandler implements EventHandler<AnimalDeadEvent>{
@@ -33,7 +31,7 @@ public class AnimalDeadEventHandler extends GameEventHandler implements EventHan
 
 	@Override
 	public void handle(AnimalDeadEvent event) {
-		// resourceEntityManager.dropResource(type, x, y);
+		resourceEntityManager.dropResource(type, x, y);
 	}
 
 }

@@ -331,6 +331,8 @@ public class GameManager {
      * Set up the event handlers for the root pane of the game. The current
      * events being handled:
      *      1. A menu sprite is clicked on -> update cursor image
+     *      
+     *      8. When an animal dies -> drop a resource sprite and load death sprite
      */
     private void setupEventHandlers() {
         // Initialize the custom handlers
