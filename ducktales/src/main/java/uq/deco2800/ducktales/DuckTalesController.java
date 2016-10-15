@@ -3,7 +3,10 @@ package uq.deco2800.ducktales;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.layout.*;
+import javafx.stage.Stage;
 import uq.deco2800.singularity.clients.ducktales.DucktalesClient;
 import uq.deco2800.singularity.common.representations.User;
 import uq.deco2800.ducktales.features.builder.WorldBuilderController;
@@ -52,6 +55,12 @@ public class DuckTalesController implements Initializable {
 		client = new DucktalesClient();
 		
 	}
+	static Stage primaryStage;
+	public static void close()
+	{
+		if (primaryStage != null)
+			primaryStage.close();
+	}
 
 	/**
 	 * This is the method that will launch the game from the main menu
@@ -60,8 +69,19 @@ public class DuckTalesController implements Initializable {
 	 * @throws Exception
 	 * 			Exception for when attempting to load the game
 	 */
+	
+	
 	@FXML
 	public void startGame(ActionEvent event) throws Exception {
+		
+		Parent root1 = FXMLLoader.load(getClass().getResource("/ui/main/login.fxml"));
+        
+		Scene scene = new Scene(root1,300,275);
+		primaryStage= new Stage();
+        //primaryStage.initStyle(Stage.UNDECORATED);
+		primaryStage.setTitle("FXML Welcome");  
+		primaryStage.setScene(scene);
+		primaryStage.showAndWait();
 		// Change between the mainMenuPane and the contentPane
 		toggleMenuPane();
 
