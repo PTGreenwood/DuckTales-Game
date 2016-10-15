@@ -1,4 +1,4 @@
-package uq.deco2800.ducktales.util.events.handlers.custom;
+package uq.deco2800.ducktales.util.events.handlers.animal;
 
 import javafx.event.EventHandler;
 import uq.deco2800.ducktales.GameManager;
