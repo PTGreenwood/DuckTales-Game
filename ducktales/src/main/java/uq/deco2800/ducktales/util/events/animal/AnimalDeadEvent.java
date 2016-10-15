@@ -1,5 +1,6 @@
 package uq.deco2800.ducktales.util.events.animal;
 
+import javafx.event.Event;
 import javafx.event.EventType;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.events.ui.UIEvent;
@@ -10,7 +11,7 @@ import uq.deco2800.ducktales.util.events.ui.UIEvent;
  *
  * @author Damian Maher
  */
-public class AnimalDeadEvent extends UIEvent{
+public class AnimalDeadEvent extends AnimalEvent{
 
 	/** the coordinates of the animal when it died */
 	private double deathX;
