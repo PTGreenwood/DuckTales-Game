@@ -23,13 +23,13 @@ import uq.deco2800.ducktales.util.exceptions.GameSetupException;
  *
  * @author Leggy, khoiphan21
  */
-public class EntityManager implements Tickable {
+public class MainEntityManager implements Tickable {
 
     /** The world pane to add entities onto */
     private Pane worldDisplay;
 
     /** The Instance of this object */
-    private static final EntityManager INSTANCE = new EntityManager();
+    private static final MainEntityManager INSTANCE = new MainEntityManager();
 
     /** The game world */
     private World world;
@@ -49,9 +49,9 @@ public class EntityManager implements Tickable {
     ResourceInfoRegister infoRegister;
 
     /**
-     * Main constructor of the {@link EntityManager} class
+     * Main constructor of the {@link MainEntityManager} class
      */
-    private EntityManager() {
+    private MainEntityManager() {
         // Instantiate the helper managers
         animalManager = new AnimalManager();
         buildingManager = new BuildingManager();
@@ -59,11 +59,11 @@ public class EntityManager implements Tickable {
     }
 
     /**
-     * Gets the instance of the EntityManager.
+     * Gets the instance of the MainEntityManager.
      *
-     * @return Returns the EntityManager instance.
+     * @return Returns the MainEntityManager instance.
      */
-    public static EntityManager getInstance() {
+    public static MainEntityManager getInstance() {
         return INSTANCE;
     }
 

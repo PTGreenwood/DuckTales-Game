@@ -9,6 +9,7 @@ import uq.deco2800.ducktales.features.entities.agententities.Peon;
 import uq.deco2800.ducktales.rendering.sprites.PeonSprite;
 import uq.deco2800.ducktales.rendering.sprites.Sprite;
 import uq.deco2800.ducktales.rendering.sprites.SpritesFactory;
+import uq.deco2800.ducktales.resources.GeneralResourceRegister;
 
 /**
  * Manager for all the entities in the game.
@@ -41,9 +42,12 @@ public class PeonManager {
     	Peon peon = new Peon(x, y);
         String name;
 
+        // The register to get the randomized names from
+        GeneralResourceRegister register = GeneralResourceRegister.getInstance();
+
         // Check for name duplication
         do {
-            name = Peon.generateName();
+            name = register.getRandomName();
         } while (world.checkPeonNameDuplication(name));
 
         // At this point, the name should be fine. Add the peon to World

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javafx.scene.image.Image;
-import uq.deco2800.ducktales.features.entities.EntityManager;
 import uq.deco2800.ducktales.features.time.GameTime;
 import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 import uq.deco2800.ducktales.resources.ResourceType;

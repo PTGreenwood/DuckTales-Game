@@ -25,11 +25,12 @@ import uq.deco2800.ducktales.features.entities.agententities.PeonBuffType;
  *
  */
 public class Peon extends AgentEntity {
+	/** The randomizer */
+	private static final Random RANDOM = new Random();
 
 	/** The Main Manager of the game */
 	protected GameManager gameManager;
 
-	private static final Random RANDOM = new Random();
 	private static final ResourceType TYPE = ResourceType.PEON;
 	private List<Point> goalPoints;
 
@@ -81,42 +82,6 @@ public class Peon extends AgentEntity {
 		this.goalPoints = new ArrayList<Point>();
 		this.buildingsMade = 0;
 	}
-/**
-	 * This method generates a new name based on a database of first and last
-	 * names. These names will also be unique identifiers for future reference.
-	 * 
-	 * @return A unique string for peons so that they can be referenced later on
-	 * @throws IOException
-	 */
-	public static String generateName() throws IOException {
-		String firstName;
-		String lastName;
-		String name;
-		int first = RANDOM.nextInt(5163);
-		int last = RANDOM.nextInt(5163);
-
-		BufferedReader firstnames = new BufferedReader(new FileReader("firstnames.txt"));
-
-		for (int i = 0; i < first - 1; ++i) {
-			firstnames.readLine();
-		}
-		firstName = firstnames.readLine();
-
-		BufferedReader lastnames = new BufferedReader(new FileReader("lastnames.txt"));
-
-		for (int i = 0; i < last - 1; ++i) {
-			lastnames.readLine();
-		}
-		lastName = lastnames.readLine();
-
-		name = firstName + " " + lastName;
-
-		firstnames.close();
-		lastnames.close();
-
-		return name;
-	}
-
 
 	/**
 	 * Health limit is between 1000 and 0
