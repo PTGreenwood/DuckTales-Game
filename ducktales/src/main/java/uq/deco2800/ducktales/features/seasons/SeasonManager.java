@@ -19,16 +19,16 @@ import uq.deco2800.ducktales.util.SecondaryManager;
  * 
  *
  */
-public class SeasonManager implements SecondaryManager{
+public class SeasonManager{
 
     /* Implement all Season Types */
-    protected Season spring = new Spring();
-    protected Season summer = new Summer();;
-    protected Season autumn = new Autumn();;
-    protected Season winter = new Winter();;
+    protected Season spring;
+    protected Season summer;
+    protected Season autumn;
+    protected Season winter;
     
     private List<Season> seasonList = new ArrayList<Season>();
-    private Season currentSeason;
+    public Season currentSeason;
     
     public SeasonManager() {
     	/*
@@ -39,11 +39,36 @@ public class SeasonManager implements SecondaryManager{
     	 * What chance of the events happening do they have?
     	 * 
     	 */
+    	
+    	spring = new Spring();
+    	summer = new Summer();
+    	autumn = new Autumn();
+    	winter = new Winter();
+    	
     	this.currentSeason = spring;
     	
     	this.seasonList.addAll(Arrays.asList(spring, summer, autumn, winter));
     }
-   
+       
+    /**
+     * Returns the Season that is currently being viewed in Game.
+     * 
+     * @return The Season currently viewed in Game along with it's values
+     * 			WeatherEvent and WeatherChance.
+     */
+    public Season getCurrentSeason() {
+    	return this.currentSeason;
+    }
+    
+    /**
+     * Returns the list of possible seasons. Used for comparisons.
+     * 
+     * @return A list of seasons that are in the game.
+     */
+    public List<Season> getSeasonList() {
+    	return this.seasonList;
+    }
+    
     /**
      * Updates the Season to the next one when currentDay is
      * within range of next season.
@@ -54,23 +79,13 @@ public class SeasonManager implements SecondaryManager{
      * 3 = Autumn(Fall).
      * 4 = Winter.
      */
-    public void updateSeason(int seasonNumber) {
+    public void updateSeason(Season season) {
     	
-    	this.currentSeason = this.seasonList.get(seasonNumber);
+    	this.currentSeason = season;
     }
     
-    /**
-     * Returns the Season that is currently being viewed in Game.
-     * 
-     * @return The Season currently viewed in Game along with it's values
-     * 			WeatherEvent and WeatherChance.
-     */
-    public Season getSeason() {
-    	return this.currentSeason;
-    }
-    
-    @Override
-    public void reload() {
+    //@Override
+   // public void reload() {
 
-    }
+   // }
 }
