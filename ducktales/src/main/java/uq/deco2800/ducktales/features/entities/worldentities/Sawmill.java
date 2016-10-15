@@ -45,7 +45,7 @@ public class Sawmill extends StorageProduceBuilding {
 	 * Update the WorldEntity properties with those of a sawmill.
 	 */
 	protected void specifications() {
-		specifications(4, 8, 3, production.WOOD, productionAmount, health, 
+		specifications(4, 8, 3, production.TIMBER, productionAmount, health, 
 				null);
 	}
 	

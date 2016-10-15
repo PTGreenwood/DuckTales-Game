@@ -17,7 +17,7 @@ public abstract class StorageProduceBuilding extends Building {
 		
 	// Otherwise external classes cannot access type (even using method below)
 	public enum production {
-		NULL, WOOD, STONE, ORE, FOOD
+		NULL, TIMBER, STONE, ORE, FOOD, LUMBER
 	}
 	
 	protected static production productionType;
@@ -119,7 +119,6 @@ public abstract class StorageProduceBuilding extends Building {
 	public void upgradeProduce(int newProduce) {
 		specifications();
 		if (newProduce >= 0) {
-			System.err.println(newProduce);
 			upgradeProduceBuilding(newProduce);
 		}
 	}

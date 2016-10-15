@@ -43,10 +43,10 @@ public class StorageBarn extends StorageProduceBuilding {
 	public StorageBarn(double x, double y) {
 		super(x, y, X_LENGTH, Y_LENGTH, TYPE);
 		health = 950;
-		storage.add(0, Triple.of(production.WOOD, 20, 0));
-		storage.add(1, Triple.of(production.STONE, 15, 0));
-		storage.add(2, Triple.of(production.ORE, 10, 0));
-		storage.add(3, Triple.of(production.FOOD, 25, 0));
+		storage.add(0, Triple.of(production.TIMBER, 200, 0));
+		storage.add(1, Triple.of(production.STONE, 150, 0));
+		storage.add(2, Triple.of(production.ORE, 100, 0));
+		storage.add(3, Triple.of(production.FOOD, 250, 0));
 		
 	}
 	

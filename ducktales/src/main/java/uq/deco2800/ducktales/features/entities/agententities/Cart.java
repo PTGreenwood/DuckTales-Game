@@ -40,7 +40,7 @@ public class Cart extends AgentEntity {
 	 */
 	public Cart(int x, int y) {
 		super(x, y, 1, 1, TYPE);
-		storage.add(0, Triple.of(production.WOOD, 10, 0));
+		storage.add(0, Triple.of(production.TIMBER, 10, 0));
 		storage.add(1, Triple.of(production.STONE, 10, 0));
 		storage.add(2, Triple.of(production.ORE, 10, 0));
 		storage.add(3, Triple.of(production.FOOD, 10, 0));

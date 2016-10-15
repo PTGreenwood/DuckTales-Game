@@ -95,7 +95,7 @@ public class ConstructorTest {
 		// Check get production type, for samwill
 		assertTrue("Sawmill getproductionType incorrect", 
 				constructor.getResourcesProductionType(sawmill) == 
-				production.WOOD);
+				production.TIMBER);
 		
 		// Check get health for sawmill, house and bakery
 		assertTrue("Correct Health", sawmill.getHealth() == 1400);

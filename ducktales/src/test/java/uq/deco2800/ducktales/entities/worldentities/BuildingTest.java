@@ -133,24 +133,24 @@ public class BuildingTest {
 		assertTrue("Incorrect xLength", entity3.getXLength() == 5);
 		assertTrue("Incorrect yLength", entity3.getYLength() == 5);
 		
-		assertEquals(entity3.getStorage().toString(), "[(WOOD,20,0), (STONE,15,0), (ORE,10,0), (FOOD,25,0)]");
+		assertEquals(entity3.getStorage().toString(), "[(TIMBER,200,0), (STONE,150,0), (ORE,100,0), (FOOD,250,0)]");
 		entity3.addGoods(production.FOOD, 15);
 		entity3.addGoods(production.ORE, 7);
-		assertEquals(entity3.getStorage().toString(), "[(WOOD,20,0), (STONE,15,0), (ORE,10,7), (FOOD,25,15)]");
-		entity3.addGoods(production.WOOD, 30);
-		assertEquals(entity3.getStorage().toString(), "[(WOOD,20,20), (STONE,15,0), (ORE,10,7), (FOOD,25,15)]");
+		assertEquals(entity3.getStorage().toString(), "[(TIMBER,200,0), (STONE,150,0), (ORE,100,7), (FOOD,250,15)]");
+		entity3.addGoods(production.TIMBER, 30);
+		assertEquals(entity3.getStorage().toString(), "[(TIMBER,200,30), (STONE,150,0), (ORE,100,7), (FOOD,250,15)]");
 		entity3.upgradeBarn(production.ORE, 30);
-		assertEquals(entity3.getStorage().toString(), "[(WOOD,20,20), (STONE,15,0), (ORE,30,7), (FOOD,25,15)]");
+		assertEquals(entity3.getStorage().toString(), "[(TIMBER,200,30), (STONE,150,0), (ORE,30,7), (FOOD,250,15)]");
 		entity3.addGoods(production.ORE, 16);
-		assertEquals(entity3.getStorage().toString(), "[(WOOD,20,20), (STONE,15,0), (ORE,30,23), (FOOD,25,15)]");
+		assertEquals(entity3.getStorage().toString(), "[(TIMBER,200,30), (STONE,150,0), (ORE,30,23), (FOOD,250,15)]");
 		entity3.addGoods(production.ORE, -10);
-		assertEquals(entity3.getStorage().toString(), "[(WOOD,20,20), (STONE,15,0), (ORE,30,13), (FOOD,25,15)]");
+		assertEquals(entity3.getStorage().toString(), "[(TIMBER,200,30), (STONE,150,0), (ORE,30,13), (FOOD,250,15)]");
 		entity3.addGoods(null, -10);
-		assertEquals(entity3.getStorage().toString(), "[(WOOD,20,20), (STONE,15,0), (ORE,30,13), (FOOD,25,15)]");
+		assertEquals(entity3.getStorage().toString(), "[(TIMBER,200,30), (STONE,150,0), (ORE,30,13), (FOOD,250,15)]");
 		entity3.addGoods(production.ORE, 30);
-		assertEquals(entity3.getStorage().toString(), "[(WOOD,20,20), (STONE,15,0), (ORE,30,30), (FOOD,25,15)]");
+		assertEquals(entity3.getStorage().toString(), "[(TIMBER,200,30), (STONE,150,0), (ORE,30,30), (FOOD,250,15)]");
 		entity3.addGoods(production.NULL, 10);
-		assertEquals(entity3.getStorage().toString(), "[(WOOD,20,20), (STONE,15,0), (ORE,30,30), (FOOD,25,15)]");
+		assertEquals(entity3.getStorage().toString(), "[(TIMBER,200,30), (STONE,150,0), (ORE,30,30), (FOOD,250,15)]");
 		
 		entity3.upgradeProduce(10);
 	}
@@ -560,7 +560,7 @@ public class BuildingTest {
 		
 		// Check correct production type and amount
 		assertTrue("Wrong production type", 
-				entity1.resourcesProductionType() == production.WOOD);
+				entity1.resourcesProductionType() == production.TIMBER);
 		assertTrue("Wrong production amount", 
 				entity3.resourcesProductionAmount() == 5);
 		
@@ -1441,7 +1441,7 @@ public class BuildingTest {
 	@Test (expected = UnsupportedOperationException.class)
 	public void FarmAddStoreTest() {
 		Farm entity = new Farm(1,1);
-		entity.addGoods(production.WOOD, 10);
+		entity.addGoods(production.TIMBER, 10);
 	}
 		
 	/**
@@ -1462,7 +1462,7 @@ public class BuildingTest {
 	@Test (expected = UnsupportedOperationException.class)
 	public void MineAddStoreTest() {
 		Mine entity = new Mine(1,1);
-		entity.addGoods(production.WOOD, 10);
+		entity.addGoods(production.TIMBER, 10);
 	}
 	
 	/**
@@ -1483,7 +1483,7 @@ public class BuildingTest {
 	@Test (expected = UnsupportedOperationException.class)
 	public void QuarryAddStoreTest() {
 		Quarry entity = new Quarry(1,1);
-		entity.addGoods(production.WOOD, 10);
+		entity.addGoods(production.TIMBER, 10);
 	}
 	
 	/**
@@ -1504,6 +1504,6 @@ public class BuildingTest {
 	@Test (expected = UnsupportedOperationException.class)
 	public void SawmillsAddStoreTest() {
 		Sawmill entity = new Sawmill(1,1);
-		entity.addGoods(production.WOOD, 10);
+		entity.addGoods(production.TIMBER, 10);
 	}
 }
