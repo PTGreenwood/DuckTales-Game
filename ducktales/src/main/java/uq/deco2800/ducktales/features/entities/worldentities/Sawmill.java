@@ -108,11 +108,15 @@ public class Sawmill extends StorageProduceBuilding {
 		storage = newStore;
 	}
 	
+	/**
+	 * Produce 'refined'/'processed' materials from raw materials. Requires 
+	 * the building to have some raw materials available to be processed, 
+	 * and for the building to have room to store the new materials.
+	 */
 	protected void produceMaterialBuilding() {
-		if (storage.get(1).getRight()>0 && storage.get(0).getRight()<storage.get(0).getMiddle()) {
+		if (storage.get(1).getRight()>0 && storage.get(0).getRight()<storage.get(0).getMiddle()-1) {
 			this.addGoods(production.LUMBER, -1);
-			this.addGoods(production.TIMBER, storage.get(0).getRight()+2);
-			System.out.println(storage);
+			this.addGoods(production.TIMBER, 2);
 		}
 		System.out.println(storage);
 	}

@@ -106,6 +106,13 @@ public class Mine extends StorageProduceBuilding {
 		storage = newStore;
 	}
 	
+	/**
+	 * Produce 'refined'/'processed' materials from raw materials. Requires 
+	 * the building to have some raw materials available to be processed, 
+	 * and for the building to have room to store the new materials.
+	 * 
+	 * Currently unimplemented for Mine
+	 */
 	protected void produceMaterialBuilding() {
 		throw new UnsupportedOperationException();
 	}

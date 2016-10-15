@@ -156,6 +156,13 @@ public abstract class Building extends WorldEntity {
 		// Not required
 	}
 	
+	/**
+	 * Method to return a valid StorageProduceBuilding, for a given Building. 
+	 * Will return null if the building is not of a valid type.
+	 * 
+	 * @param building, the building to attempt to convert type of
+	 * @return a valid StorageProduceBuilding or null
+	 */
 	public StorageProduceBuilding toStorageProduceBuilding(Building building) {
 		ArrayList<ResourceType> produceStorageBuildings = new ArrayList<ResourceType>();
 		produceStorageBuildings.add(ResourceType.SAWMILL);

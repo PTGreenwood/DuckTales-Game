@@ -319,6 +319,7 @@ public class World implements Tickable {
 		for (int i = 0; i < animals.size(); i++) {
 			animals.get(i).tick();
 		}
+		// Produce materials every 1000 ticks
 		for (int j = 0; j < buildings.size(); j++) {
 			if (buildings.get(j).getType() == ResourceType.SAWMILL && 
 					timer%1000==0) {

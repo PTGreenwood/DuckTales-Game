@@ -1532,4 +1532,68 @@ public class BuildingTest {
 		entity.addGoods(production.FOOD, 10);
 		assertEquals(entity.getStorage().toString(), "[(TIMBER,50,10), (LUMBER,50,4)]");
 	}
+	
+	/**
+	 * Test the produceMaterial method. 
+	 */
+	@Test
+	public void SawmillProcessTest1() {
+		Sawmill entity = new Sawmill(1,1);
+		entity.produceMaterial();
+		assertEquals(entity.getStorage().toString(), "[(TIMBER,50,2), (LUMBER,50,3)]");
+		entity.addGoods(production.TIMBER, 50);
+		entity.produceMaterial();
+		assertEquals(entity.getStorage().toString(), "[(TIMBER,50,50), (LUMBER,50,3)]");
+	}
+	
+	/**
+	 * Test the produceMaterial method. 
+	 */
+	@Test
+	public void SawmillProcessTest2() {
+		Sawmill entity = new Sawmill(1,1);
+		entity.produceMaterial();
+		assertEquals(entity.getStorage().toString(), "[(TIMBER,50,2), (LUMBER,50,3)]");
+		entity.produceMaterial();
+		entity.produceMaterial();
+		entity.produceMaterial();
+		entity.produceMaterial();
+		assertEquals(entity.getStorage().toString(), "[(TIMBER,50,8), (LUMBER,50,0)]");
+	}
+	
+	/**
+	 * Test the produceMaterial method. 
+	 */
+	@Test (expected = UnsupportedOperationException.class)
+	public void FarmProcessTest() {
+		Farm entity = new Farm(1,1);
+		entity.produceMaterial();
+	}
+	
+	/**
+	 * Test the produceMaterial method. 
+	 */
+	@Test (expected = UnsupportedOperationException.class)
+	public void QuarryProcessTest() {
+		Quarry entity = new Quarry(1,1);
+		entity.produceMaterial();
+	}
+	
+	/**
+	 * Test the produceMaterial method. 
+	 */
+	@Test (expected = UnsupportedOperationException.class)
+	public void MineProcessTest() {
+		Mine entity = new Mine(1,1);
+		entity.produceMaterial();
+	}
+	
+	/**
+	 * Test the produceMaterial method. 
+	 */
+	@Test (expected = UnsupportedOperationException.class)
+	public void StorageBarnProcessTest() {
+		StorageBarn entity = new StorageBarn(1,1);
+		entity.produceMaterial();
+	}
 }

@@ -106,6 +106,14 @@ public class StorageBarn extends StorageProduceBuilding {
 		throw new UnsupportedOperationException();
 	}	
 	
+	/**
+	 * Produce 'refined'/'processed' materials from raw materials. Requires 
+	 * the building to have some raw materials available to be processed, 
+	 * and for the building to have room to store the new materials.
+	 * 
+	 * Not a valid method for the storage barn, as it does not produce any 
+	 * materials.
+	 */
 	protected void produceMaterialBuilding() {
 		throw new UnsupportedOperationException();
 	}
