@@ -31,7 +31,7 @@ public class AnimalDeadEventHandler extends GameEventHandler implements EventHan
 
 	@Override
 	public void handle(AnimalDeadEvent event) {
-		resourceEntityManager.dropResource(type, x, y);
+		//resourceEntityManager.dropResource(type, x, y);
 	}
 
 }
