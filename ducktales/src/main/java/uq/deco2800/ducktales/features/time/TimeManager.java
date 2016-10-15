@@ -88,16 +88,13 @@ public class TimeManager implements SecondaryManager, Initializable, Tickable {
         if(gameTime.getSeasonalDayTracker() > 20) {
      	   if(seasonNumber < 3) {
      		   seasonNumber++;
-     		   System.out.println(this.seasonManager.getSeasonList().get(0).getSeasonalWeatherEvents().getWeatherEvents());
-     		  System.out.println(this.seasonManager.getSeasonList().get(1).getSeasonalWeatherEvents().getWeatherEvents());
-     		 System.out.println(this.seasonManager.getSeasonList().get(2).getSeasonalWeatherEvents().getWeatherEvents());
-     		 System.out.println(this.seasonManager.getSeasonList().get(3).getSeasonalWeatherEvents().getWeatherEvents());
+
      	   } else {
      		   seasonNumber = 0;
      	   }
-     	   System.out.println("Old Season: " + seasonManager.getCurrentSeason());
+     	  
      	   this.seasonManager.updateSeason(seasonNumber); 
-     	   System.out.println("New Season: " + seasonManager.getCurrentSeason());
+     	   System.out.println("Season Update: " + seasonManager.getCurrentSeason().getName());
      	   
       	   gameTime.resetTracker();
       	   

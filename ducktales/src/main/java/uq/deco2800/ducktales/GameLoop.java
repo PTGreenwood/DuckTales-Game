@@ -30,13 +30,9 @@ public class GameLoop implements Runnable {
 	
 	/** The secondary managers of the game */
 	private TimeManager timeManager;
-<<<<<<< HEAD
-	private EntityManager entityManager;
-	//private DayNightManager daynightManager; //not in use currently
-=======
 	private MainEntityManager mainEntityManager;
-	private DayNightManager daynightManager; //not in use currently
->>>>>>> master
+
+	//private DayNightManager daynightManager; //not in use currently
 	private WeatherManager weatherManager;
 
 	private static boolean paused;
