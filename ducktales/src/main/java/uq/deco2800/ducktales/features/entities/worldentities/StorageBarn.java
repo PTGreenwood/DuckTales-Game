@@ -44,9 +44,10 @@ public class StorageBarn extends StorageProduceBuilding {
 		super(x, y, X_LENGTH, Y_LENGTH, TYPE);
 		health = 950;
 		storage.add(0, Triple.of(production.TIMBER, 200, 0));
-		storage.add(1, Triple.of(production.STONE, 150, 0));
-		storage.add(2, Triple.of(production.ORE, 100, 0));
-		storage.add(3, Triple.of(production.FOOD, 250, 0));
+		storage.add(1, Triple.of(production.LUMBER, 200, 0));
+		storage.add(2, Triple.of(production.STONE, 150, 0));
+		storage.add(3, Triple.of(production.ORE, 100, 0));
+		storage.add(4, Triple.of(production.FOOD, 250, 0));
 		
 	}
 	
@@ -77,24 +78,9 @@ public class StorageBarn extends StorageProduceBuilding {
 	 * @param store, the type of produced material to be stored
 	 * @param amount, the amount to be stored
 	 */
-	protected void addGoodsBarn(production storeType, int newStore) {
-		for (int i = 0; i < storage.size(); i++) {
-			Triple<production, Integer, Integer> k = storage.get(i);
-			if (k.getLeft() == storeType && k.getMiddle() > k.getRight() 
-					+ newStore) {
-				Triple<production, Integer, Integer> m = Triple.of(storeType, 
-						k.getMiddle(), k.getRight() + newStore);
-				storage.remove(k);
-				storage.add(i, m);
-			} else if (k.getLeft() == storeType && k.getMiddle() <= k.getRight() 
-					+ newStore) {
-				Triple<production, Integer, Integer> m = Triple.of(storeType, 
-						k.getMiddle(), k.getMiddle());
-				storage.remove(k);
-				storage.add(i, m);
-			}
-		}
-		
+	protected void addGoodsBuilding(ArrayList<Triple<production, Integer, 
+			Integer>> newStore) {
+		storage = newStore;
 	}
 		
 	/**
@@ -104,16 +90,9 @@ public class StorageBarn extends StorageProduceBuilding {
 	 * @param store, the type of produced material to be stored
 	 * @param amount, the new capacity 
 	 */
-	protected void upgradeBarnBarn(production upgradeType, int newStore) {
-		for (int i = 0; i < storage.size(); i++) {
-			Triple<production, Integer, Integer> k = storage.get(i);
-			if (k.getLeft() == upgradeType) {
-				Triple<production, Integer, Integer> m = Triple.of(upgradeType, 
-						newStore, k.getRight());
-				storage.remove(k);
-				storage.add(i, m);
-			}
-		}
+	protected void upgradeStorageBuilding(ArrayList<Triple<production, Integer, 
+			Integer>> newStore) {
+		storage = newStore;
 	}
 	
 	/**

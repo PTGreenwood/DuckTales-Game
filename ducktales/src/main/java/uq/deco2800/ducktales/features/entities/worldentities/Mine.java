@@ -1,5 +1,10 @@
 package uq.deco2800.ducktales.features.entities.worldentities;
 
+import java.util.ArrayList;
+
+import org.apache.commons.lang3.tuple.Triple;
+
+import uq.deco2800.ducktales.features.entities.worldentities.StorageProduceBuilding.production;
 import uq.deco2800.ducktales.resources.ResourceType;
 
 /**
@@ -20,6 +25,10 @@ public class Mine extends StorageProduceBuilding {
 	// Building produce - starting value
 	private int productionAmount = 5;
 	
+	// Mine storage - starting
+	private ArrayList<Triple<production, Integer, Integer>> storage = new 
+			ArrayList<Triple<production, Integer, Integer>>();
+	
 	// Mine size
 	public static final int X_LENGTH = 5;
 	public static final int Y_LENGTH = 5;
@@ -39,6 +48,7 @@ public class Mine extends StorageProduceBuilding {
 		super(x, y, X_LENGTH, Y_LENGTH, TYPE);
 		health = 1300;
 		productionAmount = 5;
+		storage.add(0, Triple.of(production.ORE, 50, 0));
 	}
 	
 	/**
@@ -46,7 +56,7 @@ public class Mine extends StorageProduceBuilding {
 	 */
 	protected void specifications() {
 		specifications(10, 6, 3, production.ORE, productionAmount, health, 
-				null);
+				storage);
 	}
 	
 	/**
@@ -78,8 +88,11 @@ public class Mine extends StorageProduceBuilding {
 	 * @throws UnsupportedOperationException, as this functionality is not 
 	 * required for a mine.
 	 */
-	protected void upgradeBarnBarn(production upgradeType, int newStore) {
-		throw new UnsupportedOperationException();
+	protected void upgradeStorageBuilding(ArrayList<Triple<production, Integer, 
+			Integer>> newStore) {
+		if (newStore.contains(production.ORE)) {
+			storage = newStore;
+		}
 	}
 
 	/**
@@ -89,7 +102,8 @@ public class Mine extends StorageProduceBuilding {
 	 * @throws UnsupportedOperationException, as this functionality is not 
 	 * required for a mine.
 	 */
-	protected void addGoodsBarn(production storeType, int newStore) {
-		throw new UnsupportedOperationException();
+	protected void addGoodsBuilding(ArrayList<Triple<production, Integer, 
+			Integer>> newStore) {
+		storage = newStore;
 	}
 }

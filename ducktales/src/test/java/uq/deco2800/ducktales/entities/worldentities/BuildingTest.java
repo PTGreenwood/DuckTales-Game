@@ -133,24 +133,24 @@ public class BuildingTest {
 		assertTrue("Incorrect xLength", entity3.getXLength() == 5);
 		assertTrue("Incorrect yLength", entity3.getYLength() == 5);
 		
-		assertEquals(entity3.getStorage().toString(), "[(TIMBER,200,0), (STONE,150,0), (ORE,100,0), (FOOD,250,0)]");
+		assertEquals(entity3.getStorage().toString(), "[(TIMBER,200,0), (LUMBER,200,0), (STONE,150,0), (ORE,100,0), (FOOD,250,0)]");
 		entity3.addGoods(production.FOOD, 15);
 		entity3.addGoods(production.ORE, 7);
-		assertEquals(entity3.getStorage().toString(), "[(TIMBER,200,0), (STONE,150,0), (ORE,100,7), (FOOD,250,15)]");
+		assertEquals(entity3.getStorage().toString(), "[(TIMBER,200,0), (LUMBER,200,0), (STONE,150,0), (ORE,100,7), (FOOD,250,15)]");
 		entity3.addGoods(production.TIMBER, 30);
-		assertEquals(entity3.getStorage().toString(), "[(TIMBER,200,30), (STONE,150,0), (ORE,100,7), (FOOD,250,15)]");
+		assertEquals(entity3.getStorage().toString(), "[(TIMBER,200,30), (LUMBER,200,0), (STONE,150,0), (ORE,100,7), (FOOD,250,15)]");
 		entity3.upgradeBarn(production.ORE, 30);
-		assertEquals(entity3.getStorage().toString(), "[(TIMBER,200,30), (STONE,150,0), (ORE,30,7), (FOOD,250,15)]");
+		assertEquals(entity3.getStorage().toString(), "[(TIMBER,200,30), (LUMBER,200,0), (STONE,150,0), (ORE,30,7), (FOOD,250,15)]");
 		entity3.addGoods(production.ORE, 16);
-		assertEquals(entity3.getStorage().toString(), "[(TIMBER,200,30), (STONE,150,0), (ORE,30,23), (FOOD,250,15)]");
+		assertEquals(entity3.getStorage().toString(), "[(TIMBER,200,30), (LUMBER,200,0), (STONE,150,0), (ORE,30,23), (FOOD,250,15)]");
 		entity3.addGoods(production.ORE, -10);
-		assertEquals(entity3.getStorage().toString(), "[(TIMBER,200,30), (STONE,150,0), (ORE,30,13), (FOOD,250,15)]");
+		assertEquals(entity3.getStorage().toString(), "[(TIMBER,200,30), (LUMBER,200,0), (STONE,150,0), (ORE,30,13), (FOOD,250,15)]");
 		entity3.addGoods(null, -10);
-		assertEquals(entity3.getStorage().toString(), "[(TIMBER,200,30), (STONE,150,0), (ORE,30,13), (FOOD,250,15)]");
+		assertEquals(entity3.getStorage().toString(), "[(TIMBER,200,30), (LUMBER,200,0), (STONE,150,0), (ORE,30,13), (FOOD,250,15)]");
 		entity3.addGoods(production.ORE, 30);
-		assertEquals(entity3.getStorage().toString(), "[(TIMBER,200,30), (STONE,150,0), (ORE,30,30), (FOOD,250,15)]");
+		assertEquals(entity3.getStorage().toString(), "[(TIMBER,200,30), (LUMBER,200,0), (STONE,150,0), (ORE,30,30), (FOOD,250,15)]");
 		entity3.addGoods(production.NULL, 10);
-		assertEquals(entity3.getStorage().toString(), "[(TIMBER,200,30), (STONE,150,0), (ORE,30,30), (FOOD,250,15)]");
+		assertEquals(entity3.getStorage().toString(), "[(TIMBER,200,30), (LUMBER,200,0), (STONE,150,0), (ORE,30,30), (FOOD,250,15)]");
 		
 		entity3.upgradeProduce(10);
 	}
@@ -1427,7 +1427,7 @@ public class BuildingTest {
 	 * Test the upgrade Barn method (increase storage capacity). Should throw 
 	 * unsupported operation exception as not valid for farms.
 	 */
-	@Test (expected = UnsupportedOperationException.class)
+	@Test
 	public void FarmUpgradeStoreTest() {
 		Farm entity = new Farm(1,1);
 		entity.upgradeBarn(production.ORE, 10);
@@ -1438,17 +1438,20 @@ public class BuildingTest {
 	 * throw unsupported operation exception as not a supported method for 
 	 * farms.
 	 */
-	@Test (expected = UnsupportedOperationException.class)
+	@Test
 	public void FarmAddStoreTest() {
 		Farm entity = new Farm(1,1);
 		entity.addGoods(production.TIMBER, 10);
+		assertEquals(entity.getStorage().toString(), "[(FOOD,50,0)]");
+		entity.addGoods(production.FOOD, 10);
+		assertEquals(entity.getStorage().toString(), "[(FOOD,50,10)]");
 	}
 		
 	/**
 	 * Test the upgrade Barn method (increase storage capacity). Should throw 
 	 * unsupported operation exception as not valid for mines.
 	 */
-	@Test (expected = UnsupportedOperationException.class)
+	@Test
 	public void MineUpgradeStoreTest() {
 		Mine entity = new Mine(1,1);
 		entity.upgradeBarn(production.ORE, 10);
@@ -1459,17 +1462,20 @@ public class BuildingTest {
 	 * throw unsupported operation exception as not a supported method for 
 	 * mines.
 	 */
-	@Test (expected = UnsupportedOperationException.class)
+	@Test 
 	public void MineAddStoreTest() {
 		Mine entity = new Mine(1,1);
 		entity.addGoods(production.TIMBER, 10);
+		assertEquals(entity.getStorage().toString(), "[(ORE,50,0)]");
+		entity.addGoods(production.ORE, 10);
+		assertEquals(entity.getStorage().toString(), "[(ORE,50,10)]");
 	}
 	
 	/**
 	 * Test the upgrade Barn method (increase storage capacity). Should throw 
 	 * unsupported operation exception as not valid for quarries.
 	 */
-	@Test (expected = UnsupportedOperationException.class)
+	@Test 
 	public void QuarryUpgradeStoreTest() {
 		Quarry entity = new Quarry(1,1);
 		entity.upgradeBarn(production.ORE, 10);
@@ -1480,20 +1486,26 @@ public class BuildingTest {
 	 * throw unsupported operation exception as not a supported method for 
 	 * quarries.
 	 */
-	@Test (expected = UnsupportedOperationException.class)
+	@Test 
 	public void QuarryAddStoreTest() {
 		Quarry entity = new Quarry(1,1);
 		entity.addGoods(production.TIMBER, 10);
+		assertEquals(entity.getStorage().toString(), "[(STONE,50,0)]");
+		entity.addGoods(production.STONE, 10);
+		assertEquals(entity.getStorage().toString(), "[(STONE,50,10)]");
 	}
 	
 	/**
 	 * Test the upgrade Barn method (increase storage capacity). Should throw 
 	 * unsupported operation exception as not valid for sawmills.
 	 */
-	@Test (expected = UnsupportedOperationException.class)
+	@Test 
 	public void SawmillUpgradeStoreTest() {
 		Sawmill entity = new Sawmill(1,1);
-		entity.upgradeBarn(production.ORE, 10);
+		entity.addGoods(production.TIMBER, 10);
+		assertEquals(entity.getStorage().toString(), "[(TIMBER,50,10), (LUMBER,50,0)]");
+		entity.addGoods(production.FOOD, 10);
+		assertEquals(entity.getStorage().toString(), "[(TIMBER,50,10), (LUMBER,50,0)]");
 	}
 	
 	/**
@@ -1501,7 +1513,7 @@ public class BuildingTest {
 	 * throw unsupported operation exception as not a supported method for 
 	 * sawmills.
 	 */
-	@Test (expected = UnsupportedOperationException.class)
+	@Test 
 	public void SawmillsAddStoreTest() {
 		Sawmill entity = new Sawmill(1,1);
 		entity.addGoods(production.TIMBER, 10);
