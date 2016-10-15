@@ -25,20 +25,18 @@ public enum ResourceType {
         TREE_1, TREE_2, TREE_3,
         ROCK_1, ROCK_2,
 
-        // Agent entities
+        // PEONS
         PEON,
 
+
+        // ANIMALS
         DUCK, DUCKUp, DUCKLeft, DUCKRight, DUCKDown, DUCK_FRONT_RIGHT, DUCK_1_1,
-
         DUCKDown0, DUCKDown1, DUCKLeft0, DUCKLeft1, DUCKRight0, DUCKRight1, DUCKUp0, DUCKUp1,
-
         COW, COWUpRight, COWUpLeft, COWDownRight, COWDownLeft, COW_FRONT_RIGHT,
-
         SHEEPUp0, SHEEPUp1, SHEEPDown0, SHEEPDown1, SHEEPLeft0, SHEEPLeft1, SHEEPRight0, SHEEPRight1, SHEEP,
-
         WOLF,
 
-        // Buildings
+        // BUILDINGS
         PASTURE, BUTCHER, BAKERY, COMMUNITY_BUILDING, CONSTRUCTION,
         HOUSE, SAWMILL, CEMETERY, BARN, FORGE, HOSPITAL, OBSERVATORY, FARM,
         MINE, QUARRY, CHURCH, SCHOOL, GYMNASIUM, 

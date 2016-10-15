@@ -185,6 +185,7 @@ public class MainEntityManager implements Tickable {
     public void moveAllEntities(double xAmount, double yAmount) {
         animalManager.moveAllAnimalsSprites(xAmount, yAmount);
         buildingManager.moveAllBuildingSprites(xAmount, yAmount);
+        peonManager.moveAllPeonSprites(xAmount, yAmount);
     }
 
     /**

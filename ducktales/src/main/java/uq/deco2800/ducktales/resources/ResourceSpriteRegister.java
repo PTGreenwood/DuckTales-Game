@@ -290,9 +290,15 @@ public class ResourceSpriteRegister {
 	}
 
 	private void addAgentEntitiesResources() {
-		// Agent entities
-		addResource(PEON, "/peon.png");
+		/*
+		 * PEONS
+		 */
+		addResource(PEON, "/peon/jobs/builder.png");
 
+
+		/*
+		 * ANIMALS
+		 */
 		addResource(DUCK, "/animal/duck/DUCKDown0.png");
 		addResource(DUCK_1_1, "/animal/duck_1_1.png");
 

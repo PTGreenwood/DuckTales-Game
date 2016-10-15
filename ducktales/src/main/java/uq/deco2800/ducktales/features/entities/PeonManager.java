@@ -93,4 +93,27 @@ public class PeonManager {
     public void setGameManager(GameManager gameManager) {
         this.gameManager = gameManager;
     }
+
+    /**
+     * Move all the peon sprites by the given x- and y-amount on the screen
+     *
+     * @param xAmount
+     *          The amount to move in x-direction
+     * @param yAmount
+     *          The amount to move in y-direction
+     */
+    public void moveAllPeonSprites(double xAmount, double yAmount) {
+        PeonSprite sprite;
+        for (String key : peonSprites.keySet()) {
+            sprite = peonSprites.get(key);
+
+            if (sprite != null) {
+                sprite.setLayoutX(sprite.getLayoutX() + xAmount);
+                sprite.setLayoutY(sprite.getLayoutY() + yAmount);
+            } else {
+                throw new RuntimeException("A sprite is not yet " +
+                        "instantiated");
+            }
+        }
+    }
 }
