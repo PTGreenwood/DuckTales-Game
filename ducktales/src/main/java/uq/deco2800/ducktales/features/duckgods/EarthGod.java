@@ -22,12 +22,11 @@ public class EarthGod extends DuckGods {
 	 
 	public void giveaward() {
 		if(isWorshiped == true){
-       /**Peon.speed= Peon.speed*2;
-		*need to change Speed visibility to public
-		*more award details
-		*/
+      	/**Peon.speed= Peon.speed*2;
+	 *need to change Speed visibility to public
+	 *more award details
+	 */
 		}
-		
 	}
 	
 	public void givepenalty() {
@@ -36,6 +35,7 @@ public class EarthGod extends DuckGods {
 	   *need to change Speed visibility to public
 	   *more penalty detail
 	   */
-	}}  
+		}
+	}  
         
 }

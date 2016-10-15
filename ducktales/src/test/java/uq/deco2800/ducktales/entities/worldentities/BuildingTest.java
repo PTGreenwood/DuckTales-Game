@@ -65,7 +65,7 @@ public class BuildingTest {
 	 * House test, check all the methods and parameters of House buildings 
 	 * that can be called/accessed. 
 	 */
-	@Test
+	@Test(expected = UnsupportedOperationException.class)
 	public void storageBarnTest() {
 		// Instantiate 3 Houses
 		StorageBarn entity1 = new StorageBarn(2, 3);
@@ -151,13 +151,15 @@ public class BuildingTest {
 		assertEquals(entity3.getStorage().toString(), "[(WOOD,20,20), (STONE,15,0), (ORE,30,30), (FOOD,25,15)]");
 		entity3.addGoods(production.NULL, 10);
 		assertEquals(entity3.getStorage().toString(), "[(WOOD,20,20), (STONE,15,0), (ORE,30,30), (FOOD,25,15)]");
+		
+		entity3.upgradeProduce(10);
 	}
 	
 	/**
 	 * House test, check all the methods and parameters of House buildings 
 	 * that can be called/accessed. 
 	 */
-	@Test
+	@Test (expected = UnsupportedOperationException.class)
 	public void houseTest() {
 		// Instantiate 3 Houses
 		House entity1 = new House(2, 3);
@@ -224,13 +226,15 @@ public class BuildingTest {
 		// Test getx and gety methods, house 3
 		assertTrue("Incorrect xLength", entity3.getXLength() == 2);
 		assertTrue("Incorrect yLength", entity3.getYLength() == 2);
+		
+		entity3.upgradeProduce(10);
 	}
 	
 	/**
 	 * School test, check all the methods and parameters of School buildings 
 	 * that can be called/accessed. 
 	 */
-	@Test
+	@Test (expected = UnsupportedOperationException.class)
 	public void schoolTest() {
 		// Instantiate 3 Houses
 		School entity1 = new School(2, 3);
@@ -297,13 +301,15 @@ public class BuildingTest {
 		// Test getx and gety methods, house 3
 		assertTrue("Incorrect xLength", entity3.getXLength() == 5);
 		assertTrue("Incorrect yLength", entity3.getYLength() == 5);
+		
+		entity3.upgradeProduce(10);
 	}
 	
 	/**
 	 * Gymnasium test, check all the methods and parameters of gym buildings 
 	 * that can be called/accessed. 
 	 */
-	@Test
+	@Test (expected = UnsupportedOperationException.class)
 	public void gymTest() {
 		// Instantiate 3 Houses
 		Gymnasium entity1 = new Gymnasium(2, 3);
@@ -370,13 +376,15 @@ public class BuildingTest {
 		// Test getx and gety methods, house 3
 		assertTrue("Incorrect xLength", entity3.getXLength() == 2);
 		assertTrue("Incorrect yLength", entity3.getYLength() == 2);
+		
+		entity3.upgradeProduce(10);
 	}
 	
 	/**
 	 * Box test, check all the methods and parameters of Box buildings  
 	 * that can be called/accessed. 
 	 */
-	@Test
+	@Test (expected = UnsupportedOperationException.class)
 	public void boxTest() {
 		// Instantiate 3 new Boxes
 		Box entity1 = new Box(2, 3);
@@ -436,13 +444,15 @@ public class BuildingTest {
 		// Test getx and gety methods
 		assertTrue("Incorrect xLength", entity3.getXLength() == 1);
 		assertTrue("Incorrect yLength", entity3.getYLength() == 1);
+		
+		entity3.upgradeProduce(10);
 	}
 	
 	/**
 	 * LongBox test, check all the methods and parameters of LongBox buildings 
 	 * that can be called/accessed. 
 	 */
-	@Test
+	@Test (expected = UnsupportedOperationException.class)
 	public void longBoxTest(){
 		// Instantiate 3 new LongBox buildings
 		LongBox entity1 = new LongBox(2, 3);
@@ -501,13 +511,15 @@ public class BuildingTest {
 		// Test getx and gety methods
 		assertTrue("Incorrect xLength", entity3.getXLength() == 2);
 		assertTrue("Incorrect yLength", entity3.getYLength() == 1);
+		
+		entity3.upgradeProduce(10);
 	}
 	
 	/**
 	 * Barn test, check all the methods and parameters of Barn buildings 
 	 * that can be called/accessed. 
 	 */
-	@Test
+	@Test (expected = UnsupportedOperationException.class)
 	public void barnTest(){
 		// Instantiate 3 new Barns
 		Barn entity1 = new Barn(2, 3);
@@ -560,6 +572,8 @@ public class BuildingTest {
 		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
 		entity3.changeHealth(-10);
 		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
+		
+		entity3.upgradeProduce(10);
 	}
 	
 	/**
@@ -640,7 +654,7 @@ public class BuildingTest {
 	 * Observatory test, check all the methods and parameters of Observatory 
 	 * buildings that can be called/accessed. 
 	 */
-	@Test
+	@Test (expected = UnsupportedOperationException.class)
 	public void observatoryTest(){
 		// Instantiate 3 new Observatories
 		Observatory entity1 = new Observatory(2, 3);
@@ -695,13 +709,15 @@ public class BuildingTest {
 		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
 		entity3.changeHealth(-10);
 		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
+		
+		entity3.upgradeProduce(10);
 	}
 	
 	/**
 	 * Bakery test, check all the methods and parameters of Bakery buildings 
 	 * that can be called/accessed. 
 	 */
-	@Test
+	@Test (expected = UnsupportedOperationException.class)
 	public void bakeryTest(){
 		// Instantiate 3 new Bakeries
 		Bakery entity1 = new Bakery(2, 3);
@@ -756,13 +772,15 @@ public class BuildingTest {
 		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
 		entity3.changeHealth(-10);
 		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
+		
+		entity3.upgradeProduce(10);
 	}
 	
 	/**
 	 * Cemetery test, check all the methods and parameters of Cemetery 
 	 * buildings that can be called/accessed. 
 	 */
-	@Test
+	@Test (expected = UnsupportedOperationException.class)
 	public void cemeteryTest(){
 		// Instantiate 3 new cemeteries
 		Cemetery entity1 = new Cemetery(2, 3);
@@ -817,6 +835,8 @@ public class BuildingTest {
 		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
 		entity3.changeHealth(-10);
 		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
+		
+		entity3.upgradeProduce(10);
 	}
 	
 	/**
@@ -897,7 +917,7 @@ public class BuildingTest {
 	 * Forge test, check all the methods and parameters of Forge buildings 
 	 * that can be called/accessed. 
 	 */
-	@Test
+	@Test (expected = UnsupportedOperationException.class)
 	public void forgeTest(){
 		// Instantiate 3 new forges
 		Forge entity1 = new Forge(2, 3);
@@ -953,13 +973,15 @@ public class BuildingTest {
 		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
 		entity3.changeHealth(-10);
 		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
+		
+		entity3.upgradeProduce(10);
 	}
 	
 	/**
 	 * Hospital test, check all the methods and parameters of Hospital 
 	 * buildings that can be called/accessed. 
 	 */
-	@Test
+	@Test (expected = UnsupportedOperationException.class)
 	public void hospitalTest(){
 		// Instantiate 3 new hospitals
 		Hospital entity1 = new Hospital(2, 3);
@@ -1014,6 +1036,8 @@ public class BuildingTest {
 		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
 		entity3.changeHealth(-10);
 		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
+		
+		entity3.upgradeProduce(10);
 	}
 	
 	/**
@@ -1098,7 +1122,7 @@ public class BuildingTest {
 	 * Butcher test, check all the methods and parameters of Butcher buildings 
 	 * that can be called/accessed. 
 	 */
-	@Test
+	@Test (expected = UnsupportedOperationException.class)
 	public void butcherTest(){
 		// Instantiate 3 new butchers
 		Butcher entity1 = new Butcher(2, 3);
@@ -1153,13 +1177,15 @@ public class BuildingTest {
 		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
 		entity3.changeHealth(-10);
 		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
+		
+		entity3.upgradeProduce(10);
 	}
 	
 	/**
 	 * Church test, check all the methods and parameters of Church buildings 
 	 * that can be called/accessed. 
 	 */
-	@Test
+	@Test (expected = UnsupportedOperationException.class)
 	public void churchTest(){
 		// Instantiate 3 new Churches
 		Church entity1 = new Church(2, 3);
@@ -1213,13 +1239,15 @@ public class BuildingTest {
 		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
 		entity3.changeHealth(-10);
 		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
+		
+		entity3.upgradeProduce(10);
 	}
 	
 	/**
 	 * Community Building test, check all the methods and parameters of 
 	 * Community Buildings that can be called/accessed. 
 	 */
-	@Test
+	@Test (expected = UnsupportedOperationException.class)
 	public void communityBuildingTest(){
 		// Instantiate 3 new Community Buildings
 		CommunityBuilding entity1 = new CommunityBuilding(2, 3);
@@ -1274,13 +1302,15 @@ public class BuildingTest {
 		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
 		entity3.changeHealth(-10);
 		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
+		
+		entity3.upgradeProduce(10);
 	}
 	
 	/**
 	 * Pasture test, check all the methods and parameters of Pasture buildings 
 	 * that can be called/accessed. 
 	 */
-	@Test
+	@Test (expected = UnsupportedOperationException.class)
 	public void pastureTest(){
 		// Instantiate 3 new Pastures
 		Pasture entity1 = new Pasture(2, 3);
@@ -1335,6 +1365,8 @@ public class BuildingTest {
 		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
 		entity3.changeHealth(-10);
 		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
+		
+		entity3.upgradeProduce(10);
 	}
 	
 	/**
@@ -1509,5 +1541,404 @@ public class BuildingTest {
 		assertTrue("isPassable - box", false == (entity2.isPassable()));
 		assertTrue("isPassable - box", false == (entity3.isPassable()));
 		
+	}
+	
+	/**
+	 * Test the upgrade Barn method (increase storage capacity). Should throw 
+	 * unsupported operation exception as not valid for houses.
+	 */
+	@Test(expected = UnsupportedOperationException.class)
+	public void BakeryUpgradeStoreTest() {
+		Bakery bakery = new Bakery(1,1);
+		bakery.upgradeBarn(production.WOOD, 10);
+	}
+	
+	/**
+	 * Test the add Goods method, add stored resources to a building. Should 
+	 * throw unsupported operation exception as not a supported method for 
+	 * houses.
+	 */
+	@Test(expected = UnsupportedOperationException.class)
+	public void BakeryAddStoreTest() {
+		Bakery bakery = new Bakery(1,1);
+		bakery.addGoods(production.WOOD, 10);
+	}
+	
+	/**
+	 * Test the upgrade Barn method (increase storage capacity). Should throw 
+	 * unsupported operation exception as not valid for barns.
+	 */
+	@Test(expected = UnsupportedOperationException.class)
+	public void BarnUpgradeStoreTest() {
+		Barn entity = new Barn(1,1);
+		entity.upgradeBarn(production.ORE, 10);
+	}
+	
+	/**
+	 * Test the add Goods method, add stored resources to a building. Should 
+	 * throw unsupported operation exception as not a supported method for 
+	 * barns.
+	 */
+	@Test(expected = UnsupportedOperationException.class)
+	public void BarnAddStoreTest() {
+		Barn entity = new Barn(1,1);
+		entity.addGoods(production.WOOD, 10);
+	}
+	
+	/**
+	 * Test the upgrade Barn method (increase storage capacity). Should throw 
+	 * unsupported operation exception as not valid for boxes.
+	 */
+	@Test(expected = UnsupportedOperationException.class)
+	public void BoxUpgradeStoreTest() {
+		Box entity = new Box(1,1);
+		entity.upgradeBarn(production.ORE, 10);
+	}
+	
+	/**
+	 * Test the add Goods method, add stored resources to a building. Should 
+	 * throw unsupported operation exception as not a supported method for 
+	 * boxes.
+	 */
+	@Test(expected = UnsupportedOperationException.class)
+	public void BoxAddStoreTest() {
+		Box entity = new Box(1,1);
+		entity.addGoods(production.WOOD, 10);
+	}
+	
+	/**
+	 * Test the upgrade Barn method (increase storage capacity). Should throw 
+	 * unsupported operation exception as not valid for butchers.
+	 */
+	@Test(expected = UnsupportedOperationException.class)
+	public void ButcherUpgradeStoreTest() {
+		Butcher entity = new Butcher(1,1);
+		entity.upgradeBarn(production.ORE, 10);
+	}
+	
+	/**
+	 * Test the add Goods method, add stored resources to a building. Should 
+	 * throw unsupported operation exception as not a supported method for 
+	 * butchers.
+	 */
+	@Test(expected = UnsupportedOperationException.class)
+	public void ButcherAddStoreTest() {
+		Butcher entity = new Butcher(1,1);
+		entity.addGoods(production.WOOD, 10);
+	}
+	
+	/**
+	 * Test the upgrade Barn method (increase storage capacity). Should throw 
+	 * unsupported operation exception as not valid for cemeteries.
+	 */
+	@Test(expected = UnsupportedOperationException.class)
+	public void CemeteryUpgradeStoreTest() {
+		Cemetery entity = new Cemetery(1,1);
+		entity.upgradeBarn(production.ORE, 10);
+	}
+	
+	/**
+	 * Test the add Goods method, add stored resources to a building. Should 
+	 * throw unsupported operation exception as not a supported method for 
+	 * cemeteries.
+	 */
+	@Test(expected = UnsupportedOperationException.class)
+	public void CemeteryAddStoreTest() {
+		Cemetery entity = new Cemetery(1,1);
+		entity.addGoods(production.STONE, 10);
+	}
+	
+	/**
+	 * Test the upgrade Barn method (increase storage capacity). Should throw 
+	 * unsupported operation exception as not valid for churchs.
+	 */
+	@Test(expected = UnsupportedOperationException.class)
+	public void ChurchUpgradeStoreTest() {
+		Church entity = new Church(1,1);
+		entity.upgradeBarn(production.ORE, 10);
+	}
+	
+	/**
+	 * Test the add Goods method, add stored resources to a building. Should 
+	 * throw unsupported operation exception as not a supported method for 
+	 * churches.
+	 */
+	@Test(expected = UnsupportedOperationException.class)
+	public void ChurchAddStoreTest() {
+		Church entity = new Church(1,1);
+		entity.addGoods(production.WOOD, 10);
+	}
+	
+	/**
+	 * Test the upgrade Barn method (increase storage capacity). Should throw 
+	 * unsupported operation exception as not valid for community buildings.
+	 */
+	@Test(expected = UnsupportedOperationException.class)
+	public void CommunityBuildingUpgradeStoreTest() {
+		CommunityBuilding entity = new CommunityBuilding(1,1);
+		entity.upgradeBarn(production.ORE, 10);
+	}
+	
+	/**
+	 * Test the add Goods method, add stored resources to a building. Should 
+	 * throw unsupported operation exception as not a supported method for 
+	 * community buildings.
+	 */
+	@Test(expected = UnsupportedOperationException.class)
+	public void CommunityBuildingAddStoreTest() {
+		CommunityBuilding entity = new CommunityBuilding(1,1);
+		entity.addGoods(production.WOOD, 10);
+	}
+	
+	/**
+	 * Test the upgrade Barn method (increase storage capacity). Should throw 
+	 * unsupported operation exception as not valid for farms.
+	 */
+	@Test(expected = UnsupportedOperationException.class)
+	public void FarmUpgradeStoreTest() {
+		Farm entity = new Farm(1,1);
+		entity.upgradeBarn(production.ORE, 10);
+	}
+	
+	/**
+	 * Test the add Goods method, add stored resources to a building. Should 
+	 * throw unsupported operation exception as not a supported method for 
+	 * farms.
+	 */
+	@Test(expected = UnsupportedOperationException.class)
+	public void FarmAddStoreTest() {
+		Farm entity = new Farm(1,1);
+		entity.addGoods(production.WOOD, 10);
+	}
+	
+	/**
+	 * Test the upgrade Barn method (increase storage capacity). Should throw 
+	 * unsupported operation exception as not valid for forges.
+	 */
+	@Test(expected = UnsupportedOperationException.class)
+	public void ForgeUpgradeStoreTest() {
+		Forge entity = new Forge(1,1);
+		entity.upgradeBarn(production.ORE, 10);
+	}
+	
+	/**
+	 * Test the add Goods method, add stored resources to a building. Should 
+	 * throw unsupported operation exception as not a supported method for 
+	 * forges.
+	 */
+	@Test(expected = UnsupportedOperationException.class)
+	public void ForgeAddStoreTest() {
+		Forge entity = new Forge(1,1);
+		entity.addGoods(production.WOOD, 10);
+	}
+	
+	/**
+	 * Test the upgrade Barn method (increase storage capacity). Should throw 
+	 * unsupported operation exception as not valid for gyms.
+	 */
+	@Test(expected = UnsupportedOperationException.class)
+	public void GymnasiumUpgradeStoreTest() {
+		Gymnasium entity = new Gymnasium(1,1);
+		entity.upgradeBarn(production.ORE, 10);
+	}
+	
+	/**
+	 * Test the add Goods method, add stored resources to a building. Should 
+	 * throw unsupported operation exception as not a supported method for 
+	 * gyms.
+	 */
+	@Test(expected = UnsupportedOperationException.class)
+	public void GymnasiumAddStoreTest() {
+		Gymnasium entity = new Gymnasium(1,1);
+		entity.addGoods(production.WOOD, 10);
+	}
+	
+	/**
+	 * Test the upgrade Barn method (increase storage capacity). Should throw 
+	 * unsupported operation exception as not valid for hospitals.
+	 */
+	@Test(expected = UnsupportedOperationException.class)
+	public void HospitalUpgradeStoreTest() {
+		Hospital entity = new Hospital(1,1);
+		entity.upgradeBarn(production.ORE, 10);
+	}
+	
+	/**
+	 * Test the add Goods method, add stored resources to a building. Should 
+	 * throw unsupported operation exception as not a supported method for 
+	 * hospitals.
+	 */
+	@Test(expected = UnsupportedOperationException.class)
+	public void HospitalAddStoreTest() {
+		Hospital entity = new Hospital(1,1);
+		entity.addGoods(production.WOOD, 10);
+	}
+	
+	/**
+	 * Test the upgrade Barn method (increase storage capacity). Should throw 
+	 * unsupported operation exception as not valid for houses.
+	 */
+	@Test(expected = UnsupportedOperationException.class)
+	public void HouseUpgradeStoreTest() {
+		House entity = new House(1,1);
+		entity.upgradeBarn(production.ORE, 10);
+	}
+	
+	/**
+	 * Test the add Goods method, add stored resources to a building. Should 
+	 * throw unsupported operation exception as not a supported method for 
+	 * houses.
+	 */
+	@Test(expected = UnsupportedOperationException.class)
+	public void HouseAddStoreTest() {
+		House entity = new House(1,1);
+		entity.addGoods(production.WOOD, 10);
+	}
+	
+	/**
+	 * Test the upgrade Barn method (increase storage capacity). Should throw 
+	 * unsupported operation exception as not valid for longboxes.
+	 */
+	@Test(expected = UnsupportedOperationException.class)
+	public void LongBoxUpgradeStoreTest() {
+		LongBox entity = new LongBox(1,1);
+		entity.upgradeBarn(production.ORE, 10);
+	}
+	
+	/**
+	 * Test the add Goods method, add stored resources to a building. Should 
+	 * throw unsupported operation exception as not a supported method for 
+	 * longboxes.
+	 */
+	@Test(expected = UnsupportedOperationException.class)
+	public void LongBoxAddStoreTest() {
+		LongBox entity = new LongBox(1,1);
+		entity.addGoods(production.WOOD, 10);
+	}
+	
+	/**
+	 * Test the upgrade Barn method (increase storage capacity). Should throw 
+	 * unsupported operation exception as not valid for mines.
+	 */
+	@Test(expected = UnsupportedOperationException.class)
+	public void MineUpgradeStoreTest() {
+		Mine entity = new Mine(1,1);
+		entity.upgradeBarn(production.ORE, 10);
+	}
+	
+	/**
+	 * Test the add Goods method, add stored resources to a building. Should 
+	 * throw unsupported operation exception as not a supported method for 
+	 * mines.
+	 */
+	@Test(expected = UnsupportedOperationException.class)
+	public void MineAddStoreTest() {
+		Mine entity = new Mine(1,1);
+		entity.addGoods(production.WOOD, 10);
+	}
+	
+	/**
+	 * Test the upgrade Barn method (increase storage capacity). Should throw 
+	 * unsupported operation exception as not valid for observatories.
+	 */
+	@Test(expected = UnsupportedOperationException.class)
+	public void ObservatoryUpgradeStoreTest() {
+		Observatory entity = new Observatory(1,1);
+		entity.upgradeBarn(production.ORE, 10);
+	}
+	
+	/**
+	 * Test the add Goods method, add stored resources to a building. Should 
+	 * throw unsupported operation exception as not a supported method for 
+	 * observatories.
+	 */
+	@Test(expected = UnsupportedOperationException.class)
+	public void ObservatoryAddStoreTest() {
+		Observatory entity = new Observatory(1,1);
+		entity.addGoods(production.WOOD, 10);
+	}
+	
+	/**
+	 * Test the upgrade Barn method (increase storage capacity). Should throw 
+	 * unsupported operation exception as not valid for pastures.
+	 */
+	@Test(expected = UnsupportedOperationException.class)
+	public void PastureUpgradeStoreTest() {
+		Pasture entity = new Pasture(1,1);
+		entity.upgradeBarn(production.ORE, 10);
+	}
+	
+	/**
+	 * Test the add Goods method, add stored resources to a building. Should 
+	 * throw unsupported operation exception as not a supported method for 
+	 * pastures.
+	 */
+	@Test(expected = UnsupportedOperationException.class)
+	public void PastureAddStoreTest() {
+		Pasture entity = new Pasture(1,1);
+		entity.addGoods(production.WOOD, 10);
+	}
+	
+	/**
+	 * Test the upgrade Barn method (increase storage capacity). Should throw 
+	 * unsupported operation exception as not valid for quarries.
+	 */
+	@Test(expected = UnsupportedOperationException.class)
+	public void QuarryUpgradeStoreTest() {
+		Quarry entity = new Quarry(1,1);
+		entity.upgradeBarn(production.ORE, 10);
+	}
+	
+	/**
+	 * Test the add Goods method, add stored resources to a building. Should 
+	 * throw unsupported operation exception as not a supported method for 
+	 * quarries.
+	 */
+	@Test(expected = UnsupportedOperationException.class)
+	public void QuarryAddStoreTest() {
+		Quarry entity = new Quarry(1,1);
+		entity.addGoods(production.WOOD, 10);
+	}
+	
+	/**
+	 * Test the upgrade Barn method (increase storage capacity). Should throw 
+	 * unsupported operation exception as not valid for sawmills.
+	 */
+	@Test(expected = UnsupportedOperationException.class)
+	public void SawmillUpgradeStoreTest() {
+		Sawmill entity = new Sawmill(1,1);
+		entity.upgradeBarn(production.ORE, 10);
+	}
+	
+	/**
+	 * Test the add Goods method, add stored resources to a building. Should 
+	 * throw unsupported operation exception as not a supported method for 
+	 * sawmills.
+	 */
+	@Test(expected = UnsupportedOperationException.class)
+	public void SawmillsAddStoreTest() {
+		Sawmill entity = new Sawmill(1,1);
+		entity.addGoods(production.WOOD, 10);
+	}
+	
+	/**
+	 * Test the upgrade Barn method (increase storage capacity). Should throw 
+	 * unsupported operation exception as not valid for schools.
+	 */
+	@Test(expected = UnsupportedOperationException.class)
+	public void SchoolUpgradeStoreTest() {
+		School entity = new School(1,1);
+		entity.upgradeBarn(production.ORE, 10);
+	}
+	
+	/**
+	 * Test the add Goods method, add stored resources to a building. Should 
+	 * throw unsupported operation exception as not a supported method for 
+	 * schools.
+	 */
+	@Test(expected = UnsupportedOperationException.class)
+	public void SchoolAddStoreTest() {
+		School entity = new School(1,1);
+		entity.addGoods(production.WOOD, 10);
 	}
 }

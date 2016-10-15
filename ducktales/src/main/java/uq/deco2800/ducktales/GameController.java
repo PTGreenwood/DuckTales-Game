@@ -582,10 +582,10 @@ public class GameController implements Initializable{
             rootPane.getChildren().add(root);
             
             // position the level pane
-            AnchorPane.setBottomAnchor(root, 10.0);
+            AnchorPane.setTopAnchor(root, 580.0);
             AnchorPane.setLeftAnchor(root, 350.0);            
 
-            helperManager.hideHelper();
+            //helperManager.hideHelper();
             
         } catch (IOException e) {
             System.err.println("Unable to load Helper");
