@@ -110,6 +110,13 @@ public abstract class StorageProduceBuilding extends Building {
 	protected abstract void upgradeProduceBuilding(int newValue);
 	
 	/**
+	 * Produce 'refined'/'processed' materials from raw materials. Requires 
+	 * the building to have some raw materials available to be processed, 
+	 * and for the building to have room to store the new materials.
+	 */
+	protected abstract void produceMaterialBuilding();
+	
+	/**
 	 * Method to update the production amount of a 'production' building. 
 	 * Requires an integer value of the produce to be passed. Production 
 	 * amounts are greater than, or equal to 0.
@@ -184,5 +191,12 @@ public abstract class StorageProduceBuilding extends Building {
 				upgradeStorageBuilding(storage);
 			}
 		}
+	}
+	
+	/**
+	 * Call the produceMaterialBuilding() method for the specific building.
+	 */
+	public void produceMaterial() {
+		produceMaterialBuilding();
 	}
 }

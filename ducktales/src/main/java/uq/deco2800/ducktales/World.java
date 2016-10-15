@@ -10,12 +10,14 @@ import uq.deco2800.ducktales.features.entities.Entity;
 import uq.deco2800.ducktales.features.entities.agententities.Animal;
 import uq.deco2800.ducktales.features.entities.agententities.Peon;
 import uq.deco2800.ducktales.features.entities.worldentities.Building;
+import uq.deco2800.ducktales.features.entities.worldentities.StorageProduceBuilding;
 import uq.deco2800.ducktales.resources.ResourceInfoRegister;
 import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 
 
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.features.landscape.tiles.Tile;
+import uq.deco2800.ducktales.features.time.GameTime;
 import uq.deco2800.ducktales.util.*;
 import uq.deco2800.ducktales.util.exceptions.GameSetupException;
 
@@ -48,7 +50,9 @@ public class World implements Tickable {
 	/** The registers */
 	private ResourceSpriteRegister tileRegister = ResourceSpriteRegister.getInstance();
 	private ResourceInfoRegister infoRegister = ResourceInfoRegister.getInstance();
-
+	
+	private int timer = 0;
+	
 	/**
 	 * Instantiates a World with the given specified parameters, with the tiles
 	 * type default to GRASS_1
@@ -62,7 +66,7 @@ public class World implements Tickable {
 		entities = new ArrayList<>();
 		animals = new ArrayList<>();
 		buildings = new ArrayList<>();
-		peons = new HashMap<>(50);
+		peons = new HashMap<>(50); 
 
 		for (int x = 0; x < width; x++) {
 			for (int y = 0; y < height; y++) {
@@ -299,6 +303,7 @@ public class World implements Tickable {
 
 	@Override
 	public void tick() {
+		timer++;
 		// Update all the tiles
 		for (int y = 0; y < tiles.getHeight(); y++) {
 			for (int x = 0; x < tiles.getWidth(); x++) {
@@ -313,6 +318,15 @@ public class World implements Tickable {
 		// Update all the animals
 		for (int i = 0; i < animals.size(); i++) {
 			animals.get(i).tick();
+		}
+		// Produce materials every 1000 ticks
+		for (int j = 0; j < buildings.size(); j++) {
+			if (buildings.get(j).getType() == ResourceType.SAWMILL && 
+					timer%1000==0) {
+				StorageProduceBuilding buildingSelected = 
+						buildings.get(j).toStorageProduceBuilding(buildings.get(j));
+				buildingSelected.produceMaterial();
+			}
 		}
 	}
 
