@@ -43,7 +43,7 @@ public class Bakery extends Building {
 	 * Update the WorldEntity properties with those of a bakery.
 	 */
 	protected void specifications() {
-		specifications(4, 6, 4, production.NULL, 0, health, null);
+		specifications(4, 6, 4, health);
 	}
 	
 	/**
@@ -56,38 +56,5 @@ public class Bakery extends Building {
 	 */
 	protected void changeHealthBuilding(int newValue){
 		health = newValue;
-	}
-	
-	/**
-	 * Upgrade produce for building, required for all buildings, by Building 
-	 * class. Possible use to extend/upgrade a bakery.
-	 * 
-	 * @throws UnsupportedOperationException, as this functionality is not 
-	 * required for a bakery.
-	 */
-	protected void upgradeProduceBuilding(int newValue) {
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * Upgrade stored resources for building, required for all buildings, by 
-	 * Building class. Possible use to extend/upgrade a bakery.
-	 * 
-	 * @throws UnsupportedOperationException, as this functionality is not 
-	 * required for a bakery.
-	 */
-	protected void upgradeBarnBarn(production upgradeType, int newStore) {
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * Add stored resources to the building, required for all buildings, by 
-	 * Building class. Possible use to extend/upgrade a bakery.
-	 * 
-	 * @throws UnsupportedOperationException, as this functionality is not 
-	 * required for a bakery.
-	 */
-	protected void addGoodsBarn(production storeType, int newStore) {
-		throw new UnsupportedOperationException();
 	}
 }

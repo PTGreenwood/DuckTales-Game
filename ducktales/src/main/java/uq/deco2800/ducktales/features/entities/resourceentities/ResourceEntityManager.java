@@ -3,8 +3,6 @@ package uq.deco2800.ducktales.features.entities.resourceentities;
 import java.util.ArrayList;
 import java.util.List;
 
-import uq.deco2800.ducktales.features.entities.EntityManager;
-import uq.deco2800.ducktales.rendering.sprites.AnimalSprite;
 import uq.deco2800.ducktales.rendering.sprites.Sprite;
 import uq.deco2800.ducktales.resources.ResourceType;
 
@@ -13,10 +11,16 @@ import uq.deco2800.ducktales.resources.ResourceType;
  *
  * @author Damian Maher
  */
-public class ResourceEntityManager extends EntityManager {
-	
+public class ResourceEntityManager {
     /** The list of resource sprites */
     private List<Sprite> resourceSprites;
+
+    /**
+     * Instantiate an empty resource manager
+     */
+    public ResourceEntityManager() {
+        resourceSprites = new ArrayList<>(50);
+    }
 	
     /**
      * Add a resource drop at the location specified, this method mainly is used

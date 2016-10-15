@@ -8,8 +8,6 @@ import uq.deco2800.ducktales.World;
 import uq.deco2800.ducktales.features.landscape.tiles.TilesManager;
 import uq.deco2800.ducktales.features.weather.Weather;
 import uq.deco2800.ducktales.features.weather.WeatherEffect;
-import uq.deco2800.ducktales.features.time.TimeManager;
-import uq.deco2800.ducktales.features.time.DayNight;
 import uq.deco2800.ducktales.util.SecondaryManager;
 import uq.deco2800.ducktales.rendering.worlddisplay.WorldDisplayRenderer.*;
 
@@ -72,7 +70,7 @@ public class WorldDisplayManager implements Initializable, SecondaryManager {
 
         // Load the rendering engine
         renderer.setTilesManager(tilesManager);
-        renderer.setEntityManager(gameManager.getEntityManager());
+        renderer.setMainEntityManager(gameManager.getMainEntityManager());
 
     }
     
@@ -82,7 +80,7 @@ public class WorldDisplayManager implements Initializable, SecondaryManager {
 	 * @param weather
 	 * 			weather to change current scene to
 	 * @param pane
-	 * 			pane to place the weather effecst into
+	 * 			pane to place the weather effects into
 	 */
 	public void changeWeather(Weather weather, Pane pane) {
 		WeatherEffect weatherEffect = weather.getWeatherEffect();
@@ -107,8 +105,9 @@ public class WorldDisplayManager implements Initializable, SecondaryManager {
 	 *  
 	 */
 	public void changeLightLevel(Pane pane) {
-        if (this.gameManager.getTimeManager() == null) {
-            System.err.println("time manager is still empty");
+        //getTimeManager is now getCalendarManager.
+		if (this.gameManager.getTimeManager() == null) {
+            System.err.println("Time manager is still empty");
         } else {
         	//This will change once it's all worked out.
             //boolean nightTime = this.gameManager.getTimeManager().isNight();

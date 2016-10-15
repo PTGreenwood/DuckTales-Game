@@ -39,7 +39,7 @@ public class LongBox extends Building {
 	 * Update the WorldEntity properties with those of a long box.
 	 */
 	protected void specifications() {
-		specifications(2, 2, 2, production.NULL, 0, health, null);
+		specifications(2, 2, 2, health);
 	}
 	
 	/**
@@ -52,38 +52,5 @@ public class LongBox extends Building {
 	 */
 	protected void changeHealthBuilding(int newValue){
 		health = newValue;
-	}
-	
-	/**
-	 * Upgrade produce for building, required for all buildings, by Building 
-	 * class. Possible use to extend/upgrade longboxes.
-	 * 
-	 * @throws UnsupportedOperationException, as this functionality is not 
-	 * required for a longbox.
-	 */
-	protected void upgradeProduceBuilding(int newValue) {
-		throw new UnsupportedOperationException();
-	}
-	
-	/**
-	 * Upgrade stored resources for building, required for all buildings, by 
-	 * Building class. Possible use to extend/upgrade a longbox.
-	 * 
-	 * @throws UnsupportedOperationException, as this functionality is not 
-	 * required for a longbox.
-	 */
-	protected void upgradeBarnBarn(production upgradeType, int newStore) {
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * Add stored resources to the building, required for all buildings, by 
-	 * Building class. Possible use to extend/upgrade a longbox.
-	 * 
-	 * @throws UnsupportedOperationException, as this functionality is not 
-	 * required for a longbox.
-	 */
-	protected void addGoodsBarn(production storeType, int newStore) {
-		throw new UnsupportedOperationException();
 	}
 }

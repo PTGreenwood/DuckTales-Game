@@ -3,7 +3,7 @@ package uq.deco2800.ducktales;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import uq.deco2800.ducktales.features.achievements.AchievementManager;
-import uq.deco2800.ducktales.features.entities.EntityManager;
+import uq.deco2800.ducktales.features.entities.MainEntityManager;
 import uq.deco2800.ducktales.features.entities.ThreatManager;
 import uq.deco2800.ducktales.features.entities.resourceentities.ResourceEntityManager;
 import uq.deco2800.ducktales.features.helper.HelperManager;
@@ -83,7 +83,7 @@ public class GameManager {
     private AchievementManager achievementManager;
     private TutorialController tutorialManager;
     private CursorManager cursorManager;
-    private EntityManager entityManager;
+    private MainEntityManager mainEntityManager;
     private TimeManager timeManager;
     private ThreatManager threatManager;
     private InventoryManager inventoryContainer;
@@ -140,9 +140,9 @@ public class GameManager {
         worldDisplayManager.initializeWorld();
 
         // Now set up the entity manager and start its routine
-        entityManager.setTilesManager(worldDisplayManager.getTilesManager());
-        entityManager.setWorldDisplay(worldDisplayManager.getWorldDisplay());
-        entityManager.startRoutine();
+        mainEntityManager.setTilesManager(worldDisplayManager.getTilesManager());
+        mainEntityManager.setWorldDisplay(worldDisplayManager.getWorldDisplay());
+        mainEntityManager.startRoutine();
 
         // Start the manager of all the horrible threats in the world.
         threatManager = new ThreatManager();
@@ -295,12 +295,12 @@ public class GameManager {
         this.cursorManager = cursorManager;
     }
 
-    public EntityManager getEntityManager() {
-        return entityManager;
+    public MainEntityManager getMainEntityManager() {
+        return mainEntityManager;
     }
 
-    public void setEntityManager(EntityManager entityManager) {
-        this.entityManager = entityManager;
+    public void setMainEntityManager(MainEntityManager mainEntityManager) {
+        this.mainEntityManager = mainEntityManager;
     }
     
     public ResourceEntityManager getResourceEntityManager() {
@@ -314,7 +314,7 @@ public class GameManager {
     public TimeManager getTimeManager() {
         return timeManager;
     }
-    
+
     public WeatherManager getWeatherManager() {
     	return this.weatherManager;
     }
@@ -322,7 +322,7 @@ public class GameManager {
     public void setTimeManager(TimeManager timeManager) {
         this.timeManager = timeManager;
     }
-    
+
     public void setWeatherManager(WeatherManager weatherManager) {
         this.weatherManager = weatherManager;
     }
@@ -383,7 +383,7 @@ public class GameManager {
         executor.execute(this.gameLoop); // Start the game loop
 
         // Pass the managers to the game loop
-        gameLoop.setEntityManager(this.entityManager);
+        gameLoop.setMainEntityManager(this.mainEntityManager);
         gameLoop.setTimeManager(this.timeManager);        
         gameLoop.setWeatherManager(this.weatherManager);        
         gameLoop.setWorld(this.world);
@@ -414,6 +414,7 @@ public class GameManager {
     public void setInventoryManager(InventoryManager inventoryManager) {
         this.inventoryContainer = inventoryManager;
     }
+    
     public InventoryManager getInventoryContainer() {
         return inventoryContainer;
     }

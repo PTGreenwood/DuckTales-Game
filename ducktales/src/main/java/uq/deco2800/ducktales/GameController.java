@@ -1,21 +1,14 @@
 package uq.deco2800.ducktales;
 
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Rectangle2D;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.stage.Screen;
 import uq.deco2800.ducktales.features.achievements.AchievementManager;
-import uq.deco2800.ducktales.features.entities.EntityManager;
+import uq.deco2800.ducktales.features.entities.MainEntityManager;
 import uq.deco2800.ducktales.features.helper.HelperManager;
 import uq.deco2800.ducktales.features.hud.HUDManager;
 import uq.deco2800.ducktales.features.level.LevelManager;
@@ -23,7 +16,6 @@ import uq.deco2800.ducktales.features.market.MarketManager;
 import uq.deco2800.ducktales.features.market.MarketVistaNavigator;
 import uq.deco2800.ducktales.features.time.TimeManager;
 import uq.deco2800.ducktales.features.tutorials.TutorialController;
-import uq.deco2800.ducktales.features.time.*;
 import uq.deco2800.ducktales.features.weather.*;
 
 import uq.deco2800.ducktales.rendering.worlddisplay.WorldDisplayManager;
@@ -93,7 +85,7 @@ public class GameController implements Initializable{
     private WorldDisplayManager worldDisplayManager;
     private WeatherManager weatherManager;
 
-    private EntityManager entityManager;
+    private MainEntityManager mainEntityManager;
 
     private TimeManager timeManager;
 
@@ -142,7 +134,7 @@ public class GameController implements Initializable{
         gameManager.setMissionManager(this.missionManager);
         gameManager.setLevelManager(this.levelManager);
         gameManager.setAchievementManager(this.achievementManager);
-        gameManager.setEntityManager(this.entityManager);
+        gameManager.setMainEntityManager(this.mainEntityManager);
         gameManager.setTutorialManager(this.tutorialManager);      
         gameManager.setHelperManager(this.helperManager);
         
@@ -398,9 +390,9 @@ public class GameController implements Initializable{
      * Initializes the entity manager and setting it up
      */
     private void loadEntities() {
-        entityManager = EntityManager.getInstance();
-        entityManager.setGameManager(gameManager);
-        entityManager.setWorld(gameManager.getWorld());
+        mainEntityManager = MainEntityManager.getInstance();
+        mainEntityManager.setGameManager(gameManager);
+        mainEntityManager.setWorld(gameManager.getWorld());
     }
 
     /**

@@ -1,19 +1,25 @@
 package uq.deco2800.ducktales;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Set;
 
 
 import uq.deco2800.ducktales.features.entities.Entity;
 
 import uq.deco2800.ducktales.features.entities.agententities.Animal;
+import uq.deco2800.ducktales.features.entities.agententities.Peon;
 import uq.deco2800.ducktales.features.entities.worldentities.Building;
+import uq.deco2800.ducktales.features.entities.worldentities.StorageProduceBuilding;
 import uq.deco2800.ducktales.resources.ResourceInfoRegister;
 import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 
 
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.features.landscape.tiles.Tile;
+import uq.deco2800.ducktales.features.time.GameTime;
 import uq.deco2800.ducktales.util.*;
+import uq.deco2800.ducktales.util.exceptions.GameSetupException;
 
 import static uq.deco2800.ducktales.resources.ResourceType.*;
 
@@ -39,11 +45,14 @@ public class World implements Tickable {
 	private ArrayList<Entity> entities; // Note: will be gradually removed
 	private ArrayList<Animal> animals; // All the animals in the game
 	private ArrayList<Building> buildings; // All the buildings in the game
+	private HashMap<String, Peon> peons; // All the peons in the game
 
 	/** The registers */
 	private ResourceSpriteRegister tileRegister = ResourceSpriteRegister.getInstance();
 	private ResourceInfoRegister infoRegister = ResourceInfoRegister.getInstance();
-
+	
+	private int timer = 0;
+	
 	/**
 	 * Instantiates a World with the given specified parameters, with the tiles
 	 * type default to GRASS_1
@@ -52,17 +61,12 @@ public class World implements Tickable {
 	 * @param height
 	 */
 	public World(String name, int width, int height) {
-		// Instantiates the array of tiles
+		// Instantiates the model of the game
 		tiles = new Array2D<>(width, height);
-
-		// Instantiates the list of entities
 		entities = new ArrayList<>();
-
-		// Instantiates the list of animals in the game
 		animals = new ArrayList<>();
-
-		// Instantiates the list of buildings in the game
 		buildings = new ArrayList<>();
+		peons = new HashMap<>(50); 
 
 		for (int x = 0; x < width; x++) {
 			for (int y = 0; y < height; y++) {
@@ -134,6 +138,39 @@ public class World implements Tickable {
 		} else {
 			animals.add(animal);
 		}
+	}
+
+	/**
+	 * Add a peon to the game. This will check if the name of the peon
+	 * is already in the name list.
+	 *
+	 * @param peonName
+	 * 			The name of the peon. This is used to retrieve a peon when
+	 * 			needed
+	 * @param peonObject
+	 * 			The actual peon object to be stored
+	 */
+	public void addPeon(String peonName, Peon peonObject) {
+		if (!peons.containsKey(peonName)) {
+			peons.put(peonName, peonObject);
+		} else {
+			throw new RuntimeException("Peon name already exists. Please" +
+					"make sure peon name is checked when adding a new one");
+		}
+
+	}
+
+	/**
+	 * Check if the given name is in the list of names of peons that have
+	 * already been added to the world
+	 *
+	 * @param peonName
+	 * 			The name to be checked
+	 * @return {@code true} if name is already in the list
+	 * 		   {@code false} if there is no duplication - the name is vailable
+	 */
+	public boolean checkPeonNameDuplication(String peonName) {
+		return peons.containsKey(peonName);
 	}
 
 	/**
@@ -266,6 +303,7 @@ public class World implements Tickable {
 
 	@Override
 	public void tick() {
+		timer++;
 		// Update all the tiles
 		for (int y = 0; y < tiles.getHeight(); y++) {
 			for (int x = 0; x < tiles.getWidth(); x++) {
@@ -280,6 +318,15 @@ public class World implements Tickable {
 		// Update all the animals
 		for (int i = 0; i < animals.size(); i++) {
 			animals.get(i).tick();
+		}
+		// Produce materials every 1000 ticks
+		for (int j = 0; j < buildings.size(); j++) {
+			if (buildings.get(j).getType() == ResourceType.SAWMILL && 
+					timer%1000==0) {
+				StorageProduceBuilding buildingSelected = 
+						buildings.get(j).toStorageProduceBuilding(buildings.get(j));
+				buildingSelected.produceMaterial();
+			}
 		}
 	}
 
