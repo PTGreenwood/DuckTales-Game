@@ -333,8 +333,11 @@ public class World implements Tickable {
 		}
 		// Produce materials every 1000 ticks
 		for (int j = 0; j < buildings.size(); j++) {
-			if (buildings.get(j).getType() == ResourceType.SAWMILL && 
-					timer%1000==0) {
+			if ((buildings.get(j).getType() == ResourceType.SAWMILL ||
+					buildings.get(j).getType() == ResourceType.MINE ||
+					buildings.get(j).getType() == ResourceType.FARM ||
+					buildings.get(j).getType() == ResourceType.QUARRY
+					) && timer%1000==0) {
 				StorageProduceBuilding buildingSelected = 
 						buildings.get(j).toStorageProduceBuilding(buildings.get(j));
 				buildingSelected.produceMaterial();
