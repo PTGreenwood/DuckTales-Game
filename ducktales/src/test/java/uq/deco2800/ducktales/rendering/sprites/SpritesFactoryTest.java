@@ -51,7 +51,7 @@ public class SpritesFactoryTest {
         ResourceSpriteRegister.getInstance();
 
         ResourceType[] buildings = {
-                HOSPITAL, BAKERY, BARN, BUTCHER, CEMETERY, CHURCH, COMMUNITY_BUILDING,
+                HOSPITAL, BAKERY, BUTCHER, CEMETERY, CHURCH, COMMUNITY_BUILDING,
                 FARM, FORGE, HOUSE, MINE, OBSERVATORY, PASTURE, QUARRY, SAWMILL,
                 SCHOOL, GYMNASIUM
         };
