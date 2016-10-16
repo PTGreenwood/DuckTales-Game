@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import uq.deco2800.singularity.clients.ducktales.DucktalesClient;
 import uq.deco2800.singularity.common.representations.User;
 import uq.deco2800.ducktales.features.builder.WorldBuilderController;
@@ -78,6 +79,7 @@ public class DuckTalesController implements Initializable {
         
 		Scene scene = new Scene(root1,300,275);
 		primaryStage= new Stage();
+		primaryStage.initStyle(StageStyle.UNDECORATED);
         //primaryStage.initStyle(Stage.UNDECORATED);
 		primaryStage.setTitle("FXML Welcome");  
 		primaryStage.setScene(scene);
