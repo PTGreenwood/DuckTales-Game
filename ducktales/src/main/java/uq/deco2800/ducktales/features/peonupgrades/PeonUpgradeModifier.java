@@ -3,35 +3,48 @@ package uq.deco2800.ducktales.features.peonupgrades;
 import uq.deco2800.ducktales.features.entities.agententities.Peon;
 
 //import resources.toolsUpgrade.lumberjack;
+//personal notes: peon.tool.axe
+//change to doubles
+//make things private
 
 public class PeonUpgradeModifier {
-	public int BaseLumberRate = 1;
-	public int NewLumberRate = 0;
-	public int BaseStoneRate = 1;
-	public int BaseMetalRate = 1;
+	private double BaseLumberRate = 10;
+	
+	private double BaseStoneRate = 7;
+	
+	private double BaseMetalRate = 1;
+	
 	
 	//tool modifier for lumberjack
-	public void LumberAxe1(){
-		NewLumberRate = BaseLumberRate + 1;
-	}
-	public void LumberAxe2(){
-		BaseLumberRate += 2;
-	}
-	public void LumberAxe3(){
+	private void LumberAxe1(){
 		BaseLumberRate += 3;
 	}
+	private void LumberAxe2(){
+		BaseLumberRate += 6;
+	}
+	private void LumberAxe3(){
+		BaseLumberRate += 10;
+	}
 	
 	
-	public void StoneChisel1(){
+	private void StoneChisel1(){
 		BaseStoneRate += 0;
 	}
-	public void StoneChisel2(){
-		BaseStoneRate += 1;
+	private void StoneChisel2(){
+		BaseStoneRate += 3;
 	}
-	public void StoneChisel3(){
-		BaseStoneRate += 2;
+	private void StoneChisel3(){
+		BaseStoneRate += 7;
 	}
 	
-	
+	private void MetalPick1(){
+		BaseMetalRate += 0;
+	}
+	private void MetalPick2(){
+		BaseMetalRate += 0;
+	}
+	private void MetalPick3(){
+		BaseMetalRate += 0;
+	}
 	
 }

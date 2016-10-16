@@ -286,7 +286,7 @@ public class Peon extends AgentEntity {
 	public void setQualification(double qualification) {
 		this.qualification = qualification;
 	}
-
+//add statements depending on job
 	public double getQualification() {
 		return qualification;
 	}
@@ -509,5 +509,10 @@ public class Peon extends AgentEntity {
 	 */
 	private void checkPeonStatus() {
 		// need to be implemented
+	}
+	
+	private Tool tool;	
+	private void peonTool(){
+		
 	}
 }
