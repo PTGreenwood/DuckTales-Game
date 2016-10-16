@@ -11,7 +11,6 @@ import uq.deco2800.ducktales.features.landscape.tiles.TilesManager;
 import uq.deco2800.ducktales.resources.ResourceInfoRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.Coordinate;
-import uq.deco2800.ducktales.util.SecondaryManager;
 import uq.deco2800.ducktales.util.SpiralPathFinding;
 import uq.deco2800.ducktales.util.Tickable;
 import uq.deco2800.ducktales.util.exceptions.GameSetupException;
@@ -24,10 +23,19 @@ import uq.deco2800.ducktales.util.exceptions.GameSetupException;
  *
  * @author Leggy, khoiphan21
  */
-public class MainEntityManager extends SecondaryManager implements Tickable {
+public class MainEntityManager implements Tickable {
 
     /** The world pane to add entities onto */
     private Pane worldDisplay;
+
+    /** The Instance of this object */
+    private static final MainEntityManager INSTANCE = new MainEntityManager();
+
+    /** The game world */
+    private World world;
+
+    /** The game manager */
+    private GameManager gameManager;
 
     /** The other secondary managers */
     private TilesManager tilesManager;
@@ -42,16 +50,21 @@ public class MainEntityManager extends SecondaryManager implements Tickable {
 
     /**
      * Main constructor of the {@link MainEntityManager} class
-     *
-     * @param gameManager
-     *          The main manager of the game
      */
-    public MainEntityManager(GameManager gameManager) {
-        this.gameManager = gameManager;
+    private MainEntityManager() {
         // Instantiate the helper managers
-        animalManager = new AnimalManager(gameManager);
-        buildingManager = new BuildingManager(gameManager);
-        peonManager = new PeonManager(gameManager);
+        animalManager = new AnimalManager();
+        buildingManager = new BuildingManager();
+        peonManager = new PeonManager();
+    }
+
+    /**
+     * Gets the instance of the MainEntityManager.
+     *
+     * @return Returns the MainEntityManager instance.
+     */
+    public static MainEntityManager getInstance() {
+        return INSTANCE;
     }
 
     /**

@@ -1,12 +1,11 @@
 package uq.deco2800.ducktales.features.entities.worldentities;
 
-import uq.deco2800.ducktales.GameManager;
+import uq.deco2800.ducktales.features.entities.SecondaryEntityManager;
 import uq.deco2800.ducktales.rendering.sprites.BuildingSprite;
 import uq.deco2800.ducktales.rendering.sprites.Sprite;
 import uq.deco2800.ducktales.rendering.sprites.SpritesFactory;
 import uq.deco2800.ducktales.resources.ResourceInfoRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
-import uq.deco2800.ducktales.util.SecondaryManager;
 import uq.deco2800.ducktales.util.exceptions.GameSetupException;
 
 import java.util.ArrayList;
@@ -20,7 +19,7 @@ import java.util.List;
  * Created on 12/10/2016.
  * @author khoiphan21
  */
-public class BuildingManager extends SecondaryManager {
+public class BuildingManager extends SecondaryEntityManager {
     /** The list of building sprites */
     private List<BuildingSprite> buildingSprites;
 
@@ -29,11 +28,8 @@ public class BuildingManager extends SecondaryManager {
 
     /**
      * Construct a building manager with an empty list of building sprites
-     * @param gameManager
-     *          The main manager of the game
      */
-    public BuildingManager(GameManager gameManager) {
-        this.gameManager = gameManager;
+    public BuildingManager() {
         buildingSprites = new ArrayList<>();
     }
 
@@ -75,7 +71,7 @@ public class BuildingManager extends SecondaryManager {
 
                 // Add the sprite of that building to the list
                 BuildingSprite sprite = SpritesFactory.createBuildingSprite(
-                        buildingSprites.size(), type, this.gameManager);
+                        buildingSprites.size(), type);
                 if (sprite == null) {
                     throw new GameSetupException("BuildingSprite of type " + type +
                             " is not yet registered in Sprites Factory");

@@ -135,8 +135,7 @@ public class DuckTalesController implements Initializable {
 			worldBuilderController.setWorld(new World("World Builder", 20, 20));
 			// Initiate the rendering engine for WorldBuilder
 			worldBuilderController.setRenderer(new WorldBuilderRenderer(
-					contentPane, worldBuilderPane,
-					new GameManager(new Pane())));
+					contentPane, worldBuilderPane));
 
 			// Adding to right pane
 			showPane(worldBuilderPane);

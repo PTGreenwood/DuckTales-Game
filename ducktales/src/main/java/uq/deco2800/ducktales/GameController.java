@@ -127,6 +127,9 @@ public class GameController implements Initializable{
         
         loadDayNightDisplay(); // This must be after loading TimeDisplay
 
+        loadEntities(); // Note: this 'loader method' should be called LAST
+
+
         // Now pass all handles for the secondary managers to the GameManager
         gameManager.setHudManager(this.hudManager);
         gameManager.setMarketManager(this.marketManager);
@@ -408,12 +411,19 @@ public class GameController implements Initializable{
      */
     private void loadHUD() {
         hudManager = new HUDManager(this.rootPane, this.leftPane, this.bottomPane);
-        hudManager.setGameManager(this.gameManager);
-        hudManager.initialize();
 
         // Set the temporary button to be invisible
         closeButton.toFront();
         closeButton.setVisible(false);
+    }
+
+    /**
+     * Initializes the entity manager and setting it up
+     */
+    private void loadEntities() {
+        mainEntityManager = MainEntityManager.getInstance();
+        mainEntityManager.setGameManager(gameManager);
+        mainEntityManager.setWorld(gameManager.getWorld());
     }
 
     /**

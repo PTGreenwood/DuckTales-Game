@@ -2,10 +2,8 @@ package uq.deco2800.ducktales.features.hud;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import uq.deco2800.ducktales.GameManager;
 import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
-import uq.deco2800.ducktales.util.exceptions.GameSetupException;
 
 /**
  * Created by Khoi on 4/09/2016.
@@ -16,21 +14,15 @@ public class HUDSprite extends ImageView {
     private ResourceType spriteType;
     private Image sprite;
 
-    /** The main manager of the game */
-    private GameManager gameManager;
-
     /**
      * Instantiate a HUD sprite with the given type
      *
      * @param spriteType
      *          The type of the entity that the sprite represents
-     * @param gameManager
-     *          The main manager of the game
      */
-    public HUDSprite(ResourceType spriteType, GameManager gameManager) {
+    public HUDSprite(ResourceType spriteType) {
         this.sprite = getSprite(spriteType);
         this.spriteType = spriteType;
-        this.gameManager = gameManager;
 
         // Load the sprite into the image view
         this.setImage(this.sprite);
@@ -83,14 +75,7 @@ public class HUDSprite extends ImageView {
      * @return the image of the sprite type given
      */
     private Image getSprite(ResourceType spriteType) {
-        ResourceSpriteRegister spriteRegister =
-                this.gameManager.getResourceSpriteRegister();
-        // Check if the setup is correct
-        if (this.gameManager == null || sprite == null) {
-            throw new GameSetupException("GameManager is not properly" +
-                    " set up for HUDSprite");
-        }
-        return spriteRegister.getResourceImage(spriteType);
+        return ResourceSpriteRegister.getInstance().getResourceImage(spriteType);
     }
 
 }

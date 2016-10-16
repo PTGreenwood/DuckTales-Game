@@ -1,10 +1,11 @@
 package uq.deco2800.ducktales.features.landscape.tiles;
 
 import javafx.scene.image.ImageView;
-import uq.deco2800.ducktales.GameManager;
 import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.features.builder.WorldBuilderController;
+import uq.deco2800.ducktales.features.builder.WorldBuilderModel;
+import uq.deco2800.ducktales.features.builder.WorldBuilderRenderer;
 
 import static uq.deco2800.ducktales.resources.ResourceType.*;
 
@@ -20,11 +21,7 @@ public class WorldBuilderTile extends ImageView {
     private int xPos;
     private int yPos;
 
-    /** The main manager of the game */
-    private GameManager gameManager;
-
-    /** The register holding information about all sprite images */
-    private ResourceSpriteRegister spriteRegister;
+    final ResourceSpriteRegister resource = ResourceSpriteRegister.getInstance();
 
     // Variable storing the current type of the tile
     private ResourceType currentType = GRASS_1;
@@ -35,12 +32,10 @@ public class WorldBuilderTile extends ImageView {
     // The controller for the World Builder
     private WorldBuilderController controller = new WorldBuilderController();
 
-    public WorldBuilderTile(int xPos, int yPos, GameManager gameManager) {
+    public WorldBuilderTile(int xPos, int yPos) {
         super();
         this.xPos = xPos;
         this.yPos = yPos;
-        this.gameManager = gameManager;
-        this.spriteRegister = gameManager.getResourceSpriteRegister();
 
         addMouseEventHandling();
     }
@@ -102,6 +97,6 @@ public class WorldBuilderTile extends ImageView {
     }
 
     private void setImage(ResourceType type) {
-        this.setImage(spriteRegister.getResourceImage(type));
+        this.setImage(resource.getResourceImage(type));
     }
 }

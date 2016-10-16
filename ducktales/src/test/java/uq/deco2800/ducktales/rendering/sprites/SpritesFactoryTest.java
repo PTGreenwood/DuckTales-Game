@@ -1,8 +1,6 @@
 package uq.deco2800.ducktales.rendering.sprites;
 
-import javafx.scene.layout.Pane;
 import org.junit.Test;
-import uq.deco2800.ducktales.GameManager;
 import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.exceptions.GameSetupException;
@@ -18,17 +16,12 @@ import static uq.deco2800.ducktales.resources.ResourceType.*;
  */
 public class SpritesFactoryTest {
 
-    /** An instance of the main game manager */
-    private GameManager gameManager = new GameManager(new Pane());
-
     /*
      * PEONS CREATION TESTS
      */
     @Test
     public void testBasicPeonCreation() {
-        PeonSprite sprite1 = SpritesFactory.createPeonSprite(
-                "Test Peon", gameManager
-        );
+        PeonSprite sprite1 = SpritesFactory.createPeonSprite("Test Peon");
 
         // Check that the peon sprite's name is correct
         assertEquals(sprite1.getPeonName(), "Test Peon");
@@ -36,9 +29,7 @@ public class SpritesFactoryTest {
 
     @Test(expected = GameSetupException.class)
     public void testEmptyPeonName() {
-        SpritesFactory.createPeonSprite(
-                "", gameManager
-        );
+        SpritesFactory.createPeonSprite("");
     }
 
     /*
@@ -46,17 +37,17 @@ public class SpritesFactoryTest {
      */
     @Test(expected = GameSetupException.class)
     public void testInvalidBuildingType() {
-        SpritesFactory.createBuildingSprite(0, ResourceType.NONE, gameManager);
+        SpritesFactory.createBuildingSprite(0, ResourceType.NONE);
     }
 
     @Test
     public void testGeneralBuildingCreation() {
         int buildingIndex = 0;
 
-        GameManager gameManager = new GameManager(new Pane());
+        ResourceSpriteRegister.getInstance();
 
         ResourceType[] buildings = {
-                HOSPITAL, BAKERY, BUTCHER, CEMETERY, CHURCH, COMMUNITY_BUILDING,
+                HOSPITAL, BAKERY, BARN, BUTCHER, CEMETERY, CHURCH, COMMUNITY_BUILDING,
                 FARM, FORGE, HOUSE, MINE, OBSERVATORY, PASTURE, QUARRY, SAWMILL,
                 SCHOOL, GYMNASIUM
         };
@@ -64,7 +55,7 @@ public class SpritesFactoryTest {
         for (ResourceType buildingType : buildings) {
 
             BuildingSprite building = SpritesFactory.createBuildingSprite(
-                    buildingIndex, buildingType, gameManager);
+                    buildingIndex, buildingType);
 
             assertEquals(building.getIndex(), buildingIndex);
             assertEquals(building.getEntityType(), buildingType);
@@ -76,7 +67,7 @@ public class SpritesFactoryTest {
      */
     @Test(expected = GameSetupException.class)
     public void testInvalidAnimalType() {
-        SpritesFactory.createAnimalSprite(0, ResourceType.NONE, gameManager);
+        SpritesFactory.createAnimalSprite(0, ResourceType.NONE, );
     }
 
     @Test
@@ -90,7 +81,7 @@ public class SpritesFactoryTest {
             ResourceType spriteType = animals[i];
 
             AnimalSprite animal = SpritesFactory.createAnimalSprite(
-                    spriteIndex, spriteType, gameManager);
+                    spriteIndex, spriteType, );
 
             assertEquals(animal.getIndex(), spriteIndex);
             assertEquals(animal.getEntityType(), spriteType);

@@ -44,6 +44,7 @@ public class Animal extends AgentEntity {
     private boolean isDead = false; // Whether the animal is dead.
     private String direction; // The direction that the animal is travelling.
     private List<Point> goalPoints;
+    private MainEntityManager mainEntityManager = MainEntityManager.getInstance();
     // The variables below are used to alternate images for animation.
     private int animationStage; // Determines which of the two images per direction is rendered.
     private int currentAnimationTick;
