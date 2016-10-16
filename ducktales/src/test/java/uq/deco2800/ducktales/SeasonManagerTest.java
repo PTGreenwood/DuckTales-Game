@@ -11,6 +11,9 @@ import uq.deco2800.ducktales.features.seasons.Winter;
 import uq.deco2800.ducktales.features.weather.Weather;
 import uq.deco2800.ducktales.features.weather.InvalidWeatherChanceException;
 import uq.deco2800.ducktales.features.weather.Rain;
+import uq.deco2800.ducktales.features.weather.Snow;
+import uq.deco2800.ducktales.features.weather.Storm;
+import uq.deco2800.ducktales.features.weather.StormType;
 import uq.deco2800.ducktales.features.weather.Fire;
 import uq.deco2800.ducktales.features.weather.WeatherChance;
 import uq.deco2800.ducktales.features.weather.WeatherEvents;
@@ -136,6 +139,8 @@ public class SeasonManagerTest {
 		
 		Weather rain = new Rain();
 		Weather fire = new Fire();
+		Weather snow = new Snow();
+		Weather storm = new Storm(StormType.THUNDER);
 		
     	try {
     		WeatherChance spRainChance = new WeatherChance(rain, springRainChance);
@@ -148,17 +153,30 @@ public class SeasonManagerTest {
     		WeatherChance auFireChance = new WeatherChance(fire, autumnFireChance);
     		WeatherChance wiFireChance = new WeatherChance(fire, winterFireChance);
     		
+    		WeatherChance spSnowChance = new WeatherChance(snow, 5);
+    		WeatherChance spStormChance = new WeatherChance(storm, 5);
+    		
+    		WeatherChance wiSnowChance = new WeatherChance(snow, 50);    		
+    		
     		springWeather.add(spRainChance);
     		springWeather.add(spFireChance);
+    		springWeather.add(spSnowChance);
+    		springWeather.add(spStormChance);
     		
     		summerWeather.add(suRainChance);
     		summerWeather.add(suFireChance);
+    		summerWeather.add(spSnowChance);
+    		summerWeather.add(spStormChance);
     		
     		autumnWeather.add(auRainChance);
     		autumnWeather.add(auFireChance);
+    		autumnWeather.add(spSnowChance);
+    		autumnWeather.add(spStormChance);
     		
     		winterWeather.add(wiRainChance);
     		winterWeather.add(wiFireChance);
+    		winterWeather.add(wiSnowChance);
+    		winterWeather.add(spStormChance);
 
     		
     	}  catch (InvalidWeatherChanceException e) {
