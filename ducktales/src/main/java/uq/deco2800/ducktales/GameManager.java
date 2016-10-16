@@ -57,9 +57,10 @@ public class GameManager {
     /**
      * CONSTANTS
      */
-    private static final int DEFAULT_WORLD_WIDTH = 30;
-    private static final int DEFAULT_WORLD_HEIGHT = 30;
-    private static final int DEFAULT_GAME_SPEED = 10;
+    protected static final int DEFAULT_WORLD_WIDTH = 30;
+    protected static final int DEFAULT_WORLD_HEIGHT = 30;
+    protected static final int DEFAULT_GAME_SPEED = 10;
+    protected static final String DEFAULT_WORLD_NAME = "The New World";
 
     /** The root of everything. */
     private Pane root;
@@ -108,7 +109,7 @@ public class GameManager {
 
         // Create a new world model for the game
         world = new World(
-                "New World",
+                DEFAULT_WORLD_NAME,
                 DEFAULT_WORLD_WIDTH,
                 DEFAULT_WORLD_HEIGHT
         );

@@ -1,10 +1,6 @@
 package uq.deco2800.ducktales.rendering.sprites;
 
 import org.junit.Test;
-import uq.deco2800.ducktales.rendering.sprites.AnimalSprite;
-import uq.deco2800.ducktales.rendering.sprites.BuildingSprite;
-import uq.deco2800.ducktales.rendering.sprites.PeonSprite;
-import uq.deco2800.ducktales.rendering.sprites.SpritesFactory;
 import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.exceptions.GameSetupException;
