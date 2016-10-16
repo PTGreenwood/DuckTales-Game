@@ -3,6 +3,7 @@ package uq.deco2800.ducktales;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.application.Platform;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.*;
@@ -78,8 +79,7 @@ public class DuckTalesController implements Initializable {
         
 		Scene scene = new Scene(root1,300,275);
 		primaryStage= new Stage();
-        //primaryStage.initStyle(Stage.UNDECORATED);
-		primaryStage.setTitle("FXML Welcome");  
+		primaryStage.setTitle("FXML Welcome");
 		primaryStage.setScene(scene);
 		primaryStage.showAndWait();
 		// Change between the mainMenuPane and the contentPane
@@ -104,7 +104,7 @@ public class DuckTalesController implements Initializable {
 		try {
 			gamePane = loader.load();
 		} catch(Exception e) {
-			throw new GameSetupException("failed to load main UI");
+			throw new Exception("failed to load main UI");
 		}
 
 		// Set the layout for the gamePane
@@ -149,7 +149,7 @@ public class DuckTalesController implements Initializable {
 	 * Close the application
 	 */
 	public void quitApplication() {
-		System.exit(0);
+		Platform.exit();
 	}
 
 	/**
