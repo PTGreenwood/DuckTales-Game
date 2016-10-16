@@ -28,7 +28,7 @@ public class TileClickedHandler extends GameEventHandler
      */
     public TileClickedHandler(GameManager gameManager) {
         super(gameManager);
-        mainEntityManager = MainEntityManager.getInstance();
+        mainEntityManager = gameManager.getMainEntityManager();
     }
 
     @Override

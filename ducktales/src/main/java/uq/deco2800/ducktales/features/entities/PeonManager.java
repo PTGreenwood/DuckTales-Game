@@ -3,11 +3,13 @@ package uq.deco2800.ducktales.features.entities;
 import java.io.IOException;
 import java.util.HashMap;
 
+import uq.deco2800.ducktales.GameManager;
 import uq.deco2800.ducktales.features.entities.peons.Peon;
 import uq.deco2800.ducktales.rendering.sprites.PeonSprite;
 import uq.deco2800.ducktales.rendering.sprites.Sprite;
 import uq.deco2800.ducktales.rendering.sprites.SpritesFactory;
 import uq.deco2800.ducktales.resources.GeneralResourceRegister;
+import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 import uq.deco2800.ducktales.util.SecondaryManager;
 import uq.deco2800.ducktales.util.exceptions.GameSetupException;
 
@@ -21,10 +23,16 @@ public class PeonManager extends SecondaryManager{
     /** The list of peon sprites */
     private HashMap<String, PeonSprite> peonSprites;
 
+    /** The register for all the sprite images of the game */
+    private ResourceSpriteRegister spriteRegister;
+
     /**
      * Initialize a peon manager with initial sprite list capacity of 50
+     * @param gameManager
      */
-    public PeonManager() {
+    public PeonManager(GameManager gameManager) {
+        this.gameManager = gameManager;
+        spriteRegister = gameManager.getResourceSpriteRegister();
         peonSprites = new HashMap<>(50);
     }
     
@@ -52,7 +60,7 @@ public class PeonManager extends SecondaryManager{
         world.addPeon(name, peon);
 
         // Create the sprite of the given peon
-    	PeonSprite peonSprite = SpritesFactory.createPeonSprite(name);
+    	PeonSprite peonSprite = SpritesFactory.createPeonSprite(name, this.gameManager);
         // Setup the sprite
         if (gameManager != null) {
             Sprite.setupEntitySprite(peonSprite, x, y,

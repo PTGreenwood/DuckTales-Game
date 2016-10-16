@@ -1,12 +1,13 @@
 package uq.deco2800.ducktales.features.entities.agententities;
 
-import uq.deco2800.ducktales.features.entities.SecondaryEntityManager;
+import uq.deco2800.ducktales.GameManager;
 import uq.deco2800.ducktales.features.landscape.tiles.TileSprite;
 import uq.deco2800.ducktales.rendering.sprites.AnimalSprite;
 import uq.deco2800.ducktales.rendering.sprites.Sprite;
 import uq.deco2800.ducktales.rendering.sprites.SpritesFactory;
 import uq.deco2800.ducktales.resources.ResourceInfoRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
+import uq.deco2800.ducktales.util.SecondaryManager;
 import uq.deco2800.ducktales.util.exceptions.AnimalNotRegisteredException;
 import uq.deco2800.ducktales.util.exceptions.GameSetupException;
 
@@ -20,15 +21,17 @@ import java.util.List;
  * Created on 12/10/2016.
  * @author khoiphan21
  */
-public class AnimalManager extends SecondaryEntityManager{
+public class AnimalManager extends SecondaryManager{
 
     /** The list of animal sprites */
     private List<AnimalSprite> animalSprites;
     
     /**
      * Construct an animal manager with an empty list of animal sprites
+     * @param gameManager
      */
-    public AnimalManager() {
+    public AnimalManager(GameManager gameManager) {
+        this.gameManager = gameManager;
         animalSprites = new ArrayList<>();
     }
 
@@ -63,7 +66,7 @@ public class AnimalManager extends SecondaryEntityManager{
             // Add the sprite of the animal to the sprites list, and set
             // the position of that sprite
             AnimalSprite sprite = SpritesFactory.createAnimalSprite(
-                    animalSprites.size(), type,
+                    animalSprites.size(), type, this.gameManager
             );
             if (sprite == null) {
                 throw new GameSetupException("Sprite of type " + type +

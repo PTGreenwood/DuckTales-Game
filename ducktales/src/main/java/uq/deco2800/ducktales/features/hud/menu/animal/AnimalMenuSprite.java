@@ -1,6 +1,7 @@
 package uq.deco2800.ducktales.features.hud.menu.animal;
 
 import javafx.scene.input.MouseButton;
+import uq.deco2800.ducktales.GameManager;
 import uq.deco2800.ducktales.features.hud.HUDSprite;
 import uq.deco2800.ducktales.features.hud.menu.MenuManager;
 import uq.deco2800.ducktales.resources.ResourceType;
@@ -17,9 +18,12 @@ public class AnimalMenuSprite extends HUDSprite {
     /**
      * Create a sprite of the given animal type, and set up its event handlers
      * @param animalType
+     *          The type of animal this menu sprite represents
+     * @param gameManager
+     *          The main manager of the game
      */
-    public AnimalMenuSprite(ResourceType animalType) {
-        super(animalType);
+    public AnimalMenuSprite(ResourceType animalType, GameManager gameManager) {
+        super(animalType, gameManager);
 
         setupMouseEventHandlers();
     }

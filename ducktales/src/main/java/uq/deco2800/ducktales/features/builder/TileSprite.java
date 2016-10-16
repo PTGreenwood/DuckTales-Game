@@ -2,6 +2,7 @@ package uq.deco2800.ducktales.features.builder;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import uq.deco2800.ducktales.GameManager;
 import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
 
@@ -33,12 +34,14 @@ public class TileSprite extends ImageView {
      * Creates a tile sprite with the given type
      * @param type
      *          The type of this tile
+     * @param gameManager
      */
-    public TileSprite(ResourceType type) {
+    public TileSprite(ResourceType type, GameManager gameManager) {
         this.manager = WorldBuilderModel.getInstance();
         this.tileType = type;
 
-        this.sprite = ResourceSpriteRegister.getInstance().getResourceImage(tileType);
+        ResourceSpriteRegister spriteRegister = gameManager.getResourceSpriteRegister();
+        this.sprite = spriteRegister.getResourceImage(tileType);
         this.setImage(sprite);
         this.setFitHeight(SPRITE_HEIGHT);
         this.setFitWidth(SPRITE_WIDTH);

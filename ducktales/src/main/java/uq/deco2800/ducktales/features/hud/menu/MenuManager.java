@@ -15,7 +15,6 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.RowConstraints;
-import javafx.scene.text.Text;
 import uq.deco2800.ducktales.features.hud.menu.animal.AnimalMenuSprite;
 import uq.deco2800.ducktales.features.hud.menu.building.BuildingMenuSprite;
 import uq.deco2800.ducktales.rendering.info.WorldEntityInfo;
@@ -47,16 +46,16 @@ import static uq.deco2800.ducktales.resources.ResourceType.COW;
  *
  * Created on 7/09/2016.
  */
-public class MenuManager implements Initializable {
+public class MenuManager extends SecondaryManager implements Initializable {
 	/**
 	 * CONSTANTS
 	 */
-	// TODO: TO ADD NEW BUILDINGS, REGISTER THEIR NAMES HERE
+	// TO ADD NEW BUILDINGS, REGISTER THEIR NAMES HERE
 	private static final ResourceType[] BUILDINGS = { BAKERY, BUTCHER, CEMETERY,
 			CHURCH, COMMUNITY_BUILDING, FARM, FORGE, HOSPITAL, HOUSE, SCHOOL,
 			GYMNASIUM, MINE, OBSERVATORY, PASTURE, QUARRY, SAWMILL, };
-	// TODO: TO ADD NEW ANIMALS, REGISTER THEIR NAMES HERE
-	public static final ResourceType[] ANIMALS = { SHEEP, DUCK, COW };
+	// TO ADD NEW ANIMALS, REGISTER THEIR NAMES HERE
+	private static final ResourceType[] ANIMALS = { SHEEP, DUCK, COW };
 
 	// enum to check which is selected, a BUILDING or an ANIMAL
 	public enum MenuType {
@@ -278,7 +277,9 @@ public class MenuManager implements Initializable {
 
 		// Add the building sprites
 		for (int i = 0; i < BUILDINGS.length; i++) {
-			BuildingMenuSprite sprite = new BuildingMenuSprite(BUILDINGS[i]);
+			BuildingMenuSprite sprite = new BuildingMenuSprite(
+					BUILDINGS[i], this.gameManager
+			);
 
 			if (!worldEntityInfo.containEntity(sprite.getSpriteType())) {
 				// this building is not yet registered in the manager. not
@@ -294,7 +295,9 @@ public class MenuManager implements Initializable {
 
 		// Add the animal sprites
 		for (int i = 0; i < ANIMALS.length; i++) {
-			AnimalMenuSprite sprite = new AnimalMenuSprite(ANIMALS[i]);
+			AnimalMenuSprite sprite = new AnimalMenuSprite(
+					ANIMALS[i], this.gameManager
+			);
 
 			animalMenuSprites.add(sprite);
 		}

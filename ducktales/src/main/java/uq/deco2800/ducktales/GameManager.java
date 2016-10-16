@@ -90,13 +90,13 @@ public class GameManager {
     private AchievementManager achievementManager;
     private TutorialController tutorialManager;
     private CursorManager cursorManager;
-    private MainEntityManager mainEntityManager;
     private TimeManager timeManager;
     private ThreatManager threatManager;
     private InventoryManager inventoryContainer;
     private WeatherManager weatherManager;
     private ResourceEntityManager resourceEntityManager;
     private PeonInformationDisplayManager peonInformationDisplayManager;
+    private MainEntityManager mainEntityManager;
     
     /**
      * Instantiate an empty game manager and createBuildingSprite a new default world
@@ -108,6 +108,8 @@ public class GameManager {
         currentEntityManaging = NONE;
 
         // Set up the secondary managers that are not linked to FXML
+        mainEntityManager = new MainEntityManager(this);
+        mainEntityManager.setWorld(this.getWorld());
         cursorManager = new CursorManager(this.root, this.getResourceSpriteRegister());
 
         // Create a new world model for the game
@@ -356,6 +358,8 @@ public class GameManager {
     public void setPeonInformationDisplayManager(PeonInformationDisplayManager peonInformationDisplayManager) {
         this.peonInformationDisplayManager = peonInformationDisplayManager;
     }
+
+
 
     /**
      * Set up the event handlers for the root pane of the game. The current

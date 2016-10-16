@@ -18,8 +18,6 @@ import org.slf4j.LoggerFactory;
  * such as controlling when and where to display the cursor image, and changing the HUD
  * UI elements along the way as appropriate
  *
- * TODO: MOVE THIS CLASS TO FXML LOADER IMPLEMENTATION AS HUD GETS MORE COMPLICATED
- *
  * Created on 7/09/2016.
  * @author khoiphan21
  */
@@ -43,9 +41,17 @@ public class HUDManager extends SecondaryManager {
         this.rootPane = rootPane;
         this.leftPane = leftPane;
         this.bottomPane = bottomPane;
+    }
 
-        // Instantiates the helper managers
-        loadMenus();
+    /**
+     * Start the hud. This should be called when HUDManager already has a
+     * reference on the main GameManager, otherwise it will fail
+     */
+    public void initialize() {
+        if (this.gameManager != null) {
+            // Initialize the menu manager and load the menus
+            loadMenus();
+        }
     }
 
     /**
@@ -59,6 +65,7 @@ public class HUDManager extends SecondaryManager {
         try {
             AnchorPane menuPane = loader.load();
             menuManager = loader.getController();
+            menuManager.setGameManager(this.gameManager);
 
             // Add and style the menu pane to the bottom pane
             bottomPane.getChildren().add(menuPane);

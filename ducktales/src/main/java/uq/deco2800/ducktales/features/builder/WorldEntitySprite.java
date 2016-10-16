@@ -2,6 +2,7 @@ package uq.deco2800.ducktales.features.builder;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import uq.deco2800.ducktales.GameManager;
 import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
 
@@ -48,12 +49,12 @@ public class WorldEntitySprite extends ImageView {
 	private ResourceSpriteRegister register;
     private Image sprite;
 
-    public WorldEntitySprite(ResourceType type) {
+    public WorldEntitySprite(ResourceType type, GameManager gameManager) {
         this.manager = WorldBuilderModel.getInstance();
         this.entityType = type;
-        this.register = ResourceSpriteRegister.getInstance();
+        this.register = gameManager.getResourceSpriteRegister();
 
-        this.sprite = ResourceSpriteRegister.getInstance().getResourceImage(type);
+        this.sprite = register.getResourceImage(type);
 
         this.setFitHeight(this.sprite.getHeight() * SCALE);
         this.setFitWidth(this.sprite.getWidth() * SCALE);

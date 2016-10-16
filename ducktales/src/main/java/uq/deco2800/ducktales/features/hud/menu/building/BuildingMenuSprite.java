@@ -1,6 +1,7 @@
 package uq.deco2800.ducktales.features.hud.menu.building;
 
 import javafx.scene.input.MouseButton;
+import uq.deco2800.ducktales.GameManager;
 import uq.deco2800.ducktales.features.hud.HUDSprite;
 import uq.deco2800.ducktales.features.hud.menu.MenuManager;
 import uq.deco2800.ducktales.resources.ResourceType;
@@ -21,8 +22,8 @@ public class BuildingMenuSprite extends HUDSprite {
      *
      * @param buildingType
      */
-    public BuildingMenuSprite(ResourceType buildingType) {
-        super(buildingType);
+    public BuildingMenuSprite(ResourceType buildingType, GameManager gameManager) {
+        super(buildingType, gameManager);
 
         setupMouseEventHandlers();
     }

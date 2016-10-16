@@ -8,6 +8,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import uq.deco2800.ducktales.GameManager;
 import uq.deco2800.ducktales.features.missions.MissionHandler;
 import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
@@ -47,6 +48,8 @@ public class WorldBuilderRenderer extends AnimationTimer {
     private static final double RESOURCE_MENU_H_PORTION = 1.0;
     private static final double RESOURCE_MENU_V_PORTION = 100.0 - BUILDING_SCENE_V_PORTION;
 
+    /** The main manager of the game */
+    private GameManager gameManager;
 
     /** General rendering variables */
     private World world;
@@ -102,8 +105,13 @@ public class WorldBuilderRenderer extends AnimationTimer {
      *
      * @param root
      *          The root pane to render onto
+     * @param worldBuilderPane
+     *          The pane that shows the world builder's world
+     * @param gameManager
+     *          The main manager of the game
      */
-    public WorldBuilderRenderer(Pane root, BorderPane worldBuilderPane) {
+    public WorldBuilderRenderer(
+            Pane root, BorderPane worldBuilderPane, GameManager gameManager) {
         super();
 
         // Setup the UI elements
@@ -112,7 +120,8 @@ public class WorldBuilderRenderer extends AnimationTimer {
         setupWorldBuilderUI();
 
         this.world = manager.getWorld();
-        this.resourceSpriteRegister = ResourceSpriteRegister.getInstance();
+        this.gameManager = gameManager;
+        this.resourceSpriteRegister = this.gameManager.getResourceSpriteRegister();
         this.tileHeight = ResourceSpriteRegister.TILE_HEIGHT;
         this.tileWidth = ResourceSpriteRegister.TILE_WIDTH;
         this.addedEntities = new ArrayList<>();
@@ -235,7 +244,7 @@ public class WorldBuilderRenderer extends AnimationTimer {
     private void createWorldEntityMenu(HBox worldEntityMenu) {
         for (int i = 0; i < RESOURCE_TYPES.length; i++) {
         	worldEntityMenu.getChildren().add(
-                    new WorldEntitySprite(RESOURCE_TYPES[i]));
+                    new WorldEntitySprite(RESOURCE_TYPES[i], this.gameManager));
         }
     }
 
@@ -246,7 +255,7 @@ public class WorldBuilderRenderer extends AnimationTimer {
      */
     private void createTileMenu(VBox tileMenu) {
         for (int i = 0; i < TILE_TYPES.length; i++) {
-            TileSprite sprite = new TileSprite(TILE_TYPES[i]);
+            TileSprite sprite = new TileSprite(TILE_TYPES[i], this.gameManager);
             sprite.getStyleClass().add("menuTileTypes");
             tileMenu.getChildren().add(sprite);
         }
@@ -275,7 +284,7 @@ public class WorldBuilderRenderer extends AnimationTimer {
                  * Construct a WorldBuilderTile, passing it its world-coordinates
                   * and a handle of this rendering engine,
                  */
-                tiles.set(i, j, new WorldBuilderTile(i, j));
+                tiles.set(i, j, new WorldBuilderTile(i, j, this.gameManager));
 
                 int x = startingX + (j - i) * scaledWidth / 2;
                 int y = startingY + (j + i) * scaledHeight / 2;
@@ -283,8 +292,8 @@ public class WorldBuilderRenderer extends AnimationTimer {
                 tile = tiles.get(i, j);
                 tile.setImage(resourceSpriteRegister.getResourceImage(GRASS_1));
 
-                tile.setFitHeight(resourceSpriteRegister.TILE_HEIGHT* SCALE);
-                tile.setFitWidth(resourceSpriteRegister.TILE_WIDTH* SCALE);
+                tile.setFitHeight(ResourceSpriteRegister.TILE_HEIGHT* SCALE);
+                tile.setFitWidth(ResourceSpriteRegister.TILE_WIDTH* SCALE);
 
                 tile.setLayoutX(x);
                 tile.setLayoutY(y);
