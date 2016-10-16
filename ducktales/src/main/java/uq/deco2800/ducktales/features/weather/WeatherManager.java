@@ -80,8 +80,8 @@ public class WeatherManager extends SecondaryManager
 
 		weatherEvents = new WeatherEvents();
 		try {
-			weatherEvents.add(new WeatherChance(new Rain(), 10));
-			weatherEvents.add(new WeatherChance(new Snow(), 90));
+			weatherEvents.add(new WeatherChance(new Rain(), 90));
+			weatherEvents.add(new WeatherChance(new Snow(), 10));
 			// weatherEvents.add(new WeatherChance(new
 			// Storm(StormType.LIGHTNING), 30));
 		} catch (InvalidWeatherChanceException exception) {
@@ -196,7 +196,7 @@ public class WeatherManager extends SecondaryManager
 		if (tickCount == 1) {
 			Platform.runLater(() -> {
 				context.clearRect(0, 0, canvasWidth, canvasHeight);
-				if (weatherEvents.size() > 0) {
+				if (weatherEvents.size() > 0 && currentWeather != null) {
 					for (WeatherCanvasShape shape : shapes) {
 						if (shape.getX() > canvasWidth) {
 							//shape.setX((int) Math.ceil(Math.random() * canvasWidth));
