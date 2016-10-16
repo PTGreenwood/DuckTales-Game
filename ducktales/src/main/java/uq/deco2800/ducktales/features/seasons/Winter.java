@@ -20,7 +20,7 @@ public class Winter extends Season {
 		super.maxTemperature = 12;
 		super.currentTemperature = 7;
 		super.minTemperature = 4;
-		super.timeNightFall = 5;
+		super.timeNightFall = 17;
 		super.timeDayBreak = 7;
 
 		super.weatherEvents = new WeatherEvents();

@@ -18,7 +18,7 @@ public class Autumn extends Season {
 		super.maxTemperature = 15;
 		super.currentTemperature = 12;
 		super.minTemperature = 10;
-		super.timeNightFall = 8;
+		super.timeNightFall = 20;
 		super.timeDayBreak = 5;
 
 		super.weatherEvents = new WeatherEvents();
