@@ -16,7 +16,7 @@ import uq.deco2800.ducktales.features.level.LevelManager;
 import uq.deco2800.ducktales.features.market.MarketManager;
 import uq.deco2800.ducktales.features.market.MarketVistaNavigator;
 import uq.deco2800.ducktales.features.time.TimeManager;
-import uq.deco2800.ducktales.features.tutorials.TutorialController;
+import uq.deco2800.ducktales.features.tutorials.TutorialManager;
 import uq.deco2800.ducktales.features.weather.*;
 
 import uq.deco2800.ducktales.rendering.worlddisplay.WorldDisplayManager;
@@ -81,7 +81,7 @@ public class GameController implements Initializable{
     private MissionManager missionManager;
     private LevelManager levelManager;
     private AchievementManager achievementManager;
-    private TutorialController tutorialManager;
+    private TutorialManager tutorialManager;
     
     private HUDManager hudManager;
     private WorldDisplayManager worldDisplayManager;
