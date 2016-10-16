@@ -76,6 +76,8 @@ public class WeatherManager extends SecondaryManager
 
 		weatherEvents = new WeatherEvents();
 		currentHour = -1;
+		
+		this.createShapes(50,this.isFalling());
 
 		weatherDisplayCanvas.setMouseTransparent(true);
 		weatherDisplay.getChildren().add(weatherDisplayCanvas);
@@ -273,7 +275,6 @@ public class WeatherManager extends SecondaryManager
 						this.getSeasonManager().getCurrentSeason().getName()
 								+ ": " + seasonEvents);
 				currentWeather = getWeatherPossibility();				
-				this.createShapes(50,this.isFalling());
 				this.setLighting();
 			}
 		}
