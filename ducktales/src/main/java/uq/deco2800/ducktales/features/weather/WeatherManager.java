@@ -287,10 +287,11 @@ public class WeatherManager extends SecondaryManager
 	}
 
 	private void setLighting() {
-		if (this.currentHour >= 5 && this.currentHour < 17)
-			setDay();
-		if (this.currentHour >= 17 || this.currentHour < 5)
+		if(this.getTimeManager().isNight()) {
 			setNight();
+		} else {
+			setDay();
+		}
 	}
 
 	private void setDay() {

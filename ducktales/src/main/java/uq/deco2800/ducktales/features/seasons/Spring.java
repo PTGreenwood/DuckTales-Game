@@ -14,7 +14,7 @@ public class Spring extends Season {
 		super.maxTemperature = 20;
 		super.currentTemperature = 13;
 		super.minTemperature = 13;
-		super.timeNightFall = 7;
+		super.timeNightFall = 19;
 		super.timeDayBreak = 6;
 
 		super.weatherEvents = new WeatherEvents();

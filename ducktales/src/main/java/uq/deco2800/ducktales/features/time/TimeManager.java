@@ -115,8 +115,10 @@ public class TimeManager extends SecondaryManager
 	 * @return true if night time. False if day time
 	 */
 	public boolean isNight() {
-		if((gameTime.getHour() >= 5)) { //||
-				//(gameTime.getHour() <= gameTime.season.getTimeDayBreak())) {
+		int currentHour = gameTime.getHour();
+		int seasonalNightTime = this.getSeasonManager().getCurrentSeason().getTimeNightFall();
+		int seasonalDayTime = this.getSeasonManager().getCurrentSeason().getTimeDayBreak();
+		if((currentHour >= seasonalNightTime || currentHour <= seasonalDayTime)) {
 			return true;
 		} else {
 			return false;
