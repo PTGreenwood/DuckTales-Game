@@ -1,6 +1,6 @@
 package uq.deco2800.ducktales.features.entities.worldentities;
 
-import uq.deco2800.ducktales.features.entities.worldentities.Building.production;
+import uq.deco2800.ducktales.features.entities.worldentities.StorageProduceBuilding.production;
 
 /**
  * A Construction Interface to obtain BuildingMenuSprite information.
@@ -68,7 +68,8 @@ public class Constructor {
 	 * 
 	 * @return the enum of the resource type
 	 */
-	public production getResourcesProductionType(Building building) {
+	public production getResourcesProductionType(StorageProduceBuilding 
+			building) {
 		building.specifications();
 		return building.resourcesProductionType();
 	}
@@ -79,7 +80,8 @@ public class Constructor {
 	 * 
 	 * @return the int of the resource amount
 	 */
-	public int getResourcesProductionAmount(Building building) {
+	public int getResourcesProductionAmount(StorageProduceBuilding 
+			building) {
 		building.specifications();
 		return building.resourcesProductionAmount();
 	}

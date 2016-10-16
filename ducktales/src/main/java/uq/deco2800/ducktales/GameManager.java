@@ -3,10 +3,12 @@ package uq.deco2800.ducktales;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import uq.deco2800.ducktales.features.achievements.AchievementManager;
-import uq.deco2800.ducktales.features.entities.EntityManager;
+import uq.deco2800.ducktales.features.entities.MainEntityManager;
 import uq.deco2800.ducktales.features.entities.ThreatManager;
+import uq.deco2800.ducktales.features.entities.resourceentities.ResourceEntityManager;
 import uq.deco2800.ducktales.features.helper.HelperManager;
 import uq.deco2800.ducktales.features.hud.HUDManager;
+import uq.deco2800.ducktales.features.hud.informationdisplay.peon.PeonInformationDisplayManager;
 import uq.deco2800.ducktales.features.hud.menu.MenuManager;
 import uq.deco2800.ducktales.features.inventory.InventoryManager;
 import uq.deco2800.ducktales.features.level.LevelManager;
@@ -18,6 +20,8 @@ import uq.deco2800.ducktales.rendering.worlddisplay.CursorManager;
 import uq.deco2800.ducktales.rendering.worlddisplay.WorldDisplayManager;
 import uq.deco2800.ducktales.features.missions.MissionManager;
 import uq.deco2800.ducktales.resources.ResourceType;
+import uq.deco2800.ducktales.util.events.animal.AnimalDeadEvent;
+import uq.deco2800.ducktales.util.events.handlers.animal.AnimalDeadEventHandler;
 import uq.deco2800.ducktales.util.events.handlers.custom.HUDDeselectedHandler;
 import uq.deco2800.ducktales.util.events.handlers.custom.MenuSelectedEventHandler;
 import uq.deco2800.ducktales.util.events.handlers.custom.TileClickedHandler;
@@ -25,6 +29,8 @@ import uq.deco2800.ducktales.util.events.handlers.custom.TileEnteredHandler;
 import uq.deco2800.ducktales.util.events.handlers.keyboard.InGameKeyboardHandler;
 import uq.deco2800.ducktales.util.events.handlers.mouse.InGameMouseClickedHandler;
 import uq.deco2800.ducktales.util.events.handlers.mouse.InGameMouseMovedHandler;
+import uq.deco2800.ducktales.util.events.handlers.peon.PeonClickedEventHandler;
+import uq.deco2800.ducktales.util.events.peon.PeonClickedEvent;
 import uq.deco2800.ducktales.util.events.tile.TileClickedEvent;
 import uq.deco2800.ducktales.util.events.tile.TileEnteredEvent;
 import uq.deco2800.ducktales.util.events.ui.HUDDeselectedEvent;
@@ -80,11 +86,13 @@ public class GameManager {
     private AchievementManager achievementManager;
     private TutorialController tutorialManager;
     private CursorManager cursorManager;
-    private EntityManager entityManager;
+    private MainEntityManager mainEntityManager;
     private TimeManager timeManager;
     private ThreatManager threatManager;
     private InventoryManager inventoryContainer;
     private WeatherManager weatherManager;
+    private ResourceEntityManager resourceEntityManager;
+    private PeonInformationDisplayManager peonInformationDisplayManager;
     
     /**
      * Instantiate an empty game manager and createBuildingSprite a new default world
@@ -136,9 +144,9 @@ public class GameManager {
         worldDisplayManager.initializeWorld();
 
         // Now set up the entity manager and start its routine
-        entityManager.setTilesManager(worldDisplayManager.getTilesManager());
-        entityManager.setWorldDisplay(worldDisplayManager.getWorldDisplay());
-        entityManager.startRoutine();
+        mainEntityManager.setTilesManager(worldDisplayManager.getTilesManager());
+        mainEntityManager.setWorldDisplay(worldDisplayManager.getWorldDisplay());
+        mainEntityManager.startRoutine();
 
         // Start the manager of all the horrible threats in the world.
         threatManager = new ThreatManager();
@@ -291,18 +299,26 @@ public class GameManager {
         this.cursorManager = cursorManager;
     }
 
-    public EntityManager getEntityManager() {
-        return entityManager;
+    public MainEntityManager getMainEntityManager() {
+        return mainEntityManager;
     }
 
-    public void setEntityManager(EntityManager entityManager) {
-        this.entityManager = entityManager;
+    public void setMainEntityManager(MainEntityManager mainEntityManager) {
+        this.mainEntityManager = mainEntityManager;
+    }
+    
+    public ResourceEntityManager getResourceEntityManager() {
+    	return resourceEntityManager;
+    }
+    
+    public void setResourceEntityManager(ResourceEntityManager resourceEntityManager) {
+    	this.resourceEntityManager = resourceEntityManager;
     }
 
     public TimeManager getTimeManager() {
         return timeManager;
     }
-    
+
     public WeatherManager getWeatherManager() {
     	return this.weatherManager;
     }
@@ -310,15 +326,25 @@ public class GameManager {
     public void setTimeManager(TimeManager timeManager) {
         this.timeManager = timeManager;
     }
-    
+
     public void setWeatherManager(WeatherManager weatherManager) {
         this.weatherManager = weatherManager;
+    }
+
+    public PeonInformationDisplayManager getPeonInformationDisplayManager() {
+        return peonInformationDisplayManager;
+    }
+
+    public void setPeonInformationDisplayManager(PeonInformationDisplayManager peonInformationDisplayManager) {
+        this.peonInformationDisplayManager = peonInformationDisplayManager;
     }
 
     /**
      * Set up the event handlers for the root pane of the game. The current
      * events being handled:
      *      1. A menu sprite is clicked on -> update cursor image
+     *      
+     *      8. When an animal dies -> drop a resource sprite and load death sprite
      */
     private void setupEventHandlers() {
         // Initialize the custom handlers
@@ -336,6 +362,10 @@ public class GameManager {
                 new HUDDeselectedHandler(this);
         InGameKeyboardHandler keyboardHandler =
                 new InGameKeyboardHandler(this);
+        AnimalDeadEventHandler animalDeadEventHandler = 
+        		new AnimalDeadEventHandler(this);
+        PeonClickedEventHandler peonClickedEventHandler =
+                new PeonClickedEventHandler(this);
 
 
 
@@ -353,6 +383,10 @@ public class GameManager {
         root.addEventHandler(HUDDeselectedEvent.HUD_DESELECTED_EVENT, hudDeselectedHandler);
         // Handler for all keyboard events
         root.addEventHandler(KeyEvent.ANY, keyboardHandler);
+        // Handler for when an animal dies
+        root.addEventHandler(AnimalDeadEvent.ANIMAL_DEAD_EVENT, animalDeadEventHandler);
+        // Handler for when a peon sprite is clicked
+        root.addEventHandler(PeonClickedEvent.PEON_CLICKED_EVENT, peonClickedEventHandler);
     }
 
     /**
@@ -366,7 +400,7 @@ public class GameManager {
         executor.execute(this.gameLoop); // Start the game loop
 
         // Pass the managers to the game loop
-        gameLoop.setEntityManager(this.entityManager);
+        gameLoop.setMainEntityManager(this.mainEntityManager);
         gameLoop.setTimeManager(this.timeManager);        
         gameLoop.setWeatherManager(this.weatherManager);        
         gameLoop.setWorld(this.world);
@@ -397,6 +431,7 @@ public class GameManager {
     public void setInventoryManager(InventoryManager inventoryManager) {
         this.inventoryContainer = inventoryManager;
     }
+    
     public InventoryManager getInventoryContainer() {
         return inventoryContainer;
     }

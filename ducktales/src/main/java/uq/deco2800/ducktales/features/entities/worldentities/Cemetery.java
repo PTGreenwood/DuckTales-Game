@@ -41,7 +41,7 @@ public class Cemetery extends Building {
 	 * Update the WorldEntity properties with those of a cemetery.
 	 */
 	protected void specifications() {
-		specifications(2, 4, 2, production.NULL, 0, health);
+		specifications(2, 4, 2, health);
 	}
 	
 	/**
@@ -54,16 +54,5 @@ public class Cemetery extends Building {
 	 */
 	protected void changeHealthBuilding(int newValue){
 		health = newValue;
-	}
-	
-	/**
-	 * Upgrade produce for building, required for all buildings, by Building 
-	 * class. Possible use to extend/upgrade cemetery.
-	 * 
-	 * @throws UnsupportedOperationException, as this functionality is not 
-	 * required for a cemetery.
-	 */
-	protected void upgradeProduceBuilding(int newValue) {
-		throw new UnsupportedOperationException();
 	}
 }

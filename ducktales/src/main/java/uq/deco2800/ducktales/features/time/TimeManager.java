@@ -10,7 +10,9 @@ import javafx.scene.text.Text;
 import uq.deco2800.ducktales.util.SecondaryManager;
 import uq.deco2800.ducktales.util.Tickable;
 import uq.deco2800.ducktales.GameManager;
+import uq.deco2800.ducktales.features.seasons.SeasonManager;
 import uq.deco2800.ducktales.rendering.worlddisplay.WorldDisplayManager;
+import uq.deco2800.ducktales.features.seasons.*;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -21,7 +23,8 @@ import java.util.ResourceBundle;
  *
  * Created on 9/09/2016.
  */
-public class TimeManager implements SecondaryManager, Initializable, Tickable {
+public class TimeManager extends SecondaryManager
+        implements Initializable, Tickable {
 
     /** The root pane for all the time display elements */
     @FXML
@@ -31,8 +34,14 @@ public class TimeManager implements SecondaryManager, Initializable, Tickable {
     @FXML
     private Text dayDisplayText;
 
-    /** The model for the game time */
+    /* The model for the game time */
     private GameTime gameTime;
+    private int seasonNumber;
+    
+    /* Manager for the Seasons ;) */
+    public SeasonManager seasonManager;
+    
+
 
     /**
      * This method is called when GameController initializes the time display using
@@ -48,12 +57,9 @@ public class TimeManager implements SecondaryManager, Initializable, Tickable {
     public void initialize(URL location, ResourceBundle resources) {
         // Start the game time
         gameTime = new GameTime();
-    }
-
-
-    @Override
-    public void reload() {
-
+        seasonManager = new SeasonManager();
+        seasonNumber = 0;
+            	
     }
 
 
@@ -62,24 +68,45 @@ public class TimeManager implements SecondaryManager, Initializable, Tickable {
 
         gameTime.tick();
 
-//        System.err.println("hour and minute: " + gameTime.getHour() + ", " + gameTime.getMinute());
-
         // Display the new time\
-    	final int year = gameTime.getCurrentYear();
-        final int day = gameTime.getCurrentDay();
-        final int hour = gameTime.getHour();
-        final String minute = String.format("%02d", gameTime.getMinute());
-        final String timeText = "Current Time is: " + hour + ":" + minute + ", Day " + day + " Year " + year;
+    	final int currentYear = gameTime.getCurrentYear();
+        final int currentDay = gameTime.getCurrentDay();
+        final int currentHour = gameTime.getHour();
+        final String currentMinute = String.format("%02d", gameTime.getMinute());
+        final String timeText = "Current Time is: " + currentHour + ":" + currentMinute +
+        		", Day " + currentDay + " Year " + currentYear;
+        final int dayTracker = gameTime.getSeasonalDayTracker();
+
+        
+        //Variable to hold the current Season Number to get the appropriate season name from the
+        //season list held in seasonManager.getSeasonList();
+        if(gameTime.getSeasonalDayTracker() > 20) {
+     	   if(seasonNumber < 3) {
+     		   seasonNumber++;
+
+     	   } else {
+     		   seasonNumber = 0;
+     	   }
+     	  
+     	   this.seasonManager.updateSeason(seasonNumber); 
+     	   System.out.println("Season Update: " + seasonManager.getCurrentSeason().getName());
+     	   
+      	   gameTime.resetTracker();
+      	   
+        } else {
+     	 //Doesn't do anything if it's already the same season. Will save on processing time (I HOPE).
+        }
+        
         
         // this is needed, since this UI update is called from another thread
         // (GameLoop runs on another thread and not the main FXApplication thread)
         // IN REGARDS TO TIME ALL CALL TO UI CHANGES MUST GO INSIDE THIS METHOD CALL
 
         Platform.runLater(() -> {
-            timeDisplayText.setText(hour + ":" + minute);
-            dayDisplayText.setText("DAY "+day);
+            timeDisplayText.setText(currentHour + ":" + currentMinute);
+            dayDisplayText.setText("DAY "+ currentDay);
         });
-            
+
     }
     
 	/** 
@@ -111,4 +138,28 @@ public class TimeManager implements SecondaryManager, Initializable, Tickable {
     	return this.gameTime;
     }
 
+    /**
+     * Sets the seasonManager for the TimeManager class.
+     * Will no longer return null because of instantiations.
+     * 
+     * @param seasonManager
+     * 			- The seasonManager that is being managed by Time.
+     * 			- Can and should only be accessed through getSeasonManager() method.
+     */
+    public void setSeasonManager(SeasonManager seasonManager) {
+    	this.seasonManager = seasonManager;
+    }
+    
+    /**
+     * Gets the instantiated SeasonManager created inside TimeManager
+     * This will allow the modification of season data from outside.
+     * 
+     * @return SeasonManager seasonManager
+     * 			- The Currently instantiated seasonManager
+     */
+    public SeasonManager getSeasonManager() {
+    	return this.seasonManager;
+    }
+    
+    
 }

@@ -23,7 +23,7 @@ import org.slf4j.LoggerFactory;
  * Created on 7/09/2016.
  * @author khoiphan21
  */
-public class HUDManager implements SecondaryManager {
+public class HUDManager extends SecondaryManager {
     /** the root pane to add all panes into */
     private AnchorPane rootPane;
     /** FXML variables - this implementation should be changed later to use FXML */
@@ -69,11 +69,6 @@ public class HUDManager implements SecondaryManager {
         } catch (IOException e) {
         	logger.info("unable to load menu", e);
         }
-    }
-
-    @Override
-    public void reload() {
-
     }
 
     /**

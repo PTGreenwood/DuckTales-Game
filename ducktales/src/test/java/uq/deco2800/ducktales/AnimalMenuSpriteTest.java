@@ -2,7 +2,7 @@
 //
 //import org.junit.Test;
 //
-//import uq.deco2800.ducktales.features.entities.EntityManager;
+//import uq.deco2800.ducktales.features.entities.MainEntityManager;
 //import uq.deco2800.ducktales.features.entities.agententities.Cow;
 //import uq.deco2800.ducktales.features.entities.agententities.Duck;
 //import uq.deco2800.ducktales.features.entities.agententities.Peon;
@@ -25,7 +25,7 @@
 //    public void animalTest() {
 //
 //    	// Create base entities for testing purposes
-//        EntityManager entityManager = EntityManager.getInstance();
+//        MainEntityManager entityManager = MainEntityManager.getInstance();
 //        Duck duck = new Duck(10, 10);
 //        Peon opponent = new Peon(10, 10);
 ////        entityManager.addEntity(duck);
@@ -92,7 +92,7 @@
 //    public void duckTest () {
 //
 //        // Create base entities for testing purposes.
-//        EntityManager entityManager = EntityManager.getInstance();
+//        MainEntityManager entityManager = MainEntityManager.getInstance();
 //        Duck duck = new Duck(10, 10);
 //        Peon opponent = new Peon(10, 10);
 ////        entityManager.addEntity(duck);
@@ -119,7 +119,7 @@
 //    public void cowTest () {
 //
 //    	// Create base entities for testing purposes.
-//    	EntityManager entityManager = EntityManager.getInstance();
+//    	MainEntityManager entityManager = MainEntityManager.getInstance();
 //        Cow cow = new Cow(10, 10);
 //        Peon opponent = new Peon(10, 10);
 ////        entityManager.addEntity(cow);

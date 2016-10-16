@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import uq.deco2800.ducktales.features.entities.EntityManager;
+import uq.deco2800.ducktales.features.entities.MainEntityManager;
+import uq.deco2800.ducktales.features.entities.peons.Peon;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.Point;
 
@@ -17,10 +18,10 @@ public class Wolf extends Animal {
 
     private Peon opponent; // The peon that the Wolf will attack.
     private Animal opponent2; // The domestic animals that the Wolf will attack
-    private EntityManager opponentList; // List of possible agentEntity opponents.
+    private MainEntityManager opponentList; // List of possible agentEntity opponents.
     private String direction; // The direction that the animal is travelling.
     private List<Point> goalPoints;
-    private EntityManager entityManager = EntityManager.getInstance();
+    private MainEntityManager mainEntityManager = MainEntityManager.getInstance();
     // The variables below are used to alternate images for animation.
     private int animationStage; // Determines which of the two images per direction is rendered.
     private int currentAnimationTick;

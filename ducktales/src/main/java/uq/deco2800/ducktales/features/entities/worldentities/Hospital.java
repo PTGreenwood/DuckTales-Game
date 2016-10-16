@@ -41,7 +41,7 @@ public class Hospital extends Building {
 	 * Update the WorldEntity properties with those of a hospital.
 	 */
 	protected void specifications() {
-		specifications(12, 8, 5, production.NULL, 0, health);
+		specifications(12, 8, 5, health);
 	}
 	
 	/**
@@ -54,16 +54,5 @@ public class Hospital extends Building {
 	 */
 	protected void changeHealthBuilding(int newValue){
 		health = newValue;
-	}
-	
-	/**
-	 * Upgrade produce for building, required for all buildings, by Building 
-	 * class. Possible use to extand/upgrade hospitals.
-	 * 
-	 * @throws UnsupportedOperationException, as this functionality is not 
-	 * required for a hospital.
-	 */
-	protected void upgradeProduceBuilding(int newValue) {
-		throw new UnsupportedOperationException();
 	}
 }

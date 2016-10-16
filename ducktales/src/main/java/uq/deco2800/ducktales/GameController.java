@@ -1,29 +1,22 @@
 package uq.deco2800.ducktales;
 
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Rectangle2D;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.stage.Screen;
 import uq.deco2800.ducktales.features.achievements.AchievementManager;
-import uq.deco2800.ducktales.features.entities.EntityManager;
+import uq.deco2800.ducktales.features.entities.MainEntityManager;
 import uq.deco2800.ducktales.features.helper.HelperManager;
 import uq.deco2800.ducktales.features.hud.HUDManager;
+import uq.deco2800.ducktales.features.hud.informationdisplay.peon.PeonInformationDisplayManager;
 import uq.deco2800.ducktales.features.level.LevelManager;
 import uq.deco2800.ducktales.features.market.MarketManager;
 import uq.deco2800.ducktales.features.market.MarketVistaNavigator;
 import uq.deco2800.ducktales.features.time.TimeManager;
 import uq.deco2800.ducktales.features.tutorials.TutorialController;
-import uq.deco2800.ducktales.features.time.*;
 import uq.deco2800.ducktales.features.weather.*;
 
 import uq.deco2800.ducktales.rendering.worlddisplay.WorldDisplayManager;
@@ -34,7 +27,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import org.slf4j.Logger; 
-import org.slf4j.LoggerFactory; 
+import org.slf4j.LoggerFactory;
+import uq.deco2800.ducktales.util.exceptions.GameSetupException;
 
 /**
  * <p>
@@ -92,8 +86,9 @@ public class GameController implements Initializable{
     private HUDManager hudManager;
     private WorldDisplayManager worldDisplayManager;
     private WeatherManager weatherManager;
+    private PeonInformationDisplayManager peonInformationDisplayManager;
 
-    private EntityManager entityManager;
+    private MainEntityManager mainEntityManager;
 
     private TimeManager timeManager;
 
@@ -115,11 +110,11 @@ public class GameController implements Initializable{
 
         // Load each FXML element into the root pane on by one, and retrieve
         // their respective controllers        
-        
-        
+
         loadWorldDisplay(); 
         loadWeatherDisplay();
         loadHUD();
+        loadPeonInformationDisplay();
         
         loadMarketPlace();
         loadMissions();
@@ -142,10 +137,11 @@ public class GameController implements Initializable{
         gameManager.setMissionManager(this.missionManager);
         gameManager.setLevelManager(this.levelManager);
         gameManager.setAchievementManager(this.achievementManager);
-        gameManager.setEntityManager(this.entityManager);
+        gameManager.setMainEntityManager(this.mainEntityManager);
         gameManager.setTutorialManager(this.tutorialManager);      
         gameManager.setHelperManager(this.helperManager);
-        
+        gameManager.setPeonInformationDisplayManager(this.peonInformationDisplayManager);
+
         // Now officially call the game starting method from Game Manager
         gameManager.startGame();        
         // Game Controller's job of setting up the UI is done.
@@ -227,6 +223,34 @@ public class GameController implements Initializable{
     }
 
     /**
+     * Load the information display for peons.
+     *
+     * Initially this will be hidden - it will only be shown when a peon
+     * is clicked on
+     */
+    private void loadPeonInformationDisplay() {
+        URL location = getClass().getResource("/ui/peondisplay/peonDisplay.fxml");
+        FXMLLoader loader = new FXMLLoader(location);
+
+        try {
+            Pane peonInformationDisplay = loader.load();
+            this.peonInformationDisplayManager = loader.getController();
+
+            this.peonInformationDisplayManager.setGameManager(this.gameManager);
+
+            // Add the peon information display to the root pane
+            rootPane.getChildren().add(peonInformationDisplay);
+
+            // Set up the sizing for the root pane
+            AnchorPane.setBottomAnchor(peonInformationDisplay, 20.0);
+            AnchorPane.setLeftAnchor(peonInformationDisplay, 200.0);
+            AnchorPane.setRightAnchor(peonInformationDisplay, 200.0);
+        } catch (IOException e) {
+            throw new GameSetupException("Cannot load Peon Information Display");
+        }
+    }
+
+    /**
      * Load and show the game world
      */
     private void loadWorldDisplay() {
@@ -249,8 +273,7 @@ public class GameController implements Initializable{
             AnchorPane.setTopAnchor(worldPane, 0.0);
             AnchorPane.setBottomAnchor(worldPane, 0.0);
         } catch (IOException e) {
-            System.err.println("unable to load world display");
-            //e.printStackTrace();
+            throw new GameSetupException("Cannot load World Display");
         }
     }
     
@@ -398,9 +421,9 @@ public class GameController implements Initializable{
      * Initializes the entity manager and setting it up
      */
     private void loadEntities() {
-        entityManager = EntityManager.getInstance();
-        entityManager.setGameManager(gameManager);
-        entityManager.setWorld(gameManager.getWorld());
+        mainEntityManager = MainEntityManager.getInstance();
+        mainEntityManager.setGameManager(gameManager);
+        mainEntityManager.setWorld(gameManager.getWorld());
     }
 
     /**
@@ -582,10 +605,10 @@ public class GameController implements Initializable{
             rootPane.getChildren().add(root);
             
             // position the level pane
-            AnchorPane.setBottomAnchor(root, 10.0);
+            AnchorPane.setTopAnchor(root, 580.0);
             AnchorPane.setLeftAnchor(root, 350.0);            
 
-            helperManager.hideHelper();
+            //helperManager.hideHelper();
             
         } catch (IOException e) {
             System.err.println("Unable to load Helper");

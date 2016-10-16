@@ -1,10 +1,9 @@
 package uq.deco2800.ducktales.features.entities;
 
-import java.util.*;
 import java.util.Random;
 
 import uq.deco2800.ducktales.World;
-import uq.deco2800.ducktales.features.entities.agententities.Peon;
+import uq.deco2800.ducktales.features.entities.peons.Peon;
 import uq.deco2800.ducktales.resources.ResourceType;
 
 /**
