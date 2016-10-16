@@ -7,6 +7,9 @@ import javafx.scene.image.Image;
 import uq.deco2800.ducktales.features.time.GameTime;
 import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
+import uq.deco2800.ducktales.util.exceptions.GameSetupException;
+
+import javax.annotation.Nullable;
 
 import static uq.deco2800.ducktales.resources.ResourceType.*;
 
@@ -18,10 +21,18 @@ import static uq.deco2800.ducktales.resources.ResourceType.*;
  */
 public class SpritesFactory {
     /** CONSTANTS */
-    private static int REAL_MINUTE = 1; // In seconds
+    private static final int REAL_MINUTE = 1; // In seconds
 
 	static int initTime;
 	static GameTime gameTime = new GameTime();
+
+    /**
+     * This is supposed to only hide the implicit public declaration only
+     *
+     * It does not need to do anything yet
+     */
+    private SpritesFactory() {
+    }
 
     /**
      * Create a sprite of a peon, with the given name as the unique ID
@@ -31,6 +42,11 @@ public class SpritesFactory {
      * @return A peon sprite with the given name as unique ID
      */
     public static PeonSprite createPeonSprite(String peonName) {
+        // Check if the name given is an empty string
+        if (peonName == "") {
+            throw new RuntimeException("Peon name cannot be an empty string");
+        }
+
         PeonSprite sprite = new PeonSprite(peonName);
         sprite.setImage(ResourceSpriteRegister.getInstance().getResourceImage(
                 ResourceType.PEON
@@ -43,16 +59,15 @@ public class SpritesFactory {
      *
      * @param index
      *          The index of the sprite to be stored
-     * @param spriteType
+     * @param buildingType
      *          The type of the sprite - of type RegisteredSprite
      *
      * @return The sprite of the building of the given type
      *          null if the building is not yet registered
      */
-    public static BuildingSprite createBuildingSprite(int index, ResourceType spriteType) {
-        // TODO SEPARATE INTO ANIMALS AND BUILDINGS
+    public static BuildingSprite createBuildingSprite(int index, ResourceType buildingType) {
     	initTime = gameTime.getCurrentDay();
-        switch (spriteType) {
+        switch (buildingType) {
             // BUILDINGS
             case HOSPITAL:
                 return createHospital(index, ResourceType.HOSPITAL);
@@ -89,7 +104,9 @@ public class SpritesFactory {
             case GYMNASIUM:
                 return createGymnasium(index, ResourceType.GYMNASIUM);
             default:
-                return null;
+                throw new GameSetupException("The given building type is" +
+                        " not yet registered in SpritesFactory. Unable to" +
+                        " create a building sprite of type: " + buildingType);
         }
     }
 
@@ -112,7 +129,9 @@ public class SpritesFactory {
             case COW:
                 return createCow(index, ResourceType.COW);
             default:
-                return null;
+                throw new GameSetupException("The given animal type is" +
+                        " not yet registered in SpritesFactory. Unable to" +
+                        " create an animal sprite of type: " + type);
         }
     }
 
