@@ -111,8 +111,8 @@ public class GameController implements Initializable{
         // Load each FXML element into the root pane on by one, and retrieve
         // their respective controllers        
 
-        loadWorldDisplay(); 
-        loadWeatherDisplay();
+        loadWorldDisplay();
+        
         loadHUD();
         loadPeonInformationDisplay();
         
@@ -124,6 +124,7 @@ public class GameController implements Initializable{
         loadHelper();
         
         loadTimeDisplay();
+        loadWeatherDisplay();
         
         loadDayNightDisplay(); // This must be after loading TimeDisplay
 
@@ -321,7 +322,8 @@ public class GameController implements Initializable{
 
             // Retrieve the controller
             weatherManager = loader.getController();
-
+            weatherManager.setTimeManager(this.timeManager);
+            
             gameManager.setWeatherManager(this.weatherManager);
 
             // Add the time display to the GUI

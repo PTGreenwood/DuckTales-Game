@@ -10,6 +10,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import uq.deco2800.ducktales.features.hud.menu.MenuManager;
+import uq.deco2800.ducktales.features.seasons.SeasonManager;
+import uq.deco2800.ducktales.features.time.TimeManager;
 import uq.deco2800.ducktales.util.SecondaryManager;
 import uq.deco2800.ducktales.util.Tickable;
 
@@ -49,6 +51,11 @@ public class WeatherManager extends SecondaryManager
 	private WeatherEvents weatherEvents;
 	// current weather event
 	private Weather currentWeather;
+	private int currentHour;
+	private int currentDay;
+
+	private TimeManager timeManager;
+	private SeasonManager seasonManager;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -92,6 +99,19 @@ public class WeatherManager extends SecondaryManager
 
 		weatherDisplayCanvas.setMouseTransparent(true);
 		weatherDisplay.getChildren().add(weatherDisplayCanvas);
+	}
+
+	public void setTimeManager(TimeManager timeManager) {
+		this.timeManager = timeManager;
+		this.seasonManager = timeManager.getSeasonManager();
+	}
+
+	public TimeManager getTimeManager() {
+		return this.timeManager;
+	}
+
+	public SeasonManager getSeasonManager() {
+		return this.seasonManager;
 	}
 
 	/**
@@ -195,11 +215,29 @@ public class WeatherManager extends SecondaryManager
 	public void tick() {
 		if (tickCount == 1) {
 			Platform.runLater(() -> {
+				if (this.getTimeManager() != null) {
+					int hour = this.getTimeManager().getGameTimeObject()
+							.getHour();
+					int day = this.getTimeManager().getGameTimeObject()
+							.getCurrentDay();
+					if (currentHour != hour) {
+						currentHour = hour;
+						currentDay = day;
+						WeatherEvents seasonEvents = this.getSeasonManager()
+								.getCurrentSeason().getSeasonalWeatherEvents();
+						setWeatherEvents(seasonEvents);
+						System.out.println(
+								this.getSeasonManager().getCurrentSeason()
+										.getName() + ": " + seasonEvents);
+						currentWeather = getWeatherPossibility();
+					}
+				}
 				context.clearRect(0, 0, canvasWidth, canvasHeight);
 				if (weatherEvents.size() > 0 && currentWeather != null) {
 					for (WeatherCanvasShape shape : shapes) {
 						if (shape.getX() > canvasWidth) {
-							//shape.setX((int) Math.ceil(Math.random() * canvasWidth));
+							// shape.setX((int) Math.ceil(Math.random() *
+							// canvasWidth));
 							shape.setX(-20);
 						} else {
 							shape.setX((shape.getX() + (shape.getDirection())));

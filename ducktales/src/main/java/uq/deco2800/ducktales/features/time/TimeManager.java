@@ -80,7 +80,7 @@ public class TimeManager extends SecondaryManager
         
         //Variable to hold the current Season Number to get the appropriate season name from the
         //season list held in seasonManager.getSeasonList();
-        if(gameTime.getSeasonalDayTracker() > 20) {
+        if(gameTime.getSeasonalDayTracker() > 1) {
      	   if(seasonNumber < 3) {
      		   seasonNumber++;
 
