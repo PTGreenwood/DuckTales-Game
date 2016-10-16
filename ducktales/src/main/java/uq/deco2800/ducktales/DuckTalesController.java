@@ -8,6 +8,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import uq.deco2800.ducktales.util.exceptions.GameSetupException;
 import uq.deco2800.singularity.clients.ducktales.DucktalesClient;
 import uq.deco2800.ducktales.features.builder.WorldBuilderController;
@@ -30,7 +32,8 @@ public class DuckTalesController implements Initializable {
 	@FXML
 	private AnchorPane mainMenuPane;
 
-
+	/** implementing a logger, to catch ioe exception */
+	private static Logger logger = LoggerFactory.getLogger(GameController.class);
 
 	private WorldBuilderController worldBuilderController;
 
@@ -104,7 +107,8 @@ public class DuckTalesController implements Initializable {
 		try {
 			gamePane = loader.load();
 		} catch(Exception e) {
-			throw new Exception("failed to load main UI");
+			logger.info("exception when trying to load main UI", e);
+			throw new GameSetupException("failed to load main UI");
 		}
 
 		// Set the layout for the gamePane

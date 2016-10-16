@@ -36,18 +36,14 @@ public class LoginController  {
         
 		Scene scene = new Scene(root1,300,275);
 		primaryStage= new Stage();
-        //primaryStage.initStyle(Stage.UNDECORATED);
-		primaryStage.setTitle("FXML Welcome");  
+		primaryStage.setTitle("FXML Welcome");
 		primaryStage.setScene(scene);
 		primaryStage.showAndWait();
 
     }
     
     @FXML protected void handleSubmitButtonAction(ActionEvent event) throws Exception {
-    	//event.fireEvent(this,new WindowEvent(this,WindowEvent.WINDOW_CLOSED));
-    //if(username.getText().equals("123") && passwordField.getText().equals("456"))
     		DuckTalesController.close();
-    	//else
     		actiontarget.setText("error");
     }
    

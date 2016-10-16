@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
-import uq.deco2800.ducktales.DuckTalesController;  
 
 
 /**
@@ -22,7 +21,7 @@ public class SignUpController  {
     @FXML
     private PasswordField passwordField2;
     
-    @FXML protected void handleSignUpButtonAction(ActionEvent event) throws Exception {
+    @FXML protected void handleSignUpButtonAction() throws Exception {
     	LoginController.close();
     }
    
