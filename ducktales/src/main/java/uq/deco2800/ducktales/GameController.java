@@ -229,7 +229,7 @@ public class GameController implements Initializable{
      * is clicked on
      */
     private void loadPeonInformationDisplay() {
-        URL location = getClass().getResource("/ui/hud/peonDisplay/peonDisplay.fxml");
+        URL location = getClass().getResource("/ui/peondisplay/peonDisplay.fxml");
         FXMLLoader loader = new FXMLLoader(location);
 
         try {

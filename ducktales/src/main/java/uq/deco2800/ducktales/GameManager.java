@@ -29,6 +29,8 @@ import uq.deco2800.ducktales.util.events.handlers.custom.TileEnteredHandler;
 import uq.deco2800.ducktales.util.events.handlers.keyboard.InGameKeyboardHandler;
 import uq.deco2800.ducktales.util.events.handlers.mouse.InGameMouseClickedHandler;
 import uq.deco2800.ducktales.util.events.handlers.mouse.InGameMouseMovedHandler;
+import uq.deco2800.ducktales.util.events.handlers.peon.PeonClickedEventHandler;
+import uq.deco2800.ducktales.util.events.peon.PeonClickedEvent;
 import uq.deco2800.ducktales.util.events.tile.TileClickedEvent;
 import uq.deco2800.ducktales.util.events.tile.TileEnteredEvent;
 import uq.deco2800.ducktales.util.events.ui.HUDDeselectedEvent;
@@ -362,6 +364,8 @@ public class GameManager {
                 new InGameKeyboardHandler(this);
         AnimalDeadEventHandler animalDeadEventHandler = 
         		new AnimalDeadEventHandler(this);
+        PeonClickedEventHandler peonClickedEventHandler =
+                new PeonClickedEventHandler(this);
 
 
 
@@ -381,6 +385,8 @@ public class GameManager {
         root.addEventHandler(KeyEvent.ANY, keyboardHandler);
         // Handler for when an animal dies
         root.addEventHandler(AnimalDeadEvent.ANIMAL_DEAD_EVENT, animalDeadEventHandler);
+        // Handler for when a peon sprite is clicked
+        root.addEventHandler(PeonClickedEvent.PEON_CLICKED_EVENT, peonClickedEventHandler);
     }
 
     /**

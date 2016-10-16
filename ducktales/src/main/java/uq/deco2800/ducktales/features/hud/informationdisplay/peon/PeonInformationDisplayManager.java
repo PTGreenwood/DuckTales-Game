@@ -76,9 +76,4 @@ public class PeonInformationDisplayManager
         // Show the display
         rootDisplay.setVisible(true);
     }
-
-    public void changePeonJob() {
-
-    }
-
 }
