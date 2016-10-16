@@ -8,6 +8,7 @@ import uq.deco2800.ducktales.features.entities.ThreatManager;
 import uq.deco2800.ducktales.features.entities.resourceentities.ResourceEntityManager;
 import uq.deco2800.ducktales.features.helper.HelperManager;
 import uq.deco2800.ducktales.features.hud.HUDManager;
+import uq.deco2800.ducktales.features.hud.informationdisplay.peon.PeonInformationDisplayManager;
 import uq.deco2800.ducktales.features.hud.menu.MenuManager;
 import uq.deco2800.ducktales.features.inventory.InventoryManager;
 import uq.deco2800.ducktales.features.level.LevelManager;
@@ -19,7 +20,8 @@ import uq.deco2800.ducktales.rendering.worlddisplay.CursorManager;
 import uq.deco2800.ducktales.rendering.worlddisplay.WorldDisplayManager;
 import uq.deco2800.ducktales.features.missions.MissionManager;
 import uq.deco2800.ducktales.resources.ResourceType;
-import uq.deco2800.ducktales.util.events.handlers.custom.AnimalDeadEventHandler;
+import uq.deco2800.ducktales.util.events.animal.AnimalDeadEvent;
+import uq.deco2800.ducktales.util.events.handlers.animal.AnimalDeadEventHandler;
 import uq.deco2800.ducktales.util.events.handlers.custom.HUDDeselectedHandler;
 import uq.deco2800.ducktales.util.events.handlers.custom.MenuSelectedEventHandler;
 import uq.deco2800.ducktales.util.events.handlers.custom.TileClickedHandler;
@@ -27,9 +29,10 @@ import uq.deco2800.ducktales.util.events.handlers.custom.TileEnteredHandler;
 import uq.deco2800.ducktales.util.events.handlers.keyboard.InGameKeyboardHandler;
 import uq.deco2800.ducktales.util.events.handlers.mouse.InGameMouseClickedHandler;
 import uq.deco2800.ducktales.util.events.handlers.mouse.InGameMouseMovedHandler;
+import uq.deco2800.ducktales.util.events.handlers.peon.PeonClickedEventHandler;
+import uq.deco2800.ducktales.util.events.peon.PeonClickedEvent;
 import uq.deco2800.ducktales.util.events.tile.TileClickedEvent;
 import uq.deco2800.ducktales.util.events.tile.TileEnteredEvent;
-import uq.deco2800.ducktales.util.events.ui.AnimalDeadEvent;
 import uq.deco2800.ducktales.util.events.ui.HUDDeselectedEvent;
 import uq.deco2800.ducktales.util.events.ui.MenuSelectedEvent;
 import uq.deco2800.ducktales.features.hud.menu.MenuManager.MenuType;
@@ -89,6 +92,7 @@ public class GameManager {
     private InventoryManager inventoryContainer;
     private WeatherManager weatherManager;
     private ResourceEntityManager resourceEntityManager;
+    private PeonInformationDisplayManager peonInformationDisplayManager;
     
     /**
      * Instantiate an empty game manager and createBuildingSprite a new default world
@@ -327,10 +331,20 @@ public class GameManager {
         this.weatherManager = weatherManager;
     }
 
+    public PeonInformationDisplayManager getPeonInformationDisplayManager() {
+        return peonInformationDisplayManager;
+    }
+
+    public void setPeonInformationDisplayManager(PeonInformationDisplayManager peonInformationDisplayManager) {
+        this.peonInformationDisplayManager = peonInformationDisplayManager;
+    }
+
     /**
      * Set up the event handlers for the root pane of the game. The current
      * events being handled:
      *      1. A menu sprite is clicked on -> update cursor image
+     *      
+     *      8. When an animal dies -> drop a resource sprite and load death sprite
      */
     private void setupEventHandlers() {
         // Initialize the custom handlers
@@ -349,7 +363,10 @@ public class GameManager {
         InGameKeyboardHandler keyboardHandler =
                 new InGameKeyboardHandler(this);
         AnimalDeadEventHandler animalDeadEventHandler = 
-        		new AnimalDeadEventHandler(this); 
+        		new AnimalDeadEventHandler(this);
+        PeonClickedEventHandler peonClickedEventHandler =
+                new PeonClickedEventHandler(this);
+
 
 
         // Handler for when a sprite in the menu is selected
@@ -368,6 +385,8 @@ public class GameManager {
         root.addEventHandler(KeyEvent.ANY, keyboardHandler);
         // Handler for when an animal dies
         root.addEventHandler(AnimalDeadEvent.ANIMAL_DEAD_EVENT, animalDeadEventHandler);
+        // Handler for when a peon sprite is clicked
+        root.addEventHandler(PeonClickedEvent.PEON_CLICKED_EVENT, peonClickedEventHandler);
     }
 
     /**

@@ -26,8 +26,8 @@ import java.util.ResourceBundle;
  * 
  * @author mattleggy
  */
-public class WeatherManager
-		implements SecondaryManager, Initializable, Tickable {
+public class WeatherManager extends SecondaryManager
+		implements Initializable, Tickable {
 	// may not need this any more...
 	private WeatherCanvas weatherCanvas;
 	// main weather display pane
@@ -49,11 +49,6 @@ public class WeatherManager
 	private WeatherEvents weatherEvents;
 	// current weather event
 	private Weather currentWeather;
-
-	@Override
-	public void reload() {
-
-	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {

@@ -2,13 +2,12 @@ package uq.deco2800.ducktales;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Set;
 
 
 import uq.deco2800.ducktales.features.entities.Entity;
 
 import uq.deco2800.ducktales.features.entities.agententities.Animal;
-import uq.deco2800.ducktales.features.entities.agententities.Peon;
+import uq.deco2800.ducktales.features.entities.peons.Peon;
 import uq.deco2800.ducktales.features.entities.worldentities.Building;
 import uq.deco2800.ducktales.features.entities.worldentities.StorageProduceBuilding;
 import uq.deco2800.ducktales.resources.ResourceInfoRegister;
@@ -17,9 +16,7 @@ import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.features.landscape.tiles.Tile;
-import uq.deco2800.ducktales.features.time.GameTime;
 import uq.deco2800.ducktales.util.*;
-import uq.deco2800.ducktales.util.exceptions.GameSetupException;
 
 import static uq.deco2800.ducktales.resources.ResourceType.*;
 
@@ -157,7 +154,26 @@ public class World implements Tickable {
 			throw new RuntimeException("Peon name already exists. Please" +
 					"make sure peon name is checked when adding a new one");
 		}
+	}
 
+	/**
+	 * Retrieve the peon of the given name.
+	 *
+	 * @param peonName
+	 *			The name of the peon is a unique identifier used to
+	 *			Retrieve the peon. The sprite of the peon will have the
+	 *			same identifier
+	 *
+	 * @return The peon with the given name/identifier
+	 */
+	public Peon getPeon(String peonName) {
+		if (peons.containsKey(peonName)) {
+			return peons.get(peonName);
+		} else {
+			throw new RuntimeException("Fail to retrieve a peon. Peon with" +
+					" name: \"" + peonName + "\" has not been added to the" +
+					"game yet.");
+		}
 	}
 
 	/**

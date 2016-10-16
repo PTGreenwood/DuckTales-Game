@@ -3,6 +3,7 @@ package uq.deco2800.ducktales.features.entities.agententities;
 import java.util.Random;
 
 import uq.deco2800.ducktales.features.entities.MainEntityManager;
+import uq.deco2800.ducktales.features.entities.peons.Peon;
 import uq.deco2800.ducktales.resources.ResourceType;
 
 /**

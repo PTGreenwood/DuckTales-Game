@@ -1,9 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package uq.deco2800.ducktales.rendering.sprites;
+
+import uq.deco2800.ducktales.util.events.peon.PeonClickedEvent;
+
 
 /**
  * This class represents a sprite of a peon. The sprite will have the same
@@ -33,6 +31,9 @@ public class PeonSprite extends EntitySprite {
 
         // Store the unique identifier of this sprite
         this.peonName = name;
+
+        // Setup the event firing system for the sprite
+        setupEventFiring();
     }
 
     /**
@@ -43,4 +44,15 @@ public class PeonSprite extends EntitySprite {
     public String getPeonName() {
         return peonName;
     }
+
+    /**
+     * Setup the sprite to fire {@link }
+     */
+    private void setupEventFiring() {
+        this.setOnMouseClicked(event -> {
+            // Fire an event with the name of the peon that was clicked
+            fireEvent(new PeonClickedEvent(this.peonName));
+        });
+    }
+
 }

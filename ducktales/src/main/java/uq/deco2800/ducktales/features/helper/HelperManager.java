@@ -16,11 +16,19 @@ public class HelperManager {
 	private Label helperLabel;
 	
 	private Image duckImage = new Image("/helper/helper.png");
+
+	private boolean helperClose = false;
 	
 	@FXML
 	public void helperLoad1() {
 		helperImageView.setImage(duckImage);
 		helperLabel.setText("quack quack quack...");
+
+		if (helperClose == false) {
+			helperClose = true;
+		} else {
+			this.hideHelper();
+		}
 		
 	}
 	

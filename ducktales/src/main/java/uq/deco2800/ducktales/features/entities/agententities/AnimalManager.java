@@ -116,7 +116,7 @@ public class AnimalManager extends SecondaryEntityManager{
      * @param xAmount
      *          The amount to move in x-direction
      * @param yAmount
-     *          The amount to move n y-direction
+     *          The amount to move in y-direction
      */
     public void moveAllAnimalsSprites(double xAmount, double yAmount) {
         for (AnimalSprite sprite : animalSprites) {
