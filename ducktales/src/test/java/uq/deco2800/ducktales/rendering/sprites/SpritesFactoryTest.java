@@ -1,9 +1,11 @@
-package uq.deco2800.ducktales.rendering;
+package uq.deco2800.ducktales.rendering.sprites;
 
 import org.junit.Test;
 import uq.deco2800.ducktales.rendering.sprites.AnimalSprite;
+import uq.deco2800.ducktales.rendering.sprites.BuildingSprite;
 import uq.deco2800.ducktales.rendering.sprites.PeonSprite;
 import uq.deco2800.ducktales.rendering.sprites.SpritesFactory;
+import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.exceptions.GameSetupException;
 
@@ -29,7 +31,7 @@ public class SpritesFactoryTest {
         assertEquals(sprite1.getPeonName(), "Test Peon");
     }
 
-    @Test(expected = RuntimeException.class)
+    @Test(expected = GameSetupException.class)
     public void testEmptyPeonName() {
         SpritesFactory.createPeonSprite("");
     }
@@ -42,6 +44,28 @@ public class SpritesFactoryTest {
         SpritesFactory.createBuildingSprite(0, ResourceType.NONE);
     }
 
+    @Test
+    public void testGeneralBuildingCreation() {
+        int buildingIndex = 0;
+
+        ResourceSpriteRegister.getInstance();
+
+        ResourceType[] buildings = {
+                HOSPITAL, BAKERY, BARN, BUTCHER, CEMETERY, CHURCH, COMMUNITY_BUILDING,
+                FARM, FORGE, HOUSE, MINE, OBSERVATORY, PASTURE, QUARRY, SAWMILL,
+                SCHOOL, GYMNASIUM
+        };
+
+        for (ResourceType buildingType : buildings) {
+
+            BuildingSprite building = SpritesFactory.createBuildingSprite(
+                    buildingIndex, buildingType);
+
+            assertEquals(building.getIndex(), buildingIndex);
+            assertEquals(building.getEntityType(), buildingType);
+        }
+    }
+
     /*
      * ANIMAL CREATION TESTS
      */
@@ -49,9 +73,9 @@ public class SpritesFactoryTest {
     public void testInvalidAnimalType() {
         SpritesFactory.createAnimalSprite(0, ResourceType.NONE);
     }
-    // Creating a sheep
+
     @Test
-    public void testBasicAnimalCreation() {
+    public void testGeneralAnimalCreation() {
         ResourceType[] animals = {
                 SHEEP, DUCK, COW
         };
@@ -67,5 +91,7 @@ public class SpritesFactoryTest {
             assertEquals(animal.getEntityType(), spriteType);
         }
     }
+
+
 
 }

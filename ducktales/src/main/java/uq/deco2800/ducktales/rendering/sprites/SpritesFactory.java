@@ -9,8 +9,6 @@ import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.exceptions.GameSetupException;
 
-import javax.annotation.Nullable;
-
 import static uq.deco2800.ducktales.resources.ResourceType.*;
 
 /**
@@ -44,7 +42,7 @@ public class SpritesFactory {
     public static PeonSprite createPeonSprite(String peonName) {
         // Check if the name given is an empty string
         if (peonName == "") {
-            throw new RuntimeException("Peon name cannot be an empty string");
+            throw new GameSetupException("Peon name cannot be an empty string");
         }
 
         PeonSprite sprite = new PeonSprite(peonName);
@@ -65,8 +63,8 @@ public class SpritesFactory {
      * @return The sprite of the building of the given type
      *          null if the building is not yet registered
      */
-    public static BuildingSprite createBuildingSprite(int index, ResourceType buildingType) {
-    	initTime = gameTime.getCurrentDay();
+    public static BuildingSprite createBuildingSprite(
+            int index, ResourceType buildingType) {
         switch (buildingType) {
             // BUILDINGS
             case HOSPITAL:
@@ -234,7 +232,7 @@ public class SpritesFactory {
         // After all images are set up, now call these methods to set up the
         // actual animation code
         sprite.setImageList(imageList); // Give the interpolator the list of images
-        sprite.setupAnimation(9* REAL_MINUTE); // Set up the actual animation, passing the duration
+        sprite.setupAnimation(9 * REAL_MINUTE); // Set up the actual animation, passing the duration
         sprite.startAnimation(); // Start the actual animation
 
         return sprite;
@@ -392,7 +390,7 @@ public class SpritesFactory {
         // After all images are set up, now call these methods to set up the
         // actual animation code
         sprite.setImageList(imageList); // Give the interpolator the list of images
-        sprite.setupAnimation(8* REAL_MINUTE); // Set up the actual animation, passing the duration
+        sprite.setupAnimation(8 * REAL_MINUTE); // Set up the actual animation, passing the duration
         sprite.startAnimation(); // Start the actual animation
 
         return sprite;
@@ -425,7 +423,7 @@ public class SpritesFactory {
         // After all images are set up, now call these methods to set up the
         // actual animation code
         sprite.setImageList(imageList); // Give the interpolator the list of images
-        sprite.setupAnimation(4* REAL_MINUTE); // Set up the actual animation, passing the duration
+        sprite.setupAnimation(4 * REAL_MINUTE); // Set up the actual animation, passing the duration
         sprite.setAnimationCycleCount(1);
         sprite.startAnimation(); // Start the actual animation
 
@@ -600,7 +598,7 @@ public class SpritesFactory {
         // After all images are set up, now call these methods to set up the
         // actual animation code
         sprite.setImageList(imageList); // Give the interpolator the list of images
-        sprite.setupAnimation(4* REAL_MINUTE); // Set up the actual animation, passing the duration
+        sprite.setupAnimation(4 * REAL_MINUTE); // Set up the actual animation, passing the duration
         sprite.startAnimation(); // Start the actual animation
 
         return sprite;
@@ -633,7 +631,7 @@ public class SpritesFactory {
         // After all images are set up, now call these methods to set up the
         // actual animation code
         sprite.setImageList(imageList); // Give the interpolator the list of images
-        sprite.setupAnimation(5* REAL_MINUTE); // Set up the actual animation, passing the duration
+        sprite.setupAnimation(5 * REAL_MINUTE); // Set up the actual animation, passing the duration
         sprite.startAnimation(); // Start the actual animation
 
         return sprite;
@@ -709,8 +707,8 @@ public class SpritesFactory {
         constructionFrames.add(register.getResourceImage(buildingType));
 
         // Add all the frames for the idle animation
-        for (int i = 0; i < idleAnimationFrames.length; i++) {
-            idleFrames.add(register.getResourceImage(idleAnimationFrames[i]));
+        for (ResourceType frameType : idleAnimationFrames) {
+            idleFrames.add(register.getResourceImage(frameType));
         }
 
         // After all images are set up, now call these methods to set up the
@@ -750,7 +748,7 @@ public class SpritesFactory {
         // After all images are set up, now call these methods to set up the
         // actual animation code
         sprite.setImageList(imageList); // Give the interpolator the list of images
-        sprite.setupAnimation(3* REAL_MINUTE); // Set up the actual animation, passing the duration
+        sprite.setupAnimation(3 * REAL_MINUTE); // Set up the actual animation, passing the duration
         sprite.startAnimation(); // Start the actual animation
 
         return sprite;
@@ -818,20 +816,6 @@ public class SpritesFactory {
         ResourceType.SHEEPRight1
         };
  
-        // Setup the frames for the animation
-        List<Image> imageList = new ArrayList<>();
-        ResourceSpriteRegister register = ResourceSpriteRegister.getInstance();
-        // Now add all the images representing the animation here, one-by-one
-        imageList.add(register.getResourceImage(ResourceType.SHEEP));
-        imageList.add(register.getResourceImage(ResourceType.SHEEPDown0));
-        imageList.add(register.getResourceImage(ResourceType.SHEEPDown1));
-        imageList.add(register.getResourceImage(ResourceType.SHEEPLeft0));
-        imageList.add(register.getResourceImage(ResourceType.SHEEPLeft1));
-        imageList.add(register.getResourceImage(ResourceType.SHEEPUp0));
-        imageList.add(register.getResourceImage(ResourceType.SHEEPUp1));
-        imageList.add(register.getResourceImage(ResourceType.SHEEPRight0));
-        imageList.add(register.getResourceImage(ResourceType.SHEEPRight1));
-
         // Setup the sprite with the given parameters
         setupAnimalSprite(
                 sprite,
@@ -931,12 +915,11 @@ public class SpritesFactory {
             boolean autoReverse) {
         // Setup the frames for the animations
         List<Image> roamingFrames = new ArrayList<>();
-//        List<Image> deathFrames = new ArrayList<>();
         ResourceSpriteRegister register = ResourceSpriteRegister.getInstance();
 
         // Add all the frames for the roaming animation.
-        for (int i = 0; i < roamingAnimationFrames.length; i++) {
-            roamingFrames.add(register.getResourceImage(roamingAnimationFrames[i]));
+        for (ResourceType frameType: roamingAnimationFrames) {
+            roamingFrames.add(register.getResourceImage(frameType));
         }
 
         // After all images are set up, now call these methods to set up the actual animation code.
