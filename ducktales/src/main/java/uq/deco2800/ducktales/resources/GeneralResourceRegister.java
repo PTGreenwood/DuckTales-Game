@@ -52,16 +52,20 @@ public class GeneralResourceRegister {
      */
     private void loadNameLists() {
         try {
-            // TODO: fix this dodgy temporary path definition!
-            String firstNameFileLocation = "build/resources/main/peon/firstnames.txt";
-            String lastNameFileLocation = "build/resources/main/peon/lastnames.txt";
+            //Changes loading files to use a class loading instead - mattyleggy.
+        	InputStream firstNamesInputStream 
+        		= getClass().getClassLoader().getResourceAsStream("peon/firstnames.txt");
+        	
+        	InputStream lastNamesInputStream 
+    			= getClass().getClassLoader().getResourceAsStream("peon/lastnames.txt");
 
-            BufferedReader firstNamesReader = new BufferedReader(new FileReader(
-               new File(firstNameFileLocation)
-            ));
-            BufferedReader lastNamesReader = new BufferedReader(new FileReader(
-               new File(lastNameFileLocation)
-            ));
+            BufferedReader firstNamesReader = new BufferedReader(
+            		new InputStreamReader(firstNamesInputStream)
+            );
+            
+            BufferedReader lastNamesReader = new BufferedReader(
+            		new InputStreamReader(lastNamesInputStream)
+            );
 
             // Now start loading the first names and last names
             String firstName = firstNamesReader.readLine();
