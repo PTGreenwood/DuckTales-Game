@@ -72,24 +72,37 @@ public class WeatherManager extends SecondaryManager
 		AnchorPane.setTopAnchor(weatherDisplayCanvas, 0.0);
 		AnchorPane.setBottomAnchor(weatherDisplayCanvas, 0.0);
 		context = weatherDisplayCanvas.getGraphicsContext2D();
-		// weatherManager.tick();
-		for (int i = 0; i < 50; i++) {
-			int randX = (int) Math.ceil(Math.random() * canvasWidth);
-			int randY = (int) Math.ceil(Math.random() * canvasHeight);
-			int randDirection = (int) Math.floor(Math.random() * 7) - 3;
-			int randAcceleration = (int) (Math.random() * 5) + 10; // random
-																	// acceleration
-			WeatherCanvasShape shape = new WeatherCanvasShape(randX, randY,
-					randDirection, randAcceleration);
-			shapes.add(shape);
-			drawPositions(randX, randY, randDirection);
-		}
+		// weatherManager.tick();		
 
 		weatherEvents = new WeatherEvents();
 		currentHour = -1;
 
 		weatherDisplayCanvas.setMouseTransparent(true);
 		weatherDisplay.getChildren().add(weatherDisplayCanvas);
+	}
+
+	/**
+	 * Create the shapes at random position to be drawn onto the canvas. Must be
+	 * greater than 0.
+	 * 
+	 * @param amount
+	 *            the amount of shapes to be drawn onto the canvas, must be
+	 *            greater than 0.
+	 */
+	private void createShapes(int amount, boolean falling) {
+		shapes.clear();
+		for (int i = 0; i < amount; i++) {
+			int randX = (int) Math.ceil(Math.random() * canvasWidth);
+			int randY = (int) Math.ceil(Math.random() * canvasHeight);
+			int randDirection = (int) Math.floor(Math.random() * 7) - 3;
+			int randAcceleration = (int) (Math.random() * 5) + 10;
+			/*if (!falling)
+				randAcceleration = randAcceleration*-1;*/
+			WeatherCanvasShape shape = new WeatherCanvasShape(randX, randY,
+					randDirection, randAcceleration);
+			shapes.add(shape);
+			drawPositions(randX, randY, randDirection);
+		}
 	}
 
 	public void setTimeManager(TimeManager timeManager) {
@@ -136,14 +149,14 @@ public class WeatherManager extends SecondaryManager
 	 * @param direction
 	 *            - which direction the effect will go
 	 */
-	private void drawPositions(int x, int y, int direction) {		
+	private void drawPositions(int x, int y, int direction) {
 		if (currentWeather instanceof Rain) {
 			drawRain(x, y, direction);
 		} else if (currentWeather instanceof Fire) {
 			drawFire(x, y, direction);
 		} else if (currentWeather instanceof Snow) {
 			drawSnow(x, y, direction);
-		}		
+		}
 	}
 
 	/**
@@ -180,7 +193,7 @@ public class WeatherManager extends SecondaryManager
 		context.arc(x, y, 20, 20, 2 * Math.PI, 1);
 		context.stroke();
 		context.fill();
-		context.setLineWidth(20);
+		context.setLineWidth(5);
 		context.stroke();
 	}
 
@@ -218,21 +231,32 @@ public class WeatherManager extends SecondaryManager
 	private void drawShapes() {
 		if (weatherEvents.size() > 0 && currentWeather != null) {
 			for (WeatherCanvasShape shape : shapes) {
-				if (shape.getX() > canvasWidth) {
-					// shape.setX((int) Math.ceil(Math.random() *
-					// canvasWidth));
-					shape.setX(-20);
-				} else {
-					shape.setX((shape.getX() + (shape.getDirection())));
-				}
-				if (shape.getY() > canvasHeight) {
-					shape.setY(-20);
-				} else {
-					shape.setY((shape.getY() + shape.getAcceleration()));
-				}
-				drawPositions(shape.getX(), shape.getY(), shape.getDirection());
+				this.shiftPositions(shape);
 			}
 		}
+	}
+
+	/**
+	 * If the shape falls outside of the bounds of the canvas, reset it to be in
+	 * a new position where it can reappear onto the canvas.
+	 * 
+	 * @param shape
+	 *            the shape to shift positions of
+	 */
+	private void shiftPositions(WeatherCanvasShape shape) {
+		if (shape.getX() > canvasWidth) {
+			// shape.setX((int) Math.ceil(Math.random() *
+			// canvasWidth));
+			shape.setX(-20);
+		} else {
+			shape.setX((shape.getX() + (shape.getDirection())));
+		}
+		if (shape.getY() > canvasHeight) {
+			shape.setY(-20);
+		} else {
+			shape.setY((shape.getY() + shape.getAcceleration()));
+		}
+		drawPositions(shape.getX(), shape.getY(), shape.getDirection());
 	}
 
 	private void setCurrentWeather() {
@@ -248,10 +272,17 @@ public class WeatherManager extends SecondaryManager
 				System.out.println(
 						this.getSeasonManager().getCurrentSeason().getName()
 								+ ": " + seasonEvents);
-				currentWeather = getWeatherPossibility();
+				currentWeather = getWeatherPossibility();				
+				this.createShapes(50,this.isFalling());
 				this.setLighting();
 			}
 		}
+	}
+
+	private boolean isFalling() {
+		if (currentWeather instanceof Rain || currentWeather instanceof Snow)
+			return true;
+		return false;
 	}
 
 	private void setLighting() {

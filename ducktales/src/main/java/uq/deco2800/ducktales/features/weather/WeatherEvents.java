@@ -111,7 +111,7 @@ public class WeatherEvents {
 			int randomPick = randomChance.nextInt(possibilities.size());			
 			return possibilities.get(randomPick).getWeather();
 		}
-		return new Sunny();
+		return new Fire();
 	}
 
 	@Override
