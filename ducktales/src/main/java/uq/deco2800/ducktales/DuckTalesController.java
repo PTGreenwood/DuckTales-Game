@@ -7,8 +7,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import uq.deco2800.ducktales.util.exceptions.GameSetupException;
 import uq.deco2800.singularity.clients.ducktales.DucktalesClient;
-import uq.deco2800.singularity.common.representations.User;
 import uq.deco2800.ducktales.features.builder.WorldBuilderController;
 import uq.deco2800.ducktales.features.builder.WorldBuilderRenderer;
 import javafx.event.ActionEvent;
@@ -97,14 +97,14 @@ public class DuckTalesController implements Initializable {
 	}
 
 	/**
-	 * This is a helper method that helps set
+	 * This is a helper method that helps setup the main UI of the game
 	 */
 	private void setupMainUI(FXMLLoader loader) throws Exception {
 		// Load the FXML
 		try {
 			gamePane = loader.load();
 		} catch(Exception e) {
-			System.err.println("Exception in trying to load main UI");
+			throw new GameSetupException("failed to load main UI");
 		}
 
 		// Set the layout for the gamePane
@@ -130,9 +130,6 @@ public class DuckTalesController implements Initializable {
 			worldBuilderPane = new BorderPane();
 			worldBuilderPane.setMinSize(contentPane.getWidth(),
 					contentPane.getHeight());
-
-			System.err.println("worldbuilderPane's width and height: "
-					+ worldBuilderPane.getWidth() + ", " + worldBuilderPane.getHeight());
 
 			// Set the world for the builder
 			worldBuilderController.setWorld(new World("World Builder", 20, 20));
