@@ -7,6 +7,7 @@ import java.util.Random;
 import javafx.event.Event;
 import uq.deco2800.ducktales.GameManager;
 import uq.deco2800.ducktales.features.entities.MainEntityManager;
+import uq.deco2800.ducktales.features.entities.peons.Peon;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.AStar;
 import uq.deco2800.ducktales.util.Point;
@@ -21,6 +22,9 @@ public class Animal extends AgentEntity {
 
     /** The main manager of the game */
     protected GameManager gameManager;
+    
+    /** instance of AnimalDeadEvent */
+    private AnimalDeadEvent animalDeadEvent;
 
     private static final int MINSTARTHEALTH = 20;
     private static final int MAXSTARTHEALTH = 100;
@@ -162,7 +166,7 @@ public class Animal extends AgentEntity {
     public void setIsDead() {
             this.isDead = true;
             // fire AnimalDeadEvent when an animal dies
-            // this.fireEvent(new AnimalDeadEvent(type, point.getX(), point.getY()));
+            Event.fireEvent(animalDeadEvent.getTarget(), new AnimalDeadEvent(type, this.getX() +1, this.getY()+1));
             // entityManager.removeEntity(this);
             // MainEntityManager.removeEntity(this);
     }

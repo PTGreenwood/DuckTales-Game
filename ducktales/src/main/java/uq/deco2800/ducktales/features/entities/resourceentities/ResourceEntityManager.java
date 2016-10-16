@@ -3,6 +3,7 @@ package uq.deco2800.ducktales.features.entities.resourceentities;
 import java.util.ArrayList;
 import java.util.List;
 
+import uq.deco2800.ducktales.features.entities.agententities.AnimalManager;
 import uq.deco2800.ducktales.rendering.sprites.Sprite;
 import uq.deco2800.ducktales.resources.ResourceType;
 
@@ -12,8 +13,12 @@ import uq.deco2800.ducktales.resources.ResourceType;
  * @author Damian Maher
  */
 public class ResourceEntityManager {
+	
     /** The list of resource sprites */
     private List<Sprite> resourceSprites;
+    
+    /** The animal manager */
+    private AnimalManager animalManager;
 
     /**
      * Instantiate an empty resource manager
@@ -34,7 +39,7 @@ public class ResourceEntityManager {
      * @param y
      *          The y-coordinate of the resource in regards to the world size
      */
-	public void dropResource(ResourceType type, double x, double y) {
-		// TO BE COMPLETED
+	public void dropResource(ResourceType type, int x, int y) {
+		animalManager.addAnimal(type, x, y);
 	}
 }
