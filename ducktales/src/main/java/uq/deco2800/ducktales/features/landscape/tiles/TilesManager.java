@@ -2,7 +2,6 @@ package uq.deco2800.ducktales.features.landscape.tiles;
 
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
-import uq.deco2800.ducktales.GameManager;
 import uq.deco2800.ducktales.World;
 import uq.deco2800.ducktales.rendering.RenderingInformation;
 import uq.deco2800.ducktales.rendering.info.WorldEntityInfo;
@@ -25,7 +24,7 @@ public class TilesManager extends SecondaryManager {
 
     /** The classes that hold different rendering information */
     private WorldEntityInfo worldEntityInfo;
-    private ResourceSpriteRegister spriteRegister;
+    private ResourceSpriteRegister resource;
 
     /** The model and view for the tiles */
     private Array2D<Tile> tiles; // The model of the tiles
@@ -36,11 +35,9 @@ public class TilesManager extends SecondaryManager {
      * Create a new tile manager with the given handles on the OldGameManager
      * and the array of tileSprites in the game world
      */
-    public TilesManager(World world, Pane rootPane, GameManager gameManager) {
+    public TilesManager(World world, Pane rootPane) {
         this.world = world;
         this.rootPane = rootPane;
-        this.gameManager = gameManager;
-        this.spriteRegister = gameManager.getResourceSpriteRegister();
         this.tiles = new Array2D<>(world.getWidth(), world.getHeight());
         this.tileSprites = new Array2D<>(world.getWidth(), world.getHeight());
 
@@ -50,6 +47,7 @@ public class TilesManager extends SecondaryManager {
 
         // Initiate the rendering info classes
         worldEntityInfo = WorldEntityInfo.getInstance();
+        resource = ResourceSpriteRegister.getInstance();
 
     }
 
@@ -128,7 +126,7 @@ public class TilesManager extends SecondaryManager {
                 sprite = tileSprites.get(x, y);
                 tile = tiles.get(x, y);
 
-                sprite.setImage(spriteRegister.getResourceImage(tile.getTileType()));
+                sprite.setImage(resource.getResourceImage(tile.getTileType()));
 
                 // Adjust the height of the sprite to the given scale
                 sprite.setFitHeight(tileHeight * generalScale);
@@ -168,6 +166,66 @@ public class TilesManager extends SecondaryManager {
                         new TileSprite(temporaryTile.getTileType(), x, y)
                 );
             }
+        }
+    }
+
+    /**
+     * Add a building entity to the actual game world. from the given blueprint
+     *
+     * NOTE: depending on the size of the building, the logic for adding it will
+     * be different.
+     * For (even)x(even) buildings, the tile clicked will be defined as the tile
+     *      closest but lower than the mid-point
+     * For (odd)x(odd) buildings, the tile clicked will be defined as the tile
+     *      in the middle of the building
+     *
+     * For (any)x(any)... God Bless.
+     *
+     * @param buildingType
+     *          The type of the building to be constructed
+     * @param x
+     *          The x-coordinate in tile-unit of the tile that was clicked on
+     * @param y
+     *          The y-coordinate in tile-unit of the tile that was clicked on
+     */
+    public void addBuildingToTile(ResourceType buildingType, int x, int y) {
+        int xLength = 0;
+        int yLength = 0;
+
+        // Get the x- and y-length of the building type given
+        try {
+            xLength = worldEntityInfo.getBuildingLength(
+                    buildingType,
+                    WorldEntityInfo.XLENGTH
+            );
+            yLength = worldEntityInfo.getBuildingLength(
+                    buildingType,
+                    WorldEntityInfo.YLENGTH
+            );
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return;
+        }
+
+        // At this point, there should be no more problem
+
+        // Set the appropriate tileSprites to the building type, and make them non-passable
+        if (xLength == 2 && yLength == 2) {
+            ResourceSpriteRegister register = ResourceSpriteRegister.getInstance();
+            Image image = register.getResourceImage(ResourceType.BLANK);
+            // 2 x 2 building
+            // Set the bottom tile
+            tiles.get(x, y).setWorldEntityType(buildingType);
+            tiles.get(x, y).setPassable(false);
+            // Set the top tile
+            tiles.get(x - 1, y - 1).setWorldEntityType(buildingType);
+            tiles.get(x - 1, y - 1).setPassable(false);
+            // Set the left tile
+            tiles.get(x, y - 1).setWorldEntityType(buildingType);
+            tiles.get(x, y - 1).setPassable(false);
+            // Set the right tile
+            tiles.get(x - 1, y).setWorldEntityType(buildingType);
+            tiles.get(x - 1, y).setPassable(false);
         }
     }
 
