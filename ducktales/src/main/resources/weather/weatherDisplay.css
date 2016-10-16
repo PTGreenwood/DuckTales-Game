@@ -1,0 +1,11 @@
+#weatherDisplay {
+	
+}
+
+.night {
+	-fx-background-color: rgba(0,0,0,0.5);
+}
+
+.day {
+	-fx-background-color: transparent;
+}

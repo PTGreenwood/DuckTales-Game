@@ -86,16 +86,7 @@ public class WeatherManager extends SecondaryManager
 		}
 
 		weatherEvents = new WeatherEvents();
-		try {
-			weatherEvents.add(new WeatherChance(new Rain(), 90));
-			weatherEvents.add(new WeatherChance(new Snow(), 10));
-			// weatherEvents.add(new WeatherChance(new
-			// Storm(StormType.LIGHTNING), 30));
-		} catch (InvalidWeatherChanceException exception) {
-
-		}
-
-		currentWeather = getWeatherPossibility();
+		currentHour = -1;
 
 		weatherDisplayCanvas.setMouseTransparent(true);
 		weatherDisplay.getChildren().add(weatherDisplayCanvas);
@@ -145,14 +136,14 @@ public class WeatherManager extends SecondaryManager
 	 * @param direction
 	 *            - which direction the effect will go
 	 */
-	private void drawPositions(int x, int y, int direction) {
+	private void drawPositions(int x, int y, int direction) {		
 		if (currentWeather instanceof Rain) {
 			drawRain(x, y, direction);
 		} else if (currentWeather instanceof Fire) {
 			drawFire(x, y, direction);
 		} else if (currentWeather instanceof Snow) {
 			drawSnow(x, y, direction);
-		}
+		}		
 	}
 
 	/**
@@ -215,47 +206,75 @@ public class WeatherManager extends SecondaryManager
 	public void tick() {
 		if (tickCount == 1) {
 			Platform.runLater(() -> {
-				if (this.getTimeManager() != null) {
-					int hour = this.getTimeManager().getGameTimeObject()
-							.getHour();
-					int day = this.getTimeManager().getGameTimeObject()
-							.getCurrentDay();
-					if (currentHour != hour) {
-						currentHour = hour;
-						currentDay = day;
-						WeatherEvents seasonEvents = this.getSeasonManager()
-								.getCurrentSeason().getSeasonalWeatherEvents();
-						setWeatherEvents(seasonEvents);
-						System.out.println(
-								this.getSeasonManager().getCurrentSeason()
-										.getName() + ": " + seasonEvents);
-						currentWeather = getWeatherPossibility();
-					}
-				}
 				context.clearRect(0, 0, canvasWidth, canvasHeight);
-				if (weatherEvents.size() > 0 && currentWeather != null) {
-					for (WeatherCanvasShape shape : shapes) {
-						if (shape.getX() > canvasWidth) {
-							// shape.setX((int) Math.ceil(Math.random() *
-							// canvasWidth));
-							shape.setX(-20);
-						} else {
-							shape.setX((shape.getX() + (shape.getDirection())));
-						}
-						if (shape.getY() > canvasHeight) {
-							shape.setY(-20);
-						} else {
-							shape.setY(
-									(shape.getY() + shape.getAcceleration()));
-						}
-						drawPositions(shape.getX(), shape.getY(),
-								shape.getDirection());
-					}
-				}
+				this.setCurrentWeather();
+				this.drawShapes();
 			});
 			tickCount = 0;
 		}
 		tickCount++;
+	}
+
+	private void drawShapes() {
+		if (weatherEvents.size() > 0 && currentWeather != null) {
+			for (WeatherCanvasShape shape : shapes) {
+				if (shape.getX() > canvasWidth) {
+					// shape.setX((int) Math.ceil(Math.random() *
+					// canvasWidth));
+					shape.setX(-20);
+				} else {
+					shape.setX((shape.getX() + (shape.getDirection())));
+				}
+				if (shape.getY() > canvasHeight) {
+					shape.setY(-20);
+				} else {
+					shape.setY((shape.getY() + shape.getAcceleration()));
+				}
+				drawPositions(shape.getX(), shape.getY(), shape.getDirection());
+			}
+		}
+	}
+
+	private void setCurrentWeather() {
+		if (this.getTimeManager() != null) {
+			int hour = this.getTimeManager().getGameTimeObject().getHour();
+			int day = this.getTimeManager().getGameTimeObject().getCurrentDay();
+			if (currentHour != hour) {
+				currentHour = hour;
+				currentDay = day;
+				WeatherEvents seasonEvents = this.getSeasonManager()
+						.getCurrentSeason().getSeasonalWeatherEvents();
+				setWeatherEvents(seasonEvents);
+				System.out.println(
+						this.getSeasonManager().getCurrentSeason().getName()
+								+ ": " + seasonEvents);
+				currentWeather = getWeatherPossibility();
+				this.setLighting();
+			}
+		}
+	}
+
+	private void setLighting() {
+		if (this.currentHour >= 5 && this.currentHour < 17)
+			setDay();
+		if (this.currentHour >= 17 || this.currentHour < 5)
+			setNight();
+	}
+
+	private void setDay() {
+		this.removeClasses();
+		weatherDisplay.getStyleClass().add("day");
+	}
+
+	private void setNight() {
+		this.removeClasses();
+		weatherDisplay.getStyleClass().add("night");
+	}
+
+	private void removeClasses() {
+		for (int i = 0; i < weatherDisplay.getStyleClass().size(); i++) {
+			weatherDisplay.getStyleClass().remove(0);
+		}
 	}
 
 }
