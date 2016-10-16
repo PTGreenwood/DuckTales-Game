@@ -27,12 +27,6 @@ public class WorldDisplayManager extends SecondaryManager implements Initializab
     @FXML
     private Pane worldDisplay;
 
-    /** The main model of the game */
-    private World world;
-
-    /** The main manager of the game */
-    private GameManager gameManager;
-    
     /** Helper managers */
     private TilesManager tilesManager;
 
@@ -55,17 +49,20 @@ public class WorldDisplayManager extends SecondaryManager implements Initializab
     /**
      * This method is called by Game Manager when all managers have been set up,
      * which will render the initial world onto the display
+     *
+     * @param gameManager
+     *          The main manager of the game
      */
-    public void initializeWorld() {
+    public void initializeWorld(GameManager gameManager) {
         // Instantiate the helper managers
-        tilesManager = new TilesManager(this.world, this.worldDisplay);
+        tilesManager = new TilesManager(this.world, this.worldDisplay, gameManager);
 
         // render the tiles
         tilesManager.renderInitialWorld();
 
         // Load the rendering engine
         renderer.setTilesManager(tilesManager);
-        renderer.setMainEntityManager(gameManager.getMainEntityManager());
+        renderer.setMainEntityManager(this.gameManager.getMainEntityManager());
 
     }
     

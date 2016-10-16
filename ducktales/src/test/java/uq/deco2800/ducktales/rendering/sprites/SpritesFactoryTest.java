@@ -1,10 +1,6 @@
 package uq.deco2800.ducktales.rendering.sprites;
 
 import org.junit.Test;
-import uq.deco2800.ducktales.rendering.sprites.AnimalSprite;
-import uq.deco2800.ducktales.rendering.sprites.BuildingSprite;
-import uq.deco2800.ducktales.rendering.sprites.PeonSprite;
-import uq.deco2800.ducktales.rendering.sprites.SpritesFactory;
 import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.exceptions.GameSetupException;
@@ -71,7 +67,7 @@ public class SpritesFactoryTest {
      */
     @Test(expected = GameSetupException.class)
     public void testInvalidAnimalType() {
-        SpritesFactory.createAnimalSprite(0, ResourceType.NONE);
+        SpritesFactory.createAnimalSprite(0, ResourceType.NONE, );
     }
 
     @Test
@@ -85,7 +81,7 @@ public class SpritesFactoryTest {
             ResourceType spriteType = animals[i];
 
             AnimalSprite animal = SpritesFactory.createAnimalSprite(
-                    spriteIndex, spriteType);
+                    spriteIndex, spriteType, );
 
             assertEquals(animal.getIndex(), spriteIndex);
             assertEquals(animal.getEntityType(), spriteType);

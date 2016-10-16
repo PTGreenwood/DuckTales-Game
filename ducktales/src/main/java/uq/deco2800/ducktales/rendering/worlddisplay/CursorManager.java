@@ -22,12 +22,12 @@ public class CursorManager {
 
     /** Variables to control the cursor image */
     private boolean cursorImageFreeMoving; // control whether it can be moved
-    private ResourceType type; // Type of the resource of the image
+    private ResourceType type; // Type of the spriteRegister of the image
 
     /** The sprites register that stores information about image files */
-    private ResourceSpriteRegister resource;
+    private ResourceSpriteRegister spriteRegister;
 
-    public CursorManager(Pane rootPane) {
+    public CursorManager(Pane rootPane, ResourceSpriteRegister spriteRegister) {
         // Store the root pane
         this.rootPane = rootPane;
 
@@ -37,7 +37,7 @@ public class CursorManager {
         cursorImage.setMouseTransparent(true);
 
         // Retrieve the sprite register
-        resource = ResourceSpriteRegister.getInstance();
+        this.spriteRegister = spriteRegister;
 
         // Add the cursor image to the root
         rootPane.getChildren().add(cursorImage);
@@ -68,7 +68,7 @@ public class CursorManager {
      */
     public void changeImage(ResourceType type) {
         // Retrieve the image from sprite register
-        Image sprite = resource.getResourceImage(type);
+        Image sprite = spriteRegister.getResourceImage(type);
 
         // Set the cursor image and bring it to the front
         cursorImage.setImage(sprite);

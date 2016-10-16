@@ -8,6 +8,7 @@ import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.scene.image.Image;
 import javafx.util.Duration;
+import uq.deco2800.ducktales.GameManager;
 import uq.deco2800.ducktales.resources.ResourceType;
 
 /**
@@ -30,8 +31,8 @@ public class AnimalSprite extends EntitySprite {
      * @param animalType
      *         The ResourceType of this AnimalSprite.
      */
-    public AnimalSprite(int index, ResourceType animalType) {
-        super(index, animalType);
+    public AnimalSprite(int index, ResourceType animalType, GameManager gameManager) {
+        super(index, animalType, gameManager);
 
         setupAnimation();
     }

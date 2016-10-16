@@ -67,23 +67,12 @@ import static uq.deco2800.ducktales.resources.ResourceType.YELLOW;
  * of tile type information either through the name (as a string) or through the
  * tile type which can be retrieved from the instance method Tile.getResourceType().
  *
- * This class is a singleton -- to get an instance of this class, you must call
- * ResourceSpriteRegister.getInstance(); you cannot instantiate it.
+ * NOTE: In the current game implementation, GameManager will have an instance
+ * of this class, which can be retrieved and used.
  *
  * @author Anonymousthing, khoiphan21
  */
 public class ResourceSpriteRegister {
-
-	private static final ResourceSpriteRegister INSTANCE = new ResourceSpriteRegister();
-
-	/**
-	 * Returns the instance of {@link ResourceSpriteRegister}.
-	 *
-	 * @return Returns an instance of ResourceSpriteRegister.
-	 */
-	public static ResourceSpriteRegister getInstance() {
-		return INSTANCE;
-	}
 
 	/**
 	 * The base height for a 1*1 tile.
@@ -99,7 +88,7 @@ public class ResourceSpriteRegister {
 	// potential threading issues
 	private ConcurrentHashMap<ResourceType, Image> resourceTypeRegister;
 
-	private ResourceSpriteRegister() {
+	public ResourceSpriteRegister() {
 		resourceTypeRegister = new ConcurrentHashMap<>();
 
 		addTileResources();

@@ -1,8 +1,7 @@
 package uq.deco2800.ducktales.rendering.sprites;
 
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import uq.deco2800.ducktales.rendering.sprites.Sprite;
+import uq.deco2800.ducktales.GameManager;
 import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
 
@@ -22,7 +21,7 @@ public class EntitySprite extends Sprite {
     private ResourceType entityType;
 
     /** The sprite register */
-    private ResourceSpriteRegister resource;
+    private ResourceSpriteRegister spriteRegister;
 
     /** The tile-location of the sprite */
     private int xLocation;
@@ -44,32 +43,33 @@ public class EntitySprite extends Sprite {
      *          The index of this sprite in the stored list
      * @param entityType
      */
-    public EntitySprite(int index, ResourceType entityType) {
+    public EntitySprite(int index, ResourceType entityType, GameManager gameManager) {
         super(); // Call this to activate the Timeline
 
         this.index = index;
         this.entityType = entityType;
-        this.resource = ResourceSpriteRegister.getInstance();
+        this.gameManager = gameManager;
+        this.spriteRegister = this.gameManager.getResourceSpriteRegister();
 
         // Now load the image of the given entity type into this sprite
-        Image image = resource.getResourceImage(entityType);
+        Image image = spriteRegister.getResourceImage(entityType);
         this.setImage(image);
 
     }
 
-    public int getxLocation() {
+    public int getXLocation() {
         return xLocation;
     }
 
-    public void setxLocation(int xLocation) {
+    public void setXLocation(int xLocation) {
         this.xLocation = xLocation;
     }
 
-    public int getyLocation() {
+    public int getYLocation() {
         return yLocation;
     }
 
-    public void setyLocation(int yLocation) {
+    public void setYLocation(int yLocation) {
         this.yLocation = yLocation;
     }
 

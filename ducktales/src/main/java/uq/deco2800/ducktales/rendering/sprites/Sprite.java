@@ -6,6 +6,7 @@ import javafx.animation.Timeline;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
+import uq.deco2800.ducktales.GameManager;
 import uq.deco2800.ducktales.features.entities.Entity;
 import uq.deco2800.ducktales.features.landscape.tiles.TileSprite;
 import uq.deco2800.ducktales.features.landscape.tiles.TilesManager;
@@ -32,6 +33,9 @@ public class Sprite extends ImageView{
     /** The interpolator to decide which images to show for animation */
     protected SpriteInterpolator interpolator;
 
+    /** The main manager of the game */
+    protected GameManager gameManager;
+
     /**
      * Instantiate an empty sprite with an empty timeline
      */
@@ -40,6 +44,16 @@ public class Sprite extends ImageView{
 
         // Setup the timeline
         this.timeline = new Timeline();
+    }
+
+    /**
+     * Give this sprite a reference of the main game manager of the game
+     *
+     * @param gameManager
+     *          The main manager of the game
+     */
+    public void setGameManager(GameManager gameManager) {
+        this.gameManager = gameManager;
     }
 
     /**
@@ -145,8 +159,8 @@ public class Sprite extends ImageView{
                                          int x, int y,
                                          TilesManager tilesManager) {
         // IMPORTANT: Setup the x-and y-locations of the sprite
-        sprite.setxLocation(x);
-        sprite.setyLocation(y);
+        sprite.setXLocation(x);
+        sprite.setYLocation(y);
 
         // Set the fit width and height of the sprite, based on the given
         // rendering scale
@@ -193,10 +207,10 @@ public class Sprite extends ImageView{
 
         // Now check for the 4 cases representing the 4 different directions
         // of movement
-        if (Math.abs(entity.getX() - sprite.getxLocation()) < EPSILON) {
+        if (Math.abs(entity.getX() - sprite.getXLocation()) < EPSILON) {
             // moving in the Y direction
-            double difference = Math.abs(entity.getY() - sprite.getyLocation());
-            if (entity.getY() < sprite.getyLocation()) {
+            double difference = Math.abs(entity.getY() - sprite.getYLocation());
+            if (entity.getY() < sprite.getYLocation()) {
                 // Moving north-west
                 sprite.setLayoutX(tileCenterX - difference * maxDistanceX);
                 sprite.setLayoutY(tileCenterY - difference * maxDistanceY);
@@ -205,10 +219,10 @@ public class Sprite extends ImageView{
                 sprite.setLayoutX(tileCenterX + difference * maxDistanceX);
                 sprite.setLayoutY(tileCenterY + difference * maxDistanceY);
             }
-        } else if (Math.abs(entity.getY() - sprite.getyLocation()) < EPSILON) {
+        } else if (Math.abs(entity.getY() - sprite.getYLocation()) < EPSILON) {
             // moving in the X direction
-            double difference = Math.abs(entity.getX() - sprite.getxLocation());
-            if (entity.getX() < sprite.getxLocation()) {
+            double difference = Math.abs(entity.getX() - sprite.getXLocation());
+            if (entity.getX() < sprite.getXLocation()) {
                 // Moving north-east
                 sprite.setLayoutX(tileCenterX + difference * maxDistanceX);
                 sprite.setLayoutY(tileCenterY - difference * maxDistanceY);
@@ -221,15 +235,15 @@ public class Sprite extends ImageView{
         }
 
         // Update the coordinates of the sprite if it has moved on to a new location
-        double xDifference = Math.abs(entity.getX() - sprite.getxLocation());
-        double yDifference = Math.abs(entity.getY() - sprite.getyLocation());
+        double xDifference = Math.abs(entity.getX() - sprite.getXLocation());
+        double yDifference = Math.abs(entity.getY() - sprite.getYLocation());
         if (xDifference < EPSILON) {
             if (Math.abs(yDifference - 1.0) < EPSILON) {
-                sprite.setyLocation((int) entity.getY());
+                sprite.setYLocation((int) entity.getY());
             }
         } else if (Math.abs(xDifference - 1.0) < EPSILON) {
             if (yDifference < EPSILON) {
-                sprite.setxLocation((int) entity.getX());
+                sprite.setXLocation((int) entity.getX());
             }
         }
     }

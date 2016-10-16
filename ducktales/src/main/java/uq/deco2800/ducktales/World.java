@@ -45,7 +45,6 @@ public class World implements Tickable {
 	private HashMap<String, Peon> peons; // All the peons in the game
 
 	/** The registers */
-	private ResourceSpriteRegister tileRegister = ResourceSpriteRegister.getInstance();
 	private ResourceInfoRegister infoRegister = ResourceInfoRegister.getInstance();
 	
 	private int timer = 0;

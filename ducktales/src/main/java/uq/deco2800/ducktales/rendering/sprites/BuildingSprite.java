@@ -5,6 +5,7 @@ import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.scene.image.Image;
 import javafx.util.Duration;
+import uq.deco2800.ducktales.GameManager;
 import uq.deco2800.ducktales.resources.ResourceType;
 
 import java.util.ArrayList;
@@ -36,8 +37,9 @@ public class BuildingSprite extends EntitySprite {
      * @param buildingType
      *          The type of this building sprite
      */
-    public BuildingSprite(int index, ResourceType buildingType) {
-        super(index, buildingType);
+    public BuildingSprite(int index, ResourceType buildingType,
+                          GameManager gameManager) {
+        super(index, buildingType, gameManager);
     }
 
     /**

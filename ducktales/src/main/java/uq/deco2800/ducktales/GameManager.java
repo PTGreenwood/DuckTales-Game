@@ -19,6 +19,7 @@ import uq.deco2800.ducktales.features.weather.WeatherManager;
 import uq.deco2800.ducktales.rendering.worlddisplay.CursorManager;
 import uq.deco2800.ducktales.rendering.worlddisplay.WorldDisplayManager;
 import uq.deco2800.ducktales.features.missions.MissionManager;
+import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.events.animal.AnimalDeadEvent;
 import uq.deco2800.ducktales.util.events.handlers.animal.AnimalDeadEventHandler;
@@ -76,6 +77,9 @@ public class GameManager {
     private GameLoop gameLoop; // The main loop of the game
     private AtomicBoolean quit; // Control ending the game
 
+    /** The register for all the sprites resources */
+    private ResourceSpriteRegister resourceSpriteRegister;
+
     /** The Secondary Managers */
     private HUDManager hudManager;
     private MarketManager marketManager;
@@ -104,7 +108,7 @@ public class GameManager {
         currentEntityManaging = NONE;
 
         // Set up the secondary managers that are not linked to FXML
-        cursorManager = new CursorManager(this.root);
+        cursorManager = new CursorManager(this.root, this.getResourceSpriteRegister());
 
         // Create a new world model for the game
         world = new World(
@@ -112,6 +116,9 @@ public class GameManager {
                 DEFAULT_WORLD_WIDTH,
                 DEFAULT_WORLD_HEIGHT
         );
+
+        // Instantiate the resource sprite register
+        resourceSpriteRegister = new ResourceSpriteRegister();
     }
 
     /**
@@ -141,7 +148,7 @@ public class GameManager {
     public void startGame() {
         // Pass the world model to the display manager, and initialize the display
         worldDisplayManager.setWorld(this.world);
-        worldDisplayManager.initializeWorld();
+        worldDisplayManager.initializeWorld(this);
 
         // Now set up the entity manager and start its routine
         mainEntityManager.setTilesManager(worldDisplayManager.getTilesManager());
@@ -207,6 +214,17 @@ public class GameManager {
      */
     public HUDManager getHudManager() {
         return hudManager;
+    }
+
+
+    /**
+     * Get the sprite register of the game. This register contains information
+     * about all the images used for sprites in-game
+     *
+     * @return  The sprite register of the game
+     */
+    public ResourceSpriteRegister getResourceSpriteRegister() {
+        return resourceSpriteRegister;
     }
 
     /**

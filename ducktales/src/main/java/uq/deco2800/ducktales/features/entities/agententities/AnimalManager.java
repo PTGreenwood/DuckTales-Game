@@ -63,7 +63,7 @@ public class AnimalManager extends SecondaryEntityManager{
             // Add the sprite of the animal to the sprites list, and set
             // the position of that sprite
             AnimalSprite sprite = SpritesFactory.createAnimalSprite(
-                    animalSprites.size(), type
+                    animalSprites.size(), type,
             );
             if (sprite == null) {
                 throw new GameSetupException("Sprite of type " + type +
@@ -100,7 +100,7 @@ public class AnimalManager extends SecondaryEntityManager{
                 animalSprite = animalSprites.get(i);
                 tileSprite = gameManager.getWorldDisplayManager()
                         .getTilesManager().getTileSprite(
-                                animalSprite.getxLocation(), animalSprite.getyLocation()
+                                animalSprite.getXLocation(), animalSprite.getYLocation()
                         );
 
                 // Update the location of the sprites
