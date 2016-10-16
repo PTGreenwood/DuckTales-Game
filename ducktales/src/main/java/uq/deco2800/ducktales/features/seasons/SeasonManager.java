@@ -66,7 +66,10 @@ public class SeasonManager{
     public void setupInitialWeatherEvents() {
 		for (Season seasonIterator : this.seasonList) {
 			seasonIterator.setRainWeather();
-			seasonIterator.setFireWeather();
+			seasonIterator.setFireWeather();			
+			//added in extra weather - @mattyleggy
+			seasonIterator.setSnowWeather();
+			seasonIterator.setStormWeather();
 		}
     }
     /**
