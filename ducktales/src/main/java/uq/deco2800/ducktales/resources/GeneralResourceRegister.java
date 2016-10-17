@@ -44,7 +44,7 @@ public class GeneralResourceRegister {
         int last = random.nextInt(200);
 
 
-        return firstNames.get(first) + "" + lastNames.get(last);
+        return firstNames.get(first) + " " + lastNames.get(last);
     }
 
     /**

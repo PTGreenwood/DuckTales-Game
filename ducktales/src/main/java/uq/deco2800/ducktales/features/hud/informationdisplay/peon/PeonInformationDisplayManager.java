@@ -75,8 +75,12 @@ public class PeonInformationDisplayManager
         
         // Get the information of the peon
         peonName.setText(peon.getPeonName());
-        //peonIntelligence.setText(Integer.toString(peon.getIntelligence()));
-        //peonStrength.setText(Integer.toString(peon.getStrength()));        
+        peonIntelligence.setText(Integer.toString(peon.getIntelligence()));
+        peonStrength.setText(Integer.toString(peon.getStrength()));
+        peonHealth.setText(Integer.toString(peon.getHealth()));
+        peonHunger.setText(Integer.toString(peon.getHunger()));
+        peonThirst.setText(Integer.toString(peon.getThirst()));
+        
 
 
         // Show the display
