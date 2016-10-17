@@ -46,7 +46,7 @@ public class MarketManager {
     private static final String BTN_SELECTED = "#80ab4a";
     
     /** The border colour of the buttons when selected. */
-    private static final String BTN_BORDER_COLOUR = "white";
+    private static final String BTN_BORDER_COLOUR = "#efba1a";
     
     /** Deselected navigation button background colour **/
     private static final String BTN_NOT_SELECTED = "#C29161";

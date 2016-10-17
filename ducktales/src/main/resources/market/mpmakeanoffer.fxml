@@ -27,14 +27,14 @@
                   <Font name="Press Start 2P" size="12.0" />
                </font>
             </Label>
-            <Button fx:id="placeOfferBtn" layoutX="34.0" layoutY="273.0" mnemonicParsing="false" onMouseReleased="#placeOffer" prefHeight="28.0" prefWidth="150.0" style="-fx-background-color: #80ab4a; -fx-background-radius: 0px;" styleClass="menu" text="Place Offer" textFill="WHITE">
+            <Button fx:id="placeOfferBtn" layoutX="34.0" layoutY="273.0" mnemonicParsing="false" onMouseReleased="#placeOffer" prefHeight="28.0" prefWidth="150.0" style="-fx-background-color: #80ab4a; -fx-border-color: #efba1a; -fx-border-width: 3px;" styleClass="menu" text="Place Offer" textFill="WHITE">
                <font>
-                  <Font name="Press Start 2P" size="12.0" />
+                  <Font name="Press Start 2P" size="10.0" />
                </font>
             </Button>
-            <Button fx:id="placeOfferBtn1" layoutX="34.0" layoutY="316.0" mnemonicParsing="false" onMouseReleased="#placeOffer" prefHeight="28.0" prefWidth="150.0" style="-fx-background-color: #80ab4a; -fx-background-radius: 0px;" styleClass="menu" text="Cancel" textFill="WHITE">
+            <Button fx:id="placeOfferBtn1" layoutX="34.0" layoutY="316.0" mnemonicParsing="false" onMouseReleased="#placeOffer" prefHeight="28.0" prefWidth="150.0" style="-fx-background-color: #80ab4a; -fx-border-color: #efba1a; -fx-border-width: 3px;" styleClass="menu" text="Cancel" textFill="WHITE">
                <font>
-                  <Font name="Press Start 2P" size="12.0" />
+                  <Font name="Press Start 2P" size="10.0" />
                </font>
             </Button>
          </children>

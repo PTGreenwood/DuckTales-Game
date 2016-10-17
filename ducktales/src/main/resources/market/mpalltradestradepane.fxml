@@ -38,7 +38,7 @@
          </font>
       </Label>
       <Region fx:id="itemPictureRegion" layoutX="10.0" layoutY="13.0" prefHeight="74.0" prefWidth="72.0" style="-fx-background-color: #ffffffff;" />
-      <Button layoutX="95.0" layoutY="106.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="156.0" style="-fx-background-color: #80ab4a; -fx-border-radius: 0px;" text="Place an Offer" textFill="WHITE">
+      <Button layoutX="84.0" layoutY="106.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="167.0" style="-fx-background-color: #80ab4a; -fx-border-color: #efba1a; -fx-border-width: 3px;" text="Place an Offer" textFill="WHITE">
          <font>
             <Font name="Press Start 2P" size="10.0" />
          </font>

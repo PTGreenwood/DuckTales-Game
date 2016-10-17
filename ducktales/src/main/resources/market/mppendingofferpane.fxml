@@ -31,7 +31,7 @@
          </font>
       </Label>
       <Region fx:id="itemPictureRegion1" layoutX="21.0" layoutY="115.0" prefHeight="74.0" prefWidth="72.0" style="-fx-background-color: #ffffffff;" />
-      <Button fx:id="deleteOfferBtn" layoutX="105.0" layoutY="165.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="151.0" style="-fx-background-color: #80ab4a; -fx-border-radius: 0px;" text="Delete" textFill="WHITE">
+      <Button fx:id="deleteOfferBtn" layoutX="105.0" layoutY="165.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="151.0" style="-fx-background-color: #80ab4a; -fx-border-color: #efba1a; -fx-border-width: 3px;" text="Delete" textFill="WHITE">
          <font>
             <Font name="Press Start 2P" size="10.0" />
          </font>

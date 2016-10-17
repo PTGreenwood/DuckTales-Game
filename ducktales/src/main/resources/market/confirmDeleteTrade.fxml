@@ -58,12 +58,12 @@
         </HBox>
         <Pane maxWidth="+Infinity" HBox.hgrow="ALWAYS">
                <children>
-                  <Button fx:id="cancelButton" cancelButton="true" layoutX="63.0" layoutY="-10.0" minWidth="80.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="120.0" style="-fx-background-radius: 0px; -fx-background-color: #80ab4a;" text="Yes" textFill="WHITE">
+                  <Button fx:id="cancelButton" cancelButton="true" layoutX="63.0" layoutY="-10.0" minWidth="80.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="120.0" style="-fx-background-radius: 0px; -fx-background-color: #80ab4a; -fx-border-color: #efba1a; -fx-border-width: 3px;" text="Yes" textFill="WHITE">
                      <font>
                         <Font name="Press Start 2P" size="14.0" />
                      </font>
                   </Button>
-                  <Button fx:id="okButton" layoutX="236.0" layoutY="-10.0" minWidth="80.0" mnemonicParsing="false" prefWidth="120.0" style="-fx-background-radius: 0px; -fx-background-color: #80ab4a;" text="No" textFill="WHITE">
+                  <Button fx:id="okButton" layoutX="236.0" layoutY="-10.0" minWidth="80.0" mnemonicParsing="false" prefWidth="120.0" style="-fx-background-radius: 0px; -fx-background-color: #80ab4a; -fx-border-color: #efba1a; -fx-border-width: 3px;" text="No" textFill="WHITE">
                      <font>
                         <Font name="Press Start 2P" size="14.0" />
                      </font>
