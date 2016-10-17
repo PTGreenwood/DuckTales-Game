@@ -38,7 +38,7 @@
        </children>
    </HBox>
    
-   <Text fx:id="actiontarget" style="-fx-text-fill: white;" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+   <Text fx:id="actiontarget" fill="WHITE" style="-fx-text-fill: white;" GridPane.columnIndex="1" GridPane.rowIndex="6" />
    </children>
    <columnConstraints>
       <ColumnConstraints />
