@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import uq.deco2800.ducktales.util.exceptions.GameSetupException;
@@ -82,6 +83,8 @@ public class DuckTalesController implements Initializable {
         
 		Scene scene = new Scene(root1,300,275);
 		primaryStage= new Stage();
+		primaryStage.initStyle(StageStyle.UNDECORATED);
+        //primaryStage.initStyle(Stage.UNDECORATED);
 		primaryStage.setTitle("FXML Welcome");
 		primaryStage.setScene(scene);
 		primaryStage.showAndWait();
