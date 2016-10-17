@@ -143,7 +143,6 @@ public class GameManager {
         worldDisplayManager.initializeWorld();
 
         // Now set up the entity manager and start its routine
-        mainEntityManager.setWorldDisplay(worldDisplayManager.getWorldDisplay());
         mainEntityManager.startRoutine();
 
         // Start the manager of all the horrible threats in the world.

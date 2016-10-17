@@ -37,16 +37,8 @@ public abstract class DuckGods {
     public String getDuckName() {
     	return duckName;
     }
-    /** to get what needed to sacrifice
-     *
-     * @return
-     */
-    public String[] getSacrifice() {
-    	String[] sacrifice ={this.getrequiredSacrifice(),this.getrequiredAmount()};
-    	return sacrifice;
-    } 
     private String getrequiredAmount() {
-	    return null;
+	    return "";
     }
 	public String getrequiredSacrifice() {
     	return requiredSacrifice;

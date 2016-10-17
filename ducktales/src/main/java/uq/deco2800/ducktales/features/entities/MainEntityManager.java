@@ -9,7 +9,6 @@ import uq.deco2800.ducktales.GameManager;
 import uq.deco2800.ducktales.World;
 import uq.deco2800.ducktales.features.entities.agententities.AnimalManager;
 import uq.deco2800.ducktales.features.entities.worldentities.BuildingManager;
-import uq.deco2800.ducktales.features.landscape.tiles.TilesManager;
 import uq.deco2800.ducktales.resources.ResourceInfoRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.Coordinate;
@@ -27,10 +26,7 @@ import uq.deco2800.ducktales.util.exceptions.GameSetupException;
  */
 public class MainEntityManager implements Tickable {
     /** The logger */
-    private static Logger LOGGER = LoggerFactory.getLogger(MainEntityManager.class);
-
-    /** The world pane to add entities onto */
-    private Pane worldDisplay;
+    private static final Logger LOGGER = LoggerFactory.getLogger(MainEntityManager.class);
 
     /** The Instance of this object */
     private static final MainEntityManager INSTANCE = new MainEntityManager();
@@ -207,17 +203,6 @@ public class MainEntityManager implements Tickable {
     public void setGameManager(GameManager gameManager) {
         this.gameManager = gameManager;
 
-    }
-
-    /**
-     * Pass this manager a handle on the world display, for it to add entities
-     * into
-     *
-     * @param worldDisplay
-     *          The display where all entities in the world is rendered onto
-     */
-    public void setWorldDisplay(Pane worldDisplay) {
-        this.worldDisplay = worldDisplay;
     }
 
     @Override

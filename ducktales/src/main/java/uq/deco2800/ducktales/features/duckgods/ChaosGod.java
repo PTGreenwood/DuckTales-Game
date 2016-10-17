@@ -40,10 +40,6 @@ public class ChaosGod extends DuckGods {
 		 * provides penalties to the user which would result a negative impact
 		 * e.g. debuffs
 		 */
-		
-		if (isSelected && !isWorshiped) {
-
-		}
-	}  
+	}
         
 }
