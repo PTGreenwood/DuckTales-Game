@@ -25,7 +25,7 @@ public class ChaosGod extends DuckGods {
 		e.g. buffs
 		*/
 		
-		if(isWorshiped == true){
+		if(isWorshiped){
       		 /**Peon.speed= Peon.speed*2;
 		*need to change Speed visibility to public
 		*more award details
@@ -36,15 +36,13 @@ public class ChaosGod extends DuckGods {
 	
 	public void givepenalty() {
 		
-		/**provides penalties to the user which would result a negative impact
-		e.g. debuffs
-		*/
+		/**
+		 * provides penalties to the user which would result a negative impact
+		 * e.g. debuffs
+		 */
 		
-		if(isSelected==true&&isWorshiped==false){
-	  /**Peon.speed= Peon.speed*0.8;
-	   *need to change Speed visibility to public
-	   *more penalty detail
-	   */
+		if (isSelected && !isWorshiped) {
+
 		}
 	}  
         

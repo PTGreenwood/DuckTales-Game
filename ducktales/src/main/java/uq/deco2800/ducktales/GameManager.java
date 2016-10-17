@@ -143,7 +143,6 @@ public class GameManager {
         worldDisplayManager.initializeWorld();
 
         // Now set up the entity manager and start its routine
-        mainEntityManager.setTilesManager(worldDisplayManager.getTilesManager());
         mainEntityManager.setWorldDisplay(worldDisplayManager.getWorldDisplay());
         mainEntityManager.startRoutine();
 

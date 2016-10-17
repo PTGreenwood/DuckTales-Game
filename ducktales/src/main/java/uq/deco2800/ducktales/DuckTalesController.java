@@ -33,7 +33,7 @@ public class DuckTalesController implements Initializable {
 	private AnchorPane mainMenuPane;
 
 	/** implementing a logger, to catch ioe exception */
-	private static Logger logger = LoggerFactory.getLogger(GameController.class);
+	private static Logger logger = LoggerFactory.getLogger(DuckTalesController.class);
 
 	private WorldBuilderController worldBuilderController;
 
