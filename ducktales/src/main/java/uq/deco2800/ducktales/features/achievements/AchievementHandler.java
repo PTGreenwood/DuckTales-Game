@@ -20,6 +20,7 @@ public class AchievementHandler {
 	LevelHandler levelHandler = LevelHandler.getInstance();
 	private InventoryManager inventoryManager;
 	public int achievementToggleWood = 0;
+	public int achievementToggleOres = 0;
 	
 	/**
 	 * Constructor of {@link Achievement}.
@@ -152,14 +153,7 @@ public class AchievementHandler {
 	    //else{
 	    //break;
 	    //}
-	    
-	  //if _____________  && x = 2{
-	    //do this 
-	    // x ++ 1;
-	    //}
-	    //else{
-	    //break;
-	    //}
+	   
 	    if(inventoryManager.getWoodAmount() >= 10 && achievementToggleWood == 0)
 	    {
 	    	this.achieveVeryEasy();
@@ -170,7 +164,7 @@ public class AchievementHandler {
 	    	achievementToggleWood ++;
 	    }
 	    
-	    if(inventoryManager.getWoodAmount() >= 10 && achievementToggleWood == 0)
+	    if(inventoryManager.getOresAmount() >= 10 && achievementToggleOres == 0)
 	    {
 	    	this.achieveVeryEasy();
 	    	achievementToggleWood ++;
