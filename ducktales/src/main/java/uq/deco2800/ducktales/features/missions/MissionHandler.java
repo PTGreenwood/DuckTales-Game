@@ -122,6 +122,6 @@ public class MissionHandler {
 	 */
 	public double getNumberOfCompletedMissions() {
 		
-		return numberOfCompletedMissions;
+		return this.numberOfCompletedMissions;
 	}
 }
