@@ -80,7 +80,7 @@ public class AnimalTest {
         duck.attack(opponent);
 //        assertTrue("Opponent health must decrease by the animal's strength.", opponent.getHealth() == 80);
         duck.setHealth(0);
-        
+        duck.setIsDead();
         assertTrue("Animal must be dead when its health is 0;", duck.isDead() == true);
     }
 
@@ -98,7 +98,7 @@ public class AnimalTest {
         assertTrue("Duck can only lay eggs if the health, hunger, and thirst thresholds are met.", duck.canLayEggs()
                 == true);
         duck.setHealth(0);
-     
+        duck.setIsDead();
         duck.dropFeathers();
         assertTrue("Duck must be dead to drop feathers.", duck.canDropFeathers() == true);
 
@@ -121,7 +121,7 @@ public class AnimalTest {
         assertTrue("Cow can only produce milk if the health, hunger, and thirst thresholds are met.", cow
                 .canProduceMilk() == true);
         cow.setHealth(0);
-        
+        cow.setIsDead();
         cow.produceBeef();
         assertTrue("Cow must be dead to drop beef.", cow.canProduceBeef() == true);
     }
@@ -144,7 +144,7 @@ public class AnimalTest {
         assertTrue("Sheep can only produce wool if the health, hunger, and thirst thresholds are met.", sheep
                 .canProduceWool() == true);
         sheep.setHealth(0);
-        
+        sheep.setIsDead();
         sheep.produceMutton();
         assertTrue("Sheep must be dead to drop mutton.", sheep
                 .canProduceMutton() == true);
