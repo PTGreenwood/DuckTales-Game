@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.Pane?>
+
+
+<Pane fx:id="weatherDisplay" maxHeight="-Infinity" maxWidth="-Infinity"
+	minHeight="-Infinity" minWidth="-Infinity" mouseTransparent="true"
+	prefHeight="737.0" prefWidth="1295.0" 
+	stylesheets="@weatherDisplay.css" xmlns="http://javafx.com/javafx/8.0.65"
+	xmlns:fx="http://javafx.com/fxml/1" fx:controller="uq.deco2800.ducktales.features.weather.WeatherManager" />

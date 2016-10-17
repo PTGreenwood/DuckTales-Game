@@ -16,7 +16,7 @@ public abstract class ResourceEntity extends WorldEntity {
 	//Default starting value of Resource nodes
 	public static final int DEFVALUE = 100;
 	//Actual, editable value the Resources nodes will take
-	public int value;
+	protected int value;
 
 	/**
 	 * Main constructor of the Resource Entity class.

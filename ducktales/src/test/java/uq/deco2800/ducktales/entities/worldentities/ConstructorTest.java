@@ -5,7 +5,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import uq.deco2800.ducktales.features.entities.worldentities.Bakery;
-import uq.deco2800.ducktales.features.entities.worldentities.Building.production;
+import uq.deco2800.ducktales.features.entities.worldentities.StorageProduceBuilding.production;
 import uq.deco2800.ducktales.features.entities.worldentities.Constructor;
 import uq.deco2800.ducktales.features.entities.worldentities.Farm;
 import uq.deco2800.ducktales.features.entities.worldentities.Forge;
@@ -89,20 +89,13 @@ public class ConstructorTest {
 		// Check get time, for house
 		assertTrue("House getTime incorrect!", constructor.getTime(house) 
 				== (2));
-		// Check house get production amount
-		assertTrue("House getproductionAmount incorrect", 
-				constructor.getResourcesProductionAmount(house) == 0);
-		// Check house get production type
-		assertTrue("House getproductionType incorrect", 
-				constructor.getResourcesProductionType(house) == 
-				production.NULL);
 		// Check sawmill get production amount
 		assertTrue("Sawmill getproductionAmount incorrect", 
 				constructor.getResourcesProductionAmount(sawmill) == 5);
 		// Check get production type, for samwill
 		assertTrue("Sawmill getproductionType incorrect", 
 				constructor.getResourcesProductionType(sawmill) == 
-				production.WOOD);
+				production.TIMBER);
 		
 		// Check get health for sawmill, house and bakery
 		assertTrue("Correct Health", sawmill.getHealth() == 1400);
@@ -127,15 +120,15 @@ public class ConstructorTest {
 		
 		// Check change health, valid (decrease)
 		farm.upgradeProduce(10);
-		assertTrue("Incorrect Health", farm.resourcesProductionAmount() == 10);
+		assertTrue("Incorrect produce", farm.resourcesProductionAmount() == 10);
 		// Check change health, invalid (=0)
 		sawmill.upgradeProduce(0);
-		assertTrue("Incorrect Health", sawmill.resourcesProductionAmount() == 0);
+		assertTrue("Incorrect produce", sawmill.resourcesProductionAmount() == 0);
 		// Check change health, valid (increase)
 		sawmill.upgradeProduce(978000);
-		assertTrue("Incorrect Health", sawmill.resourcesProductionAmount() == 978000);
+		assertTrue("Incorrect produce", sawmill.resourcesProductionAmount() == 978000);
 		// Check change health, invalid (<0)
 		farm.upgradeProduce(-10);
-		assertTrue("Incorrect Health", farm.resourcesProductionAmount() == 10);
+		assertTrue("Incorrect produce", farm.resourcesProductionAmount() == 10);
 	}
 }

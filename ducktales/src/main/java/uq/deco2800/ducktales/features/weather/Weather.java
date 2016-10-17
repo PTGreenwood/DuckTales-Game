@@ -38,6 +38,18 @@ public abstract class Weather {
 	}
 	
 	/**
+	 * Check if it is currently raining
+	 * Returns true has the possibility of turning into a storm, or snow depends of the seasons
+	 * Fire can't stay in rain
+	 * 
+	 * @return true if it is raining
+	 * 		   false if is not raining
+	 */
+	public boolean isRaining() {
+		return false;
+	}
+	
+	/**
 	 * Check if the weather events occurs on:
 	 * 
 	 * 	  land - isLand() 
@@ -62,6 +74,25 @@ public abstract class Weather {
 	@Override
 	public String toString() {
 		return this.getClass().getSimpleName().toLowerCase();
+	}
+	
+	@Override
+	public boolean equals(Object other) {
+		
+		if (other == null) {
+			return false;
+		}
+		
+		if (!(other instanceof Weather)) {
+			return false;
+		}
+		
+		final Weather otherWeather = (Weather) other;
+		if (!this.toString().equals(otherWeather.toString())) {
+			return false;
+		}
+		
+		return true;
 	}
 	
 	@Override 

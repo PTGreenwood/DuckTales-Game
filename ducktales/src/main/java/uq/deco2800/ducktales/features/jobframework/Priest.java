@@ -1,6 +1,6 @@
 package uq.deco2800.ducktales.features.jobframework;
 
-import uq.deco2800.ducktales.features.entities.agententities.Peon;
+import uq.deco2800.ducktales.features.entities.peons.Peon;
 
 /**
  * Generates the Priest job
@@ -19,7 +19,7 @@ public class Priest extends Job {
     public Priest() {
 		super(requiredStrength, requiredIntelligence, 
                         mentorStrength, mentorIntelligence, 
-                        jobName, JOBTYPE);
+                        JOBTYPE);
     }
 
     /**

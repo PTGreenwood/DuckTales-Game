@@ -61,8 +61,8 @@ public class WorldBuilderRenderer extends AnimationTimer {
     private VBox tileMenu;
     private HBox resourceMenu;
 
-    /** The SCALE/zoom factor */
-    private static double SCALE = 0.2;
+    /** The scale/zoom factor */
+    private static double scale = 0.2;
 
     /**
      * The manager for World builder
@@ -118,8 +118,8 @@ public class WorldBuilderRenderer extends AnimationTimer {
         this.addedEntities = new ArrayList<>();
 
         // Setup the initial point where the rendering will start from
-        this.startingX = (int) (this.world.getWidth() * tileWidth * SCALE * 0.5);
-        this.startingY = (int) (this.world.getHeight() * tileHeight * SCALE * 0.3);
+        this.startingX = (int) (this.world.getWidth() * tileWidth * scale * 0.5);
+        this.startingY = (int) (this.world.getHeight() * tileHeight * scale * 0.3);
 
         createWorld(buildingScene);
         createTileMenu(tileMenu);
@@ -151,8 +151,8 @@ public class WorldBuilderRenderer extends AnimationTimer {
         hoveringImage.setImage(image);
 
         // setup the size of the rendered image
-        hoveringImage.setFitHeight(image.getHeight() * SCALE);
-        hoveringImage.setFitWidth(image.getWidth() * SCALE);
+        hoveringImage.setFitHeight(image.getHeight() * scale);
+        hoveringImage.setFitWidth(image.getWidth() * scale);
 
         hoveringImage.setY(-hoveringImage.getFitHeight());
     }
@@ -209,7 +209,6 @@ public class WorldBuilderRenderer extends AnimationTimer {
         // add the entity onto the building scene
         buildingScene.getChildren().add(entity);
         
-        //System.out.println("Entities added: " + addedEntities.toString());  
     }
 
     /**
@@ -261,13 +260,10 @@ public class WorldBuilderRenderer extends AnimationTimer {
     private void createWorld(Pane pane) {
         this.tiles = new Array2D<>(world.getWidth(), world.getHeight());
 
-        int scaledWidth = (int) (tileWidth * SCALE);
-        int scaledHeight = (int) (tileHeight * SCALE);
+        int scaledWidth = (int) (tileWidth * scale);
+        int scaledHeight = (int) (tileHeight * scale);
 
         WorldBuilderTile tile;
-
-        System.out.println("Starting width: " + this.startingX);
-
 
         // Create the array of ImageViews
         for (int i = 0; i < this.world.getWidth(); i++) {
@@ -284,8 +280,8 @@ public class WorldBuilderRenderer extends AnimationTimer {
                 tile = tiles.get(i, j);
                 tile.setImage(resourceSpriteRegister.getResourceImage(GRASS_1));
 
-                tile.setFitHeight(resourceSpriteRegister.TILE_HEIGHT* SCALE);
-                tile.setFitWidth(resourceSpriteRegister.TILE_WIDTH* SCALE);
+                tile.setFitHeight(resourceSpriteRegister.TILE_HEIGHT* scale);
+                tile.setFitWidth(resourceSpriteRegister.TILE_WIDTH* scale);
 
                 tile.setLayoutX(x);
                 tile.setLayoutY(y);
@@ -315,17 +311,11 @@ public class WorldBuilderRenderer extends AnimationTimer {
         double renderingWidth = root.getPrefWidth();
         double renderingHeight = root.getPrefHeight();
 
-        System.err.println("world builder pane rendered width and height: " +
-                renderingWidth + ", " + renderingHeight);
-
         // Add some styling to the root pane
         this.worldBuilderPane.getStylesheets().add("/builderStyle.css");
 
         // The pane where the world is rendered onto
-//        buildingScene.setPrefSize(
-//                renderingWidth * BUILDING_SCENE_H_PORTION,
-//                renderingHeight * BUILDING_SCENE_V_PORTION
-//        );
+
         buildingScene.getStyleClass().add("buildingScene");
 
         // The pane containing the tiles
@@ -358,19 +348,4 @@ public class WorldBuilderRenderer extends AnimationTimer {
         // stub method
     }
 
-    /**
-     * Start the renderer. Inherited from AnimationTimer, must remain public.
-     */
-    @Override
-    public void start() {
-        super.start();
-    }
-
-    /**
-     * Stop the renderer. Inherited from AnimationTimer, must remain public.
-     */
-    @Override
-    public void stop() {
-        super.stop();
-    }
 }

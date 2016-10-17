@@ -1,6 +1,6 @@
 package uq.deco2800.ducktales.features.jobframework;
 
-import uq.deco2800.ducktales.features.entities.agententities.Peon;
+import uq.deco2800.ducktales.features.entities.peons.Peon;
 
 /**
  * Generates the Builder job
@@ -18,7 +18,7 @@ public class Builder extends Job {
     public Builder() {
 		super(requiredStrength, requiredIntelligence, 
                         mentorStrength, mentorIntelligence, 
-                        jobName, JOBTYPE);
+                        JOBTYPE);
     }
     public void build(Peon peon){
         // TODO implementation with Buildings

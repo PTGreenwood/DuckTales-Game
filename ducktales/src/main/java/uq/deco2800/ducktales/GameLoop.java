@@ -2,9 +2,11 @@ package uq.deco2800.ducktales;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import uq.deco2800.ducktales.features.entities.EntityManager;
+import uq.deco2800.ducktales.features.entities.MainEntityManager;
 import uq.deco2800.ducktales.features.time.TimeManager;
+import uq.deco2800.ducktales.features.weather.WeatherManager;
 import uq.deco2800.ducktales.features.time.DayNightManager;
+import uq.deco2800.ducktales.util.exceptions.GameSetupException;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -29,8 +31,10 @@ public class GameLoop implements Runnable {
 	
 	/** The secondary managers of the game */
 	private TimeManager timeManager;
-	private EntityManager entityManager;
-	private DayNightManager daynightManager; //not in use currently
+	private MainEntityManager mainEntityManager;
+
+	//private DayNightManager daynightManager; //not in use currently
+	private WeatherManager weatherManager;
 
 	private static boolean paused;
 	/**
@@ -53,24 +57,27 @@ public class GameLoop implements Runnable {
 	@Override
 	public void run() {
 		while (!quit.get()) {
-			if (world != null && entityManager != null && timeManager != null ) {
+			if (world != null && mainEntityManager != null && timeManager != null ) {
 
 				//Continue Loop if not paused
 				if(!GameLoop.paused) {
 					// All the managers are ready to go
 					world.tick();
-					entityManager.tick();
+					mainEntityManager.tick();
 					timeManager.tick();
+					weatherManager.tick();
 					
 					
 				}
 			} else {
-				System.err.println(" game loop not ready");
+				throw new GameSetupException(" game loop not ready");
 			}	
 			try {
 				Thread.sleep(gameSpeed);
 			} catch (InterruptedException e) {
 				logger.info("context", e);
+				// Clean up state
+				Thread.currentThread().interrupt();
 			}
 		}
 	}
@@ -113,30 +120,22 @@ public class GameLoop implements Runnable {
 	 *
 	 * @param timeManager
 	 * 			The Time Manager of the game
-	 */
+	 **/
 	public void setTimeManager(TimeManager timeManager) {
 		this.timeManager = timeManager;
+	}
+	
+	public void setWeatherManager(WeatherManager weatherManager) {
+		this.weatherManager = weatherManager;
 	}
 
 	/**
 	 * Pass the handle of the Entity Manager to the game loop
-	 * @param entityManager
+	 * @param mainEntityManager
 	 * 			The Entity Manager of the game
 	 */
-	public void setEntityManager(EntityManager entityManager) {
-		this.entityManager = entityManager;
+	public void setMainEntityManager(MainEntityManager mainEntityManager) {
+		this.mainEntityManager = mainEntityManager;
 	}
 	
-	/**
-	 * 
-	 * Pass the handle of the DayNight Manager to the game loop
-	 * Currently not in use, but will add in later once more things
-	 * have been worked out
-	 * 
-	 * @param daynightManager
-	 * 			The DayNight Manager of the game
-	 */
-	public void setDayNightManager(DayNightManager daynightManager) {
-		this.daynightManager = daynightManager;
-	}
 }

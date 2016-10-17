@@ -1,7 +1,7 @@
 package uq.deco2800.ducktales.features.jobframework;
 
 import uq.deco2800.ducktales.features.entities.resourceentities.Tree;
-import uq.deco2800.ducktales.features.entities.agententities.Peon;
+import uq.deco2800.ducktales.features.entities.peons.Peon;
 
 /**
  * Generates the Lumberjack job
@@ -21,7 +21,7 @@ public class Lumberjack extends Job {
     public Lumberjack() {
         super(requiredStrength, requiredIntelligence, 
                         mentorStrength, mentorIntelligence, 
-                        jobName, JOBTYPE);
+                        JOBTYPE);
     }
     /**
      * Chops a tree and adds to the peon's resource thing

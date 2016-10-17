@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane fx:id="outerAnchor" prefHeight="400.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.60" fx:controller="uq.deco2800.ducktales.features.tutorials.TutorialBasicController">
+   <children>
+      <ScrollPane fx:id="scrollPane" layoutX="231.0" layoutY="100.0" prefHeight="400.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <content>
+            <AnchorPane fx:id="innerAnchor" prefHeight="400.0" prefWidth="800.0" />
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

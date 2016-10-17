@@ -1,7 +1,6 @@
 package uq.deco2800.ducktales.features.achievements;
 
 
-import uq.deco2800.ducktales.features.inventory.InventoryManager;
 import uq.deco2800.ducktales.features.level.LevelHandler;
 import uq.deco2800.ducktales.features.missions.MissionHandler;
 
@@ -12,7 +11,7 @@ import uq.deco2800.ducktales.features.missions.MissionHandler;
  * 
  */
 public class AchievementHandler {
-	private static AchievementHandler INSTANCE = new AchievementHandler();
+	private static final AchievementHandler INSTANCE = new AchievementHandler();
 	
 	/** Achievement Score */
 	private int intAchieve;
@@ -134,23 +133,7 @@ public class AchievementHandler {
 	    {
 	        //resource reward
 	    }
-	    
-	    
-    //	if(InventoryManager.getWoodAmount() >= 100){
-	//		this.achieveVeasy();
-    //	}
-    //	if(InventoryManager.woodAmount == 1337){
-	//		this.achieveEasy();
-	//	}
-	//	if(InventoryManager.woodAmount>=10000){
-	//		this.achieveMedium();
-	//	}
-	//	if(InventoryManager.woodAmount>=25000){
-	//		this.achieveHard();
-	//	}
-	//	if(InventoryManager.woodAmount>=50000){
-	//		this.achieveVhard();
-	//	}	
+
    }
    
 }

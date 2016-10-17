@@ -1,6 +1,5 @@
 package uq.deco2800.ducktales.features.level;
 
-import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -17,7 +16,7 @@ import uq.deco2800.ducktales.util.SecondaryManager;
  * @author Naehyung Kim
  *
  */
-public class LevelManager implements SecondaryManager {
+public class LevelManager extends SecondaryManager {
 	
 	@FXML 
 	private AnchorPane level;
@@ -71,8 +70,4 @@ public class LevelManager implements SecondaryManager {
 		return this.level.isVisible();
 	}
 	
-	@Override
-    public void reload() {
-
-    }
 }

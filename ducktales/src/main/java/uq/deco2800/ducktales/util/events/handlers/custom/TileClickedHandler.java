@@ -2,7 +2,7 @@ package uq.deco2800.ducktales.util.events.handlers.custom;
 
 import javafx.event.EventHandler;
 import uq.deco2800.ducktales.GameManager;
-import uq.deco2800.ducktales.features.entities.EntityManager;
+import uq.deco2800.ducktales.features.entities.MainEntityManager;
 import uq.deco2800.ducktales.features.hud.menu.MenuManager;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.events.handlers.GameEventHandler;
@@ -19,7 +19,7 @@ import uq.deco2800.ducktales.util.events.tile.TileClickedEvent;
 public class TileClickedHandler extends GameEventHandler
         implements EventHandler<TileClickedEvent> {
     /** The secondary manager */
-    private EntityManager entityManager;
+    private MainEntityManager mainEntityManager;
 
     /**
      * Instantiate an event handler with a handle on the game manager
@@ -28,9 +28,8 @@ public class TileClickedHandler extends GameEventHandler
      */
     public TileClickedHandler(GameManager gameManager) {
         super(gameManager);
-        entityManager = EntityManager.getInstance();
+        mainEntityManager = MainEntityManager.getInstance();
     }
-
 
     @Override
     public void handle(TileClickedEvent event) {
@@ -43,19 +42,17 @@ public class TileClickedHandler extends GameEventHandler
             // Check what kind of entity is to be added
             if (menuSelected == MenuManager.MenuType.ANIMAL) {
                 // add an animal
-                entityManager.addEntity(
+                mainEntityManager.addAnimal(
                         gameManager.getCurrentEntityManaging(),
                         event.getxPos(), event.getyPos()
                 );
             } else if (menuSelected == MenuManager.MenuType.BUILDING){
                 // Add a building
-                entityManager.addWorldEntity(
+                mainEntityManager.addBuilding(
                         gameManager.getCurrentEntityManaging(),
                         event.getxPos(), event.getyPos()
                 );
             }
-
-
         }
 
     }

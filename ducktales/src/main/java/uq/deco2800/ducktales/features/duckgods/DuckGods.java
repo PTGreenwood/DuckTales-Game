@@ -14,13 +14,19 @@ public abstract class DuckGods {
     
 	protected String requiredSacrifice; 
 	protected int requiredAmount;
-    // The name of the duck god selected.
-    protected String duckName;
-    // The bonus implemented by the duck god.
+    		// The name of the duck god selected.
+    	protected String duckName;
+   		// The bonus implemented by the duck god.
 	protected GodType godType;
-    protected String bonus;
-    // The image to be rendered of the duck god.
-    protected ImageIcon image;
+    	protected String bonus;
+   		// The image to be rendered of the duck god.
+  	protected ImageIcon image;
+
+   /** flags to control the state of the god */
+    	protected boolean isBuilt = false;
+    	protected boolean isWorshiped = false;
+    	protected boolean isSelected = false;
+
     
     /**
      * Main constructor of {@link DuckGods}.
@@ -28,23 +34,33 @@ public abstract class DuckGods {
      * @param bonus
      * @param image
      */
-    public String getDuckName(){
+    public String getDuckName() {
     	return duckName;
     }
-    /** to get what needed to sacrifice
-     * 
-     * @return
-     */
-    public String[] getSacrifice(){
-    	String[] Sacrifice ={this.getrequiredSacrifice(),this.getrequiredAmount()};
-    	return Sacrifice;
-    } 
     private String getrequiredAmount() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	public String getrequiredSacrifice(){
+	    return "";
+    }
+	public String getrequiredSacrifice() {
     	return requiredSacrifice;
-    	
     }
+
+    public void build() {
+        /**wait for chaoschurch to be built
+         * if(isset(chaoschurch)){
+         */
+        isBuilt= true;
     }
+ 
+    public void selected() {
+        /**needs to check mouseListener to see if it's clicked
+         if(clicked)
+         */
+        isSelected = true;
+    }
+
+    public void worship() {
+        if(isBuilt && !isSelected) {
+            isWorshiped = true;
+        }
+    }
+}

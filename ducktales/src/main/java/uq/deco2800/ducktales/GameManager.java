@@ -3,18 +3,24 @@ package uq.deco2800.ducktales;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import uq.deco2800.ducktales.features.achievements.AchievementManager;
-import uq.deco2800.ducktales.features.entities.EntityManager;
-import uq.deco2800.ducktales.features.entities.ThreatManager;
+import uq.deco2800.ducktales.features.entities.MainEntityManager;
+import uq.deco2800.ducktales.features.entities.threats.ThreatManager;
+import uq.deco2800.ducktales.features.entities.resourceentities.ResourceEntityManager;
+import uq.deco2800.ducktales.features.helper.HelperManager;
 import uq.deco2800.ducktales.features.hud.HUDManager;
+import uq.deco2800.ducktales.features.hud.informationdisplay.peon.PeonInformationDisplayManager;
 import uq.deco2800.ducktales.features.hud.menu.MenuManager;
-import uq.deco2800.ducktales.features.inventory.InventoryManager;
 import uq.deco2800.ducktales.features.level.LevelManager;
 import uq.deco2800.ducktales.features.market.MarketManager;
 import uq.deco2800.ducktales.features.time.TimeManager;
+import uq.deco2800.ducktales.features.tutorials.TutorialManager;
+import uq.deco2800.ducktales.features.weather.WeatherManager;
 import uq.deco2800.ducktales.rendering.worlddisplay.CursorManager;
 import uq.deco2800.ducktales.rendering.worlddisplay.WorldDisplayManager;
 import uq.deco2800.ducktales.features.missions.MissionManager;
 import uq.deco2800.ducktales.resources.ResourceType;
+import uq.deco2800.ducktales.util.events.animal.AnimalDeadEvent;
+import uq.deco2800.ducktales.util.events.handlers.animal.AnimalDeadEventHandler;
 import uq.deco2800.ducktales.util.events.handlers.custom.HUDDeselectedHandler;
 import uq.deco2800.ducktales.util.events.handlers.custom.MenuSelectedEventHandler;
 import uq.deco2800.ducktales.util.events.handlers.custom.TileClickedHandler;
@@ -22,6 +28,8 @@ import uq.deco2800.ducktales.util.events.handlers.custom.TileEnteredHandler;
 import uq.deco2800.ducktales.util.events.handlers.keyboard.InGameKeyboardHandler;
 import uq.deco2800.ducktales.util.events.handlers.mouse.InGameMouseClickedHandler;
 import uq.deco2800.ducktales.util.events.handlers.mouse.InGameMouseMovedHandler;
+import uq.deco2800.ducktales.util.events.handlers.peon.PeonClickedEventHandler;
+import uq.deco2800.ducktales.util.events.peon.PeonClickedEvent;
 import uq.deco2800.ducktales.util.events.tile.TileClickedEvent;
 import uq.deco2800.ducktales.util.events.tile.TileEnteredEvent;
 import uq.deco2800.ducktales.util.events.ui.HUDDeselectedEvent;
@@ -48,9 +56,10 @@ public class GameManager {
     /**
      * CONSTANTS
      */
-    private static final int DEFAULT_WORLD_WIDTH = 30;
-    private static final int DEFAULT_WORLD_HEIGHT = 30;
-    private static final int DEFAULT_GAME_SPEED = 10;
+    protected static final int DEFAULT_WORLD_WIDTH = 30;
+    protected static final int DEFAULT_WORLD_HEIGHT = 30;
+    protected static final int DEFAULT_GAME_SPEED = 10;
+    protected static final String DEFAULT_WORLD_NAME = "The New World";
 
     /** The root of everything. */
     private Pane root;
@@ -71,16 +80,21 @@ public class GameManager {
     private HUDManager hudManager;
     private MarketManager marketManager;
     private WorldDisplayManager worldDisplayManager;
+    private HelperManager helperManager;
     private MissionManager missionManager;
     private LevelManager levelManager;
     private AchievementManager achievementManager;
+    private TutorialManager tutorialManager;
     private CursorManager cursorManager;
-    private EntityManager entityManager;
+    private MainEntityManager mainEntityManager;
     private TimeManager timeManager;
     private ThreatManager threatManager;
-    private InventoryManager inventoryContainer;
+    private WeatherManager weatherManager;
+    private ResourceEntityManager resourceEntityManager;
+    private PeonInformationDisplayManager peonInformationDisplayManager;
+    
     /**
-     * Instantiate an empty game manager and createEntitySprite a new default world
+     * Instantiate an empty game manager and createBuildingSprite a new default world
      */
     public GameManager(Pane root) {
         // Instantiate an empty game manager without a pre-loaded world.
@@ -93,7 +107,7 @@ public class GameManager {
 
         // Create a new world model for the game
         world = new World(
-                "New World",
+                DEFAULT_WORLD_NAME,
                 DEFAULT_WORLD_WIDTH,
                 DEFAULT_WORLD_HEIGHT
         );
@@ -129,13 +143,13 @@ public class GameManager {
         worldDisplayManager.initializeWorld();
 
         // Now set up the entity manager and start its routine
-        entityManager.setTilesManager(worldDisplayManager.getTilesManager());
-        entityManager.setWorldDisplay(worldDisplayManager.getWorldDisplay());
-        entityManager.startRoutine();
+        mainEntityManager.startRoutine();
 
         // Start the manager of all the horrible threats in the world.
         threatManager = new ThreatManager();
         threatManager.setWorld(this.world);
+        threatManager.setGameManager(this);
+        threatManager.addOneThreat();
 
         // This is needed since rendered tiles will be on top of HUD :(
         hudManager.bringGUIToFront();
@@ -177,30 +191,22 @@ public class GameManager {
     }
 
     /**
-     * Set the world for the current game
-     *
-     * @param world
-     *          The world of the game
-     */
-    public void setWorld(World world) {
-        this.world = world;
-    }
-
-    /**
-     * Get the HUD Manager of the game
-     * @return the HUD Manager
-     */
-    public HUDManager getHudManager() {
-        return hudManager;
-    }
-
-    /**
      * Pass the handle for the HUD Manager to Game Manager
+     *
      * @param hudManager
      *          The HUD Manager of the game
      */
     public void setHudManager(HUDManager hudManager) {
         this.hudManager = hudManager;
+    }
+
+    /**
+     * Retrieve the Manager for the game HUD
+     *
+     * @return the manager for the game HUD
+     */
+    public HUDManager getHudManager() {
+        return hudManager;
     }
 
     /**
@@ -238,58 +244,251 @@ public class GameManager {
         this.worldDisplayManager.setGameManager(this);
     }
 
+    /**
+     * Get the manager for the helper pane, which is the pane that tells the user
+     * the basic things about the game
+     *
+     * @return the manager of the helper pane
+     */
+    public HelperManager getHelperManager() {
+    	return helperManager;
+    }
+
+    /**
+     * Give the primary manager a handle on the helper manager. This is needed
+     * since helper manager will be instantiated via FXMLLoader
+     *
+     * @param helperManager
+     *          The manager for the helper pane
+     */
+    public void setHelperManager(HelperManager helperManager) {
+    	this.helperManager = helperManager;
+    }
+
+    /**
+     * Retrieve the manager that manages the missions in the game
+     *
+     * @return the manager of the missions in the game
+     */
     public MissionManager getMissionManager() {
         return missionManager;
     }
-    
+
+    /**
+     * Give the primary manager a handle on the mission manager. This is needed
+     * since mission manager will be instantiated via FXMLLoader
+     *
+     * @param missionManager
+     *          The manager for all missions in the game
+     */
     public void setMissionManager(MissionManager missionManager) {
         this.missionManager = missionManager;
     }
-    
+
+    /**
+     * Retrieve the manager for the tutorials pane
+     *
+     * @return the manager for the tutorials pane
+     */
+    public TutorialManager getTutorialManager() {
+    	return tutorialManager;
+    }
+
+    /**
+     * Give the primary manager a handle on the tutorial manager. This is needed
+     * since tutorial manager will be instantiated via FXMLLoader
+     *
+     * @param tutorialManager
+     *          The manager for the tutorial section of the game
+     */
+    public void setTutorialManager(TutorialManager tutorialManager) {
+    	this.tutorialManager = tutorialManager;
+    }
+
+    /**
+     * Retrieve the manager for the overall difficulty level of the game
+     *
+     * @return the manager for the game levels
+     */
     public LevelManager getLevelManager() {
         return levelManager;
     }
 
+    /**
+     * Give the primary manager a handle on the level manager. This is needed
+     * since level manager will be instantiated via FXMLLoader
+     *
+     * @param levelManager
+     *          The manager for the game difficulty levels
+     */
     public void setLevelManager(LevelManager levelManager) {
         this.levelManager = levelManager;
     }
-    
+
+    /**
+     * Retrieve the manager for all game achievements that the player can get while
+     * playing the game
+     *
+     * @return the manager for all game achievements
+     */
     public AchievementManager getAchievementManager() {
         return achievementManager;
     }
-    
+
+    /**
+     * Give the primary manager a handle on the achievement manager. This is needed
+     * since Achievement Manager will be instantiated by {@link GameController}
+     *
+     * @param achievementManager
+     */
     public void setAchievementManager(AchievementManager achievementManager){
     	this.achievementManager = achievementManager;
     }
 
+    /**
+     * Retrieve the manager that handles changing the cursor images during the game
+     *
+     * @return the manager that handles changing of cursor images
+     */
     public CursorManager getCursorManager() {
         return cursorManager;
     }
 
+    /**
+     * Retrieve the that handles changing the cursor images during the game.
+     *
+     * Currently only used to test the cursor manager setup
+     *
+     * @param cursorManager
+     *          The manager for the cursor images in the game
+     */
     public void setCursorManager(CursorManager cursorManager) {
         this.cursorManager = cursorManager;
     }
 
-    public EntityManager getEntityManager() {
-        return entityManager;
+    /**
+     * Retrieve the manager that manages all entities in the game. This manager
+     * will have information about all the sprites of each entity, and how to
+     * retrieve them as well
+     *
+     * @return the manager that manages all entities in the game
+     */
+    public MainEntityManager getMainEntityManager() {
+        return mainEntityManager;
     }
 
-    public void setEntityManager(EntityManager entityManager) {
-        this.entityManager = entityManager;
+    /**
+     * Give the reference of the main entity manager, that manages all entity in
+     * the game to the primary manager.
+     *
+     * Currently, {@link MainEntityManager} is a singleton, so this method is not
+     * really necessary, but it is still needed for testing as well as for the
+     * future when {@link MainEntityManager} is moved to another implementation
+     *
+     * @param mainEntityManager
+     *          The manager for all entities in the game
+     */
+    public void setMainEntityManager(MainEntityManager mainEntityManager) {
+        this.mainEntityManager = mainEntityManager;
     }
 
+    /**
+     * Retrieve the manager for all resource entities of the game. Currently the
+     * {@link ResourceEntityManager} is instantiated in {@link GameController}, but
+     * in the future it should be moved to {@link MainEntityManager} if it is not
+     * loaded via FXMLLoader
+     *
+     * @return The manager for all resource entities of the game
+     */
+    public ResourceEntityManager getResourceEntityManager() {
+    	return resourceEntityManager;
+    }
+
+    /**
+     * Give the primary manager a reference of the resource entity manager.
+     * This is mainly required for testing purposes
+     *
+     * @param resourceEntityManager
+     *          The manager for all resource entities in the game, such as trees,
+     *          rocks, stones, etc.
+     */
+    public void setResourceEntityManager(ResourceEntityManager resourceEntityManager) {
+    	this.resourceEntityManager = resourceEntityManager;
+    }
+
+    /**
+     * Retrieve the manager for the game time. It will also have information
+     * about the current game time, as well as have controls over it
+     *
+     * @return The manager for the game time
+     */
     public TimeManager getTimeManager() {
         return timeManager;
     }
 
+    /**
+     * Give the primary manager a handle on the time manager. This is needed
+     * since {@link TimeManager} will be instantiated by {@link GameController}
+     *
+     * @param timeManager
+     *          The manager for the game time, who controls the time and also
+     *          allows retrieval of the current game time
+     */
     public void setTimeManager(TimeManager timeManager) {
         this.timeManager = timeManager;
+    }
+
+    /**
+     * Retrieve the manager for all weather events in game.
+     *
+     * Currently not needed in the actual game code, but needed for testing
+     *
+     * @return the manager for the game weather
+     */
+    public WeatherManager getWeatherManager() {
+    	return this.weatherManager;
+    }
+
+    /**
+     * Give the primary manager a handle on the weather manager. This is needed
+     * since {@link WeatherManager} will be instantiated by {@link GameController}
+     *
+     * @param weatherManager
+     *          The manager for all weather events in-game
+     */
+    public void setWeatherManager(WeatherManager weatherManager) {
+        this.weatherManager = weatherManager;
+    }
+
+    /**
+     * Retrieve the manager for the information display of the peons when a peon
+     * is clicked on. The manager will be in charge of updating that display
+     * accordingly when a peon is clicked on
+     *
+     * @return the manager for the display of peon information
+     */
+    public PeonInformationDisplayManager getPeonInformationDisplayManager() {
+        return peonInformationDisplayManager;
+    }
+
+    /**
+     * Give the primary manager a handle on the {@link PeonInformationDisplayManager}.
+     * This is needed since {@link PeonInformationDisplayManager} will be
+     * instantiated by {@link GameController}
+     *
+     * @param peonInformationDisplayManager
+     *          The manager for the display of individual peon information
+     */
+    public void setPeonInformationDisplayManager(PeonInformationDisplayManager peonInformationDisplayManager) {
+        this.peonInformationDisplayManager = peonInformationDisplayManager;
     }
 
     /**
      * Set up the event handlers for the root pane of the game. The current
      * events being handled:
      *      1. A menu sprite is clicked on -> update cursor image
+     *      
+     *      8. When an animal dies -> drop a resource sprite and load death sprite
      */
     private void setupEventHandlers() {
         // Initialize the custom handlers
@@ -307,8 +506,10 @@ public class GameManager {
                 new HUDDeselectedHandler(this);
         InGameKeyboardHandler keyboardHandler =
                 new InGameKeyboardHandler(this);
-
-
+        AnimalDeadEventHandler animalDeadEventHandler = 
+        		new AnimalDeadEventHandler(this);
+        PeonClickedEventHandler peonClickedEventHandler =
+                new PeonClickedEventHandler(this);
 
         // Handler for when a sprite in the menu is selected
         root.addEventHandler(MenuSelectedEvent.MENU_SELECTED_EVENT, menuSelectedEventHandler );
@@ -324,6 +525,10 @@ public class GameManager {
         root.addEventHandler(HUDDeselectedEvent.HUD_DESELECTED_EVENT, hudDeselectedHandler);
         // Handler for all keyboard events
         root.addEventHandler(KeyEvent.ANY, keyboardHandler);
+        // Handler for when an animal dies
+        root.addEventHandler(AnimalDeadEvent.ANIMAL_DEAD_EVENT, animalDeadEventHandler);
+        // Handler for when a peon sprite is clicked
+        root.addEventHandler(PeonClickedEvent.PEON_CLICKED_EVENT, peonClickedEventHandler);
     }
 
     /**
@@ -337,8 +542,9 @@ public class GameManager {
         executor.execute(this.gameLoop); // Start the game loop
 
         // Pass the managers to the game loop
-        gameLoop.setEntityManager(this.entityManager);
-        gameLoop.setTimeManager(this.timeManager);
+        gameLoop.setMainEntityManager(this.mainEntityManager);
+        gameLoop.setTimeManager(this.timeManager);        
+        gameLoop.setWeatherManager(this.weatherManager);        
         gameLoop.setWorld(this.world);
     }
 
@@ -362,12 +568,4 @@ public class GameManager {
         return this.menuSelected;
     }
 
-
-    /* Instantiate an empty Inventory container for resources */
-    public void setInventoryManager(InventoryManager inventoryManager) {
-        this.inventoryContainer = inventoryManager;
-    }
-    public InventoryManager getInventoryContainer() {
-        return inventoryContainer;
-    }
 }

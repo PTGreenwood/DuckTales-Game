@@ -6,5 +6,6 @@ package uq.deco2800.ducktales.features.duckgods;
  *
  */
 public enum GodType {
-    FireGod, ChaosGod, EarthGod, LightGod, MoneyGod, RainGod, ThugLifeGod, WindGod
+    FIRE_GOD, CHAOS_GOD, EARTH_GOD, LIGHT_GOD, MONEY_GOD, RAIN_GOD,
+    THUG_LIFE_GOD, WIND_GOD
 }

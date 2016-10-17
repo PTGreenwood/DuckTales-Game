@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import uq.deco2800.ducktales.deprecated.OldGameManager;
-import uq.deco2800.ducktales.features.entities.EntityManager;
+import uq.deco2800.ducktales.GameManager;
+import uq.deco2800.ducktales.features.entities.MainEntityManager;
+import uq.deco2800.ducktales.features.entities.peons.Peon;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.AStar;
 import uq.deco2800.ducktales.util.Point;
@@ -16,6 +17,9 @@ import uq.deco2800.ducktales.util.Point;
  * @author Josh Benavides
  */
 public class Animal extends AgentEntity {
+
+    /** The main manager of the game */
+    protected GameManager gameManager;
 
     private static final int MINSTARTHEALTH = 20;
     private static final int MAXSTARTHEALTH = 100;
@@ -40,7 +44,7 @@ public class Animal extends AgentEntity {
     private boolean isDead = false; // Whether the animal is dead.
     private String direction; // The direction that the animal is travelling.
     private List<Point> goalPoints;
-    private EntityManager entityManager = EntityManager.getInstance();
+    private MainEntityManager mainEntityManager = MainEntityManager.getInstance();
     // The variables below are used to alternate images for animation.
     private int animationStage; // Determines which of the two images per direction is rendered.
     private int currentAnimationTick;
@@ -59,7 +63,7 @@ public class Animal extends AgentEntity {
         this.canBeKilled = false;
         this.outOfZone = false;
         this.isDead = false;
-        this.goalPoints = new ArrayList<Point>();
+        this.goalPoints = new ArrayList<>();
         this.animationStage = 0;
         this.currentAnimationTick = 0;
         this.animationSpeed = 1;
@@ -92,7 +96,7 @@ public class Animal extends AgentEntity {
                 newDir = "Up";
             }
             setDirection(newDir);
-            updateType(ResourceType.valueOf(getSprite()));
+//            updateType(ResourceType.valueOf(getSprite()));
             point.moveToward(goalPoints.get(0), getSpeed());
         }
         statusUpdate();
@@ -103,18 +107,37 @@ public class Animal extends AgentEntity {
      * Determines the destination of the animal as well as the pathing to get to the destination.
      */
     protected List<Point> newGoalPoints() {
-        Random random = new Random();
-        Point goalPoint = null;
-        while (goalPoint == null || !OldGameManager.getInstance().getWorld().getTile(goalPoint).isPassable() &&
-                !OldGameManager.getInstance().getWorld().getTile(goalPoint).getTileType().equals(ResourceType.WATER)) {
-            goalPoint = new Point(random.nextDouble() * 20, random.nextDouble() * 20);
+        if (gameManager != null) {
+            // This animal has had a handle on the game manager
+            Random random = new Random();
+            Point goalPoint = null;
+            while (goalPoint == null || !gameManager.getWorld().getTile(goalPoint).isPassable() &&
+                    !gameManager.getWorld().getTile(goalPoint).getTileType().equals(ResourceType.WATER)) {
+                goalPoint = new Point(random.nextDouble() * gameManager.getWorld().getWidth(),
+                        random.nextDouble() * gameManager.getWorld().getHeight());
+            }
+            List<AStar.Tuple> path = AStar.aStar(point, goalPoint, gameManager.getWorld());
+            List<Point> goalPoints = new ArrayList<Point>();
+            for (AStar.Tuple tuple : path) {
+                goalPoints.add(new Point(tuple.getX(), tuple.getY()));
+            }
+
+            System.err.println("Goal points: " + goalPoints);
+
+            return goalPoints;
+        } else {
+            return null;
         }
-        List<AStar.Tuple> path = AStar.aStar(point, goalPoint, OldGameManager.getInstance().getWorld());
-        List<Point> goalPoints = new ArrayList<Point>();
-        for (AStar.Tuple tuple : path) {
-            goalPoints.add(new Point(tuple.getX(), tuple.getY()));
-        }
-        return goalPoints;
+    }
+
+    /**
+     * Give the animal a handle on the main manager of the game
+     *
+     * @param gameManager
+     *          The main manager of the game
+     */
+    public void setGameManager(GameManager gameManager) {
+        this.gameManager = gameManager;
     }
 
     /**     * Incrementally increases the hunger and thirst level of the animal.
@@ -133,13 +156,14 @@ public class Animal extends AgentEntity {
     }
 
     /**
-     * Marks the animal as dead and removes itself from the entityManager.
+     * Marks the animal as dead and removes itself from the mainEntityManager.
      */
     public void setIsDead() {
-        if (this.getHealth() <= 0) {
             this.isDead = true;
-//            entityManager.removeEntity(this);
-        }
+            // fire AnimalDeadEvent when an animal dies
+            // this.fireEvent(new AnimalDeadEvent(type, point.getX(), point.getY()));
+            // entityManager.removeEntity(this);
+            // MainEntityManager.removeEntity(this);
     }
 
     /**
@@ -152,7 +176,7 @@ public class Animal extends AgentEntity {
             opponent.setHealth(opponent.getHealth() - this.getStrength());
         }
 //        if (opponent.getHealth() <= 0) {
-//            entityManager.removeEntity(opponent);
+//            mainEntityManager.removeEntity(opponent);
 //        }
     }
 

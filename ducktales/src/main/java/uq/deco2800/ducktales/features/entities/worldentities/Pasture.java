@@ -24,9 +24,12 @@ public class Pasture extends Building {
 	
 	/**
 	 * Initialise a new pasture. Requires the location of the pasture
-	 *  to be passed.
-	 * @param x, x location of the building
-	 * @param y, y location of the building
+	 *  to be passed. Location of the pasture must fall within the world, 
+	 *  and be unoccupied.
+	 * @param x, x location of the building, must be within the bounds 
+	 * of the world, and not have another building occupying the location.
+	 * @param y, y location of the building. must be within the bounds 
+	 * of the world, and not have another building occupying the location.
 	 */
 	public Pasture(double x, double y) {
 		super(x, y, X_LENGTH, Y_LENGTH, TYPE);
@@ -37,14 +40,16 @@ public class Pasture extends Building {
 	 * Update the WorldEntity properties with those of a pasture.
 	 */
 	protected void specifications() {
-		specifications(2, 10, 4, production.NULL, 0, health);
+		specifications(2, 10, 4, health);
 	}
 	
 	/**
 	 * Update the 'health' of the pasture. Requires an integer value of 
-	 * the new health to be passed.
+	 * the new health to be passed. The health of the building will be 
+	 * greater than or equal to 0.
 	 * 
-	 * @param NewValue, new health of the building
+	 * @param NewValue, new health of the building, will update the 
+	 *  health to newValue, or 0 if newValue is <0
 	 */
 	protected void changeHealthBuilding(int newValue){
 		health = newValue;
