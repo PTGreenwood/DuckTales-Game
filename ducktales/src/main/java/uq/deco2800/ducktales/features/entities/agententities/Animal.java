@@ -165,7 +165,7 @@ public class Animal extends AgentEntity {
      */
     public void setIsDead() {
             this.isDead = true;
-            setOffAnimalDeadEvent();
+            //setOffAnimalDeadEvent();
             // fire AnimalDeadEvent when an animal dies
             // entityManager.removeEntity(this);
             // MainEntityManager.removeEntity(this);
