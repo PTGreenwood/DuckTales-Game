@@ -8,7 +8,7 @@ import uq.deco2800.ducktales.features.missions.MissionHandler;
 /**
  * Contains all achievement methods.
  * 
- * @author Naehyung Kim
+ * @author Naehyung Kim and Justin Kuhnel
  * 
  */
 public class AchievementHandler {
@@ -139,7 +139,9 @@ public class AchievementHandler {
 	    }
 
 	   
-	   
+	    /** Selects which achievement to run based upon the achievement toggle value
+	    * before moving on to the next toggle value**/
+	     
 	    if(inventoryManager.getWoodAmount() >= 10 && achievementToggleWood == 0)
 	    {
 	    	this.achieveVeryEasy();
@@ -159,10 +161,11 @@ public class AchievementHandler {
 	    }
 	    else if(inventoryManager.getWoodAmount() >= 2500 && achievementToggleWood == 4){
 	    	this.achieveVeryHard();
-	    	achievementToggleWood ++;
+	    	
 	    }
 	   
-	    
+	    /** Selects which achievement to run based upon the achievement toggle value
+	     * before moving on to the next toggle value**/
 	    if(inventoryManager.getOresAmount() >= 10 && achievementToggleWood == 0)
 	    {
 	    	this.achieveVeryEasy();
@@ -182,10 +185,11 @@ public class AchievementHandler {
 	    }
 	    else if(inventoryManager.getOresAmount() >= 2500 && achievementToggleWood == 4){
 	    	this.achieveVeryHard();
-	    	achievementToggleOres ++;
+	    	
 	    }
 	    
-	    
+	    /** Selects which achievement to run based upon the achievement toggle value 
+	     * before moving on to the next toggle value**/
 	    if(inventoryManager.getFoodAmount() >= 10 && achievementToggleWood == 0)
 	    {
 	    	this.achieveVeryEasy();
@@ -205,7 +209,6 @@ public class AchievementHandler {
 	    }
 	    else if(inventoryManager.getFoodAmount() >= 2500 && achievementToggleWood == 4){
 	    	this.achieveVeryHard();
-	    	achievementToggleFood ++;
 	    }
 	    
 	    
