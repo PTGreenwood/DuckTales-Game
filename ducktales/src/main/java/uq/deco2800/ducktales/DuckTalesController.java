@@ -79,6 +79,8 @@ public class DuckTalesController implements Initializable {
 	@FXML
 	public void startGame(ActionEvent event) throws Exception {
 		
+		
+		LoginController.setClient(client);
 		Parent root1 = FXMLLoader.load(getClass().getResource("/ui/main/login.fxml"));
         
 		Scene scene = new Scene(root1,300,275);

@@ -6,11 +6,17 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.PrintStream;
 
+import javax.ws.rs.WebApplicationException;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import uq.deco2800.singularity.clients.ducktales.DucktalesClient;
+import uq.deco2800.singularity.common.representations.User;
 
 
 /**
@@ -27,6 +33,9 @@ public class SignUpController  {
     private PasswordField passwordField;
     @FXML
     private PasswordField passwordField2;
+    
+    private static DucktalesClient client = null;
+    
     boolean IsExitUser(String s)
     {
     	
@@ -37,39 +46,32 @@ public class SignUpController  {
     	boolean bexit = false;
     	if(passwordField.getText().equals(passwordField2.getText()))
     	{
-    		String user = username.getText()+":"+passwordField.getText();
-    		File file=new File("user.txt");
-            if(!file.exists()||file.isDirectory())
-            {
-            	;
-            }
-            else
-            {
-            	BufferedReader br=new BufferedReader(new FileReader(file));
-                String temp=null;
-                StringBuffer sb=new StringBuffer();
-                while((temp=br.readLine()) != null)
-                {
-                	if(temp.toString().equals(user))
-                	{
-                		bexit = true;
-                		actiontarget.setText("signUP error:user exists");
-                		break;
-                	}
-                }
-            }
+    		
+    		String signUpUsername = username.getText();
+    		String signUpPassword = passwordField.getText();
+    		
             if(username.getText().toString().length() >= 6 && passwordField.getText().toString().length() >= 6)
             {
             	if(!bexit)
         		{
-        			try{
-                        FileOutputStream out=new FileOutputStream("user.txt");
-                        PrintStream p=new PrintStream(out);
-                        p.println(username.getText()+":"+passwordField.getText());
-                        out.close();
-                    } catch (FileNotFoundException e){
-                        e.printStackTrace();
-                    }
+            		User user = new User(signUpUsername, "Unknown", null, "Unknown", signUpPassword);
+            		
+            		try {
+        				user = client.createUser(user);
+            		
+            		} catch (WebApplicationException e) {
+            			switch (e.getResponse().getStatus()) {
+        				case 409:
+        					actiontarget.setText("Sign up error: Username already exists");
+        				default:
+        					// Other exception occurred
+            			}
+            		} catch (JsonProcessingException i) {
+        				// Error processing json
+
+        			} catch (Exception i) {
+        				// Other error logging in
+        			}
             		LoginController.close();
         		}
             }
@@ -83,5 +85,27 @@ public class SignUpController  {
     		actiontarget.setText("password not consistent.");
     	}
     }
+    
+    /**
+     * Sets the instance of the Ducktales client that will be used to sign up
+     * users and sign them in to the game.
+     * 
+     * @param client
+     */
+    public static void setClient(DucktalesClient clientInstance) {
+    	client = clientInstance;
+    }
+    
+    /**
+     * Gets the instance of the Ducktales client that will be used to sign up
+     * users and sign them in to the game.
+     * 
+     * @param client
+     * @return assigned DucktalesClient instance
+     */
+    public static DucktalesClient getClient() {
+    	return client;
+    }
+    
 }
 
