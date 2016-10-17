@@ -28,6 +28,8 @@ public class InGameKeyboardHandler extends GameEventHandler
 	// For testing, to check that the correct direction is selected
 	protected Direction moveDirection;
 
+	private boolean screenVisible;
+
 	/**
 	 * Create a handler for in-game keyboard events
 	 *
@@ -52,9 +54,8 @@ public class InGameKeyboardHandler extends GameEventHandler
 		}
 	}
 
-	
 	/**
-	 * Hide all UI menus. 
+	 * Hide all UI menus.
 	 */
 	private void hideMenus() {
 		gameManager.getMarketManager().hideMarketPlace();
@@ -63,124 +64,96 @@ public class InGameKeyboardHandler extends GameEventHandler
 		gameManager.getAchievementManager().hideAchievement();
 	}
 
-	private void handleKeyPressed(KeyCode code, KeyEvent event) {
-		System.out.println(code);
-		boolean visible;		
-		
-		if (KeyboardManager.getMoveLeftKeyCombination().match(event)) { 
-			moveDirection = Direction.RIGHT;
-			displayManager.moveWorld(Direction.RIGHT);
-		} else if (KeyboardManager.getMoveRightKeyCombination().match(event)) { 
-			moveDirection = Direction.LEFT;
-			displayManager.moveWorld(Direction.LEFT);
-		} else if (KeyboardManager.getMoveUpKeyCombination().match(event)) { 
-			moveDirection = Direction.DOWN;
-			displayManager.moveWorld(Direction.DOWN);
-		} else if (KeyboardManager.getMoveDownKeyCombination().match(event)) { 
-			moveDirection = Direction.UP;
-			displayManager.moveWorld(Direction.UP);
-		} else if (KeyboardManager.getFirstBuildKeyCombination().match(event)) {
-			
-		} 
-		switch (code) {
-			
-		
-			
-		case M:
-			//mission completed action
-			gameManager.getMissionManager().missionCompletedAction(2);
-			visible = gameManager.getMarketManager().isVisible();
-			hideMenus();			
-			if (visible)
-				gameManager.getMarketManager().hideMarketPlace();
-			else 
-				gameManager.getMarketManager().showMarketPlace();
-			break;
-			
-		case I:
-			visible = gameManager.getMissionManager().isVisible();
-			hideMenus();
-			if (visible)
-				gameManager.getMissionManager().hideMission();
-			else 
-				gameManager.getMissionManager().showMission();
-			break;
-			
-		/*case L:
-			//mission completed action
-			gameManager.getMissionManager().missionCompletedAction(0);
-			visible = gameManager.getLevelManager().isVisible();
-			hideMenus();
-			if (visible)
-				gameManager.getLevelManager().hideLevel();
-			else 
-				gameManager.getLevelManager().showLevel();
-			break;*/
-			
-		case H:
-			//mission completed action
-			gameManager.getMissionManager().missionCompletedAction(1);
-			visible = gameManager.getAchievementManager().isVisible();
-			hideMenus();
-			if (visible)
-				gameManager.getAchievementManager().hideAchievement();
-			else 
-				gameManager.getAchievementManager().showAchievement();
-			break;
-			
-		case T:
-			
-			gameManager.getMissionManager().missionCompletedAction(0);
-			visible = gameManager.getTutorialManager().isVisible();
-			hideMenus();
-			if (visible)
-				gameManager.getTutorialManager().hideTutorial();
-			else
-				gameManager.getTutorialManager().showTutorial();
-			break;
-		
-			//Changing Flow of Time
-		case DIGIT1:			
-			if (event.isShiftDown()) {
-				GameLoop.setSpeedModifier(1);
-				System.out.println("Speed 1x"); // set time scale to default
-			} else {
-				/*Event.fireEvent(MenuManager.getBuildingSpriteByIndex(0),
-						new MouseEvent(MouseEvent.MOUSE_CLICKED, 0, 0, 0, 0,
-								MouseButton.PRIMARY, 1, true, true, true, true,
-								true, true, true, true, true, true, null));*/
-				MenuManager.getBuildingSpriteByIndex(0).selectSprite();
-
-			}	
-			break;
-
-		case DIGIT2:
-			if(event.isShiftDown()) {
-				GameLoop.setSpeedModifier(1.5);
-				System.out.println("Speed 1.5x");  //set time scale to 1.5151x
-			}
-			break;
-			
-		case DIGIT3:
-			if(event.isShiftDown()) {
-				GameLoop.setSpeedModifier(2.5);
-				System.out.println("Speed 2.5x");  //set time scale to 2.5x 
-			}
-			break;
-			
-		case P:
-			GameLoop.pauseWorld();
-			System.out.println("Pause/UnPause");
-			break;
-				
-		default:
-			//System.out.println("Key " + code);
-			break;
-		}
-
+	private void toggleMarketPlace() {
+		gameManager.getMissionManager().missionCompletedAction(2);
+		screenVisible = gameManager.getMarketManager().isVisible();
+		hideMenus();
+		if (screenVisible)
+			gameManager.getMarketManager().hideMarketPlace();
+		else
+			gameManager.getMarketManager().showMarketPlace();
 	}
 
-	private void handleKeyReleased(KeyCode code, KeyEvent event) {		
+	private void toggleAchievements() {
+		gameManager.getMissionManager().missionCompletedAction(1);
+		screenVisible = gameManager.getAchievementManager().isVisible();
+		hideMenus();
+		if (screenVisible)
+			gameManager.getAchievementManager().hideAchievement();
+		else
+			gameManager.getAchievementManager().showAchievement();
+	}
+
+	private void toggleMissions() {
+		screenVisible = gameManager.getMissionManager().isVisible();
+		hideMenus();
+		if (screenVisible)
+			gameManager.getMissionManager().hideMission();
+		else
+			gameManager.getMissionManager().showMission();
+	}
+
+	private void toggleTutorial() {
+		gameManager.getMissionManager().missionCompletedAction(0);
+		screenVisible = gameManager.getTutorialManager().isVisible();
+		hideMenus();
+		if (screenVisible)
+			gameManager.getTutorialManager().hideTutorial();
+		else
+			gameManager.getTutorialManager().showTutorial();
+	}
+
+	private void handleKeyPressed(KeyCode code, KeyEvent event) {
+		if (KeyboardManager.getMoveLeftKeyCombination().match(event)) {
+			moveDirection = Direction.RIGHT;
+			displayManager.moveWorld(Direction.RIGHT);
+		} else if (KeyboardManager.getMoveRightKeyCombination().match(event)) {
+			moveDirection = Direction.LEFT;
+			displayManager.moveWorld(Direction.LEFT);
+		} else if (KeyboardManager.getMoveUpKeyCombination().match(event)) {
+			moveDirection = Direction.DOWN;
+			displayManager.moveWorld(Direction.DOWN);
+		} else if (KeyboardManager.getMoveDownKeyCombination().match(event)) {
+			moveDirection = Direction.UP;
+			displayManager.moveWorld(Direction.UP);
+		} else if (KeyboardManager.getOpenMarketplaceKeyCombination()
+				.match(event)) {
+			this.toggleMarketPlace();
+		} else if (KeyboardManager.getOpenMissionsKeyCombination()
+				.match(event)) {
+			this.toggleMissions();
+		} else if (KeyboardManager.getOpenAchievementsKeyCombination()
+				.match(event)) {
+			this.toggleAchievements();
+		} else if (KeyboardManager.getOpenTutorialKeyCombination()
+				.match(event)) {
+			this.toggleTutorial();
+		} else if (KeyboardManager.getNormalSpeedKeyCombination()
+				.match(event)) {
+			GameLoop.setSpeedModifier(1);
+			System.out.println("Speed 1x"); // set time scale to default
+		} else if (KeyboardManager.getFastSpeedKeyCombination().match(event)) {
+			GameLoop.setSpeedModifier(1.5);
+			System.out.println("Speed 1.5x"); // set time scale to 1.5151x
+		} else if (KeyboardManager.getFastestSpeedKeyCombination()
+				.match(event)) {
+			GameLoop.setSpeedModifier(2.5);
+			System.out.println("Speed 2.5x"); // set time scale to 2.5x
+		} else if (KeyboardManager.getPauseGameKeyCombination().match(event)) {
+			GameLoop.pauseWorld();
+			System.out.println("Pause/UnPause");
+		} else if (KeyboardManager.getFirstBuildKeyCombination().match(event)) {
+			/*
+			 * Event.fireEvent(MenuManager.getBuildingSpriteByIndex(0), new
+			 * MouseEvent(MouseEvent.MOUSE_CLICKED, 0, 0, 0, 0,
+			 * MouseButton.PRIMARY, 1, true, true, true, true, true, true, true,
+			 * true, true, true, null));
+			 */
+			MenuManager.getBuildingSpriteByIndex(0).selectSprite();
+		}
+	}
+
+	private void handleKeyReleased(KeyCode code, KeyEvent event) {
 		if (KeyboardManager.getMoveLeftKeyCombination().match(event)) {
 			moveDirection = Direction.RIGHT;
 			displayManager.stopMoveWorld(Direction.RIGHT);

@@ -20,8 +20,7 @@ public class KeyboardManager {
 	 * KeyCombination.CONTROL_DOWN);
 	 */
 	
-	private static KeyCombination moveUpKeyCombination = new KeyCodeCombination(
-			KeyCode.W);
+	private static KeyCombination moveUpKeyCombination = new KeyCodeCombination(KeyCode.W);
 	
 	private static KeyCombination moveDownKeyCombination = new KeyCodeCombination(
 			KeyCode.S);
@@ -31,10 +30,35 @@ public class KeyboardManager {
 	
 	private static KeyCombination moveRightKeyCombination = new KeyCodeCombination(
 			KeyCode.D);
+	
+	private static KeyCombination openMissionsKeyCombination = new KeyCodeCombination(
+			KeyCode.I);
+	
+	private static KeyCombination openMarketplaceKeyCombination = new KeyCodeCombination(
+			KeyCode.M);
+	
+	private static KeyCombination openAchievementsKeyCombination = new KeyCodeCombination(
+			KeyCode.H);
+	
+	private static KeyCombination openTutorialKeyCombination = new KeyCodeCombination(
+			KeyCode.T);
 
+	private static KeyCombination normalSpeedKeyCombination = new KeyCodeCombination(
+			KeyCode.DIGIT1, KeyCombination.SHIFT_DOWN);
+	
+	private static KeyCombination fastSpeedKeyCombination = new KeyCodeCombination(
+			KeyCode.DIGIT2, KeyCombination.SHIFT_DOWN);
+	
+	private static KeyCombination fastestSpeedKeyCombination = new KeyCodeCombination(
+			KeyCode.DIGIT3, KeyCombination.SHIFT_DOWN);
+	
+	private static KeyCombination pauseGameKeyCombination = new KeyCodeCombination(
+			KeyCode.P);
+	
 	private static KeyCombination firstBuildKeyCombination = new KeyCodeCombination(
 			KeyCode.DIGIT1);
-
+	
+	
 	public static KeyCombination getFirstBuildKeyCombination() {
 		return firstBuildKeyCombination;
 	}
@@ -73,5 +97,37 @@ public class KeyboardManager {
 	
 	public static KeyCombination getMoveDownKeyCombination() {
 		return moveDownKeyCombination;
+	}	
+	
+	public static KeyCombination getOpenMissionsKeyCombination() {
+		return openMissionsKeyCombination;
+	}
+	
+	public static KeyCombination getOpenMarketplaceKeyCombination() {
+		return openMarketplaceKeyCombination;
+	}
+	
+	public static KeyCombination getOpenAchievementsKeyCombination() {
+		return openAchievementsKeyCombination;
+	}
+	
+	public static KeyCombination getOpenTutorialKeyCombination() {
+		return openTutorialKeyCombination;
+	}
+	
+	public static KeyCombination getNormalSpeedKeyCombination() {
+		return normalSpeedKeyCombination;
+	}
+	
+	public static KeyCombination getFastSpeedKeyCombination() {
+		return fastSpeedKeyCombination;
+	}
+	
+	public static KeyCombination getFastestSpeedKeyCombination() {
+		return fastestSpeedKeyCombination;
+	}
+	
+	public static KeyCombination getPauseGameKeyCombination() {
+		return pauseGameKeyCombination;
 	}
 }
