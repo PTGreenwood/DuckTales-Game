@@ -22,9 +22,6 @@ public class Duck extends Animal {
      */
     private boolean canDropResource = false;
 
-    private Peon opponent; // The peon that the animal will battle.
-    private MainEntityManager opponentList; // List of possible opponents.
-
     public Duck(int x, int y) {
         super(x, y, ResourceType.DUCK, 1, 1, 1, 1, 0.05);
         

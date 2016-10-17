@@ -75,7 +75,7 @@ public class Peon extends AgentEntity {
 		super(x, y, 1, 1, TYPE);
 		this.strength = RANDOM.nextInt((DEFAULT_MAX - DEFAULT_MIN) + 1) + DEFAULT_MIN;
 		this.intelligence = RANDOM.nextInt((DEFAULT_MAX - DEFAULT_MIN) + 1) + DEFAULT_MIN;
-		this.goalPoints = new ArrayList<Point>();
+		this.goalPoints = new ArrayList<>();
 		this.buildingsMade = 0;
 	}
 
