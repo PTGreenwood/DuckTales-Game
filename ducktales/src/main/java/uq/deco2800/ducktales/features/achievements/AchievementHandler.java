@@ -1,6 +1,7 @@
 package uq.deco2800.ducktales.features.achievements;
 
 
+import uq.deco2800.ducktales.features.inventory.InventoryManager;
 import uq.deco2800.ducktales.features.level.LevelHandler;
 import uq.deco2800.ducktales.features.missions.MissionHandler;
 
@@ -56,7 +57,7 @@ public class AchievementHandler {
 	
 	//Sets value for varying difficulties of achievements, 
 	//for each specific difficulty adds specified value to the achievement score
-	public void achieveVeasy() {
+	public void achieveVeryEasy() {
 		this.intAchieve = this.intAchieve + 10;
 	}
 	
@@ -72,7 +73,7 @@ public class AchievementHandler {
 	    this.intAchieve = this.intAchieve + 75;
     }
     
-    public void achieveVhard() {
+    public void achieveVeryHard() {
 	    this.intAchieve = this.intAchieve + 100;
     }
     
@@ -86,7 +87,7 @@ public class AchievementHandler {
    public void achievementHolder() {
 	   if(MissionHandler.numberOfCompletedMissions == 1)
 	    {
-	    this.achieveVeasy();
+	    this.achieveVeryEasy();
 	    }
 	    
 	    if(MissionHandler.numberOfCompletedMissions == 3)
@@ -103,7 +104,7 @@ public class AchievementHandler {
 	    }
 	    if(MissionHandler.numberOfCompletedMissions == 25)
 	    {
-	    this.achieveVhard();
+	    this.achieveVeryHard();
 	    }
 	    if(MissionHandler.numberOfCompletedMissions == 50)
 	    {
@@ -111,7 +112,7 @@ public class AchievementHandler {
 	    }
 	    if(levelHandler.getLevel() == 1)
 	    {
-	    	this.achieveVeasy();
+	    	this.achieveVeryEasy();
 	    }
 	    if(levelHandler.getLevel() == 5)
 	    {
@@ -127,13 +128,37 @@ public class AchievementHandler {
 	    }
 	    if(levelHandler.getLevel() == 25)
 	    {
-	    	this.achieveVhard();
+	    	this.achieveVeryHard();
 	    }
 	    if(levelHandler.getLevel() == 1)
 	    {
 	        //resource reward
 	    }
 
+	    //if _____________  && x = 0{
+	    //do this 
+	    // x ++ 1;
+	    //}
+	    //else{
+	    //break;
+	    //}
+	    
+	    //if _____________  && x = 1{
+	    //do this 
+	    // x ++ 1;
+	    //}
+	    //else{
+	    //break;
+	    //}
+	    
+	  //if _____________  && x = 2{
+	    //do this 
+	    // x ++ 1;
+	    //}
+	    //else{
+	    //break;
+	    //}
+	    //InventoryManager.getWoodAmount() == 10
    }
    
 }
