@@ -91,6 +91,7 @@ public class MenuManager implements Initializable {
 	/** Helpers for rendering information */
 	private WorldEntityInfo worldEntityInfo;
 
+	private GridActive gridActive;
 	// Current grid visible in the HUD
 	private String currentGrid;
 	private int currentGridIndex;
@@ -108,6 +109,7 @@ public class MenuManager implements Initializable {
 		animalOptionList = new ArrayList<>();
 		nextGridButton.setVisible(false);
 		previousGridButton.setVisible(false);
+		gridActive = new GridActive();
 		// Instantiating and set up the menus
 		setupMenus();
 	}
@@ -120,24 +122,22 @@ public class MenuManager implements Initializable {
 	 * @param index
 	 *            the index of the list which is visible
 	 */
-	private void setCurrentGrid(String grid, int index) {
-		this.currentGrid = grid;
-		this.currentGridIndex = index;
-		
-		if (this.currentGridIndex == 0)
+	private void setCurrentGrid(MenuType currentMenu, int gridIndex) {	
+		gridActive.setGridActive(currentMenu, gridIndex);		
+		if (gridActive.getCurrentGridIndex() == 0)
 			previousGridButton.setVisible(false);
 		else 
 			previousGridButton.setVisible(true);
 		
-		switch (this.currentGrid) {
-		case "buildings":
-			if (this.currentGridIndex == (buildingOptionList.size()-1))
+		switch (gridActive.getCurrentMenu()) {
+		case BUILDING:
+			if (gridActive.getCurrentGridIndex() == (buildingOptionList.size()-1))
 				nextGridButton.setVisible(false);
 			else
 				nextGridButton.setVisible(true);
 			break;
-		case "animals":
-			if (this.currentGridIndex == (animalOptionList.size()-1))
+		case ANIMAL:
+			if (gridActive.getCurrentGridIndex() == (animalOptionList.size()-1))
 				nextGridButton.setVisible(false);
 			else
 				nextGridButton.setVisible(true);
@@ -145,25 +145,7 @@ public class MenuManager implements Initializable {
 		}
 	}
 
-	/**
-	 * 
-	 * @author mattyleggy
-	 * 
-	 * @return the grid which is currently visible in the HUD
-	 */
-	private String getCurrentGrid() {
-		return this.currentGrid;
-	}
 
-	/**
-	 * @author mattyleggy
-	 * 
-	 * @return the grid index which is currently visible in the HUD
-	 */
-	private int getCurrentGridIndex() {
-		return this.currentGridIndex;
-	}
-	
 	public static BuildingMenuSprite getBuildingSpriteByIndex(int index) {		
 		return MenuManager.buildingMenuSprites.get(index);
 	}
@@ -189,8 +171,8 @@ public class MenuManager implements Initializable {
 	private void showBuildingMenuFromIndex(int index) {
 		this.clearOptionPane();
 		GridPane gridPane = buildingOptionList.get(index);
-		optionPane.getChildren().add(gridPane);
-		setCurrentGrid("buildings", index);
+		optionPane.getChildren().add(gridPane);		
+		this.setCurrentGrid(MenuType.BUILDING, index);
 	}
 
 	/**
@@ -211,7 +193,7 @@ public class MenuManager implements Initializable {
 		this.clearOptionPane();
 		GridPane gridPane = animalOptionList.get(index);
 		optionPane.getChildren().add(gridPane);
-		setCurrentGrid("animals", index);
+		this.setCurrentGrid(MenuType.ANIMAL, index);
 	}
 
 	/**
@@ -221,21 +203,21 @@ public class MenuManager implements Initializable {
 	 */
 	@FXML
 	public void nextGrid() {
-		int currentIndex = this.getCurrentGridIndex();
+		int currentIndex = gridActive.getCurrentGridIndex();
 		int newIndex;
-		switch (this.getCurrentGrid()) {
-		case "buildings":
+		switch (gridActive.getCurrentMenu()) {
+		case BUILDING:
 			if (currentIndex < (this.buildingOptionList.size() - 1)) {
 				newIndex = currentIndex + 1;
 				this.showBuildingMenuFromIndex(newIndex);
-				setCurrentGrid("buildings", newIndex);
+				this.setCurrentGrid(MenuType.BUILDING, newIndex);
 			}
 			break;
-		case "animals":
+		case ANIMAL:
 			if (currentIndex < (this.animalOptionList.size() - 1)) {
 				newIndex = currentIndex + 1;
 				this.showAnimalMenuFromIndex(newIndex);
-				setCurrentGrid("animals", newIndex);
+				this.setCurrentGrid(MenuType.ANIMAL, newIndex);
 			}
 			break;
 		}
@@ -248,20 +230,20 @@ public class MenuManager implements Initializable {
 	 */
 	@FXML
 	public void previousGrid() {
-		int currentIndex = this.getCurrentGridIndex();
+		int currentIndex = gridActive.getCurrentGridIndex();
 		int newIndex;
 		if (currentIndex > 0) {
-			switch (this.getCurrentGrid()) {
-			case "buildings":
+			switch (gridActive.getCurrentMenu()) {
+			case BUILDING:
 				newIndex = currentIndex - 1;
 				this.showBuildingMenuFromIndex(newIndex);
-				setCurrentGrid("buildings", newIndex);
+				this.setCurrentGrid(MenuType.BUILDING, newIndex);
 
 				break;
-			case "animals":
+			case ANIMAL:
 				newIndex = currentIndex - 1;
 				this.showAnimalMenuFromIndex(newIndex);
-				setCurrentGrid("animals", newIndex);
+				this.setCurrentGrid(MenuType.ANIMAL, newIndex);
 				break;
 			}
 		}
@@ -437,7 +419,7 @@ public class MenuManager implements Initializable {
 		// Get the size of the building in tile-unit first
 		int xLength = 0;
 		int yLength = 0;
-		try {
+		try {			
 			xLength = worldEntityInfo.getBuildingLength(sprite.getSpriteType(),
 					worldEntityInfo.XLENGTH);
 			yLength = worldEntityInfo.getBuildingLength(sprite.getSpriteType(),
