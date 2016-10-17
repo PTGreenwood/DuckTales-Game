@@ -58,6 +58,10 @@ public class KeyboardManager {
 	private static KeyCombination firstBuildKeyCombination = new KeyCodeCombination(
 			KeyCode.DIGIT1);
 	
+	//Keep this here so the compiler knows this class should not be instantiated
+	private KeyboardManager() {
+		
+	}	
 	
 	public static KeyCombination getFirstBuildKeyCombination() {
 		return firstBuildKeyCombination;
