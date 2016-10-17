@@ -138,21 +138,7 @@ public class AchievementHandler {
 	        //resource reward
 	    }
 
-	    //if _____________  && x = 0{
-	    //do this 
-	    // x ++ 1;
-	    //}
-	    //else{
-	    //break;
-	    //}
-	    
-	    //if _____________  && x = 1{
-	    //do this 
-	    // x ++ 1;
-	    //}
-	    //else{
-	    //break;
-	    //}
+	   
 	   
 	    if(inventoryManager.getWoodAmount() >= 10 && achievementToggleWood == 0)
 	    {
