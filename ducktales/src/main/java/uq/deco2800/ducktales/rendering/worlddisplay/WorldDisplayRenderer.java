@@ -2,7 +2,7 @@ package uq.deco2800.ducktales.rendering.worlddisplay;
 
 import javafx.animation.AnimationTimer;
 import javafx.scene.image.ImageView;
-import uq.deco2800.ducktales.features.entities.EntityManager;
+import uq.deco2800.ducktales.features.entities.MainEntityManager;
 import uq.deco2800.ducktales.features.landscape.tiles.TilesManager;
 
 /**
@@ -29,12 +29,12 @@ public class WorldDisplayRenderer extends AnimationTimer {
 
     /** The secondary managers of the game */
     private TilesManager tilesManager;
-    private EntityManager entityManager;
+    private MainEntityManager mainEntityManager;
 
     @Override
     public void handle(long now) {
         // First check if the tiles manager has been instantiated
-        if (tilesManager != null && entityManager != null) {
+        if (tilesManager != null && mainEntityManager != null) {
             // Check if the world should be moved around
             if (hDirection != HDirection.NONE || vDirection != VDirection.NONE) {
                 moveWorld();
@@ -55,11 +55,11 @@ public class WorldDisplayRenderer extends AnimationTimer {
     /**
      * Pass the handle of the entity manager to this renderer
      *
-     * @param entityManager
+     * @param mainEntityManager
      *          The entity manager of the game
      */
-    public void setEntityManager(EntityManager entityManager) {
-        this.entityManager = entityManager;
+    public void setMainEntityManager(MainEntityManager mainEntityManager) {
+        this.mainEntityManager = mainEntityManager;
     }
 
     /**
@@ -102,7 +102,7 @@ public class WorldDisplayRenderer extends AnimationTimer {
         }
 
         // move all the entities
-        entityManager.moveAllEntities(xAmount, yAmount);
+        mainEntityManager.moveAllEntities(xAmount, yAmount);
 
     }
 

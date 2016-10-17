@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import uq.deco2800.ducktales.features.entities.agententities.Cow;
 import uq.deco2800.ducktales.features.entities.agententities.Duck;
-import uq.deco2800.ducktales.features.entities.agententities.Peon;
+import uq.deco2800.ducktales.features.entities.peons.Peon;
 import uq.deco2800.ducktales.features.entities.agententities.Sheep;
 import uq.deco2800.ducktales.resources.ResourceType;
 
@@ -27,7 +27,7 @@ public class AnimalTest {
 
     	// Create base entities for testing purposes.
         Duck duck = new Duck(10, 10);
-        Peon opponent = new Peon(10, 10, "John Doe");
+        Peon opponent = new Peon(10, 10);
 
         // Test whether the creation of Animal has no null attributes.
         assertNotNull("Duck cannot be null.", duck);
@@ -134,7 +134,7 @@ public class AnimalTest {
 
     	// Create base entities for testing purposes.
         Sheep sheep = new Sheep(10, 10);
-        Peon opponent = new Peon(10, 10, "John Doe");
+        Peon opponent = new Peon(10, 10);
 
         // Test if cows drop resources appropriately.
         sheep.setHealth(100); // Set attributes to pass attribute threshold for producing milk and beef.

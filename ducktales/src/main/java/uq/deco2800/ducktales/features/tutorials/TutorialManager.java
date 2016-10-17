@@ -14,7 +14,7 @@ import javafx.scene.text.Font;
  * @author Naehyung Kim
  *
  */
-public class TutorialController {	
+public class TutorialManager {
 	
 	/** Main window */
 	@FXML

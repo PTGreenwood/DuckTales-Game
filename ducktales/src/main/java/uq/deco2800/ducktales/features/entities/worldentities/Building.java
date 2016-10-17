@@ -1,5 +1,7 @@
 package uq.deco2800.ducktales.features.entities.worldentities;
 
+import java.util.ArrayList;
+
 import uq.deco2800.ducktales.resources.ResourceType;
 
 /**
@@ -16,15 +18,6 @@ public abstract class Building extends WorldEntity {
 	protected static int woodResources;
 
 	protected static int stoneResources;
-	
-	// Otherwise external classes cannot access type (even using method below)
-	public enum production {
-		NULL, WOOD, STONE, ORE, FOOD
-	}
-	
-	protected static production productionType;
-	
-	protected static int productionAmount;
 	
 	protected static int health;
 
@@ -93,29 +86,7 @@ public abstract class Building extends WorldEntity {
 	public int resourcesReturnStone() {
 		specifications();
 		return (int) (0.5*stoneResources);
-	}
-	
-	/**
-	 * Returns the type of resource the building generates 
-	 * or null if it does not
-	 * 
-	 * @return the enum of the resource type
-	 */
-	public production resourcesProductionType() {
-		specifications();
-		return productionType;
-	}
-	
-	/**
-	 * Returns the amount of resource the building generates over 
-	 * time or 0 (cannot return null from an int method) if it does not
-	 * 
-	 * @return the int of the resource amount
-	 */
-	public int resourcesProductionAmount() {
-		specifications();
-		return productionAmount;
-	}
+	}	
 	
 	/**
 	 * Update the variables with the building specifications, when the 
@@ -131,12 +102,10 @@ public abstract class Building extends WorldEntity {
 	 *  
 	 */
 	protected static void specifications(int stone, int wood, int timeSet, 
-			production produce, int amount, int healthSet) {
+			int healthSet) {
 		woodResources = wood;
 		stoneResources = stone;
 		time = timeSet;
-		productionType = produce;
-		productionAmount = amount;
 		health = healthSet;
 	}
 
@@ -151,12 +120,6 @@ public abstract class Building extends WorldEntity {
 	 * health of the building.
 	 */
 	protected abstract void changeHealthBuilding(int newHealth);
-	
-	/**
-	 * Calls the upgradeProduceBuilding method which updates the 
-	 * produce amount produced by the building.
-	 */
-	protected abstract void upgradeProduceBuilding(int newValue);
 	
 	/**
 	 * Method to access the 'health' of the building. Returns the integer  
@@ -181,21 +144,6 @@ public abstract class Building extends WorldEntity {
 			changeHealthBuilding(newValue);
 		}
 	}
-	
-	/**
-	 * Method to update the production amount of a 'production' building. 
-	 * Requires an integer value of the produce to be passed. Production 
-	 * amounts are greater than, or equal to 0.
-	 * 
-	 * @param newProduce, the new production amount, greater than or equal to 
-	 * 0.
-	 */
-	public void upgradeProduce(int newProduce) {
-		specifications();
-		if (newProduce >= 0) {
-			upgradeProduceBuilding(newProduce);
-		}
-	}
 
 	/**
 	 * Method to update buildings at each discrete simulation step.
@@ -206,5 +154,25 @@ public abstract class Building extends WorldEntity {
 	@Override
 	public void tick() {
 		// Not required
+	}
+	
+	/**
+	 * Method to return a valid StorageProduceBuilding, for a given Building. 
+	 * Will return null if the building is not of a valid type.
+	 * 
+	 * @param building, the building to attempt to convert type of
+	 * @return a valid StorageProduceBuilding or null
+	 */
+	public StorageProduceBuilding toStorageProduceBuilding(Building building) {
+		ArrayList<ResourceType> produceStorageBuildings = new ArrayList<ResourceType>();
+		produceStorageBuildings.add(ResourceType.SAWMILL);
+		produceStorageBuildings.add(ResourceType.QUARRY);
+		produceStorageBuildings.add(ResourceType.MINE);
+		produceStorageBuildings.add(ResourceType.FARM);
+		produceStorageBuildings.add(ResourceType.STORAGEBARN);
+		if (produceStorageBuildings.contains(building.getType())) {
+			return (StorageProduceBuilding) building;
+		}
+		return null;
 	}
 }

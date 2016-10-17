@@ -3,7 +3,7 @@ package uq.deco2800.ducktales.features.entities.resourceentities;
 import static uq.deco2800.ducktales.resources.ResourceType.*;
 import java.util.concurrent.*;
 
-import uq.deco2800.ducktales.features.entities.agententities.Peon;
+import uq.deco2800.ducktales.features.entities.peons.Peon;
 import uq.deco2800.ducktales.resources.ResourceType;
 /**
  * A Tree. Class containing all properties and specifications of a 

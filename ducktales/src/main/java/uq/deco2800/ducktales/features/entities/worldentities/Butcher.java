@@ -41,7 +41,7 @@ public class Butcher extends Building {
 	 * Update the WorldEntity properties with those of a butcher.
 	 */
 	protected void specifications() {
-		specifications(4, 8, 7, production.NULL, 0, health);
+		specifications(4, 8, 7, health);
 	}
 	
 	/**
@@ -54,16 +54,5 @@ public class Butcher extends Building {
 	 */
 	protected void changeHealthBuilding(int newValue){
 		health = newValue;
-	}
-	
-	/**
-	 * Upgrade produce for building, required for all buildings, by Building 
-	 * class. Possible use to extand/upgrade butchers.
-	 * 
-	 * @throws UnsupportedOperationException, as this functionality is not 
-	 * needed for a butcher.
-	 */
-	protected void upgradeProduceBuilding(int newValue) {
-		throw new UnsupportedOperationException();
 	}
 }

@@ -1,7 +1,7 @@
 package uq.deco2800.ducktales.features.jobframework;
 
-import uq.deco2800.ducktales.features.entities.agententities.Peon;
-import uq.deco2800.ducktales.features.entities.agententities.PeonDebuffType;
+import uq.deco2800.ducktales.features.entities.peons.Peon;
+import uq.deco2800.ducktales.features.entities.peons.PeonDebuffType;
 
 /**
  * Generates the Doctor job

@@ -11,7 +11,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
-import uq.deco2800.ducktales.DuckTalesController;  
 
 
 /**
@@ -33,7 +32,7 @@ public class SignUpController  {
     	
     	return false;
     }
-    
+
     @FXML protected void handleSignUpButtonAction(ActionEvent event) throws Exception {
     	boolean bexit = false;
     	if(passwordField.getText().equals(passwordField2.getText()))
@@ -59,7 +58,7 @@ public class SignUpController  {
                 	}
                 }
             }
-            if(username.getText().toString().length() == 6 && passwordField.getText().toString().length() == 6)
+            if(username.getText().toString().length() >= 6 && passwordField.getText().toString().length() >= 6)
             {
             	if(!bexit)
         		{
@@ -84,7 +83,5 @@ public class SignUpController  {
     		actiontarget.setText("password not consistent.");
     	}
     }
-   
-    
 }
 

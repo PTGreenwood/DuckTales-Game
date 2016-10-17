@@ -41,7 +41,7 @@ public class Gymnasium extends Building {
 	 * Update the WorldEntity properties with those of a gymnasium.
 	 */
 	protected void specifications() {
-		specifications(8, 6, 6, production.NULL, 0, health);
+		specifications(8, 6, 6, health);
 	}
 	
 	/**
@@ -55,16 +55,5 @@ public class Gymnasium extends Building {
 	 */
 	protected void changeHealthBuilding(int newValue){
 		health = newValue;
-	}
-	
-	/**
-	 * Upgrade produce for building, required for all buildings, by Building 
-	 * class. Possible use to extand/upgrade a gymnasium.
-	 * 
-	 * @throws UnsupportedOperationException, as this functionality is not 
-	 * required for a gymnasium.
-	 */
-	protected void upgradeProduceBuilding(int newValue) {
-		throw new UnsupportedOperationException();
 	}
 }

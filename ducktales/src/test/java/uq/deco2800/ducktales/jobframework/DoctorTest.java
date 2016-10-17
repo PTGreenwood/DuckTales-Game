@@ -1,12 +1,12 @@
 package uq.deco2800.ducktales.jobframework;
 
 import org.junit.Test;
-import uq.deco2800.ducktales.features.entities.agententities.Peon;
+import uq.deco2800.ducktales.features.entities.peons.Peon;
 import uq.deco2800.ducktales.features.jobframework.Doctor;
 import uq.deco2800.ducktales.features.jobframework.JobType;
 
 import static org.junit.Assert.*;
-import uq.deco2800.ducktales.features.entities.agententities.PeonDebuffType;
+import uq.deco2800.ducktales.features.entities.peons.PeonDebuffType;
 
 /**
  * @author Nicolas Turner (TheFractal on github and Fractal on slack)
@@ -16,7 +16,7 @@ public class DoctorTest {
 
 	@Test
 	public void qualificationTest() {
-		Peon peon = new Peon(10, 10, "John Doe");
+		Peon peon = new Peon(10, 10);
 		peon.setStrength(doctor.getRequiredStrength() + 1);
 		peon.setIntelligence(doctor.getRequiredIntelligence() + 1);
 
@@ -27,7 +27,7 @@ public class DoctorTest {
 	}
 
 	public void applicationTest() {
-		Peon peon = new Peon(10, 10, "John Doe");
+		Peon peon = new Peon(10, 10);
 		peon.setStrength(doctor.getRequiredStrength() + 1);
 		peon.setIntelligence(doctor.getRequiredIntelligence() + 1);
 
@@ -36,7 +36,7 @@ public class DoctorTest {
 	}
 
 	public void notQualifiedBothTest() {
-		Peon peon = new Peon(10, 10, "John Doe");
+		Peon peon = new Peon(10, 10);
 		peon.setStrength(doctor.getRequiredStrength() - 1);
 		peon.setIntelligence(doctor.getRequiredIntelligence() - 1);
 
@@ -44,7 +44,7 @@ public class DoctorTest {
 	}
 
 	public void notQualifiedStrengthTest() {
-		Peon peon = new Peon(10, 10, "John Doe");
+		Peon peon = new Peon(10, 10);
 		peon.setStrength(doctor.getRequiredStrength() - 1);
 		peon.setIntelligence(doctor.getRequiredIntelligence() + 1);
 
@@ -52,7 +52,7 @@ public class DoctorTest {
 	}
 
 	public void notQualifiedIntelligenceTest() {
-		Peon peon = new Peon(10, 10, "John Doe");
+		Peon peon = new Peon(10, 10);
 		peon.setStrength(doctor.getRequiredStrength() + 1);
 		peon.setIntelligence(doctor.getRequiredIntelligence() - 1);
 
@@ -61,7 +61,7 @@ public class DoctorTest {
 
 	@Test
 	public void notQualifiedBothMentorTest() {
-		Peon peon = new Peon(10, 10, "John Doe");
+		Peon peon = new Peon(10, 10);
 		peon.setStrength(doctor.getMentorStrength() - 1);
 		peon.setIntelligence(doctor.getMentorIntelligence() - 1);
 		peon.applyForJob(doctor);
@@ -70,14 +70,14 @@ public class DoctorTest {
 	}
 
 	public void notQualifiedStrengthMentorTest() {
-		Peon peon = new Peon(10, 10, "John Doe");
+		Peon peon = new Peon(10, 10);
 		peon.setIntelligence(doctor.getMentorIntelligence() + 1);
 
 		assertFalse(doctor.canBeMentor(peon));
 	}
 
 	public void notQualifiedIntelligenceMentorTest() {
-		Peon peon = new Peon(10, 10, "John Doe");
+		Peon peon = new Peon(10, 10);
 		peon.setStrength(doctor.getMentorStrength() + 1);
 		peon.setIntelligence(doctor.getMentorIntelligence() - 1);
 
@@ -85,7 +85,7 @@ public class DoctorTest {
 	}
 
 	public void qualifiedBothMentorTest() {
-		Peon peon = new Peon(10, 10, "John Doe");
+		Peon peon = new Peon(10, 10);
 		peon.setStrength(doctor.getMentorStrength() + 1);
 		peon.setIntelligence(doctor.getMentorIntelligence() + 1);
 
@@ -93,7 +93,7 @@ public class DoctorTest {
 	}
         
         public void CompleteHealTest(){
-		Peon peon = new Peon(10, 10, "John Doe");
+		Peon peon = new Peon(10, 10);
                 assertTrue(peon.getDebuffs().isEmpty());
                 peon.addDebuff(PeonDebuffType.HUNGRY);
                 peon.addDebuff(PeonDebuffType.NEAR_DEATH);

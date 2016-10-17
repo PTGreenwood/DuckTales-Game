@@ -6,7 +6,7 @@
 package uq.deco2800.ducktales.jobframework;
 
 import org.junit.Test;
-import uq.deco2800.ducktales.features.entities.agententities.Peon;
+import uq.deco2800.ducktales.features.entities.peons.Peon;
 import uq.deco2800.ducktales.features.entities.resourceentities.Tree;
 import uq.deco2800.ducktales.features.jobframework.JobType;
 import uq.deco2800.ducktales.features.jobframework.Lumberjack;
@@ -17,7 +17,7 @@ public class LumberjackTest {
 
 	@Test
 	public void qualificationTest() {
-		Peon peon = new Peon(10, 10, "John Doe");
+		Peon peon = new Peon(10, 10);
 		peon.setStrength(lumberjack.getRequiredStrength() + 1);
 		peon.setIntelligence(lumberjack.getRequiredIntelligence() + 1);
 
@@ -28,7 +28,7 @@ public class LumberjackTest {
 	}
 
 	public void applicationTest() {
-		Peon peon = new Peon(10, 10, "John Doe");
+		Peon peon = new Peon(10, 10);
 		peon.setStrength(lumberjack.getRequiredStrength() + 1);
 		peon.setIntelligence(lumberjack.getRequiredIntelligence() + 1);
 
@@ -37,7 +37,7 @@ public class LumberjackTest {
 	}
 
 	public void notQualifiedBothTest() {
-		Peon peon = new Peon(10, 10, "John Doe");
+		Peon peon = new Peon(10, 10);
 		peon.setStrength(lumberjack.getRequiredStrength() - 1);
 		peon.setIntelligence(lumberjack.getRequiredIntelligence() - 1);
 
@@ -45,7 +45,7 @@ public class LumberjackTest {
 	}
 
 	public void notQualifiedStrengthTest() {
-		Peon peon = new Peon(10, 10, "John Doe");
+		Peon peon = new Peon(10, 10);
 		peon.setStrength(lumberjack.getRequiredStrength() - 1);
 		peon.setIntelligence(lumberjack.getRequiredIntelligence() + 1);
 
@@ -53,7 +53,7 @@ public class LumberjackTest {
 	}
 
 	public void notQualifiedIntelligenceTest() {
-		Peon peon = new Peon(10, 10, "John Doe");
+		Peon peon = new Peon(10, 10);
 		peon.setStrength(lumberjack.getRequiredStrength() + 1);
 		peon.setIntelligence(lumberjack.getRequiredIntelligence() - 1);
 
@@ -62,7 +62,7 @@ public class LumberjackTest {
 
 	@Test
 	public void notQualifiedBothMentorTest() {
-		Peon peon = new Peon(10, 10, "John Doe");
+		Peon peon = new Peon(10, 10);
 		peon.setStrength(lumberjack.getMentorStrength() - 1);
 		peon.setIntelligence(lumberjack.getMentorIntelligence() - 1);
 		peon.applyForJob(lumberjack);
@@ -71,14 +71,14 @@ public class LumberjackTest {
 	}
 
 	public void notQualifiedStrengthMentorTest() {
-		Peon peon = new Peon(10, 10, "John Doe");
+		Peon peon = new Peon(10, 10);
 		peon.setIntelligence(lumberjack.getMentorIntelligence() + 1);
 
 		assertFalse(lumberjack.canBeMentor(peon));
 	}
 
 	public void notQualifiedIntelligenceMentorTest() {
-		Peon peon = new Peon(10, 10, "John Doe");
+		Peon peon = new Peon(10, 10);
 		peon.setStrength(lumberjack.getMentorStrength() + 1);
 		peon.setIntelligence(lumberjack.getMentorIntelligence() - 1);
 
@@ -86,7 +86,7 @@ public class LumberjackTest {
 	}
 
 	public void qualifiedBothMentorTest() {
-		Peon peon = new Peon(10, 10, "John Doe");
+		Peon peon = new Peon(10, 10);
 		peon.setStrength(lumberjack.getMentorStrength() + 1);
 		peon.setIntelligence(lumberjack.getMentorIntelligence() + 1);
 
@@ -94,7 +94,7 @@ public class LumberjackTest {
 	}
 
 	public void lumberjackChoppedMentorTest1() {
-		Peon peon = new Peon(10, 10, "John Doe");
+		Peon peon = new Peon(10, 10);
 		// peon has enough in both but didn't chop enough trees
 		peon.setStrength(lumberjack.getMentorStrength() + 1);
 		peon.setIntelligence(lumberjack.getMentorIntelligence() + 1);
@@ -103,7 +103,7 @@ public class LumberjackTest {
 	}
 
 	public void lumberjackChoppedMentorTest2() {
-		Peon peon = new Peon(10, 10, "John Doe");
+		Peon peon = new Peon(10, 10);
 		Tree tree = new Tree(11, 11);
 		for (int i = 0; i < 21; i++) {
 			lumberjack.chop(peon, tree);
@@ -115,7 +115,7 @@ public class LumberjackTest {
 	}
 
 	public void lumberTest() {
-		Peon peon = new Peon(10, 10, "John Doe");
+		Peon peon = new Peon(10, 10);
 		assertEquals(peon.getJob(), "Jobless");
 		peon.setStrength(lumberjack.getRequiredStrength() + 1);
 		peon.setIntelligence(lumberjack.getRequiredIntelligence() + 1);

@@ -41,7 +41,7 @@ public class Church extends Building {
 	 * Update the WorldEntity properties with those of a church.
 	 */
 	protected void specifications() {
-		specifications(8, 10, 9, production.NULL, 0, health);
+		specifications(8, 10, 9, health);
 	}
 	
 	/**
@@ -54,16 +54,5 @@ public class Church extends Building {
 	 */
 	protected void changeHealthBuilding(int newValue){
 		health = newValue;
-	}
-	
-	/**
-	 * Upgrade produce for building, required for all buildings, by Building 
-	 * class. Possible use to extend/upgrade churches.
-	 * 
-	 * @throws UnsupportedOperationException, as this functionality is not 
-	 * required for a church.
-	 */
-	protected void upgradeProduceBuilding(int newValue) {
-		throw new UnsupportedOperationException();
 	}
 }

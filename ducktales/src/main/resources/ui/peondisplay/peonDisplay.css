@@ -1,0 +1,17 @@
+.peon-display-root {
+    -fx-background-color:  #593c2c;
+}
+.general-pane-color {
+    -fx-background-color:  #c29161;
+}
+.header {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-family: sans-serif;
+    -fx-font-size: 13px;
+}
+.label {
+    -fx-text-fill: white;
+    -fx-font-family: sans-serif;
+    -fx-font-size: 11px;
+}

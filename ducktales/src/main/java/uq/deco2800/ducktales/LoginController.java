@@ -42,8 +42,7 @@ public class LoginController  {
         
 		Scene scene = new Scene(root1,300,275);
 		primaryStage= new Stage();
-        //primaryStage.initStyle(Stage.UNDECORATED);
-		primaryStage.setTitle("FXML Welcome");  
+		primaryStage.setTitle("FXML Welcome");
 		primaryStage.setScene(scene);
 		primaryStage.showAndWait();
 

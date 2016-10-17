@@ -9,7 +9,7 @@ import java.util.List;
 import org.junit.Test;
 
 import uq.deco2800.ducktales.features.entities.worldentities.*;
-import uq.deco2800.ducktales.features.entities.worldentities.Building.production;
+import uq.deco2800.ducktales.features.entities.worldentities.StorageProduceBuilding.production;
 import uq.deco2800.ducktales.features.entities.Entity;
 
 /**
@@ -65,7 +65,7 @@ public class BuildingTest {
 	 * House test, check all the methods and parameters of House buildings 
 	 * that can be called/accessed. 
 	 */
-	@Test(expected = UnsupportedOperationException.class)
+	@Test (expected = UnsupportedOperationException.class)
 	public void storageBarnTest() {
 		// Instantiate 3 Houses
 		StorageBarn entity1 = new StorageBarn(2, 3);
@@ -133,24 +133,24 @@ public class BuildingTest {
 		assertTrue("Incorrect xLength", entity3.getXLength() == 5);
 		assertTrue("Incorrect yLength", entity3.getYLength() == 5);
 		
-		assertEquals(entity3.getStorage().toString(), "[(WOOD,20,0), (STONE,15,0), (ORE,10,0), (FOOD,25,0)]");
+		assertEquals(entity3.getStorage().toString(), "[(TIMBER,200,0), (LUMBER,200,0), (STONE,150,0), (ORE,100,0), (FOOD,250,0)]");
 		entity3.addGoods(production.FOOD, 15);
 		entity3.addGoods(production.ORE, 7);
-		assertEquals(entity3.getStorage().toString(), "[(WOOD,20,0), (STONE,15,0), (ORE,10,7), (FOOD,25,15)]");
-		entity3.addGoods(production.WOOD, 30);
-		assertEquals(entity3.getStorage().toString(), "[(WOOD,20,20), (STONE,15,0), (ORE,10,7), (FOOD,25,15)]");
+		assertEquals(entity3.getStorage().toString(), "[(TIMBER,200,0), (LUMBER,200,0), (STONE,150,0), (ORE,100,7), (FOOD,250,15)]");
+		entity3.addGoods(production.TIMBER, 30);
+		assertEquals(entity3.getStorage().toString(), "[(TIMBER,200,30), (LUMBER,200,0), (STONE,150,0), (ORE,100,7), (FOOD,250,15)]");
 		entity3.upgradeBarn(production.ORE, 30);
-		assertEquals(entity3.getStorage().toString(), "[(WOOD,20,20), (STONE,15,0), (ORE,30,7), (FOOD,25,15)]");
+		assertEquals(entity3.getStorage().toString(), "[(TIMBER,200,30), (LUMBER,200,0), (STONE,150,0), (ORE,30,7), (FOOD,250,15)]");
 		entity3.addGoods(production.ORE, 16);
-		assertEquals(entity3.getStorage().toString(), "[(WOOD,20,20), (STONE,15,0), (ORE,30,23), (FOOD,25,15)]");
+		assertEquals(entity3.getStorage().toString(), "[(TIMBER,200,30), (LUMBER,200,0), (STONE,150,0), (ORE,30,23), (FOOD,250,15)]");
 		entity3.addGoods(production.ORE, -10);
-		assertEquals(entity3.getStorage().toString(), "[(WOOD,20,20), (STONE,15,0), (ORE,30,13), (FOOD,25,15)]");
+		assertEquals(entity3.getStorage().toString(), "[(TIMBER,200,30), (LUMBER,200,0), (STONE,150,0), (ORE,30,13), (FOOD,250,15)]");
 		entity3.addGoods(null, -10);
-		assertEquals(entity3.getStorage().toString(), "[(WOOD,20,20), (STONE,15,0), (ORE,30,13), (FOOD,25,15)]");
+		assertEquals(entity3.getStorage().toString(), "[(TIMBER,200,30), (LUMBER,200,0), (STONE,150,0), (ORE,30,13), (FOOD,250,15)]");
 		entity3.addGoods(production.ORE, 30);
-		assertEquals(entity3.getStorage().toString(), "[(WOOD,20,20), (STONE,15,0), (ORE,30,30), (FOOD,25,15)]");
+		assertEquals(entity3.getStorage().toString(), "[(TIMBER,200,30), (LUMBER,200,0), (STONE,150,0), (ORE,30,30), (FOOD,250,15)]");
 		entity3.addGoods(production.NULL, 10);
-		assertEquals(entity3.getStorage().toString(), "[(WOOD,20,20), (STONE,15,0), (ORE,30,30), (FOOD,25,15)]");
+		assertEquals(entity3.getStorage().toString(), "[(TIMBER,200,30), (LUMBER,200,0), (STONE,150,0), (ORE,30,30), (FOOD,250,15)]");
 		
 		entity3.upgradeProduce(10);
 	}
@@ -159,7 +159,7 @@ public class BuildingTest {
 	 * House test, check all the methods and parameters of House buildings 
 	 * that can be called/accessed. 
 	 */
-	@Test (expected = UnsupportedOperationException.class)
+	@Test 
 	public void houseTest() {
 		// Instantiate 3 Houses
 		House entity1 = new House(2, 3);
@@ -188,13 +188,7 @@ public class BuildingTest {
 		assertTrue("Wrong resources to build - stone", 
 				entity3.resourcesBuildStone() == 2);
 		assertTrue("Wrong time to build", entity2.timeToBuild() == 2);
-		
-		// Check correct production type and amount
-		assertTrue("Wrong production type", entity1.resourcesProductionType() 
-				== production.NULL);
-		assertTrue("Wrong production amount", 
-				entity3.resourcesProductionAmount() == 0);
-		
+				
 		// Check tick method, call for each house
 		entity1.tick();
 		entity2.tick();
@@ -226,15 +220,13 @@ public class BuildingTest {
 		// Test getx and gety methods, house 3
 		assertTrue("Incorrect xLength", entity3.getXLength() == 2);
 		assertTrue("Incorrect yLength", entity3.getYLength() == 2);
-		
-		entity3.upgradeProduce(10);
 	}
 	
 	/**
 	 * School test, check all the methods and parameters of School buildings 
 	 * that can be called/accessed. 
 	 */
-	@Test (expected = UnsupportedOperationException.class)
+	@Test
 	public void schoolTest() {
 		// Instantiate 3 Houses
 		School entity1 = new School(2, 3);
@@ -263,12 +255,6 @@ public class BuildingTest {
 		assertTrue("Wrong resources to build - stone", 
 				entity3.resourcesBuildStone() == 6);
 		assertTrue("Wrong time to build", entity2.timeToBuild() == 8);
-		
-		// Check correct production type and amount
-		assertTrue("Wrong production type", entity1.resourcesProductionType() 
-				== production.NULL);
-		assertTrue("Wrong production amount", 
-				entity3.resourcesProductionAmount() == 0);
 		
 		// Check tick method, call for each house
 		entity1.tick();
@@ -301,15 +287,13 @@ public class BuildingTest {
 		// Test getx and gety methods, house 3
 		assertTrue("Incorrect xLength", entity3.getXLength() == 5);
 		assertTrue("Incorrect yLength", entity3.getYLength() == 5);
-		
-		entity3.upgradeProduce(10);
 	}
 	
 	/**
 	 * Gymnasium test, check all the methods and parameters of gym buildings 
 	 * that can be called/accessed. 
 	 */
-	@Test (expected = UnsupportedOperationException.class)
+	@Test 
 	public void gymTest() {
 		// Instantiate 3 Houses
 		Gymnasium entity1 = new Gymnasium(2, 3);
@@ -338,12 +322,6 @@ public class BuildingTest {
 		assertTrue("Wrong resources to build - stone", 
 				entity3.resourcesBuildStone() == 8);
 		assertTrue("Wrong time to build", entity2.timeToBuild() == 6);
-		
-		// Check correct production type and amount
-		assertTrue("Wrong production type", entity1.resourcesProductionType() 
-				== production.NULL);
-		assertTrue("Wrong production amount", 
-				entity3.resourcesProductionAmount() == 0);
 		
 		// Check tick method, call for each house
 		entity1.tick();
@@ -376,15 +354,13 @@ public class BuildingTest {
 		// Test getx and gety methods, house 3
 		assertTrue("Incorrect xLength", entity3.getXLength() == 2);
 		assertTrue("Incorrect yLength", entity3.getYLength() == 2);
-		
-		entity3.upgradeProduce(10);
 	}
 	
 	/**
 	 * Box test, check all the methods and parameters of Box buildings  
 	 * that can be called/accessed. 
 	 */
-	@Test (expected = UnsupportedOperationException.class)
+	@Test 
 	public void boxTest() {
 		// Instantiate 3 new Boxes
 		Box entity1 = new Box(2, 3);
@@ -410,12 +386,6 @@ public class BuildingTest {
 		assertTrue("Wrong resources to build - stone", 
 				entity3.resourcesBuildStone() == 2);
 		assertTrue("Wrong time to build", entity2.timeToBuild() == 4);
-		
-		// Check correct production type and amount
-		assertTrue("Wrong production type", entity1.resourcesProductionType() 
-				== production.NULL);
-		assertTrue("Wrong production amount", 
-				entity3.resourcesProductionAmount() == 0);
 		
 		// Check if nothing has changed after call tick()
 		entity1.tick();
@@ -444,15 +414,13 @@ public class BuildingTest {
 		// Test getx and gety methods
 		assertTrue("Incorrect xLength", entity3.getXLength() == 1);
 		assertTrue("Incorrect yLength", entity3.getYLength() == 1);
-		
-		entity3.upgradeProduce(10);
 	}
 	
 	/**
 	 * LongBox test, check all the methods and parameters of LongBox buildings 
 	 * that can be called/accessed. 
 	 */
-	@Test (expected = UnsupportedOperationException.class)
+	@Test 
 	public void longBoxTest(){
 		// Instantiate 3 new LongBox buildings
 		LongBox entity1 = new LongBox(2, 3);
@@ -477,12 +445,6 @@ public class BuildingTest {
 		assertTrue("Wrong resources to build - stone", 
 				entity3.resourcesBuildStone() == 2);
 		assertTrue("Wrong time to build", entity2.timeToBuild() == 2);
-		
-		// Check correct production type and amount
-		assertTrue("Wrong production type", 
-				entity1.resourcesProductionType() == production.NULL);
-		assertTrue("Wrong production amount", 
-				entity3.resourcesProductionAmount() == 0);
 		
 		// Check if nothing has changed after call tick()
 		entity1.tick();
@@ -511,15 +473,13 @@ public class BuildingTest {
 		// Test getx and gety methods
 		assertTrue("Incorrect xLength", entity3.getXLength() == 2);
 		assertTrue("Incorrect yLength", entity3.getYLength() == 1);
-		
-		entity3.upgradeProduce(10);
 	}
 	
 	/**
 	 * Barn test, check all the methods and parameters of Barn buildings 
 	 * that can be called/accessed. 
 	 */
-	@Test (expected = UnsupportedOperationException.class)
+	@Test 
 	public void barnTest(){
 		// Instantiate 3 new Barns
 		Barn entity1 = new Barn(2, 3);
@@ -545,12 +505,6 @@ public class BuildingTest {
 				entity3.resourcesBuildStone() == 4);
 		assertTrue("Wrong time to build", entity2.timeToBuild() == 9);
 		
-		// Check correct production type and amount
-		assertTrue("Wrong production type", 
-				entity1.resourcesProductionType() == production.NULL);
-		assertTrue("Wrong production amount", 
-				entity3.resourcesProductionAmount() == 0);
-		
 		// Check if nothing has changed after call tick()
 		entity1.tick();
 		entity2.tick();
@@ -572,8 +526,6 @@ public class BuildingTest {
 		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
 		entity3.changeHealth(-10);
 		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
-		
-		entity3.upgradeProduce(10);
 	}
 	
 	/**
@@ -608,7 +560,7 @@ public class BuildingTest {
 		
 		// Check correct production type and amount
 		assertTrue("Wrong production type", 
-				entity1.resourcesProductionType() == production.WOOD);
+				entity1.resourcesProductionType() == production.TIMBER);
 		assertTrue("Wrong production amount", 
 				entity3.resourcesProductionAmount() == 5);
 		
@@ -654,7 +606,7 @@ public class BuildingTest {
 	 * Observatory test, check all the methods and parameters of Observatory 
 	 * buildings that can be called/accessed. 
 	 */
-	@Test (expected = UnsupportedOperationException.class)
+	@Test 
 	public void observatoryTest(){
 		// Instantiate 3 new Observatories
 		Observatory entity1 = new Observatory(2, 3);
@@ -680,12 +632,6 @@ public class BuildingTest {
 				entity3.resourcesBuildWood() == 10);
 		assertTrue("Wrong time to build", entity2.timeToBuild() == 5);
 		
-		// Check correct production type and amount
-		assertTrue("Wrong production type", 
-				entity1.resourcesProductionType() == production.NULL);
-		assertTrue("Wrong production amount", 
-				entity3.resourcesProductionAmount() == 0);
-		
 		// Check if nothing has changed after call tick()
 		entity1.tick();
 		entity2.tick();
@@ -709,15 +655,13 @@ public class BuildingTest {
 		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
 		entity3.changeHealth(-10);
 		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
-		
-		entity3.upgradeProduce(10);
 	}
 	
 	/**
 	 * Bakery test, check all the methods and parameters of Bakery buildings 
 	 * that can be called/accessed. 
 	 */
-	@Test (expected = UnsupportedOperationException.class)
+	@Test 
 	public void bakeryTest(){
 		// Instantiate 3 new Bakeries
 		Bakery entity1 = new Bakery(2, 3);
@@ -743,12 +687,6 @@ public class BuildingTest {
 				entity3.resourcesBuildStone() == 4);
 		assertTrue("Wrong time to build", entity2.timeToBuild() == 4);
 		
-		// Check correct production type and amount
-		assertTrue("Wrong production type", 
-				entity1.resourcesProductionType() == production.NULL);
-		assertTrue("Wrong production amount", 
-				entity3.resourcesProductionAmount() == 0);
-		
 		// Check if nothing has changed after call tick()
 		entity1.tick();
 		entity2.tick();
@@ -772,15 +710,13 @@ public class BuildingTest {
 		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
 		entity3.changeHealth(-10);
 		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
-		
-		entity3.upgradeProduce(10);
 	}
 	
 	/**
 	 * Cemetery test, check all the methods and parameters of Cemetery 
 	 * buildings that can be called/accessed. 
 	 */
-	@Test (expected = UnsupportedOperationException.class)
+	@Test 
 	public void cemeteryTest(){
 		// Instantiate 3 new cemeteries
 		Cemetery entity1 = new Cemetery(2, 3);
@@ -806,12 +742,6 @@ public class BuildingTest {
 				entity3.resourcesBuildWood() == 4);
 		assertTrue("Wrong time to build", entity2.timeToBuild() == 2);
 		
-		// Check correct production type and amount
-		assertTrue("Wrong production type", 
-				entity1.resourcesProductionType() == production.NULL);
-		assertTrue("Wrong production amount", 
-				entity3.resourcesProductionAmount() == 0);
-		
 		// Check if nothing has changed after call tick()
 		entity1.tick();
 		entity2.tick();
@@ -835,8 +765,6 @@ public class BuildingTest {
 		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
 		entity3.changeHealth(-10);
 		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
-		
-		entity3.upgradeProduce(10);
 	}
 	
 	/**
@@ -917,7 +845,7 @@ public class BuildingTest {
 	 * Forge test, check all the methods and parameters of Forge buildings 
 	 * that can be called/accessed. 
 	 */
-	@Test (expected = UnsupportedOperationException.class)
+	@Test 
 	public void forgeTest(){
 		// Instantiate 3 new forges
 		Forge entity1 = new Forge(2, 3);
@@ -943,12 +871,6 @@ public class BuildingTest {
 				entity3.resourcesBuildStone() == 10);
 		assertTrue("Wrong time to build", entity2.timeToBuild() == 3);
 		
-		// Check correct production type and amount
-		assertTrue("Wrong production type", 
-				entity1.resourcesProductionType() == production.NULL);
-		assertTrue("Wrong production amount", 
-				entity3.resourcesProductionAmount() == 0);
-		
 		// Check if nothing has changed after call tick()
 		entity1.tick();
 		entity2.tick();
@@ -973,15 +895,13 @@ public class BuildingTest {
 		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
 		entity3.changeHealth(-10);
 		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
-		
-		entity3.upgradeProduce(10);
 	}
 	
 	/**
 	 * Hospital test, check all the methods and parameters of Hospital 
 	 * buildings that can be called/accessed. 
 	 */
-	@Test (expected = UnsupportedOperationException.class)
+	@Test 
 	public void hospitalTest(){
 		// Instantiate 3 new hospitals
 		Hospital entity1 = new Hospital(2, 3);
@@ -1007,12 +927,6 @@ public class BuildingTest {
 				entity3.resourcesBuildWood() == 8);
 		assertTrue("Wrong time to build", entity2.timeToBuild() == 5);
 		
-		// Check correct production type and amount
-		assertTrue("Wrong production type", 
-				entity1.resourcesProductionType() == production.NULL);
-		assertTrue("Wrong production amount", 
-				entity3.resourcesProductionAmount() == 0);
-		
 		// Check if nothing has changed after call tick()
 		entity1.tick();
 		entity2.tick();
@@ -1036,8 +950,6 @@ public class BuildingTest {
 		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
 		entity3.changeHealth(-10);
 		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
-		
-		entity3.upgradeProduce(10);
 	}
 	
 	/**
@@ -1122,7 +1034,7 @@ public class BuildingTest {
 	 * Butcher test, check all the methods and parameters of Butcher buildings 
 	 * that can be called/accessed. 
 	 */
-	@Test (expected = UnsupportedOperationException.class)
+	@Test 
 	public void butcherTest(){
 		// Instantiate 3 new butchers
 		Butcher entity1 = new Butcher(2, 3);
@@ -1148,12 +1060,6 @@ public class BuildingTest {
 				entity3.resourcesBuildWood() == 8);
 		assertTrue("Wrong time to build", entity2.timeToBuild() == 7);
 		
-		// Check correct production type and amount
-		assertTrue("Wrong production type", 
-				entity1.resourcesProductionType() == production.NULL);
-		assertTrue("Wrong production amount", 
-				entity3.resourcesProductionAmount() == 0);
-		
 		// Check if nothing has changed after call tick()
 		entity1.tick();
 		entity2.tick();
@@ -1177,15 +1083,13 @@ public class BuildingTest {
 		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
 		entity3.changeHealth(-10);
 		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
-		
-		entity3.upgradeProduce(10);
 	}
 	
 	/**
 	 * Church test, check all the methods and parameters of Church buildings 
 	 * that can be called/accessed. 
 	 */
-	@Test (expected = UnsupportedOperationException.class)
+	@Test 
 	public void churchTest(){
 		// Instantiate 3 new Churches
 		Church entity1 = new Church(2, 3);
@@ -1211,12 +1115,6 @@ public class BuildingTest {
 				entity3.resourcesBuildWood() == 10);
 		assertTrue("Wrong time to build", entity2.timeToBuild() == 9);
 		
-		// Check correct production type and amount
-		assertTrue("Wrong production type", 
-				entity1.resourcesProductionType() == production.NULL);
-		assertTrue("Wrong production amount", 
-				entity3.resourcesProductionAmount() == 0);
-		
 		// Check if nothing has changed after call tick()
 		entity1.tick();
 		entity2.tick();
@@ -1239,15 +1137,13 @@ public class BuildingTest {
 		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
 		entity3.changeHealth(-10);
 		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
-		
-		entity3.upgradeProduce(10);
 	}
 	
 	/**
 	 * Community Building test, check all the methods and parameters of 
 	 * Community Buildings that can be called/accessed. 
 	 */
-	@Test (expected = UnsupportedOperationException.class)
+	@Test 
 	public void communityBuildingTest(){
 		// Instantiate 3 new Community Buildings
 		CommunityBuilding entity1 = new CommunityBuilding(2, 3);
@@ -1273,12 +1169,6 @@ public class BuildingTest {
 				entity3.resourcesBuildWood() == 8);
 		assertTrue("Wrong time to build", entity2.timeToBuild() == 8);
 		
-		// Check correct production type and amount
-		assertTrue("Wrong production type", 
-				entity1.resourcesProductionType() == production.NULL);
-		assertTrue("Wrong production amount", 
-				entity3.resourcesProductionAmount() == 0);
-		
 		// Check if nothing has changed after call tick()
 		entity1.tick();
 		entity2.tick();
@@ -1302,15 +1192,13 @@ public class BuildingTest {
 		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
 		entity3.changeHealth(-10);
 		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
-		
-		entity3.upgradeProduce(10);
 	}
 	
 	/**
 	 * Pasture test, check all the methods and parameters of Pasture buildings 
 	 * that can be called/accessed. 
 	 */
-	@Test (expected = UnsupportedOperationException.class)
+	@Test 
 	public void pastureTest(){
 		// Instantiate 3 new Pastures
 		Pasture entity1 = new Pasture(2, 3);
@@ -1336,12 +1224,6 @@ public class BuildingTest {
 				entity3.resourcesBuildWood() == 10);
 		assertTrue("Wrong time to build", entity2.timeToBuild() == 4);
 		
-		// Check correct production type and amount
-		assertTrue("Wrong production type", 
-				entity1.resourcesProductionType() == production.NULL);
-		assertTrue("Wrong production amount", 
-				entity3.resourcesProductionAmount() == 0);
-		
 		// Check if nothing has changed after call tick()
 		entity1.tick();
 		entity2.tick();
@@ -1365,8 +1247,6 @@ public class BuildingTest {
 		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
 		entity3.changeHealth(-10);
 		assertTrue("Incorrect Health", entity3.getHealth() == 978000);
-		
-		entity3.upgradeProduce(10);
 	}
 	
 	/**
@@ -1541,5 +1421,216 @@ public class BuildingTest {
 		assertTrue("isPassable - box", false == (entity2.isPassable()));
 		assertTrue("isPassable - box", false == (entity3.isPassable()));
 		
+	}
+
+	/**
+	 * Test the upgrade Barn method (increase storage capacity). Should throw 
+	 * unsupported operation exception as not valid for farms.
+	 */
+	@Test
+	public void FarmUpgradeStoreTest() {
+		Farm entity = new Farm(1,1);
+		entity.upgradeBarn(production.ORE, 10);
+		assertEquals(entity.getStorage().toString(), "[(FOOD,50,0)]");
+		entity.upgradeBarn(production.FOOD, 10);
+		assertEquals(entity.getStorage().toString(), "[(FOOD,10,0)]");
+	}
+	
+	/**
+	 * Test the add Goods method, add stored resources to a building. Should 
+	 * throw unsupported operation exception as not a supported method for 
+	 * farms.
+	 */
+	@Test
+	public void FarmAddStoreTest() {
+		Farm entity = new Farm(1,1);
+		entity.addGoods(production.TIMBER, 10);
+		assertEquals(entity.getStorage().toString(), "[(FOOD,50,0)]");
+		entity.addGoods(production.FOOD, 10);
+		assertEquals(entity.getStorage().toString(), "[(FOOD,50,10)]");
+	}
+		
+	/**
+	 * Test the upgrade Barn method (increase storage capacity). Should throw 
+	 * unsupported operation exception as not valid for mines.
+	 */
+	@Test
+	public void MineUpgradeStoreTest() {
+		Mine entity = new Mine(1,1);
+		entity.upgradeBarn(production.LUMBER, 10);
+		assertEquals(entity.getStorage().toString(), "[(ORE,50,0)]");
+		entity.upgradeBarn(production.ORE, 10);
+		assertEquals(entity.getStorage().toString(), "[(ORE,10,0)]");
+	}
+	
+	/**
+	 * Test the add Goods method, add stored resources to a building. Should 
+	 * throw unsupported operation exception as not a supported method for 
+	 * mines.
+	 */
+	@Test 
+	public void MineAddStoreTest() {
+		Mine entity = new Mine(1,1);
+		entity.addGoods(production.TIMBER, 10);
+		assertEquals(entity.getStorage().toString(), "[(ORE,50,0)]");
+		entity.addGoods(production.ORE, 10);
+		assertEquals(entity.getStorage().toString(), "[(ORE,50,10)]");
+	}
+	
+	/**
+	 * Test the upgrade Barn method (increase storage capacity). Should throw 
+	 * unsupported operation exception as not valid for quarries.
+	 */
+	@Test 
+	public void QuarryUpgradeStoreTest() {
+		Quarry entity = new Quarry(1,1);
+		entity.upgradeBarn(production.LUMBER, 10);
+		assertEquals(entity.getStorage().toString(), "[(STONE,50,0)]");
+		entity.upgradeBarn(production.STONE, 10);
+		assertEquals(entity.getStorage().toString(), "[(STONE,10,0)]");
+	}
+	
+	/**
+	 * Test the add Goods method, add stored resources to a building. Should 
+	 * throw unsupported operation exception as not a supported method for 
+	 * quarries.
+	 */
+	@Test 
+	public void QuarryAddStoreTest() {
+		Quarry entity = new Quarry(1,1);
+		entity.addGoods(production.TIMBER, 10);
+		assertEquals(entity.getStorage().toString(), "[(STONE,50,0)]");
+		entity.addGoods(production.STONE, 10);
+		assertEquals(entity.getStorage().toString(), "[(STONE,50,10)]");
+	}
+	
+	/**
+	 * Test the upgrade Barn method (increase storage capacity). Should throw 
+	 * unsupported operation exception as not valid for sawmills.
+	 */
+	@Test 
+	public void SawmillUpgradeStoreTest() {
+		Sawmill entity = new Sawmill(1,1);
+		entity.upgradeBarn(production.LUMBER, 10);
+		assertEquals(entity.getStorage().toString(), "[(TIMBER,50,0), (LUMBER,10,4)]");
+		entity.upgradeBarn(production.ORE, 10);
+		assertEquals(entity.getStorage().toString(), "[(TIMBER,50,0), (LUMBER,10,4)]");
+		entity.upgradeBarn(production.TIMBER, 15);
+		assertEquals(entity.getStorage().toString(), "[(TIMBER,15,0), (LUMBER,10,4)]");
+	}
+	
+	/**
+	 * Test the add Goods method, add stored resources to a building. Should 
+	 * throw unsupported operation exception as not a supported method for 
+	 * sawmills.
+	 */
+	@Test 
+	public void SawmillsAddStoreTest() {
+		Sawmill entity = new Sawmill(1,1);
+		entity.addGoods(production.TIMBER, 10);
+		assertEquals(entity.getStorage().toString(), "[(TIMBER,50,10), (LUMBER,50,4)]");
+		entity.addGoods(production.FOOD, 10);
+		assertEquals(entity.getStorage().toString(), "[(TIMBER,50,10), (LUMBER,50,4)]");
+	}
+	
+	/**
+	 * Test the produceMaterial method. 
+	 */
+	@Test
+	public void SawmillProcessTest1() {
+		Sawmill entity = new Sawmill(1,1);
+		entity.produceMaterial();
+		assertEquals(entity.getStorage().toString(), "[(TIMBER,50,2), (LUMBER,50,3)]");
+		entity.addGoods(production.TIMBER, 50);
+		entity.produceMaterial();
+		assertEquals(entity.getStorage().toString(), "[(TIMBER,50,50), (LUMBER,50,3)]");
+	}
+	
+	/**
+	 * Test the produceMaterial method. 
+	 */
+	@Test
+	public void SawmillProcessTest2() {
+		Sawmill entity = new Sawmill(1,1);
+		entity.produceMaterial();
+		assertEquals(entity.getStorage().toString(), "[(TIMBER,50,2), (LUMBER,50,3)]");
+		entity.produceMaterial();
+		entity.produceMaterial();
+		entity.produceMaterial();
+		entity.produceMaterial();
+		assertEquals(entity.getStorage().toString(), "[(TIMBER,50,8), (LUMBER,50,0)]");
+		for (int i = 0; i < 50; i++) {
+			entity.produceMaterial();
+		}
+		assertEquals(entity.getStorage().toString(), "[(TIMBER,50,8), (LUMBER,50,0)]");
+	}
+	
+	/**
+	 * Test the produceMaterial method. 
+	 */
+	@Test
+	public void FarmProcessTest() {
+		Farm entity = new Farm(1,1);
+		entity.produceMaterial();
+		entity.produceMaterial();
+		assertEquals(entity.getStorage().toString(), "[(FOOD,50,2)]");
+		entity.produceMaterial();
+		entity.produceMaterial();
+		entity.produceMaterial();
+		entity.produceMaterial();
+		assertEquals(entity.getStorage().toString(), "[(FOOD,50,6)]");
+		for (int i = 0; i < 50; i++) {
+			entity.produceMaterial();
+		}
+		assertEquals(entity.getStorage().toString(), "[(FOOD,50,50)]");
+	}
+	
+	/**
+	 * Test the produceMaterial method. 
+	 */
+	@Test
+	public void QuarryProcessTest() {
+		Quarry entity = new Quarry(1,1);
+		entity.produceMaterial();
+		entity.produceMaterial();
+		assertEquals(entity.getStorage().toString(), "[(STONE,50,2)]");
+		entity.produceMaterial();
+		entity.produceMaterial();
+		entity.produceMaterial();
+		entity.produceMaterial();
+		assertEquals(entity.getStorage().toString(), "[(STONE,50,6)]");
+		for (int i = 0; i < 50; i++) {
+			entity.produceMaterial();
+		}
+		assertEquals(entity.getStorage().toString(), "[(STONE,50,50)]");
+	}
+	
+	/**
+	 * Test the produceMaterial method. 
+	 */
+	@Test 
+	public void MineProcessTest() {
+		Mine entity = new Mine(1,1);
+		entity.produceMaterial();
+		entity.produceMaterial();
+		assertEquals(entity.getStorage().toString(), "[(ORE,50,2)]");
+		entity.produceMaterial();
+		entity.produceMaterial();
+		entity.produceMaterial();
+		entity.produceMaterial();
+		assertEquals(entity.getStorage().toString(), "[(ORE,50,6)]");
+		for (int i = 0; i < 50; i++) {
+			entity.produceMaterial();
+		}
+		assertEquals(entity.getStorage().toString(), "[(ORE,50,50)]");
+	}
+	
+	/**
+	 * Test the produceMaterial method. 
+	 */
+	@Test (expected = UnsupportedOperationException.class)
+	public void StorageBarnProcessTest() {
+		StorageBarn entity = new StorageBarn(1,1);
+		entity.produceMaterial();
 	}
 }

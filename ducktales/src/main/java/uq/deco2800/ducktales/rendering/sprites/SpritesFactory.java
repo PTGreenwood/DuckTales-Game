@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javafx.scene.image.Image;
-import uq.deco2800.ducktales.features.entities.EntityManager;
 import uq.deco2800.ducktales.features.time.GameTime;
 import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
+import uq.deco2800.ducktales.util.exceptions.GameSetupException;
 
 import static uq.deco2800.ducktales.resources.ResourceType.*;
 
@@ -19,26 +19,53 @@ import static uq.deco2800.ducktales.resources.ResourceType.*;
  */
 public class SpritesFactory {
     /** CONSTANTS */
-    private static int REAL_MINUTE = 1; // In seconds
+    private static final int REAL_MINUTE = 1; // In seconds
 
 	static int initTime;
 	static GameTime gameTime = new GameTime();
+
+    /**
+     * This is supposed to only hide the implicit public declaration only
+     *
+     * It does not need to do anything yet
+     */
+    private SpritesFactory() {
+    }
+
+    /**
+     * Create a sprite of a peon, with the given name as the unique ID
+     * @param peonName
+     *          The name of the peon
+     *
+     * @return A peon sprite with the given name as unique ID
+     */
+    public static PeonSprite createPeonSprite(String peonName) {
+        // Check if the name given is an empty string
+        if (peonName == "") {
+            throw new GameSetupException("Peon name cannot be an empty string");
+        }
+
+        PeonSprite sprite = new PeonSprite(peonName);
+        sprite.setImage(ResourceSpriteRegister.getInstance().getResourceImage(
+                ResourceType.PEON
+        ));
+        return sprite;
+    }
 	
     /**
      * Create and return a sprite of the given building type
      *
      * @param index
      *          The index of the sprite to be stored
-     * @param spriteType
+     * @param buildingType
      *          The type of the sprite - of type RegisteredSprite
      *
      * @return The sprite of the building of the given type
      *          null if the building is not yet registered
      */
-    public static BuildingSprite createBuildingSprite(int index, ResourceType spriteType) {
-        // TODO SEPARATE INTO ANIMALS AND BUILDINGS
-    	initTime = gameTime.getCurrentDay();
-        switch (spriteType) {
+    public static BuildingSprite createBuildingSprite(
+            int index, ResourceType buildingType) {
+        switch (buildingType) {
             // BUILDINGS
             case HOSPITAL:
                 return createHospital(index, ResourceType.HOSPITAL);
@@ -75,7 +102,9 @@ public class SpritesFactory {
             case GYMNASIUM:
                 return createGymnasium(index, ResourceType.GYMNASIUM);
             default:
-                return null;
+                throw new GameSetupException("The given building type is" +
+                        " not yet registered in SpritesFactory. Unable to" +
+                        " create a building sprite of type: " + buildingType);
         }
     }
 
@@ -98,7 +127,9 @@ public class SpritesFactory {
             case COW:
                 return createCow(index, ResourceType.COW);
             default:
-                return null;
+                throw new GameSetupException("The given animal type is" +
+                        " not yet registered in SpritesFactory. Unable to" +
+                        " create an animal sprite of type: " + type);
         }
     }
 
@@ -201,7 +232,7 @@ public class SpritesFactory {
         // After all images are set up, now call these methods to set up the
         // actual animation code
         sprite.setImageList(imageList); // Give the interpolator the list of images
-        sprite.setupAnimation(9* REAL_MINUTE); // Set up the actual animation, passing the duration
+        sprite.setupAnimation(9 * REAL_MINUTE); // Set up the actual animation, passing the duration
         sprite.startAnimation(); // Start the actual animation
 
         return sprite;
@@ -359,7 +390,7 @@ public class SpritesFactory {
         // After all images are set up, now call these methods to set up the
         // actual animation code
         sprite.setImageList(imageList); // Give the interpolator the list of images
-        sprite.setupAnimation(8* REAL_MINUTE); // Set up the actual animation, passing the duration
+        sprite.setupAnimation(8 * REAL_MINUTE); // Set up the actual animation, passing the duration
         sprite.startAnimation(); // Start the actual animation
 
         return sprite;
@@ -392,7 +423,7 @@ public class SpritesFactory {
         // After all images are set up, now call these methods to set up the
         // actual animation code
         sprite.setImageList(imageList); // Give the interpolator the list of images
-        sprite.setupAnimation(4* REAL_MINUTE); // Set up the actual animation, passing the duration
+        sprite.setupAnimation(4 * REAL_MINUTE); // Set up the actual animation, passing the duration
         sprite.setAnimationCycleCount(1);
         sprite.startAnimation(); // Start the actual animation
 
@@ -466,13 +497,7 @@ public class SpritesFactory {
                 idleFrames,
                 false
         );
-        // Get current instance of the game manager
-        EntityManager man = EntityManager.getInstance();
-        // add 2 more peons into the game
-        for (int i = 0; i < 2; i++) {
-        	// add peons at location
-        	man.addAnimal(SHEEP, i, 0); //Note - currently sheep as peons don't exist :(
-        }
+
         return sprite;
     }
 
@@ -573,7 +598,7 @@ public class SpritesFactory {
         // After all images are set up, now call these methods to set up the
         // actual animation code
         sprite.setImageList(imageList); // Give the interpolator the list of images
-        sprite.setupAnimation(4* REAL_MINUTE); // Set up the actual animation, passing the duration
+        sprite.setupAnimation(4 * REAL_MINUTE); // Set up the actual animation, passing the duration
         sprite.startAnimation(); // Start the actual animation
 
         return sprite;
@@ -606,7 +631,7 @@ public class SpritesFactory {
         // After all images are set up, now call these methods to set up the
         // actual animation code
         sprite.setImageList(imageList); // Give the interpolator the list of images
-        sprite.setupAnimation(5* REAL_MINUTE); // Set up the actual animation, passing the duration
+        sprite.setupAnimation(5 * REAL_MINUTE); // Set up the actual animation, passing the duration
         sprite.startAnimation(); // Start the actual animation
 
         return sprite;
@@ -682,8 +707,8 @@ public class SpritesFactory {
         constructionFrames.add(register.getResourceImage(buildingType));
 
         // Add all the frames for the idle animation
-        for (int i = 0; i < idleAnimationFrames.length; i++) {
-            idleFrames.add(register.getResourceImage(idleAnimationFrames[i]));
+        for (ResourceType frameType : idleAnimationFrames) {
+            idleFrames.add(register.getResourceImage(frameType));
         }
 
         // After all images are set up, now call these methods to set up the
@@ -723,7 +748,7 @@ public class SpritesFactory {
         // After all images are set up, now call these methods to set up the
         // actual animation code
         sprite.setImageList(imageList); // Give the interpolator the list of images
-        sprite.setupAnimation(3* REAL_MINUTE); // Set up the actual animation, passing the duration
+        sprite.setupAnimation(3 * REAL_MINUTE); // Set up the actual animation, passing the duration
         sprite.startAnimation(); // Start the actual animation
 
         return sprite;
@@ -777,26 +802,28 @@ public class SpritesFactory {
     private static AnimalSprite createSheep(int index, ResourceType entityType) {
         // The sprite to be returned
         AnimalSprite sprite = new AnimalSprite(index, entityType);
- 
-        // Setup the frames for the animation
-        List<Image> imageList = new ArrayList<>();
-        ResourceSpriteRegister register = ResourceSpriteRegister.getInstance();
-        // Now add all the images representing the animation here, one-by-one
-        imageList.add(register.getResourceImage(ResourceType.SHEEP));
-        imageList.add(register.getResourceImage(ResourceType.SHEEPDown0));
-        imageList.add(register.getResourceImage(ResourceType.SHEEPDown1));
-        imageList.add(register.getResourceImage(ResourceType.SHEEPLeft0));
-        imageList.add(register.getResourceImage(ResourceType.SHEEPLeft1));
-        imageList.add(register.getResourceImage(ResourceType.SHEEPUp0));
-        imageList.add(register.getResourceImage(ResourceType.SHEEPUp1));
-        imageList.add(register.getResourceImage(ResourceType.SHEEPRight0));
-        imageList.add(register.getResourceImage(ResourceType.SHEEPRight1));
 
-        // After all images are set up, now call these methods to set up the
-        // actual animation code
-        sprite.setImageList(imageList); // Give the interpolator the list of images
-        sprite.setupAnimation(1.0); // Set up the actual animation, passing the duration
-        sprite.startAnimation(); // Start the actual animation
+        // Setup the frames for the roaming animation.
+        ResourceType[] roamingFrames = {
+        ResourceType.SHEEP,
+        ResourceType.SHEEPDown0,
+        ResourceType.SHEEPDown1,
+        ResourceType.SHEEPLeft0,
+        ResourceType.SHEEPLeft1,
+        ResourceType.SHEEPUp0,
+        ResourceType.SHEEPUp1,
+        ResourceType.SHEEPRight0,
+        ResourceType.SHEEPRight1
+        };
+ 
+        // Setup the sprite with the given parameters
+        setupAnimalSprite(
+                sprite,
+                entityType,
+                1.0,
+                roamingFrames,
+                true
+        );
 
         return sprite;
     }
@@ -826,6 +853,7 @@ public class SpritesFactory {
         DUCKRight0,
         DUCKRight1
         };
+
         // Setup the sprite with the given parameters
         setupAnimalSprite(
                 sprite,
@@ -887,12 +915,11 @@ public class SpritesFactory {
             boolean autoReverse) {
         // Setup the frames for the animations
         List<Image> roamingFrames = new ArrayList<>();
-//        List<Image> deathFrames = new ArrayList<>();
         ResourceSpriteRegister register = ResourceSpriteRegister.getInstance();
 
         // Add all the frames for the roaming animation.
-        for (int i = 0; i < roamingAnimationFrames.length; i++) {
-            roamingFrames.add(register.getResourceImage(roamingAnimationFrames[i]));
+        for (ResourceType frameType: roamingAnimationFrames) {
+            roamingFrames.add(register.getResourceImage(frameType));
         }
 
         // After all images are set up, now call these methods to set up the actual animation code.

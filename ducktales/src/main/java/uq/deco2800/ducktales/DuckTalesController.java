@@ -3,13 +3,16 @@ package uq.deco2800.ducktales;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.application.Platform;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import uq.deco2800.ducktales.util.exceptions.GameSetupException;
 import uq.deco2800.singularity.clients.ducktales.DucktalesClient;
-import uq.deco2800.singularity.common.representations.User;
 import uq.deco2800.ducktales.features.builder.WorldBuilderController;
 import uq.deco2800.ducktales.features.builder.WorldBuilderRenderer;
 import javafx.event.ActionEvent;
@@ -30,7 +33,8 @@ public class DuckTalesController implements Initializable {
 	@FXML
 	private AnchorPane mainMenuPane;
 
-
+	/** implementing a logger, to catch ioe exception */
+	private static Logger logger = LoggerFactory.getLogger(DuckTalesController.class);
 
 	private WorldBuilderController worldBuilderController;
 
@@ -81,7 +85,7 @@ public class DuckTalesController implements Initializable {
 		primaryStage= new Stage();
 		primaryStage.initStyle(StageStyle.UNDECORATED);
         //primaryStage.initStyle(Stage.UNDECORATED);
-		primaryStage.setTitle("FXML Welcome");  
+		primaryStage.setTitle("FXML Welcome");
 		primaryStage.setScene(scene);
 		primaryStage.showAndWait();
 		// Change between the mainMenuPane and the contentPane
@@ -99,14 +103,15 @@ public class DuckTalesController implements Initializable {
 	}
 
 	/**
-	 * This is a helper method that helps set
+	 * This is a helper method that helps setup the main UI of the game
 	 */
 	private void setupMainUI(FXMLLoader loader) throws Exception {
 		// Load the FXML
 		try {
 			gamePane = loader.load();
 		} catch(Exception e) {
-			System.err.println("Exception in trying to load main UI");
+			logger.info("exception when trying to load main UI", e);
+			throw new GameSetupException("failed to load main UI");
 		}
 
 		// Set the layout for the gamePane
@@ -133,9 +138,6 @@ public class DuckTalesController implements Initializable {
 			worldBuilderPane.setMinSize(contentPane.getWidth(),
 					contentPane.getHeight());
 
-			System.err.println("worldbuilderPane's width and height: "
-					+ worldBuilderPane.getWidth() + ", " + worldBuilderPane.getHeight());
-
 			// Set the world for the builder
 			worldBuilderController.setWorld(new World("World Builder", 20, 20));
 			// Initiate the rendering engine for WorldBuilder
@@ -154,7 +156,7 @@ public class DuckTalesController implements Initializable {
 	 * Close the application
 	 */
 	public void quitApplication() {
-		System.exit(0);
+		Platform.exit();
 	}
 
 	/**

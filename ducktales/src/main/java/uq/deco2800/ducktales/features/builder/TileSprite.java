@@ -27,7 +27,6 @@ public class TileSprite extends ImageView {
     private ResourceType tileType;
     private WorldBuilderModel manager; // The manager that this sprite reports to
     private Image sprite; // The image of the tile
-    private WorldBuilderController controller;
 
     /**
      * Creates a tile sprite with the given type
@@ -51,9 +50,9 @@ public class TileSprite extends ImageView {
      * 
      */
     private void setupMouseEventHandlers() {
-        this.setOnMouseClicked(event -> {
-            WorldBuilderController.setCurrentResource(tileType, manager.TILE);
-        });
+        this.setOnMouseClicked(event ->
+            WorldBuilderController.setCurrentResource(tileType, manager.TILE)
+        );
     }
 
 }

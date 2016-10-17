@@ -1,7 +1,7 @@
 package uq.deco2800.ducktales.jobframework;
 
 import org.junit.Test;
-import uq.deco2800.ducktales.features.entities.agententities.Peon;
+import uq.deco2800.ducktales.features.entities.peons.Peon;
 import uq.deco2800.ducktales.features.jobframework.JobType;
 import uq.deco2800.ducktales.features.jobframework.Miner;
 import static org.junit.Assert.*;
@@ -14,7 +14,7 @@ public class MinerTest {
 
 	@Test
 	public void qualificationTest() {
-		Peon peon = new Peon(10, 10, "John Doe");
+		Peon peon = new Peon(10, 10);
 		peon.setStrength(miner.getRequiredStrength() + 1);
 		peon.setIntelligence(miner.getRequiredIntelligence() + 1);
 
@@ -25,7 +25,7 @@ public class MinerTest {
 	}
 
 	public void applicationTest() {
-		Peon peon = new Peon(10, 10, "John Doe");
+		Peon peon = new Peon(10, 10);
 		peon.setStrength(miner.getRequiredStrength() + 1);
 		peon.setIntelligence(miner.getRequiredIntelligence() + 1);
 
@@ -34,7 +34,7 @@ public class MinerTest {
 	}
 
 	public void notQualifiedBothTest() {
-		Peon peon = new Peon(10, 10, "John Doe");
+		Peon peon = new Peon(10, 10);
 		peon.setStrength(miner.getRequiredStrength() - 1);
 		peon.setIntelligence(miner.getRequiredIntelligence() - 1);
 
@@ -42,7 +42,7 @@ public class MinerTest {
 	}
 
 	public void notQualifiedStrengthTest() {
-		Peon peon = new Peon(10, 10, "John Doe");
+		Peon peon = new Peon(10, 10);
 		peon.setStrength(miner.getRequiredStrength() - 1);
 		peon.setIntelligence(miner.getRequiredIntelligence() + 1);
 
@@ -50,7 +50,7 @@ public class MinerTest {
 	}
 
 	public void notQualifiedIntelligenceTest() {
-		Peon peon = new Peon(10, 10, "John Doe");
+		Peon peon = new Peon(10, 10);
 		peon.setStrength(miner.getRequiredStrength() + 1);
 		peon.setIntelligence(miner.getRequiredIntelligence() - 1);
 
@@ -59,7 +59,7 @@ public class MinerTest {
 
 	@Test
 	public void notQualifiedBothMentorTest() {
-		Peon peon = new Peon(10, 10, "John Doe");
+		Peon peon = new Peon(10, 10);
 		peon.setStrength(miner.getMentorStrength() - 1);
 		peon.setIntelligence(miner.getMentorIntelligence() - 1);
 		peon.applyForJob(miner);
@@ -68,14 +68,14 @@ public class MinerTest {
 	}
 
 	public void notQualifiedStrengthMentorTest() {
-		Peon peon = new Peon(10, 10, "John Doe");
+		Peon peon = new Peon(10, 10);
 		peon.setIntelligence(miner.getMentorIntelligence() + 1);
 
 		assertFalse(miner.canBeMentor(peon));
 	}
 
 	public void notQualifiedIntelligenceMentorTest() {
-		Peon peon = new Peon(10, 10, "John Doe");
+		Peon peon = new Peon(10, 10);
 		peon.setStrength(miner.getMentorStrength() + 1);
 		peon.setIntelligence(miner.getMentorIntelligence() - 1);
 
@@ -83,7 +83,7 @@ public class MinerTest {
 	}
 
 	public void qualifiedBothMentorTest() {
-		Peon peon = new Peon(10, 10, "John Doe");
+		Peon peon = new Peon(10, 10);
 		peon.setStrength(miner.getMentorStrength() + 1);
 		peon.setIntelligence(miner.getMentorIntelligence() + 1);
 

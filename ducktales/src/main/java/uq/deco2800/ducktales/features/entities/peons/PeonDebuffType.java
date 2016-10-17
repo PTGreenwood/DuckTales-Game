@@ -1,4 +1,4 @@
-package uq.deco2800.ducktales.features.entities.agententities;
+package uq.deco2800.ducktales.features.entities.peons;
 
 /**
  * This enum holds all the names of the debuffs
