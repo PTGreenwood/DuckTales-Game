@@ -6,10 +6,9 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import uq.deco2800.ducktales.GameLoop;
 import uq.deco2800.ducktales.GameManager;
+import uq.deco2800.ducktales.features.hud.menu.MenuManager;
 import uq.deco2800.ducktales.rendering.worlddisplay.WorldDisplayManager;
 import uq.deco2800.ducktales.util.events.handlers.GameEventHandler;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import uq.deco2800.ducktales.rendering.worlddisplay.WorldDisplayManager.Direction;
 
@@ -23,15 +22,11 @@ import uq.deco2800.ducktales.rendering.worlddisplay.WorldDisplayManager.Directio
 public class InGameKeyboardHandler extends GameEventHandler
 		implements EventHandler<KeyEvent> {
 
-	/** The logger for all exceptions and messages */
-	private static final Logger LOGGER = LoggerFactory.getLogger(
-			InGameKeyboardHandler.class);
-
 	/** The secondary managers */
 	private WorldDisplayManager displayManager;
 
 	// For testing, to check that the correct direction is selected
-	private Direction moveDirection;
+	protected Direction moveDirection;
 
 	/**
 	 * Create a handler for in-game keyboard events
@@ -53,7 +48,7 @@ public class InGameKeyboardHandler extends GameEventHandler
 		if (eventType == KeyEvent.KEY_PRESSED) {
 			handleKeyPressed(event.getCode(), event);
 		} else if (eventType == KeyEvent.KEY_RELEASED) {
-			handleKeyReleased(event.getCode());
+			handleKeyReleased(event.getCode(), event);
 		}
 	}
 
@@ -69,28 +64,27 @@ public class InGameKeyboardHandler extends GameEventHandler
 	}
 
 	private void handleKeyPressed(KeyCode code, KeyEvent event) {
-		boolean visible;
-		switch (code) {
+		System.out.println(code);
+		boolean visible;		
 		
-		case D:
-			moveDirection = Direction.LEFT;
-			displayManager.moveWorld(Direction.LEFT);
-			break;
-			
-		case W:
-			moveDirection = Direction.DOWN;
-			displayManager.moveWorld(Direction.DOWN);
-			break;
-			
-		case A:
+		if (KeyboardManager.getMoveLeftKeyCombination().match(event)) { 
 			moveDirection = Direction.RIGHT;
 			displayManager.moveWorld(Direction.RIGHT);
-			break;
-			
-		case S:
+		} else if (KeyboardManager.getMoveRightKeyCombination().match(event)) { 
+			moveDirection = Direction.LEFT;
+			displayManager.moveWorld(Direction.LEFT);
+		} else if (KeyboardManager.getMoveUpKeyCombination().match(event)) { 
+			moveDirection = Direction.DOWN;
+			displayManager.moveWorld(Direction.DOWN);
+		} else if (KeyboardManager.getMoveDownKeyCombination().match(event)) { 
 			moveDirection = Direction.UP;
 			displayManager.moveWorld(Direction.UP);
-			break;
+		} else if (KeyboardManager.getFirstBuildKeyCombination().match(event)) {
+			
+		} 
+		switch (code) {
+			
+		
 			
 		case M:
 			//mission completed action
@@ -111,6 +105,17 @@ public class InGameKeyboardHandler extends GameEventHandler
 			else 
 				gameManager.getMissionManager().showMission();
 			break;
+			
+		/*case L:
+			//mission completed action
+			gameManager.getMissionManager().missionCompletedAction(0);
+			visible = gameManager.getLevelManager().isVisible();
+			hideMenus();
+			if (visible)
+				gameManager.getLevelManager().hideLevel();
+			else 
+				gameManager.getLevelManager().showLevel();
+			break;*/
 			
 		case H:
 			//mission completed action
@@ -135,61 +140,60 @@ public class InGameKeyboardHandler extends GameEventHandler
 			break;
 		
 			//Changing Flow of Time
-		case DIGIT1:
-			if(event.isShiftDown()) {
+		case DIGIT1:			
+			if (event.isShiftDown()) {
 				GameLoop.setSpeedModifier(1);
-				LOGGER.debug("Speed 1x"); //set time scale to default
+				System.out.println("Speed 1x"); // set time scale to default
+			} else {
+				/*Event.fireEvent(MenuManager.getBuildingSpriteByIndex(0),
+						new MouseEvent(MouseEvent.MOUSE_CLICKED, 0, 0, 0, 0,
+								MouseButton.PRIMARY, 1, true, true, true, true,
+								true, true, true, true, true, true, null));*/
+				MenuManager.getBuildingSpriteByIndex(0).selectSprite();
+
 			}	
 			break;
 
 		case DIGIT2:
 			if(event.isShiftDown()) {
 				GameLoop.setSpeedModifier(1.5);
-				LOGGER.debug("Speed 1.5x");  //set time scale to 1.5151x
+				System.out.println("Speed 1.5x");  //set time scale to 1.5151x
 			}
 			break;
 			
 		case DIGIT3:
 			if(event.isShiftDown()) {
 				GameLoop.setSpeedModifier(2.5);
-				LOGGER.debug("Speed 2.5x");  //set time scale to 2.5x
+				System.out.println("Speed 2.5x");  //set time scale to 2.5x 
 			}
 			break;
 			
 		case P:
 			GameLoop.pauseWorld();
-			LOGGER.debug("Pause/UnPause");
+			System.out.println("Pause/UnPause");
 			break;
 				
 		default:
+			//System.out.println("Key " + code);
 			break;
 		}
 
 	}
 
-	private void handleKeyReleased(KeyCode code) {
-		switch (code) {
-		case D:
-			moveDirection = Direction.LEFT;
-			displayManager.stopMoveWorld(Direction.LEFT);
-			break;
-		case W:
-			moveDirection = Direction.DOWN;
-			displayManager.stopMoveWorld(Direction.DOWN);
-			break;
-		case A:
+	private void handleKeyReleased(KeyCode code, KeyEvent event) {		
+		if (KeyboardManager.getMoveLeftKeyCombination().match(event)) {
 			moveDirection = Direction.RIGHT;
 			displayManager.stopMoveWorld(Direction.RIGHT);
-			break;
-		case S:
+		} else if (KeyboardManager.getMoveRightKeyCombination().match(event)) {
+			moveDirection = Direction.LEFT;
+			displayManager.stopMoveWorld(Direction.LEFT);
+		} else if (KeyboardManager.getMoveUpKeyCombination().match(event)) {
+			moveDirection = Direction.DOWN;
+			displayManager.stopMoveWorld(Direction.DOWN);
+		} else if (KeyboardManager.getMoveDownKeyCombination().match(event)) {
 			moveDirection = Direction.UP;
 			displayManager.stopMoveWorld(Direction.UP);
-			break;
-		
-		default:
-			break;
-	}
-
+		}
 	}
 
 	/**
