@@ -37,7 +37,7 @@ public class PeonManager extends SecondaryManager{
      *          The y-coordinate of the location to add the peon to
      */
     public void addPeon(int x, int y) throws IOException{
-    	Peon peon = new Peon(x, y);
+    	
         String name;
 
         // The register to get the randomized names from
@@ -48,8 +48,10 @@ public class PeonManager extends SecondaryManager{
             name = register.getRandomName();
         } while (world.checkPeonNameDuplication(name));
 
+        Peon peon = new Peon(x, y, name);
         // At this point, the name should be fine. Add the peon to World
         world.addPeon(name, peon);
+        
 
         // Create the sprite of the given peon
     	PeonSprite peonSprite = SpritesFactory.createPeonSprite(name);

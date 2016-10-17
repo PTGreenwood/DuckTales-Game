@@ -38,6 +38,7 @@ public class Peon extends AgentEntity {
 	private int resource = 0;
 	private int strength;
 	private int intelligence;
+	private String peonName;
 
 	private List<PeonDebuffType> debuffs = new ArrayList<PeonDebuffType>(); // access
 																			// debuff
@@ -71,12 +72,21 @@ public class Peon extends AgentEntity {
 	 * @param x
 	 * @param y
 	 */
-	public Peon(int x, int y) {
+	public Peon(int x, int y, String name) {
 		super(x, y, 1, 1, TYPE);
+		this.peonName = name;
 		this.strength = RANDOM.nextInt((DEFAULT_MAX - DEFAULT_MIN) + 1) + DEFAULT_MIN;
 		this.intelligence = RANDOM.nextInt((DEFAULT_MAX - DEFAULT_MIN) + 1) + DEFAULT_MIN;
 		this.goalPoints = new ArrayList<>();
 		this.buildingsMade = 0;
+	}
+
+	public String getPeonName() {
+		return peonName;
+	}
+
+	public void setPeonName(String peonName) {
+		this.peonName = peonName;
 	}
 
 	/**

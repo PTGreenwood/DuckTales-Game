@@ -72,6 +72,9 @@ public class PeonInformationDisplayManager
      */
     public void displayPeon(Peon peon) {
         this.peon = peon;
+        
+        // Set the name of the peon
+        peonName.setText(peon.getPeonName());
 
         // Show the display
         rootDisplay.setVisible(true);
