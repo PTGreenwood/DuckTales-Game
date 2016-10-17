@@ -14,7 +14,7 @@ import javafx.scene.input.KeyEvent;
  */
 // @SuppressWarnings("unused")
 public class KeyboardManager {
-	/*
+	/* 
 	 * private static KeyCombination firstBuildKeyCombination = new
 	 * KeyCodeCombination( KeyCode.DIGIT1, KeyCombination.SHIFT_DOWN,
 	 * KeyCombination.CONTROL_DOWN);
