@@ -1,7 +1,5 @@
 package uq.deco2800.ducktales.features.peonupgrades;
 
-import uq.deco2800.ducktales.features.entities.agententities.Peon;
-
 //import resources.toolsUpgrade.lumberjack;
 //personal notes: peon.tool.axe
 //change to doubles

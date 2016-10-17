@@ -40,7 +40,7 @@ public class House extends Building {
 	 * Update the WorldEntity properties with those of a house.
 	 */
 	protected void specifications() {
-		specifications(2, 4, 2, production.NULL, 0, health, null);
+		specifications(2, 4, 2, health);
 	}
 	
 	/**
@@ -53,38 +53,5 @@ public class House extends Building {
 	 */
 	protected void changeHealthBuilding(int newValue){
 		health = newValue;
-	}
-
-	/**
-	 * Upgrade produce for building, required for all buildings, by Building 
-	 * class. Possible use to extend/upgrade houses.
-	 * 
-	 * @throws UnsupportedOperationException, as this functionality is not 
-	 * supported for a house.
-	 */
-	protected void upgradeProduceBuilding(int newValue) {
-		throw new UnsupportedOperationException();
-	}
-	
-	/**
-	 * Upgrade stored resources for building, required for all buildings, by 
-	 * Building class. Possible use to extend/upgrade a house.
-	 * 
-	 * @throws UnsupportedOperationException, as this functionality is not 
-	 * required for a house.
-	 */
-	protected void upgradeBarnBarn(production upgradeType, int newStore) {
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * Add stored resources to the building, required for all buildings, by 
-	 * Building class. Possible use to extend/upgrade a house.
-	 * 
-	 * @throws UnsupportedOperationException, as this functionality is not 
-	 * required for a house.
-	 */
-	protected void addGoodsBarn(production storeType, int newStore) {
-		throw new UnsupportedOperationException();
 	}
 }

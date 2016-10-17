@@ -172,6 +172,7 @@ public class ResourceSpriteRegister {
 		addResource(SCHOOL, "/buildings/school.png");
 		addResource(GYMNASIUM, "/buildings/gymnasium.png");
 		addResource(BUTCHER, "/buildings/butcher.png");
+		addResource(BARN, "/buildings/storagebarn.png");
 
 		addResource(BAKERY, "/buildings/bakery.png");
 		addResource(COMMUNITY_BUILDING, "/buildings/community_building.png");
@@ -290,9 +291,15 @@ public class ResourceSpriteRegister {
 	}
 
 	private void addAgentEntitiesResources() {
-		// Agent entities
-		addResource(PEON, "/peon.png");
+		/*
+		 * PEONS
+		 */
+		addResource(PEON, "/peon/basic_peon.png");
 
+
+		/*
+		 * ANIMALS
+		 */
 		addResource(DUCK, "/animal/duck/DUCKDown0.png");
 		addResource(DUCK_1_1, "/animal/duck_1_1.png");
 
@@ -322,6 +329,8 @@ public class ResourceSpriteRegister {
 		// addResource(COWDownRight, "/COWDownRight.png");
 		// addResource(COWDownLeft, "/COWDownLeft.png");
 
+		// animal death sprite resource
+		addResource(CLOUD, "/animal/cloud.gif");
 	}	
 	
 	/**

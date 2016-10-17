@@ -1,5 +1,9 @@
 package uq.deco2800.ducktales.features.entities.worldentities;
 
+import java.util.ArrayList;
+
+import org.apache.commons.lang3.tuple.Triple;
+
 import uq.deco2800.ducktales.resources.ResourceType;
 
 /**
@@ -9,7 +13,7 @@ import uq.deco2800.ducktales.resources.ResourceType;
  * @author Gabrielle Hodge, 43590526 
  *
  */
-public class Farm extends Building {
+public class Farm extends StorageProduceBuilding {
 	
 	// BuildingMenuSprite type
 	private static final ResourceType TYPE = ResourceType.FARM;
@@ -19,6 +23,10 @@ public class Farm extends Building {
 	
 	//Building produce - starting value
 	private int productionAmount = 5;
+	
+	// Farm storage - starting
+	private ArrayList<Triple<production, Integer, Integer>> storage = new 
+		ArrayList<Triple<production, Integer, Integer>>();
 	
 	// Size of the building
 	public static final int X_LENGTH = 5;
@@ -39,6 +47,7 @@ public class Farm extends Building {
 		super(x, y, X_LENGTH, Y_LENGTH, TYPE);
 		health = 900;
 		productionAmount = 5;
+		storage.add(0, Triple.of(production.FOOD, 50, 0));
 	}
 	
 	/**
@@ -46,7 +55,7 @@ public class Farm extends Building {
 	 */
 	protected void specifications() {
 		specifications(8, 10, 9, production.FOOD, productionAmount, health, 
-				null);
+				storage);
 	}
 	
 	/**
@@ -79,8 +88,11 @@ public class Farm extends Building {
 	 * @throws UnsupportedOperationException, as this functionality is not 
 	 * required for a farm.
 	 */
-	protected void upgradeBarnBarn(production upgradeType, int newStore) {
-		throw new UnsupportedOperationException();
+	protected void upgradeStorageBuilding(ArrayList<Triple<production, Integer, 
+			Integer>> newStore) {
+		if (newStore.contains(production.FOOD)) {
+			storage = newStore;
+		}
 	}
 
 	/**
@@ -90,7 +102,22 @@ public class Farm extends Building {
 	 * @throws UnsupportedOperationException, as this functionality is not 
 	 * required for a farm.
 	 */
-	protected void addGoodsBarn(production storeType, int newStore) {
-		throw new UnsupportedOperationException();
+	protected void addGoodsBuilding(ArrayList<Triple<production, Integer, 
+			Integer>> newStore) {
+		storage = newStore;
+	}
+	
+	/**
+	 * Produce 'refined'/'processed' materials from raw materials. Requires 
+	 * the building to have some raw materials available to be processed, 
+	 * and for the building to have room to store the new materials.
+	 * 
+	 * Currently unimplemented for Farm
+	 */
+	protected void produceMaterialBuilding() {
+		if (storage.get(0).getRight()<storage.get(0).getMiddle()) {
+			this.addGoods(production.FOOD, 1);
+		}
+		System.out.println(storage);
 	}
 }

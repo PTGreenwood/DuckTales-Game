@@ -130,7 +130,8 @@ public class Sprite extends ImageView{
      *      1. Set the sprite's x- and y-locations (regarding world size)
      *      2. Change the size of the sprite based on the main scale factor
      *      3. Adjust the offset of the sprite to the bottom middle
-     *      4. set the location of the sprite based on the given tile
+     *      4. set the actual rendered location of the sprite based on
+     *         the given tile
      * @param sprite
      *          The sprite to set up
      * @param x
@@ -222,12 +223,12 @@ public class Sprite extends ImageView{
         // Update the coordinates of the sprite if it has moved on to a new location
         double xDifference = Math.abs(entity.getX() - sprite.getxLocation());
         double yDifference = Math.abs(entity.getY() - sprite.getyLocation());
-        if (xDifference == 0.0) {
-            if (yDifference == 1.0) {
+        if (xDifference < EPSILON) {
+            if (Math.abs(yDifference - 1.0) < EPSILON) {
                 sprite.setyLocation((int) entity.getY());
             }
-        } else if (xDifference == 1.0) {
-            if (yDifference == 0.0) {
+        } else if (Math.abs(xDifference - 1.0) < EPSILON) {
+            if (yDifference < EPSILON) {
                 sprite.setxLocation((int) entity.getX());
             }
         }

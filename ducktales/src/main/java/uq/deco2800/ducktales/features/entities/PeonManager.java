@@ -1,41 +1,98 @@
 package uq.deco2800.ducktales.features.entities;
 
-import java.util.ArrayList;
+import java.io.IOException;
+import java.util.HashMap;
 
-import uq.deco2800.ducktales.features.entities.agententities.Peon;
+import uq.deco2800.ducktales.features.entities.peons.Peon;
 import uq.deco2800.ducktales.rendering.sprites.PeonSprite;
+import uq.deco2800.ducktales.rendering.sprites.Sprite;
+import uq.deco2800.ducktales.rendering.sprites.SpritesFactory;
+import uq.deco2800.ducktales.resources.GeneralResourceRegister;
+import uq.deco2800.ducktales.util.SecondaryManager;
+import uq.deco2800.ducktales.util.exceptions.GameSetupException;
 
 /**
  * Manager for all the entities in the game.
  *
- * @author eduardlio, TheFractal
+ * @author eduardlio, TheFractal, khoiphan21
  */
-public class PeonManager extends EntityManager {
-    
-    private ArrayList<Peon> peonInstances;
-    private ArrayList<PeonSprite> peonSprites;
-    
-    private static final PeonManager INSTANCE = new PeonManager();
-    
-    private PeonManager() {
-    	peonInstances = new ArrayList<>();
-    }
-    
-    public static EntityManager getInstance(){
-        return INSTANCE;
+public class PeonManager extends SecondaryManager{
+
+    /** The list of peon sprites */
+    private HashMap<String, PeonSprite> peonSprites;
+
+    /**
+     * Initialize a peon manager with initial sprite list capacity of 50
+     */
+    public PeonManager() {
+        peonSprites = new HashMap<>(50);
     }
     
     /**
-     * x and y coordinates of the peon starting point.
-     * @param x 
-     * @param y 
+     * Add a peon to the game.
+     *
+     * @param x
+     *          The x-coordinate of the location to add the peon to
+     * @param y
+     *          The y-coordinate of the location to add the peon to
      */
-    public void addPeon(int x, int y){
-        // add peon sprite
-        // add peon
+    public void addPeon(int x, int y) throws IOException{
+    	
+        String name;
+
+        // The register to get the randomized names from
+        GeneralResourceRegister register = GeneralResourceRegister.getInstance();
+
+        // Check for name duplication
+        do {
+            name = register.getRandomName();
+        } while (world.checkPeonNameDuplication(name));
+
+        Peon peon = new Peon(x, y, name);
+        // At this point, the name should be fine. Add the peon to World
+        world.addPeon(name, peon);
+        
+
+        // Create the sprite of the given peon
+    	PeonSprite peonSprite = SpritesFactory.createPeonSprite(name);
+        // Setup the sprite
+        if (gameManager != null) {
+            Sprite.setupEntitySprite(peonSprite, x, y,
+                    gameManager.getWorldDisplayManager().getTilesManager());
+        } else {
+            throw new GameSetupException("PeonManager has not received a handle" +
+                    " on GameManager");
+        }
+
+
+        // Now add the sprite to the list of
+        peonSprites.put(name, peonSprite);
+
+        // Now render that peon sprite into the game
+        gameManager.getWorldDisplayManager().getWorldDisplay()
+                .getChildren().add(peonSprite);
     }
 
-    public void removePeon(String firstName, String lastName){
-        
+    /**
+     * Move all the peon sprites by the given x- and y-amount on the screen
+     *
+     * @param xAmount
+     *          The amount to move in x-direction
+     * @param yAmount
+     *          The amount to move in y-direction
+     */
+    public void moveAllPeonSprites(double xAmount, double yAmount) {
+        PeonSprite sprite;
+        for (String key : peonSprites.keySet()) {
+            sprite = peonSprites.get(key);
+
+            if (sprite != null) {
+                sprite.setLayoutX(sprite.getLayoutX() + xAmount);
+                sprite.setLayoutY(sprite.getLayoutY() + yAmount);
+            } else {
+                throw new RuntimeException("A sprite is not yet " +
+                        "instantiated");
+            }
+        }
     }
 }

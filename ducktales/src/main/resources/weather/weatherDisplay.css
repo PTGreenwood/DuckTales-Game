@@ -1,0 +1,11 @@
+#weatherDisplay {
+	
+}
+
+.night {
+	-fx-background-color: linear-gradient(to bottom, #000, transparent);
+}
+
+.day {
+	-fx-background-color: linear-gradient(to bottom, #8be2ff 0%, transparent 20%);
+}

@@ -28,6 +28,22 @@ public class EntitySprite extends Sprite {
     private int xLocation;
     private int yLocation;
 
+    /**
+     * Create a simple entity sprite with a timeline
+     */
+    public EntitySprite() {
+        super(); // Call this to activate the Timeline
+    }
+
+    /**
+     * Create a sprite of an entity, storing its type and index. The index
+     * will be the same as the index of the model stored, which means this
+     * will be used to retrieve the correct sprite or model later
+     *
+     * @param index
+     *          The index of this sprite in the stored list
+     * @param entityType
+     */
     public EntitySprite(int index, ResourceType entityType) {
         super(); // Call this to activate the Timeline
 
@@ -55,5 +71,25 @@ public class EntitySprite extends Sprite {
 
     public void setyLocation(int yLocation) {
         this.yLocation = yLocation;
+    }
+
+    /**
+     * Get the index of this sprite. For some sprites, the index is the unique
+     * id used to also retrieve the model of the object from World
+     *
+     * @return the index values of the sprite in the stored array
+     */
+    public int getIndex() {
+        return index;
+    }
+
+    /**
+     * Get the type of the entity that this sprite represents. The type of
+     * this sprite must be the same as that of the entity
+     *
+     * @return the type of the entity that this sprite represents
+     */
+    public ResourceType getEntityType() {
+        return entityType;
     }
 }

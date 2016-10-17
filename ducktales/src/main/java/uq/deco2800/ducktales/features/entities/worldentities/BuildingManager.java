@@ -1,11 +1,11 @@
 package uq.deco2800.ducktales.features.entities.worldentities;
 
-import uq.deco2800.ducktales.features.entities.SecondaryEntityManager;
 import uq.deco2800.ducktales.rendering.sprites.BuildingSprite;
 import uq.deco2800.ducktales.rendering.sprites.Sprite;
 import uq.deco2800.ducktales.rendering.sprites.SpritesFactory;
 import uq.deco2800.ducktales.resources.ResourceInfoRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
+import uq.deco2800.ducktales.util.SecondaryManager;
 import uq.deco2800.ducktales.util.exceptions.GameSetupException;
 
 import java.util.ArrayList;
@@ -19,7 +19,7 @@ import java.util.List;
  * Created on 12/10/2016.
  * @author khoiphan21
  */
-public class BuildingManager extends SecondaryEntityManager {
+public class BuildingManager extends SecondaryManager {
     /** The list of building sprites */
     private List<BuildingSprite> buildingSprites;
 
@@ -33,7 +33,21 @@ public class BuildingManager extends SecondaryEntityManager {
         buildingSprites = new ArrayList<>();
     }
 
-    public void addBuilding(ResourceType type, int x, int y) {
+    /**
+     * Add a building of a given type to the given location.
+     * This code will also check whether that location is valid before addition
+     * If the location is not valid (for example, not all the 3 tiles around
+     * a location are available for a 2x2 building), it will return false.
+     * Otherwise, return true
+     *
+     * @param type
+     *          The type of building to be added
+     * @param x
+     *          The x-coordinate of the location to add the building to
+     * @param y
+     *          The y-coordinate of the location to add the building to
+     */
+    public boolean addBuilding(ResourceType type, int x, int y) {
         Building building = ResourceInfoRegister.createBuilding(type, x, y);
 
         // Check if the building has been registered
@@ -71,8 +85,10 @@ public class BuildingManager extends SecondaryEntityManager {
                 buildingSprites.add(sprite);
                 gameManager.getWorldDisplayManager().getWorldDisplay()
                         .getChildren().add(sprite);
+
+                return true;
             } else {
-                throw new RuntimeException("Location to add building is not valid");
+                return false;
             }
         } else {
             throw new GameSetupException("Building of type " + type +

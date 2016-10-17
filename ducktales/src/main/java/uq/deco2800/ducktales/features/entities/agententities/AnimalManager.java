@@ -1,12 +1,12 @@
 package uq.deco2800.ducktales.features.entities.agententities;
 
-import uq.deco2800.ducktales.features.entities.SecondaryEntityManager;
 import uq.deco2800.ducktales.features.landscape.tiles.TileSprite;
 import uq.deco2800.ducktales.rendering.sprites.AnimalSprite;
 import uq.deco2800.ducktales.rendering.sprites.Sprite;
 import uq.deco2800.ducktales.rendering.sprites.SpritesFactory;
 import uq.deco2800.ducktales.resources.ResourceInfoRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
+import uq.deco2800.ducktales.util.SecondaryManager;
 import uq.deco2800.ducktales.util.exceptions.AnimalNotRegisteredException;
 import uq.deco2800.ducktales.util.exceptions.GameSetupException;
 
@@ -20,11 +20,11 @@ import java.util.List;
  * Created on 12/10/2016.
  * @author khoiphan21
  */
-public class AnimalManager extends SecondaryEntityManager{
+public class AnimalManager extends SecondaryManager{
 
     /** The list of animal sprites */
     private List<AnimalSprite> animalSprites;
-
+    
     /**
      * Construct an animal manager with an empty list of animal sprites
      */
@@ -44,7 +44,7 @@ public class AnimalManager extends SecondaryEntityManager{
      * @param y
      *          The y-coordinate of the animal in regards to the world size
      */
-    public void addAnimal(ResourceType type, int x, int y, ArrayList<ResourceType> registeredAnimals) {
+    public void addAnimal(ResourceType type, int x, int y) {
         // Construct a new animal from the given type
         Animal animal = ResourceInfoRegister.createAnimal(type, x, y);
 
@@ -78,7 +78,8 @@ public class AnimalManager extends SecondaryEntityManager{
             animalSprites.add(sprite);
 
             // Add the sprite to the world display
-            gameManager.getWorldDisplayManager().getWorldDisplay().getChildren().add(sprite);
+            gameManager.getWorldDisplayManager().getWorldDisplay()
+                    .getChildren().add(sprite);
 
         } else {
             throw new AnimalNotRegisteredException("The animal requested" +
@@ -115,7 +116,7 @@ public class AnimalManager extends SecondaryEntityManager{
      * @param xAmount
      *          The amount to move in x-direction
      * @param yAmount
-     *          The amount to move n y-direction
+     *          The amount to move in y-direction
      */
     public void moveAllAnimalsSprites(double xAmount, double yAmount) {
         for (AnimalSprite sprite : animalSprites) {

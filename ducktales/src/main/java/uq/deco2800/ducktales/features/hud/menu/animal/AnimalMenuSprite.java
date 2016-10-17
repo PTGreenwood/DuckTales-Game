@@ -32,6 +32,7 @@ public class AnimalMenuSprite extends HUDSprite {
         this.setOnMouseClicked(event -> {
             // Check if it's a left mouse click
             if (event.getButton() == MouseButton.PRIMARY) {
+            	System.out.println(this.hashCode());
                 fireEvent(new MenuSelectedEvent(
                         MenuManager.MenuType.ANIMAL, this.getSpriteType(),
                         event.getSceneX(), event.getSceneY()

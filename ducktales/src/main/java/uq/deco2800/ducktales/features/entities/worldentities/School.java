@@ -40,7 +40,7 @@ public class School extends Building {
 	 * Update the WorldEntity properties with those of a school.
 	 */
 	protected void specifications() {
-		specifications(6, 8, 8, production.NULL, 0, health, null);
+		specifications(6, 8, 8, health);
 	}
 	
 	/**
@@ -53,38 +53,5 @@ public class School extends Building {
 	 */
 	protected void changeHealthBuilding(int newValue){
 		health = newValue;
-	}
-	
-	/**
-	 * Upgrade produce for building, required for all buildings, by Building 
-	 * class. Possible use to extand/upgrade schools.
-	 * 
-	 * @throws UnsupportedOperationException, as this functionality is not 
-	 * required for a school.
-	 */
-	protected void upgradeProduceBuilding(int newValue) {
-		throw new UnsupportedOperationException();
-	}
-	
-	/**
-	 * Upgrade stored resources for building, required for all buildings, by 
-	 * Building class. Possible use to extend/upgrade a school.
-	 * 
-	 * @throws UnsupportedOperationException, as this functionality is not 
-	 * required for a school.
-	 */
-	protected void upgradeBarnBarn(production upgradeType, int newStore) {
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * Add stored resources to the building, required for all buildings, by 
-	 * Building class. Possible use to extend/upgrade a school.
-	 * 
-	 * @throws UnsupportedOperationException, as this functionality is not 
-	 * required for a school.
-	 */
-	protected void addGoodsBarn(production storeType, int newStore) {
-		throw new UnsupportedOperationException();
 	}
 }
