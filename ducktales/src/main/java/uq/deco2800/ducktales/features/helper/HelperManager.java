@@ -56,6 +56,10 @@ public class HelperManager {
 	}
 	
 	
+	
+	
+	
+	
 	public void showHelper() {
     	this.mainWindow.setVisible(true);
 	}

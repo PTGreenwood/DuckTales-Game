@@ -1,6 +1,7 @@
 package uq.deco2800.ducktales.features.achievements;
 
 
+import uq.deco2800.ducktales.features.inventory.InventoryManager;
 import uq.deco2800.ducktales.features.level.LevelHandler;
 import uq.deco2800.ducktales.features.missions.MissionHandler;
 
@@ -17,7 +18,10 @@ public class AchievementHandler {
 	private int intAchieve;
 	
 	LevelHandler levelHandler = LevelHandler.getInstance();
-	
+	private InventoryManager inventoryManager;
+	public int achievementToggleWood = 0;
+	public int achievementToggleOres = 0;
+	public int achievementToggleFood = 0;
 	/**
 	 * Constructor of {@link Achievement}.
 	 * 
@@ -56,7 +60,7 @@ public class AchievementHandler {
 	
 	//Sets value for varying difficulties of achievements, 
 	//for each specific difficulty adds specified value to the achievement score
-	public void achieveVeasy() {
+	public void achieveVeryEasy() {
 		this.intAchieve = this.intAchieve + 10;
 	}
 	
@@ -72,7 +76,7 @@ public class AchievementHandler {
 	    this.intAchieve = this.intAchieve + 75;
     }
     
-    public void achieveVhard() {
+    public void achieveVeryHard() {
 	    this.intAchieve = this.intAchieve + 100;
     }
     
@@ -86,7 +90,7 @@ public class AchievementHandler {
    public void achievementHolder() {
 	   if(MissionHandler.numberOfCompletedMissions == 1)
 	    {
-	    this.achieveVeasy();
+	    this.achieveVeryEasy();
 	    }
 	    
 	    if(MissionHandler.numberOfCompletedMissions == 3)
@@ -103,7 +107,7 @@ public class AchievementHandler {
 	    }
 	    if(MissionHandler.numberOfCompletedMissions == 25)
 	    {
-	    this.achieveVhard();
+	    this.achieveVeryHard();
 	    }
 	    if(MissionHandler.numberOfCompletedMissions == 50)
 	    {
@@ -111,7 +115,7 @@ public class AchievementHandler {
 	    }
 	    if(levelHandler.getLevel() == 1)
 	    {
-	    	this.achieveVeasy();
+	    	this.achieveVeryEasy();
 	    }
 	    if(levelHandler.getLevel() == 5)
 	    {
@@ -127,13 +131,86 @@ public class AchievementHandler {
 	    }
 	    if(levelHandler.getLevel() == 25)
 	    {
-	    	this.achieveVhard();
+	    	this.achieveVeryHard();
 	    }
 	    if(levelHandler.getLevel() == 1)
 	    {
 	        //resource reward
 	    }
 
+	   
+	   
+	    if(inventoryManager.getWoodAmount() >= 10 && achievementToggleWood == 0)
+	    {
+	    	this.achieveVeryEasy();
+	    	achievementToggleWood ++;
+	    }
+	    else if(inventoryManager.getWoodAmount() >= 150 && achievementToggleWood == 1){
+	    	this.achieveEasy();
+	    	achievementToggleWood ++;
+	    }
+	    else if(inventoryManager.getWoodAmount() >= 300 && achievementToggleWood == 2){
+	    	this.achieveMedium();
+	    	achievementToggleWood ++;
+	    }
+	    else if(inventoryManager.getWoodAmount() >= 750 && achievementToggleWood == 3){
+	    	this.achieveHard();
+	    	achievementToggleWood ++;
+	    }
+	    else if(inventoryManager.getWoodAmount() >= 2500 && achievementToggleWood == 4){
+	    	this.achieveVeryHard();
+	    	achievementToggleWood ++;
+	    }
+	   
+	    
+	    if(inventoryManager.getOresAmount() >= 10 && achievementToggleWood == 0)
+	    {
+	    	this.achieveVeryEasy();
+	    	achievementToggleOres ++;
+	    }
+	    else if(inventoryManager.getOresAmount() >= 150 && achievementToggleWood == 1){
+	    	this.achieveEasy();
+	    	achievementToggleOres ++;
+	    }
+	    else if(inventoryManager.getOresAmount() >= 300 && achievementToggleWood == 2){
+	    	this.achieveMedium();
+	    	achievementToggleOres ++;
+	    }
+	    else if(inventoryManager.getOresAmount() >= 750 && achievementToggleWood == 3){
+	    	this.achieveHard();
+	    	achievementToggleOres ++;
+	    }
+	    else if(inventoryManager.getOresAmount() >= 2500 && achievementToggleWood == 4){
+	    	this.achieveVeryHard();
+	    	achievementToggleOres ++;
+	    }
+	    
+	    
+	    if(inventoryManager.getFoodAmount() >= 10 && achievementToggleWood == 0)
+	    {
+	    	this.achieveVeryEasy();
+	    	achievementToggleFood ++;
+	    }
+	    else if(inventoryManager.getFoodAmount() >= 150 && achievementToggleWood == 1){
+	    	this.achieveEasy();
+	    	achievementToggleFood ++;
+	    }
+	    else if(inventoryManager.getFoodAmount() >= 300 && achievementToggleWood == 2){
+	    	this.achieveMedium();
+	    	achievementToggleFood ++;
+	    }
+	    else if(inventoryManager.getFoodAmount() >= 750 && achievementToggleWood == 3){
+	    	this.achieveHard();
+	    	achievementToggleFood ++;
+	    }
+	    else if(inventoryManager.getFoodAmount() >= 2500 && achievementToggleWood == 4){
+	    	this.achieveVeryHard();
+	    	achievementToggleFood ++;
+	    }
+	    
+	    
+	    
+	  
    }
    
 }
