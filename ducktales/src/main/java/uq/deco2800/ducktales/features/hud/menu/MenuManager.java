@@ -16,6 +16,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.text.Text;
+import uq.deco2800.ducktales.features.hud.HUDSprite;
 import uq.deco2800.ducktales.features.hud.menu.animal.AnimalMenuSprite;
 import uq.deco2800.ducktales.features.hud.menu.building.BuildingMenuSprite;
 import uq.deco2800.ducktales.rendering.info.WorldEntityInfo;
@@ -84,8 +85,8 @@ public class MenuManager implements Initializable {
 	private final int gridColumns = 2;
 
 	/** The lists of menu sprites */
-	private ArrayList<BuildingMenuSprite> buildingMenuSprites;
-	private ArrayList<AnimalMenuSprite> animalMenuSprites;
+	private static ArrayList<BuildingMenuSprite> buildingMenuSprites;
+	private static ArrayList<AnimalMenuSprite> animalMenuSprites;
 
 	/** Helpers for rendering information */
 	private WorldEntityInfo worldEntityInfo;
@@ -161,6 +162,14 @@ public class MenuManager implements Initializable {
 	 */
 	private int getCurrentGridIndex() {
 		return this.currentGridIndex;
+	}
+	
+	public static BuildingMenuSprite getBuildingSpriteByIndex(int index) {		
+		return MenuManager.buildingMenuSprites.get(index);
+	}
+	
+	public static AnimalMenuSprite getAnimalSpriteByIndex(int index) {		
+		return MenuManager.animalMenuSprites.get(index);
 	}
 
 	/**
