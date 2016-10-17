@@ -7,7 +7,6 @@ import java.util.Random;
 import javafx.event.Event;
 import uq.deco2800.ducktales.GameManager;
 import uq.deco2800.ducktales.features.entities.MainEntityManager;
-import uq.deco2800.ducktales.features.entities.peons.Peon;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.AStar;
 import uq.deco2800.ducktales.util.Point;
@@ -169,20 +168,6 @@ public class Animal extends AgentEntity {
             Event.fireEvent(animalDeadEvent.getTarget(), new AnimalDeadEvent(type, this.getX() +1, this.getY()+1));
             // entityManager.removeEntity(this);
             // MainEntityManager.removeEntity(this);
-    }
-
-    /**
-     * Tells the animal to attack a Peon.
-     *
-     * @param opponent The peon to be attacked.
-     */
-    public void attack(Peon opponent) {
-        if (this.getOutOfZone() == true) {
-            opponent.setHealth(opponent.getHealth() - this.getStrength());
-        }
-//        if (opponent.getHealth() <= 0) {
-//            mainEntityManager.removeEntity(opponent);
-//        }
     }
 
     /**
