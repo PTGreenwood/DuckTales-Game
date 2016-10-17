@@ -4,7 +4,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import uq.deco2800.ducktales.features.missions.MissionHandler;
-import uq.deco2800.ducktales.features.missions.MissionManager;
 
 /**
  * Contains all methods of mission achievement
@@ -23,9 +22,9 @@ public class AchievementMission {
 	private Image bronze = new Image("/achievements/bronzeMedal.png");
 	private Image silver = new Image("/achievements/silverMedal.png");
 	private Image gold = new Image("/achievements/goldMedal.png");
-	private Label missionAchievementLabel = new Label();
+	private Label missionAchievementLabel;
 	
-	private static AchievementMission INSTANCE = new AchievementMission();
+	private static final AchievementMission INSTANCE = new AchievementMission();
 	
 	/**
 	 * Constructor of {@link Achievement}
@@ -40,8 +39,8 @@ public class AchievementMission {
 	 * Main constructor of {@link Achievement} class
 	 * 
 	 */
-	public AchievementMission() {
-		
+	private AchievementMission() {
+		missionAchievementLabel = new Label();
 	}
 	
 	/**
@@ -50,26 +49,26 @@ public class AchievementMission {
 	 * @return Achievement Level Medal Image;
 	 */
 	public ImageView getAchievementMissionImage() {
-		ImageView AchievementMissionImage = new ImageView();
+		ImageView achievementMissionImage = new ImageView();
 		
 		if(missionHandler.getNumberOfCompletedMissions() < 2){
 			
-			AchievementMissionImage.setImage(bronze);
+			achievementMissionImage.setImage(bronze);
 			setAchievementMissionText();
 			
 		} else if (missionHandler.getNumberOfCompletedMissions() == 2){
 			
-			AchievementMissionImage.setImage(silver);
+			achievementMissionImage.setImage(silver);
 			setAchievementMissionText();
 			
 		} else if (missionHandler.getNumberOfCompletedMissions() > 2){
 			
-			AchievementMissionImage.setImage(gold);
+			achievementMissionImage.setImage(gold);
 			setAchievementMissionText();
 			
 		}
 		
-		return AchievementMissionImage;
+		return achievementMissionImage;
 	}
 	
 	/**

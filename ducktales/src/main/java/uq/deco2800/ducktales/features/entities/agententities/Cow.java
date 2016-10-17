@@ -3,6 +3,7 @@ package uq.deco2800.ducktales.features.entities.agententities;
 import java.util.Random;
 
 import uq.deco2800.ducktales.features.entities.MainEntityManager;
+import uq.deco2800.ducktales.features.entities.peons.Peon;
 import uq.deco2800.ducktales.resources.ResourceType;
 
 /**
@@ -15,8 +16,6 @@ public class Cow extends Animal {
 
     private boolean canProduceMilk = false; // Whether the cow can produce milk
     private boolean canProduceBeef = false; // Whether the cow can produce beef
-    private Peon opponent; // The peon that the animal will battle.
-    private MainEntityManager opponentList; // List of possible opponents.
 
     // Cow attributes will be set in the AnimalManagerClass
     public Cow(int x, int y) {
@@ -46,7 +45,7 @@ public class Cow extends Animal {
      * satisfy a certain threshold.
      */
     public void produceBeef() {
-        if (this.isDead() == true) {
+        if (this.isDead()) {
             this.canProduceBeef = true;
         }
     }

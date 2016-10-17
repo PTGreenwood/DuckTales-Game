@@ -23,7 +23,8 @@ import java.util.ResourceBundle;
  *
  * Created on 9/09/2016.
  */
-public class TimeManager implements SecondaryManager, Initializable, Tickable {
+public class TimeManager extends SecondaryManager
+        implements Initializable, Tickable {
 
     /** The root pane for all the time display elements */
     @FXML
@@ -59,12 +60,6 @@ public class TimeManager implements SecondaryManager, Initializable, Tickable {
         seasonManager = new SeasonManager();
         seasonNumber = 0;
             	
-    }
-
-
-    @Override
-    public void reload() {
-
     }
 
 
@@ -120,8 +115,10 @@ public class TimeManager implements SecondaryManager, Initializable, Tickable {
 	 * @return true if night time. False if day time
 	 */
 	public boolean isNight() {
-		if((gameTime.getHour() >= 5)) { //||
-				//(gameTime.getHour() <= gameTime.season.getTimeDayBreak())) {
+		int currentHour = gameTime.getHour();
+		int seasonalNightTime = this.getSeasonManager().getCurrentSeason().getTimeNightFall();
+		int seasonalDayTime = this.getSeasonManager().getCurrentSeason().getTimeDayBreak();
+		if((currentHour >= seasonalNightTime || currentHour <= seasonalDayTime)) {
 			return true;
 		} else {
 			return false;

@@ -3,6 +3,8 @@ package uq.deco2800.ducktales.features.seasons;
 import uq.deco2800.ducktales.features.weather.Fire;
 import uq.deco2800.ducktales.features.weather.InvalidWeatherChanceException;
 import uq.deco2800.ducktales.features.weather.Rain;
+import uq.deco2800.ducktales.features.weather.Snow;
+import uq.deco2800.ducktales.features.weather.Weather;
 import uq.deco2800.ducktales.features.weather.WeatherChance;
 import uq.deco2800.ducktales.features.weather.WeatherEvents;
 
@@ -18,7 +20,7 @@ public class Winter extends Season {
 		super.maxTemperature = 12;
 		super.currentTemperature = 7;
 		super.minTemperature = 4;
-		super.timeNightFall = 5;
+		super.timeNightFall = 17;
 		super.timeDayBreak = 7;
 
 		super.weatherEvents = new WeatherEvents();
@@ -26,6 +28,16 @@ public class Winter extends Season {
 		// this.whateverItIs = whateverItIs;
 
 	}
-	
+
+	@Override
+	public void setSnowWeather() {		
+		Weather snow = new Snow();
+    	try {
+    		WeatherChance snowChance = new WeatherChance(snow, 50);
+    		this.weatherEvents.add(snowChance);
+    	}  catch (InvalidWeatherChanceException e) {
+    		System.out.println("ERROR: Chance must be > 0 and <= 100 and weather Cannot be Null");
+    	}
+	}
 
 }

@@ -3,7 +3,9 @@ package uq.deco2800.ducktales.features.seasons;
 import uq.deco2800.ducktales.features.weather.Fire;
 import uq.deco2800.ducktales.features.weather.InvalidWeatherChanceException;
 import uq.deco2800.ducktales.features.weather.Rain;
+import uq.deco2800.ducktales.features.weather.Snow;
 import uq.deco2800.ducktales.features.weather.Weather;
+import uq.deco2800.ducktales.features.weather.*;
 import uq.deco2800.ducktales.features.weather.WeatherChance;
 import uq.deco2800.ducktales.features.weather.WeatherEvents;
 
@@ -145,6 +147,34 @@ public abstract class Season {
     		this.weatherEvents.add(fireChance);
 
     	}  catch (Exception e) {
+    		System.out.println("ERROR: Chance must be > 0 and <= 100 and weather Cannot be Null");
+    	}
+	}
+	
+	/**
+	 * Sets snowWeather Event/Chance for Spring Time
+	 */
+	public void setSnowWeather() {		
+		int initialSnowChance = 5;
+		Weather snow = new Snow();
+    	try {
+    		WeatherChance snowChance = new WeatherChance(snow, initialSnowChance);
+    		this.weatherEvents.add(snowChance);
+    	}  catch (InvalidWeatherChanceException e) {
+    		System.out.println("ERROR: Chance must be > 0 and <= 100 and weather Cannot be Null");
+    	}
+	}
+	
+	/**
+	 * Sets snowWeather Event/Chance for Spring Time
+	 */
+	public void setStormWeather() {		
+		int initialStormChance = 5;
+		Weather storm = new Storm(StormType.THUNDER);
+    	try {
+    		WeatherChance stormChance = new WeatherChance(storm, initialStormChance);
+    		this.weatherEvents.add(stormChance);
+    	}  catch (InvalidWeatherChanceException e) {
     		System.out.println("ERROR: Chance must be > 0 and <= 100 and weather Cannot be Null");
     	}
 	}

@@ -1,10 +1,10 @@
-package uq.deco2800.ducktales.features.entities;
+package uq.deco2800.ducktales.features.entities.threats;
 
-import java.util.*;
 import java.util.Random;
 
 import uq.deco2800.ducktales.World;
-import uq.deco2800.ducktales.features.entities.agententities.Peon;
+import uq.deco2800.ducktales.features.entities.Entity;
+import uq.deco2800.ducktales.features.entities.peons.Peon;
 import uq.deco2800.ducktales.resources.ResourceType;
 
 /**
@@ -12,7 +12,7 @@ import uq.deco2800.ducktales.resources.ResourceType;
  * 
  *
  */
-public class Threat extends Entity{
+public class Threat extends Entity {
 	String name;
 	String type;
 	private boolean hasStartTimer = false;

@@ -3,7 +3,8 @@ package uq.deco2800.ducktales.features.achievements;
 import java.io.IOException;
 import java.net.URL;
 
-import javafx.event.ActionEvent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -23,6 +24,9 @@ import uq.deco2800.ducktales.features.missions.MissionHandler;
  * 
  */
 public class AchievementManager {
+	/** The logger for all messages and exceptions */
+	private static Logger LOGGER = LoggerFactory.getLogger(
+			AchievementManager.class);
 	
 	/** Main window */
 	@FXML
@@ -65,10 +69,9 @@ public class AchievementManager {
 		loader.setLocation(location);
 		try {
 			achievementsMission = loader.load();
-			ImageView achievementMissionImage = new ImageView();		
-			achievementMissionImage = achievementMission.getAchievementMissionImage();
-			Label achievementMissionLabel = new Label();
-			achievementMissionLabel = achievementMission.getAchievementMissionLabel();		
+			ImageView achievementMissionImage = achievementMission
+					.getAchievementMissionImage();
+			Label achievementMissionLabel = achievementMission.getAchievementMissionLabel();
 			achievementMissionLabel.setFont(new Font("Arial", 24));
 			
 			setTitleOnTop(achievementsMission,"Mission");
@@ -79,9 +82,8 @@ public class AchievementManager {
 			achievementsMission.setPrefWidth(rightPane.getWidth());		
 			rightPane.getChildren().add(achievementsMission);		
 		} catch (IOException e) {
-			System.err.println("Unable to start Achievement GUI");
-			e.printStackTrace();
-		}		
+			LOGGER.info("Unable to start Achievement GUI", e);
+		}
 		
 				
 	}	
@@ -101,10 +103,8 @@ public class AchievementManager {
 		loader.setLocation(location);
 		try {
 			achievementsLevel = loader.load();
-			ImageView achievementLevelImage = new ImageView();
-			achievementLevelImage = achievementLevel.getAchievementLevelImage();
-			Label achievementLevelLabel = new Label();
-			achievementLevelLabel = achievementLevel.getAchievementLevelLabel();		
+			ImageView achievementLevelImage = achievementLevel.getAchievementLevelImage();
+			Label achievementLevelLabel = achievementLevel.getAchievementLevelLabel();
 			achievementLevelLabel.setFont(new Font("Arial", 24));
 			
 			setTitleOnTop(achievementsLevel,"Level");
@@ -115,8 +115,7 @@ public class AchievementManager {
 			achievementsLevel.setPrefWidth(rightPane.getWidth());		
 			rightPane.getChildren().add(achievementsLevel);
 		} catch (IOException e) {
-			System.err.println("Unable to start Achievement GUI");
-			e.printStackTrace();
+			LOGGER.info("Unable to start Achievement GUI", e);
 		}
 		
 						

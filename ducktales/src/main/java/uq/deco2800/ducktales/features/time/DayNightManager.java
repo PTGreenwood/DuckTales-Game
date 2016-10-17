@@ -13,15 +13,10 @@ import java.net.URL;
  * Day/Nightime Manager
  * Not in use... Yet
  */
-public class DayNightManager implements SecondaryManager, Tickable {
+public class DayNightManager extends SecondaryManager implements Tickable {
 
     public DayNightManager(AnchorPane rootPane, AnchorPane leftPane, AnchorPane bottomPane) {
        
-    }
-    
-    @Override
-    public void reload() {
-
     }
     
     @Override

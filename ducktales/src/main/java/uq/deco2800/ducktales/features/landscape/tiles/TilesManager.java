@@ -2,6 +2,8 @@ package uq.deco2800.ducktales.features.landscape.tiles;
 
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import uq.deco2800.ducktales.World;
 import uq.deco2800.ducktales.rendering.RenderingInformation;
 import uq.deco2800.ducktales.rendering.info.WorldEntityInfo;
@@ -17,7 +19,9 @@ import uq.deco2800.ducktales.util.SecondaryManager;
  * Created on 2/09/2016.
  * @author khoiphan21
  */
-public class TilesManager implements SecondaryManager {
+public class TilesManager extends SecondaryManager {
+    /** The logger */
+    private static Logger LOGGER = LoggerFactory.getLogger(TilesManager.class);
 
     /** The root pane where everything will be added into */
     private Pane rootPane;
@@ -25,9 +29,6 @@ public class TilesManager implements SecondaryManager {
     /** The classes that hold different rendering information */
     private WorldEntityInfo worldEntityInfo;
     private ResourceSpriteRegister resource;
-
-    /** The model for the game world */
-    private World world;
 
     /** The model and view for the tiles */
     private Array2D<Tile> tiles; // The model of the tiles
@@ -206,7 +207,7 @@ public class TilesManager implements SecondaryManager {
                     WorldEntityInfo.YLENGTH
             );
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            LOGGER.info("failed to add a building to a tile", e);
             return;
         }
 
@@ -230,12 +231,6 @@ public class TilesManager implements SecondaryManager {
             tiles.get(x - 1, y).setWorldEntityType(buildingType);
             tiles.get(x - 1, y).setPassable(false);
         }
-    }
-
-
-    @Override
-    public void reload() {
-
     }
 
 }
