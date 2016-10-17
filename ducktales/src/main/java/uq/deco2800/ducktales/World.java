@@ -8,6 +8,7 @@ import uq.deco2800.ducktales.features.entities.Entity;
 
 import uq.deco2800.ducktales.features.entities.agententities.Animal;
 import uq.deco2800.ducktales.features.entities.peons.Peon;
+import uq.deco2800.ducktales.features.entities.threats.Threat;
 import uq.deco2800.ducktales.features.entities.worldentities.Building;
 import uq.deco2800.ducktales.features.entities.worldentities.StorageProduceBuilding;
 import uq.deco2800.ducktales.resources.ResourceInfoRegister;
@@ -48,6 +49,7 @@ public class World implements Tickable {
 	private ArrayList<Animal> animals; // All the animals in the game
 	private ArrayList<Building> buildings; // All the buildings in the game
 	private HashMap<String, Peon> peons; // All the peons in the game
+	private ArrayList<Threat> threats;
 
 	/** The registers */
 	private ResourceInfoRegister infoRegister = ResourceInfoRegister.getInstance();
@@ -76,9 +78,10 @@ public class World implements Tickable {
 
 		// Instantiate game model
 		this.tiles = new Array2D<>(width, height);
-		this.animals = new ArrayList<>();
-		this.buildings = new ArrayList<>();
+		this.animals = new ArrayList<>(50);
+		this.buildings = new ArrayList<>(50);
 		this.peons = new HashMap<>(50);
+		this.threats = new ArrayList<>(50);
 
 		for (int x = 0; x < width; x++) {
 			for (int y = 0; y < height; y++) {
