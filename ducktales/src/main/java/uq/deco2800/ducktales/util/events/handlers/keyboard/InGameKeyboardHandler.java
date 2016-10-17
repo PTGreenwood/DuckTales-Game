@@ -6,9 +6,10 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import uq.deco2800.ducktales.GameLoop;
 import uq.deco2800.ducktales.GameManager;
-import uq.deco2800.ducktales.features.hud.menu.MenuManager;
 import uq.deco2800.ducktales.rendering.worlddisplay.WorldDisplayManager;
 import uq.deco2800.ducktales.util.events.handlers.GameEventHandler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import uq.deco2800.ducktales.rendering.worlddisplay.WorldDisplayManager.Direction;
 
@@ -22,11 +23,15 @@ import uq.deco2800.ducktales.rendering.worlddisplay.WorldDisplayManager.Directio
 public class InGameKeyboardHandler extends GameEventHandler
 		implements EventHandler<KeyEvent> {
 
+	/** The logger for all exceptions and messages */
+	private static final Logger LOGGER = LoggerFactory.getLogger(
+			InGameKeyboardHandler.class);
+
 	/** The secondary managers */
 	private WorldDisplayManager displayManager;
 
 	// For testing, to check that the correct direction is selected
-	protected Direction moveDirection;
+	private Direction moveDirection;
 
 	/**
 	 * Create a handler for in-game keyboard events
@@ -60,12 +65,10 @@ public class InGameKeyboardHandler extends GameEventHandler
 		gameManager.getMarketManager().hideMarketPlace();
 		gameManager.getMissionManager().hideMission();
 		gameManager.getTutorialManager().hideTutorial();
-		//gameManager.getLevelManager().hideLevel();
 		gameManager.getAchievementManager().hideAchievement();
 	}
 
 	private void handleKeyPressed(KeyCode code, KeyEvent event) {
-		System.out.println(code);
 		boolean visible;
 		switch (code) {
 		
@@ -87,7 +90,6 @@ public class InGameKeyboardHandler extends GameEventHandler
 		case S:
 			moveDirection = Direction.UP;
 			displayManager.moveWorld(Direction.UP);
-			System.err.println("moving UP in Handler");
 			break;
 			
 		case M:
@@ -109,17 +111,6 @@ public class InGameKeyboardHandler extends GameEventHandler
 			else 
 				gameManager.getMissionManager().showMission();
 			break;
-			
-		/*case L:
-			//mission completed action
-			gameManager.getMissionManager().missionCompletedAction(0);
-			visible = gameManager.getLevelManager().isVisible();
-			hideMenus();
-			if (visible)
-				gameManager.getLevelManager().hideLevel();
-			else 
-				gameManager.getLevelManager().showLevel();
-			break;*/
 			
 		case H:
 			//mission completed action
@@ -145,39 +136,32 @@ public class InGameKeyboardHandler extends GameEventHandler
 		
 			//Changing Flow of Time
 		case DIGIT1:
-			if (event.isShiftDown()) {
+			if(event.isShiftDown()) {
 				GameLoop.setSpeedModifier(1);
-				System.out.println("Speed 1x"); // set time scale to default
-			} else {
-				/*Event.fireEvent(MenuManager.getBuildingSpriteByIndex(0),
-						new MouseEvent(MouseEvent.MOUSE_CLICKED, 0, 0, 0, 0,
-								MouseButton.PRIMARY, 1, true, true, true, true,
-								true, true, true, true, true, true, null));*/
-				MenuManager.getBuildingSpriteByIndex(0).selectSprite();
+				LOGGER.debug("Speed 1x"); //set time scale to default
 			}	
 			break;
 
 		case DIGIT2:
 			if(event.isShiftDown()) {
 				GameLoop.setSpeedModifier(1.5);
-				System.out.println("Speed 1.5x");  //set time scale to 1.5151x
+				LOGGER.debug("Speed 1.5x");  //set time scale to 1.5151x
 			}
 			break;
 			
 		case DIGIT3:
 			if(event.isShiftDown()) {
 				GameLoop.setSpeedModifier(2.5);
-				System.out.println("Speed 2.5x");  //set time scale to 2.5x 
+				LOGGER.debug("Speed 2.5x");  //set time scale to 2.5x
 			}
 			break;
 			
 		case P:
 			GameLoop.pauseWorld();
-			System.out.println("Pause/UnPause");
+			LOGGER.debug("Pause/UnPause");
 			break;
 				
 		default:
-			//System.out.println("Key " + code);
 			break;
 		}
 
@@ -201,7 +185,6 @@ public class InGameKeyboardHandler extends GameEventHandler
 			moveDirection = Direction.UP;
 			displayManager.stopMoveWorld(Direction.UP);
 			break;
-		
 		
 		default:
 			break;

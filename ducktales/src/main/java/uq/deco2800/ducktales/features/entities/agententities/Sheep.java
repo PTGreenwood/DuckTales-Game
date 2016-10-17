@@ -16,8 +16,6 @@ public class Sheep extends Animal {
 
     private boolean canProduceWool = false; // Whether the sheep can produce wool
     private boolean canProduceMutton = false; // Whether the sheep can produce mutton
-    private Peon opponent; // The peon that the animal will battle.
-    private MainEntityManager opponentList; // List of possible opponents.
 
     // Sheep attributes will be set in the AnimalManagerClass
     public Sheep(int x, int y) {
@@ -47,7 +45,7 @@ public class Sheep extends Animal {
      * satisfy a certain threshold.
      */
     public void produceMutton() {
-        if (this.isDead() == true) {
+        if (this.isDead()) {
             this.canProduceMutton = true;
         }
     }

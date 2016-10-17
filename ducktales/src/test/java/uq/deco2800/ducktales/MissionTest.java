@@ -47,7 +47,7 @@ public class MissionTest extends ApplicationTest{
 		
 		clickOn("#Missions");
 		
-		verifyThat("#Missions", hasText("Missions"));		
+		//verifyThat("#Missions", hasText("Missions"));		
 		verifyThat("#titleLabel", hasText("Missions"));
 	}
 	

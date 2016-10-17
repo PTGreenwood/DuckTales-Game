@@ -13,7 +13,7 @@ import uq.deco2800.ducktales.features.level.LevelHandler;
  */
 public class AchievementLevel {
 	
-	LevelHandler levelHandler = LevelHandler.getInstance();
+	private LevelHandler levelHandler = LevelHandler.getInstance();
 	
 	/**
 	 * Load bronze, silver, gold medal images
@@ -21,9 +21,9 @@ public class AchievementLevel {
 	private Image bronze = new Image("/achievements/bronzeMedal.png");
 	private Image silver = new Image("/achievements/silverMedal.png");
 	private Image gold = new Image("/achievements/goldMedal.png");
-	private Label missionAchievementLabel = new Label();
+	private Label missionAchievementLabel;
 	
-	private static AchievementLevel INSTANCE = new AchievementLevel();	
+	private static final AchievementLevel INSTANCE = new AchievementLevel();
 	
 	/**
 	 * Constructor of {@link Achievement}
@@ -38,8 +38,8 @@ public class AchievementLevel {
 	 * Main constructor of {@link Achievement} class
 	 * 
 	 */
-	public AchievementLevel() {
-		
+	private AchievementLevel() {
+		missionAchievementLabel = new Label();
 	}
 	
 	/**
@@ -48,25 +48,25 @@ public class AchievementLevel {
 	 * @return Achievement Mission Medal Image;
 	 */
 	public ImageView getAchievementLevelImage() {
-		ImageView AchievementMissionImage = new ImageView();
+		ImageView achievementMissionImage = new ImageView();
 		
 		if(levelHandler.getLevel() == 1) {
 			
-			AchievementMissionImage.setImage(bronze);
+			achievementMissionImage.setImage(bronze);
 			setAchievementLevelText();
 			
 		} else if (levelHandler.getLevel() == 2) {
 			
-			AchievementMissionImage.setImage(silver);
+			achievementMissionImage.setImage(silver);
 			setAchievementLevelText();
 			
 		} else if (levelHandler.getLevel() >= 3) {
 			
-			AchievementMissionImage.setImage(gold);
+			achievementMissionImage.setImage(gold);
 			setAchievementLevelText();
 		}
 		
-		return AchievementMissionImage;
+		return achievementMissionImage;
 	}
 	
 	/**

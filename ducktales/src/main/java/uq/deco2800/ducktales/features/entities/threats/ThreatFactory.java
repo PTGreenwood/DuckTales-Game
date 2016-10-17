@@ -1,7 +1,9 @@
-package uq.deco2800.ducktales.features.entities;
+package uq.deco2800.ducktales.features.entities.threats;
 
 import java.util.ArrayList;
 
+import uq.deco2800.ducktales.features.entities.Effect;
+import uq.deco2800.ducktales.features.entities.Enemy;
 import uq.deco2800.ducktales.rendering.sprites.EnemySprite;
 
 /**
@@ -11,11 +13,11 @@ import uq.deco2800.ducktales.rendering.sprites.EnemySprite;
 
 public class ThreatFactory {
 
-	static String timer = "Timer";
-	public static ArrayList<Effect> effectsList = new ArrayList<Effect>();
-	public static ArrayList<Enemy> enemiesList = new ArrayList<Enemy>();
+	private static String timer = "Timer";
+	protected static ArrayList<Effect> effectsList = new ArrayList<Effect>();
+	protected static ArrayList<Enemy> enemiesList = new ArrayList<Enemy>();
 	//list for enemy ad threat sprites to be stored in
-	public static ArrayList<EnemySprite> enemySpriteList = new ArrayList<EnemySprite>();
+	protected static ArrayList<EnemySprite> enemySpriteList = new ArrayList<EnemySprite>();
 	
 	public enum EnemyType {
 		RACCOON, BEETLE, WILD_VILLAGER, WOLF, CROW, GORILLA, EVIL_DUCK,

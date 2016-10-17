@@ -8,6 +8,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import uq.deco2800.ducktales.util.exceptions.GameSetupException;
 import uq.deco2800.singularity.clients.ducktales.DucktalesClient;
 import uq.deco2800.ducktales.features.builder.WorldBuilderController;
@@ -30,7 +33,8 @@ public class DuckTalesController implements Initializable {
 	@FXML
 	private AnchorPane mainMenuPane;
 
-
+	/** implementing a logger, to catch ioe exception */
+	private static Logger logger = LoggerFactory.getLogger(DuckTalesController.class);
 
 	private WorldBuilderController worldBuilderController;
 
@@ -75,10 +79,14 @@ public class DuckTalesController implements Initializable {
 	@FXML
 	public void startGame(ActionEvent event) throws Exception {
 		
+		
+		LoginController.setClient(client);
 		Parent root1 = FXMLLoader.load(getClass().getResource("/ui/main/login.fxml"));
         
 		Scene scene = new Scene(root1,300,275);
 		primaryStage= new Stage();
+		primaryStage.initStyle(StageStyle.UNDECORATED);
+        //primaryStage.initStyle(Stage.UNDECORATED);
 		primaryStage.setTitle("FXML Welcome");
 		primaryStage.setScene(scene);
 		primaryStage.showAndWait();
@@ -104,7 +112,8 @@ public class DuckTalesController implements Initializable {
 		try {
 			gamePane = loader.load();
 		} catch(Exception e) {
-			throw new Exception("failed to load main UI");
+			logger.info("exception when trying to load main UI", e);
+			throw new GameSetupException("failed to load main UI");
 		}
 
 		// Set the layout for the gamePane
