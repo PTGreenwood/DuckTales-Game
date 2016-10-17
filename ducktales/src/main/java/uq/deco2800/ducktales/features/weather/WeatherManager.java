@@ -80,7 +80,7 @@ public class WeatherManager extends SecondaryManager
 		this.createShapes(50,this.isFalling());
 
 		weatherDisplayCanvas.setMouseTransparent(true);
-		weatherDisplay.getChildren().add(weatherDisplayCanvas);
+		weatherDisplay.getChildren().add(weatherDisplayCanvas);		
 	}
 
 	/**
