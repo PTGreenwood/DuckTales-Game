@@ -34,6 +34,8 @@ public class World implements Tickable {
 
 	/** GENERAL properties of this world */
 	private String name; // the name of the world
+	private int worldWidth;
+	private int worldHeight;
 
 	/** The landscape of this world */
 	private Array2D<Tile> tiles;
@@ -58,12 +60,17 @@ public class World implements Tickable {
 	 * @param height
 	 */
 	public World(String name, int width, int height) {
-		// Instantiates the model of the game
-		tiles = new Array2D<>(width, height);
-		entities = new ArrayList<>();
-		animals = new ArrayList<>();
-		buildings = new ArrayList<>();
-		peons = new HashMap<>(50); 
+		// Store the properties of the world
+		this.name = name;
+		this.worldHeight = height;
+		this.worldWidth = width;
+
+		// Instantiate game model
+		this.tiles = new Array2D<>(width, height);
+		this.entities = new ArrayList<>();
+		this.animals = new ArrayList<>();
+		this.buildings = new ArrayList<>();
+		this.peons = new HashMap<>(50);
 
 		for (int x = 0; x < width; x++) {
 			for (int y = 0; y < height; y++) {
@@ -73,10 +80,12 @@ public class World implements Tickable {
 	}
 
 	/**
+	 * Get the name of the world
+	 *
 	 * @return The name of the world.
 	 */
 	public String getName() {
-		return name;
+		return this.name;
 	}
 
 	/**
@@ -108,19 +117,6 @@ public class World implements Tickable {
 	 */
 	public int getHeight() {
 		return tiles.getHeight();
-	}
-
-	/**
-	 * Add the given entity to the list of entities currently in the world
-	 * @param entity
-	 */
-	public void addEntity(Entity entity) {
-		if (entities.contains(entity)) {
-			System.err.println("The entity [" + entity.toString() + "] is already" +
-					"in the list");
-			return;
-		}
-		entities.add(entity);
 	}
 
 	/**
@@ -337,8 +333,11 @@ public class World implements Tickable {
 		}
 		// Produce materials every 1000 ticks
 		for (int j = 0; j < buildings.size(); j++) {
-			if (buildings.get(j).getType() == ResourceType.SAWMILL && 
-					timer%1000==0) {
+			if ((buildings.get(j).getType() == ResourceType.SAWMILL ||
+					buildings.get(j).getType() == ResourceType.MINE ||
+					buildings.get(j).getType() == ResourceType.FARM ||
+					buildings.get(j).getType() == ResourceType.QUARRY
+					) && timer%1000==0) {
 				StorageProduceBuilding buildingSelected = 
 						buildings.get(j).toStorageProduceBuilding(buildings.get(j));
 				buildingSelected.produceMaterial();

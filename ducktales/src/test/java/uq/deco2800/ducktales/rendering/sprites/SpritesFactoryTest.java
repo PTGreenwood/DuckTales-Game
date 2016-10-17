@@ -1,10 +1,10 @@
 package uq.deco2800.ducktales.rendering.sprites;
 
+import javafx.application.Application;
+import javafx.stage.Stage;
+import org.junit.BeforeClass;
 import org.junit.Test;
-import uq.deco2800.ducktales.rendering.sprites.AnimalSprite;
-import uq.deco2800.ducktales.rendering.sprites.BuildingSprite;
-import uq.deco2800.ducktales.rendering.sprites.PeonSprite;
-import uq.deco2800.ducktales.rendering.sprites.SpritesFactory;
+import uq.deco2800.ducktales.TestClassWithApplication;
 import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.exceptions.GameSetupException;
@@ -18,7 +18,7 @@ import static uq.deco2800.ducktales.resources.ResourceType.*;
  * Created on 16/10/2016.
  * @author Khoi
  */
-public class SpritesFactoryTest {
+public class SpritesFactoryTest extends TestClassWithApplication {
 
     /*
      * PEONS CREATION TESTS
@@ -51,7 +51,7 @@ public class SpritesFactoryTest {
         ResourceSpriteRegister.getInstance();
 
         ResourceType[] buildings = {
-                HOSPITAL, BAKERY, BUTCHER, CEMETERY, CHURCH, COMMUNITY_BUILDING,
+                HOSPITAL, BAKERY, BARN, BUTCHER, CEMETERY, CHURCH, COMMUNITY_BUILDING,
                 FARM, FORGE, HOUSE, MINE, OBSERVATORY, PASTURE, QUARRY, SAWMILL,
                 SCHOOL, GYMNASIUM
         };
@@ -91,7 +91,5 @@ public class SpritesFactoryTest {
             assertEquals(animal.getEntityType(), spriteType);
         }
     }
-
-
 
 }
