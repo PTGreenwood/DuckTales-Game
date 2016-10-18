@@ -132,6 +132,24 @@ public class SpritesFactory {
                         " create an animal sprite of type: " + type);
         }
     }
+    
+    /**
+     * Create a sprite of a droppable resource with the given specs
+     * 
+     * @param index, the index of the sprite
+     * @param type, the resourceType of the sprite
+     * @return the droppable resource sprite of the given type
+     */
+    public static DroppedResourceSprite createDroppableResourceSprite(ResourceType type) {
+        DroppedResourceSprite sprite = new DroppedResourceSprite(type);
+        switch(type) {
+        case CLOUD: 
+            sprite.setImage(ResourceSpriteRegister.getInstance().getResourceImage(
+                    ResourceType.CLOUD
+            ));
+        }
+        return sprite;
+    }
 
     /**
      * Create a hospital
