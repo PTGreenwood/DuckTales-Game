@@ -1,5 +1,8 @@
 package uq.deco2800.ducktales.features.hud.menu.building;
 
+import java.awt.MouseInfo;
+import java.awt.Point;
+
 import javafx.scene.input.MouseButton;
 import uq.deco2800.ducktales.features.hud.HUDSprite;
 import uq.deco2800.ducktales.features.hud.menu.MenuManager;
@@ -38,6 +41,13 @@ public class BuildingMenuSprite extends HUDSprite {
                         event.getSceneX(), event.getSceneY()));
             }
         });
+    }
+    
+    public void selectSprite() {
+    	Point cursorPoints = MouseInfo.getPointerInfo().getLocation();    	
+    	fireEvent(new MenuSelectedEvent(
+                MenuManager.MenuType.BUILDING, this.getSpriteType(),
+                cursorPoints.getX(), cursorPoints.getY()));    	
     }
 
 

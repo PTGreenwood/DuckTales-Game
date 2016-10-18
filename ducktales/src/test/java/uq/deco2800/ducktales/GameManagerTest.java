@@ -2,7 +2,9 @@ package uq.deco2800.ducktales;
 
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import org.junit.Test;
+import org.testfx.framework.junit.ApplicationTest;
 import uq.deco2800.ducktales.features.achievements.AchievementManager;
 import uq.deco2800.ducktales.features.entities.MainEntityManager;
 import uq.deco2800.ducktales.features.entities.resourceentities.ResourceEntityManager;
@@ -25,7 +27,7 @@ import static org.junit.Assert.*;
  * Created on 16/10/2016.
  * @author Khoi
  */
-public class GameManagerTest extends TestClassWithApplication {
+public class GameManagerTest extends ApplicationTest {
 
     /*
      * Dummy objects used during tests
@@ -192,5 +194,10 @@ public class GameManagerTest extends TestClassWithApplication {
         gameManager.setPeonInformationDisplayManager(manager);
 
         assertEquals(manager, gameManager.getPeonInformationDisplayManager());
+    }
+
+    @Override
+    public void start(Stage stage) throws Exception {
+
     }
 }

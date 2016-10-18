@@ -11,8 +11,9 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="170.0">
                <children>
-                  <Button fx:id="MissionProgress" layoutX="14.0" layoutY="184.0" mnemonicParsing="false" onAction="#startMissionProgress" prefHeight="30.0" prefWidth="150.0" text="Mission Progress Circle" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="110.0" />
-                  <Button fx:id="Missions" layoutX="14.0" layoutY="144.0" mnemonicParsing="false" onAction="#startMission1" prefHeight="30.0" prefWidth="150.0" text="Missions" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="50.0" />
+                  <Button fx:id="MissionProgress" layoutX="14.0" layoutY="228.0" mnemonicParsing="false" onAction="#startMissionProgress" prefHeight="30.0" prefWidth="150.0" text="Mission Progress Circle" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="170.0" />
+                  <Button fx:id="Missions" layoutX="14.0" layoutY="144.0" mnemonicParsing="false" onAction="#startMission1" prefHeight="30.0" prefWidth="150.0" text="Helper Missions" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="50.0" />
+                  <Button layoutX="68.0" layoutY="168.0" mnemonicParsing="false" text="Main Missions" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="110.0" />
                </children>
             </AnchorPane>
           <AnchorPane fx:id="rightPane" minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="577.0">

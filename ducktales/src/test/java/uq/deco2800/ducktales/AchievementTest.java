@@ -20,10 +20,10 @@ import javafx.stage.Stage;
  *
  */
 public class AchievementTest extends ApplicationTest {
-	
+
 	/**
 	 * Set up testFx
-	 * 
+	 *
 	 */
 	@Override
     public void start(Stage stage) throws Exception {
@@ -32,45 +32,45 @@ public class AchievementTest extends ApplicationTest {
 		loader.setLocation(location);
 		Parent root = loader.load(location.openStream());
 		Scene tutorialScene = new Scene(root, 1200, 600);
-		
+
 		stage.setTitle("Achievement");
 		stage.setScene(tutorialScene);
 		stage.show();
     }
-	
+
 	/**
-	 * Test for mission achievement Button 
+	 * Test for mission achievement Button
 	 *
 	 */
 	@Test
-	public void checkAchievementMission() {		
-		
+	public void checkAchievementMission() {
+
 		clickOn("#achievementMissionBtn");
-		
+
 		verifyThat("#achievementMissionBtn", hasText("Mission Achievement"));
 		//verifyThat("#titleLabel", hasText("Mission Achievement"));
 	}
-	
+
 	/**
-	 * Test for level achievement Button 
+	 * Test for level achievement Button
 	 *
 	 */
 	@Test
 	public void checkAchievementLevel() {
-		
+
 		clickOn("#achievementLevelBtn");
-		
+
 		verifyThat("#achievementLevelBtn", hasText("Level Achievement"));
 		//verifyThat("#titleLabel", hasText("Level Achievement"));
 	}
-	
+
 	/**
 	 * Tests if there is any null on the buttons
-	 * 
+	 *
 	 */
 	@Test
     public void testIsNotNull() {
-        
+
         verifyThat("#achievementMissionBtn", isNotNull());
         verifyThat("#achievementLevelBtn", isNotNull());
     }

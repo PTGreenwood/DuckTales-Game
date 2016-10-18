@@ -44,6 +44,8 @@ public class TutorialManager {
 	private String tutorialImage3 = "/tutorials/basicInterface3.png";
 	private String tutorialImage4 = "/tutorials/basicInterface4.png";
 	
+	private int basicInterfaceTutorialNumber = 0;
+	
 	@FXML
 	private void loadTutorial1(){
 		loadTutorial(tutorialImage1, "Basic Interface 1");
@@ -54,7 +56,6 @@ public class TutorialManager {
 		    loadTutorial2()
 		);
 	}
-	
 	@FXML
 	private void loadTutorial2(){
 		loadTutorial(tutorialImage2, "Basic Interface 2");
