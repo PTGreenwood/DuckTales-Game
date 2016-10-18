@@ -101,6 +101,8 @@ public class SpritesFactory {
                 return createSchool(index, ResourceType.SCHOOL);
             case GYMNASIUM:
                 return createGymnasium(index, ResourceType.GYMNASIUM);
+            case STORAGEBARN:
+                return createStorageBarn(index, ResourceType.STORAGEBARN);
             default:
                 throw new GameSetupException("The given building type is" +
                         " not yet registered in SpritesFactory. Unable to" +
@@ -775,6 +777,37 @@ public class SpritesFactory {
             GYMNASIUM_3,
             GYMNASIUM_4,
             GYMNASIUM_5,
+        };
+
+        // Setup the sprite with the given parameters
+        setupBuildingSprite(
+                sprite,
+                type,
+                2.0*REAL_MINUTE,
+                2.0, // Total time of idle animation
+                idleFrames,
+                false
+        );
+        return sprite;
+    }
+    
+    /**
+     * Create a storage barn
+     *
+     * @param index
+     *          The index of the sprite
+     * @param type
+     *          The type of the sprite
+     *
+     * @return The EntitySprite representing a storage barn
+     */
+    private static BuildingSprite createStorageBarn(int index, ResourceType type) {
+        // The sprite to be returned
+        BuildingSprite sprite = new BuildingSprite(index, type);
+
+        // Define the key frames for the idle animation
+        ResourceType[] idleFrames = {
+           STORAGEBARN
         };
 
         // Setup the sprite with the given parameters
