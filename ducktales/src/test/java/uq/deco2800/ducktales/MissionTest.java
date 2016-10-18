@@ -20,10 +20,10 @@ import javafx.stage.Stage;
  *
  */
 public class MissionTest extends ApplicationTest{
-	
+
 	/**
 	 * Set up testFx
-	 * 
+	 *
 	 */
 	@Override
     public void start(Stage stage) throws Exception {
@@ -37,40 +37,40 @@ public class MissionTest extends ApplicationTest{
 		stage.setScene(tutorialScene);
 		stage.show();
     }
-	
+
 	/**
-	 * Test for Missions Button 
+	 * Test for Missions Button
 	 *
 	 */
 	@Test
-	public void checkMissions() {		
-		
+	public void checkMissions() {
+
 		clickOn("#Missions");
-		
-		//verifyThat("#Missions", hasText("Missions"));		
+
+		//verifyThat("#Missions", hasText("Missions"));
 		verifyThat("#titleLabel", hasText("Missions"));
 	}
-	
+
 	/**
-	 * Test for Mission Progress Button 
+	 * Test for Mission Progress Button
 	 *
 	 */
 	@Test
 	public void checkMissionProgress() {
-		
+
 		clickOn("#MissionProgress");
-		
+
 		verifyThat("#MissionProgress", hasText("Mission Progress Circle"));
 		verifyThat("#titleLabel", hasText("Mission Progress"));
 	}
-	
+
 	/**
 	 * Tests if there is any null on the buttons
-	 * 
+	 *
 	 */
 	@Test
     public void testIsNotNull() {
-        
+
         verifyThat("#Missions", isNotNull());
         verifyThat("#MissionProgress", isNotNull());
     }
