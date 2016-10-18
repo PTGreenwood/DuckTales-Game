@@ -4,12 +4,15 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -53,14 +56,13 @@ public class MenuManager implements Initializable {
 	 * CONSTANTS
 	 */
 	// TODO: TO ADD NEW BUILDINGS, REGISTER THEIR NAMES HERE
-	private static final ResourceType[] BUILDINGS = { BAKERY, BUTCHER, CEMETERY,
-			CHURCH, COMMUNITY_BUILDING, FARM, FORGE, HOSPITAL, HOUSE, SCHOOL,
-			GYMNASIUM, MINE, OBSERVATORY, PASTURE, QUARRY, SAWMILL, };
+	private static final ResourceType[] BUILDINGS = { BAKERY, BUTCHER, CEMETERY, CHURCH, COMMUNITY_BUILDING, FARM,
+			FORGE, HOSPITAL, HOUSE, SCHOOL, GYMNASIUM, MINE, OBSERVATORY, PASTURE, QUARRY, SAWMILL, };
 	// TODO: TO ADD NEW ANIMALS, REGISTER THEIR NAMES HERE
 	public static final ResourceType[] ANIMALS = { SHEEP, DUCK, COW };
 
 	// enum to check which is selected, a BUILDING or an ANIMAL
-	public enum MenuType {
+	public static enum MenuType {
 		BUILDING, ANIMAL
 	}
 
@@ -80,9 +82,9 @@ public class MenuManager implements Initializable {
 	private ArrayList<GridPane> animalOptionList;
 
 	// amount of rows in the options grid
-	private final int gridRows = 7;
+	private final static int gridRows = 7;
 	// amount of columns in the options grid
-	private final int gridColumns = 2;
+	private final static int gridColumns = 2;
 
 	/** The lists of menu sprites */
 	private static ArrayList<BuildingMenuSprite> buildingMenuSprites;
@@ -91,10 +93,7 @@ public class MenuManager implements Initializable {
 	/** Helpers for rendering information */
 	private WorldEntityInfo worldEntityInfo;
 
-	private GridActive gridActive;
-	// Current grid visible in the HUD
-	private String currentGrid;
-	private int currentGridIndex;
+	private static GridActive gridActive = null;;
 
 	/**
 	 * This method is called when FXML Loader instantiates this class
@@ -122,22 +121,22 @@ public class MenuManager implements Initializable {
 	 * @param index
 	 *            the index of the list which is visible
 	 */
-	private void setCurrentGrid(MenuType currentMenu, int gridIndex) {	
-		gridActive.setGridActive(currentMenu, gridIndex);		
+	private void setCurrentGrid(MenuType currentMenu, int gridIndex) {
+		gridActive.setGridActive(currentMenu, gridIndex);
 		if (gridActive.getCurrentGridIndex() == 0)
 			previousGridButton.setVisible(false);
-		else 
+		else
 			previousGridButton.setVisible(true);
-		
+
 		switch (gridActive.getCurrentMenu()) {
 		case BUILDING:
-			if (gridActive.getCurrentGridIndex() == (buildingOptionList.size()-1))
+			if (gridActive.getCurrentGridIndex() == (buildingOptionList.size() - 1))
 				nextGridButton.setVisible(false);
 			else
 				nextGridButton.setVisible(true);
 			break;
 		case ANIMAL:
-			if (gridActive.getCurrentGridIndex() == (animalOptionList.size()-1))
+			if (gridActive.getCurrentGridIndex() == (animalOptionList.size() - 1))
 				nextGridButton.setVisible(false);
 			else
 				nextGridButton.setVisible(true);
@@ -145,13 +144,27 @@ public class MenuManager implements Initializable {
 		}
 	}
 
-
-	public static BuildingMenuSprite getBuildingSpriteByIndex(int index) {		
-		return MenuManager.buildingMenuSprites.get(index);
+	public static void selectItemByIndex(int index) {
+		int currentGridIndex = getCurrentGrid().getCurrentGridIndex();
+		MenuType currentMenu = getCurrentGrid().getCurrentMenu();
+		int itemIndex = index + (currentGridIndex * (gridRows * gridColumns));
+		System.out.println("Getting menu item (index): " + itemIndex);
+		if (currentMenu.equals(MenuType.BUILDING)) {
+			if (itemIndex < MenuManager.buildingMenuSprites.size())
+				triggerMouseClick(MenuManager.buildingMenuSprites.get(itemIndex));
+		} else if (currentMenu.equals(MenuType.ANIMAL)) {
+			if (itemIndex < MenuManager.animalMenuSprites.size())
+				triggerMouseClick(MenuManager.animalMenuSprites.get(itemIndex));
+		}
 	}
-	
-	public static AnimalMenuSprite getAnimalSpriteByIndex(int index) {		
-		return MenuManager.animalMenuSprites.get(index);
+
+	private static void triggerMouseClick(HUDSprite sprite) {
+		Event.fireEvent(sprite, new MouseEvent(MouseEvent.MOUSE_CLICKED, 0, 0, 0, 0, MouseButton.PRIMARY, 1, true, true,
+				true, true, true, true, true, true, true, true, null));
+	}
+
+	public static GridActive getCurrentGrid() {
+		return gridActive;
 	}
 
 	/**
@@ -171,7 +184,7 @@ public class MenuManager implements Initializable {
 	private void showBuildingMenuFromIndex(int index) {
 		this.clearOptionPane();
 		GridPane gridPane = buildingOptionList.get(index);
-		optionPane.getChildren().add(gridPane);		
+		optionPane.getChildren().add(gridPane);
 		this.setCurrentGrid(MenuType.BUILDING, index);
 	}
 
@@ -274,9 +287,8 @@ public class MenuManager implements Initializable {
 			if (!worldEntityInfo.containEntity(sprite.getSpriteType())) {
 				// this building is not yet registered in the manager. not
 				// rendered
-				System.err.println(
-						"BuildingMenuSprite " + sprite.getSpriteType() + " is "
-								+ "not yet registered in WorldEntityInfo");
+				System.err.println("BuildingMenuSprite " + sprite.getSpriteType() + " is "
+						+ "not yet registered in WorldEntityInfo");
 				continue;
 			}
 
@@ -414,24 +426,21 @@ public class MenuManager implements Initializable {
 		}
 	}
 
-	private void setBuildingSpriteSizing(BuildingMenuSprite sprite,
-			double uiScale) {
+	private void setBuildingSpriteSizing(BuildingMenuSprite sprite, double uiScale) {
 		// Get the size of the building in tile-unit first
 		int xLength = 0;
 		int yLength = 0;
-		try {			
-			xLength = worldEntityInfo.getBuildingLength(sprite.getSpriteType(),
-					worldEntityInfo.XLENGTH);
-			yLength = worldEntityInfo.getBuildingLength(sprite.getSpriteType(),
-					worldEntityInfo.YLENGTH);
+		try {
+			xLength = worldEntityInfo.getBuildingLength(sprite.getSpriteType(), worldEntityInfo.XLENGTH);
+			yLength = worldEntityInfo.getBuildingLength(sprite.getSpriteType(), worldEntityInfo.YLENGTH);
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 		}
 
 		if (xLength == 0 || yLength == 0) {
 			// this building is not yet registered
-			System.err.println("BuildingMenuSprite: " + sprite.getSpriteType()
-					+ "is" + " not yet registered in WorldEntityInfo");
+			System.err.println(
+					"BuildingMenuSprite: " + sprite.getSpriteType() + "is" + " not yet registered in WorldEntityInfo");
 			return;
 		}
 
