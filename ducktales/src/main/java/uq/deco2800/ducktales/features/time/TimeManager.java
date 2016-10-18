@@ -106,13 +106,11 @@ public class TimeManager extends SecondaryManager
         if(currentHour > this.previousHour || currentDay > this.previousDay) {
         	this.previousHour = currentHour;
         	this.previousDay = currentDay;
-        	int randomNumber = (int) Math.floor(Math.random() * 2);
+        	int randomNumber = (int) Math.floor(Math.random() * 3);
         	if((currentHour < this.seasonManager.getCurrentSeason().getTimeNightFall()) 
         			&& (currentHour > this.seasonManager.getCurrentSeason().getTimeDayBreak())) {
-        		System.out.println(randomNumber);
         		this.seasonManager.updateTemperature(randomNumber, true);
         	} else {
-        		System.out.println(randomNumber);
         		this.seasonManager.updateTemperature(randomNumber, false);
         	}
         }
