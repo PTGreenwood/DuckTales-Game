@@ -1,6 +1,7 @@
 package uq.deco2800.ducktales.features.entities.resourceentities;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import uq.deco2800.ducktales.features.entities.agententities.AnimalManager;
@@ -16,8 +17,11 @@ import uq.deco2800.ducktales.util.SecondaryManager;
 
 public class ResourceEntityManager extends SecondaryManager{
 
-    /** The list of resource sprites */
-    private List<Sprite> resourceSprites;
+    /** 
+     * The list of resource sprites 
+     * Using a HashMap to store the sprites 
+     */
+    private HashMap<Integer, Sprite> resourceSprites;
     
     /** The animal manager */
     private AnimalManager animalManager;
@@ -26,7 +30,7 @@ public class ResourceEntityManager extends SecondaryManager{
      * Instantiate an empty resource manager
      */
     public ResourceEntityManager() {
-        resourceSprites = new ArrayList<>(50);
+        resourceSprites = new HashMap<Integer, Sprite>();
     }
 	
     /**
