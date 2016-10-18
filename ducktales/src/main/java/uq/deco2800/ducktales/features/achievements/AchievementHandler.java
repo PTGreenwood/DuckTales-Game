@@ -58,8 +58,8 @@ public class AchievementHandler {
 	}
 	
 	
-	//Sets value for varying difficulties of achievements, 
-	//for each specific difficulty adds specified value to the achievement score
+	/**Sets value for varying difficulties of achievements, 
+	for each specific difficulty adds specified value to the achievement score */
 	public void achieveVeryEasy() {
 		this.intAchieve = this.intAchieve + 10;
 	}
@@ -135,7 +135,9 @@ public class AchievementHandler {
 	    }
 	    if(levelHandler.getLevel() == 1)
 	    {
-	        //resource reward
+	    	inventoryManager.updateWoodAmount(10);
+	    	inventoryManager.updateOresAmount(10);
+	    	inventoryManager.updateFoodAmount(10);
 	    }
 
 	   
