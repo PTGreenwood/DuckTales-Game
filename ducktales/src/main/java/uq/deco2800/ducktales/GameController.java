@@ -514,8 +514,8 @@ public class GameController implements Initializable{
             rootPane.getChildren().add(root);
 
             // Position the marketplace pane
-            AnchorPane.setTopAnchor(root, 0.0);
-            AnchorPane.setRightAnchor(root, 30.0);
+            AnchorPane.setTopAnchor(root, 150.0);
+            AnchorPane.setLeftAnchor(root, 30.0);
 
             // Initially hide it first
             marketManager.hideMarketPlace();
