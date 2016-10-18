@@ -1,4 +1,4 @@
-package uq.deco2800.ducktales.resources;
+package uq.deco2800.ducktales.util.exceptions;
 
 /**
  * This exception represents all types of resource register exceptions
