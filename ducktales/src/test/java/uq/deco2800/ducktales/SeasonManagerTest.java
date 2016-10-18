@@ -187,6 +187,8 @@ public class SeasonManagerTest {
 		for (Season seasonIterator : tm.getSeasonManager().getSeasonList()) {
 			seasonIterator.setRainWeather();
 			seasonIterator.setFireWeather();
+			seasonIterator.setSnowWeather();
+			seasonIterator.setStormWeather();
 		}
 		
 		assertEquals(springWeather.getWeatherEvents(), 
