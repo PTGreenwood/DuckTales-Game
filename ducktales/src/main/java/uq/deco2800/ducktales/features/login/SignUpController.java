@@ -1,4 +1,4 @@
-package uq.deco2800.ducktales;
+package uq.deco2800.ducktales.features.login;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -72,7 +72,11 @@ public class SignUpController  {
         			} catch (Exception i) {
         				// Other error logging in
         			}
-            		LoginController.close();
+            		
+            		// Go back to Login view
+            		
+            		LoginVistaNavigator.loadVista(LoginVistaNavigator.LOGIN);
+            		// LoginController.close();
         		}
             }
             else
@@ -84,6 +88,11 @@ public class SignUpController  {
     	{
     		actiontarget.setText("password not consistent.");
     	}
+    }
+    
+    @FXML
+    protected void viewLoginPage(ActionEvent event) {
+    	LoginVistaNavigator.loadVista(LoginVistaNavigator.LOGIN);
     }
     
     /**

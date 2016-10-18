@@ -1,4 +1,4 @@
-package uq.deco2800.ducktales;
+package uq.deco2800.ducktales.features.login;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -10,6 +10,7 @@ import javax.ws.rs.WebApplicationException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
@@ -18,6 +19,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import uq.deco2800.ducktales.DuckTalesController;
+import uq.deco2800.ducktales.features.market.MarketVistaNavigator;
 import uq.deco2800.singularity.clients.ducktales.DucktalesClient;
 import uq.deco2800.singularity.common.representations.User;  
 
@@ -35,7 +37,7 @@ public class LoginController  {
     @FXML
     private PasswordField passwordField;
     
-    static Stage primaryStage;
+    private static Stage primaryStage;
     
     private static DucktalesClient client = null;
     
@@ -45,25 +47,25 @@ public class LoginController  {
 			primaryStage.close();
 	}
     
+	
     @FXML protected void handleSignUpButtonAction(ActionEvent event) throws IOException {
-        Parent root1 = FXMLLoader.load(getClass().getResource("/ui/main/SignUp.fxml"));
         
-		Scene scene = new Scene(root1,300,275);
-		primaryStage= new Stage();
-		primaryStage.setTitle("FXML Welcome");
-		primaryStage.setScene(scene);
-		primaryStage.showAndWait();
+        LoginVistaNavigator.loadVista(LoginVistaNavigator.SIGNUP);
 
     }
     
     private void goToSignUpPage() throws IOException {
+    	
+    	/*
     	Parent root1 = FXMLLoader.load(getClass().getResource("/ui/main/SignUp.fxml"));
-        
+    	
 		Scene scene = new Scene(root1,300,275);
-		primaryStage= new Stage();
 		primaryStage.setTitle("FXML Welcome");
 		primaryStage.setScene(scene);
 		primaryStage.showAndWait();
+		 */
+		
+		LoginVistaNavigator.loadVista(LoginVistaNavigator.SIGNUP);
     }
     
     
@@ -111,12 +113,24 @@ public class LoginController  {
         // Successful login
         if(user != null)
         {
+        	DuckTalesController.setLoggedInStatus(true);
         	DuckTalesController.close();
         }
         else
         {
         	actiontarget.setText("password error!");
         }
+    }
+    
+    
+    @FXML 
+    protected void closeLoginFrame(ActionEvent event) {
+    	primaryStage.close();
+    }
+    
+    
+    public static void setPrimaryStage(Stage stage) {
+    	primaryStage = stage;
     }
     
     /**
@@ -126,7 +140,9 @@ public class LoginController  {
      * @param client
      */
     public static void setClient(DucktalesClient clientInstance) {
-    	client = clientInstance;
+    	if (client == null || !client.equals(clientInstance)) {
+    		client = clientInstance;
+    	}
     }
     
 }
