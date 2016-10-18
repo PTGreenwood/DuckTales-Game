@@ -162,6 +162,14 @@ public class InGameKeyboardHandler extends GameEventHandler
 			MenuManager.selectItemByIndex(8);
 		} else if (KeyboardManager.getBuildTenthKeyCombination().match(event)) {
 			MenuManager.selectItemByIndex(9);
+		} else if (KeyboardManager.getBuildEleventhKeyCombination().match(event)) {
+			MenuManager.selectItemByIndex(10);
+		} else if (KeyboardManager.getBuildTwelfthKeyCombination().match(event)) {
+			MenuManager.selectItemByIndex(11);
+		} else if (KeyboardManager.getBuildThirteenthKeyCombination().match(event)) {
+			MenuManager.selectItemByIndex(12);
+		} else if (KeyboardManager.getBuildFourteenthKeyCombination().match(event)) {
+			MenuManager.selectItemByIndex(13);
 		}
 	}
 

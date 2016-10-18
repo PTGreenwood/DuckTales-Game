@@ -148,7 +148,6 @@ public class MenuManager implements Initializable {
 		int currentGridIndex = getCurrentGrid().getCurrentGridIndex();
 		MenuType currentMenu = getCurrentGrid().getCurrentMenu();
 		int itemIndex = index + (currentGridIndex * (gridRows * gridColumns));
-		System.out.println("Getting menu item (index): " + itemIndex);
 		if (currentMenu.equals(MenuType.BUILDING)) {
 			if (itemIndex < MenuManager.buildingMenuSprites.size())
 				triggerMouseClick(MenuManager.buildingMenuSprites.get(itemIndex));

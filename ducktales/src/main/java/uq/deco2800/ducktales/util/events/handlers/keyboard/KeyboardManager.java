@@ -85,6 +85,18 @@ public class KeyboardManager {
 	private static KeyCombination buildTenthKeyCombination = new KeyCodeCombination(
 			KeyCode.DIGIT0);
 	
+	private static KeyCombination buildEleventhKeyCombination = new KeyCodeCombination(
+			KeyCode.Z);
+	
+	private static KeyCombination buildTwelfthKeyCombination = new KeyCodeCombination(
+			KeyCode.X);
+	
+	private static KeyCombination buildThirteenthKeyCombination = new KeyCodeCombination(
+			KeyCode.C);
+	
+	private static KeyCombination buildFourteenthKeyCombination = new KeyCodeCombination(
+			KeyCode.V);
+	
 	
 	//Keep this here so the compiler knows this class should not be instantiated
 	private KeyboardManager() {
@@ -197,6 +209,22 @@ public class KeyboardManager {
 	
 	public static KeyCombination getBuildTenthKeyCombination() {
 		return buildTenthKeyCombination;
+	}
+	
+	public static KeyCombination getBuildEleventhKeyCombination() {
+		return buildEleventhKeyCombination;
+	}
+	
+	public static KeyCombination getBuildTwelfthKeyCombination() {
+		return buildTwelfthKeyCombination;
+	}
+	
+	public static KeyCombination getBuildThirteenthKeyCombination() {
+		return buildThirteenthKeyCombination;
+	}
+	
+	public static KeyCombination getBuildFourteenthKeyCombination() {
+		return buildFourteenthKeyCombination;
 	}
 	
 }
