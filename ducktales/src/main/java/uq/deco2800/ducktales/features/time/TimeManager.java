@@ -73,13 +73,9 @@ public class TimeManager extends SecondaryManager
 
         gameTime.tick();
         // Display the new time\
-    	final int currentYear = gameTime.getCurrentYear();
         final int currentDay = gameTime.getCurrentDay();
         final int currentHour = gameTime.getHour();
         final String currentMinute = String.format("%02d", gameTime.getMinute());
-        final String timeText = "Current Time is: " + currentHour + ":" + currentMinute +
-        		", Day " + currentDay + " Year " + currentYear;
-        final int dayTracker = gameTime.getSeasonalDayTracker();
         final int currentTemperature = this.getSeasonManager().getCurrentSeason().getCurrentTemperature();
         final String degreeSymbol = "\u00b0";
         
@@ -98,8 +94,11 @@ public class TimeManager extends SecondaryManager
      	   
       	   gameTime.resetTracker();
       	   
-        } else {
-     	 //Doesn't do anything if it's already the same season. Will save on processing time (I HOPE).
+        }
+        
+        //Updates weatherEvents when it's a new day.
+        if(currentDay > this.previousDay) {
+        	this.getSeasonManager().alterWeatherEvents();
         }
         
         //Checking to update temperature on gameTick

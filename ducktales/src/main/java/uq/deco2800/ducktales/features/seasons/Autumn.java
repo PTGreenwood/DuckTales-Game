@@ -14,12 +14,15 @@ public class Autumn extends Season {
 	// because you'd want to save that as an integer
 	public Autumn() {
 		super.name = "Autumn";
-		super.humidityLevel = 2.2f;
+		super.humidityLevel = 1.8f;
 		super.maxTemperature = 18;
 		super.currentTemperature = 12;
 		super.minTemperature = 8;
 		super.timeNightFall = 20;
 		super.timeDayBreak = 5;
+		super.atmosphericIceLevel = 0.0f;
+		super.windLevel = 1.7f;
+		super.fireDanger = 0.6f;
 
 		super.weatherEvents = new WeatherEvents();
 		// If you've added things above then you have to add them here with a
