@@ -141,8 +141,7 @@ public class WorldBuilderRenderer extends AnimationTimer {
                 tiles.get(i, j).setHoverType(tileType);
             }
         }
-        //Untick the second mission box
-        missions.MissionImageCompleted(1);
+        
     }
 
     protected void setCurrentEntitySelected(ResourceType entityType) {

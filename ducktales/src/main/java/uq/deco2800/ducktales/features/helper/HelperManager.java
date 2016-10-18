@@ -9,6 +9,9 @@ import uq.deco2800.ducktales.features.missions.MissionHandler;
 
 public class HelperManager {
 	
+	private static final HelperManager INSTANCE = new HelperManager();
+	
+	
 	@FXML
 	private AnchorPane mainWindow;	
 	@FXML
@@ -17,15 +20,29 @@ public class HelperManager {
 	private Label helperLabel;
 	
 	private Image duckImage = new Image("/helper/helper.png");
-
-	private boolean helperClose = false;
 	
-	private int helperLoadNumber = 0;
+	private int helperLoadNumber;
+	
+	private boolean buildingBuilt = false;
 	
 	private MissionHandler missionHandler = MissionHandler.getInstance();
 	
-	private String helperString1 = "Click I to open mission interface and finish helper missions";
-	private String helperString2 = "All helper missions are completed";
+	private String helperString1 = "Click I to open mission interface and finish helper missions." 
+			+ "\n" + "And click me again";
+	private String helperString2 = "Add any building onto the tiles"
+			+ "\n" + "And click me again";
+	private String helperString3 = "All tutorial is done";
+	
+	
+	
+	public HelperManager() {
+		helperLoadNumber = 0;
+	}
+	
+	public static HelperManager getInstance() {
+		return INSTANCE;
+	}
+	
 	
 	@FXML
 	public void helperLoad() {
@@ -42,6 +59,14 @@ public class HelperManager {
 				}
 				break;
 			case 2:
+				System.out.println(this.buildingBuilt);
+				if(buildingBuilt) {
+					setImageAndText(duckImage, helperString3);
+				} else {
+					helperLoadNumber -= 1;
+				}
+				break;
+			case 3:
 				this.hideHelper();
 				break;
 		}
@@ -50,15 +75,12 @@ public class HelperManager {
 		
 	}
 	
+	
+	
 	private void setImageAndText(Image image, String text) {
 		helperImageView.setImage(image);
 		helperLabel.setText(text);
 	}
-	
-	
-	
-	
-	
 	
 	public void showHelper() {
     	this.mainWindow.setVisible(true);

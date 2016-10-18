@@ -1,6 +1,4 @@
-package uq.deco2800.ducktales.features.entities;
-
-import uq.deco2800.ducktales.features.entities.threats.Threat;
+package uq.deco2800.ducktales.features.entities.threats;
 
 public class Effect extends Threat {
 	

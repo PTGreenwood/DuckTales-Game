@@ -4,8 +4,8 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-import uq.deco2800.ducktales.features.entities.Effect;
-import uq.deco2800.ducktales.features.entities.Enemy;
+import uq.deco2800.ducktales.features.entities.threats.Effect;
+import uq.deco2800.ducktales.features.entities.threats.Enemy;
 import uq.deco2800.ducktales.features.entities.threats.ThreatManager;
 
 import static org.junit.Assert.assertTrue;

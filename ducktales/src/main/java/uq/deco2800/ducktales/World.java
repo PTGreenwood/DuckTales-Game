@@ -8,6 +8,7 @@ import uq.deco2800.ducktales.features.entities.Entity;
 
 import uq.deco2800.ducktales.features.entities.agententities.Animal;
 import uq.deco2800.ducktales.features.entities.peons.Peon;
+import uq.deco2800.ducktales.features.entities.resourceentities.DroppableResourceEntity;
 import uq.deco2800.ducktales.features.entities.threats.Threat;
 import uq.deco2800.ducktales.features.entities.worldentities.Building;
 import uq.deco2800.ducktales.features.entities.worldentities.StorageProduceBuilding;
@@ -50,6 +51,7 @@ public class World implements Tickable {
 	private ArrayList<Building> buildings; // All the buildings in the game
 	private HashMap<String, Peon> peons; // All the peons in the game
 	private ArrayList<Threat> threats;
+	private HashMap<Integer, DroppableResourceEntity> droppedResources; // All the dropped resources in the game
 
 	/** The registers */
 	private ResourceInfoRegister infoRegister = ResourceInfoRegister.getInstance();
@@ -212,6 +214,40 @@ public class World implements Tickable {
 	 */
 	public Animal getAnimal(int index) {
 		return animals.get(index);
+	}
+	
+	/**
+	 * Get the droppedResource with the given index
+	 * 
+	 * @return The dropped resource at the given index in the droppedResources 
+	 *         HashMap
+	 */
+	public DroppableResourceEntity getDroppedResource(int index) {
+		if(droppedResources.containsKey(index)) {
+			return droppedResources.get(index);
+		} else {
+			throw new RuntimeException("Fail to retrieve a droppedResource."
+				+ " droppedResource with" +
+				" key: \"" + index + "\" has not been added to the" +
+				"game yet.");
+		}
+	}
+	
+	/**
+	 * Set a dropped resource in the droppedResource HashMap using the 
+	 * given Key and Value
+	 */
+	public void setDroppedResoure(int key, DroppableResourceEntity value) {
+		if(droppedResources.containsKey(key)) {
+			throw new RuntimeException("droppedResources already contains "
+					+ "a dropped resource with key: " + key);
+		} else if(droppedResources.containsValue(value)) {
+			throw new RuntimeException("droppedResources already contains"
+					+ "a dropped resource of the value: " + value);
+		} else {
+			droppedResources.put(key, value);
+		}
+		
 	}
 
 	/**
