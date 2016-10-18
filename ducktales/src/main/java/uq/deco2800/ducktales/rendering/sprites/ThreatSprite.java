@@ -5,8 +5,8 @@ import java.util.HashMap;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import uq.deco2800.ducktales.features.entities.Effect;
-import uq.deco2800.ducktales.features.entities.Enemy;
+import uq.deco2800.ducktales.features.entities.threats.Effect;
+import uq.deco2800.ducktales.features.entities.threats.Enemy;
 import uq.deco2800.ducktales.features.entities.threats.Threat;
 import uq.deco2800.ducktales.features.entities.threats.ThreatFactory;
 import uq.deco2800.ducktales.features.entities.threats.ThreatManager;

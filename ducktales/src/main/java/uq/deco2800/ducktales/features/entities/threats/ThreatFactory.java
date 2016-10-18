@@ -2,34 +2,54 @@ package uq.deco2800.ducktales.features.entities.threats;
 
 import java.util.ArrayList;
 
-import uq.deco2800.ducktales.features.entities.Effect;
-import uq.deco2800.ducktales.features.entities.Enemy;
 import uq.deco2800.ducktales.rendering.sprites.EnemySprite;
 
 /**
- * Created by Krista on 4/10/2016.
+ * 
+ * This class creates enemy and
+ * effects types and defines
+ * their parameters
+ * 
+ * Created by Krista Harrison on 4/10/2016.
  * @author kristasusanne
  */
 
 public class ThreatFactory {
-
+	 /** CONSTANTS */
 	private static String timer = "Timer";
 	protected static ArrayList<Effect> effectsList = new ArrayList<Effect>();
 	protected static ArrayList<Enemy> enemiesList = new ArrayList<Enemy>();
 	//list for enemy ad threat sprites to be stored in
 	protected static ArrayList<EnemySprite> enemySpriteList = new ArrayList<EnemySprite>();
 	
+	/**
+	 * 
+	 * Defines the enum types of enemies
+	 *
+	 */
 	public enum EnemyType {
 		RACCOON, BEETLE, WILD_VILLAGER, WOLF, CROW, GORILLA, EVIL_DUCK,
 		LION, CHIMP, BEAR, ZOMBIE_DUCK, ROBBER, ELEPHANT,
 		
 	}
 	
+	/**
+	 * 
+	 * Defines the enum types of effects
+	 *
+	 */
 	public enum EffectType {
 		BLACK_SMOKE, SHAKE, POISON_CLOUD, RUMBLE,  EARTHQUAKE, GREEN_FEL_FIRE,
 		BLIGHT, FEL,
 	}
 	
+	 /**
+     * Create enemies at level 1
+     *
+     * @param enemyType
+     *          the type of the enemy to be created
+     *          
+     */
 	public static Enemy createLevel1Enemy(EnemyType enemy) {
 		switch(enemy) {
 		case RACCOON:
@@ -44,6 +64,13 @@ public class ThreatFactory {
 		
 	}
 	
+	 /**
+     * Create effects at level 1
+     *
+     * @param effectType
+     *          the type of the effect to be created
+     *          
+     */
 	public static Effect createLevel1Effect(EffectType effect) {
 		switch(effect) {
 		case BLACK_SMOKE:
@@ -55,6 +82,13 @@ public class ThreatFactory {
 		}
 	}
 	
+	 /**
+     * Create enemies at level 2
+     *
+     * @param enemyType
+     *          the type of the enemy to be created
+     *          
+     */
 	public static Enemy createLevel2Enemy(EnemyType enemy) {
 		switch(enemy) {
 		case WOLF:
@@ -70,6 +104,13 @@ public class ThreatFactory {
 		}	
 	}
 	
+	 /**
+     * Create effects at level 2
+     *
+     * @param effectType
+     *          the type of the effect to be created
+     *          
+     */
 	public static Effect createLevel2Effect(EffectType effect) {
 		switch(effect) {
 		case POISON_CLOUD:
@@ -81,6 +122,13 @@ public class ThreatFactory {
 		}
 	}
 	
+	 /**
+     * Create enemies at level 3
+     *
+     * @param enemyType
+     *          the type of the enemy to be created
+     *          
+     */
 	public static Enemy createLevel3Enemy(EnemyType enemy) {
 		switch(enemy) {
 		case LION:
@@ -95,6 +143,13 @@ public class ThreatFactory {
 		}
 	}
 	
+	 /**
+     * Create effects at level 3
+     *
+     * @param effectType
+     *          the type of the effect to be created
+     *          
+     */
 	public static Effect createLevel3Effect(EffectType effect) {
 		switch(effect) {
 		case EARTHQUAKE: 
@@ -106,6 +161,13 @@ public class ThreatFactory {
 		}
 	}
 	
+	 /**
+     * Create enemies at level 4
+     *
+     * @param enemyType
+     *          the type of the enemy to be created
+     *          
+     */
 	public static Enemy createLevel4Enemy(EnemyType enemy) {
 		switch(enemy) {
 		case ZOMBIE_DUCK:
@@ -119,6 +181,13 @@ public class ThreatFactory {
 		}	
 	}
 	
+	 /**
+     * Create effects at level 4
+     *
+     * @param effectType
+     *          the type of the effect to be created
+     *          
+     */
 	public static Effect createLevel4Effect(EffectType effect) {
 		switch(effect) {
 		case BLIGHT:
@@ -130,6 +199,21 @@ public class ThreatFactory {
 		}
 	}
 	
+	 /**
+     * Set the start timer, end timer, level
+     * of damage and random x and y values
+     * for effects
+     *
+     * @param effect
+     *          the effect to have the parameter set
+     * @param start
+     * 			the integer for the start timer
+     * @param end
+     * 			the integer for the end timer
+     * @param damage
+     *			the integer for level of damage
+     *          
+     */
 	private static void setEffectParameters(Effect effect, int start, int end, int damage) {
 		effect.setStartTimer(start, timer);
 		effect.setEndTimer(end);
@@ -139,6 +223,21 @@ public class ThreatFactory {
 		effectsList.add(effect);
 	}
 	
+	 /**
+     * Set the start timer, end timer, level
+     * of damage and random x and y values
+     * for enemies
+     *
+     * @param effect
+     *          the enemy to have the parameter set
+     * @param start
+     * 			the integer for the start timer
+     * @param end
+     * 			the integer for the end timer
+     * @param damage
+     *			the integer for level of damage
+     *          
+     */
 	private static void setEnemyParameters(Enemy enemy, int start, int end, int damage) {
 		enemy.setStartTimer(start, timer);
 		enemy.setEndTimer(end);
@@ -148,7 +247,20 @@ public class ThreatFactory {
 		enemiesList.add(enemy);
 	}
 	
+
 	// Level 1 Effects
+	
+	 /**
+     * Create black smoke effect, assign its
+     * start timer, end timer, level
+     * of damage and random x and y values, 
+     * and create the sprite for
+     * the effect
+     *
+     * @param EffectType
+     * 		the effect type to be created from the enum class
+     *          
+     */
 	private static Effect createBlackSmoke(EffectType blackSmoke) {
 		Effect blackSmokeEffect = new Effect("Black Smoke");
 		setEffectParameters(blackSmokeEffect, 20, 50, 20);
@@ -157,6 +269,17 @@ public class ThreatFactory {
 		return null;
 	}
 	
+	 /**
+     * Create shake effect, assign its
+     * start timer, end timer, level
+     * of damage and random x and y values, 
+     * and create the sprite for
+     * the effect
+     *
+     * @param EffectType
+     * 		the effect type to be created from the enum class
+     *          
+     */
 	private static Effect createShake(EffectType shake) {
 		Effect shakeEffect = new Effect("Shake");
 		setEffectParameters(shakeEffect, 50, 100, 20);
@@ -166,6 +289,18 @@ public class ThreatFactory {
 	}
 	
 	// Level 1 Enemies
+	
+	 /**
+     * Create raccoon enemy, assign its
+     * start timer, end timer, level
+     * of damage and random x and y values, 
+     * and create the sprite for
+     * the enemy
+     *
+     * @param EnemyType
+     * 		the enemy type to be created from the enum class
+     *          
+     */
 	private static Enemy createRaccoon(EnemyType raccoon) {
 		Enemy raccoonEnemy = new Enemy("Raccoon");
 		setEnemyParameters(raccoonEnemy, 20, 50, 20);
@@ -174,6 +309,17 @@ public class ThreatFactory {
 		return null;	
 	}
 	
+	 /**
+     * Create beetle enemy, assign its
+     * start timer, end timer, level
+     * of damage and random x and y values, 
+     * and create the sprite for
+     * the enemy
+     *
+     * @param EnemyType
+     * 		the enemy type to be created from the enum class
+     *          
+     */
 	private static Enemy createBeetle(EnemyType beetle) {
 		Enemy beetleEnemy = new Enemy("Beetle");
 		setEnemyParameters(beetleEnemy, 20, 50, 20);
@@ -182,7 +328,17 @@ public class ThreatFactory {
 		return null;
 	}
 	
-
+	 /**
+     * Create wild villager enemy, assign its
+     * start timer, end timer, level
+     * of damage and random x and y values, 
+     * and create the sprite for
+     * the enemy
+     *
+     * @param EnemyType
+     * 		the effect type to be created from the enum class
+     *          
+     */
 	private static Enemy createWildVillager(EnemyType wildVillager) {
 		Enemy wildVillagerEnemy = new Enemy("Wild Villager");
 		setEnemyParameters(wildVillagerEnemy, 20, 50, 20);
@@ -192,6 +348,18 @@ public class ThreatFactory {
 	}
 	
 	// Level 2 Effects
+	
+	 /**
+     * Create poison cloud effect, assign its
+     * start timer, end timer, level
+     * of damage and random x and y values, 
+     * and create the sprite for
+     * the effect
+     *
+     * @param EffectType
+     * 		the effect type to be created from the enum class
+     *          
+     */
 	private static Effect createPoisonCloud(EffectType poisonCloud) {
 		Effect poisonCloudEffect = new Effect("Poison Cloud");
 		setEffectParameters(poisonCloudEffect, 20, 50, 30);
@@ -200,6 +368,17 @@ public class ThreatFactory {
 		return null;
 	}
 	
+	 /**
+     * Create rumble effect, assign its
+     * start timer, end timer, level
+     * of damage and random x and y values, 
+     * and create the sprite for
+     * the effect
+     *
+     * @param EffectType
+     * 		the effect type to be created from the enum class
+     *          
+     */
 	private static Effect createRumble(EffectType rumble) {
 		Effect rumbleEffect = new Effect("Rubmle");
 		setEffectParameters(rumbleEffect, 50, 100, 30);
@@ -210,6 +389,17 @@ public class ThreatFactory {
 	
 	// Level 2 Enemies
 
+	 /**
+     * Create wolf enemy, assign its
+     * start timer, end timer, level
+     * of damage and random x and y values, 
+     * and create the sprite for
+     * the enemy
+     *
+     * @param EnemyType
+     * 		the effect type to be created from the enum class
+     *          
+     */
 	private static Enemy createWolf(EnemyType wolf) {
 		Enemy wolfEnemy = new Enemy("Wolf");
 		setEnemyParameters(wolfEnemy, 20, 50, 30);
@@ -218,6 +408,17 @@ public class ThreatFactory {
 		return null;
 	}
 	
+	 /**
+     * Create crow enemy, assign its
+     * start timer, end timer, level
+     * of damage and random x and y values, 
+     * and create the sprite for
+     * the enemy
+     *
+     * @param EnemyType
+     * 		the effect type to be created from the enum class
+     *          
+     */
 	private static Enemy createCrow(EnemyType crow) {
 		Enemy crowEnemy = new Enemy("Crow");
 		setEnemyParameters(crowEnemy, 20, 50, 30);
@@ -226,6 +427,17 @@ public class ThreatFactory {
 		return null;
 	}
 	
+	 /**
+     * Create gorilla enemy, assign its
+     * start timer, end timer, level
+     * of damage and random x and y values, 
+     * and create the sprite for
+     * the enemy
+     *
+     * @param EnemyType
+     * 		the effect type to be created from the enum class
+     *          
+     */
 	private static Enemy createGorilla(EnemyType gorilla) {
 		Enemy gorillaEnemy = new Enemy("Gorilla");
 		setEnemyParameters(gorillaEnemy, 20, 50, 30);
@@ -234,6 +446,17 @@ public class ThreatFactory {
 		return null;
 	}
 	
+	 /**
+     * Create evil duck enemy, assign its
+     * start timer, end timer, level
+     * of damage and random x and y values, 
+     * and create the sprite for
+     * the enemy
+     *
+     * @param EnemyType
+     * 		the effect type to be created from the enum class
+     *          
+     */
 	private static Enemy createEvilDuck(EnemyType evilDuck) {
 		Enemy evilDuckEnemy = new Enemy("Evil Duck");
 		setEnemyParameters(evilDuckEnemy, 20, 50, 30);
@@ -244,6 +467,17 @@ public class ThreatFactory {
 	
 	// Level 3 Effects
 
+	 /**
+     * Create earthquake effect, assign its
+     * start timer, end timer, level
+     * of damage and random x and y values, 
+     * and create the sprite for
+     * the effect
+     *
+     * @param EffectType
+     * 		the effect type to be created from the enum class
+     *          
+     */
 	private static Effect createEarthquake(EffectType earthquake) {
 		Effect earthquakeEffect = new Effect("Earthquake");
 		setEffectParameters(earthquakeEffect, 20, 50, 40);
@@ -252,6 +486,17 @@ public class ThreatFactory {
 		return null;
 	}
 	
+	 /**
+     * Create green fel fire effect, assign its
+     * start timer, end timer, level
+     * of damage and random x and y values, 
+     * and create the sprite for
+     * the effect
+     *
+     * @param EffectType
+     * 		the effect type to be created from the enum class
+     *          
+     */
 	private static Effect createGreenFelFire(EffectType greenFelFire) {
 		Effect greenFelFireEffect = new Effect("Green Fel Fire");
 		setEffectParameters(greenFelFireEffect, 20, 50, 40);
@@ -261,6 +506,18 @@ public class ThreatFactory {
 	}
 	
 	// Level 3 Enemies
+	
+	 /**
+     * Create lion enemy, assign its
+     * start timer, end timer, level
+     * of damage and random x and y values, 
+     * and create the sprite for
+     * the enemy
+     *
+     * @param EnemyType
+     * 		the effect type to be created from the enum class
+     *          
+     */
 	private static Enemy createLion(EnemyType lion) {
 		Enemy lionEnemy = new Enemy("Lion");
 		setEnemyParameters(lionEnemy, 50, 100, 40);
@@ -269,6 +526,17 @@ public class ThreatFactory {
 		return null;
 	}
 
+	 /**
+     * Create chimp enemy, assign its
+     * start timer, end timer, level
+     * of damage and random x and y values, 
+     * and create the sprite for
+     * the enemy
+     *
+     * @param EnemyType
+     * 		the effect type to be created from the enum class
+     *          
+     */
 	private static Enemy createChimp(EnemyType chimp) {
 		Enemy chimpEnemy = new Enemy ("Chimp");
 		setEnemyParameters(chimpEnemy, 20, 50, 40);
@@ -277,6 +545,17 @@ public class ThreatFactory {
 		return null;
 	}
 	
+	 /**
+     * Create bear enemy, assign its
+     * start timer, end timer, level
+     * of damage and random x and y values, 
+     * and create the sprite for
+     * the enemy
+     *
+     * @param EnemyType
+     * 		the effect type to be created from the enum class
+     *          
+     */
 	private static Enemy createBear(EnemyType bear) {
 		Enemy bearEnemy = new Enemy("Bear");
 		setEnemyParameters(bearEnemy, 20, 50, 40);
@@ -286,6 +565,18 @@ public class ThreatFactory {
 	}
 	
 	// Level 4 Effects
+	
+	 /**
+     * Create blight effect, assign its
+     * start timer, end timer, level
+     * of damage and random x and y values, 
+     * and create the sprite for
+     * the effect
+     *
+     * @param EffectType
+     * 		the effect type to be created from the enum class
+     *          
+     */
 	private static Effect createBlight(EffectType blight) {
 		Effect blightEffect = new Effect("Blight");
 		setEffectParameters(blightEffect, 20, 50, 50);
@@ -294,6 +585,17 @@ public class ThreatFactory {
 		return null;
 	}
 	
+	 /**
+     * Create fel effect, assign its
+     * start timer, end timer, level
+     * of damage and random x and y values, 
+     * and create the sprite for
+     * the effect
+     *
+     * @param EffectType
+     * 		the effect type to be created from the enum class
+     *          
+     */
 	private static Effect createFel(EffectType fel) {
 		Effect felEffect = new Effect("Fel");
 		setEffectParameters(felEffect, 20, 50, 50);
@@ -303,6 +605,18 @@ public class ThreatFactory {
 	}
 	
 	// Level 4 Enemies
+	
+	 /**
+     * Create zombie duck enemy, assign its
+     * start timer, end timer, level
+     * of damage and random x and y values, 
+     * and create the sprite for
+     * the enemy
+     *
+     * @param EnemyType
+     * 		the effect type to be created from the enum class
+     *          
+     */
 	private static Enemy createZombieDuck(EnemyType zombieDuck) {
 		Enemy zombieDuckEnemy = new Enemy("Zombie Duck");
 		setEnemyParameters(zombieDuckEnemy, 20, 50, 50);
@@ -311,6 +625,17 @@ public class ThreatFactory {
 		return null;
 	}
 
+	 /**
+     * Create robber enemy, assign its
+     * start timer, end timer, level
+     * of damage and random x and y values, 
+     * and create the sprite for
+     * the enemy
+     *
+     * @param EnemyType
+     * 		the effect type to be created from the enum class
+     *          
+     */
 	private static Enemy createRobber(EnemyType robber) {
 		Enemy robberEnemy = new Enemy("Robber");
 		setEnemyParameters(robberEnemy, 20, 50, 50);
@@ -319,6 +644,17 @@ public class ThreatFactory {
 		return null;
 	}
 
+	 /**
+     * Create elephant enemy, assign its
+     * start timer, end timer, level
+     * of damage and random x and y values, 
+     * and create the sprite for
+     * the enemy
+     *
+     * @param EnemyType
+     * 		the effect type to be created from the enum class
+     *          
+     */
 	private static Enemy createElephant(EnemyType elephant) {
 		Enemy elephantEnemy = new Enemy("Elephant");
 		setEnemyParameters(elephantEnemy, 20, 50, 50);

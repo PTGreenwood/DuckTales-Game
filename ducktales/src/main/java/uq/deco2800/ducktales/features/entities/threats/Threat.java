@@ -5,11 +5,15 @@ import java.util.Random;
 import uq.deco2800.ducktales.World;
 import uq.deco2800.ducktales.features.entities.Entity;
 import uq.deco2800.ducktales.features.entities.peons.Peon;
+import uq.deco2800.ducktales.features.entities.worldentities.Building;
+import uq.deco2800.ducktales.features.landscape.tiles.Tile;
 import uq.deco2800.ducktales.resources.ResourceType;
 
 /**
- * Handles game threats.
+ * Handles game threats in the form of enemies
+ * and effects.
  * 
+ *@author Wian and Krista
  *
  */
 public class Threat extends Entity {
@@ -34,6 +38,7 @@ public class Threat extends Entity {
 
 	private World world;
 	private Peon peon;
+	private Building building;
 
 	/**
 	 * Enemy takes a string name and a type of enemy which is Creature or Effect
@@ -238,35 +243,303 @@ public class Threat extends Entity {
 //		// new Image(getClass().getResource(imageName).toString()));
 //	}
 	
+	/**
+	 * @return a double which is the x
+	 * coordinate of the threat
+	 */
 	public double getX() {
 		return xCord;
 	}
 
+	/**
+	 * @return a double which is the y
+	 * coordinate of the threat
+	 */
 	public double getY() {
 		return yCord;
 	}
 	
+	/**
+	 * Converts the x coordinate of 
+	 * a threat from a double to an integer
+	 * 
+	 * @return an integer which is the x
+	 * coordinate of the threat
+	 */
 	public int getXInt() {
 		int xInt = (int) xCord;
 		return xInt;
 	}
 	
+	/**
+	 * Converts the y coordinate of 
+	 * a threat from a double to an integer
+	 * 
+	 * @return an integer which is the x
+	 * coordinate of the threat
+	 */
 	public int getYInt() {
 		int yInt = (int) yCord;
 		return yInt;
 	}
 	
 	/**
-	 * Method to detect peon/enemy collisions
+	 * Method to detect Peon/Enemy collisions
+	 * 
+	 * @return a boolean value which is true if the
+	 * threat has collided with a peon, and false if it has not
 	 */
-
-	public void checkCollision() {
-		int currentHealth = peon.getHealth();
-		int newHealth = currentHealth - levelOfDamage;
-		if ((this.getX() >= peon.getX() && (this.getY() >= peon.getY()))) {
-			peon.setHealth(newHealth);
+	public boolean checkPeonCollision() {
+		Tile temptile = world.getTile(this.getXInt(), this.getYInt());
+		ResourceType tempType = temptile.getTileType();
+		switch(tempType) {
+		case PEON:
+			return true;
+		default:
+			return false;
 		}
 	}
+	
+	/**
+	 * Method to detect Building/Enemy collisions
+	 * 
+	 * @return a boolean value which is true if the
+	 * threat has collided with a building, and false if it has not
+	 */
+	public boolean checkBuildingCollision() {
+		Tile temptile = world.getTile(this.getXInt(), this.getYInt());
+		ResourceType tempType = temptile.getTileType();
+		switch(tempType) {
+		case PASTURE:
+			return true;
+		case BUTCHER:
+			return true;
+		case BAKERY:
+			return true;
+		case COMMUNITY_BUILDING:
+			return true;
+		case CONSTRUCTION:
+			return true;
+		case HOUSE:
+			return true;
+		case SAWMILL:
+			return true;
+		case CEMETERY:
+			return true;
+		case BARN:
+			return true;
+		case FORGE:
+			return true;
+		case HOSPITAL:
+			return true;
+		case OBSERVATORY:
+			return true;
+		case FARM:
+			return true;
+		case MINE:
+			return true;
+		case QUARRY:
+			return true;
+		case CHURCH:
+			return true;
+		case SCHOOL:
+			return true;
+		case GYMNASIUM:
+			return true;
+		case CONSTRUCTION_2:
+			return true;
+		case STORAGEBARN:
+			return true;
+		case BUTCHER_1:
+			return true;
+		case BUTCHER_2:
+			return true;
+		case BUTCHER_3:
+			return true;
+		case BUTCHER_4:
+			return true;
+		case BUTCHER_5:
+			return true;
+		case ADV_BUTCHER_1:
+			return true;
+		case ADV_BUTCHER_2:
+			return true;
+		case ADV_BUTCHER_3:
+			return true;
+		case ADV_BUTCHER_4:
+			return true;
+		case ADV_BUTCHER_5:
+			return true;
+		case ADV_HOSPITAL_1:
+			return true;
+		case ADV_HOSPITAL_2:
+			return true;
+		case ADV_HOSPITAL_3:
+			return true;
+		case ADV_HOSPITAL_4:
+			return true;
+		case ADV_HOSPITAL_5:
+			return true;
+		case BAKERY_1:
+			return true;
+		case BAKERY_2:
+			return true;
+		case BAKERY_3:
+			return true;
+		case BAKERY_4:
+			return true;
+		case BAKERY_5:
+			return true;
+		case CEMETERY_1:
+			return true;
+		case CEMETERY_2:
+			return true;
+		case CEMETERY_3:
+			return true;
+		case CEMETERY_4:
+			return true;
+		case CEMETERY_5:
+			return true;
+		case CEMETERY_6:
+			return true;
+		case CEMETERY_7:
+			return true;
+		case CEMETERY_8:
+			return true;
+		case CEMETERY_9:
+			return true;
+		case CEMETERY_10:
+			return true;
+		case CEMETERY_11:
+			return true;
+		case CEMETERY_12:
+			return true;
+		case CEMETERY_13:
+			return true;
+		case CEMETERY_14:
+			return true;
+		case CEMETERY_15:
+			return true;
+		case CEMETERY_16:
+			return true;
+		case CHURCH_1:
+			return true;
+		case CHURCH_2:
+			return true;
+		case CHURCH_3:
+			return true;
+		case CHURCH_4:
+			return true;
+		case CHURCH_5:
+			return true;
+		case OBSERVATORY_1:
+			return true;
+		case OBSERVATORY_2:
+			return true;
+		case OBSERVATORY_3:
+			return true;
+		case OBSERVATORY_4:
+			return true;
+		case OBSERVATORY_5:
+			return true;
+		case SAWMILL_1:
+			return true;
+		case SAWMILL_2:
+			return true;
+		case SAWMILL_3:
+			return true;
+		case SAWMILL_4:
+			return true;
+		case SAWMILL_5:
+			return true;
+		case SAWMILL_6:
+			return true;
+		case FORGE_1:
+			return true;
+		case FORGE_2:
+			return true;
+		case FORGE_3:
+			return true;
+		case FORGE_4:
+			return true;
+		case FORGE_5:
+			return true;
+		case GYMNASIUM_1:
+			return true;
+		case GYMNASIUM_2:
+			return true;
+		case GYMNASIUM_3:
+			return true;
+		case GYMNASIUM_4:
+			return true;
+		case GYMNASIUM_5:
+			return true;
+		case HOSPITAL_1:
+			return true;
+		case HOSPITAL_2:
+			return true;
+		case HOSPITAL_3:
+			return true;
+		case HOSPITAL_4:
+			return true;
+		case HOSPITAL_5:
+			return true;
+		case HOUSE_1:
+			return true;
+		case HOUSE_2:
+			return true;
+		case HOUSE_3:
+			return true;
+		case HOUSE_4:
+			return true;
+		case HOUSE_5:
+			return true;
+		case MINE_1:
+			return true;
+		case MINE_2:
+			return true;
+		case MINE_3:
+			return true;
+		case MINE_4:
+			return true;
+		default:
+			return false;
+		}			
+	}
+	
+	/**
+	 * Method to change the Peon's integer health value
+	 * upon collision with an enemy
+	 * 
+	 */
+	public void peonHealthDamage() {
+		boolean peonCollision = checkPeonCollision();
+		if (peonCollision == true) {
+			int currentPeonHealth = peon.getHealth();
+			int newPeonHealth = currentPeonHealth - levelOfDamage;
+			if (newPeonHealth >= 1) {
+				peon.setHealth(newPeonHealth);
+			}
+		}
+	}
+	
+	/**
+	 * Method to change the Building's integer health value
+	 * upon collision with an enemy
+	 * 
+	 */
+	public void buildingHealthDamage() {
+		boolean buildingCollision = checkBuildingCollision();
+		if (buildingCollision == true) {
+			int currentBuildingHealth = building.getHealth();
+			int newBuildingHealth = currentBuildingHealth - levelOfDamage;
+			if (newBuildingHealth >= 1) {
+				building.changeHealth(newBuildingHealth);
+			}
+		}
+	}
+	
+	//Create 2d array
 
 	@Override
 	public void tick() {
