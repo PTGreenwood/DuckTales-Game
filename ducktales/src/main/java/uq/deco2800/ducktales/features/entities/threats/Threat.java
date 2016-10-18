@@ -10,8 +10,10 @@ import uq.deco2800.ducktales.features.landscape.tiles.Tile;
 import uq.deco2800.ducktales.resources.ResourceType;
 
 /**
- * Handles game threats.
+ * Handles game threats in the form of enemies
+ * and effects.
  * 
+ *@author Wian and Krista
  *
  */
 public class Threat extends Entity {
@@ -241,29 +243,52 @@ public class Threat extends Entity {
 //		// new Image(getClass().getResource(imageName).toString()));
 //	}
 	
+	/**
+	 * @return a double which is the x
+	 * coordinate of the threat
+	 */
 	public double getX() {
 		return xCord;
 	}
 
+	/**
+	 * @return a double which is the y
+	 * coordinate of the threat
+	 */
 	public double getY() {
 		return yCord;
 	}
 	
+	/**
+	 * Converts the x coordinate of 
+	 * a threat from a double to an integer
+	 * 
+	 * @return an integer which is the x
+	 * coordinate of the threat
+	 */
 	public int getXInt() {
 		int xInt = (int) xCord;
 		return xInt;
 	}
 	
+	/**
+	 * Converts the y coordinate of 
+	 * a threat from a double to an integer
+	 * 
+	 * @return an integer which is the x
+	 * coordinate of the threat
+	 */
 	public int getYInt() {
 		int yInt = (int) yCord;
 		return yInt;
 	}
 	
 	/**
-	 * Method to detect peon/enemy collisions
+	 * Method to detect Peon/Enemy collisions
+	 * 
+	 * @return a boolean value which is true if the
+	 * threat has collided with a peon, and false if it has not
 	 */
-
-	//Check Peon
 	public boolean checkPeonCollision() {
 		Tile temptile = world.getTile(this.getXInt(), this.getYInt());
 		ResourceType tempType = temptile.getTileType();
@@ -275,7 +300,12 @@ public class Threat extends Entity {
 		}
 	}
 	
-	//Check Building
+	/**
+	 * Method to detect Building/Enemy collisions
+	 * 
+	 * @return a boolean value which is true if the
+	 * threat has collided with a building, and false if it has not
+	 */
 	public boolean checkBuildingCollision() {
 		Tile temptile = world.getTile(this.getXInt(), this.getYInt());
 		ResourceType tempType = temptile.getTileType();
@@ -477,7 +507,11 @@ public class Threat extends Entity {
 		}			
 	}
 	
-	//Change Peon health(health int)
+	/**
+	 * Method to change the Peon's integer health value
+	 * upon collision with an enemy
+	 * 
+	 */
 	public void peonHealthDamage() {
 		boolean peonCollision = checkPeonCollision();
 		if (peonCollision == true) {
@@ -489,7 +523,11 @@ public class Threat extends Entity {
 		}
 	}
 	
-	//Change building health
+	/**
+	 * Method to change the Building's integer health value
+	 * upon collision with an enemy
+	 * 
+	 */
 	public void buildingHealthDamage() {
 		boolean buildingCollision = checkBuildingCollision();
 		if (buildingCollision == true) {
