@@ -17,9 +17,9 @@ public class Winter extends Season {
 	public Winter() {
 		super.name = "Winter";
 		super.humidityLevel = 0.5f;
-		super.maxTemperature = 12;
+		super.maxTemperature = 11;
 		super.currentTemperature = 7;
-		super.minTemperature = 4;
+		super.minTemperature = 0;
 		super.timeNightFall = 17;
 		super.timeDayBreak = 7;
 

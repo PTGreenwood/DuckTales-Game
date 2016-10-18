@@ -1,27 +1,20 @@
 package uq.deco2800.ducktales.features.login;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 
 import javax.ws.rs.WebApplicationException;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import uq.deco2800.ducktales.DuckTalesController;
-import uq.deco2800.ducktales.features.market.MarketVistaNavigator;
 import uq.deco2800.singularity.clients.ducktales.DucktalesClient;
-import uq.deco2800.singularity.common.representations.User;  
+import uq.deco2800.singularity.common.representations.User;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 /**
@@ -29,6 +22,8 @@ import uq.deco2800.singularity.common.representations.User;
  * @author wentingwang
  */
 public class LoginController  {
+	/** The logger */
+	private static final Logger LOGGER = LoggerFactory.getLogger(LoginController.class);
     
     @FXML
     private Text actiontarget;
@@ -48,7 +43,7 @@ public class LoginController  {
 	}
     
 	
-    @FXML protected void handleSignUpButtonAction(ActionEvent event) throws IOException {
+    @FXML protected void handleSignUpButtonAction() throws IOException {
         
         LoginVistaNavigator.loadVista(LoginVistaNavigator.SIGNUP);
 
@@ -56,27 +51,13 @@ public class LoginController  {
     
     private void goToSignUpPage() throws IOException {
     	
-    	/*
-    	Parent root1 = FXMLLoader.load(getClass().getResource("/ui/main/SignUp.fxml"));
-    	
-		Scene scene = new Scene(root1,300,275);
-		primaryStage.setTitle("FXML Welcome");
-		primaryStage.setScene(scene);
-		primaryStage.showAndWait();
-		 */
-		
 		LoginVistaNavigator.loadVista(LoginVistaNavigator.SIGNUP);
     }
     
     
     
-    @FXML protected void handleSubmitButtonAction(ActionEvent event) throws Exception {
-    	//event.fireEvent(this,new WindowEvent(this,WindowEvent.WINDOW_CLOSED));
-    //if(username.getText().equals("123") && passwordField.getText().equals("456"))
-    		//DuckTalesController.close();
-    	//else
-    	boolean bexit = false;
-    	
+    @FXML protected void handleSubmitButtonAction() throws WebApplicationException {
+
     	String loginUserName = username.getText();
     	String loginPassword = passwordField.getText();
     	
@@ -89,9 +70,10 @@ public class LoginController  {
     		client.setupCredentials(loginUserName, loginPassword);
     		user = client.getUserInformationByUserName(loginUserName);
     	} catch (WebApplicationException e) {
+			LOGGER.info("Exception when logging in", e);
     		switch (e.getResponse().getStatus()) {
 				case 404:
-					System.err.print("Unable to connecto to server");
+					LOGGER.debug("Unable to connecto to server");
 					break;
 				case 403:
 					// User does not exist, redirect to sign up
@@ -101,9 +83,13 @@ public class LoginController  {
 					if (SignUpController.getClient() == null) {
 						SignUpController.setClient(client);
 					}
-					
-					goToSignUpPage();
-					
+
+					try {
+						goToSignUpPage();
+					} catch (IOException e1) {
+						LOGGER.info("Unable to find signup page", e1);
+					}
+					break;
 				default:
 					// Handle other errors
     		}
@@ -124,7 +110,7 @@ public class LoginController  {
     
     
     @FXML 
-    protected void closeLoginFrame(ActionEvent event) {
+    protected void closeLoginFrame() {
     	primaryStage.close();
     }
     
@@ -137,7 +123,7 @@ public class LoginController  {
      * Sets the instance of the Ducktales client that will be used to sign up
      * users and sign them in to the game.
      * 
-     * @param client
+     * @param clientInstance
      */
     public static void setClient(DucktalesClient clientInstance) {
     	if (client == null || !client.equals(clientInstance)) {

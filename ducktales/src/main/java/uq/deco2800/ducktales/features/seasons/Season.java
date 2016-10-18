@@ -152,7 +152,7 @@ public abstract class Season {
 	}
 	
 	/**
-	 * Sets snowWeather Event/Chance for Spring Time
+	 * Sets snowWeather Event/Chance
 	 */
 	public void setSnowWeather() {		
 		int initialSnowChance = 5;
@@ -166,7 +166,7 @@ public abstract class Season {
 	}
 	
 	/**
-	 * Sets snowWeather Event/Chance for Spring Time
+	 * Sets snowWeather Event/Chance
 	 */
 	public void setStormWeather() {		
 		int initialStormChance = 5;
@@ -179,28 +179,56 @@ public abstract class Season {
     	}
 	}
 	
-	/*
-	 * Currently Storm class has not been fully implemented. Uncomment when ready
-	 */
 	/**
-	 * Sets Storm Weather Event for Spring Time
-	 **/
-	/*
-	public void setStormWeather() {
+	 * Updates the currentTemperature by incrementing current value
+	 * of the season by the provided modifier
+	 * of the provided modifier.
+	 * @param modifier
+	 * 			-Must be positive
+	 * 
+	 * @require 0 >= modifier
+	 */
+	public void incrementCurrentTemperature(int modifier) {
+		if(modifier <= 0) {
+			//Do nothing.
+		} else {
 		
-		//Making this fairly static at the moment
-		//Keeping a note here: CurrentTemperature should be increasing/decreasing as the
-		//day keeps moving on which means the chances should be constantly updating. But for now
-		//they can be static until implementation is ready for that sort of thing.
-		int initialStormChance = (int) (this.humidityLevel * this.maxTemperature);
-		Storm storm = new Storm();
-    	try {
-    		WeatherChance stormChance = new WeatherChance(storm, initialStormChance);
-    		super.weatherEvents.add(stormChance);
-
-    	}  catch (InvalidWeatherChanceException e) {
-    		System.out.println("ERROR: Chance must be > 0 and <= 100 and weather Cannot be Null");
-    	}
+			if((this.currentTemperature < this.maxTemperature)) {
+				int newTemperature = this.currentTemperature + modifier;
+				for (int i = 0; i < modifier; i++) {
+					if(newTemperature > this.maxTemperature) {
+						newTemperature -= 1;
+					} else {
+						this.currentTemperature = newTemperature;
+					}
+				}		
+			}
+		}
 	}
-	*/
+	
+	/**
+	 * Updates the currentTemperature by decrementing current Value
+	 * of the season by the provided modifier.
+	 * @param modifier
+	 * 			-Must be positive
+	 * 
+	 * @require 0 >= modifier
+	 */
+	public void decrementCurrentTemperature(int modifier) {
+		if(modifier <= 0) {
+			//Do nothing.
+		} else {
+			if((this.currentTemperature > this.minTemperature)) {
+				int newTemperature = this.currentTemperature - modifier;
+				for (int i = 0; i < modifier; i++) {
+					if(newTemperature < this.minTemperature) {
+						newTemperature += 1;
+					} else {
+						this.currentTemperature = newTemperature;
+						break;
+					}
+				}		
+			}
+		}
+	}
 }
