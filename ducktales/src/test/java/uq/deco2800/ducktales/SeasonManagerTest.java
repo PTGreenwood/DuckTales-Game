@@ -183,7 +183,7 @@ public class SeasonManagerTest {
     		System.out.println("ERROR: Chance must be > 0 and <= 100 and weather Cannot be Null");
     	}
 		
-		
+		/*
 		for (Season seasonIterator : tm.getSeasonManager().getSeasonList()) {
 			seasonIterator.setRainWeather();
 			seasonIterator.setFireWeather();
@@ -200,7 +200,7 @@ public class SeasonManagerTest {
 		assertEquals(winterWeather.getWeatherEvents(), 
 				tm.getSeasonManager().getSeasonList().get(3).getSeasonalWeatherEvents().getWeatherEvents());
 
-    				 
+    		*/		 
     	}
 	
 }
