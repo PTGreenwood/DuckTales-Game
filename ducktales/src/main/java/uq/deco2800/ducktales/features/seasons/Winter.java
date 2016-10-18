@@ -31,16 +31,5 @@ public class Winter extends Season {
 		// this.whateverItIs = whateverItIs;
 
 	}
-
-	@Override
-	public void setSnowWeather() {		
-		Weather snow = new Snow();
-    	try {
-    		WeatherChance snowChance = new WeatherChance(snow, 50);
-    		this.weatherEvents.add(snowChance);
-    	}  catch (InvalidWeatherChanceException e) {
-    		System.out.println("ERROR: Chance must be > 0 and <= 100 and weather Cannot be Null");
-    	}
-	}
-
 }
+
