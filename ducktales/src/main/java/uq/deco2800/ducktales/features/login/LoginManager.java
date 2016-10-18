@@ -57,6 +57,8 @@ public class LoginManager {
      * @param client
      */
     public static void setClient(DucktalesClient clientInstance) {
-    	client = clientInstance;
+    	if (client == null || !client.equals(clientInstance)) {
+    		client = clientInstance;
+    	}
     }
 }

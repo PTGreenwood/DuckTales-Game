@@ -71,7 +71,9 @@ public class DuckTalesController implements Initializable {
 		client = new DucktalesClient();
 		
 	}
-	static Stage primaryStage;
+	static Stage primaryStage = null;
+	static Scene primaryScene = null;
+	
 	public static void close()
 	{
 		if (primaryStage != null)
@@ -119,6 +121,10 @@ public class DuckTalesController implements Initializable {
 		loadLoginFrame(client);
 		
 		if (loggedIn == true) {
+			
+			// Change between the mainMenuPane and the contentPane
+			toggleMenuPane();
+			
 			// Use FXML Loader to load the FXML file as well as instantiate the controller
 			// for the main UI
 			URL location = getClass().getResource("/ui/main/mainUI.fxml");
@@ -217,13 +223,16 @@ public class DuckTalesController implements Initializable {
         // Retrieve the controller
         loginManager = loader.getController();
         
-        Scene scene = new Scene(root,400,350);
+        if (primaryScene == null) {
+        	primaryScene = new Scene(root,400,350);
+        }
+        
 		primaryStage= new Stage();
 		primaryStage.initStyle(StageStyle.UNDECORATED);
         //primaryStage.initStyle(Stage.UNDECORATED);
 		LoginController.setPrimaryStage(primaryStage);
 		primaryStage.setTitle("FXML Welcome");
-		primaryStage.setScene(scene);
+		primaryStage.setScene(primaryScene);
 		primaryStage.showAndWait();
 		// Change between the mainMenuPane and the contentPane
 		// toggleMenuPane();
