@@ -41,11 +41,13 @@ public class LevelManager extends SecondaryManager {
 		levelDisplay.textProperty().bind(Bindings.convert(levelMain.valueProperty()));
 		levelDisplay.setFont(new Font("Press Start 2P", 16));
 		pb1 = levelMain.getProgressBar();		
-		HBox levelHBox = new HBox(5);
+		HBox levelHBox = new HBox(20);
 		VBox levelVBox = new VBox(5);
 		levelHBox.getChildren().addAll(levelText, levelDisplay);
-		levelVBox.getChildren().addAll(levelHBox, pb1);		
-		level.getChildren().add(levelVBox);				
+		levelVBox.getChildren().addAll(levelHBox, pb1);	
+		level.getChildren().add(levelVBox);		
+		level.getChildren().get(0).relocate(8.0, 30.0);
+		
 	}
 	
 	/**

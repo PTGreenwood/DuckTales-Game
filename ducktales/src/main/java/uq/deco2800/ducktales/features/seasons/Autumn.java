@@ -15,9 +15,9 @@ public class Autumn extends Season {
 	public Autumn() {
 		super.name = "Autumn";
 		super.humidityLevel = 2.2f;
-		super.maxTemperature = 15;
+		super.maxTemperature = 18;
 		super.currentTemperature = 12;
-		super.minTemperature = 10;
+		super.minTemperature = 8;
 		super.timeNightFall = 20;
 		super.timeDayBreak = 5;
 

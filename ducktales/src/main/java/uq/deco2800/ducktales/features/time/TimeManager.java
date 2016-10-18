@@ -33,11 +33,14 @@ public class TimeManager extends SecondaryManager
     private Text timeDisplayText;
     @FXML
     private Text dayDisplayText;
+    @FXML
+    private Text temperatureDisplayText;
 
     /* The model for the game time */
     private GameTime gameTime;
     private int seasonNumber;
-    
+    private int previousHour;
+    private int previousDay;
     /* Manager for the Seasons ;) */
     public SeasonManager seasonManager;
     
@@ -59,6 +62,8 @@ public class TimeManager extends SecondaryManager
         gameTime = new GameTime();
         seasonManager = new SeasonManager();
         seasonNumber = 0;
+        previousHour = gameTime.getHour();
+        previousDay = gameTime.getCurrentDay();
             	
     }
 
@@ -67,7 +72,6 @@ public class TimeManager extends SecondaryManager
     public void tick() {
 
         gameTime.tick();
-
         // Display the new time\
     	final int currentYear = gameTime.getCurrentYear();
         final int currentDay = gameTime.getCurrentDay();
@@ -76,7 +80,8 @@ public class TimeManager extends SecondaryManager
         final String timeText = "Current Time is: " + currentHour + ":" + currentMinute +
         		", Day " + currentDay + " Year " + currentYear;
         final int dayTracker = gameTime.getSeasonalDayTracker();
-
+        final int currentTemperature = this.getSeasonManager().getCurrentSeason().getCurrentTemperature();
+        final String degreeSymbol = "\u00b0";
         
         //Variable to hold the current Season Number to get the appropriate season name from the
         //season list held in seasonManager.getSeasonList();
@@ -97,14 +102,34 @@ public class TimeManager extends SecondaryManager
      	 //Doesn't do anything if it's already the same season. Will save on processing time (I HOPE).
         }
         
+        //Checking to update temperature on gameTick
+        if(currentHour > this.previousHour || currentDay > this.previousDay) {
+        	this.previousHour = currentHour;
+        	this.previousDay = currentDay;
+        	int randomNumber = (int) Math.floor(Math.random() * 2);
+        	if((currentHour < this.seasonManager.getCurrentSeason().getTimeNightFall()) 
+        			&& (currentHour > this.seasonManager.getCurrentSeason().getTimeDayBreak())) {
+        		System.out.println(randomNumber);
+        		this.seasonManager.updateTemperature(randomNumber, true);
+        	} else {
+        		System.out.println(randomNumber);
+        		this.seasonManager.updateTemperature(randomNumber, false);
+        	}
+        }
+        
         
         // this is needed, since this UI update is called from another thread
         // (GameLoop runs on another thread and not the main FXApplication thread)
         // IN REGARDS TO TIME ALL CALL TO UI CHANGES MUST GO INSIDE THIS METHOD CALL
 
         Platform.runLater(() -> {
-            timeDisplayText.setText(currentHour + ":" + currentMinute);
+        	if(currentHour >=12 && currentHour <= 23) {
+        		timeDisplayText.setText(currentHour + ":" + currentMinute + "pm");
+        	} else {
+        		timeDisplayText.setText(currentHour + ":" + currentMinute + "am");
+        	}
             dayDisplayText.setText("DAY "+ currentDay);
+            temperatureDisplayText.setText(currentTemperature + "" + degreeSymbol + "c");
         });
 
     }
