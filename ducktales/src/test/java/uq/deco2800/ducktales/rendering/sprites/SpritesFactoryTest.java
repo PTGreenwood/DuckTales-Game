@@ -1,8 +1,5 @@
 package uq.deco2800.ducktales.rendering.sprites;
 
-import javafx.application.Application;
-import javafx.stage.Stage;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import uq.deco2800.ducktales.TestClassWithApplication;
 import uq.deco2800.ducktales.resources.ResourceSpriteRegister;

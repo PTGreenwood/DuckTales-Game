@@ -1,11 +1,11 @@
 	package uq.deco2800.ducktales.resources;
 
-import uq.deco2800.ducktales.features.entities.Entity;
 import uq.deco2800.ducktales.features.entities.agententities.Animal;
 import uq.deco2800.ducktales.features.entities.agententities.Cow;
 import uq.deco2800.ducktales.features.entities.agententities.Duck;
 import uq.deco2800.ducktales.features.entities.agententities.Sheep;
 import uq.deco2800.ducktales.features.entities.worldentities.*;
+import uq.deco2800.ducktales.util.exceptions.ResourceRegisterException;
 
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -76,7 +76,7 @@ public class ResourceInfoRegister {
      *         0 if the entity has not been registered
      */
     public int getEntitySize(ResourceType entityType, int direction)
-            throws ResourceRegisterException{
+            throws ResourceRegisterException {
         if (entityInformation.containsKey(entityType)) {
             int size;
 
