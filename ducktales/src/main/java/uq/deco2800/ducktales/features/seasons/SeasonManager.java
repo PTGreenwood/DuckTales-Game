@@ -34,8 +34,8 @@ public class SeasonManager{
 	Season autumn;
 	Season winter;
 	
-    public List<Season> seasonList;
-    public Season currentSeason;
+    private List<Season> seasonList;
+    private Season currentSeason;
     
     public SeasonManager() {
     	/*
@@ -57,19 +57,22 @@ public class SeasonManager{
     	this.seasonList = new ArrayList<Season>();
     	this.seasonList.addAll(Arrays.asList(spring, summer, autumn, winter));
     	
-    	this.setupInitialWeatherEvents();
+    	this.alterWeatherEvents();
     }
     
     /**
-     * Sets up initial weatherEvents and their chances for each Season
+     * Alters the weatherEvents for the season by updating it with the
+     * new temperature. (all done within the Season itself this is just a reference).
+     * 
      */
-    public void setupInitialWeatherEvents() {
+    public void alterWeatherEvents() {
 		for (Season seasonIterator : this.seasonList) {
-			seasonIterator.setRainWeather();
-			seasonIterator.setFireWeather();			
-			//added in extra weather - @mattyleggy
-			seasonIterator.setSnowWeather();
-			seasonIterator.setStormWeather();
+				seasonIterator.getSeasonalWeatherEvents().removeAllWeatherEvents();
+				seasonIterator.setRainWeather();
+				seasonIterator.setFireWeather();			
+				//added in extra weather - @mattyleggy
+				seasonIterator.setSnowWeather();
+				seasonIterator.setStormWeather();
 		}
     }
     /**

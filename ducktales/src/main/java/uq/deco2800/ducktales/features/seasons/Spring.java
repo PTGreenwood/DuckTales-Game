@@ -10,12 +10,15 @@ public class Spring extends Season {
 	// because you'd want to save that as an integer
 	public Spring() {
 		super.name = "Spring";
-		super.humidityLevel = 3.4f;
+		super.humidityLevel = 2.4f;
 		super.maxTemperature = 20;
 		super.currentTemperature = 13;
 		super.minTemperature = 11;
 		super.timeNightFall = 19;
 		super.timeDayBreak = 6;
+		super.atmosphericIceLevel = 0.0f;
+		super.windLevel = 2.0f;
+		super.fireDanger = 0.8f;
 
 		super.weatherEvents = new WeatherEvents();
 		
