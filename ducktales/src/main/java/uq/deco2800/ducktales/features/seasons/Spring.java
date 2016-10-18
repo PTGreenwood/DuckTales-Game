@@ -13,7 +13,7 @@ public class Spring extends Season {
 		super.humidityLevel = 3.4f;
 		super.maxTemperature = 20;
 		super.currentTemperature = 13;
-		super.minTemperature = 13;
+		super.minTemperature = 11;
 		super.timeNightFall = 19;
 		super.timeDayBreak = 6;
 
