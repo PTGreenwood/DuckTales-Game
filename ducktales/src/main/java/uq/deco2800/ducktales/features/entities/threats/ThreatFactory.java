@@ -2,8 +2,6 @@ package uq.deco2800.ducktales.features.entities.threats;
 
 import java.util.ArrayList;
 
-import uq.deco2800.ducktales.features.entities.Effect;
-import uq.deco2800.ducktales.features.entities.Enemy;
 import uq.deco2800.ducktales.rendering.sprites.EnemySprite;
 
 /**
