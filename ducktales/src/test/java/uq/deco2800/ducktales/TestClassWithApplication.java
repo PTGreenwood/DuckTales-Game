@@ -33,6 +33,9 @@ public abstract class TestClassWithApplication {
                     } catch (IllegalStateException e) {
                         // Do nothing. it's just because the toolkit is already
                         // available
+                        e.printStackTrace();
+                    } catch (RuntimeException e) {
+                        // Also do nothing here.
                     }
                 }
             };
