@@ -25,7 +25,7 @@ import uq.deco2800.ducktales.features.missions.MissionHandler;
  */
 public class AchievementManager {
 	/** The logger for all messages and exceptions */
-	private static Logger LOGGER = LoggerFactory.getLogger(
+	private static Logger logger = LoggerFactory.getLogger(
 			AchievementManager.class);
 	
 	/** Main window */
@@ -82,7 +82,7 @@ public class AchievementManager {
 			achievementsMission.setPrefWidth(rightPane.getWidth());		
 			rightPane.getChildren().add(achievementsMission);		
 		} catch (IOException e) {
-			LOGGER.info("Unable to start Achievement GUI", e);
+			logger.info("Unable to start Achievement GUI", e);
 		}
 		
 				
@@ -115,7 +115,7 @@ public class AchievementManager {
 			achievementsLevel.setPrefWidth(rightPane.getWidth());		
 			rightPane.getChildren().add(achievementsLevel);
 		} catch (IOException e) {
-			LOGGER.info("Unable to start Achievement GUI", e);
+			logger.info("Unable to start Achievement GUI", e);
 		}
 		
 						
