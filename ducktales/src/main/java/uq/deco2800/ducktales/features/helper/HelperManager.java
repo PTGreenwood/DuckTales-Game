@@ -9,8 +9,7 @@ import uq.deco2800.ducktales.features.missions.MissionHandler;
 
 public class HelperManager {
 	
-	private static final HelperManager INSTANCE = new HelperManager();
-	
+	private static final HelperManager INSTANCE = new HelperManager();	
 	
 	@FXML
 	private AnchorPane mainWindow;	
@@ -23,7 +22,7 @@ public class HelperManager {
 	
 	private int helperLoadNumber;
 	
-	private boolean buildingBuilt = false;
+	private boolean buildingBuilt;
 	
 	private MissionHandler missionHandler = MissionHandler.getInstance();
 	
@@ -36,7 +35,7 @@ public class HelperManager {
 	
 	
 	public HelperManager() {
-		helperLoadNumber = 0;
+		this.helperLoadNumber = 0;
 	}
 	
 	public static HelperManager getInstance() {
@@ -47,12 +46,12 @@ public class HelperManager {
 	@FXML
 	public void helperLoad() {
 		
-		switch(helperLoadNumber) {
+		switch(this.helperLoadNumber) {
 			case 0: 
 				setImageAndText(duckImage, helperString1);
 				break;
 			case 1:
-				if(missionHandler.getNumberOfCompletedMissions() == 3.0) {
+				if(this.missionHandler.getNumberOfCompletedMissions() == 3.0) {
 					setImageAndText(duckImage, helperString2);
 				} else {					
 					helperLoadNumber -= 1;
@@ -60,7 +59,7 @@ public class HelperManager {
 				break;
 			case 2:
 				System.out.println(this.buildingBuilt);
-				if(buildingBuilt) {
+				if(this.buildingBuilt) {
 					setImageAndText(duckImage, helperString3);
 				} else {
 					helperLoadNumber -= 1;
@@ -75,11 +74,17 @@ public class HelperManager {
 		
 	}
 	
-	
-	
 	private void setImageAndText(Image image, String text) {
 		helperImageView.setImage(image);
 		helperLabel.setText(text);
+	}
+	
+	public void setBuildingBuilt(boolean buildingBuilt) {
+		this.buildingBuilt = buildingBuilt;
+	}
+	
+	public boolean getBuildingBuilt() {
+		return this.buildingBuilt;
 	}
 	
 	public void showHelper() {

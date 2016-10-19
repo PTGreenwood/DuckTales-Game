@@ -13,7 +13,6 @@ import uq.deco2800.ducktales.features.entities.threats.Threat;
 import uq.deco2800.ducktales.features.entities.worldentities.Building;
 import uq.deco2800.ducktales.features.entities.worldentities.StorageProduceBuilding;
 import uq.deco2800.ducktales.resources.ResourceInfoRegister;
-import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 
 
 import uq.deco2800.ducktales.resources.ResourceType;
@@ -34,7 +33,7 @@ public class World implements Tickable {
 	 */
 	private static final ResourceType DEFAULT_TILE_TYPE = GRASS_1;
 	// The list of production buildings
-	private final ResourceType[] productionBuildingTypes = {
+	private static final ResourceType[] productionBuildingTypes = {
 			SAWMILL, MINE, FARM, QUARRY
 	};
 
@@ -366,6 +365,11 @@ public class World implements Tickable {
 				buildingSelected.produceMaterial();
 			}
 		}
+	}
+	
+	/** gets number of peons for achievement tracking */
+	public int getNumberOfPeons() {
+		return peons.size();
 	}
 
 }

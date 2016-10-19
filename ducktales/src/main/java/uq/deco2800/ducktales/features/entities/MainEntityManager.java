@@ -2,7 +2,6 @@ package uq.deco2800.ducktales.features.entities;
 
 import java.io.IOException;
 
-import javafx.scene.layout.Pane;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import uq.deco2800.ducktales.GameManager;

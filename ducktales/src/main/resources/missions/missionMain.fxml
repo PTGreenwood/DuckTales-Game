@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+
+<BorderPane fx:id="mainWindow" prefHeight="400.0" prefWidth="400.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.60" fx:controller="uq.deco2800.uq.deco2800.ducktales.features.missions.MissionMainController">
+   <top>
+      <Label fx:id="labelTop" style="-fx-font-family: &quot;Press Start 2P&quot;;" text="MISSION" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets top="10.0" />
+         </BorderPane.margin>
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+      </Label>
+   </top>
+   <center>
+      <Label fx:id="missionDescription" text="Description of Mission" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>
