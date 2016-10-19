@@ -1,15 +1,29 @@
 package uq.deco2800.ducktales.resources;
 
-public class GeneralResourceRegisterTest {
+import javafx.stage.Stage;
+import org.testfx.framework.junit.ApplicationTest;
+import org.junit.Test;
 
+import static org.junit.Assert.*;
+
+public class GeneralResourceRegisterTest extends ApplicationTest {
+	// Retrieve the resource register
+	GeneralResourceRegister register = GeneralResourceRegister.getInstance();
+
+	@Test
 	public void loadNameTest(){
-		//this would imply that the files load
+		GeneralResourceRegister.getInstance();
+		// at this point if no exceptions are thrown, name-loading is correct
+	}
 
-		// Commented out the line below dues to it being singleton
-//		GeneralResourceRegister test = new GeneralResourceRegister();
+	@Test
+	public void getRandomNameTest() {
+		assertNotNull(register.getRandomName());
 
+	}
 
-//		String name = test.getRandomName();
-		//System.out.print(name);
+	@Override
+	public void start(Stage stage) throws Exception {
+
 	}
 }

@@ -34,8 +34,8 @@ public class SeasonManager{
 	Season autumn;
 	Season winter;
 	
-    public List<Season> seasonList;
-    public Season currentSeason;
+    private List<Season> seasonList;
+    private Season currentSeason;
     
     public SeasonManager() {
     	/*
@@ -57,19 +57,22 @@ public class SeasonManager{
     	this.seasonList = new ArrayList<Season>();
     	this.seasonList.addAll(Arrays.asList(spring, summer, autumn, winter));
     	
-    	this.setupInitialWeatherEvents();
+    	this.alterWeatherEvents();
     }
     
     /**
-     * Sets up initial weatherEvents and their chances for each Season
+     * Alters the weatherEvents for the season by updating it with the
+     * new temperature. (all done within the Season itself this is just a reference).
+     * 
      */
-    public void setupInitialWeatherEvents() {
+    public void alterWeatherEvents() {
 		for (Season seasonIterator : this.seasonList) {
-			seasonIterator.setRainWeather();
-			seasonIterator.setFireWeather();			
-			//added in extra weather - @mattyleggy
-			seasonIterator.setSnowWeather();
-			seasonIterator.setStormWeather();
+				seasonIterator.getSeasonalWeatherEvents().removeAllWeatherEvents();
+				seasonIterator.setRainWeather();
+				seasonIterator.setFireWeather();			
+				//added in extra weather - @mattyleggy
+				seasonIterator.setSnowWeather();
+				seasonIterator.setStormWeather();
 		}
     }
     /**
@@ -95,7 +98,6 @@ public class SeasonManager{
      * Updates the Season to the next one when currentDay is
      * within range of next season.
      * 
-     * (currentDay / currentYear) % 20
      * 1 = Spring.
      * 2 = Summer.
      * 3 = Autumn(Fall).
@@ -103,6 +105,32 @@ public class SeasonManager{
      */
     public void updateSeason(int seasonNumber) {
     	this.currentSeason = seasonList.get(seasonNumber);
+    }
+    
+    /**
+     * Update the currentTemperature within the currentSeason
+     * Has bounds of minTemperature and maxTemperature declared
+     * within each season.
+     * 
+     * For note:
+     * Spring: Max = 20, Min = 11 
+     * Summer: Max = 26, Min = 16 
+     * Autumn: Max = 18, Min = 8
+     * Winter: Max = 11, Min = 0
+     * 
+     * @param integer temperatureValueChange
+     * 			- The number to increment or decrement by
+     * @param boolean increment
+     * 			- True if increasing temperature.
+     * 			- False if decreasing temperature.
+     */
+    
+    public void updateTemperature(int temperatureValueChange, boolean increment) {
+    	if(increment) {
+    		this.currentSeason.incrementCurrentTemperature(temperatureValueChange);
+    	} else {
+    		this.currentSeason.decrementCurrentTemperature(temperatureValueChange);
+    	}
     }
     
 }

@@ -17,27 +17,19 @@ public class Winter extends Season {
 	public Winter() {
 		super.name = "Winter";
 		super.humidityLevel = 0.5f;
-		super.maxTemperature = 12;
+		super.maxTemperature = 11;
 		super.currentTemperature = 7;
-		super.minTemperature = 4;
+		super.minTemperature = 0;
 		super.timeNightFall = 17;
 		super.timeDayBreak = 7;
+		super.atmosphericIceLevel = 4.8f;
+		super.windLevel = 1.0f;
+		super.fireDanger = 0.0f;
 
 		super.weatherEvents = new WeatherEvents();
 		// If you've added things above then you have to add them here with a
 		// this.whateverItIs = whateverItIs;
 
 	}
-
-	@Override
-	public void setSnowWeather() {		
-		Weather snow = new Snow();
-    	try {
-    		WeatherChance snowChance = new WeatherChance(snow, 50);
-    		this.weatherEvents.add(snowChance);
-    	}  catch (InvalidWeatherChanceException e) {
-    		System.out.println("ERROR: Chance must be > 0 and <= 100 and weather Cannot be Null");
-    	}
-	}
-
 }
+

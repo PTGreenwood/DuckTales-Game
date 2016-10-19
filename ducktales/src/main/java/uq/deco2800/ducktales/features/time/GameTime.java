@@ -120,8 +120,6 @@ public class GameTime implements Tickable {
 				day++;
 				seasonDayTracker++;
 				hour = 0;
-				// Left this hear to print out the time once a day
-				System.out.println(printGameTime());
 			}
 			if (this.day / this.year > 80) {
 				this.year++;
@@ -129,9 +127,7 @@ public class GameTime implements Tickable {
 		} else {
 			tickCounter++;
 		}
-		// Uncomment this to see a print out of the current time every minute
-		// update
-		// System.out.println(printGameTime());
+
 	}
 
 	/**
@@ -152,25 +148,6 @@ public class GameTime implements Tickable {
 		return this.year;
 	}
 
-	/**
-	 * Retrieves the current season
-	 * 
-	 * @return Season: currentSeason of world
-	 */
-	///public Season getCurrentSeason() {
-//		return season;
-	//}
-
-	/**
-	 * Sets the current season to be a season passed in Note: must be of type
-	 * Season
-	 *
-	 * @param Season
-	 *            season: Spring, Summer, Autumn or Winter
-	 */
-	//public void setSeason(Season season) {
-	//	this.season = season;
-	//}
 
 	/**
 	 * Sets the current year of the Calendar to be whatever is passed in

@@ -142,14 +142,34 @@ public class InGameKeyboardHandler extends GameEventHandler
 		} else if (KeyboardManager.getPauseGameKeyCombination().match(event)) {
 			GameLoop.pauseWorld();
 			System.out.println("Pause/UnPause");
-		} else if (KeyboardManager.getFirstBuildKeyCombination().match(event)) {
-			/*
-			 * Event.fireEvent(MenuManager.getBuildingSpriteByIndex(0), new
-			 * MouseEvent(MouseEvent.MOUSE_CLICKED, 0, 0, 0, 0,
-			 * MouseButton.PRIMARY, 1, true, true, true, true, true, true, true,
-			 * true, true, true, null));
-			 */
-			MenuManager.getBuildingSpriteByIndex(0).selectSprite();
+		} else if (KeyboardManager.getBuildFirstKeyCombination().match(event)) {
+			MenuManager.selectItemByIndex(0);
+		} else if (KeyboardManager.getBuildSecondKeyCombination().match(event)) {
+			MenuManager.selectItemByIndex(1);
+		} else if (KeyboardManager.getBuildThirdKeyCombination().match(event)) {
+			MenuManager.selectItemByIndex(2);
+		} else if (KeyboardManager.getBuildFourthKeyCombination().match(event)) {
+			MenuManager.selectItemByIndex(3);
+		} else if (KeyboardManager.getBuildFifthKeyCombination().match(event)) {
+			MenuManager.selectItemByIndex(4);
+		} else if (KeyboardManager.getBuildSixthKeyCombination().match(event)) {
+			MenuManager.selectItemByIndex(5);
+		} else if (KeyboardManager.getBuildSeventhKeyCombination().match(event)) {
+			MenuManager.selectItemByIndex(6);
+		} else if (KeyboardManager.getBuildEighthKeyCombination().match(event)) {
+			MenuManager.selectItemByIndex(7);
+		} else if (KeyboardManager.getBuildNinthKeyCombination().match(event)) {
+			MenuManager.selectItemByIndex(8);
+		} else if (KeyboardManager.getBuildTenthKeyCombination().match(event)) {
+			MenuManager.selectItemByIndex(9);
+		} else if (KeyboardManager.getBuildEleventhKeyCombination().match(event)) {
+			MenuManager.selectItemByIndex(10);
+		} else if (KeyboardManager.getBuildTwelfthKeyCombination().match(event)) {
+			MenuManager.selectItemByIndex(11);
+		} else if (KeyboardManager.getBuildThirteenthKeyCombination().match(event)) {
+			MenuManager.selectItemByIndex(12);
+		} else if (KeyboardManager.getBuildFourteenthKeyCombination().match(event)) {
+			MenuManager.selectItemByIndex(13);
 		}
 	}
 

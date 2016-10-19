@@ -18,11 +18,11 @@ public class AnimalEvent extends Event {
             new EventType<>("ANIMAL_EVENT");
     
     /** the x and y coordinates of the animal that triggered this event */
-    private double x;
-    private double y;
+    private int x;
+    private int y;
     
-    /** the animal that triggered this event */
-    private Animal animalType;
+    /** the animal ResourceType that triggered this event */
+    private ResourceType animalResourceType;
     
     public AnimalEvent(@NamedArg("eventType") EventType<? extends Event> eventType) {
         super(eventType);
@@ -33,9 +33,9 @@ public class AnimalEvent extends Event {
         super(source, target, eventType);
     }
     
-    public AnimalEvent(Animal animalType, double x, double y) {
+    public AnimalEvent(ResourceType animalResourceType, int x, int y) {
         super(ANIMAL_EVENT);
-        this.animalType = animalType;
+        this.animalResourceType = animalResourceType;
         this.x = x;
         this.y = y;
     }
@@ -45,7 +45,7 @@ public class AnimalEvent extends Event {
      * 
      * @return the X coordinate of an animal
      */
-    public double getX() {
+    public int getX() {
         return this.x;
     }
     
@@ -54,7 +54,7 @@ public class AnimalEvent extends Event {
      * 
      * @return the Y coordinate of an animal
      */
-    public double getY() {
+    public int getY() {
         return this.y;
     }
     
@@ -63,7 +63,7 @@ public class AnimalEvent extends Event {
      * 
      * @return the ResourceType coordinate of an animal
      */
-    public Animal getAnimalType() {
-    	return this.animalType;
+    public ResourceType getAnimalType() {
+    	return this.animalResourceType;
     }
 }
