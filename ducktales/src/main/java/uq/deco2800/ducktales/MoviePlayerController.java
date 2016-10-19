@@ -19,7 +19,7 @@ public class MoviePlayerController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
-		String path = new File("src/media/vid.mp4").getAbsolutePath();
+		String path = new File("src/main/resources/media/vid.mp4").getAbsolutePath();
 		me = new Media(new File(path).toURI().toString());
 		mp = new MediaPlayer(me);
 		mv.setMediaPlayer(mp);
