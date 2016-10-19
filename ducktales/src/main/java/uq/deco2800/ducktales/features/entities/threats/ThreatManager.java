@@ -1,8 +1,7 @@
 package uq.deco2800.ducktales.features.entities.threats;
 
 import uq.deco2800.ducktales.World;
-import uq.deco2800.ducktales.features.entities.Effect;
-import uq.deco2800.ducktales.features.entities.Enemy;
+import uq.deco2800.ducktales.features.entities.peons.Peon;
 import uq.deco2800.ducktales.rendering.sprites.ThreatSprite;
 import uq.deco2800.ducktales.util.SecondaryManager;
 import uq.deco2800.ducktales.util.exceptions.GameSetupException;
@@ -19,6 +18,8 @@ public class ThreatManager extends SecondaryManager {
 
     /** The list of sprites for the enemies */
     private List<ThreatSprite> threatSprites;
+    
+    
 
     public ThreatManager() {
         threatSprites = new ArrayList<>(50);

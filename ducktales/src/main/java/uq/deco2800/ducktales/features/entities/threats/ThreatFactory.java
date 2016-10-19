@@ -1,9 +1,8 @@
 package uq.deco2800.ducktales.features.entities.threats;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
-import uq.deco2800.ducktales.features.entities.Effect;
-import uq.deco2800.ducktales.features.entities.Enemy;
 import uq.deco2800.ducktales.rendering.sprites.EnemySprite;
 
 /**
@@ -12,8 +11,8 @@ import uq.deco2800.ducktales.rendering.sprites.EnemySprite;
  * effects types and defines
  * their parameters
  * 
- * Created by Krista Harrison on 4/10/2016.
- * @author kristasusanne
+ * Created by Krista Harrison and Wian Botha
+ * @author kristasusanne, wianb
  */
 
 public class ThreatFactory {
@@ -23,7 +22,8 @@ public class ThreatFactory {
 	protected static ArrayList<Enemy> enemiesList = new ArrayList<Enemy>();
 	//list for enemy ad threat sprites to be stored in
 	protected static ArrayList<EnemySprite> enemySpriteList = new ArrayList<EnemySprite>();
-	
+	public HashMap<String, Enemy> enemyMap;
+    public HashMap<String, Effect> effectMap;
 	/**
 	 * 
 	 * Defines the enum types of enemies
@@ -52,16 +52,16 @@ public class ThreatFactory {
      *          the type of the enemy to be created
      *          
      */
-	public static Enemy createLevel1Enemy(EnemyType enemy) {
+	public static void createLevel1Enemy(EnemyType enemy) {
 		switch(enemy) {
 		case RACCOON:
-			return createRaccoon(EnemyType.RACCOON);
+				createRaccoon(EnemyType.RACCOON);
 		case BEETLE:
-			return createBeetle(EnemyType.BEETLE);
+				createBeetle(EnemyType.BEETLE);
 		case WILD_VILLAGER:
-			return createWildVillager(EnemyType.WILD_VILLAGER);
+				createWildVillager(EnemyType.WILD_VILLAGER);
 		default:
-			return null;
+			// throw error message
 		}
 		
 	}
@@ -73,14 +73,14 @@ public class ThreatFactory {
      *          the type of the effect to be created
      *          
      */
-	public static Effect createLevel1Effect(EffectType effect) {
+	public static void createLevel1Effect(EffectType effect) {
 		switch(effect) {
 		case BLACK_SMOKE:
-			return createBlackSmoke(EffectType.BLACK_SMOKE);
+				createBlackSmoke(EffectType.BLACK_SMOKE);
 		case SHAKE:
-			return createShake(EffectType.SHAKE);
+				createShake(EffectType.SHAKE);
 		default:
-			return null;
+			//throw error message
 		}
 	}
 	
@@ -91,18 +91,18 @@ public class ThreatFactory {
      *          the type of the enemy to be created
      *          
      */
-	public static Enemy createLevel2Enemy(EnemyType enemy) {
+	public static void createLevel2Enemy(EnemyType enemy) {
 		switch(enemy) {
 		case WOLF:
-			return createWolf(EnemyType.WOLF);
+				createWolf(EnemyType.WOLF);
 		case CROW:
-			return createCrow(EnemyType.CROW);
+				createCrow(EnemyType.CROW);
 		case GORILLA:
-			return createGorilla(EnemyType.GORILLA);
+				createGorilla(EnemyType.GORILLA);
 		case EVIL_DUCK:
-			return createEvilDuck(EnemyType.EVIL_DUCK);
+				createEvilDuck(EnemyType.EVIL_DUCK);
 		default:
-			return null;
+			//Throw error message
 		}	
 	}
 	
@@ -113,14 +113,14 @@ public class ThreatFactory {
      *          the type of the effect to be created
      *          
      */
-	public static Effect createLevel2Effect(EffectType effect) {
+	public static void createLevel2Effect(EffectType effect) {
 		switch(effect) {
 		case POISON_CLOUD:
-			return createPoisonCloud(EffectType.POISON_CLOUD);
+				createPoisonCloud(EffectType.POISON_CLOUD);
 		case RUMBLE:
-			return createRumble(EffectType.RUMBLE);
+				createRumble(EffectType.RUMBLE);
 		default:
-			return null;
+			//Throw error message
 		}
 	}
 	
@@ -131,17 +131,17 @@ public class ThreatFactory {
      *          the type of the enemy to be created
      *          
      */
-	public static Enemy createLevel3Enemy(EnemyType enemy) {
+	public static void createLevel3Enemy(EnemyType enemy) {
 		switch(enemy) {
 		case LION:
-			return createLion(EnemyType.LION);
+				createLion(EnemyType.LION);
 		case CHIMP:
-			return createChimp(EnemyType.CHIMP);
+				createChimp(EnemyType.CHIMP);
 		case BEAR:
-			return createBear(EnemyType.BEAR);
+				createBear(EnemyType.BEAR);
 		
 		default:
-			return null;
+			//Throw error message
 		}
 	}
 	
@@ -152,14 +152,14 @@ public class ThreatFactory {
      *          the type of the effect to be created
      *          
      */
-	public static Effect createLevel3Effect(EffectType effect) {
+	public static void createLevel3Effect(EffectType effect) {
 		switch(effect) {
 		case EARTHQUAKE: 
-			return createEarthquake(EffectType.EARTHQUAKE);
+			createEarthquake(EffectType.EARTHQUAKE);
 		case GREEN_FEL_FIRE:
-			return createGreenFelFire(EffectType.GREEN_FEL_FIRE);
+			createGreenFelFire(EffectType.GREEN_FEL_FIRE);
 		default:
-			return null;
+			//Throw error message
 		}
 	}
 	
@@ -170,16 +170,16 @@ public class ThreatFactory {
      *          the type of the enemy to be created
      *          
      */
-	public static Enemy createLevel4Enemy(EnemyType enemy) {
+	public static void createLevel4Enemy(EnemyType enemy) {
 		switch(enemy) {
 		case ZOMBIE_DUCK:
-			return createZombieDuck(EnemyType.ZOMBIE_DUCK);
+				createZombieDuck(EnemyType.ZOMBIE_DUCK);
 		case ROBBER:
-			return createRobber(EnemyType.ROBBER);
+				createRobber(EnemyType.ROBBER);
 		case ELEPHANT:
-			return createElephant(EnemyType.ELEPHANT);
+				createElephant(EnemyType.ELEPHANT);
 		default:
-			return null;
+			//Throw error message
 		}	
 	}
 	
@@ -190,14 +190,14 @@ public class ThreatFactory {
      *          the type of the effect to be created
      *          
      */
-	public static Effect createLevel4Effect(EffectType effect) {
+	public static void createLevel4Effect(EffectType effect) {
 		switch(effect) {
 		case BLIGHT:
-			return createBlight(EffectType.BLIGHT);
+				createBlight(EffectType.BLIGHT);
 		case FEL:
-			return createFel(EffectType.FEL);
+				createFel(EffectType.FEL);
 		default:
-			return null;
+			//Throw error message
 		}
 	}
 	
@@ -263,12 +263,12 @@ public class ThreatFactory {
      * 		the effect type to be created from the enum class
      *          
      */
-	private static Effect createBlackSmoke(EffectType blackSmoke) {
+	private static void createBlackSmoke(EffectType blackSmoke) {
 		Effect blackSmokeEffect = new Effect("Black Smoke");
 		setEffectParameters(blackSmokeEffect, 20, 50, 20);
 		EnemySprite blackSmokeSprite = new EnemySprite();
 		enemySpriteList.add(blackSmokeSprite);
-		return null;
+		
 	}
 	
 	 /**
@@ -282,12 +282,12 @@ public class ThreatFactory {
      * 		the effect type to be created from the enum class
      *          
      */
-	private static Effect createShake(EffectType shake) {
+	private static void createShake(EffectType shake) {
 		Effect shakeEffect = new Effect("Shake");
 		setEffectParameters(shakeEffect, 50, 100, 20);
 		EnemySprite shakeSprite = new EnemySprite();
 		enemySpriteList.add(shakeSprite);
-		return null;
+		
 	}
 	
 	// Level 1 Enemies
@@ -303,12 +303,12 @@ public class ThreatFactory {
      * 		the enemy type to be created from the enum class
      *          
      */
-	private static Enemy createRaccoon(EnemyType raccoon) {
+	private static void createRaccoon(EnemyType raccoon) {
 		Enemy raccoonEnemy = new Enemy("Raccoon");
 		setEnemyParameters(raccoonEnemy, 20, 50, 20);
 		EnemySprite raccoonSprite = new EnemySprite();
 		enemySpriteList.add(raccoonSprite);
-		return null;	
+			
 	}
 	
 	 /**
@@ -322,12 +322,12 @@ public class ThreatFactory {
      * 		the enemy type to be created from the enum class
      *          
      */
-	private static Enemy createBeetle(EnemyType beetle) {
+	private static void createBeetle(EnemyType beetle) {
 		Enemy beetleEnemy = new Enemy("Beetle");
 		setEnemyParameters(beetleEnemy, 20, 50, 20);
 		EnemySprite beetleSprite = new EnemySprite();
 		enemySpriteList.add(beetleSprite);
-		return null;
+		
 	}
 	
 	 /**
@@ -341,12 +341,11 @@ public class ThreatFactory {
      * 		the effect type to be created from the enum class
      *          
      */
-	private static Enemy createWildVillager(EnemyType wildVillager) {
+	private static void createWildVillager(EnemyType wildVillager) {
 		Enemy wildVillagerEnemy = new Enemy("Wild Villager");
 		setEnemyParameters(wildVillagerEnemy, 20, 50, 20);
 		EnemySprite wildVillagerSprite = new EnemySprite();
 		enemySpriteList.add(wildVillagerSprite);
-		return null;
 	}
 	
 	// Level 2 Effects
@@ -362,12 +361,12 @@ public class ThreatFactory {
      * 		the effect type to be created from the enum class
      *          
      */
-	private static Effect createPoisonCloud(EffectType poisonCloud) {
+	private static void createPoisonCloud(EffectType poisonCloud) {
 		Effect poisonCloudEffect = new Effect("Poison Cloud");
 		setEffectParameters(poisonCloudEffect, 20, 50, 30);
 		EnemySprite poisonCloudSprite = new EnemySprite();
 		enemySpriteList.add(poisonCloudSprite);
-		return null;
+		
 	}
 	
 	 /**
@@ -381,12 +380,11 @@ public class ThreatFactory {
      * 		the effect type to be created from the enum class
      *          
      */
-	private static Effect createRumble(EffectType rumble) {
+	private static void createRumble(EffectType rumble) {
 		Effect rumbleEffect = new Effect("Rubmle");
 		setEffectParameters(rumbleEffect, 50, 100, 30);
 		EnemySprite rumbleSprite = new EnemySprite();
 		enemySpriteList.add(rumbleSprite);
-		return null;
 	}
 	
 	// Level 2 Enemies
@@ -402,12 +400,11 @@ public class ThreatFactory {
      * 		the effect type to be created from the enum class
      *          
      */
-	private static Enemy createWolf(EnemyType wolf) {
+	private static void createWolf(EnemyType wolf) {
 		Enemy wolfEnemy = new Enemy("Wolf");
 		setEnemyParameters(wolfEnemy, 20, 50, 30);
 		EnemySprite wolfSprite = new EnemySprite();
 		enemySpriteList.add(wolfSprite);
-		return null;
 	}
 	
 	 /**
@@ -421,12 +418,11 @@ public class ThreatFactory {
      * 		the effect type to be created from the enum class
      *          
      */
-	private static Enemy createCrow(EnemyType crow) {
+	private static void createCrow(EnemyType crow) {
 		Enemy crowEnemy = new Enemy("Crow");
 		setEnemyParameters(crowEnemy, 20, 50, 30);
 		EnemySprite crowSprite = new EnemySprite();
 		enemySpriteList.add(crowSprite);
-		return null;
 	}
 	
 	 /**
@@ -440,12 +436,11 @@ public class ThreatFactory {
      * 		the effect type to be created from the enum class
      *          
      */
-	private static Enemy createGorilla(EnemyType gorilla) {
+	private static void createGorilla(EnemyType gorilla) {
 		Enemy gorillaEnemy = new Enemy("Gorilla");
 		setEnemyParameters(gorillaEnemy, 20, 50, 30);
 		EnemySprite gorillaSprite = new EnemySprite();
 		enemySpriteList.add(gorillaSprite);
-		return null;
 	}
 	
 	 /**
@@ -459,12 +454,11 @@ public class ThreatFactory {
      * 		the effect type to be created from the enum class
      *          
      */
-	private static Enemy createEvilDuck(EnemyType evilDuck) {
+	private static void createEvilDuck(EnemyType evilDuck) {
 		Enemy evilDuckEnemy = new Enemy("Evil Duck");
 		setEnemyParameters(evilDuckEnemy, 20, 50, 30);
 		EnemySprite evilDuckSprite = new EnemySprite();
 		enemySpriteList.add(evilDuckSprite);
-		return null;
 	}
 	
 	// Level 3 Effects
@@ -480,12 +474,11 @@ public class ThreatFactory {
      * 		the effect type to be created from the enum class
      *          
      */
-	private static Effect createEarthquake(EffectType earthquake) {
+	private static void createEarthquake(EffectType earthquake) {
 		Effect earthquakeEffect = new Effect("Earthquake");
 		setEffectParameters(earthquakeEffect, 20, 50, 40);
 		EnemySprite earthquakeSprite = new EnemySprite();
 		enemySpriteList.add(earthquakeSprite);
-		return null;
 	}
 	
 	 /**
@@ -499,12 +492,11 @@ public class ThreatFactory {
      * 		the effect type to be created from the enum class
      *          
      */
-	private static Effect createGreenFelFire(EffectType greenFelFire) {
+	private static void createGreenFelFire(EffectType greenFelFire) {
 		Effect greenFelFireEffect = new Effect("Green Fel Fire");
 		setEffectParameters(greenFelFireEffect, 20, 50, 40);
 		EnemySprite greenFelFireSprite = new EnemySprite();
 		enemySpriteList.add(greenFelFireSprite);
-		return null;
 	}
 	
 	// Level 3 Enemies
@@ -520,12 +512,11 @@ public class ThreatFactory {
      * 		the effect type to be created from the enum class
      *          
      */
-	private static Enemy createLion(EnemyType lion) {
+	private static void createLion(EnemyType lion) {
 		Enemy lionEnemy = new Enemy("Lion");
 		setEnemyParameters(lionEnemy, 50, 100, 40);
 		EnemySprite lionSprite = new EnemySprite();
 		enemySpriteList.add(lionSprite);
-		return null;
 	}
 
 	 /**
@@ -539,12 +530,11 @@ public class ThreatFactory {
      * 		the effect type to be created from the enum class
      *          
      */
-	private static Enemy createChimp(EnemyType chimp) {
+	private static void createChimp(EnemyType chimp) {
 		Enemy chimpEnemy = new Enemy ("Chimp");
 		setEnemyParameters(chimpEnemy, 20, 50, 40);
 		EnemySprite chimpSprite = new EnemySprite();
 		enemySpriteList.add(chimpSprite);
-		return null;
 	}
 	
 	 /**
@@ -558,12 +548,11 @@ public class ThreatFactory {
      * 		the effect type to be created from the enum class
      *          
      */
-	private static Enemy createBear(EnemyType bear) {
+	private static void createBear(EnemyType bear) {
 		Enemy bearEnemy = new Enemy("Bear");
 		setEnemyParameters(bearEnemy, 20, 50, 40);
 		EnemySprite bearSprite = new EnemySprite();
 		enemySpriteList.add(bearSprite);
-		return null;
 	}
 	
 	// Level 4 Effects
@@ -579,12 +568,11 @@ public class ThreatFactory {
      * 		the effect type to be created from the enum class
      *          
      */
-	private static Effect createBlight(EffectType blight) {
+	private static void createBlight(EffectType blight) {
 		Effect blightEffect = new Effect("Blight");
 		setEffectParameters(blightEffect, 20, 50, 50);
 		EnemySprite blightSprite = new EnemySprite();
 		enemySpriteList.add(blightSprite);
-		return null;
 	}
 	
 	 /**
@@ -598,12 +586,11 @@ public class ThreatFactory {
      * 		the effect type to be created from the enum class
      *          
      */
-	private static Effect createFel(EffectType fel) {
+	private static void createFel(EffectType fel) {
 		Effect felEffect = new Effect("Fel");
 		setEffectParameters(felEffect, 20, 50, 50);
 		EnemySprite felSprite = new EnemySprite();
 		enemySpriteList.add(felSprite);
-		return null;
 	}
 	
 	// Level 4 Enemies
@@ -619,12 +606,11 @@ public class ThreatFactory {
      * 		the effect type to be created from the enum class
      *          
      */
-	private static Enemy createZombieDuck(EnemyType zombieDuck) {
+	private static void createZombieDuck(EnemyType zombieDuck) {
 		Enemy zombieDuckEnemy = new Enemy("Zombie Duck");
 		setEnemyParameters(zombieDuckEnemy, 20, 50, 50);
 		EnemySprite zombieDuckSprite = new EnemySprite();
 		enemySpriteList.add(zombieDuckSprite);
-		return null;
 	}
 
 	 /**
@@ -638,12 +624,11 @@ public class ThreatFactory {
      * 		the effect type to be created from the enum class
      *          
      */
-	private static Enemy createRobber(EnemyType robber) {
+	private static void createRobber(EnemyType robber) {
 		Enemy robberEnemy = new Enemy("Robber");
 		setEnemyParameters(robberEnemy, 20, 50, 50);
 		EnemySprite robberSprite = new EnemySprite();
 		enemySpriteList.add(robberSprite);
-		return null;
 	}
 
 	 /**
@@ -657,12 +642,11 @@ public class ThreatFactory {
      * 		the effect type to be created from the enum class
      *          
      */
-	private static Enemy createElephant(EnemyType elephant) {
+	private static void createElephant(EnemyType elephant) {
 		Enemy elephantEnemy = new Enemy("Elephant");
 		setEnemyParameters(elephantEnemy, 20, 50, 50);
 		EnemySprite elephantSprite = new EnemySprite();
 		enemySpriteList.add(elephantSprite);
-		return null;
 	}
 
 }

@@ -20,8 +20,6 @@ public class AnimalDeadEvent extends AnimalEvent{
     public static final EventType<AnimalDeadEvent> ANIMAL_DEAD_EVENT =
             new EventType<>("ANIMAL DEAD EVENT");
     
-
-    
 	/** the coordinates of the animal when it died */
 	private double deathX;
 	private double deathY;
