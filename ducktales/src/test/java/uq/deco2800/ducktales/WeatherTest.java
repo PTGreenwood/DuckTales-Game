@@ -5,7 +5,7 @@ import org.junit.*;
 import uq.deco2800.ducktales.features.weather.*;
 
 /**
- * Last modified: 14 September 2016 by mattyleggy
+ * 
  * 
  * @author mattyleggy
  *
