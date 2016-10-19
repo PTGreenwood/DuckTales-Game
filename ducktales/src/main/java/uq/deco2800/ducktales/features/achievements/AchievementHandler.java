@@ -2,6 +2,7 @@ package uq.deco2800.ducktales.features.achievements;
 
 
 
+import uq.deco2800.ducktales.World;
 import uq.deco2800.ducktales.features.inventory.InventoryManager;
 import uq.deco2800.ducktales.features.level.LevelHandler;
 import uq.deco2800.ducktales.features.missions.MissionHandler;
@@ -20,9 +21,11 @@ public class AchievementHandler {
 	
 	LevelHandler levelHandler = LevelHandler.getInstance();
 	private InventoryManager inventoryManager;
+	private World world;
 	public int achievementToggleWood = 0;
 	public int achievementToggleOres = 0;
 	public int achievementToggleFood = 0;
+	public int achievementTogglePeons = 0;
 	/**
 	 * Constructor of {@link Achievement}.
 	 * 
@@ -217,9 +220,23 @@ public class AchievementHandler {
 	    	inventoryManager.updateFoodAmount(100);
 	    }
 	    
-	   // if(PeonManager.peonSprites.equals(1)){
-	   // 	this.achieveVeryEasy();
-	   // }
+	    if(world.getNumberOfPeons() == 1 && achievementTogglePeons == 0){
+	    	this.achieveVeryEasy();
+	    	achievementTogglePeons ++;
+	    }
+	    else if(world.getNumberOfPeons() == 10 && achievementTogglePeons == 1){
+	    	this.achieveEasy();
+	    	achievementTogglePeons ++;
+	    }
+	    else if(world.getNumberOfPeons() == 25 && achievementTogglePeons == 2){
+	    	this.achieveMedium();
+	    	achievementTogglePeons ++;
+	    }
+	    else if(world.getNumberOfPeons() == 50 && achievementTogglePeons == 3){
+	    	this.achieveHard();
+	    	achievementTogglePeons ++;
+	    }
+	    
 	    
 	  
    }

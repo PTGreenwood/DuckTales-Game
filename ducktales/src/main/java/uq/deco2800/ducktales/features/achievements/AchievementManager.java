@@ -6,7 +6,6 @@ import java.net.URL;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -14,11 +13,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.text.Font;
-import uq.deco2800.ducktales.features.level.LevelHandler;
-import uq.deco2800.ducktales.features.missions.MissionHandler;
 
 /**
  * Manage all fxml action of the achievement 
@@ -28,7 +22,7 @@ import uq.deco2800.ducktales.features.missions.MissionHandler;
  */
 public class AchievementManager {
 	/** The logger for all messages and exceptions */
-	private static Logger LOGGER = LoggerFactory.getLogger(
+	private static Logger logger = LoggerFactory.getLogger(
 			AchievementManager.class);
 	
 	/** Main window */
@@ -73,6 +67,7 @@ public class AchievementManager {
 	private AchievementLevelController levelController = AchievementLevelController.getInstance();
 	
 	public AchievementManager() {
+
 				
 	}
 	
@@ -82,6 +77,7 @@ public class AchievementManager {
 		this.achievementMainDescription.setVisible(true);
 		this.achievementDescription.setVisible(false);
 		this.achievementImageView.setVisible(false);
+
 	}
 	
 	@FXML

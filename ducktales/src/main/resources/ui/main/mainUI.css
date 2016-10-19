@@ -2,6 +2,10 @@
     src: url('../../fonts/PressStart2P.ttf');
 }
 
+#lightboxPane {
+	-fx-background-color: #000000;
+}
+
 .gamePane {
     
 

@@ -20,6 +20,8 @@ public class KeyboardManager {
 	 * KeyCombination.CONTROL_DOWN);
 	 */
 	
+	
+	
 	private static KeyCombination moveUpKeyCombination = new KeyCodeCombination(KeyCode.W);
 	
 	private static KeyCombination moveDownKeyCombination = new KeyCodeCombination(
@@ -120,6 +122,95 @@ public class KeyboardManager {
 	public static void setMoveDownKeyCombination(KeyCombination keyCombination) {
 		moveDownKeyCombination = keyCombination;
 	}
+	
+	public static void setOpenMissionsKeyCombination(KeyCombination keyCombination) {
+		openMissionsKeyCombination = keyCombination;
+	}
+	
+	public static void setOpenMarketplaceKeyCombination(KeyCombination keyCombination) {
+		openMarketplaceKeyCombination = keyCombination;
+	}
+	
+	public static void setOpenAchievementsKeyCombination(KeyCombination keyCombination) {
+		openAchievementsKeyCombination = keyCombination;
+	}
+	
+	public static void setOpenTutorialKeyCombination(KeyCombination keyCombination) {
+		openTutorialKeyCombination = keyCombination;
+	}
+	
+	public static void setNormalSpeedKeyCombination(KeyCombination keyCombination) {
+		normalSpeedKeyCombination = keyCombination;
+	}
+	
+	public static void setFastSpeedKeyCombination(KeyCombination keyCombination) {
+		fastSpeedKeyCombination = keyCombination;
+	}
+	
+	public static void setFastestSpeedKeyCombination(KeyCombination keyCombination) {
+		fastestSpeedKeyCombination = keyCombination;
+	}
+	
+	public static void setPauseGameKeyCombination(KeyCombination keyCombination) {
+		pauseGameKeyCombination = keyCombination;
+	}
+	
+	public static void setBuildFirstKeyCombination(KeyCombination keyCombination) {
+		buildFirstKeyCombination = keyCombination;
+	}
+	
+	public static void setBuildSecondKeyCombination(KeyCombination keyCombination) {
+		buildSecondKeyCombination = keyCombination;
+	}
+	
+	public static void setBuildThirdKeyCombination(KeyCombination keyCombination) {
+		buildThirdKeyCombination = keyCombination;
+	}
+	
+	public static void setBuildFourthKeyCombination(KeyCombination keyCombination) {
+		buildFourthKeyCombination = keyCombination;
+	}
+	
+	public static void setBuildFifthKeyCombination(KeyCombination keyCombination) {
+		buildFifthKeyCombination = keyCombination;
+	}
+	
+	public static void setBuildSixthKeyCombination(KeyCombination keyCombination) {
+		buildSixthKeyCombination = keyCombination;
+	}
+	
+	public static void setBuildSeventhKeyCombination(KeyCombination keyCombination) {
+		buildSeventhKeyCombination = keyCombination;
+	}
+	
+	public static void setBuildEighthKeyCombination(KeyCombination keyCombination) {
+		buildEighthKeyCombination = keyCombination;
+	}
+	
+	public static void setBuildNinthKeyCombination(KeyCombination keyCombination) {
+		buildNinthKeyCombination = keyCombination;
+	}
+	
+	public static void setBuildTenthKeyCombination(KeyCombination keyCombination) {
+		buildTenthKeyCombination = keyCombination;
+	}
+	
+	public static void setBuildEleventhKeyCombination(KeyCombination keyCombination) {
+		buildEleventhKeyCombination = keyCombination;
+	}
+	
+	public static void setBuildTwelfthKeyCombination(KeyCombination keyCombination) {
+		buildTwelfthKeyCombination = keyCombination;
+	}
+	
+	public static void setBuildThirteenthKeyCombination(KeyCombination keyCombination) {
+		buildThirteenthKeyCombination = keyCombination;
+	}
+	
+	public static void setBuildFourteenthKeyCombination(KeyCombination keyCombination) {
+		buildFourteenthKeyCombination = keyCombination;
+	}
+	
 	
 	/* ---------------------------- GETTERS -------------------------------- */
 	

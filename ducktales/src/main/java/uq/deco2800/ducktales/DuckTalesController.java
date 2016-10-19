@@ -19,8 +19,6 @@ import uq.deco2800.ducktales.features.builder.WorldBuilderRenderer;
 import uq.deco2800.ducktales.features.login.LoginController;
 import uq.deco2800.ducktales.features.login.LoginManager;
 import uq.deco2800.ducktales.features.login.LoginVistaNavigator;
-import uq.deco2800.ducktales.features.market.MarketManager;
-import uq.deco2800.ducktales.features.market.MarketVistaNavigator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -120,7 +118,7 @@ public class DuckTalesController implements Initializable {
 		
 		loadLoginFrame(client);
 		
-		if (loggedIn == true) {
+		if (loggedIn) {
 			
 			// Change between the mainMenuPane and the contentPane
 			toggleMenuPane();

@@ -28,5 +28,6 @@
       <AnchorPane fx:id="worldPane" prefHeight="200.0" prefWidth="200.0" styleClass="gamePane" AnchorPane.bottomAnchor="180.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <Button fx:id="closeButton" mnemonicParsing="false" onAction="#hideAllInfoWindows" prefHeight="30.0" prefWidth="30.0" text="X" AnchorPane.rightAnchor="0.0" />
       <Canvas fx:id="mainCanvas" height="715.0" layoutX="-9.0" layoutY="-8.0" width="1216.0" />
+      <AnchorPane fx:id="lightboxPane" layoutX="-9.0" layoutY="-2.0" prefHeight="708.0" prefWidth="1216.0" />
    </children>
 </AnchorPane>

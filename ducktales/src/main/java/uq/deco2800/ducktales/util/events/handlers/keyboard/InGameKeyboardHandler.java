@@ -105,6 +105,7 @@ public class InGameKeyboardHandler extends GameEventHandler
 	}
 
 	private void handleKeyPressed(KeyCode code, KeyEvent event) {
+		System.out.println(code);
 		if (KeyboardManager.getMoveLeftKeyCombination().match(event)) {
 			moveDirection = Direction.RIGHT;
 			displayManager.moveWorld(Direction.RIGHT);
