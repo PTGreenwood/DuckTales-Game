@@ -479,7 +479,7 @@ public class GameController implements Initializable{
             rootPane.getChildren().add(root);
             
             // position the mission pane
-            AnchorPane.setTopAnchor(root, 20.0);
+            AnchorPane.setTopAnchor(root, 30.0);
             AnchorPane.setLeftAnchor(root, 250.0);
             
             
@@ -548,8 +548,8 @@ public class GameController implements Initializable{
             rootPane.getChildren().add(root);
             
             // position the mission pane
-            AnchorPane.setTopAnchor(root, 20.0);
-            AnchorPane.setLeftAnchor(root, 250.0);
+            AnchorPane.setTopAnchor(root, 30.0);
+            AnchorPane.setLeftAnchor(root, 450.0);
             
             // initially hide it first
             missionManager.hideMission();
@@ -641,7 +641,7 @@ public class GameController implements Initializable{
             rootPane.getChildren().add(root);
             
             // position the achievement pane
-            AnchorPane.setTopAnchor(root, 20.0);
+            AnchorPane.setTopAnchor(root, 30.0);
             AnchorPane.setLeftAnchor(root, 450.0);
             
             // initially hide it first

@@ -86,6 +86,7 @@ public class InGameKeyboardHandler extends GameEventHandler
 	}
 
 	private void toggleMissions() {
+		gameManager.getMissionManager().loadMain();
 		screenVisible = gameManager.getMissionManager().isVisible();
 		hideMenus();
 		if (screenVisible)

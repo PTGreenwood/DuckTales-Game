@@ -17,13 +17,13 @@
                <children>
                   <Button fx:id="level" layoutX="10.0" layoutY="30.0" mnemonicParsing="false" onAction="#loadLevel" prefHeight="80.0" style="-fx-border-color: brown; -fx-background-color: rgba(255, 255, 255, 0.5); -fx-font-family: &quot;Press Start 2P&quot;;" text="Level" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
                   <Button fx:id="mission" layoutX="19.0" layoutY="97.0" mnemonicParsing="false" onAction="#loadMission" prefHeight="80.0" style="-fx-background-color: rgba(255, 255, 255, 0.5); -fx-border-color: brown; -fx-font-family: &quot;Press Start 2P&quot;;" text="Mission" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="110.0" />
-                  <Button fx:id="ore" layoutX="10.0" layoutY="213.0" mnemonicParsing="false" onAction="#loadOre" prefHeight="80.0" style="-fx-border-color: brown; -fx-background-color: rgba(255, 255, 255, 0.5); -fx-font-family: &quot;Press Start 2P&quot;;" text="Ore" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="213.0" />
+                  <Button fx:id="ore" layoutX="10.0" layoutY="213.0" mnemonicParsing="false" onAction="#loadOre" prefHeight="80.0" style="-fx-border-color: brown; -fx-background-color: rgba(255, 255, 255, 0.5); -fx-font-family: &quot;Press Start 2P&quot;;" text="Ore" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="210.0" />
                   <Button fx:id="wood" layoutX="27.0" layoutY="227.0" mnemonicParsing="false" onAction="#loadWood" prefHeight="80.0" style="-fx-border-color: brown; -fx-background-color: rgba(255, 255, 255, 0.5); -fx-font-family: &quot;Press Start 2P&quot;;" text="Wood" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="310.0" />
                </children>
             </AnchorPane>
-            <BorderPane prefHeight="200.0" prefWidth="400.0">
+            <BorderPane fx:id="rightPane" prefHeight="200.0" prefWidth="400.0">
                <top>
-                  <Label fx:id="topLabel" style="-fx-font-family: &quot;Press Start 2P&quot;;" text="Achievement" BorderPane.alignment="CENTER">
+                  <Label fx:id="topLabel" style="-fx-font-family: &quot;Press Start 2P&quot;;" text="ACHIEVEMENT" BorderPane.alignment="CENTER">
                      <font>
                         <Font name="System Bold" size="36.0" />
                      </font>
@@ -42,7 +42,7 @@
                      </BorderPane.margin>
                   </Label>
                </bottom>
-               <center>
+               <right>
                   <AnchorPane fx:id="innerPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
                         <Label fx:id="achievementMainDescription" layoutX="108.0" layoutY="142.0" text="Description of Achievement" />
@@ -50,7 +50,7 @@
                         <Label fx:id="achievementDescription" layoutX="7.0" layoutY="222.0" prefHeight="90.0" prefWidth="379.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" />
                      </children>
                   </AnchorPane>
-               </center>
+               </right>
             </BorderPane>
          </children>
       </HBox>
