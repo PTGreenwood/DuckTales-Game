@@ -310,7 +310,7 @@ public class ResourceSpriteRegister {
 		addResource(BAKERY_4_ADV, "/buildings/adv_bakery/adv_bakery_4.png");
 		addResource(BAKERY_5_ADV, "/buildings/adv_bakery/adv_bakery_5.png");
 		
-		addResource(BAKERY_1_ADV_NIGHT, "/buildings/adv_bakery_night/adv_bakery_night_1.png");
+		addResource(BAKERY_1_ADV_NIGHT, "/buildings/adv_bakery_night/adv_bakery_night_2.png");
 		addResource(BAKERY_2_ADV_NIGHT, "/buildings/adv_bakery_night/adv_bakery_night_2.png");
 		addResource(BAKERY_3_ADV_NIGHT, "/buildings/adv_bakery_night/adv_bakery_night_3.png");
 		addResource(BAKERY_4_ADV_NIGHT, "/buildings/adv_bakery_night/adv_bakery_night_4.png");

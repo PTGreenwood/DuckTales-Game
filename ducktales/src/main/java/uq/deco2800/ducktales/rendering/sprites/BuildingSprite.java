@@ -5,7 +5,6 @@ import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.scene.image.Image;
 import javafx.util.Duration;
-import uq.deco2800.ducktales.features.time.GameTime;
 import uq.deco2800.ducktales.features.time.TimeManager;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.Tickable;
@@ -184,10 +183,14 @@ public class BuildingSprite extends EntitySprite implements Tickable {
     			&& gameTime.isNight()) {
     		this.idleAnimation = new BuildingAnimation(this.idleAnimationNightFrames, 
     				this.duration);
+    		playIdleAnimation();
+    		System.err.println(this.idleAnimationNightFrames.toArray());
     	} else if (this.idleAnimation.frames.equals(this.idleAnimationNightFrames) 
     			&& !gameTime.isNight()) {
     		this.idleAnimation = new BuildingAnimation(this.idleAnimationDayFrames, 
     				this.duration);
+    		playIdleAnimation();
+    		System.err.println(this.idleAnimationDayFrames.toArray());
     	}
     }
 }
