@@ -55,6 +55,8 @@ public class Peon extends AgentEntity {
 	private JobType job = JobType.JOBLESS;
 	private double qualification = 0;
 	private boolean mentorStatus = false;
+	
+	private ToolType tool = ToolType.NOTHING;
 
 	/**
 	 * how many trees the Peon has chopped (used in Lumberjack.java)
@@ -223,7 +225,7 @@ public class Peon extends AgentEntity {
 	public void quitJob() {
 		if (this.getJob() != JobType.JOBLESS){
 			this.setJob(JobType.JOBLESS);
-			this.setTool(ToolType.NOTHING);
+			this.tool = ToolType.NOTHING;
 		}
 	}
 
@@ -259,7 +261,7 @@ public class Peon extends AgentEntity {
 //add statements depending on job
 	public double getQualification() {
 		if(this.job == JobType.LUMBERJACK){
-			return qualification + 10 + ToolType.AXE.getQualificationModifier();
+			return qualification + ToolType.AXE.getQualificationModifier();
 		}
 		else if(this.job == JobType.BUILDER){
 			return qualification + 10;
@@ -511,14 +513,23 @@ public class Peon extends AgentEntity {
 	public JobType getJob() {
 		return job;
 	}*/
-	private ToolType tool = ToolType.NOTHING;
+	
+	/**
+	 * 
+	 */
+
 	public void setTool(ToolType tool){
-		if(this.getJob() == JobType.LUMBERJACK){
+		if(this.getJob() == tool.getJob()) {
+			this.tool = tool;
+		}
+	/*	if(this.getJob() == JobType.LUMBERJACK){
 			this.tool = ToolType.AXE;
 		}
 		else if(this.getJob() == JobType.JOBLESS){
 			this.tool = ToolType.NOTHING;
-		}
+		}*/
 	}
+
+	
 	
 }
