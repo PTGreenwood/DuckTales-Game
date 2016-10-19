@@ -19,7 +19,7 @@ public class AchievementHandler {
 	/** Achievement Score */
 	private int intAchieve;
 	
-	LevelHandler levelHandler = LevelHandler.getInstance();
+	private LevelHandler levelHandler = LevelHandler.getInstance();
 	private InventoryManager inventoryManager;
 	private World world;
 	public int achievementToggleWood = 0;

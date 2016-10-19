@@ -15,12 +15,12 @@ public class AchievementLevelController {
 	
 	private static final AchievementLevelController INSTANCE = new AchievementLevelController();
 	
-	public AchievementLevelController() {
-		
-	}
-	
 	public static AchievementLevelController getInstance() {
 		return INSTANCE;
+	}
+	
+	public AchievementLevelController() {
+		
 	}
 	
 	public Image getAchievementLevelImage() {

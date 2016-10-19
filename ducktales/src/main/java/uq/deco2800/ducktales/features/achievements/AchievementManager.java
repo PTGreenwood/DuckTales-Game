@@ -56,74 +56,67 @@ public class AchievementManager {
 	@FXML
 	private Label achievementDescription;
 
-	private Image level1 = new Image("achievements/level1.png");
-	
-	private Image mission1 = new Image("achievements/medalBronze.png");
-	
 	private Image ore1 = new Image("achievements/ore100.png");
 	
 	private Image wood1 = new Image("achievements/wood100.png");
 	
 	private AchievementLevelController levelController = AchievementLevelController.getInstance();
+	private AchievementMissionController missionController = AchievementMissionController.getInstance();
+	
 	
 	public AchievementManager() {
-
 				
 	}
 	
 	public void loadMain() {
 		
-		this.topLabel.setText("Achievement");
+		this.topLabel.setText("ACHIEVEMENT");
 		this.achievementMainDescription.setVisible(true);
 		this.achievementDescription.setVisible(false);
 		this.achievementImageView.setVisible(false);
 
 	}
 	
-	@FXML
-	private void loadLevel() {
-	
-		this.topLabel.setText("LEVEL");
+	private void loadAchievement(String title, String description, Image achievementImage) {
+		
+		this.topLabel.setText(title);
 		this.achievementMainDescription.setVisible(false);
 		this.achievementImageView.setVisible(true);
-		this.achievementImageView.setImage(this.levelController.getAchievementLevelImage());
+		this.achievementImageView.setImage(achievementImage);
 		this.achievementDescription.setVisible(true);
-		this.achievementDescription.setText("Achievement Level Description");	
+		this.achievementDescription.setText(description);	
 		this.achievementDescription.setAlignment(Pos.CENTER);
+		
+	}
+	
+	@FXML
+	private void loadLevel() {
+		
+		this.loadAchievement("LEVEL", "Achievement Level Description", 
+				this.levelController.getAchievementLevelImage());
+		
 	}
 	
 	@FXML
 	private void loadMission() {
 		
-		this.topLabel.setText("MISSION");
-		this.achievementMainDescription.setVisible(false);
-		this.achievementImageView.setVisible(true);
-		this.achievementImageView.setImage(mission1);
-		this.achievementDescription.setVisible(true);
-		this.achievementDescription.setText("Achievement Mission Description");
-		this.achievementDescription.setAlignment(Pos.CENTER);		
+		this.loadAchievement("MISSION", "Achievement Mission Description",
+				this.missionController.getAchievementMissionImage());;
+			
 	}
 	
 	@FXML
 	private void loadOre() {
-		this.topLabel.setText("ORE");
-		this.achievementMainDescription.setVisible(false);
-		this.achievementImageView.setVisible(true);
-		this.achievementImageView.setImage(ore1);
-		this.achievementDescription.setVisible(true);
-		this.achievementDescription.setText("Achievement Ore Description");
-		this.achievementDescription.setAlignment(Pos.CENTER);		
+		
+		this.loadAchievement("ORE", "Achievement Ore Description", ore1);
+		
 	}
 	
 	@FXML
 	private void loadWood() {
-		this.topLabel.setText("WOOD");
-		this.achievementMainDescription.setVisible(false);
-		this.achievementImageView.setVisible(true);
-		this.achievementImageView.setImage(wood1);
-		this.achievementDescription.setVisible(true);
-		this.achievementDescription.setText("Achievement Wood Description");
-		this.achievementDescription.setAlignment(Pos.CENTER);		
+		
+		this.loadAchievement("WOOD", "Achievement Wood Description", wood1);
+		
 	}
 	
 	/**
