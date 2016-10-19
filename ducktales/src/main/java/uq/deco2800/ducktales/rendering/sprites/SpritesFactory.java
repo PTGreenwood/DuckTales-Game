@@ -168,7 +168,7 @@ public class SpritesFactory {
         BuildingSprite sprite = new BuildingSprite(index, type);
 
         // Define the key frames for the idle animation
-        ResourceType[] idleFrames = {
+        ResourceType[] idleFramesDay = {
             HOSPITAL_1,
             HOSPITAL_2,
             HOSPITAL_3,
@@ -182,7 +182,8 @@ public class SpritesFactory {
                 type,
                 5.0*REAL_MINUTE,
                 1.0, // Total time of idle animation
-                idleFrames,
+                idleFramesDay,
+                idleFramesDay,
                 false
         );
         return sprite;
@@ -204,12 +205,20 @@ public class SpritesFactory {
         BuildingSprite sprite = new BuildingSprite(index, type);
 
         // Define the key frames for the idle animation
-        ResourceType[] idleFrames = {
+        ResourceType[] idleFramesDay = {
                 ResourceType.BAKERY_1,
                 ResourceType.BAKERY_2,
                 ResourceType.BAKERY_3,
                 ResourceType.BAKERY_4,
                 ResourceType.BAKERY_5
+        };
+        ResourceType[] idleFramesNight = {
+                ResourceType.BAKERY_1_ADV_NIGHT,
+                ResourceType.BAKERY_2_ADV_NIGHT,
+                ResourceType.BAKERY_3_ADV_NIGHT,
+                ResourceType.BAKERY_4_ADV_NIGHT,
+                ResourceType.BAKERY_5_ADV_NIGHT,
+                ResourceType.BAKERY_6_ADV_NIGHT
         };
 
         // Setup the sprite with the given parameters
@@ -218,7 +227,8 @@ public class SpritesFactory {
                 type,
                 REAL_MINUTE*4.0, // from the time passed in the building class
                 1.0, // Total time of idle animation
-                idleFrames,
+                idleFramesDay,
+                idleFramesDay,
                 true
         );
 
@@ -273,7 +283,7 @@ public class SpritesFactory {
         BuildingSprite sprite = new BuildingSprite(index, type);
 
         // Define the key frames for the idle animation
-        ResourceType[] idleFrames = {
+        ResourceType[] idleFramesDay = {
                 ResourceType.BUTCHER_1,
                 ResourceType.BUTCHER_2,
                 ResourceType.BUTCHER_3,
@@ -291,7 +301,8 @@ public class SpritesFactory {
                 type,
                 7.0*REAL_MINUTE,
                 2.0, // Total time of idle animation
-                idleFrames,
+                idleFramesDay,
+                idleFramesDay,
                 false
         );
         return sprite;
@@ -312,7 +323,7 @@ public class SpritesFactory {
         BuildingSprite sprite = new BuildingSprite(index, type);
 
         // Define the key frames for the idle animation
-        ResourceType[] idleFrames = {
+        ResourceType[] idleFramesDay = {
                 ResourceType.CEMETERY_1,
                 ResourceType.CEMETERY_2,
                 ResourceType.CEMETERY_3,
@@ -340,7 +351,8 @@ public class SpritesFactory {
                 type,
                 2.0*REAL_MINUTE,
                 2.0, // Total time of idle animation
-                idleFrames,
+                idleFramesDay,
+                idleFramesDay,
                 false
         );
 
@@ -362,7 +374,7 @@ public class SpritesFactory {
         BuildingSprite sprite = new BuildingSprite(index, type);
 
         // Define the key frames for the idle animation
-        ResourceType[] idleFrames = {
+        ResourceType[] idleFramesDay = {
                 ResourceType.CHURCH_1,
                 ResourceType.CHURCH_2,
                 ResourceType.CHURCH_3,
@@ -376,7 +388,8 @@ public class SpritesFactory {
                 type,
                 9.0*REAL_MINUTE,
                 1.0, // Total time of idle animation
-                idleFrames,
+                idleFramesDay,
+                idleFramesDay,
                 true
         );
 
@@ -465,7 +478,7 @@ public class SpritesFactory {
         BuildingSprite sprite = new BuildingSprite(index, type);
 
         // Define the key frames for the idle animation
-        ResourceType[] idleFrames = {
+        ResourceType[] idleFramesDay = {
              ResourceType.FORGE_1,
              ResourceType.FORGE_2,
              ResourceType.FORGE_3,
@@ -479,7 +492,8 @@ public class SpritesFactory {
                 type,
                 2.0*REAL_MINUTE,
                 1.0, // Total time of idle animation
-                idleFrames,
+                idleFramesDay,
+                idleFramesDay,
                 false
         );
         return sprite;
@@ -500,7 +514,7 @@ public class SpritesFactory {
         BuildingSprite sprite = new BuildingSprite(index, type);
 
         // Define the key frames for the idle animation
-        ResourceType[] idleFrames = {
+        ResourceType[] idleFramesDay = {
             HOUSE_1,
             HOUSE_2,
             HOUSE_3,
@@ -514,7 +528,8 @@ public class SpritesFactory {
                 type,
                 2.0*REAL_MINUTE,
                 1.0, // Total time of idle animation
-                idleFrames,
+                idleFramesDay,
+                idleFramesDay,
                 false
         );
 
@@ -536,7 +551,7 @@ public class SpritesFactory {
         BuildingSprite sprite = new BuildingSprite(index, type);
 
         // Define the key frames for the idle animation
-        ResourceType[] idleFrames = {
+        ResourceType[] idleFramesDay = {
             MINE_1,
             MINE_2,
             MINE_3,
@@ -549,7 +564,8 @@ public class SpritesFactory {
                 type,
                 3.0*REAL_MINUTE,
                 1.0, // Total time of idle animation
-                idleFrames,
+                idleFramesDay,
+                idleFramesDay,
                 false
         );
         return sprite;
@@ -570,7 +586,7 @@ public class SpritesFactory {
         BuildingSprite sprite = new BuildingSprite(index, type);
 
         // Define the key frames for the idle animation
-        ResourceType[] idleFrames = {
+        ResourceType[] idleFramesDay = {
                 ResourceType.OBSERVATORY_1,
                 ResourceType.OBSERVATORY_2,
                 ResourceType.OBSERVATORY_3,
@@ -584,7 +600,8 @@ public class SpritesFactory {
                 type,
                 5.0*REAL_MINUTE,
                 1.0, // Total time of idle animation
-                idleFrames,
+                idleFramesDay,
+                idleFramesDay,
                 true
         );
 
@@ -672,7 +689,7 @@ public class SpritesFactory {
         BuildingSprite sprite = new BuildingSprite(index, type);
 
         // Define the key frames for the idle animation
-        ResourceType[] idleFrames = {
+        ResourceType[] idleFramesDay = {
                 ResourceType.SAWMILL_1,
                 ResourceType.SAWMILL_2,
                 ResourceType.SAWMILL_3,
@@ -687,7 +704,8 @@ public class SpritesFactory {
                 type,
                 3.0*REAL_MINUTE,
                 2.0, // Total time of idle animation
-                idleFrames,
+                idleFramesDay,
+                idleFramesDay,
                 true
         );
 
@@ -714,11 +732,13 @@ public class SpritesFactory {
             ResourceType buildingType,
             double constructionTime,
             double idleAnimationTime,
-            ResourceType[] idleAnimationFrames,
+            ResourceType[] idleAnimationFramesDay,
+            ResourceType[] idleAnimationFramesNight,
             boolean autoReverse) {
         // Setup the frames for the animations
         List<Image> constructionFrames = new ArrayList<>();
-        List<Image> idleFrames = new ArrayList<>();
+        List<Image> idleFramesDay = new ArrayList<>();
+        List<Image> idleFramesNight = new ArrayList<>();
         ResourceSpriteRegister register = ResourceSpriteRegister.getInstance();
 
         // Now add all the images representing the construction animation here
@@ -727,14 +747,17 @@ public class SpritesFactory {
         constructionFrames.add(register.getResourceImage(buildingType));
 
         // Add all the frames for the idle animation
-        for (ResourceType frameType : idleAnimationFrames) {
-            idleFrames.add(register.getResourceImage(frameType));
+        for (ResourceType frameType : idleAnimationFramesNight) {
+            idleFramesNight.add(register.getResourceImage(frameType));
+        }
+        for (ResourceType frameType : idleAnimationFramesDay) {
+            idleFramesDay.add(register.getResourceImage(frameType));
         }
 
         // After all images are set up, now call these methods to set up the
         // actual animation code
         sprite.setupConstructionAnimation(constructionFrames, constructionTime);
-        sprite.setupIdleAnimation(idleFrames, idleAnimationTime, autoReverse);
+        sprite.setupIdleAnimation(idleFramesNight, idleFramesDay, idleAnimationTime, autoReverse);
 
         // Now play the construction animation. Idle animation will automatically
         // play when construction animation is done
@@ -753,23 +776,36 @@ public class SpritesFactory {
      */
     private static BuildingSprite createSchool(int index, ResourceType type) {
         // The sprite to be returned
-        BuildingSprite sprite = new BuildingSprite(index, type);
+    	BuildingSprite sprite = new BuildingSprite(index, type);
 
-        // Setup the frames for the animation
-        List<Image> imageList = new ArrayList<>();
-        ResourceSpriteRegister register = ResourceSpriteRegister.getInstance();
+        // Define the key frames for the idle animation
+        ResourceType[] idleFramesDay = {
+                ResourceType.SCHOOL_1,
+                ResourceType.SCHOOL_2,
+                ResourceType.SCHOOL_3,
+                ResourceType.SCHOOL_4,
+                ResourceType.SCHOOL_5,
+        };
+        
+        ResourceType[] idleFramesNight = {
+        		 ResourceType.SCHOOL_NIGHT_1,
+                 ResourceType.SCHOOL_NIGHT_2,
+                 ResourceType.SCHOOL_NIGHT_3,
+                 ResourceType.SCHOOL_NIGHT_4,
+                 ResourceType.SCHOOL_NIGHT_5,
+                 ResourceType.SCHOOL_NIGHT_6,
+        };
 
-        // Now add all the images representing the animation here, one-by-one
-        //imageList.add(register.getResourceImage(ResourceType.DIRT_1));  DOES NOT WORK
-        imageList.add(register.getResourceImage(ResourceType.CONSTRUCTION_2));
-        imageList.add(register.getResourceImage(ResourceType.CONSTRUCTION));
-        imageList.add(register.getResourceImage(ResourceType.SCHOOL));
-
-        // After all images are set up, now call these methods to set up the
-        // actual animation code
-        sprite.setImageList(imageList); // Give the interpolator the list of images
-        sprite.setupAnimation(3 * REAL_MINUTE); // Set up the actual animation, passing the duration
-        sprite.startAnimation(); // Start the actual animation
+        // Setup the sprite with the given parameters
+        setupBuildingSprite(
+                sprite,
+                type,
+                3.0*REAL_MINUTE,
+                2.0, // Total time of idle animation
+                idleFramesDay,
+                idleFramesNight,
+                true
+        );
 
         return sprite;
     }
@@ -789,7 +825,7 @@ public class SpritesFactory {
         BuildingSprite sprite = new BuildingSprite(index, type);
 
         // Define the key frames for the idle animation
-        ResourceType[] idleFrames = {
+        ResourceType[] idleFramesDay = {
             GYMNASIUM_1,
             GYMNASIUM_2,
             GYMNASIUM_3,
@@ -803,7 +839,8 @@ public class SpritesFactory {
                 type,
                 2.0*REAL_MINUTE,
                 2.0, // Total time of idle animation
-                idleFrames,
+                idleFramesDay,
+                idleFramesDay,
                 false
         );
         return sprite;
@@ -824,7 +861,7 @@ public class SpritesFactory {
         BuildingSprite sprite = new BuildingSprite(index, type);
 
         // Define the key frames for the idle animation
-        ResourceType[] idleFrames = {
+        ResourceType[] idleFramesDay = {
            STORAGEBARN
         };
 
@@ -834,7 +871,8 @@ public class SpritesFactory {
                 type,
                 2.0*REAL_MINUTE,
                 2.0, // Total time of idle animation
-                idleFrames,
+                idleFramesDay,
+                idleFramesDay,
                 false
         );
         return sprite;

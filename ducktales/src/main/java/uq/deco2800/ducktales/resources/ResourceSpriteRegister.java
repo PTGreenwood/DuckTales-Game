@@ -281,6 +281,12 @@ public class ResourceSpriteRegister {
 		addResource(SCHOOL_NIGHT_4, "/buildings/school_night/school_night_4.png");
 		addResource(SCHOOL_NIGHT_5, "/buildings/school_night/school_night_5.png");
 		addResource(SCHOOL_NIGHT_6, "/buildings/school_night/school_night_6.png");
+		// School
+		addResource(SCHOOL_1, "/buildings/school/school_1.png");
+		addResource(SCHOOL_2, "/buildings/school/school_2.png");
+		addResource(SCHOOL_3, "/buildings/school/school_3.png");
+		addResource(SCHOOL_4, "/buildings/school/school_4.png");
+		addResource(SCHOOL_5, "/buildings/school/school_5.png");
 		
 		
 
@@ -309,6 +315,7 @@ public class ResourceSpriteRegister {
 		addResource(BAKERY_3_ADV_NIGHT, "/buildings/adv_bakery_night/adv_bakery_night_3.png");
 		addResource(BAKERY_4_ADV_NIGHT, "/buildings/adv_bakery_night/adv_bakery_night_4.png");
 		addResource(BAKERY_5_ADV_NIGHT, "/buildings/adv_bakery_night/adv_bakery_night_5.png");
+		addResource(BAKERY_6_ADV_NIGHT, "/buildings/adv_bakery_night/adv_bakery_night_6.png");
 
 	}
 

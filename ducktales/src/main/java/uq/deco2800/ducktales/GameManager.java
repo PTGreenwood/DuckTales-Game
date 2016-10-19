@@ -267,7 +267,7 @@ public class GameManager {
 
     /**
      * Retrieve the manager that manages the missions in the game
-     *
+     * 
      * @return the manager of the missions in the game
      */
     public MissionManager getMissionManager() {
