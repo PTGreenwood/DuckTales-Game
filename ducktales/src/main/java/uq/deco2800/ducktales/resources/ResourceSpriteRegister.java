@@ -201,6 +201,8 @@ public class ResourceSpriteRegister {
 		addResource(BAKERY_3, "/buildings/bakery/bakery_3.png");
 		addResource(BAKERY_4, "/buildings/bakery/bakery_4.png");
 		addResource(BAKERY_5, "/buildings/bakery/bakery_5.png");
+		
+		
 		// Butcher
 		addResource(BUTCHER_1, "/buildings/butcher/butcher_1.png");
 		addResource(BUTCHER_2, "/buildings/butcher/butcher_2.png");
@@ -272,7 +274,15 @@ public class ResourceSpriteRegister {
 		addResource(MINE_2, "/buildings/mine/mine_2.png");
 		addResource(MINE_3, "/buildings/mine/mine_3.png");
 		addResource(MINE_4, "/buildings/mine/mine_4.png");
-
+		// School - Night
+		addResource(SCHOOL_NIGHT_1, "/buildings/school_night/school_night_1.png");
+		addResource(SCHOOL_NIGHT_2, "/buildings/school_night/school_night_2.png");
+		addResource(SCHOOL_NIGHT_3, "/buildings/school_night/school_night_3.png");
+		addResource(SCHOOL_NIGHT_4, "/buildings/school_night/school_night_4.png");
+		addResource(SCHOOL_NIGHT_5, "/buildings/school_night/school_night_5.png");
+		addResource(SCHOOL_NIGHT_6, "/buildings/school_night/school_night_6.png");
+		
+		
 
 		// Advanced buildings' animations
 		// Butcher
@@ -287,6 +297,18 @@ public class ResourceSpriteRegister {
 		addResource(ADV_HOSPITAL_3, "/buildings/adv_hospital/adv_hospital_3.png");
 		addResource(ADV_HOSPITAL_4, "/buildings/adv_hospital/adv_hospital_4.png");
 		addResource(ADV_HOSPITAL_5, "/buildings/adv_hospital/adv_hospital_5.png");
+		// Bakery
+		addResource(BAKERY_1_ADV, "/buildings/adv_bakery/adv_bakery_1.png");
+		addResource(BAKERY_2_ADV, "/buildings/adv_bakery/adv_bakery_2.png");
+		addResource(BAKERY_3_ADV, "/buildings/adv_bakery/adv_bakery_3.png");
+		addResource(BAKERY_4_ADV, "/buildings/adv_bakery/adv_bakery_4.png");
+		addResource(BAKERY_5_ADV, "/buildings/adv_bakery/adv_bakery_5.png");
+		
+		addResource(BAKERY_1_ADV_NIGHT, "/buildings/adv_bakery_night/adv_bakery_night_1.png");
+		addResource(BAKERY_2_ADV_NIGHT, "/buildings/adv_bakery_night/adv_bakery_night_2.png");
+		addResource(BAKERY_3_ADV_NIGHT, "/buildings/adv_bakery_night/adv_bakery_night_3.png");
+		addResource(BAKERY_4_ADV_NIGHT, "/buildings/adv_bakery_night/adv_bakery_night_4.png");
+		addResource(BAKERY_5_ADV_NIGHT, "/buildings/adv_bakery_night/adv_bakery_night_5.png");
 
 	}
 
