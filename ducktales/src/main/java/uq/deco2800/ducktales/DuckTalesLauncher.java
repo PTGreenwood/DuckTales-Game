@@ -44,6 +44,12 @@ public class DuckTalesLauncher extends Application {
 		primaryStage.setMinHeight(700);
 		primaryStage.setOnCloseRequest(e -> System.exit(0));
 		primaryStage.show();
+		Parent root2 = FXMLLoader.load(getClass().getResource("/ui/main/MoviePlayer.fxml"));
+		Scene scene2 = new Scene(root2);
+		Stage s = new Stage();
+		s.setScene(scene2);
+		s.show();
+
 	}
 	
 }

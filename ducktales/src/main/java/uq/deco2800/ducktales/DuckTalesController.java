@@ -134,7 +134,7 @@ public class DuckTalesController implements Initializable {
 			// Show the main UI
 			showPane(gamePane);
 		}
-
+		
 	}
 
 	/**
@@ -154,8 +154,9 @@ public class DuckTalesController implements Initializable {
 		AnchorPane.setRightAnchor(gamePane, 0.0);
 		AnchorPane.setTopAnchor(gamePane, 0.0);
 		AnchorPane.setBottomAnchor(gamePane, 0.0);
+		
 	}
-
+	
 	/**
 	 * This method is called when "Build World" button is pressed
 	 *
