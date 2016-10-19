@@ -8,6 +8,7 @@ import uq.deco2800.ducktales.GameManager;
 import uq.deco2800.ducktales.features.entities.agententities.AgentEntity;
 import uq.deco2800.ducktales.features.jobframework.Job;
 import uq.deco2800.ducktales.features.jobframework.JobType;
+import uq.deco2800.ducktales.features.peonupgrades.ToolType;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.AStar;
 import uq.deco2800.ducktales.util.Point;
@@ -220,8 +221,10 @@ public class Peon extends AgentEntity {
 	 * Peon quits job if it has one
 	 */
 	public void quitJob() {
-		if (this.getJob() != JobType.JOBLESS)
+		if (this.getJob() != JobType.JOBLESS){
 			this.setJob(JobType.JOBLESS);
+			this.setTool(ToolType.NOTHING);
+		}
 	}
 
 	/**
@@ -255,7 +258,24 @@ public class Peon extends AgentEntity {
 	}
 //add statements depending on job
 	public double getQualification() {
-		return qualification;
+		if(this.job == JobType.LUMBERJACK){
+			return qualification + 10 + ToolType.AXE.getQualificationModifier();
+		}
+		else if(this.job == JobType.BUILDER){
+			return qualification + 10;
+		}	
+		else if(this.job == JobType.MINER){
+			return qualification + 10;
+		}
+		else if(this.job == JobType.FARMER){
+			return qualification + 10;
+		}
+		else if(this.job == JobType.PRIEST){
+			return qualification + 10;
+		}
+		else{
+			return qualification;
+		}
 	}
 
 	/**
@@ -477,9 +497,28 @@ public class Peon extends AgentEntity {
 	private void checkPeonStatus() {
 		// need to be implemented
 	}
-	
-	private Tool tool;	
-	private void peonTool(){
-		
+	//peon needs to be set a tool
+	/*
+	 * 
+	 * 
+	private JobType job = JobType.JOBLESS;
+	private double qualification = 0;
+	private boolean mentorStatus = false;
+	public void setJob(JobType job) {
+		this.job = job;
 	}
+
+	public JobType getJob() {
+		return job;
+	}*/
+	private ToolType tool = ToolType.NOTHING;
+	public void setTool(ToolType tool){
+		if(this.getJob() == JobType.LUMBERJACK){
+			this.tool = ToolType.AXE;
+		}
+		else if(this.getJob() == JobType.JOBLESS){
+			this.tool = ToolType.NOTHING;
+		}
+	}
+	
 }
