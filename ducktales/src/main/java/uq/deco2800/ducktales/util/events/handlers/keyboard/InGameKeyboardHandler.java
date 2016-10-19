@@ -76,6 +76,7 @@ public class InGameKeyboardHandler extends GameEventHandler
 
 	private void toggleAchievements() {
 		gameManager.getMissionManager().missionCompletedAction(1);
+		gameManager.getAchievementManager().loadMain();
 		screenVisible = gameManager.getAchievementManager().isVisible();
 		hideMenus();
 		if (screenVisible)

@@ -642,7 +642,7 @@ public class GameController implements Initializable{
             
             // position the achievement pane
             AnchorPane.setTopAnchor(root, 20.0);
-            AnchorPane.setLeftAnchor(root, 250.0);
+            AnchorPane.setLeftAnchor(root, 450.0);
             
             // initially hide it first
             achievementManager.hideAchievement();
