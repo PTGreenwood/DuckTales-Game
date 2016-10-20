@@ -9,7 +9,7 @@
 
 <StackPane id="currentTradeVistaPropId" fx:id="currentTradeVista" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uq.deco2800.ducktales.features.market.AllTradesController">
    <children>
-      <ScrollPane prefHeight="350.0" prefWidth="550.0">
+      <ScrollPane prefHeight="330.0" prefWidth="550.0">
          <content>
             <GridPane fx:id="allTradesGridPane" prefHeight="470.0" prefWidth="530.0" style="-fx-background-color: #71716F;">
                <columnConstraints>

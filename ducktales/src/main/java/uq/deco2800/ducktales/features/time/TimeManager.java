@@ -3,16 +3,11 @@ package uq.deco2800.ducktales.features.time;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import uq.deco2800.ducktales.util.SecondaryManager;
 import uq.deco2800.ducktales.util.Tickable;
-import uq.deco2800.ducktales.GameManager;
 import uq.deco2800.ducktales.features.seasons.SeasonManager;
-import uq.deco2800.ducktales.rendering.worlddisplay.WorldDisplayManager;
-import uq.deco2800.ducktales.features.seasons.*;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -142,10 +137,8 @@ public class TimeManager extends SecondaryManager
 		int seasonalDayTime = this.getSeasonManager().getCurrentSeason().getTimeDayBreak();
 		if((currentHour >= seasonalNightTime || currentHour <= seasonalDayTime)) {
 			return true;
-		} else {
-			return false;
 		}
-		
+		return false;
 	}
 	
 	public void setTime(int hour) {

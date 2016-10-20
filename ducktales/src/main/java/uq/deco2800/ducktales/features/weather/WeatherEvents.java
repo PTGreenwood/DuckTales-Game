@@ -2,8 +2,6 @@ package uq.deco2800.ducktales.features.weather;
 
 import java.util.*;
 
-import javax.print.attribute.standard.MediaSize.Other;
-
 /**
  * @author mattyleggy
  *

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import uq.deco2800.ducktales.features.entities.threats.Effect;
 import uq.deco2800.ducktales.features.entities.threats.Enemy;
 import uq.deco2800.ducktales.features.entities.threats.Threat;
