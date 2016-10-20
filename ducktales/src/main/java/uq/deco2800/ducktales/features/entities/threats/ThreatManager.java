@@ -1,6 +1,7 @@
 package uq.deco2800.ducktales.features.entities.threats;
 
 import uq.deco2800.ducktales.World;
+import uq.deco2800.ducktales.features.entities.peons.Peon;
 import uq.deco2800.ducktales.rendering.sprites.ThreatSprite;
 import uq.deco2800.ducktales.util.SecondaryManager;
 import uq.deco2800.ducktales.util.exceptions.GameSetupException;
@@ -17,6 +18,8 @@ public class ThreatManager extends SecondaryManager {
 
     /** The list of sprites for the enemies */
     private List<ThreatSprite> threatSprites;
+    
+    
 
     public ThreatManager() {
         threatSprites = new ArrayList<>(50);
@@ -43,10 +46,11 @@ public class ThreatManager extends SecondaryManager {
 	 * Set threat level 1.
 	 */
 	public void threatsLvl1() {
-		// Clear Effects
+		// Clear Effects and enemies
 		ThreatFactory.effectsList.clear();
 		ThreatFactory.enemiesList.clear();
-
+		ThreatFactory.clearEnemyHashMap();
+		ThreatFactory.clearEffectHashMap();
 		// -------Enemies--------
 		ThreatFactory.createLevel1Enemy(ThreatFactory.EnemyType.RACCOON);
 		ThreatFactory.createLevel1Enemy(ThreatFactory.EnemyType.BEETLE);
@@ -60,9 +64,11 @@ public class ThreatManager extends SecondaryManager {
 	 * Set threat level 2.
 	 */
 	public void threatsLvl2() {
-		// Clear Effects
+		// Clear Effects and enemies
 		ThreatFactory.effectsList.clear();
 		ThreatFactory.enemiesList.clear();
+		ThreatFactory.clearEnemyHashMap();
+		ThreatFactory.clearEffectHashMap();
 
 		// -------Enemies--------
 		ThreatFactory.createLevel2Enemy(ThreatFactory.EnemyType.WOLF);
@@ -79,9 +85,11 @@ public class ThreatManager extends SecondaryManager {
 	 * Set threat level 3.
 	 */
 	public void threatsLvl3() {
-		// Clear Effects
+		// Clear Effects and enemies
 		ThreatFactory.effectsList.clear();
 		ThreatFactory.enemiesList.clear();
+		ThreatFactory.clearEnemyHashMap();
+		ThreatFactory.clearEffectHashMap();
 		
 		// -------Enemies--------
 		ThreatFactory.createLevel3Enemy(ThreatFactory.EnemyType.LION);
@@ -97,9 +105,11 @@ public class ThreatManager extends SecondaryManager {
 	 * Set threat level 4.
 	 */
 	public void threatsLvl4() {
-		// Clear Effects
+		// Clear Effects and enemies
 		ThreatFactory.effectsList.clear();
 		ThreatFactory.enemiesList.clear();
+		ThreatFactory.clearEnemyHashMap();
+		ThreatFactory.clearEffectHashMap();
 
 		// -------Enemies--------
 		ThreatFactory.createLevel4Enemy(ThreatFactory.EnemyType.ZOMBIE_DUCK);

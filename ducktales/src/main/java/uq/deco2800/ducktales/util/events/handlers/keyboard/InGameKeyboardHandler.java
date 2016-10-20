@@ -76,6 +76,7 @@ public class InGameKeyboardHandler extends GameEventHandler
 
 	private void toggleAchievements() {
 		gameManager.getMissionManager().missionCompletedAction(1);
+		gameManager.getAchievementManager().loadMain();
 		screenVisible = gameManager.getAchievementManager().isVisible();
 		hideMenus();
 		if (screenVisible)
@@ -85,6 +86,7 @@ public class InGameKeyboardHandler extends GameEventHandler
 	}
 
 	private void toggleMissions() {
+		gameManager.getMissionManager().loadMain();
 		screenVisible = gameManager.getMissionManager().isVisible();
 		hideMenus();
 		if (screenVisible)
@@ -104,6 +106,7 @@ public class InGameKeyboardHandler extends GameEventHandler
 	}
 
 	private void handleKeyPressed(KeyCode code, KeyEvent event) {
+		System.out.println(code);
 		if (KeyboardManager.getMoveLeftKeyCombination().match(event)) {
 			moveDirection = Direction.RIGHT;
 			displayManager.moveWorld(Direction.RIGHT);

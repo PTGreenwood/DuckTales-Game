@@ -94,8 +94,8 @@ public class MissionHandler {
 	 * @param i
 	 * @return Returns mission Image
 	 */
-	public ImageView getMissionImageCompleted(int i) {
-		return this.missionsArray.get(i);
+	public Image getMissionImageCompleted(int i) {
+		return this.missionsArray.get(i).getImage();
 	}
 	
 	

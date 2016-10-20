@@ -346,17 +346,17 @@ public class Peon extends AgentEntity {
 	/**
 	 * add a debuff to Peon
 	 */
-	public void addDebuff(PeonDebuffType _debuff) {
-		if (!debuffs.contains(_debuff)) {
-			debuffs.add(_debuff);
+	public void addDebuff(PeonDebuffType debuff) {
+		if (!debuffs.contains(debuff)) {
+			debuffs.add(debuff);
 		}
 	}
 
 	/**
 	 * remove a debuff from Peon
 	 */
-	public void removeDebuff(PeonDebuffType _debuff) {
-		int index = debuffs.indexOf(_debuff);
+	public void removeDebuff(PeonDebuffType debuff) {
+		int index = debuffs.indexOf(debuff);
 
 		if (index != -1) {
 			debuffs.remove(index);
@@ -376,17 +376,17 @@ public class Peon extends AgentEntity {
 	/**
 	 * add a buff to Peon
 	 */
-	public void addBuff(PeonBuffType _buff) {
-		if (!buffs.contains(_buff)) {
-			buffs.add(_buff);
+	public void addBuff(PeonBuffType buff) {
+		if (!buffs.contains(buff)) {
+			buffs.add(buff);
 		}
 	}
 
 	/**
 	 * remove a buff from Peon
 	 */
-	public void removeBuff(PeonBuffType _buff) {
-		int index = buffs.indexOf(_buff);
+	public void removeBuff(PeonBuffType buff) {
+		int index = buffs.indexOf(buff);
 
 		if (index != -1) {
 			buffs.remove(index);

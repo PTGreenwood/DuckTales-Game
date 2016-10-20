@@ -37,13 +37,13 @@ public class Tree extends ResourceEntity{
 	}
 	//Runnable that is in charge of growing the tree
 	private Runnable createRunnable(Tree tree){	
-		Runnable aRunnable = new Runnable(){
+		Runnable Runnable = new Runnable(){
 			public void run(){
 				tree.increaseValue(50);
 				System.out.println(value);
 			}
 		};
-		return aRunnable;
+		return Runnable;
 	}
 	/*Function added to avoid error in Lumberjack class
 	 * will possibly be removed later.
