@@ -1,7 +1,6 @@
 package uq.deco2800.ducktales.features.achievements;
 
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import uq.deco2800.ducktales.features.level.LevelHandler;
 
 public class AchievementLevelController {
