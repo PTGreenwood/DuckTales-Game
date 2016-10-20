@@ -30,7 +30,7 @@ public class SignUpController  {
     
     private static DucktalesClient client = null;
     
-    boolean IsExitUser(String s)
+    boolean isExitUser(String s)
     {
     	
     	return false;

@@ -1,9 +1,5 @@
 package uq.deco2800.ducktales.features.seasons;
 
-import uq.deco2800.ducktales.features.weather.Fire;
-import uq.deco2800.ducktales.features.weather.InvalidWeatherChanceException;
-import uq.deco2800.ducktales.features.weather.Rain;
-import uq.deco2800.ducktales.features.weather.WeatherChance;
 import uq.deco2800.ducktales.features.weather.WeatherEvents;
 
 public class Autumn extends Season {

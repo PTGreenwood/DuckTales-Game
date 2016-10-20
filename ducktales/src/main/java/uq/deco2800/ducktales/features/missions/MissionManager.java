@@ -3,21 +3,12 @@ package uq.deco2800.ducktales.features.missions;
 import java.io.IOException;
 import java.net.URL;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
-import javafx.scene.control.ProgressIndicator;
 import uq.deco2800.ducktales.features.achievements.AchievementHandler;
 import uq.deco2800.ducktales.features.level.LevelHandler;
 
@@ -100,7 +91,7 @@ public class MissionManager {
 	    }
 		
 		//Untick mission2 box in Achievement window of Gamebeta when marketplace is clicked
-		missionMain.MissionImageCompleted(missionNumber);
+		missionMain.missionImageCompleted(missionNumber);
 		
         //Increment percentage of progress indicator in achievement
         missionMain.countNumberOfCompletedMissions();
