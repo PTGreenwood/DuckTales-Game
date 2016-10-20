@@ -346,10 +346,14 @@ public class World implements Tickable {
 	@Override
 	public void tick() {
 		timer++;
-		for (int x = 0; x < buildings.size(); x++) {
-			BuildingSprite buildingSprite = SpritesFactory.createBuildingSprite(x, buildings.get(x).getType());
-			//buildingSprite.tick();
-		}
+//		for (int x = 0; x < buildings.size(); x++) {
+//			if (buildings.get(x).getType() == ResourceType.SCHOOL && timer > 5000) {
+//				BuildingSprite buildingSprite = SpritesFactory.createBuildingSprite(x, buildings.get(x).getType());
+//				//buildingSprite.stopAnimation();
+//				buildingSprite.swap(0);
+//				System.err.println(timer);
+//			}
+//		}
 		
 		// Update all the tiles
 		for (int y = 0; y < tiles.getHeight(); y++) {
