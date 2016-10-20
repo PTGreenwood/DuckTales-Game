@@ -4,8 +4,6 @@ import javafx.scene.image.ImageView;
 import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.features.builder.WorldBuilderController;
-import uq.deco2800.ducktales.features.builder.WorldBuilderModel;
-import uq.deco2800.ducktales.features.builder.WorldBuilderRenderer;
 
 import static uq.deco2800.ducktales.resources.ResourceType.*;
 

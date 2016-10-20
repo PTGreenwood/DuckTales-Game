@@ -22,7 +22,7 @@ public class MyTradesController {
 	private MarketManager marketManager;
 	
 	/** The file path to the panes that will appear in the grid pane */
-	private static String MY_TRADE_PANE = "/market/mpmytradespane.fxml";
+	private static String MYTRADEPANE = "/market/mpmytradespane.fxml";
 	
 	/** The path to the dynamic resources */
 	private URL path;
@@ -48,7 +48,7 @@ public class MyTradesController {
 		List<MocTrade> userTrades = 
 				this.marketManager.getTradesForLoggedInUser();
 				
-		path = getClass().getResource(MY_TRADE_PANE);
+		path = getClass().getResource(MYTRADEPANE);
 		
 		int row = 0;
 		int column = 0;

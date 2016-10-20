@@ -38,41 +38,6 @@ public class AchievementTest extends ApplicationTest {
 		stage.show();
     }
 
-	/**
-	 * Test for mission achievement Button
-	 *
-	 */
-	@Test
-	public void checkAchievementMission() {
-
-		clickOn("#achievementMissionBtn");
-
-		verifyThat("#achievementMissionBtn", hasText("Mission Achievement"));
-		//verifyThat("#titleLabel", hasText("Mission Achievement"));
-	}
-
-	/**
-	 * Test for level achievement Button
-	 *
-	 */
-	@Test
-	public void checkAchievementLevel() {
-
-		clickOn("#achievementLevelBtn");
-
-		verifyThat("#achievementLevelBtn", hasText("Level Achievement"));
-		//verifyThat("#titleLabel", hasText("Level Achievement"));
-	}
-
-	/**
-	 * Tests if there is any null on the buttons
-	 *
-	 */
-	@Test
-    public void testIsNotNull() {
-
-        verifyThat("#achievementMissionBtn", isNotNull());
-        verifyThat("#achievementLevelBtn", isNotNull());
-    }
+	
 
 }

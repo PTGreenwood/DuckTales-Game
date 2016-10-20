@@ -404,5 +404,10 @@ public class World implements Tickable {
 			}
 		}
 	}
+	
+	/** gets number of peons for achievement tracking */
+	public int getNumberOfPeons() {
+		return peons.size();
+	}
 
 }

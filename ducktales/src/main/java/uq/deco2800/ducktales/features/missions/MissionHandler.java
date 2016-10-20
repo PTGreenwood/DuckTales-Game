@@ -74,7 +74,7 @@ public class MissionHandler {
 	 * 
 	 * @param i
 	 */
-	public void MissionImageCompleted(int i) {
+	public void missionImageCompleted(int i) {
 		this.missionsArray.get(i).setImage(checkedBox);
 		this.countCompletedMissions[i] = 1;
 	}
@@ -94,8 +94,8 @@ public class MissionHandler {
 	 * @param i
 	 * @return Returns mission Image
 	 */
-	public ImageView getMissionImageCompleted(int i) {
-		return this.missionsArray.get(i);
+	public Image getmissionImageCompleted(int i) {
+		return this.missionsArray.get(i).getImage();
 	}
 	
 	

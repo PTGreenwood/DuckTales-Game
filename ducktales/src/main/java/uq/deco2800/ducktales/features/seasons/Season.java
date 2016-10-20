@@ -274,7 +274,7 @@ public abstract class Season {
 		//Making this fairly static at the moment
 		//Keeping a note here: CurrentTemperature should be increasing/decreasing as the
 		//day keeps moving on which means the chances should be constantly updating. 
-		int initialFireChance = (int) (this.currentTemperature );
+		int initialFireChance = (this.currentTemperature );
 		
 		Weather fire = new Fire();
     	try {

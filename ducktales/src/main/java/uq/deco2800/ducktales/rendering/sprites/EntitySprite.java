@@ -1,7 +1,6 @@
 package uq.deco2800.ducktales.rendering.sprites;
 
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import uq.deco2800.ducktales.rendering.sprites.Sprite;
 import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 import uq.deco2800.ducktales.resources.ResourceType;

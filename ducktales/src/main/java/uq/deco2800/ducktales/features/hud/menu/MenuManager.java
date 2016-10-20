@@ -18,13 +18,11 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.RowConstraints;
-import javafx.scene.text.Text;
 import uq.deco2800.ducktales.features.hud.HUDSprite;
 import uq.deco2800.ducktales.features.hud.menu.animal.AnimalMenuSprite;
 import uq.deco2800.ducktales.features.hud.menu.building.BuildingMenuSprite;
 import uq.deco2800.ducktales.rendering.info.WorldEntityInfo;
 import uq.deco2800.ducktales.resources.ResourceType;
-import uq.deco2800.ducktales.util.SecondaryManager;
 
 import static uq.deco2800.ducktales.resources.ResourceType.BAKERY;
 import static uq.deco2800.ducktales.resources.ResourceType.BUTCHER;
@@ -82,9 +80,9 @@ public class MenuManager implements Initializable {
 	private ArrayList<GridPane> animalOptionList;
 
 	// amount of rows in the options grid
-	private final static int gridRows = 7;
+	private static final int GRIDROWS = 7;
 	// amount of columns in the options grid
-	private final static int gridColumns = 2;
+	private static final int GRIDCOLUMNS = 2;
 
 	/** The lists of menu sprites */
 	private static ArrayList<BuildingMenuSprite> buildingMenuSprites;
@@ -147,7 +145,7 @@ public class MenuManager implements Initializable {
 	public static void selectItemByIndex(int index) {
 		int currentGridIndex = getCurrentGrid().getCurrentGridIndex();
 		MenuType currentMenu = getCurrentGrid().getCurrentMenu();
-		int itemIndex = index + (currentGridIndex * (gridRows * gridColumns));
+		int itemIndex = index + (currentGridIndex * (GRIDROWS * GRIDCOLUMNS));
 		if (currentMenu.equals(MenuType.BUILDING)) {
 			if (itemIndex < MenuManager.buildingMenuSprites.size())
 				triggerMouseClick(MenuManager.buildingMenuSprites.get(itemIndex));
@@ -370,14 +368,14 @@ public class MenuManager implements Initializable {
 			// set the column width
 			ColumnConstraints columnConstraints = new ColumnConstraints();
 			columnConstraints.setPrefWidth(100);
-			for (int i = 0; i < this.gridColumns; i++) {
+			for (int i = 0; i < this.GRIDCOLUMNS; i++) {
 				gridPane.getColumnConstraints().add(columnConstraints);
 			}
 
 			// set the row height
 			RowConstraints rowConstraints = new RowConstraints();
 			rowConstraints.setPrefHeight(57);
-			for (int i = 0; i < this.gridRows; i++) {
+			for (int i = 0; i < this.GRIDROWS; i++) {
 				gridPane.getRowConstraints().add(rowConstraints);
 			}
 		}
@@ -460,7 +458,7 @@ public class MenuManager implements Initializable {
 	 * @return the maximum amount of options available in the GridPanes
 	 */
 	private int getMaxOptions() {
-		return this.gridRows * this.gridColumns;
+		return this.GRIDROWS * this.GRIDCOLUMNS;
 	}
 
 }
