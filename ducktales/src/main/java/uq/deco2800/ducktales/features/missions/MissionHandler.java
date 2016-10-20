@@ -34,7 +34,11 @@ public class MissionHandler {
 	MissionProgressIndicator piMain = MissionProgressIndicator.getInstance();	
 	LevelHandler levelMain = LevelHandler.getInstance();
 	
+	MissionProgressController piController = MissionProgressController.getInstance();
+	private MissionProgressController missionProgressController;
 	private static MissionHandler instance = new MissionHandler();
+	
+	
 	
 	/**
 	 * Constructor of {@link Missions}
@@ -50,6 +54,9 @@ public class MissionHandler {
 	 * 
 	 */
 	public MissionHandler() {
+		
+		this.missionProgressController = new MissionProgressController();
+		
 		this.countCompletedMissions = new int[4];
 		Arrays.fill(this.countCompletedMissions, 0);
 		this.missionsArray = new ArrayList<ImageView>();
@@ -112,7 +119,8 @@ public class MissionHandler {
 			}						
 		}
 		this.numberOfCompletedMissions = numberOfCompletedMissions;
-		piMain.setProgressPercentage(numberOfCompletedMissions/3);
+		//this.missionProgressController.setProgressPercentage(numberOfCompletedMissions/3);
+		//this.piController.setProgressPercentage(0.5);
 	}
 	
 	/**

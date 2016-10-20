@@ -1,12 +1,21 @@
 package uq.deco2800.ducktales.features.tutorials;
 
+import java.io.IOException;
+import java.net.URL;
+
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
 
 /**
  * Manage all fxml action of main tutorial window
@@ -20,83 +29,107 @@ public class TutorialManager {
 	@FXML
 	private AnchorPane tutorialWindow;
 	
-	/** Right Pane of the window */
 	@FXML
-	private AnchorPane rightPane;	
+	private BorderPane rightPane;
+	
+	@FXML
+	private Label labelTop;
+	
+	@FXML
+	private Button next;
+	@FXML
+	private Button previous;
 	
 	@FXML
 	private ImageView tutorialImage;
-	
 	@FXML
 	private Label tutorialLabel;
 	
 	@FXML
-	private Label tutorialTitleLabel;
+	private Label tutorialDescription;
 	
 	@FXML
-	private Button next;
-	
+	private Button basicInterface;
 	@FXML
-	private Button previous;
+	private Button buildings;
+	@FXML
+	private Button marketPlace;
+	@FXML
+	private Button aboutDuck;
 	
-	private String tutorialImage1 = "/tutorials/basicInterface1.png";
-	private String tutorialImage2 = "/tutorials/basicInterface2.png";
-	private String tutorialImage3 = "/tutorials/basicInterface3.png";
-	private String tutorialImage4 = "/tutorials/basicInterface4.png";
+	
+	private Image tutorialImage1 = new Image("/tutorials/basicInterface1.png");
+	private Image tutorialImage2 = new Image("/tutorials/basicInterface2.png");
+	private Image tutorialImage3 = new Image("/tutorials/basicInterface3.png");
+	private Image tutorialImage4 = new Image("/tutorials/basicInterface4.png");
 	
 	private int basicInterfaceTutorialNumber = 0;
 	
-	@FXML
-	private void loadTutorial1(){
-		loadTutorial(tutorialImage1, "Basic Interface 1");
-		previous.setOnAction((event) -> 
-			loadTutorial1()
-		);
-		next.setOnAction((event) -> 
-		    loadTutorial2()
-		);
+	public void loadMain() {
+		this.hideButtons();
+		this.tutorialImage.setVisible(false);
+		this.tutorialLabel.setVisible(false);
+		this.tutorialDescription.setVisible(true);
 	}
+	
 	@FXML
-	private void loadTutorial2(){
-		loadTutorial(tutorialImage2, "Basic Interface 2");
+	private void loadBasicInterface1() {
+		this.loadTutorial(this.tutorialImage1, "Basic Interface 1");
 		previous.setOnAction((event) -> 
-			loadTutorial1()
+		loadBasicInterface1()
 		);
 		next.setOnAction((event) -> 
-		    loadTutorial3()
+		loadBasicInterface2()
 		);
 	}
 	
 	@FXML
-	private void loadTutorial3() {
-		loadTutorial(tutorialImage3, "Basic Interface 3");
+	private void loadBasicInterface2() {
+		this.loadTutorial(this.tutorialImage2, "Basic Interface 2");
 		previous.setOnAction((event) -> 
-			loadTutorial2()
+		loadBasicInterface1()
 		);
 		next.setOnAction((event) -> 
-		    loadTutorial4()
+		loadBasicInterface3()
 		);
 	}
 	
 	@FXML
-	private void loadTutorial4() {
-		loadTutorial(tutorialImage4, "Basic Interface 4");
+	private void loadBasicInterface3() {
+		this.loadTutorial(this.tutorialImage3, "Basic Interface 3");
 		previous.setOnAction((event) -> 
-			loadTutorial3()
+		loadBasicInterface2()
 		);
 		next.setOnAction((event) -> 
-		    loadTutorial4()
-		);		
+		loadBasicInterface4()
+		);
 	}
 	
-	private void loadTutorial(String imageAddress, String text) {
-		
-		Image image = new Image(imageAddress);
-						
-		tutorialImage.setImage(image);
-		tutorialLabel.setText(text);
-		tutorialLabel.setFont(new Font("Press Start 2P", 12));
-		showButtons();
+	@FXML
+	private void loadBasicInterface4() {
+		this.loadTutorial(this.tutorialImage4, "Basic Interface 4");
+		previous.setOnAction((event) -> 
+		loadBasicInterface3()
+		);
+		next.setOnAction((event) -> 
+		loadBasicInterface4()
+		);
+	}
+	
+	private void loadTutorial(Image image, String string) {
+		this.showButtons();
+		this.labelTop.setText("INTERFACE");
+		this.tutorialDescription.setVisible(false);
+		this.tutorialImage.setVisible(true);
+		this.tutorialLabel.setVisible(true);
+		this.tutorialImage.setImage(image);
+		this.tutorialLabel.setText(string);
+		this.tutorialLabel.setAlignment(Pos.CENTER);	
+	}
+	
+	
+	@FXML
+	private void enlargeImage() {
 		
 	}
 	
@@ -104,7 +137,6 @@ public class TutorialManager {
 		this.next.setVisible(true);
 		this.previous.setVisible(true);
 	}
-	
 	public void hideButtons() {
 		this.next.setVisible(false);
 		this.previous.setVisible(false);

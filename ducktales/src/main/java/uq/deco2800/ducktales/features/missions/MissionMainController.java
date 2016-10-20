@@ -26,4 +26,9 @@ public class MissionMainController {
 		
 	}
 	
+	public BorderPane getMainWindow() {
+		return this.mainWindow;
+	}
+	
+	
 }

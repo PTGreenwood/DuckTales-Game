@@ -483,7 +483,6 @@ public class GameController implements Initializable{
             AnchorPane.setLeftAnchor(root, 250.0);
             
             
-            tutorialManager.hideButtons();
             // initially hide it first
             tutorialManager.hideTutorial();
             
