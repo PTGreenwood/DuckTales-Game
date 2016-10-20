@@ -18,9 +18,9 @@
    <children>
       <VBox maxHeight="+Infinity" maxWidth="+Infinity" minHeight="-Infinity" prefHeight="73.0" prefWidth="255.0" spacing="7.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
          <children>
-            <Label fx:id="messageLabel" prefHeight="28.0" prefWidth="236.0" text="Confirmation" textAlignment="CENTER" wrapText="true">
+            <Label fx:id="messageLabel" prefHeight="30.0" prefWidth="240.0" text="Confirmation" textAlignment="CENTER" wrapText="true">
                <font>
-                  <Font name="Press Start 2P" size="16.0" />
+                  <Font name="Press Start 2P" size="18.0" />
                </font>
                <textFill>
                   <LinearGradient endX="1.0" endY="1.0">
@@ -31,9 +31,9 @@
                   </LinearGradient>
                </textFill>
             </Label>
-            <Label fx:id="detailsLabel" prefHeight="29.0" prefWidth="456.0" text="Are you sure you would like to accept this trade?" wrapText="true">
+            <Label fx:id="detailsLabel" prefHeight="40.0" prefWidth="450.0" style="-fx-line-spacing: 10px;" text="Are you sure you would like to accept this trade?" wrapText="true">
                <font>
-                  <Font name="Press Start 2P" size="10.0" />
+                  <Font name="Press Start 2P" size="12.0" />
                </font>
                <textFill>
                   <LinearGradient endX="1.0" endY="1.0">
@@ -58,13 +58,13 @@
             </HBox>
             <Pane maxWidth="+Infinity" HBox.hgrow="ALWAYS">
                <children>
-                  <Button fx:id="cancelButton" cancelButton="true" layoutX="63.0" layoutY="-10.0" minWidth="80.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="120.0" style="-fx-background-radius: 0px; -fx-background-color: #80ab4a;" text="Yes" textFill="WHITE">
+                  <Button fx:id="cancelButton" cancelButton="true" layoutX="62.0" layoutY="-6.0" minWidth="80.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #80ab4a; -fx-border-color: #efba1a; -fx-border-width: 3px;" text="Yes" textFill="WHITE">
                      <font>
-                        <Font name="Press Start 2P" size="14.0" />
+                        <Font name="Press Start 2P" size="10.0" />
                      </font></Button>
-                  <Button fx:id="okButton" layoutX="236.0" layoutY="-10.0" minWidth="80.0" mnemonicParsing="false" prefWidth="120.0" style="-fx-background-radius: 0px; -fx-background-color: #80ab4a;" text="No" textFill="WHITE">
+                  <Button fx:id="okButton" layoutX="235.0" layoutY="-6.0" minWidth="80.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" style="-fx-background-radius: 0px; -fx-background-color: #80ab4a; -fx-border-color: #efba1a; -fx-border-width: 3px;" text="No" textFill="WHITE">
                      <font>
-                        <Font name="Press Start 2P" size="14.0" />
+                        <Font name="Press Start 2P" size="10.0" />
                      </font></Button>
                </children>
             </Pane>
