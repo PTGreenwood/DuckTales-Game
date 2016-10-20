@@ -124,9 +124,8 @@ public class Threat extends Entity {
 		if (endTimer >= currentTime && hasEndTimer) {
 			// Change HasEndTimer to false (Not sure if if stat will break)
 			return true;
-		} else {
-			return false;
 		}
+		return false;
 	}
 
 	/**
@@ -138,9 +137,8 @@ public class Threat extends Entity {
 		if (startTimer >= currentTime && hasStartTimer) {
 			// Change HasStarTimer to false (Not sure if if stat will break)
 			return true;
-		} else {
-			return false;
 		}
+		return false;
 	}
 
 	/**
@@ -228,12 +226,10 @@ public class Threat extends Entity {
 
 	public boolean checkTile() {
 		boolean available = world.checkTileAvailability(getXInt(), getYInt(), getXLength(), getYLength());
-		if (available == true) {
+		if (available) {
 			return true;
 		}
-		else {
-			return false;
-		}
+		return false;
 	}
 
 //	public void addImage(String imageName) {
@@ -267,8 +263,7 @@ public class Threat extends Entity {
 	 * coordinate of the threat
 	 */
 	public int getXInt() {
-		int xInt = (int) xCord;
-		return xInt;
+		return (int) xCord;
 	}
 	
 	/**
@@ -279,8 +274,7 @@ public class Threat extends Entity {
 	 * coordinate of the threat
 	 */
 	public int getYInt() {
-		int yInt = (int) yCord;
-		return yInt;
+		return (int) yCord;
 	}
 	
 	/**
@@ -514,7 +508,7 @@ public class Threat extends Entity {
 	 */
 	public void peonHealthDamage() {
 		boolean peonCollision = checkPeonCollision();
-		if (peonCollision == true) {
+		if (peonCollision) {
 			int currentPeonHealth = peon.getHealth();
 			int newPeonHealth = currentPeonHealth - levelOfDamage;
 			if (newPeonHealth >= 1) {
@@ -530,7 +524,7 @@ public class Threat extends Entity {
 	 */
 	public void buildingHealthDamage() {
 		boolean buildingCollision = checkBuildingCollision();
-		if (buildingCollision == true) {
+		if (buildingCollision) {
 			int currentBuildingHealth = building.getHealth();
 			int newBuildingHealth = currentBuildingHealth - levelOfDamage;
 			if (newBuildingHealth >= 1) {

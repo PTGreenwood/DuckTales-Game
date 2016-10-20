@@ -220,8 +220,8 @@ public class ThreatFactory {
 		effect.setStartTimer(start, timer);
 		effect.setEndTimer(end);
 		effect.setTheLevelOfDamage(damage);
-		double X = effect.getRandomX();
-		double Y = effect.getRandomY();
+		double x = effect.getRandomX();
+		double y = effect.getRandomY();
 		effectsList.add(effect);
 	}
 	
@@ -244,8 +244,8 @@ public class ThreatFactory {
 		enemy.setStartTimer(start, timer);
 		enemy.setEndTimer(end);
 		enemy.setTheLevelOfDamage(damage);
-		double X = enemy.getRandomX();
-		double Y = enemy.getRandomY();
+		double x = enemy.getRandomX();
+		double y = enemy.getRandomY();
 		enemiesList.add(enemy);
 	}
 	
