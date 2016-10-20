@@ -258,26 +258,13 @@ public class Peon extends AgentEntity {
 	public void setQualification(double qualification) {
 		this.qualification = qualification;
 	}
-//add statements depending on job
-	public double getQualification() {
-		if(this.job == JobType.LUMBERJACK){
-			return qualification + ToolType.AXE.getQualificationModifier();
-		}
-		else if(this.job == JobType.BUILDER){
-			return qualification + 10;
-		}	
-		else if(this.job == JobType.MINER){
-			return qualification + 10;
-		}
-		else if(this.job == JobType.FARMER){
-			return qualification + 10;
-		}
-		else if(this.job == JobType.PRIEST){
-			return qualification + 10;
-		}
-		else{
-			return qualification;
-		}
+	/**
+	 * 
+	 * @param tool - the current equipped tool
+	 * @return - returns the total harvest rate for the peon
+	 */
+	public double getQualification(ToolType tool) {
+		return qualification + tool.getQualificationModifier();
 	}
 
 	/**
@@ -515,19 +502,15 @@ public class Peon extends AgentEntity {
 	}*/
 	
 	/**
-	 * 
+	 * this sets the tool to the peon, tool is the tool that will get set
+	 * it also checks if the peon's job is suitable for the tool
 	 */
 
 	public void setTool(ToolType tool){
 		if(this.getJob() == tool.getJob()) {
 			this.tool = tool;
 		}
-	/*	if(this.getJob() == JobType.LUMBERJACK){
-			this.tool = ToolType.AXE;
-		}
-		else if(this.getJob() == JobType.JOBLESS){
-			this.tool = ToolType.NOTHING;
-		}*/
+
 	}
 
 	
