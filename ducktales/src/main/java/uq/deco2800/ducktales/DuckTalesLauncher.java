@@ -48,7 +48,7 @@ public class DuckTalesLauncher extends Application {
 		Scene scene2 = new Scene(root2);
 		Stage s = new Stage();
 		s.setScene(scene2);
-		s.show();
+		s.showAndWait();
 
 	}
 	
