@@ -8,6 +8,7 @@ import javafx.event.Event;
 import uq.deco2800.ducktales.GameManager;
 import uq.deco2800.ducktales.features.entities.MainEntityManager;
 import uq.deco2800.ducktales.features.entities.peons.Peon;
+import uq.deco2800.ducktales.features.entities.resourceentities.ResourceEntityManager;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.AStar;
 import uq.deco2800.ducktales.util.Point;
@@ -22,6 +23,9 @@ public class Animal extends AgentEntity {
 
     /** The main manager of the game */
     protected GameManager gameManager;
+    
+    /** The droppable resource entity manager of the game */
+    protected ResourceEntityManager resourceEntityManager; 
     
     /** instance of AnimalDeadEvent */
     private AnimalDeadEvent animalDeadEvent;
@@ -157,8 +161,7 @@ public class Animal extends AgentEntity {
                 setHealth(getHealth() - HEALTHDECREASERATE);
             }
             if(getHealth() == 0) {
-            	setIsDead();
-            	setOffAnimalDeadEvent();
+            	resourceEntityManager.dropResource(this.type, 4, 4);
             }
             
             time = 0; // reset timer until next update
