@@ -1,4 +1,4 @@
-package uq.deco2800.ducktales;
+package uq.deco2800.ducktales.features.weather;
 
 import java.util.*;
 import org.junit.*;
