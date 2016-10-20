@@ -3,6 +3,8 @@ package uq.deco2800.ducktales.features.hud.menu;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -73,6 +75,9 @@ public class MenuManager implements Initializable {
 	private Button nextGridButton;
 	@FXML
 	private Button previousGridButton;
+	
+	// Logger for the class
+	private static final Logger LOGGER = Logger.getLogger(MenuManager.class.getName());
 
 	// building options list to be displayed in HUD
 	private ArrayList<GridPane> buildingOptionList;
@@ -431,7 +436,7 @@ public class MenuManager implements Initializable {
 			xLength = worldEntityInfo.getBuildingLength(sprite.getSpriteType(), worldEntityInfo.XLENGTH);
 			yLength = worldEntityInfo.getBuildingLength(sprite.getSpriteType(), worldEntityInfo.YLENGTH);
 		} catch (Exception e) {
-			System.err.println(e.getMessage());
+			LOGGER.log(Level.SEVERE, e.toString(), e);
 		}
 
 		if (xLength == 0 || yLength == 0) {
