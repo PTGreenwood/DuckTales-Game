@@ -24,6 +24,9 @@ public class Animal extends AgentEntity {
     /** The main manager of the game */
     protected GameManager gameManager;
     
+    /** The animal manager of the game */
+    protected AnimalManager animalManager;
+    
     /** The droppable resource entity manager of the game */
     protected ResourceEntityManager resourceEntityManager; 
     
@@ -160,10 +163,8 @@ public class Animal extends AgentEntity {
             if (getHunger() == 50 || getThirst() == 50) {
                 setHealth(getHealth() - HEALTHDECREASERATE);
             }
-            if(getHealth() == 0) {
-            	resourceEntityManager.dropResource(this.type, 4, 4);
-            }
-            
+            //resourceEntityManager.dropResource(this.type, 4, 4);
+            animalManager.addAnimal(this.type, 4, 4);
             time = 0; // reset timer until next update
         }
     }
