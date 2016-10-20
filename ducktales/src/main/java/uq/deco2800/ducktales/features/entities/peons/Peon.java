@@ -263,8 +263,17 @@ public class Peon extends AgentEntity {
 	 * @param tool - the current equipped tool
 	 * @return - returns the total harvest rate for the peon
 	 */
-	public double getQualification(ToolType tool) {
-		return qualification + tool.getQualificationModifier();
+	public double getQualificationToolEquipped() {
+		return qualification + tool.getQualificationModifier(); 
+	}
+	
+	/**
+	 * 
+	 * @param tool - the tool to check
+	 * @return - returns the qualification modifier of the given tool.
+	 */
+	public double getQualificationToolGiven(ToolType tool) {
+		return tool.getQualificationModifier();
 	}
 
 	/**
