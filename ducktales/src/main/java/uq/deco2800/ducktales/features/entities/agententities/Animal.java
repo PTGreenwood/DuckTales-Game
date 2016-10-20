@@ -164,7 +164,7 @@ public class Animal extends AgentEntity {
                 setHealth(getHealth() - HEALTHDECREASERATE);
             }
             //resourceEntityManager.dropResource(this.type, 4, 4);
-            animalManager.addAnimal(this.type, 4, 4);
+            System.out.println(getType());
             time = 0; // reset timer until next update
         }
     }
@@ -456,5 +456,13 @@ public class Animal extends AgentEntity {
      */
     public void setOutOfZone(boolean x) {
         this.outOfZone = x;
+    }
+    
+    /**
+     * Get the resourceType of the animal
+     * @return the resourceType of the animal
+     */
+    public ResourceType getType() {
+    	return this.type;
     }
 }
