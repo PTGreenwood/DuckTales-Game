@@ -5,15 +5,20 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import javafx.fxml.FXMLLoader;
+import javafx.stage.Stage;
 import org.junit.Test;
-
+import org.testfx.framework.junit.ApplicationTest;
+import uq.deco2800.ducktales.util.exceptions.GameSetupException;
+import uq.deco2800.ducktales.GameManagerTest;
 import uq.deco2800.ducktales.World;
+import uq.deco2800.ducktales.features.builder.WorldBuilderControllerTest;
 import uq.deco2800.ducktales.features.entities.threats.Effect;
 import uq.deco2800.ducktales.features.entities.threats.Enemy;
 
 
 
-public class ThreatsTest {
+public class ThreatsTest{
 
 	/**
 	 * Test for the threats class as well as enemies and effects
@@ -65,4 +70,29 @@ public class ThreatsTest {
 
 	}
 
+	@Test
+	public void basicThreatTest3() {
+		
+		Enemy enemy = new Enemy("Raccoon");
+		Effect effect = new Effect("Black Smoke");
+//		World world = new World("World", 700, 700);
+//		double randomX=0;
+//		double randomY=0;
+//		double xCord=0;
+//		double yCord=0;
+//		
+//		enemy.getRandomX();
+//		enemy.setXCord();
+//		assertTrue("x cord should be between 0 and 700",  xCord >= 0 || xCord <= 700);
+		int levelOfDamage = 10;
+		int speed = 0;
+		enemy.setTheLevelOfDamage(30);
+		assertTrue ("level of damage set is equal to level of damage from get", enemy.getTheLevelOfDamage() == 30);
+		enemy.setTheSpeed(20);
+		assertTrue ("speed from setting speed is equal to speed of get speed", enemy.getSpeed() == 20);
+		effect.setTheLevelOfDamage(30);
+		assertTrue ("level of damage set is equal to level of damage from get", effect.getTheLevelOfDamage() == 30);
+		effect.setTheSpeed(20);
+		assertTrue ("speed from setting speed is equal to speed of get speed", effect.getSpeed() == 20);
+	}
 }
