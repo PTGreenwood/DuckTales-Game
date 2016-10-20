@@ -230,7 +230,7 @@ public class ResourceInfoRegister {
     	DroppableResourceEntity droppableResourceEntity = null;
     	// Check for all droppableResourceEntity's here
     	switch(droppableResourceType) {
-    	case CLOUD:
+    	case DUCK:
     		droppableResourceEntity = new Feather(x, y, droppableResourceType);
     	}
     	return droppableResourceEntity;
