@@ -3,6 +3,7 @@ package uq.deco2800.ducktales.features.achievements;
 
 
 import uq.deco2800.ducktales.World;
+import uq.deco2800.ducktales.features.entities.threats.ThreatManager;
 import uq.deco2800.ducktales.features.inventory.InventoryManager;
 import uq.deco2800.ducktales.features.level.LevelHandler;
 import uq.deco2800.ducktales.features.missions.MissionHandler;
@@ -26,6 +27,7 @@ public class AchievementHandler {
 	public int achievementToggleOres = 0;
 	public int achievementToggleFood = 0;
 	public int achievementTogglePeons = 0;
+	public int achievementToggleThreats = 0;
 	/**
 	 * Constructor of {@link Achievement}.
 	 * 
@@ -237,7 +239,12 @@ public class AchievementHandler {
 	    	achievementTogglePeons ++;
 	    }
 	    
-	    
+	    if(ThreatManager.returnEnemies().equals(1) && achievementToggleThreats == 0){
+	    	this.achieveMedium();
+	    }
+	    else if(ThreatManager.returnEnemies().equals(5) && achievementToggleThreats == 1){
+	    	this.achieveMedium();
+	    }
 	  
    }
    
