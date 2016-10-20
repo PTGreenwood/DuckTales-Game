@@ -34,9 +34,9 @@ public class Animal extends AgentEntity {
     private static final int MAXSTARTTHIRST = 50;
     private static final int MINSTARTSTRENGTH = 1;
     private static final int MAXSTARTSTRENGTH = 20;
-    private static final int HUNGERINCREASERATE = 5; // Rate at which hunger will increase.
-    private static final int THIRSTINCREASERATE = 5; // Rate at which thirst will increase.
-    private static final int HEALTHDECREASERATE = 5; // Rate at which health will decrease.
+    private static final int HUNGERINCREASERATE = 10; // Rate at which hunger will increase.
+    private static final int THIRSTINCREASERATE = 10; // Rate at which thirst will increase.
+    private static final int HEALTHDECREASERATE = 10; // Rate at which health will decrease.
     protected int health; // The animal's state of health.
     protected int hunger; // The animal's state of hunger.
     protected int thirst; // The animal's state of thirst.
@@ -150,12 +150,17 @@ public class Animal extends AgentEntity {
     private void statusUpdate() {
         time += 1;
         // the animal's hunger, thirst and/or health will be incremented every 3 minutes.
-        if (time == 180) {
+        if (time == 120) {
             setHunger(getHunger() + HUNGERINCREASERATE);
             setThirst(getThirst() + THIRSTINCREASERATE);
-            if (getHunger() == 0 || getThirst() == 0) {
+            if (getHunger() == 50 || getThirst() == 50) {
                 setHealth(getHealth() - HEALTHDECREASERATE);
             }
+            if(getHealth() == 0) {
+            	setIsDead();
+            	setOffAnimalDeadEvent();
+            }
+            
             time = 0; // reset timer until next update
         }
     }
@@ -165,10 +170,6 @@ public class Animal extends AgentEntity {
      */
     public void setIsDead() {
             this.isDead = true;
-            //setOffAnimalDeadEvent();
-            // fire AnimalDeadEvent when an animal dies
-            // entityManager.removeEntity(this);
-            // MainEntityManager.removeEntity(this);
     }
     
     /**
