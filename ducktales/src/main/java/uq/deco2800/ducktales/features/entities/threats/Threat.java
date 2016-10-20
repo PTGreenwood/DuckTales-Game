@@ -218,6 +218,7 @@ public class Threat extends Entity {
 		return levelOfDamage; 
 	}
 	
+
 	/**
 	 * Set the movement speed for a threat
 	 * @param newSpeed
