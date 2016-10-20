@@ -22,7 +22,9 @@ public enum ResourceType {
         WATER,
         
         // Landscape entities
-        TREE_1, TREE_2, TREE_3,
+        TREE_1_AUTUMN, TREE_1_SPRING, TREE_1_SUMMER, TREE_1_WINTER,
+        TREE_2_AUTUMN, TREE_2_SPRING, TREE_2_SUMMER, TREE_2_WINTER,
+        TREE_3_AUTUMN, TREE_3_SPRING, TREE_3_SUMMER, TREE_3_WINTER,
         ROCK_1, ROCK_2,
 
         // PEONS

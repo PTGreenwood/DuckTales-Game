@@ -6,6 +6,7 @@ import uq.deco2800.ducktales.features.entities.agententities.Duck;
 import uq.deco2800.ducktales.features.entities.agententities.Sheep;
 import uq.deco2800.ducktales.features.entities.resourceentities.DroppableResourceEntity;
 import uq.deco2800.ducktales.features.entities.resourceentities.Feather;
+import uq.deco2800.ducktales.features.entities.resourceentities.*;
 import uq.deco2800.ducktales.features.entities.worldentities.*;
 import uq.deco2800.ducktales.util.exceptions.ResourceRegisterException;
 
@@ -234,6 +235,61 @@ public class ResourceInfoRegister {
     		droppableResourceEntity = new Feather(x, y, droppableResourceType);
     	}
     	return droppableResourceEntity;
+    }
+    
+    /**
+     * Return an actual instance of the entity of the given type
+     *
+     * TODO FOR ENTITIES TEAMS, IMPLEMENT THIS TO ADD ALL YOUR ENTITIES IN
+     *
+     * @param buildingType
+     *          The type of building to construct
+     * @param x
+     *          The x-coordinate of the building
+     * @param y
+     *          The y-coordinate of the building
+     *
+     * @return an instance of the building of the given type,
+     *          null if the building is not yet registered
+     */
+    public static ResourceEntity createResourceEntity(ResourceType nodeType, int x, int y) {
+        ResourceEntity resource = null;
+        final ResourceType[] AUTUMN_TYPES = {TREE_1_AUTUMN, TREE_2_AUTUMN, TREE_3_AUTUMN};
+    	final ResourceType[] SPRING_TYPES = {TREE_1_SPRING, TREE_2_SPRING, TREE_3_SPRING};
+    	final ResourceType[] SUMMER_TYPES = {TREE_1_SUMMER, TREE_2_SUMMER, TREE_3_SUMMER};
+    	final ResourceType[] WINTER_TYPES = {TREE_1_WINTER, TREE_2_WINTER, TREE_3_WINTER};
+        // Check for all resource entities here
+        switch (nodeType) {
+        case TREE_1_AUTUMN:    		
+        	resource = new Tree(x, y, AUTUMN_TYPES);
+    	case TREE_2_AUTUMN:
+    		resource = new Tree(x, y, AUTUMN_TYPES);
+    	case TREE_3_AUTUMN:
+    		resource = new Tree(x, y, AUTUMN_TYPES);
+    	case TREE_1_SPRING:
+    		resource = new Tree(x, y, SPRING_TYPES);
+    	case TREE_2_SPRING:
+    		resource = new Tree(x, y, SPRING_TYPES);
+    	case TREE_3_SPRING:
+    		resource = new Tree(x, y, SPRING_TYPES);
+    	case TREE_1_SUMMER:
+    		resource = new Tree(x, y, SUMMER_TYPES);
+    	case TREE_2_SUMMER:
+    		resource = new Tree(x, y, SUMMER_TYPES);
+    	case TREE_3_SUMMER:
+    		resource = new Tree(x, y, SUMMER_TYPES);
+    	case TREE_1_WINTER:
+    		resource = new Tree(x, y, WINTER_TYPES);
+    	case TREE_2_WINTER:
+    		resource = new Tree(x, y, WINTER_TYPES);
+    	case TREE_3_WINTER:
+    		resource = new Tree(x, y, WINTER_TYPES);
+    	case ROCK_1:
+    		resource = new Rock(x, y);
+    	case ROCK_2:
+    		resource = new Rock(x, y);
+        }
+        return resource;
     }
 
     /**

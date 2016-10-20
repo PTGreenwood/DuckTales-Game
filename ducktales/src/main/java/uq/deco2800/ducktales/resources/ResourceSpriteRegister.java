@@ -45,9 +45,6 @@ import static uq.deco2800.ducktales.resources.ResourceType.SAWMILL;
 import static uq.deco2800.ducktales.resources.ResourceType.SHEEP;
 import static uq.deco2800.ducktales.resources.ResourceType.SHEEPRight0;
 import static uq.deco2800.ducktales.resources.ResourceType.SHEEPRight1;
-import static uq.deco2800.ducktales.resources.ResourceType.TREE_1;
-import static uq.deco2800.ducktales.resources.ResourceType.TREE_2;
-import static uq.deco2800.ducktales.resources.ResourceType.TREE_3;
 import static uq.deco2800.ducktales.resources.ResourceType.VOID;
 import static uq.deco2800.ducktales.resources.ResourceType.WATER;
 import static uq.deco2800.ducktales.resources.ResourceType.WOOD_BOX;
@@ -111,6 +108,8 @@ public class ResourceSpriteRegister {
 		addAgentEntitiesResources();
 
 		addBuildingResources();
+		
+		addResourceEntityResources();
 
 	}
 
@@ -336,6 +335,20 @@ public class ResourceSpriteRegister {
 	 */
 	private void addResourceEntityResources() {
 		addResource(CLOUD, "/animal/cloud.gif");
+		addResource(TREE_1_AUTUMN, "/resource_entities/tree_1_autumn.png");
+		addResource(TREE_2_AUTUMN, "/resource_entities/tree_2_autumn.png");
+		addResource(TREE_3_AUTUMN, "/resource_entities/tree_3_autumn.png");
+		addResource(TREE_1_SPRING, "/resource_entities/tree_1_spring.png");
+		addResource(TREE_2_SPRING, "/resource_entities/tree_2_spring.png");
+		addResource(TREE_3_SPRING, "/resource_entities/tree_3_spring.png");
+		addResource(TREE_1_SUMMER, "/resource_entities/tree_1_summer.png");
+		addResource(TREE_2_SUMMER, "/resource_entities/tree_2_summer.png");
+		addResource(TREE_3_SUMMER, "/resource_entities/tree_3_summer.png");
+		addResource(TREE_1_WINTER, "/resource_entities/tree_1_winter.png");
+		addResource(TREE_2_WINTER, "/resource_entities/tree_2_winter.png");
+		addResource(TREE_3_WINTER, "/resource_entities/tree_3_winter.png");
+		addResource(ROCK_1, "/resource_entities/rock_1.png");
+		addResource(ROCK_2, "/resource_entities/rock_2.png");
 	}
 	
 	/**
@@ -346,11 +359,7 @@ public class ResourceSpriteRegister {
 		addResource(BOX, "/box2.png");
 		addResource(LONG_BOX, "/longbox.png");
 		addResource(WOOD_BOX, "/wood_stock.png");
-		addResource(TREE_1, "/tree_1.png");
-		addResource(TREE_2, "/tree_2.png");
-		addResource(TREE_3, "/tree_3.png");
-		addResource(ROCK_1, "/rock_1.png");
-		addResource(ROCK_2, "/rock_2.png");
+
 	}
 
 	/**

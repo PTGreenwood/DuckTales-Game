@@ -9,6 +9,7 @@ import uq.deco2800.ducktales.features.entities.Entity;
 import uq.deco2800.ducktales.features.entities.agententities.Animal;
 import uq.deco2800.ducktales.features.entities.peons.Peon;
 import uq.deco2800.ducktales.features.entities.resourceentities.DroppableResourceEntity;
+import uq.deco2800.ducktales.features.entities.resourceentities.ResourceEntity;
 import uq.deco2800.ducktales.features.entities.threats.Threat;
 import uq.deco2800.ducktales.features.entities.worldentities.Building;
 import uq.deco2800.ducktales.features.entities.worldentities.StorageProduceBuilding;
@@ -49,6 +50,7 @@ public class World implements Tickable {
 	private ArrayList<Animal> animals; // All the animals in the game
 	private ArrayList<Building> buildings; // All the buildings in the game
 	private HashMap<String, Peon> peons; // All the peons in the game
+	private HashMap<Integer, ResourceEntity> resourceEntities; //All the resource entities in the game
 	private ArrayList<Threat> threats;
 	private HashMap<Integer, DroppableResourceEntity> droppedResources; // All the dropped resources in the game
 
@@ -80,6 +82,7 @@ public class World implements Tickable {
 		// Instantiate game model
 		this.tiles = new Array2D<>(width, height);
 		this.animals = new ArrayList<>(50);
+		this.resourceEntities = new HashMap<>(50);
 		this.buildings = new ArrayList<>(50);
 		this.peons = new HashMap<>(50);
 		this.threats = new ArrayList<>(50);
@@ -151,7 +154,42 @@ public class World implements Tickable {
 			animals.add(animal);
 		}
 	}
-
+	
+	/**
+	 * Add a resourceEntity to the world
+	 * 
+	 * @param resource
+	 * 			the resource to be added to the world
+	 */
+	public void addResourceEntity(int key, ResourceEntity resource){
+		if(resourceEntities.containsKey(key)) {
+			throw new RuntimeException("resourceEntities already contains "
+					+ "a resource entity with key: " + key);
+		} else if(resourceEntities.containsValue(resource)) {
+			throw new RuntimeException("resourceEntities already contains"
+					+ "a resource entity of the value: " + resource);
+		} else {
+			resourceEntities.put(key, resource);
+		}	
+	}
+	
+	/**
+	 * Get the resourceEntity with the given index
+	 * 
+	 * @return The resource entity at the given index in the resourceEntities 
+	 *         HashMap
+	 */
+	public ResourceEntity getResourceEntity(int index) {
+		if(resourceEntities.containsKey(index)) {
+			return resourceEntities.get(index);
+		} else {
+			throw new RuntimeException("Fail to retrieve a resource entity."
+				+ " resource entity with" +
+				" key: \"" + index + "\" has not been added to the" +
+				"game yet.");
+		}
+	}
+	
 	/**
 	 * Add a peon to the game. This will check if the name of the peon
 	 * is already in the name list.

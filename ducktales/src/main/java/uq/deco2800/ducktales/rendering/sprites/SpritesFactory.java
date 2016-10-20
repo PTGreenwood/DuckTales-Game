@@ -51,6 +51,86 @@ public class SpritesFactory {
         ));
         return sprite;
     }
+    
+    public static ResourceEntitySprite createResourceEntitySprite(int value, ResourceType nodeType){
+    	ResourceEntitySprite sprite = new ResourceEntitySprite(value);
+    	switch (nodeType) {
+    	case TREE_1_AUTUMN:    		
+    		sprite.setImage(ResourceSpriteRegister.getInstance().getResourceImage(
+                    ResourceType.TREE_1_AUTUMN          
+            ));
+    		return sprite;
+    	case TREE_2_AUTUMN:
+    		sprite.setImage(ResourceSpriteRegister.getInstance().getResourceImage(
+                    ResourceType.TREE_2_AUTUMN        
+            ));
+    		return sprite;
+    	case TREE_3_AUTUMN:
+    		sprite.setImage(ResourceSpriteRegister.getInstance().getResourceImage(
+                    ResourceType.TREE_3_AUTUMN       
+            ));
+    		return sprite;
+    	case TREE_1_SPRING:
+    		sprite.setImage(ResourceSpriteRegister.getInstance().getResourceImage(
+                    ResourceType.TREE_1_SPRING        
+            ));
+    		return sprite;
+    	case TREE_2_SPRING:
+    		sprite.setImage(ResourceSpriteRegister.getInstance().getResourceImage(
+                    ResourceType.TREE_2_SPRING   
+            ));
+    		return sprite;
+    	case TREE_3_SPRING:
+    		sprite.setImage(ResourceSpriteRegister.getInstance().getResourceImage(
+                    ResourceType.TREE_3_SPRING         
+            ));
+    		return sprite;
+    	case TREE_1_SUMMER:
+    		sprite.setImage(ResourceSpriteRegister.getInstance().getResourceImage(
+                    ResourceType.TREE_1_SUMMER          
+            ));
+    		return sprite;
+    	case TREE_2_SUMMER:
+    		sprite.setImage(ResourceSpriteRegister.getInstance().getResourceImage(
+                    ResourceType.TREE_2_SUMMER     
+            ));
+    		return sprite;
+    	case TREE_3_SUMMER:
+    		sprite.setImage(ResourceSpriteRegister.getInstance().getResourceImage(
+                    ResourceType.TREE_3_SUMMER       
+            ));
+    		return sprite;
+    	case TREE_1_WINTER:
+    		sprite.setImage(ResourceSpriteRegister.getInstance().getResourceImage(
+                    ResourceType.TREE_1_WINTER            
+            ));
+    		return sprite;
+    	case TREE_2_WINTER:
+    		sprite.setImage(ResourceSpriteRegister.getInstance().getResourceImage(
+                    ResourceType.TREE_2_WINTER           
+            ));
+    		return sprite;
+    	case TREE_3_WINTER:
+    		sprite.setImage(ResourceSpriteRegister.getInstance().getResourceImage(
+                    ResourceType.TREE_3_WINTER            
+            ));
+    		return sprite;
+    	case ROCK_1:
+    		sprite.setImage(ResourceSpriteRegister.getInstance().getResourceImage(
+                    ResourceType.ROCK_1           
+            ));
+    		return sprite;
+    	case ROCK_2:
+    		sprite.setImage(ResourceSpriteRegister.getInstance().getResourceImage(
+                    ResourceType.ROCK_2            
+            ));
+    		return sprite;
+    	default:
+            throw new GameSetupException("The given node type is" +
+                    " not yet registered in SpritesFactory. Unable to" +
+                    " create a resource entity sprite of type: " + nodeType);
+    	}
+    }
 	
     /**
      * Create and return a sprite of the given building type

@@ -2,6 +2,7 @@ package uq.deco2800.ducktales.features.entities.resourceentities;
 
 import java.util.Random;
 
+import uq.deco2800.ducktales.GameManager;
 import uq.deco2800.ducktales.features.entities.worldentities.WorldEntity;
 import uq.deco2800.ducktales.resources.ResourceType;
 
@@ -13,6 +14,9 @@ import uq.deco2800.ducktales.resources.ResourceType;
  */
 public abstract class ResourceEntity extends WorldEntity {
 
+	/** The main manager of the game */
+    protected GameManager gameManager;
+    
 	//Default starting value of Resource nodes
 	public static final int DEFVALUE = 100;
 	//Actual, editable value the Resources nodes will take
@@ -31,7 +35,16 @@ public abstract class ResourceEntity extends WorldEntity {
 		super(x, y, lengthX, lengthY, type);
 		this.value = value;
 	}
-
+	
+	/**
+     * Give the resource a handle on the main manager of the game
+     *
+     * @param gameManager
+     *          The main manager of the game
+     */
+    public void setGameManager(GameManager gameManager) {
+        this.gameManager = gameManager;
+    }
 	/**
 	 * Returns true if this {@link WorldEntity} is passable.
 	 * 

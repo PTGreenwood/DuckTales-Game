@@ -10,7 +10,12 @@ import uq.deco2800.ducktales.features.entities.peons.Peon;
 import uq.deco2800.ducktales.features.entities.resourceentities.Tree;
 import uq.deco2800.ducktales.features.jobframework.JobType;
 import uq.deco2800.ducktales.features.jobframework.Lumberjack;
+import uq.deco2800.ducktales.resources.ResourceType;
+
 import static org.junit.Assert.*;
+import static uq.deco2800.ducktales.resources.ResourceType.TREE_1_SUMMER;
+import static uq.deco2800.ducktales.resources.ResourceType.TREE_2_SUMMER;
+import static uq.deco2800.ducktales.resources.ResourceType.TREE_3_SUMMER;
 
 public class LumberjackTest {
 	private Lumberjack lumberjack = new Lumberjack();
@@ -103,8 +108,9 @@ public class LumberjackTest {
 	}
 
 	public void lumberjackChoppedMentorTest2() {
+		final ResourceType[] SUMMER_TYPES = {TREE_1_SUMMER, TREE_2_SUMMER, TREE_3_SUMMER};
 		Peon peon = new Peon(10, 10);
-		Tree tree = new Tree(11, 11);
+		Tree tree = new Tree(11, 11, SUMMER_TYPES);
 		for (int i = 0; i < 21; i++) {
 			lumberjack.chop(peon, tree);
 		}
@@ -124,8 +130,9 @@ public class LumberjackTest {
 		assertTrue(lumberjack.isQualified(peon));
 		assertEquals(peon.applyForJob(lumberjack), "You're hired!");
 		assertEquals(peon.getJob(), "Lumberjack");
-
-		Tree tree = new Tree(11, 11);
+		
+		final ResourceType[] SUMMER_TYPES = {TREE_1_SUMMER, TREE_2_SUMMER, TREE_3_SUMMER};
+		Tree tree = new Tree(11, 11, SUMMER_TYPES);
 		/**
 		 * after chopping a tree, the peon should gain 2 strength points i.e.
 		 * the difference between the intialPeonStrength and the new peon

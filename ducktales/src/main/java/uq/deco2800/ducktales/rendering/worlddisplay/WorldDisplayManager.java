@@ -26,7 +26,7 @@ public class WorldDisplayManager extends SecondaryManager implements Initializab
     /** The pane where all world objects will be added to */
     @FXML
     private Pane worldDisplay;
-
+   
     /** The main model of the game */
     private World world;
 
@@ -49,7 +49,6 @@ public class WorldDisplayManager extends SecondaryManager implements Initializab
         // Create and start the renderer
         renderer = new WorldDisplayRenderer();
         renderer.start();
-
     }
 
     /**

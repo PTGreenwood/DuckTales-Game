@@ -14,7 +14,11 @@ import uq.deco2800.ducktales.resources.ResourceType;
  */
 public class Tree extends ResourceEntity{
 	
-	private static final ResourceType[] TYPES = {TREE_1, TREE_2, TREE_3};
+	private static final ResourceType[] AUTUMN_TYPES = {TREE_1_AUTUMN, TREE_2_AUTUMN, TREE_3_AUTUMN};
+	private static final ResourceType[] SPRING_TYPES = {TREE_1_SPRING, TREE_2_SPRING, TREE_3_SPRING};
+	private static final ResourceType[] SUMMER_TYPES = {TREE_1_SUMMER, TREE_2_SUMMER, TREE_3_SUMMER};
+	private static final ResourceType[] WINTER_TYPES = {TREE_1_WINTER, TREE_2_WINTER, TREE_3_WINTER};
+	
 	//Scheduler for growing trees. Set to grow every in game season(24min real time).	
 	private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 	
@@ -24,14 +28,14 @@ public class Tree extends ResourceEntity{
 	 * @param x, x location of the tree
 	 * @param y, y location of the tree
 	 */	
-	public Tree(double x, double y) {
-		super(x, y, 1, 1, rare(TYPES), DEFVALUE);		
+	public Tree(double x, double y, ResourceType[] a) {
+		super(x, y, 1, 1, rare(a), DEFVALUE);		
 		//Scheduling the runnable to run every minute in real time.
 		scheduler.scheduleAtFixedRate(createRunnable(this), 24, 24, TimeUnit.MINUTES);
 		/*If the tree is the last type in the list, which will always be the rare,
 		 * set the value of the Resource to be double.
 		 */
-		if(this.getType() == TYPES[TYPES.length-1]){
+		if(this.getType() == a[a.length-1]){
 			this.setValue(2*DEFVALUE);
 		}
 	}
@@ -45,6 +49,7 @@ public class Tree extends ResourceEntity{
 		};
 		return Runnable;
 	}
+
 	/*Function added to avoid error in Lumberjack class
 	 * will possibly be removed later.
 	 */
