@@ -197,7 +197,7 @@ public class GameController implements Initializable{
     	closeButton.setVisible(true);
     	missionManager.missionCompletedAction(1);
     }
-    
+        
     @FXML
     public void showTutorial() {
     	

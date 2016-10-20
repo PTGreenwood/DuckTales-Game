@@ -5,7 +5,10 @@ import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.scene.image.Image;
 import javafx.util.Duration;
+import uq.deco2800.ducktales.features.time.TimeManager;
+import uq.deco2800.ducktales.rendering.animation.SpriteInterpolator;
 import uq.deco2800.ducktales.resources.ResourceType;
+import uq.deco2800.ducktales.util.Tickable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,8 +25,14 @@ import java.util.List;
 public class BuildingSprite extends EntitySprite {
     /** The sprites list for different types of animations */
     private BuildingAnimation constructionAnimation; // animation during construction
-    private BuildingAnimation idleAnimation; // when construction is done
+    private List<Image> idleAnimationDayFrames; // when construction is done
+    private List<Image> idleAnimationNightFrames; // when construction is done
+    private BuildingAnimation idleAnimation; // playing animations
+    private double duration; // idle animation duration
+    private ResourceType buildingType;
 
+    private TimeManager gameTime = new TimeManager();
+    
     /** Flags */
     // Whether to automatically reverse the idle animation
     private boolean autoReverse = true;
@@ -38,6 +47,7 @@ public class BuildingSprite extends EntitySprite {
      */
     public BuildingSprite(int index, ResourceType buildingType) {
         super(index, buildingType);
+        //this.buildingType = buildingType;
     }
 
     /**
@@ -61,8 +71,12 @@ public class BuildingSprite extends EntitySprite {
      * @param duration
      *          The duration of the animation
      */
-    public void setupIdleAnimation(List<Image> frames, double duration, boolean autoReverse) {
+    public void setupIdleAnimation(List<Image> frames,  
+    		double duration, boolean autoReverse) {
         this.idleAnimation = new BuildingAnimation(frames, duration);
+        //this.idleAnimationDayFrames = framesSwap;
+        this.idleAnimationNightFrames = frames;
+        this.duration = duration;
         this.autoReverse = autoReverse;
     }
 
@@ -165,5 +179,15 @@ public class BuildingSprite extends EntitySprite {
 
             deepCopy(frames, this.frames);
         }
+    }
+    
+    public void swap(int newAnimation) {
+    	if (newAnimation == 0) {
+    		setupIdleAnimation(SpritesImages.schoolNight(), 9, true);
+    		interpolator = new SpriteInterpolator(SpritesImages.schoolNight());
+    	} else {
+    		setupIdleAnimation(SpritesImages.schoolDay(), 9, true);
+    		interpolator = new SpriteInterpolator(SpritesImages.schoolDay());
+    	}
     }
 }
