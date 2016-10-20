@@ -37,7 +37,7 @@ public class Animal extends AgentEntity {
     private static final int MINSTARTTHIRST = 0;
     private static final int MAXSTARTTHIRST = 50;
     private static final int MINSTARTSTRENGTH = 1;
-    private static final int MAXSTARTSTRENGTH = 20;
+    private static final int MAXSTARTSTRENGTH = 50;
     private static final int HUNGERINCREASERATE = 10; // Rate at which hunger will increase.
     private static final int THIRSTINCREASERATE = 10; // Rate at which thirst will increase.
     private static final int HEALTHDECREASERATE = 10; // Rate at which health will decrease.
