@@ -43,6 +43,7 @@ import static uq.deco2800.ducktales.resources.ResourceType.QUARRY;
 import static uq.deco2800.ducktales.resources.ResourceType.SAWMILL;
 import static uq.deco2800.ducktales.resources.ResourceType.SCHOOL;
 import static uq.deco2800.ducktales.resources.ResourceType.GYMNASIUM;
+import static uq.deco2800.ducktales.resources.ResourceType.STORAGEBARN;
 import static uq.deco2800.ducktales.resources.ResourceType.SHEEP;
 import static uq.deco2800.ducktales.resources.ResourceType.COW;
 
@@ -57,7 +58,7 @@ public class MenuManager implements Initializable {
 	 */
 	// TODO: TO ADD NEW BUILDINGS, REGISTER THEIR NAMES HERE
 	private static final ResourceType[] BUILDINGS = { BAKERY, BUTCHER, CEMETERY, CHURCH, COMMUNITY_BUILDING, FARM,
-			FORGE, HOSPITAL, HOUSE, SCHOOL, GYMNASIUM, MINE, OBSERVATORY, PASTURE, QUARRY, SAWMILL, };
+			FORGE, HOSPITAL, HOUSE, SCHOOL, GYMNASIUM, MINE, OBSERVATORY, PASTURE, QUARRY, SAWMILL, STORAGEBARN};
 	// TODO: TO ADD NEW ANIMALS, REGISTER THEIR NAMES HERE
 	public static final ResourceType[] ANIMALS = { SHEEP, DUCK, COW };
 
