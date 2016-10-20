@@ -163,8 +163,7 @@ public class Animal extends AgentEntity {
             if (getHunger() == 50 || getThirst() == 50) {
                 setHealth(getHealth() - HEALTHDECREASERATE);
             }
-            //resourceEntityManager.dropResource(this.type, 4, 4);
-            System.out.println(getType());
+            resourceEntityManager.dropResource(this.type, (int)goalPoints.get(1).getX(), (int)goalPoints.get(1).getX());
             time = 0; // reset timer until next update
         }
     }
