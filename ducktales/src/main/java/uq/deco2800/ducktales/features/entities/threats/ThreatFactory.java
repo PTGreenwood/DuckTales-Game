@@ -22,8 +22,8 @@ public class ThreatFactory {
 	protected static ArrayList<Enemy> enemiesList = new ArrayList<Enemy>();
 	//list for enemy ad threat sprites to be stored in
 	protected static ArrayList<EnemySprite> enemySpriteList = new ArrayList<EnemySprite>();
-	public HashMap<String, Enemy> enemyMap;
-    public HashMap<String, Effect> effectMap;
+	public static HashMap<String, Enemy> enemyMap = new HashMap<String, Enemy>();
+    public static HashMap<String, Effect> effectMap = new HashMap<String, Effect>();
 	/**
 	 * 
 	 * Defines the enum types of enemies
@@ -222,6 +222,7 @@ public class ThreatFactory {
 		effect.setTheLevelOfDamage(damage);
 		double x = effect.getRandomX();
 		double y = effect.getRandomY();
+		putInEffectHashMap(effect);
 		effectsList.add(effect);
 	}
 	
@@ -246,6 +247,7 @@ public class ThreatFactory {
 		enemy.setTheLevelOfDamage(damage);
 		double x = enemy.getRandomX();
 		double y = enemy.getRandomY();
+		putInEnemyHashMap(enemy);
 		enemiesList.add(enemy);
 	}
 	
@@ -268,6 +270,7 @@ public class ThreatFactory {
 		setEffectParameters(blackSmokeEffect, 20, 50, 20);
 		EnemySprite blackSmokeSprite = new EnemySprite();
 		enemySpriteList.add(blackSmokeSprite);
+		putInEffectHashMap(blackSmokeEffect);
 		
 	}
 	
@@ -647,6 +650,24 @@ public class ThreatFactory {
 		setEnemyParameters(elephantEnemy, 20, 50, 50);
 		EnemySprite elephantSprite = new EnemySprite();
 		enemySpriteList.add(elephantSprite);
+	}
+	
+	private static void putInEnemyHashMap(Enemy enemy){
+		enemyMap.put(enemy.toString(), enemy);
+	}
+	
+	private static void putInEffectHashMap(Effect effect){
+		effectMap.put(effect.toString(), effect);
+	}
+
+	
+	public static void clearEnemyHashMap(){
+		enemyMap.clear();
+	}
+	
+	
+	public static void clearEffectHashMap(){
+		effectMap.clear();
 	}
 
 }
