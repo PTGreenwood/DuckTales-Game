@@ -17,12 +17,21 @@ import org.slf4j.LoggerFactory;
  * Handles all application audio.
  */
 public class GameSound {
+	
+	
+	
 	private Mixer mixer;
 	private Clip clip;
 	// Error log
 	String lineUnavailable = "Line Unavailble";
 	//add a logger to fix code vulnerability 
 	private static Logger logger = LoggerFactory.getLogger(GameLoop.class);
+	
+	
+	
+	
+	
+	
 	/**
 	 * Loads and plays audio file.
 	 * 
