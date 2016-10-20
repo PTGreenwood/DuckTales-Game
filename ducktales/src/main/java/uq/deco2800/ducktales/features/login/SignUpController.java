@@ -30,11 +30,6 @@ public class SignUpController  {
     
     private static DucktalesClient client = null;
     
-    boolean isExitUser(String s)
-    {
-    	
-    	return false;
-    }
 
     @FXML protected void handleSignUpButtonAction(ActionEvent event) throws Exception {
     	boolean bexit = false;
@@ -46,32 +41,29 @@ public class SignUpController  {
     		
             if(username.getText().toString().length() >= 6 && passwordField.getText().toString().length() >= 6)
             {
-            	if(!bexit)
-        		{
-            		User user = new User(signUpUsername, "Unknown", null, "Unknown", signUpPassword);
-            		
-            		try {
-        				user = client.createUser(user);
-            		
-            		} catch (WebApplicationException e) {
-            			switch (e.getResponse().getStatus()) {
-        				case 409:
-        					actiontarget.setText("Sign up error: Username already exists");
-        				default:
-        					// Other exception occurred
-            			}
-            		} catch (JsonProcessingException i) {
-        				// Error processing json
-
-        			} catch (Exception i) {
-        				// Other error logging in
-        			}
-            		
-            		// Go back to Login view
-            		
-            		LoginVistaNavigator.loadVista(LoginVistaNavigator.LOGIN);
-            		// LoginController.close();
-        		}
+	    		User user = new User(signUpUsername, "Unknown", null, "Unknown", signUpPassword);
+	    		
+	    		try {
+					user = client.createUser(user);
+	    		
+	    		} catch (WebApplicationException e) {
+	    			
+	    			if (e.getResponse().getStatus() == 409) {
+	    				actiontarget.setText("Sign up error: Username already exists");
+	    			} else {
+	    				
+	    			}
+	    			
+	    		} catch (JsonProcessingException i) {
+					// Error processing json
+	
+				} catch (Exception i) {
+					// Other error logging in
+				}
+	    		
+	    		// Go back to Login view
+	    		
+	    		LoginVistaNavigator.loadVista(LoginVistaNavigator.LOGIN);
             }
             else
             {
@@ -85,7 +77,7 @@ public class SignUpController  {
     }
     
     @FXML
-    protected void viewLoginPage(ActionEvent event) {
+    protected void viewLoginPage() {
     	LoginVistaNavigator.loadVista(LoginVistaNavigator.LOGIN);
     }
     
