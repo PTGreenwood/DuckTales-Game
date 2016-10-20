@@ -243,7 +243,7 @@ public class AchievementHandler {
 	    	this.achieveMedium();
 	    }
 	    else if(ThreatManager.returnEnemies().equals(5) && achievementToggleThreats == 1){
-	    	this.achieveMedium();
+	    	this.achieveVeryHard();
 	    }
 	  
    }
