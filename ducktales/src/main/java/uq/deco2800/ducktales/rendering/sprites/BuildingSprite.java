@@ -21,13 +21,14 @@ import java.util.List;
  *
  * @author khoiphan21
  */
-public class BuildingSprite extends EntitySprite implements Tickable {
+public class BuildingSprite extends EntitySprite {
     /** The sprites list for different types of animations */
     private BuildingAnimation constructionAnimation; // animation during construction
     private List<Image> idleAnimationDayFrames; // when construction is done
     private List<Image> idleAnimationNightFrames; // when construction is done
     private BuildingAnimation idleAnimation; // playing animations
     private double duration; // idle animation duration
+    private ResourceType buildingType;
 
     private TimeManager gameTime = new TimeManager();
     
@@ -45,6 +46,7 @@ public class BuildingSprite extends EntitySprite implements Tickable {
      */
     public BuildingSprite(int index, ResourceType buildingType) {
         super(index, buildingType);
+        //this.buildingType = buildingType;
     }
 
     /**
@@ -178,19 +180,19 @@ public class BuildingSprite extends EntitySprite implements Tickable {
         }
     }
     
-    public void tick() {
-    	if (this.idleAnimation.frames.equals(this.idleAnimationDayFrames) 
-    			&& gameTime.isNight()) {
-    		this.idleAnimation = new BuildingAnimation(this.idleAnimationNightFrames, 
-    				this.duration);
-    		playIdleAnimation();
-    		System.err.println(this.idleAnimationNightFrames.toArray());
-    	} else if (this.idleAnimation.frames.equals(this.idleAnimationNightFrames) 
-    			&& !gameTime.isNight()) {
-    		this.idleAnimation = new BuildingAnimation(this.idleAnimationDayFrames, 
-    				this.duration);
-    		playIdleAnimation();
-    		System.err.println(this.idleAnimationDayFrames.toArray());
-    	}
-    }
+//    public void tick() {
+//    	if (this.idleAnimation.frames.equals(this.idleAnimationDayFrames) 
+//    			&& gameTime.isNight()) {
+//    		this.idleAnimation = new BuildingAnimation(SpriteImages.((this.buildingType.toString())+"Night")(), 
+//    				this.duration);
+//    		playIdleAnimation();
+//    		System.err.println(this.idleAnimationNightFrames.toArray());
+//    	} else if (this.idleAnimation.frames.equals(this.idleAnimationNightFrames) 
+//    			&& !gameTime.isNight()) {
+//    		this.idleAnimation = new BuildingAnimation(this.idleAnimationDayFrames, 
+//    				this.duration);
+//    		playIdleAnimation();
+//    		System.err.println(this.idleAnimationDayFrames.toArray());
+//    	}
+//    }
 }

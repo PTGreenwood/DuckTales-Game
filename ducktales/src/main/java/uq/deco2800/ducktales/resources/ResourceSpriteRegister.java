@@ -232,6 +232,12 @@ public class ResourceSpriteRegister {
 		addResource(CHURCH_3, "/buildings/church/church_3.png");
 		addResource(CHURCH_4, "/buildings/church/church_4.png");
 		addResource(CHURCH_5, "/buildings/church/church_5.png");
+		// Community Building
+		addResource(COMMUNITY_BUILDING_1, "/buildings/community_building/community_building_1.png");
+		addResource(COMMUNITY_BUILDING_2, "/buildings/community_building/community_building_2.png");
+		addResource(COMMUNITY_BUILDING_3, "/buildings/community_building/community_building_3.png");
+		addResource(COMMUNITY_BUILDING_4, "/buildings/community_building/community_building_4.png");
+		addResource(COMMUNITY_BUILDING_5, "/buildings/community_building/community_building_5.png");
 		// Observatory
 		addResource(OBSERVATORY_1, "/buildings/observatory/observatory_1.png");
 		addResource(OBSERVATORY_2, "/buildings/observatory/observatory_2.png");
@@ -316,6 +322,12 @@ public class ResourceSpriteRegister {
 		addResource(BAKERY_4_ADV_NIGHT, "/buildings/adv_bakery_night/adv_bakery_night_4.png");
 		addResource(BAKERY_5_ADV_NIGHT, "/buildings/adv_bakery_night/adv_bakery_night_5.png");
 		addResource(BAKERY_6_ADV_NIGHT, "/buildings/adv_bakery_night/adv_bakery_night_6.png");
+		// Sawmill
+		addResource(SAWMILL_ADV_1, "/buildings/adv_sawmill/adv_sawmill_1.png");
+		addResource(SAWMILL_ADV_2, "/buildings/adv_sawmill/adv_sawmill_2.png");
+		addResource(SAWMILL_ADV_3, "/buildings/adv_sawmill/adv_sawmill_3.png");
+		addResource(SAWMILL_ADV_4, "/buildings/adv_sawmill/adv_sawmill_4.png");
+		addResource(SAWMILL_ADV_5, "/buildings/adv_sawmill/adv_sawmill_5.png");
 
 	}
 
