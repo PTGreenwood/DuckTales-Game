@@ -17,6 +17,8 @@ import uq.deco2800.ducktales.resources.ResourceInfoRegister;
 
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.features.landscape.tiles.Tile;
+import uq.deco2800.ducktales.rendering.sprites.BuildingSprite;
+import uq.deco2800.ducktales.rendering.sprites.SpritesFactory;
 import uq.deco2800.ducktales.util.*;
 
 import static uq.deco2800.ducktales.resources.ResourceType.*;
@@ -344,6 +346,11 @@ public class World implements Tickable {
 	@Override
 	public void tick() {
 		timer++;
+		for (int x = 0; x < buildings.size(); x++) {
+			BuildingSprite buildingSprite = SpritesFactory.createBuildingSprite(x, buildings.get(x).getType());
+			//buildingSprite.tick();
+		}
+		
 		// Update all the tiles
 		for (int y = 0; y < tiles.getHeight(); y++) {
 			for (int x = 0; x < tiles.getWidth(); x++) {

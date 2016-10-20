@@ -2,6 +2,8 @@ package uq.deco2800.ducktales.features.missions;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -37,6 +39,9 @@ public class MissionManager {
 	
 	@FXML
 	private Label topLabel;
+	
+	// Logger for the class
+	private static final Logger LOGGER = Logger.getLogger(MissionManager.class.getName());
 			
 	/** Initialize classes */
 	private AchievementHandler achievementMain = AchievementHandler.getInstance();
@@ -63,7 +68,7 @@ public class MissionManager {
 			rightPane.getChildren().add(root);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.log(Level.SEVERE, e.toString(), e);
 		}
 	}
 	

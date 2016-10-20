@@ -1,5 +1,8 @@
 package uq.deco2800.ducktales.features.login;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import javax.ws.rs.WebApplicationException;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -28,6 +31,9 @@ public class SignUpController  {
     @FXML
     private PasswordField passwordField2;
     
+    // Logger for the class
+ 	private static final Logger LOGGER = Logger.getLogger(SignUpController.class.getName());
+    
     private static DucktalesClient client = null;
     
 
@@ -47,18 +53,18 @@ public class SignUpController  {
 					user = client.createUser(user);
 	    		
 	    		} catch (WebApplicationException e) {
-	    			
+	    			LOGGER.log(Level.SEVERE, e.toString(), e);
 	    			if (e.getResponse().getStatus() == 409) {
 	    				actiontarget.setText("Sign up error: Username already exists");
 	    			} else {
 	    				
 	    			}
 	    			
-	    		} catch (JsonProcessingException i) {
-					// Error processing json
+	    		} catch (JsonProcessingException e) {
+	    			LOGGER.log(Level.SEVERE, e.toString(), e);
 	
-				} catch (Exception i) {
-					// Other error logging in
+				} catch (Exception e) {
+					LOGGER.log(Level.SEVERE, e.toString(), e);
 				}
 	    		
 	    		// Go back to Login view
