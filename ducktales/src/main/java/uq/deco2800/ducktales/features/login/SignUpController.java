@@ -1,10 +1,4 @@
 package uq.deco2800.ducktales.features.login;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.PrintStream;
 
 import javax.ws.rs.WebApplicationException;
 
@@ -36,7 +30,7 @@ public class SignUpController  {
     
     private static DucktalesClient client = null;
     
-    boolean IsExitUser(String s)
+    boolean isExitUser(String s)
     {
     	
     	return false;
