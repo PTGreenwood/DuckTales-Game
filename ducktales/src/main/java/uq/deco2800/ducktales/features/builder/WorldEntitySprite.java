@@ -73,9 +73,10 @@ public class WorldEntitySprite extends ImageView {
     }
 
     private void setMouseEventHandler() {
-        this.setOnMouseClicked(event -> {
-            WorldBuilderController.setCurrentResource(this.entityType, manager.ENTITY);
-        });
+        this.setOnMouseClicked(event ->
+            WorldBuilderController.setCurrentResource(
+                    this.entityType, manager.ENTITY)
+        );
     }
 
 }

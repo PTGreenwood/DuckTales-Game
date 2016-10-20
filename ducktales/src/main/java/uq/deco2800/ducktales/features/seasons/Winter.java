@@ -3,6 +3,8 @@ package uq.deco2800.ducktales.features.seasons;
 import uq.deco2800.ducktales.features.weather.Fire;
 import uq.deco2800.ducktales.features.weather.InvalidWeatherChanceException;
 import uq.deco2800.ducktales.features.weather.Rain;
+import uq.deco2800.ducktales.features.weather.Snow;
+import uq.deco2800.ducktales.features.weather.Weather;
 import uq.deco2800.ducktales.features.weather.WeatherChance;
 import uq.deco2800.ducktales.features.weather.WeatherEvents;
 
@@ -15,17 +17,19 @@ public class Winter extends Season {
 	public Winter() {
 		super.name = "Winter";
 		super.humidityLevel = 0.5f;
-		super.maxTemperature = 12;
+		super.maxTemperature = 11;
 		super.currentTemperature = 7;
-		super.minTemperature = 4;
-		super.timeNightFall = 5;
+		super.minTemperature = 0;
+		super.timeNightFall = 17;
 		super.timeDayBreak = 7;
+		super.atmosphericIceLevel = 4.8f;
+		super.windLevel = 1.0f;
+		super.fireDanger = 0.0f;
 
 		super.weatherEvents = new WeatherEvents();
 		// If you've added things above then you have to add them here with a
 		// this.whateverItIs = whateverItIs;
 
 	}
-	
-
 }
+

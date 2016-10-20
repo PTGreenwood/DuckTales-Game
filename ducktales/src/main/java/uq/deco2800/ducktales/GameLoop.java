@@ -6,6 +6,7 @@ import uq.deco2800.ducktales.features.entities.MainEntityManager;
 import uq.deco2800.ducktales.features.time.TimeManager;
 import uq.deco2800.ducktales.features.weather.WeatherManager;
 import uq.deco2800.ducktales.features.time.DayNightManager;
+import uq.deco2800.ducktales.util.exceptions.GameSetupException;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -69,7 +70,7 @@ public class GameLoop implements Runnable {
 					
 				}
 			} else {
-				System.err.println(" game loop not ready");
+				throw new GameSetupException(" game loop not ready");
 			}	
 			try {
 				Thread.sleep(gameSpeed);
@@ -137,16 +138,4 @@ public class GameLoop implements Runnable {
 		this.mainEntityManager = mainEntityManager;
 	}
 	
-	/*
-	 * 
-	 * Pass the handle of the DayNight Manager to the game loop
-	 * Currently not in use, but will add in later once more things
-	 * have been worked out
-	 * 
-	 * @param daynightManager
-	 * 			The DayNight Manager of the game
-	 *
-	public void setDayNightManager(DayNightManager daynightManager) {
-		this.daynightManager = daynightManager;
-	}*/
 }

@@ -8,8 +8,10 @@ import java.util.Collections;
 import org.junit.Test;
 
 import uq.deco2800.ducktales.World;
-import uq.deco2800.ducktales.features.entities.Effect;
-import uq.deco2800.ducktales.features.entities.Enemy;
+import uq.deco2800.ducktales.features.entities.threats.Effect;
+import uq.deco2800.ducktales.features.entities.threats.Enemy;
+
+
 
 public class ThreatsTest {
 

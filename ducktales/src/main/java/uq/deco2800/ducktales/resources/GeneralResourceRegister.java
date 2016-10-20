@@ -1,18 +1,24 @@
 package uq.deco2800.ducktales.resources;
 
-import uq.deco2800.ducktales.util.exceptions.GameSetupException;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import uq.deco2800.ducktales.util.exceptions.ResourceRegisterException;
+
 /**
  * This register will hold all sorts of general information
  *
  * Created on 15/10/2016.
+ * @author khoiphan21, fractal
  */
 public class GeneralResourceRegister {
+    /** The logger */
+    private static final Logger LOGGER = LoggerFactory.getLogger(GeneralResourceRegister.class);
+
     /**
      * The lists of many first and last names to be used when generating peons
      */
@@ -21,16 +27,22 @@ public class GeneralResourceRegister {
 
     private static GeneralResourceRegister ourInstance = new GeneralResourceRegister();
 
-    public static GeneralResourceRegister getInstance() {
-        return ourInstance;
-    }
-
+    /**
+     * Instantiate a general resource register and carry out the following tasks
+     *      1. Load the 2 lists of random first and last names
+     */
     private GeneralResourceRegister() {
         firstNames = new ArrayList<>();
         lastNames = new ArrayList<>();
 
         loadNameLists();
     }
+
+    public static GeneralResourceRegister getInstance() {
+        return ourInstance;
+    }
+
+
 
     /**
      * Get a randomized name
@@ -52,16 +64,20 @@ public class GeneralResourceRegister {
      */
     private void loadNameLists() {
         try {
-            // TODO: fix this dodgy temporary path definition!
-            String firstNameFileLocation = "build/resources/main/peon/firstnames.txt";
-            String lastNameFileLocation = "build/resources/main/peon/lastnames.txt";
+            //Changes loading files to use a class loading instead - mattyleggy.
+        	InputStream firstNamesInputStream 
+        		= getClass().getClassLoader().getResourceAsStream("peon/firstnames.txt");
+        	
+        	InputStream lastNamesInputStream 
+    			= getClass().getClassLoader().getResourceAsStream("peon/lastnames.txt");
 
-            BufferedReader firstNamesReader = new BufferedReader(new FileReader(
-               new File(firstNameFileLocation)
-            ));
-            BufferedReader lastNamesReader = new BufferedReader(new FileReader(
-               new File(lastNameFileLocation)
-            ));
+            BufferedReader firstNamesReader = new BufferedReader(
+            		new InputStreamReader(firstNamesInputStream)
+            );
+            
+            BufferedReader lastNamesReader = new BufferedReader(
+            		new InputStreamReader(lastNamesInputStream)
+            );
 
             // Now start loading the first names and last names
             String firstName = firstNamesReader.readLine();
@@ -80,10 +96,12 @@ public class GeneralResourceRegister {
             lastNamesReader.close();
 
         } catch (FileNotFoundException e) {
-            throw new GameSetupException(
+            LOGGER.info("Unable to load file", e);
+            throw new ResourceRegisterException(
                     "Cannot find files while trying to" + " load names in GeneralResourceRegister: " + e.getMessage());
         } catch (IOException e) {
-            throw new RuntimeException("Error when trying to read the names"
+            LOGGER.info("Unable to read file", e);
+            throw new ResourceRegisterException("Error when trying to read the names"
                     + "in the firstname.txt or lastname.txt files" + " in GeneralResourceRegister");
         }
     }

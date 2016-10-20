@@ -11,6 +11,9 @@ import uq.deco2800.ducktales.features.seasons.Winter;
 import uq.deco2800.ducktales.features.weather.Weather;
 import uq.deco2800.ducktales.features.weather.InvalidWeatherChanceException;
 import uq.deco2800.ducktales.features.weather.Rain;
+import uq.deco2800.ducktales.features.weather.Snow;
+import uq.deco2800.ducktales.features.weather.Storm;
+import uq.deco2800.ducktales.features.weather.StormType;
 import uq.deco2800.ducktales.features.weather.Fire;
 import uq.deco2800.ducktales.features.weather.WeatherChance;
 import uq.deco2800.ducktales.features.weather.WeatherEvents;
@@ -114,28 +117,68 @@ public class SeasonManagerTest {
 		WeatherEvents winterWeather = new WeatherEvents();
 			
 		
-		int springFireChance = (int) ((tm.getSeasonManager().getSeasonList().get(0).getHumidity()) * 
-				tm.getSeasonManager().getSeasonList().get(0).getCurrentTemperature());
+		/* Spring WeatherEvents */
+		int springFireChance = (int) (tm.getSeasonManager().getSeasonList().get(0).getCurrentTemperature());
+		
 		int springRainChance = (int) ((tm.getSeasonManager().getSeasonList().get(0).getHumidity()) * 
 				tm.getSeasonManager().getSeasonList().get(0).getCurrentTemperature());
 		
-		int summerFireChance = (int) ((tm.getSeasonManager().getSeasonList().get(1).getHumidity()) * 
-				tm.getSeasonManager().getSeasonList().get(1).getCurrentTemperature());
+		int springSnowChance = (int) 0;
+		
+		int springStormChance = (int) ((tm.getSeasonManager().getSeasonList().get(0).getCurrentTemperature() *
+				tm.getSeasonManager().getSeasonList().get(0).getHumidity()) - 
+				((tm.getSeasonManager().getSeasonList().get(0).getHumidity() * 
+				tm.getSeasonManager().getSeasonList().get(0).getCurrentTemperature()) / 
+				tm.getSeasonManager().getSeasonList().get(0).getWindLevel()));
+		
+		/*Summer WeatherEvents */
+		int summerFireChance = (int) (tm.getSeasonManager().getSeasonList().get(1).getCurrentTemperature());
+		
 		int summerRainChance = (int) ((tm.getSeasonManager().getSeasonList().get(1).getHumidity()) * 
 				tm.getSeasonManager().getSeasonList().get(1).getCurrentTemperature());
 		
-		int autumnFireChance = (int) ((tm.getSeasonManager().getSeasonList().get(2).getHumidity()) * 
-				tm.getSeasonManager().getSeasonList().get(2).getCurrentTemperature());
+		int summerSnowChance = (int) 0;
+		
+		int summerStormChance = (int) ((tm.getSeasonManager().getSeasonList().get(1).getCurrentTemperature() *
+				tm.getSeasonManager().getSeasonList().get(1).getHumidity()) - 
+				((tm.getSeasonManager().getSeasonList().get(1).getHumidity() * 
+				tm.getSeasonManager().getSeasonList().get(1).getCurrentTemperature()) / 
+				tm.getSeasonManager().getSeasonList().get(1).getWindLevel()));
+		
+		/* Autumn WeatherEvents */
+		int autumnFireChance = (int) (tm.getSeasonManager().getSeasonList().get(2).getCurrentTemperature());
+		
 		int autumnRainChance = (int) ((tm.getSeasonManager().getSeasonList().get(2).getHumidity()) * 
 				tm.getSeasonManager().getSeasonList().get(2).getCurrentTemperature());
 		
-		int winterFireChance = (int) ((tm.getSeasonManager().getSeasonList().get(3).getHumidity()) * 
-				tm.getSeasonManager().getSeasonList().get(3).getCurrentTemperature());
+		int autumnSnowChance = (int) 0;
+		
+		int autumnStormChance = (int) ((tm.getSeasonManager().getSeasonList().get(2).getCurrentTemperature() *
+				tm.getSeasonManager().getSeasonList().get(2).getHumidity()) - 
+				((tm.getSeasonManager().getSeasonList().get(2).getHumidity() * 
+				tm.getSeasonManager().getSeasonList().get(2).getCurrentTemperature()) / 
+				tm.getSeasonManager().getSeasonList().get(2).getWindLevel()));
+		
+		
+		/* Winter WeatherEvents */
+		int winterFireChance = (int) (tm.getSeasonManager().getSeasonList().get(3).getCurrentTemperature());
+		
 		int winterRainChance = (int) ((tm.getSeasonManager().getSeasonList().get(3).getHumidity()) * 
 				tm.getSeasonManager().getSeasonList().get(3).getCurrentTemperature());
 		
+		int winterSnowChance = (int) (100 - ((tm.getSeasonManager().getSeasonList().get(3).getCurrentTemperature() *
+				tm.getSeasonManager().getSeasonList().get(3).getAtmosphericIceLevel())));
+		
+		int winterStormChance = (int) ((tm.getSeasonManager().getSeasonList().get(3).getCurrentTemperature() *
+				tm.getSeasonManager().getSeasonList().get(3).getHumidity()) - 
+				((tm.getSeasonManager().getSeasonList().get(3).getHumidity() * 
+				tm.getSeasonManager().getSeasonList().get(3).getCurrentTemperature()) / 
+				tm.getSeasonManager().getSeasonList().get(3).getWindLevel()));
+		
 		Weather rain = new Rain();
 		Weather fire = new Fire();
+		Weather snow = new Snow();
+		Weather storm = new Storm(StormType.THUNDER);
 		
     	try {
     		WeatherChance spRainChance = new WeatherChance(rain, springRainChance);
@@ -148,17 +191,35 @@ public class SeasonManagerTest {
     		WeatherChance auFireChance = new WeatherChance(fire, autumnFireChance);
     		WeatherChance wiFireChance = new WeatherChance(fire, winterFireChance);
     		
+    		WeatherChance spSnowChance = new WeatherChance(snow, springSnowChance);
+    		WeatherChance suSnowChance = new WeatherChance(snow, summerSnowChance);
+    		WeatherChance auSnowChance = new WeatherChance(snow, autumnSnowChance);
+    		WeatherChance wiSnowChance = new WeatherChance(snow, winterSnowChance);
+    		
+    		WeatherChance spStormChance = new WeatherChance(storm, springStormChance);
+    		WeatherChance suStormChance = new WeatherChance(storm, summerStormChance);
+    		WeatherChance auStormChance = new WeatherChance(storm, autumnStormChance);
+    		WeatherChance wiStormChance = new WeatherChance(storm, winterStormChance);
+
     		springWeather.add(spRainChance);
     		springWeather.add(spFireChance);
+    		springWeather.add(spSnowChance);
+    		springWeather.add(spStormChance);
     		
     		summerWeather.add(suRainChance);
     		summerWeather.add(suFireChance);
+    		summerWeather.add(suSnowChance);
+    		summerWeather.add(suStormChance);
     		
     		autumnWeather.add(auRainChance);
     		autumnWeather.add(auFireChance);
+    		autumnWeather.add(auSnowChance);
+    		autumnWeather.add(auStormChance);
     		
     		winterWeather.add(wiRainChance);
     		winterWeather.add(wiFireChance);
+    		winterWeather.add(wiSnowChance);
+    		winterWeather.add(wiStormChance);
 
     		
     	}  catch (InvalidWeatherChanceException e) {
@@ -169,6 +230,8 @@ public class SeasonManagerTest {
 		for (Season seasonIterator : tm.getSeasonManager().getSeasonList()) {
 			seasonIterator.setRainWeather();
 			seasonIterator.setFireWeather();
+			seasonIterator.setSnowWeather();
+			seasonIterator.setStormWeather();
 		}
 		
 		assertEquals(springWeather.getWeatherEvents(), 
@@ -180,6 +243,7 @@ public class SeasonManagerTest {
 		assertEquals(winterWeather.getWeatherEvents(), 
 				tm.getSeasonManager().getSeasonList().get(3).getSeasonalWeatherEvents().getWeatherEvents());
 
-    				 
+    		 
     	}
+	
 }

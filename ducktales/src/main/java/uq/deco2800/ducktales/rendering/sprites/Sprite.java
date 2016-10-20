@@ -223,12 +223,12 @@ public class Sprite extends ImageView{
         // Update the coordinates of the sprite if it has moved on to a new location
         double xDifference = Math.abs(entity.getX() - sprite.getxLocation());
         double yDifference = Math.abs(entity.getY() - sprite.getyLocation());
-        if (xDifference == 0.0) {
-            if (yDifference == 1.0) {
+        if (xDifference < EPSILON) {
+            if (Math.abs(yDifference - 1.0) < EPSILON) {
                 sprite.setyLocation((int) entity.getY());
             }
-        } else if (xDifference == 1.0) {
-            if (yDifference == 0.0) {
+        } else if (Math.abs(xDifference - 1.0) < EPSILON) {
+            if (yDifference < EPSILON) {
                 sprite.setxLocation((int) entity.getX());
             }
         }

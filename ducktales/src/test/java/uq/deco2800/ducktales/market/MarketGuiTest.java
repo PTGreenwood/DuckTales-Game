@@ -25,30 +25,30 @@ import uq.deco2800.ducktales.features.market.MarketVistaNavigator;
  *
  */
 public class MarketGuiTest extends GuiTest {
-	
+
 	MarketManager marketManager;
 	Parent parent = null;
-	
+
 	/**
 	 * Set up for TestFX.
 	 */
 	@Override
 	public Parent getRootNode() {
-		
+
 		// Attempt to create the root node.
 		try {
 			parent = FXMLLoader.load(getClass()
 					 .getResource(MarketVistaNavigator.MAIN));
-			
-			
+
+
 		} catch (IOException e) {
-			
+
 			e.printStackTrace();
-			
+
 		} finally {
-			
+
 		}
-		
+
 		return parent;
 	}
 
@@ -56,18 +56,18 @@ public class MarketGuiTest extends GuiTest {
 	 * Checks that when a user Clicks the Current Trades button that
 	 * the correct view appears.
 	 */
-    @Test 
+    @Test
     public void testSelectCurrentTrades() {
-    	
+
     	clickOn("#currentTradesBtn");
-    	
-    	/* 
-    	 * Vista won't load in vista loader for the test as a 
+
+    	/*
+    	 * Vista won't load in vista loader for the test as a
     	 * NullPointer Exception is thrown, however the process works in the
     	 * main game.
     	 */
-    	
+
     }
-	
+
 
 }

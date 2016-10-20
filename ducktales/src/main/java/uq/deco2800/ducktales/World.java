@@ -8,10 +8,11 @@ import uq.deco2800.ducktales.features.entities.Entity;
 
 import uq.deco2800.ducktales.features.entities.agententities.Animal;
 import uq.deco2800.ducktales.features.entities.peons.Peon;
+import uq.deco2800.ducktales.features.entities.resourceentities.DroppableResourceEntity;
+import uq.deco2800.ducktales.features.entities.threats.Threat;
 import uq.deco2800.ducktales.features.entities.worldentities.Building;
 import uq.deco2800.ducktales.features.entities.worldentities.StorageProduceBuilding;
 import uq.deco2800.ducktales.resources.ResourceInfoRegister;
-import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 
 
 import uq.deco2800.ducktales.resources.ResourceType;
@@ -31,52 +32,79 @@ public class World implements Tickable {
 	 * CONSTANTS
 	 */
 	private static final ResourceType DEFAULT_TILE_TYPE = GRASS_1;
+	// The list of production buildings
+	private static final ResourceType[] productionBuildingTypes = {
+			SAWMILL, MINE, FARM, QUARRY
+	};
 
 	/** GENERAL properties of this world */
 	private String name; // the name of the world
+	private int worldWidth;
+	private int worldHeight;
 
 	/** The landscape of this world */
 	private Array2D<Tile> tiles;
 
 	/** The model for the actual game */
-	private ArrayList<Entity> entities; // Note: will be gradually removed
 	private ArrayList<Animal> animals; // All the animals in the game
 	private ArrayList<Building> buildings; // All the buildings in the game
 	private HashMap<String, Peon> peons; // All the peons in the game
+	private ArrayList<Threat> threats;
+	private HashMap<Integer, DroppableResourceEntity> droppedResources; // All the dropped resources in the game
 
 	/** The registers */
-	private ResourceSpriteRegister tileRegister = ResourceSpriteRegister.getInstance();
 	private ResourceInfoRegister infoRegister = ResourceInfoRegister.getInstance();
+
+	/** Helper variables */
+	ArrayList<ResourceType> productionBuildingsList;
 	
 	private int timer = 0;
 	
 	/**
 	 * Instantiates a World with the given specified parameters, with the tiles
 	 * type default to GRASS_1
+	 *
 	 * @param name
+	 * 			The name of the world
 	 * @param width
+	 * 			The width of the world (in tile-unit)
 	 * @param height
+	 * 			The height of the world (in tile-unit)
 	 */
 	public World(String name, int width, int height) {
-		// Instantiates the model of the game
-		tiles = new Array2D<>(width, height);
-		entities = new ArrayList<>();
-		animals = new ArrayList<>();
-		buildings = new ArrayList<>();
-		peons = new HashMap<>(50); 
+		// Store the properties of the world
+		this.name = name;
+		this.worldHeight = height;
+		this.worldWidth = width;
+
+		// Instantiate game model
+		this.tiles = new Array2D<>(width, height);
+		this.animals = new ArrayList<>(50);
+		this.buildings = new ArrayList<>(50);
+		this.peons = new HashMap<>(50);
+		this.threats = new ArrayList<>(50);
 
 		for (int x = 0; x < width; x++) {
 			for (int y = 0; y < height; y++) {
 				tiles.set(x, y, new Tile(DEFAULT_TILE_TYPE));
 			}
 		}
+
+		// add the types of buildings that belong to production buildings to the
+		// list for easier retrieval
+		this.productionBuildingsList = new ArrayList<>();
+		for (ResourceType type : productionBuildingTypes) {
+			productionBuildingsList.add(type);
+		}
 	}
 
 	/**
+	 * Get the name of the world
+	 *
 	 * @return The name of the world.
 	 */
 	public String getName() {
-		return name;
+		return this.name;
 	}
 
 	/**
@@ -100,27 +128,14 @@ public class World implements Tickable {
 	 * @return The width of the World
 	 */
 	public int getWidth() {
-		return tiles.getWidth();
+		return this.worldWidth;
 	}
 
 	/**
 	 * @return The height of the World
 	 */
 	public int getHeight() {
-		return tiles.getHeight();
-	}
-
-	/**
-	 * Add the given entity to the list of entities currently in the world
-	 * @param entity
-	 */
-	public void addEntity(Entity entity) {
-		if (entities.contains(entity)) {
-			System.err.println("The entity [" + entity.toString() + "] is already" +
-					"in the list");
-			return;
-		}
-		entities.add(entity);
+		return this.worldHeight;
 	}
 
 	/**
@@ -199,6 +214,40 @@ public class World implements Tickable {
 	public Animal getAnimal(int index) {
 		return animals.get(index);
 	}
+	
+	/**
+	 * Get the droppedResource with the given index
+	 * 
+	 * @return The dropped resource at the given index in the droppedResources 
+	 *         HashMap
+	 */
+	public DroppableResourceEntity getDroppedResource(int index) {
+		if(droppedResources.containsKey(index)) {
+			return droppedResources.get(index);
+		} else {
+			throw new RuntimeException("Fail to retrieve a droppedResource."
+				+ " droppedResource with" +
+				" key: \"" + index + "\" has not been added to the" +
+				"game yet.");
+		}
+	}
+	
+	/**
+	 * Set a dropped resource in the droppedResource HashMap using the 
+	 * given Key and Value
+	 */
+	public void setDroppedResoure(int key, DroppableResourceEntity value) {
+		if(droppedResources.containsKey(key)) {
+			throw new RuntimeException("droppedResources already contains "
+					+ "a dropped resource with key: " + key);
+		} else if(droppedResources.containsValue(value)) {
+			throw new RuntimeException("droppedResources already contains"
+					+ "a dropped resource of the value: " + value);
+		} else {
+			droppedResources.put(key, value);
+		}
+		
+	}
 
 	/**
 	 * Add the given building to the list of buildings, and set the tiles that
@@ -217,50 +266,28 @@ public class World implements Tickable {
 	 */
 	public void addBuilding(Building building, int startX, int startY,
 							int xLength, int yLength) {
-		if (!entities.contains(building)) {
-			// Add the entity
-			if (buildings.contains(building)) {
-				throw new RuntimeException("This building has already " +
-						"been added to the world");
-			} else {
-				buildings.add(building);
-			}
+		// Add the entity
+		if (buildings.contains(building)) {
+			throw new RuntimeException("This building has already " +
+					"been added to the world");
+		} else {
+			buildings.add(building);
+		}
 
-			// Set the tiles' worldEntity value and passability value
-			for (int x = 0; x < xLength; x++) {
-				for (int y = 0; y < yLength; y++) {
-					// this is a bit of math. write it down and it will make more sense
-					Tile tile = tiles.get(startX - x, startY - y); // Get the tile
+		// Set the tiles' worldEntity value and passability value
+		for (int x = 0; x < xLength; x++) {
+			for (int y = 0; y < yLength; y++) {
+				// this is a bit of math. write it down and it will make more sense
+				Tile tile = tiles.get(startX - x, startY - y); // Get the tile
 
-					// Set world entity
-					tile.setWorldEntityType(building.getType());
-					// Set passability
-					tile.setPassable(infoRegister.getPassability(building.getType()));
+				// Set world entity
+				tile.setWorldEntityType(building.getType());
+				// Set passability
+				tile.setPassable(infoRegister.getPassability(building.getType()));
 
-				}
 			}
 		}
-	}
 
-	/**
-	 * Remove the given entity from the world
-	 *
-	 * @param entity
-	 */
-	public void removeEntity(Entity entity) {
-		entities.remove(entity);
-	}
-
-	/**
-	 * Get the entity at the given index. For the current implementation,
-	 * the index of the entity and the index of the sprite will be the same
-	 * @param index
-	 * 			The index of the entity to be retrieved
-	 *
-	 * @return the entity at the given index
-	 */
-	public Entity getEntity(int index) {
-		return entities.get(index);
 	}
 
 	/**
@@ -269,7 +296,7 @@ public class World implements Tickable {
 	 * @return the number of entities in the world
 	 */
 	public int getEntitiesNumber() {
-		return this.entities.size();
+		return animals.size() + buildings.size() + peons.size();
 	}
 
 	/**
@@ -305,9 +332,6 @@ public class World implements Tickable {
 				if (tile.isPassable()) {
 					continue;
 				} else {
-					// This tile has something in it
-					System.out.println(startX-x);
-					System.out.println(tile.getTileType());
 					return false;
 				}
 			}
@@ -326,24 +350,26 @@ public class World implements Tickable {
 				tiles.get(x, y).tick();
 			}
 		}
-		// Update all the entities
-		// TODO: REPLACE GENERIC ENTITIES WITH SPECIFIC ENTITIES, AND REMOVE THIS
-		for (int i = 0; i < entities.size(); i++) {
-			entities.get(i).tick();
-		}
 		// Update all the animals
 		for (int i = 0; i < animals.size(); i++) {
 			animals.get(i).tick();
 		}
 		// Produce materials every 1000 ticks
+
+		ResourceType buildingType;
 		for (int j = 0; j < buildings.size(); j++) {
-			if (buildings.get(j).getType() == ResourceType.SAWMILL && 
-					timer%1000==0) {
+			buildingType = buildings.get(j).getType();
+			if (productionBuildingsList.contains(buildingType) && timer%1000==0) {
 				StorageProduceBuilding buildingSelected = 
 						buildings.get(j).toStorageProduceBuilding(buildings.get(j));
 				buildingSelected.produceMaterial();
 			}
 		}
+	}
+	
+	/** gets number of peons for achievement tracking */
+	public int getNumberOfPeons() {
+		return peons.size();
 	}
 
 }

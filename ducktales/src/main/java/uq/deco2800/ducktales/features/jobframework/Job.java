@@ -121,13 +121,13 @@ public abstract class Job {
 			return -1;
 
 		if (this.getRequiredStrength() < this.getRequiredIntelligence()) {
-			double weight = this.getRequiredStrength() / this.getRequiredIntelligence();
+			double weight = (double) this.getRequiredStrength() / (double) this.getRequiredIntelligence();
 			double total = (peon.getStrength() / this.getRequiredStrength()) * weight
 					+ (peon.getIntelligence() / this.getRequiredIntelligence()) * (1 - weight);
 			peon.setQualification(total);
 			return total;
 		} else {
-			double weight = this.getRequiredIntelligence() / this.getRequiredStrength();
+			double weight = (double) this.getRequiredIntelligence() / (double) this.getRequiredStrength();
 			double total = (peon.getStrength() / this.getRequiredStrength()) * weight
 					+ (peon.getIntelligence() / this.getRequiredIntelligence()) * (1 - weight);
 			peon.setQualification(total);

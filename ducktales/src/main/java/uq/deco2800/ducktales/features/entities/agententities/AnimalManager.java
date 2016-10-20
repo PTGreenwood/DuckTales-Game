@@ -1,12 +1,12 @@
 package uq.deco2800.ducktales.features.entities.agententities;
 
-import uq.deco2800.ducktales.features.entities.SecondaryEntityManager;
 import uq.deco2800.ducktales.features.landscape.tiles.TileSprite;
 import uq.deco2800.ducktales.rendering.sprites.AnimalSprite;
 import uq.deco2800.ducktales.rendering.sprites.Sprite;
 import uq.deco2800.ducktales.rendering.sprites.SpritesFactory;
 import uq.deco2800.ducktales.resources.ResourceInfoRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
+import uq.deco2800.ducktales.util.SecondaryManager;
 import uq.deco2800.ducktales.util.exceptions.AnimalNotRegisteredException;
 import uq.deco2800.ducktales.util.exceptions.GameSetupException;
 
@@ -20,7 +20,7 @@ import java.util.List;
  * Created on 12/10/2016.
  * @author khoiphan21
  */
-public class AnimalManager extends SecondaryEntityManager{
+public class AnimalManager extends SecondaryManager{
 
     /** The list of animal sprites */
     private List<AnimalSprite> animalSprites;

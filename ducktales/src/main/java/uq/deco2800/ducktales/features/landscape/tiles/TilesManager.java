@@ -2,6 +2,8 @@ package uq.deco2800.ducktales.features.landscape.tiles;
 
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import uq.deco2800.ducktales.World;
 import uq.deco2800.ducktales.rendering.RenderingInformation;
 import uq.deco2800.ducktales.rendering.info.WorldEntityInfo;
@@ -18,6 +20,8 @@ import uq.deco2800.ducktales.util.SecondaryManager;
  * @author khoiphan21
  */
 public class TilesManager extends SecondaryManager {
+    /** The logger */
+    private static Logger LOGGER = LoggerFactory.getLogger(TilesManager.class);
 
     /** The root pane where everything will be added into */
     private Pane rootPane;
@@ -203,7 +207,7 @@ public class TilesManager extends SecondaryManager {
                     WorldEntityInfo.YLENGTH
             );
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            LOGGER.info("failed to add a building to a tile", e);
             return;
         }
 

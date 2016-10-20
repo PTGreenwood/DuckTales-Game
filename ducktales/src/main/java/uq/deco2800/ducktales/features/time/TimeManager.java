@@ -33,11 +33,14 @@ public class TimeManager extends SecondaryManager
     private Text timeDisplayText;
     @FXML
     private Text dayDisplayText;
+    @FXML
+    private Text temperatureDisplayText;
 
     /* The model for the game time */
     private GameTime gameTime;
     private int seasonNumber;
-    
+    private int previousHour;
+    private int previousDay;
     /* Manager for the Seasons ;) */
     public SeasonManager seasonManager;
     
@@ -59,6 +62,8 @@ public class TimeManager extends SecondaryManager
         gameTime = new GameTime();
         seasonManager = new SeasonManager();
         seasonNumber = 0;
+        previousHour = gameTime.getHour();
+        previousDay = gameTime.getCurrentDay();
             	
     }
 
@@ -67,16 +72,12 @@ public class TimeManager extends SecondaryManager
     public void tick() {
 
         gameTime.tick();
-
         // Display the new time\
-    	final int currentYear = gameTime.getCurrentYear();
         final int currentDay = gameTime.getCurrentDay();
         final int currentHour = gameTime.getHour();
         final String currentMinute = String.format("%02d", gameTime.getMinute());
-        final String timeText = "Current Time is: " + currentHour + ":" + currentMinute +
-        		", Day " + currentDay + " Year " + currentYear;
-        final int dayTracker = gameTime.getSeasonalDayTracker();
-
+        final int currentTemperature = this.getSeasonManager().getCurrentSeason().getCurrentTemperature();
+        final String degreeSymbol = "\u00b0";
         
         //Variable to hold the current Season Number to get the appropriate season name from the
         //season list held in seasonManager.getSeasonList();
@@ -93,8 +94,24 @@ public class TimeManager extends SecondaryManager
      	   
       	   gameTime.resetTracker();
       	   
-        } else {
-     	 //Doesn't do anything if it's already the same season. Will save on processing time (I HOPE).
+        }
+        
+        //Updates weatherEvents when it's a new day.
+        if(currentDay > this.previousDay) {
+        	this.getSeasonManager().alterWeatherEvents();
+        }
+        
+        //Checking to update temperature on gameTick
+        if(currentHour > this.previousHour || currentDay > this.previousDay) {
+        	this.previousHour = currentHour;
+        	this.previousDay = currentDay;
+        	int randomNumber = (int) Math.floor(Math.random() * 3);
+        	if((currentHour < this.seasonManager.getCurrentSeason().getTimeNightFall()) 
+        			&& (currentHour > this.seasonManager.getCurrentSeason().getTimeDayBreak())) {
+        		this.seasonManager.updateTemperature(randomNumber, true);
+        	} else {
+        		this.seasonManager.updateTemperature(randomNumber, false);
+        	}
         }
         
         
@@ -103,8 +120,13 @@ public class TimeManager extends SecondaryManager
         // IN REGARDS TO TIME ALL CALL TO UI CHANGES MUST GO INSIDE THIS METHOD CALL
 
         Platform.runLater(() -> {
-            timeDisplayText.setText(currentHour + ":" + currentMinute);
+        	if(currentHour >=12 && currentHour <= 23) {
+        		timeDisplayText.setText(currentHour + ":" + currentMinute + "pm");
+        	} else {
+        		timeDisplayText.setText(currentHour + ":" + currentMinute + "am");
+        	}
             dayDisplayText.setText("DAY "+ currentDay);
+            temperatureDisplayText.setText(currentTemperature + "" + degreeSymbol + "c");
         });
 
     }
@@ -115,8 +137,10 @@ public class TimeManager extends SecondaryManager
 	 * @return true if night time. False if day time
 	 */
 	public boolean isNight() {
-		if((gameTime.getHour() >= 5)) { //||
-				//(gameTime.getHour() <= gameTime.season.getTimeDayBreak())) {
+		int currentHour = gameTime.getHour();
+		int seasonalNightTime = this.getSeasonManager().getCurrentSeason().getTimeNightFall();
+		int seasonalDayTime = this.getSeasonManager().getCurrentSeason().getTimeDayBreak();
+		if((currentHour >= seasonalNightTime || currentHour <= seasonalDayTime)) {
 			return true;
 		} else {
 			return false;

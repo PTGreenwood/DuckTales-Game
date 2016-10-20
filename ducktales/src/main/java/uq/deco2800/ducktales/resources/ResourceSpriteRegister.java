@@ -172,6 +172,7 @@ public class ResourceSpriteRegister {
 		addResource(SCHOOL, "/buildings/school.png");
 		addResource(GYMNASIUM, "/buildings/gymnasium.png");
 		addResource(BUTCHER, "/buildings/butcher.png");
+		addResource(BARN, "/buildings/storagebarn.png");
 
 		addResource(BAKERY, "/buildings/bakery.png");
 		addResource(COMMUNITY_BUILDING, "/buildings/community_building.png");
@@ -327,10 +328,15 @@ public class ResourceSpriteRegister {
 		// addResource(COWUpLeft, "/COWUpLeft.png");
 		// addResource(COWDownRight, "/COWDownRight.png");
 		// addResource(COWDownLeft, "/COWDownLeft.png");
-
-		// animal death sprite resource
-		addResource(CLOUD, "/animal/cloud.gif");
 	}	
+	
+	/**
+	 * Add the resources for droppable resource entitis, 
+	 * such as feathers, beef, milk etc
+	 */
+	private void addResourceEntityResources() {
+		addResource(CLOUD, "/animal/cloud.gif");
+	}
 	
 	/**
 	 * Add the resources for landscape items such as rocks and trees

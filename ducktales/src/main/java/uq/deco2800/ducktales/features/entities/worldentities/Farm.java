@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import org.apache.commons.lang3.tuple.Triple;
 
-import uq.deco2800.ducktales.features.entities.worldentities.StorageProduceBuilding.production;
 import uq.deco2800.ducktales.resources.ResourceType;
 
 /**
@@ -116,6 +115,9 @@ public class Farm extends StorageProduceBuilding {
 	 * Currently unimplemented for Farm
 	 */
 	protected void produceMaterialBuilding() {
-		throw new UnsupportedOperationException();
+		if (storage.get(0).getRight()<storage.get(0).getMiddle()) {
+			this.addGoods(production.FOOD, 1);
+		}
+		System.out.println(storage);
 	}
 }

@@ -1,16 +1,24 @@
 package uq.deco2800.ducktales;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.application.Platform;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import uq.deco2800.ducktales.util.exceptions.GameSetupException;
 import uq.deco2800.singularity.clients.ducktales.DucktalesClient;
-import uq.deco2800.singularity.common.representations.User;
 import uq.deco2800.ducktales.features.builder.WorldBuilderController;
 import uq.deco2800.ducktales.features.builder.WorldBuilderRenderer;
+import uq.deco2800.ducktales.features.login.LoginController;
+import uq.deco2800.ducktales.features.login.LoginManager;
+import uq.deco2800.ducktales.features.login.LoginVistaNavigator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -29,8 +37,12 @@ public class DuckTalesController implements Initializable {
 	@FXML
 	private AnchorPane mainMenuPane;
 
+	/** implementing a logger, to catch ioe exception */
+	private static Logger logger = LoggerFactory.getLogger(DuckTalesController.class);
 
-
+	/** The Secondary Managers of the game, each managing an FXML loader */
+    private LoginManager loginManager;
+	
 	private WorldBuilderController worldBuilderController;
 
 	// UI for World Builder
@@ -38,6 +50,8 @@ public class DuckTalesController implements Initializable {
 	private AnchorPane gamePane;
 
 	private DucktalesClient client;
+	
+	private static boolean loggedIn = false;
 
 	/**
 	 * Main constructor of the {@link DuckTalesController} class.
@@ -55,7 +69,9 @@ public class DuckTalesController implements Initializable {
 		client = new DucktalesClient();
 		
 	}
-	static Stage primaryStage;
+	static Stage primaryStage = null;
+	static Scene primaryScene = null;
+	
 	public static void close()
 	{
 		if (primaryStage != null)
@@ -74,12 +90,17 @@ public class DuckTalesController implements Initializable {
 	@FXML
 	public void startGame(ActionEvent event) throws Exception {
 		
+		/*
+		LoginManager.setClient(client);
+		
+		
 		Parent root1 = FXMLLoader.load(getClass().getResource("/ui/main/login.fxml"));
         
 		Scene scene = new Scene(root1,300,275);
 		primaryStage= new Stage();
+		primaryStage.initStyle(StageStyle.UNDECORATED);
         //primaryStage.initStyle(Stage.UNDECORATED);
-		primaryStage.setTitle("FXML Welcome");  
+		primaryStage.setTitle("FXML Welcome");
 		primaryStage.setScene(scene);
 		primaryStage.showAndWait();
 		// Change between the mainMenuPane and the contentPane
@@ -93,18 +114,37 @@ public class DuckTalesController implements Initializable {
 		setupMainUI(mainUILoader);
 		// Show the main UI
 		showPane(gamePane);
+		*/
+		
+		loadLoginFrame(client);
+		
+		if (loggedIn) {
+			
+			// Change between the mainMenuPane and the contentPane
+			toggleMenuPane();
+			
+			// Use FXML Loader to load the FXML file as well as instantiate the controller
+			// for the main UI
+			URL location = getClass().getResource("/ui/main/mainUI.fxml");
+			FXMLLoader mainUILoader = new FXMLLoader(location);
+			// Setup the main UI
+			setupMainUI(mainUILoader);
+			// Show the main UI
+			showPane(gamePane);
+		}
 
 	}
 
 	/**
-	 * This is a helper method that helps set
+	 * This is a helper method that helps setup the main UI of the game
 	 */
 	private void setupMainUI(FXMLLoader loader) throws Exception {
 		// Load the FXML
 		try {
 			gamePane = loader.load();
 		} catch(Exception e) {
-			System.err.println("Exception in trying to load main UI");
+			logger.info("exception when trying to load main UI", e);
+			throw new GameSetupException("failed to load main UI");
 		}
 
 		// Set the layout for the gamePane
@@ -131,9 +171,6 @@ public class DuckTalesController implements Initializable {
 			worldBuilderPane.setMinSize(contentPane.getWidth(),
 					contentPane.getHeight());
 
-			System.err.println("worldbuilderPane's width and height: "
-					+ worldBuilderPane.getWidth() + ", " + worldBuilderPane.getHeight());
-
 			// Set the world for the builder
 			worldBuilderController.setWorld(new World("World Builder", 20, 20));
 			// Initiate the rendering engine for WorldBuilder
@@ -152,7 +189,7 @@ public class DuckTalesController implements Initializable {
 	 * Close the application
 	 */
 	public void quitApplication() {
-		System.exit(0);
+		Platform.exit();
 	}
 
 	/**
@@ -167,6 +204,41 @@ public class DuckTalesController implements Initializable {
 		}
 		contentPane.getChildren().removeAll(worldBuilderPane, gamePane);
 		contentPane.getChildren().add(pane);
+	}
+	
+	
+	private void loadLoginFrame(DucktalesClient client) throws IOException {
+		
+		LoginManager.setClient(client);
+		 
+		URL location = getClass().getResource(LoginVistaNavigator.MAIN);
+
+        FXMLLoader loader = new FXMLLoader(location);
+		
+        // load the FXML
+        StackPane root = loader.load();
+
+        // Retrieve the controller
+        loginManager = loader.getController();
+        
+        if (primaryScene == null) {
+        	primaryScene = new Scene(root,400,350);
+        }
+        
+		primaryStage= new Stage();
+		primaryStage.initStyle(StageStyle.UNDECORATED);
+        //primaryStage.initStyle(Stage.UNDECORATED);
+		LoginController.setPrimaryStage(primaryStage);
+		primaryStage.setTitle("FXML Welcome");
+		primaryStage.setScene(primaryScene);
+		primaryStage.showAndWait();
+		// Change between the mainMenuPane and the contentPane
+		// toggleMenuPane();
+
+	}
+	
+	public static void setLoggedInStatus(boolean status) {
+		loggedIn = status;
 	}
 
 	/**

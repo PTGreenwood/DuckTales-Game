@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import javafx.event.Event;
 import uq.deco2800.ducktales.GameManager;
 import uq.deco2800.ducktales.features.entities.MainEntityManager;
 import uq.deco2800.ducktales.features.entities.peons.Peon;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.AStar;
 import uq.deco2800.ducktales.util.Point;
+import uq.deco2800.ducktales.util.events.animal.AnimalDeadEvent;
 
 /**
  * Base class for all animals.
@@ -20,6 +22,9 @@ public class Animal extends AgentEntity {
 
     /** The main manager of the game */
     protected GameManager gameManager;
+    
+    /** instance of AnimalDeadEvent */
+    private AnimalDeadEvent animalDeadEvent;
 
     private static final int MINSTARTHEALTH = 20;
     private static final int MAXSTARTHEALTH = 100;
@@ -160,10 +165,17 @@ public class Animal extends AgentEntity {
      */
     public void setIsDead() {
             this.isDead = true;
+            //setOffAnimalDeadEvent();
             // fire AnimalDeadEvent when an animal dies
-            // this.fireEvent(new AnimalDeadEvent(type, point.getX(), point.getY()));
             // entityManager.removeEntity(this);
             // MainEntityManager.removeEntity(this);
+    }
+    
+    /**
+     * Fires an event for when an animal dies
+     */
+    public void setOffAnimalDeadEvent() {
+    	Event.fireEvent(animalDeadEvent.getTarget(), new AnimalDeadEvent(type, this.getX() +1, this.getY()+1));
     }
 
     /**
@@ -172,7 +184,7 @@ public class Animal extends AgentEntity {
      * @param opponent The peon to be attacked.
      */
     public void attack(Peon opponent) {
-        if (this.getOutOfZone() == true) {
+        if (this.getOutOfZone()) {
             opponent.setHealth(opponent.getHealth() - this.getStrength());
         }
 //        if (opponent.getHealth() <= 0) {

@@ -2,8 +2,6 @@ package uq.deco2800.ducktales.features.entities.agententities;
 
 import java.util.Random;
 
-import uq.deco2800.ducktales.features.entities.MainEntityManager;
-import uq.deco2800.ducktales.features.entities.peons.Peon;
 import uq.deco2800.ducktales.resources.ResourceType;
 
 /**
@@ -21,9 +19,6 @@ public class Duck extends Animal {
     resource will only be dropped when the animal is dead.
      */
     private boolean canDropResource = false;
-
-    private Peon opponent; // The peon that the animal will battle.
-    private MainEntityManager opponentList; // List of possible opponents.
 
     public Duck(int x, int y) {
         super(x, y, ResourceType.DUCK, 1, 1, 1, 1, 0.05);
