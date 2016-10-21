@@ -17,6 +17,8 @@ public class ThreatManager extends SecondaryManager {
 
     /** The list of sprites for the enemies */
     private List<ThreatSprite> threatSprites;
+    
+    
 
     public ThreatManager() {
         threatSprites = new ArrayList<>(50);

@@ -13,11 +13,12 @@ import uq.deco2800.ducktales.features.entities.threats.Threat;
 import uq.deco2800.ducktales.features.entities.worldentities.Building;
 import uq.deco2800.ducktales.features.entities.worldentities.StorageProduceBuilding;
 import uq.deco2800.ducktales.resources.ResourceInfoRegister;
-import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 
 
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.features.landscape.tiles.Tile;
+import uq.deco2800.ducktales.rendering.sprites.BuildingSprite;
+import uq.deco2800.ducktales.rendering.sprites.SpritesFactory;
 import uq.deco2800.ducktales.util.*;
 
 import static uq.deco2800.ducktales.resources.ResourceType.*;
@@ -34,7 +35,7 @@ public class World implements Tickable {
 	 */
 	private static final ResourceType DEFAULT_TILE_TYPE = GRASS_1;
 	// The list of production buildings
-	private final ResourceType[] productionBuildingTypes = {
+	private static final ResourceType[] productionBuildingTypes = {
 			SAWMILL, MINE, FARM, QUARRY
 	};
 
@@ -341,6 +342,15 @@ public class World implements Tickable {
 	@Override
 	public void tick() {
 		timer++;
+//		for (int x = 0; x < buildings.size(); x++) {
+//			if (buildings.get(x).getType() == ResourceType.SCHOOL && timer > 5000) {
+//				BuildingSprite buildingSprite = SpritesFactory.createBuildingSprite(x, buildings.get(x).getType());
+//				//buildingSprite.stopAnimation();
+//				buildingSprite.swap(0);
+//				System.err.println(timer);
+//			}
+//		}
+		
 		// Update all the tiles
 		for (int y = 0; y < tiles.getHeight(); y++) {
 			for (int x = 0; x < tiles.getWidth(); x++) {
@@ -362,6 +372,11 @@ public class World implements Tickable {
 				buildingSelected.produceMaterial();
 			}
 		}
+	}
+	
+	/** gets number of peons for achievement tracking */
+	public int getNumberOfPeons() {
+		return peons.size();
 	}
 
 }

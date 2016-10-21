@@ -2,20 +2,17 @@ package uq.deco2800.ducktales.features.weather;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import uq.deco2800.ducktales.features.hud.menu.MenuManager;
 import uq.deco2800.ducktales.features.seasons.SeasonManager;
 import uq.deco2800.ducktales.features.time.TimeManager;
 import uq.deco2800.ducktales.util.SecondaryManager;
 import uq.deco2800.ducktales.util.Tickable;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;

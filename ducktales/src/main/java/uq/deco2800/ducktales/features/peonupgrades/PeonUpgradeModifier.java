@@ -3,31 +3,31 @@ package uq.deco2800.ducktales.features.peonupgrades;
 //import resources.toolsUpgrade.lumberjack;
 
 public class PeonUpgradeModifier {
-	public int BaseLumberRate = 1;
-	public int NewLumberRate = 0;
-	public int BaseStoneRate = 1;
-	public int BaseMetalRate = 1;
+	public int baseLumberRate = 1;
+	public int newLumberRate = 0;
+	public int baseStoneRate = 1;
+	public int baseMetalRate = 1;
 	
 	//tool modifier for lumberjack
-	public void LumberAxe1(){
-		NewLumberRate = BaseLumberRate + 1;
+	public void lumberAxe1(){
+		newLumberRate = baseLumberRate + 1;
 	}
-	public void LumberAxe2(){
-		BaseLumberRate += 2;
+	public void lumberAxe2(){
+		baseLumberRate += 2;
 	}
-	public void LumberAxe3(){
-		BaseLumberRate += 3;
+	public void lumberAxe3(){
+		baseLumberRate += 3;
 	}
 	
 	
-	public void StoneChisel1(){
-		BaseStoneRate += 0;
+	public void stoneChisel1(){
+		baseStoneRate += 0;
 	}
-	public void StoneChisel2(){
-		BaseStoneRate += 1;
+	public void stoneChisel2(){
+		baseStoneRate += 1;
 	}
-	public void StoneChisel3(){
-		BaseStoneRate += 2;
+	public void stoneChisel3(){
+		baseStoneRate += 2;
 	}
 	
 	

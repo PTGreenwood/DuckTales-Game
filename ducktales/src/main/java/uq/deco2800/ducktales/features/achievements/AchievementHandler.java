@@ -1,6 +1,9 @@
 package uq.deco2800.ducktales.features.achievements;
 
 
+
+import uq.deco2800.ducktales.World;
+import uq.deco2800.ducktales.features.entities.threats.ThreatManager;
 import uq.deco2800.ducktales.features.inventory.InventoryManager;
 import uq.deco2800.ducktales.features.level.LevelHandler;
 import uq.deco2800.ducktales.features.missions.MissionHandler;
@@ -17,11 +20,14 @@ public class AchievementHandler {
 	/** Achievement Score */
 	private int intAchieve;
 	
-	LevelHandler levelHandler = LevelHandler.getInstance();
+	private LevelHandler levelHandler = LevelHandler.getInstance();
 	private InventoryManager inventoryManager;
+	private World world;
 	public int achievementToggleWood = 0;
 	public int achievementToggleOres = 0;
 	public int achievementToggleFood = 0;
+	public int achievementTogglePeons = 0;
+	public int achievementToggleThreats = 0;
 	/**
 	 * Constructor of {@link Achievement}.
 	 * 
@@ -58,8 +64,8 @@ public class AchievementHandler {
 	}
 	
 	
-	//Sets value for varying difficulties of achievements, 
-	//for each specific difficulty adds specified value to the achievement score
+	/**Sets value for varying difficulties of achievements, 
+	for each specific difficulty adds specified value to the achievement score */
 	public void achieveVeryEasy() {
 		this.intAchieve = this.intAchieve + 10;
 	}
@@ -135,7 +141,9 @@ public class AchievementHandler {
 	    }
 	    if(levelHandler.getLevel() == 1)
 	    {
-	        //resource reward
+	    	inventoryManager.updateWoodAmount(10);
+	    	inventoryManager.updateOresAmount(10);
+	    	inventoryManager.updateFoodAmount(10);
 	    }
 
 	   
@@ -209,10 +217,34 @@ public class AchievementHandler {
 	    }
 	    else if(inventoryManager.getFoodAmount() >= 2500 && achievementToggleWood == 4){
 	    	this.achieveVeryHard();
+	    	inventoryManager.updateWoodAmount(50);
+	    	inventoryManager.updateOresAmount(50);
+	    	inventoryManager.updateFoodAmount(100);
 	    }
 	    
+	    if(world.getNumberOfPeons() == 1 && achievementTogglePeons == 0){
+	    	this.achieveVeryEasy();
+	    	achievementTogglePeons ++;
+	    }
+	    else if(world.getNumberOfPeons() == 10 && achievementTogglePeons == 1){
+	    	this.achieveEasy();
+	    	achievementTogglePeons ++;
+	    }
+	    else if(world.getNumberOfPeons() == 25 && achievementTogglePeons == 2){
+	    	this.achieveMedium();
+	    	achievementTogglePeons ++;
+	    }
+	    else if(world.getNumberOfPeons() == 50 && achievementTogglePeons == 3){
+	    	this.achieveHard();
+	    	achievementTogglePeons ++;
+	    }
 	    
-	    
+	    if(ThreatManager.returnEnemies().equals(1) && achievementToggleThreats == 0){
+	    	this.achieveMedium();
+	    }
+	    else if(ThreatManager.returnEnemies().equals(5) && achievementToggleThreats == 1){
+	    	this.achieveVeryHard();
+	    }
 	  
    }
    

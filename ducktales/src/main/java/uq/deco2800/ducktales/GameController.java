@@ -197,7 +197,7 @@ public class GameController implements Initializable{
     	closeButton.setVisible(true);
     	missionManager.missionCompletedAction(1);
     }
-    
+        
     @FXML
     public void showTutorial() {
     	
@@ -479,11 +479,10 @@ public class GameController implements Initializable{
             rootPane.getChildren().add(root);
             
             // position the mission pane
-            AnchorPane.setTopAnchor(root, 20.0);
+            AnchorPane.setTopAnchor(root, 30.0);
             AnchorPane.setLeftAnchor(root, 250.0);
             
             
-            tutorialManager.hideButtons();
             // initially hide it first
             tutorialManager.hideTutorial();
             
@@ -548,8 +547,8 @@ public class GameController implements Initializable{
             rootPane.getChildren().add(root);
             
             // position the mission pane
-            AnchorPane.setTopAnchor(root, 20.0);
-            AnchorPane.setLeftAnchor(root, 250.0);
+            AnchorPane.setTopAnchor(root, 30.0);
+            AnchorPane.setLeftAnchor(root, 450.0);
             
             // initially hide it first
             missionManager.hideMission();
@@ -641,8 +640,8 @@ public class GameController implements Initializable{
             rootPane.getChildren().add(root);
             
             // position the achievement pane
-            AnchorPane.setTopAnchor(root, 20.0);
-            AnchorPane.setLeftAnchor(root, 250.0);
+            AnchorPane.setTopAnchor(root, 30.0);
+            AnchorPane.setLeftAnchor(root, 450.0);
             
             // initially hide it first
             achievementManager.hideAchievement();

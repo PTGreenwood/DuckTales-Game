@@ -1,13 +1,8 @@
 package uq.deco2800.ducktales.features.seasons;
 
-import java.net.URL;
-import java.util.ResourceBundle;
 import java.util.*;
 
-import javafx.application.Platform;
-import uq.deco2800.ducktales.features.time.GameTime;
 import uq.deco2800.ducktales.features.seasons.Season;
-import uq.deco2800.ducktales.util.SecondaryManager;
 
 /**
  * 

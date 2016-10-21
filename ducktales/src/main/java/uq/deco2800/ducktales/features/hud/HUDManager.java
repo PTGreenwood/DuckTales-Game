@@ -3,7 +3,6 @@ package uq.deco2800.ducktales.features.hud;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
-import uq.deco2800.ducktales.GameController;
 import uq.deco2800.ducktales.features.hud.menu.MenuManager;
 import uq.deco2800.ducktales.util.SecondaryManager;
 

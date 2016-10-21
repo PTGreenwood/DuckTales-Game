@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.text.Font?>
+
+<Pane prefHeight="180.0" prefWidth="270.0" style="-fx-background-color: #71716F; -fx-border-color: #C29161; -fx-border-width: 3px;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TextField layoutX="108.0" layoutY="65.0" prefHeight="21.0" prefWidth="119.0" style="-fx-background-color: #71716F;">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </TextField>
+      <Label fx:id="itemNameLabel" layoutX="108.0" layoutY="71.0" text="Item Name" textFill="WHITE">
+         <font>
+            <Font name="Press Start 2P" size="12.0" />
+         </font>
+      </Label>
+      <TextField layoutX="108.0" layoutY="43.0" prefHeight="4.0" prefWidth="100.0" style="-fx-background-color: #71716F;">
+         <font>
+            <Font name="Press Start 2P" size="12.0" />
+         </font>
+      </TextField>
+      <Label fx:id="quantityLabel" layoutX="108.0" layoutY="44.0" text="Quantity" textFill="WHITE">
+         <font>
+            <Font name="Press Start 2P" size="12.0" />
+         </font>
+      </Label>
+      <TextField layoutX="21.0" layoutY="11.0" prefHeight="10.0" prefWidth="100.0" style="-fx-background-color: #71716F;">
+         <font>
+            <Font name="Press Start 2P" size="12.0" />
+         </font>
+      </TextField>
+      <Label fx:id="userLabel" layoutX="21.0" layoutY="14.0" text="User" textFill="WHITE">
+         <font>
+            <Font name="Press Start 2P" size="12.0" />
+         </font>
+      </Label>
+      <Region fx:id="itemPictureRegion" layoutX="21.0" layoutY="42.0" prefHeight="80.0" prefWidth="80.0" style="-fx-background-color: #ffffffff;" />
+      <Button layoutX="21.0" layoutY="135.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="108.0" style="-fx-background-color: #80ab4a; -fx-border-color: #efba1a; -fx-border-width: 3px; -fx-background-radius: 0px;" text="Accept" textFill="WHITE">
+         <font>
+            <Font name="Press Start 2P" size="10.0" />
+         </font>
+      </Button>
+      <Button layoutX="142.0" layoutY="135.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="108.0" style="-fx-background-color: #80ab4a; -fx-border-color: #efba1a; -fx-border-width: 3px; -fx-background-radius: 0px;" text="Delete" textFill="WHITE">
+         <font>
+            <Font name="Press Start 2P" size="10.0" />
+         </font>
+      </Button>
+   </children>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+</Pane>

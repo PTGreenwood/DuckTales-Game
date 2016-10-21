@@ -192,7 +192,7 @@ public class Animal extends AgentEntity {
      * @param opponent The peon to be attacked.
      */
     public void attack(Peon opponent) {
-        if (this.getOutOfZone() == true) {
+        if (this.getOutOfZone()) {
             opponent.setHealth(opponent.getHealth() - this.getStrength());
         }
 //        if (opponent.getHealth() <= 0) {
