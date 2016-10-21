@@ -108,11 +108,10 @@ public class Animal extends AgentEntity {
                 newDir = "Up";
             }
             setDirection(newDir);
-//            updateType(ResourceType.valueOf(getSprite()));
             point.moveToward(goalPoints.get(0), getSpeed());
         }
         if(isDead()) {
-        	setOffAnimalDeadEvent();
+        	// change sprite to death animation
         }
         statusUpdate();
         calculateRenderingOrderValues();
