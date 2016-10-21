@@ -11,7 +11,7 @@ import static org.junit.Assert.assertEquals;
  */
 public class InventoryManagerTest {
     //* Test initialize a inventory container */
-        private InventoryManager inventory = new InventoryManager(0, 0, 0);
+        private InventoryManager inventory = new InventoryManager(0, 0, 0, 0, 0, 0);
 
 
     @Test

@@ -3,14 +3,19 @@ package uq.deco2800.ducktales.features.inventory;
 import uq.deco2800.ducktales.features.entities.worldentities.WorldEntity;
 
 /**
+<<<<<<< HEAD
  * A class for retrieving and updating the amount of different resources
  * 
  * @author Benson & Jake
+=======
+ * Created by Benson on 30/8/16.]
+ * A class for retrieving and updating the amount of different resources,
+ * “Amount” field should be any whole number, positive or negative (depending if adding or spending)
+>>>>>>> 657ee5effe557a0f0cb3662aa06b06072ed9ff8d
  */
 
 public class InventoryManager {
 
-    
     public int timberAmount = 0;
     public int meatAmount = 0;
     public int woolAmount = 0;
@@ -175,7 +180,7 @@ public class InventoryManager {
     		throw new Exception();	
     	}
     	
-    	this.featherAmount += amount;	
+    	this.featherAmount += amount;
     }
     
     
@@ -212,5 +217,4 @@ public class InventoryManager {
     	
     	this.stoneAmount += amount;	
     }
-    
 }
