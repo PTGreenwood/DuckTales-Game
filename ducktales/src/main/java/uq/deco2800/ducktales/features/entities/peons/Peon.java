@@ -18,7 +18,8 @@ import uq.deco2800.ducktales.util.Point;
  * thirst hunger and thirst will decrease (be more hungry/thirsty) over time
  * lower hunger/thirst will affect its strength
  *
- * @author Leggy, Jin Shin
+ * @author Leggy, Jin Shin, Daniel Leong
+ * 
  *
  */
 public class Peon extends AgentEntity {
@@ -495,20 +496,6 @@ public class Peon extends AgentEntity {
 	private void checkPeonStatus() {
 		// need to be implemented
 	}
-	//peon needs to be set a tool
-	/*
-	 * 
-	 * 
-	private JobType job = JobType.JOBLESS;
-	private double qualification = 0;
-	private boolean mentorStatus = false;
-	public void setJob(JobType job) {
-		this.job = job;
-	}
-
-	public JobType getJob() {
-		return job;
-	}*/
 	
 	/**
 	 * this sets the tool to the peon, tool is the tool that will get set
