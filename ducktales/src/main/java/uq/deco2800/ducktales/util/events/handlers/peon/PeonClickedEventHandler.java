@@ -33,6 +33,7 @@ public class PeonClickedEventHandler extends GameEventHandler
         // Task 2
         PeonInformationDisplayManager manager =
                 this.gameManager.getPeonInformationDisplayManager();
-        manager.displayPeon(peon);
+        manager.setPeon(peon);
+        manager.displayPeon();
     }
 }

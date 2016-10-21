@@ -1,6 +1,7 @@
 package uq.deco2800.ducktales.features.entities.peons;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -41,6 +42,7 @@ public class Peon extends AgentEntity {
 	private int strength;
 	private int intelligence;
 	private String peonName;
+	private ArrayList<ArrayList<ToolType>> allTools;
 
 	private List<PeonDebuffType> debuffs = new ArrayList<PeonDebuffType>(); // access
 																			// debuff
@@ -57,6 +59,7 @@ public class Peon extends AgentEntity {
 	private double qualification = 0;
 	private boolean mentorStatus = false;
 	
+	//Tool related information
 	private ToolType tool = ToolType.NOTHING;
 
 	/**
@@ -83,6 +86,10 @@ public class Peon extends AgentEntity {
 		this.intelligence = RANDOM.nextInt((DEFAULT_MAX - DEFAULT_MIN) + 1) + DEFAULT_MIN;
 		this.goalPoints = new ArrayList<>();
 		this.buildingsMade = 0;
+		this.allTools = new ArrayList<ArrayList<ToolType>>();
+		
+		constructList();
+
 	}
 
 	public String getPeonName() {
@@ -188,6 +195,9 @@ public class Peon extends AgentEntity {
 	 */
 	public void setJob(JobType job) {
 		this.job = job;
+		
+		//Set the tool to be level 0
+		this.setTool(getJobToolList(job).get(0));
 	}
 
 	public JobType getJob() {
@@ -508,7 +518,131 @@ public class Peon extends AgentEntity {
 		}
 
 	}
-
 	
+	/**
+	 * Get the tool the peon has currently equipped
+	 * 
+	 * @return ToolType tool
+	 */
+	public ToolType getTool() {
+		return this.tool;
+	}
+	
+	/**
+	 * Upgrade Tool the peon currently has by 1.
+	 * 
+	 */
+	public void upgradeTool() {
+		if((this.getTool().getToolLevel() < 2) && (this.getTool() != null)) {
+			try {
+				if(this.getJobToolList(this.job).get(this.getTool().getToolLevel() + 1) != null) {
+					this.tool = (this.getJobToolList(this.getJob()).get(this.getTool().getToolLevel() + 1));
+				} else {
+					//Hold up. There is no next tool for this job.
+					//do nothing.
+					System.out.println("Get a job you jobless bum");
+				}
+			
+			} catch (IndexOutOfBoundsException e) {
+				System.out.println("Can't upgrade this tool. Nothing to upgrade to");
+			}
+		}
+		//Otherwise don't update cause there is no way to.
+	}
+	
+	/**
+     * Constructs an ArrayList<ArrayList<ToolType>> To be pulled to get information when needed
+     * Not sure of any other way to access all the enums values... as .values() didn't work :S
+     * TODO: Make less obtrusive. Use Iterator.
+     */
+    public void constructList() {
+    	ArrayList<ToolType> lumberJackTools = new ArrayList<ToolType>(Arrays.asList(ToolType.AXElevel1, ToolType.AXElevel2, ToolType.AXElevel3));
+    	ArrayList<ToolType> minerTools = new ArrayList<ToolType>(Arrays.asList(ToolType.PICKlevel1, ToolType.PICKlevel2, ToolType.PICKlevel3));
+    	ArrayList<ToolType> builderTools = new ArrayList<ToolType>(Arrays.asList(ToolType.HAMMERlevel1, ToolType.HAMMERlevel2, ToolType.HAMMERlevel3));
+    	ArrayList<ToolType> doctorTools = new ArrayList<ToolType>(Arrays.asList(ToolType.INSTRUMENTSlevel1, ToolType.INSTRUMENTSlevel2, ToolType.INSTRUMENTSlevel3));
+    	ArrayList<ToolType> farmerTools = new ArrayList<ToolType>(Arrays.asList(ToolType.HOElevel1, ToolType.HOElevel2, ToolType.HOElevel3));
+    	ArrayList<ToolType> teacherTools = new ArrayList<ToolType>(Arrays.asList(ToolType.CLOTHESlevel1, ToolType.CLOTHESlevel2, ToolType.CLOTHESlevel3));
+    	ArrayList<ToolType> joblessTools = new ArrayList<ToolType>(Arrays.asList(ToolType.NOTHING));
+    	ArrayList<ToolType> blacksmithTools = new ArrayList<ToolType>(Arrays.asList(ToolType.TONGSlevel1, ToolType.TONGSlevel2, ToolType.TONGSlevel3));
+    	ArrayList<ToolType> bakerTools = new ArrayList<ToolType>(Arrays.asList(ToolType.ROLLINGPINlevel1, ToolType.ROLLINGPINlevel2, ToolType.ROLLINGPINlevel3));
+    	ArrayList<ToolType> masonTools = new ArrayList<ToolType>(Arrays.asList(ToolType.CHISELlevel1, ToolType.CHISELlevel2, ToolType.CHISELlevel3));
+
+    	this.allTools.addAll(Arrays.asList(lumberJackTools, minerTools, builderTools, doctorTools, farmerTools, teacherTools, blacksmithTools, bakerTools, masonTools, joblessTools ));
+    }
+    
+    /**
+     * Returns the list containing all the ENUM Values
+     * @return ArrayList<ArrayList<ToolType>>
+     * 
+     * Chosen to go this route rather than .values() to do soemthing things with it.
+     */
+	public ArrayList<ArrayList<ToolType>> getAllToolsList() {
+		System.out.println("TOOLTYPE: " + this.allTools);
+		return this.allTools;
+	}
+	
+	/**
+	 * Returns the List containing only the tools for the job.
+	 * This is only being used to get the tool list.
+	 * 
+	 * @param job - the currentJob
+	 * @return the arrayList. 
+	 */
+	public ArrayList<ToolType> getJobToolList(JobType job) {
+		if(job == JobType.LUMBERJACK) {
+			return this.allTools.get(0);
+			
+		} else if(job == JobType.MINER) {
+			return this.allTools.get(1);
+			
+		} else if(job == JobType.BUILDER) {
+			return this.allTools.get(2);
+			
+		} else if(job == JobType.DOCTOR) {
+			return this.allTools.get(3);
+			
+		} else if(job == JobType.FARMER) {
+			return this.allTools.get(4);
+			
+		} else if(job == JobType.TEACHER) {
+			return this.allTools.get(5);
+		
+		} else if(job == JobType.BLACKSMITH) {
+			return this.allTools.get(6);
+			
+		} else if(job == JobType.BAKER) {
+			return this.allTools.get(7);
+			
+		} else if(job == JobType.MASON) {
+			return this.allTools.get(8);
+			
+		} else if(job == JobType.JOBLESS) {
+			return this.allTools.get(9);
+		}
+		return null;
+	}
+	
+	/**
+	 * Returns a string of resources needed to upgrade the tool
+	 * 
+	 * @return String resources
+	 */
+	public String getResourceNeededForUpgrade(ArrayList<ToolType> tool, int currentLevel) {
+		System.out.println("TOOL TYPE SENT: " + tool + ",,,, CURRENT LEVEL SENT: " + currentLevel);
+		if((tool.size() == 1) || (currentLevel >=3) || (currentLevel < 0)) {
+			return "N/A";
+		} else {
+			int timberNeed = tool.get(currentLevel).getTimberCost();
+			int stoneNeed = tool.get(currentLevel).getStoneCost();
+			int metalNeed = tool.get(currentLevel).getMetalCost();;
+			int foodNeed = tool.get(currentLevel).getFoodCost();;
+		
+			String returnStatement = "" + timberNeed + "/" + stoneNeed + "/" + metalNeed + "/" + foodNeed;
+			return returnStatement;
+		}
+	}
+
+
+
 	
 }
