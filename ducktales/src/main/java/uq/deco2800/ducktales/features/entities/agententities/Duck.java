@@ -18,10 +18,8 @@ public class Duck extends Animal {
 
     public Duck(int x, int y) {
         super(x, y, ResourceType.DUCK, 1, 1, 1, 1, 0.05);
-        Random random = new Random();
-        Random random2 = new Random();
-        int var = random.nextInt(100);
-        int var2 = random2.nextInt(50);
+        int var = 20 + (int)(Math.random() * ((100 - 20) + 1));
+        int var2 = 0 + (int)(Math.random() * ((50 - 0) + 1));
         setStartingHealth(var);
         setStartingHunger(var2);
         setStartingThirst(var2);

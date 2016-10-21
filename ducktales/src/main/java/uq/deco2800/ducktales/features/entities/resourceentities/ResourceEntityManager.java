@@ -30,9 +30,6 @@ public class ResourceEntityManager extends SecondaryManager{
      * Using a HashMap to store the sprites 
      */
     private List<DroppedResourceSprite> resourceSprites;
-    
-    /** The animal manager */
-    private AnimalManager animalManager;
 
     /**
      * Instantiate an empty resource manager

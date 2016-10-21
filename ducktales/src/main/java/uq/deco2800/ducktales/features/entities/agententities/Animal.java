@@ -39,7 +39,7 @@ public class Animal extends AgentEntity {
     private static final int MAXSTARTHUNGER = 50;
     private static final int MINSTARTTHIRST = 0;
     private static final int MAXSTARTTHIRST = 50;
-    private static final int MINSTARTSTRENGTH = 1;
+    private static final int MINSTARTSTRENGTH = 0;
     private static final int MAXSTARTSTRENGTH = 50;
     private static final int HUNGERINCREASERATE = 10; // Rate at which hunger will increase.
     private static final int THIRSTINCREASERATE = 10; // Rate at which thirst will increase.
@@ -111,6 +111,9 @@ public class Animal extends AgentEntity {
 //            updateType(ResourceType.valueOf(getSprite()));
             point.moveToward(goalPoints.get(0), getSpeed());
         }
+        if(isDead()) {
+        	setOffAnimalDeadEvent();
+        }
         statusUpdate();
         calculateRenderingOrderValues();
     }
@@ -160,10 +163,12 @@ public class Animal extends AgentEntity {
         if (time == 120) {
             setHunger(getHunger() + HUNGERINCREASERATE);
             setThirst(getThirst() + THIRSTINCREASERATE);
-            if (getHunger() == 50 || getThirst() == 50) {
+            if (getHunger() >= 50 || getThirst() >= 50) {
                 setHealth(getHealth() - HEALTHDECREASERATE);
             }
-            resourceEntityManager.dropResource(this.type, (int)goalPoints.get(1).getX(), (int)goalPoints.get(1).getX());
+            if(getHealth() <= 0) {
+            	setIsDead();
+            }
             time = 0; // reset timer until next update
         }
     }
