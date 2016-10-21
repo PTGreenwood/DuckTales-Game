@@ -9,6 +9,11 @@ import static org.junit.Assert.*;
 /**
  * @author Nicolas Turner (TheFractal on github and Fractal on slack)
  */
+/*
+ * Have commented this out as there is now no more priest class.
+ * Replaced with teacher instead.
+ * 
+
 public class PriestTest {
 	private Priest priest = new Priest();
 
@@ -89,4 +94,4 @@ public class PriestTest {
 
 		assertTrue(priest.canBeMentor(peon));
 	}
-}
+}*/

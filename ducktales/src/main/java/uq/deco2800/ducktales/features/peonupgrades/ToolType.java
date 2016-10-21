@@ -46,6 +46,10 @@ public enum ToolType {
         CHISELlevel2("Silver", 1, 8, JobType.MASON, 11.0, 20, 0, 0, 60, true),
         CHISELlevel3("Gold", 2, 8, JobType.MASON, 21.0, 80, 0, 0, 130, true),
 
+        HOLINESSlevel1("Bronze", 0, 8, JobType.PRIEST, 0.0, 10, 5, 0, 10, false),
+        HOLINESSlevel2("Silver", 1, 8, JobType.PRIEST, 0.0, 20, 0, 0, 60, true),
+        HOLINESSlevel3("Gold", 2, 8, JobType.PRIEST, 0.0, 80, 0, 0, 130, true),
+        
     	NOTHING("Empty", 0, 9, JobType.JOBLESS, 0.0, 0, 0, 0, 0, false);
     
         private final String name;
