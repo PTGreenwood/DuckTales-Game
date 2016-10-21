@@ -8,6 +8,7 @@ import uq.deco2800.ducktales.GameManager;
 import uq.deco2800.ducktales.World;
 import uq.deco2800.ducktales.features.entities.agententities.AnimalManager;
 import uq.deco2800.ducktales.features.entities.worldentities.BuildingManager;
+import uq.deco2800.ducktales.features.helper.HelperManager;
 import uq.deco2800.ducktales.resources.ResourceInfoRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.Coordinate;
@@ -43,7 +44,10 @@ public class MainEntityManager implements Tickable {
 
     /** The registers */
     ResourceInfoRegister infoRegister;
-
+    
+    /** Boolean variables for building*/
+    private boolean isBuildingBuilt = false;
+    
     /**
      * Main constructor of the {@link MainEntityManager} class
      */
@@ -99,7 +103,7 @@ public class MainEntityManager implements Tickable {
      *          The y-coordinate of the tile where the animal will be added onto
      */
     public void addAnimal(ResourceType animalType, int x, int y) {
-        animalManager.addAnimal(animalType, x, y);
+        animalManager.addAnimal(animalType, x, y);      
     }
 
     /**
@@ -119,13 +123,21 @@ public class MainEntityManager implements Tickable {
             if (buildingType == ResourceType.HOUSE) {
                 // Tell the peon manager to add a peon at the given house
                 this.addPeonToHouse(x, y);
+                
             }
+            
+            //If building is added in the game, change the variable of isBuildingBuilt to true
+            this.isBuildingBuilt = true;
+            
+            
         } else {
             // the location requested for the building is not correct.
             // Ideally: display some sort of message to the user
         }
+        
     }
-
+    
+    
     /**
      * Add a peon to the given house location. The peon will always be added
      * to the 'front' of the house - where it can be seen by the player
@@ -163,13 +175,18 @@ public class MainEntityManager implements Tickable {
      */
     public void addPeon(int x, int y) {
         try {
-            peonManager.addPeon(x, y);
+            peonManager.addPeon(x, y);            
+            
         } catch (IOException e) {
             // IOException may be due to the 'generateName' method of Peon class
             LOGGER.info("Failed to add a peon to the game", e);
         }
     }
-
+    
+    
+    public boolean getIsBuildingBuilt() {
+    	return this.isBuildingBuilt;
+    }
     /**
      * Move all the entity sprites in the game by the given x- and y- amount
      * @param xAmount
