@@ -6,6 +6,7 @@ import javafx.animation.Timeline;
 import javafx.scene.image.Image;
 import javafx.util.Duration;
 import uq.deco2800.ducktales.features.time.TimeManager;
+import uq.deco2800.ducktales.rendering.animation.SpriteInterpolator;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.Tickable;
 
@@ -70,10 +71,10 @@ public class BuildingSprite extends EntitySprite {
      * @param duration
      *          The duration of the animation
      */
-    public void setupIdleAnimation(List<Image> frames, List<Image> framesSwap, 
+    public void setupIdleAnimation(List<Image> frames,  
     		double duration, boolean autoReverse) {
         this.idleAnimation = new BuildingAnimation(frames, duration);
-        this.idleAnimationDayFrames = framesSwap;
+        //this.idleAnimationDayFrames = framesSwap;
         this.idleAnimationNightFrames = frames;
         this.duration = duration;
         this.autoReverse = autoReverse;
@@ -180,19 +181,13 @@ public class BuildingSprite extends EntitySprite {
         }
     }
     
-//    public void tick() {
-//    	if (this.idleAnimation.frames.equals(this.idleAnimationDayFrames) 
-//    			&& gameTime.isNight()) {
-//    		this.idleAnimation = new BuildingAnimation(SpriteImages.((this.buildingType.toString())+"Night")(), 
-//    				this.duration);
-//    		playIdleAnimation();
-//    		System.err.println(this.idleAnimationNightFrames.toArray());
-//    	} else if (this.idleAnimation.frames.equals(this.idleAnimationNightFrames) 
-//    			&& !gameTime.isNight()) {
-//    		this.idleAnimation = new BuildingAnimation(this.idleAnimationDayFrames, 
-//    				this.duration);
-//    		playIdleAnimation();
-//    		System.err.println(this.idleAnimationDayFrames.toArray());
-//    	}
-//    }
+    public void swap(int newAnimation) {
+    	if (newAnimation == 0) {
+    		setupIdleAnimation(SpritesImages.schoolNight(), 9, true);
+    		interpolator = new SpriteInterpolator(SpritesImages.schoolNight());
+    	} else {
+    		setupIdleAnimation(SpritesImages.schoolDay(), 9, true);
+    		interpolator = new SpriteInterpolator(SpritesImages.schoolDay());
+    	}
+    }
 }
