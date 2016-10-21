@@ -1,6 +1,8 @@
 package uq.deco2800.ducktales.features.entities.resourceentities;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import uq.deco2800.ducktales.features.entities.agententities.Animal;
 import uq.deco2800.ducktales.features.entities.agententities.AnimalManager;
