@@ -2,15 +2,15 @@ package uq.deco2800.ducktales;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
-
-import uq.deco2800.ducktales.features.entities.Entity;
-
+import uq.deco2800.ducktales.features.entities.MainEntityManager;
 import uq.deco2800.ducktales.features.entities.agententities.Animal;
 import uq.deco2800.ducktales.features.entities.peons.Peon;
 import uq.deco2800.ducktales.features.entities.resourceentities.DroppableResourceEntity;
 import uq.deco2800.ducktales.features.entities.threats.Threat;
 import uq.deco2800.ducktales.features.entities.worldentities.Building;
+import uq.deco2800.ducktales.features.entities.worldentities.BuildingManager;
 import uq.deco2800.ducktales.features.entities.worldentities.StorageProduceBuilding;
 import uq.deco2800.ducktales.resources.ResourceInfoRegister;
 
@@ -18,7 +18,6 @@ import uq.deco2800.ducktales.resources.ResourceInfoRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.features.landscape.tiles.Tile;
 import uq.deco2800.ducktales.rendering.sprites.BuildingSprite;
-import uq.deco2800.ducktales.rendering.sprites.SpritesFactory;
 import uq.deco2800.ducktales.util.*;
 
 import static uq.deco2800.ducktales.resources.ResourceType.*;
@@ -61,6 +60,8 @@ public class World implements Tickable {
 	ArrayList<ResourceType> productionBuildingsList;
 	
 	private int timer = 0;
+	
+	private boolean nightAnimation = false;
 	
 	/**
 	 * Instantiates a World with the given specified parameters, with the tiles
@@ -346,14 +347,21 @@ public class World implements Tickable {
 	@Override
 	public void tick() {
 		timer++;
-//		for (int x = 0; x < buildings.size(); x++) {
-//			if (buildings.get(x).getType() == ResourceType.SCHOOL && timer > 5000) {
-//				BuildingSprite buildingSprite = SpritesFactory.createBuildingSprite(x, buildings.get(x).getType());
-//				//buildingSprite.stopAnimation();
-//				buildingSprite.swap(0);
-//				System.err.println(timer);
-//			}
-//		}
+		
+		// change the animation between day/night animation depending on time of day
+		// declared here, as not used elsewhere within the class
+		MainEntityManager mainManager = MainEntityManager.getInstance();
+		BuildingManager buildingManager = mainManager.getBuildingManager();
+		List<BuildingSprite> buildingSprites = buildingManager.getBuildingSprites();
+		for (int x = 0; x < buildingSprites.size(); x++) {
+			if (buildingSprites.get(x).getEntityType() == ResourceType.SCHOOL && timer > 1000
+					&& nightAnimation == false) {
+				BuildingSprite buildingSprite = buildingSprites.get(x);
+				buildingSprite.nightAnimation();
+				System.err.println(timer);
+				nightAnimation = true;
+			}
+		}
 		
 		// Update all the tiles
 		for (int y = 0; y < tiles.getHeight(); y++) {

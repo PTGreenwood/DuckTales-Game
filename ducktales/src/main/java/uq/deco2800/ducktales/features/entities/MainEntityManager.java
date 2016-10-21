@@ -239,5 +239,17 @@ public class MainEntityManager implements Tickable {
         this.buildingManager.setGameManager(this.gameManager);
         this.peonManager.setGameManager(this.gameManager);
     }
+    
+    
+    /** 
+     * Method to return the current instance of the building manager. 
+     * Returns the instance of the building manager that contains all the 
+     * sprites in the game.
+     * 
+     * @return the instance of the building manager intialised.
+     */
+    public BuildingManager getBuildingManager() {
+    	return this.buildingManager;
+    }
 
 }

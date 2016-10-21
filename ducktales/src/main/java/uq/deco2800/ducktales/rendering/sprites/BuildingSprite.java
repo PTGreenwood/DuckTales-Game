@@ -3,6 +3,8 @@ package uq.deco2800.ducktales.rendering.sprites;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.image.Image;
 import javafx.util.Duration;
 import uq.deco2800.ducktales.features.time.TimeManager;
@@ -183,11 +185,22 @@ public class BuildingSprite extends EntitySprite {
     
     public void swap(int newAnimation) {
     	if (newAnimation == 0) {
-    		setupIdleAnimation(SpritesImages.schoolNight(), 9, true);
-    		interpolator = new SpriteInterpolator(SpritesImages.schoolNight());
+    		System.err.println("dfksdhfskjdfhksjd");
     	} else {
     		setupIdleAnimation(SpritesImages.schoolDay(), 9, true);
     		interpolator = new SpriteInterpolator(SpritesImages.schoolDay());
     	}
     }
+
+	
+	public void nightAnimation() {
+		
+		System.out.println("sdfsafdasfdsdfsadffasdf");
+		this.stopAnimation();
+		
+		setupIdleAnimation(SpritesImages.schoolNight(), 3, true);
+		interpolator = new SpriteInterpolator(SpritesImages.schoolNight());
+		playIdleAnimation();
+		
+	}
 }
