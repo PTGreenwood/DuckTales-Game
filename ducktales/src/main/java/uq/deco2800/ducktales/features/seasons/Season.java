@@ -267,7 +267,7 @@ public abstract class Season {
     		this.weatherEvents.add(rainChance);
 
     	}  catch (InvalidWeatherChanceException e) {
-    		LOGGER.info("ERROR: Chance must be > 0 and <= 100 and weather Cannot be Null");
+    		LOGGER.log(Level.SEVERE, e.toString(), e);
     	}
 	}
 	
@@ -287,7 +287,7 @@ public abstract class Season {
     		this.weatherEvents.add(fireChance);
 
     	}  catch (Exception e) {
-    		LOGGER.info("ERROR: Chance must be > 0 and <= 100 and weather Cannot be Null");
+    		LOGGER.log(Level.SEVERE, e.toString(), e);
     	}
 	}
 	
@@ -306,7 +306,7 @@ public abstract class Season {
     		WeatherChance snowChance = new WeatherChance(snow, initialSnowChance);
     		this.weatherEvents.add(snowChance);
     	}  catch (InvalidWeatherChanceException e) {
-    		LOGGER.info("ERROR: Chance must be > 0 and <= 100 and weather Cannot be Null");
+    		LOGGER.log(Level.SEVERE, e.toString(), e);
     	}
 	}
 	
@@ -321,7 +321,7 @@ public abstract class Season {
     		WeatherChance stormChance = new WeatherChance(storm, initialStormChance);
     		this.weatherEvents.add(stormChance);
     	}  catch (InvalidWeatherChanceException e) {
-    		LOGGER.info("ERROR: Chance must be > 0 and <= 100 and weather Cannot be Null");
+    		LOGGER.log(Level.SEVERE, e.toString(), e);
     	}
 	}
 
