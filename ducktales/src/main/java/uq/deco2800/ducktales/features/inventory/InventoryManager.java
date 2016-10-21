@@ -43,6 +43,12 @@ public class InventoryManager {
         this.featherAmount = feather;
         this.stoneAmount = rock;
     }
+    
+    public class InsufficientResourceException extends Exception {
+        public InsufficientResourceException(String message) {
+            super(message);
+        }
+    }
 
     /**
 	 * Returns the current value for the Timber resource.
@@ -72,7 +78,9 @@ public class InventoryManager {
     	 * fall below zero.
     	 */
     	if (this.getTimberAmount() + amount < 0) {
-    		throw new Exception();	
+    		throw new InsufficientResourceException("Insufficient resources "
+    				+ "for update");	
+    		
     	}
     	
     	this.timberAmount += amount;	
@@ -107,7 +115,8 @@ public class InventoryManager {
     	 * fall below zero.
     	 */
     	if (this.getMeatAmount() + amount < 0) {
-    		throw new Exception();	
+    		throw new InsufficientResourceException("Insufficient resources "
+    				+ "for update");
     	}
     	
     	this.meatAmount += amount;	
@@ -142,7 +151,8 @@ public class InventoryManager {
     	 * fall below zero.
     	 */
     	if (this.getWoolAmount() + amount < 0) {
-    		throw new Exception();	
+    		throw new InsufficientResourceException("Insufficient resources "
+    				+ "for update");
     	}
     	
     	this.woolAmount += amount;	
@@ -177,7 +187,8 @@ public class InventoryManager {
     	 * fall below zero.
     	 */
     	if (this.getFeatherAmount() + amount < 0) {
-    		throw new Exception();	
+    		throw new InsufficientResourceException("Insufficient resources "
+    				+ "for update");
     	}
     	
     	this.featherAmount += amount;
@@ -212,9 +223,12 @@ public class InventoryManager {
     	 * fall below zero.
     	 */
     	if (this.getStoneAmount() + amount < 0) {
-    		throw new Exception();	
+    		throw new InsufficientResourceException("Insufficient resources "
+    				+ "for update");	
     	}
     	
     	this.stoneAmount += amount;	
     }
+    
+
 }
