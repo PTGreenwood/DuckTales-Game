@@ -12,7 +12,7 @@ public enum ToolType {
         AXElevel3("axe", JobType.LUMBERJACK,26,100, 30, 0, 50, false),
         
         HAMMERlevel1("axe", JobType.BUILDER,5, 10, 5, 0, 10, true),
-        HAMMERlevel2("axe", JobType.BUILDER,10,50, 20, 0, 0, 30, false),
+        HAMMERlevel2("axe", JobType.BUILDER,10, 50, 20, 0, 30, false),
         HAMMERlevel3("axe", JobType.BUILDER,20.0, 100, 35, 0, 70, false),
         
         PICKlevel1("axe", JobType.MINER,6, 10, 5, 0, 10, true),
