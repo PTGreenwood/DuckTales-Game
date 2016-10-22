@@ -49,6 +49,16 @@ public class InventoryManager {
             super(message);
         }
     }
+    
+    /**
+	 * Sets the timber amount to be the amount specified
+	 * 
+	 * @param amount: an integer that is greater then 0 to be the current and
+	 * set value of timber.
+	 */
+    public void setTimberAmount(int amount){
+        this.timberAmount = amount;
+    }
 
     /**
 	 * Returns the current value for the Timber resource.
@@ -84,6 +94,16 @@ public class InventoryManager {
     	}
     	
     	this.timberAmount += amount;	
+    }
+    
+    /**
+	 * Sets the meat amount to be the amount specified
+	 * 
+	 * @param amount: an integer that is greater then 0 to be the current and
+	 * set value of meat.
+	 */
+    public void setMeatAmount(int amount){
+        this.meatAmount = amount;
     }
     
     
@@ -122,6 +142,16 @@ public class InventoryManager {
     	this.meatAmount += amount;	
     }
     
+    /**
+	 * Sets the wool amount to be the amount specified
+	 * 
+	 * @param amount: an integer that is greater then 0 to be the current and
+	 * set value of wool.
+	 */
+    public void setWoolAmount(int amount){
+        this.woolAmount = amount;
+    }
+    
     
     /**
    	 * Returns the current value for the Wool resource.
@@ -158,6 +188,15 @@ public class InventoryManager {
     	this.woolAmount += amount;	
     }
     
+    /**
+	 * Sets the feather amount to be the amount specified
+	 * 
+	 * @param amount: an integer that is greater then 0 to be the current and
+	 * set value of feather.
+	 */
+    public void setFeatherAmount(int amount){
+        this.featherAmount = amount;
+    }
     
     /**
    	 * Returns the current value for the Feather resource.
@@ -194,6 +233,15 @@ public class InventoryManager {
     	this.featherAmount += amount;
     }
     
+    /**
+	 * Sets the stone amount to be the amount specified
+	 * 
+	 * @param amount: an integer that is greater then 0 to be the current and
+	 * set value of stone.
+	 */
+    public void setStoneAmount(int amount){
+        this.stoneAmount = amount;
+    }
     
     /**
    	 * Returns the current value for the Stone resource.
