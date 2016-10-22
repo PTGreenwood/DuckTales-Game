@@ -263,6 +263,13 @@ public class ResourceSpriteRegister {
 		addResource(GYMNASIUM_3, "/buildings/gymnasium/gymnasium_3.png");
 		addResource(GYMNASIUM_4, "/buildings/gymnasium/gymnasium_4.png");
 		addResource(GYMNASIUM_5, "/buildings/gymnasium/gymnasium_5.png");
+		
+		addResource(GYMNASIUM_NIGHT_1, "/buildings/gymnasium_night/gymnasium_night_1.png");
+		addResource(GYMNASIUM_NIGHT_2, "/buildings/gymnasium_night/gymnasium_night_2.png");
+		addResource(GYMNASIUM_NIGHT_3, "/buildings/gymnasium_night/gymnasium_night_3.png");
+		addResource(GYMNASIUM_NIGHT_4, "/buildings/gymnasium_night/gymnasium_night_4.png");
+		addResource(GYMNASIUM_NIGHT_5, "/buildings/gymnasium_night/gymnasium_night_5.png");
+		addResource(GYMNASIUM_NIGHT_6, "/buildings/gymnasium_night/gymnasium_night_6.png");
 		// Hospital
 		addResource(HOSPITAL_1, "/buildings/hospital/hospital_1.png");
 		addResource(HOSPITAL_2, "/buildings/hospital/hospital_2.png");

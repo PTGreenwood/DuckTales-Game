@@ -105,6 +105,7 @@ public class SpritesFactoryTest extends ApplicationTest {
         ResourceSpriteRegister.getInstance();
 
         ResourceType school = SCHOOL;
+        ResourceType pasture = PASTURE;
         
         BuildingSprite building = SpritesFactory.createBuildingSprite(
                 buildingIndex, school);
@@ -120,6 +121,10 @@ public class SpritesFactoryTest extends ApplicationTest {
         assertEquals(building.getIndex(), buildingIndex);
         assertEquals(building.getEntityType(), school);
         
+        assertEquals(false, building.nightAnimation(PASTURE));
+        
+        assertEquals(false, building.dayAnimation(PASTURE));
+        
         // wait for 'construction' to finish then retest
         try {
 			Thread.sleep(10000);
@@ -134,6 +139,10 @@ public class SpritesFactoryTest extends ApplicationTest {
         assertEquals(true, building.dayAnimation(SCHOOL));
         assertEquals(building.getIndex(), buildingIndex);
         assertEquals(building.getEntityType(), school);
+        
+        assertEquals(false, building.nightAnimation(PASTURE));
+        
+        assertEquals(false, building.dayAnimation(PASTURE));
         
     }
       

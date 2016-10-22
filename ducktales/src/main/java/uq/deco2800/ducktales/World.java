@@ -372,6 +372,7 @@ public class World implements Tickable {
 					winterAnimation.add(y, !isWinter);
 				}
 			}
+			
 			// Its night time, change animation to night type
 			if (!nightAnimation.get(x) && timeManager.isNight()) {
 				BuildingSprite buildingSprite = buildingSprites.get(x);

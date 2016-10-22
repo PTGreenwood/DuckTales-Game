@@ -181,7 +181,8 @@ public class BuildingSprite extends EntitySprite {
      */
 	public boolean nightAnimation(ResourceType building) {
 		// make sure the construction animation has been completed
-		if (this.timeline.getTotalDuration() == Duration.INDEFINITE) {
+		if (this.timeline.getTotalDuration() == Duration.INDEFINITE &&
+				SpritesImages.nightAnimation(building)!= null) {
 			this.stopAnimation();
 		
 			setupIdleAnimation(SpritesImages.nightAnimation(building), 3, true);
@@ -202,7 +203,8 @@ public class BuildingSprite extends EntitySprite {
      */
 	public boolean dayAnimation(ResourceType building) {
 		// make sure the construction animation has been completed
-		if (this.timeline.getTotalDuration() == Duration.INDEFINITE) {
+		if (this.timeline.getTotalDuration() == Duration.INDEFINITE &&
+				SpritesImages.dayAnimation(building)!= null) {
 			this.stopAnimation();
 		
 			setupIdleAnimation(SpritesImages.dayAnimation(building), 3, true);
@@ -223,7 +225,8 @@ public class BuildingSprite extends EntitySprite {
      */
 	public boolean winterAnimation(ResourceType building) {
 		// make sure the construction animation has been completed
-		if (this.timeline.getTotalDuration() == Duration.INDEFINITE) {
+		if (this.timeline.getTotalDuration() == Duration.INDEFINITE &&
+				SpritesImages.winterAnimation(building)!= null) {
 			this.stopAnimation();
 		
 			setupIdleAnimation(SpritesImages.winterAnimation(building), 3, true);
