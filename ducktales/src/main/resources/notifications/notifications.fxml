@@ -6,7 +6,7 @@
 
 <AnchorPane fx:id="mainWindow" maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" style="-fx-border-color: #efba1a; -fx-background-color: #C29161; -fx-border-width: 5px" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uq.deco2800.ducktales.features.notifications.NotificationManager">
    <children>
-      <Label fx:id="notificationLabel" alignment="center" prefHeight="30" prefWidth="500" text="The building has been constructed" textFill="WHITE">
+      <Label fx:id="notificationLabel" alignment="center" prefHeight="30" prefWidth="500" text="Ducktales" textFill="WHITE">
          <font>
             <Font name="Press Start 2P" size="14.0" />
          </font>

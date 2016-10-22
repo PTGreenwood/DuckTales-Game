@@ -3,6 +3,7 @@ package uq.deco2800.ducktales.features.notifications;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import uq.deco2800.ducktales.GameManager;
 
 /**
  * 
@@ -18,13 +19,9 @@ public class NotificationManager {
 	@FXML
 	private Label notificationLabel;
 	
-	@FXML
-	public void buildingFinishedNotification() {
+	public void builtNotification() {
 		System.out.println("The building has been constructed");
-		//showNotifications();
 	}
-	
-	
 	
 	public void showNotifications() {
 		this.mainWindow.setVisible(true);

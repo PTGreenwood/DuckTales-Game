@@ -6,9 +6,13 @@ import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.scene.image.Image;
 import javafx.util.Duration;
+import javafx.event.Event;
+import uq.deco2800.ducktales.GameManager;
 import uq.deco2800.ducktales.features.time.TimeManager;
 import uq.deco2800.ducktales.rendering.animation.SpriteInterpolator;
 import uq.deco2800.ducktales.resources.ResourceType;
+import uq.deco2800.ducktales.util.events.animal.AnimalDeadEvent;
+import uq.deco2800.ducktales.features.notifications.NotificationHandler;
 import uq.deco2800.ducktales.features.notifications.NotificationManager;
 
 import java.util.ArrayList;
@@ -27,7 +31,9 @@ public class BuildingSprite extends EntitySprite {
     /** The sprites list for different types of animations */
     private BuildingAnimation constructionAnimation; // animation during construction
     private BuildingAnimation idleAnimation; // when construction is done
-    private NotificationManager notificationManager;   
+    private NotificationManager notificationManager; 
+    private NotificationHandler notificationHandler;
+    private GameManager gameManager;
 
     /** Flags */
     // Whether to automatically reverse the idle animation
@@ -97,7 +103,7 @@ public class BuildingSprite extends EntitySprite {
     public void playIdleAnimation() {
     	
     	this.notificationManager = new NotificationManager();
-    	notificationManager.buildingFinishedNotification();
+    	notificationManager.builtNotification();
     	
         double duration = this.idleAnimation.duration;
 

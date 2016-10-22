@@ -649,14 +649,14 @@ public class GameController implements Initializable{
             // retrieve the controller
             notificationManager = loader.getController();
             
-            // add the level pane to the GUI
+            // add the notification pane to the GUI
             rootPane.getChildren().add(root);
             
-            // position the level pane
+            // position the notification pane
             AnchorPane.setTopAnchor(root, 20.0);
             AnchorPane.setLeftAnchor(root, 300.0);            
 
-            notificationManager.hideNotifications();
+            //notificationManager.hideNotifications();
             
         } catch (IOException e) {
             System.err.println("Unable to load Notifications");
