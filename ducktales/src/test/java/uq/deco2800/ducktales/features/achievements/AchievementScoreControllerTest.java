@@ -56,10 +56,12 @@ public class AchievementScoreControllerTest extends ApplicationTest {
 
 	@Test
 	public void achievementHolderTest() {
-		/*LevelHandler.getInstance().setLevel(1);
+		
 		AchievementScoreController scoreController = new AchievementScoreController();
-		assertTrue(scoreController.achievementHolder() == 1);
-		*/
+		LevelHandler.getInstance().setLevel(1);
+		
+		assertTrue(scoreController.achievementHolder() == 2);
+	
 	}
 	
 	@Test

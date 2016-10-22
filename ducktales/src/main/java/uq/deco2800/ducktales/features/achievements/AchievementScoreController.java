@@ -21,6 +21,7 @@ public class AchievementScoreController {
 	private int intAchieve;
 	
 	private LevelHandler levelHandler = LevelHandler.getInstance();
+	private MissionHandler missionHandler = MissionHandler.getInstance();
 	private InventoryManager inventoryManager;
 	private World world;
 	public int achievementToggleWood = 0;
@@ -96,28 +97,28 @@ public class AchievementScoreController {
      * 
      */
    public int achievementHolder() {
-	   if(MissionHandler.numberOfCompletedMissions == 1)
+	   if(missionHandler.getNumberOfCompletedMissions() == 1)
 	    {
 	    this.achieveVeryEasy();
 	    }
 	    
-	    if(MissionHandler.numberOfCompletedMissions == 3)
+	    if(missionHandler.getNumberOfCompletedMissions() == 3)
 	    {
 	    this.achieveEasy();
 	    }
-	    if(MissionHandler.numberOfCompletedMissions == 5)
+	    if(missionHandler.getNumberOfCompletedMissions() == 5)
 	    {
 	    this.achieveMedium();
 	    }
-	    if(MissionHandler.numberOfCompletedMissions == 15)
+	    if(missionHandler.getNumberOfCompletedMissions() == 15)
 	    {
 	    this.achieveHard();
 	    }
-	    if(MissionHandler.numberOfCompletedMissions == 25)
+	    if(missionHandler.getNumberOfCompletedMissions() == 25)
 	    {
 	    this.achieveVeryHard();
 	    }
-	    if(MissionHandler.numberOfCompletedMissions == 50)
+	    if(missionHandler.getNumberOfCompletedMissions() == 50)
 	    {
 	    //some award, resource boost or multiplier, possible duck god or god skin
 	    }

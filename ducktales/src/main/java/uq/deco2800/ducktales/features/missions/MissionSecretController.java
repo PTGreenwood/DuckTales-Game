@@ -6,8 +6,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 
-public class MissionGameController {
-
+public class MissionSecretController {
+	
 	@FXML
 	private Label labelTop;
 	
@@ -31,9 +31,20 @@ public class MissionGameController {
 	@FXML
 	private ImageView box3;
 	
-	
-	public MissionGameController() {
+	public MissionSecretController() {
 		
+	}
+
+	public Label getMission1() {
+		return this.mission1;
+	}
+	
+	public Label getMission2() {
+		return this.mission2;
+	}
+	
+	public Label getMission3() {
+		return this.mission3;
 	}
 	
 	public ImageView getBox1() {
@@ -45,8 +56,6 @@ public class MissionGameController {
 	public ImageView getBox3() {
 		return this.box3;
 	}
-	
-	
 	
 	public BorderPane getMainWindow() {
 		return this.mainWindow;

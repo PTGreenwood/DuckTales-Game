@@ -9,8 +9,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane fx:id="mainWindow" prefHeight="400.0" prefWidth="400.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.60" fx:controller="uq.deco2800.ducktales.features.missions.MissionGameController">
+<BorderPane fx:id="mainWindow" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uq.deco2800.ducktales.features.missions.MissionGameController">
    <top>
       <Label fx:id="labelTop" style="-fx-font-family: &quot;Press Start 2P&quot;;" text="Game" BorderPane.alignment="CENTER">
          <font>
@@ -34,7 +33,7 @@
         </rowConstraints>
          <children>
             <ImageView fx:id="box1" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
-            <Label fx:id="mission1" text="1. Main Mission 1">
+            <Label fx:id="mission1" text="1. Add any building onto tiles">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
