@@ -366,7 +366,7 @@ public class World implements Tickable {
 			}
 			// Its night time, change animation to night type
 			if (buildingSprites.get(x).getEntityType() == ResourceType.SCHOOL 
-					&& nightAnimation.get(x) == false && timeManager.isNight()) {
+					&& !nightAnimation.get(x) && timeManager.isNight()) {
 				BuildingSprite buildingSprite = buildingSprites.get(x);
 				if (buildingSprite.nightAnimation()) {
 					nightAnimation.set(x, true);
@@ -374,10 +374,9 @@ public class World implements Tickable {
 			} 
 			// Its day time, change animation to day type
 			else if (buildingSprites.get(x).getEntityType() == ResourceType.SCHOOL 
-					&& nightAnimation.get(x) == true && !timeManager.isNight()) {
+					&& nightAnimation.get(x) && !timeManager.isNight()) {
 				BuildingSprite buildingSprite = buildingSprites.get(x);
 				if (buildingSprite.dayAnimation()) {
-					System.err.println(timer);
 					nightAnimation.set(x, false);
 				}
 			}

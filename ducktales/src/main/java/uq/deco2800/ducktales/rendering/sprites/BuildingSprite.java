@@ -3,14 +3,11 @@ package uq.deco2800.ducktales.rendering.sprites;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.image.Image;
 import javafx.util.Duration;
 import uq.deco2800.ducktales.features.time.TimeManager;
 import uq.deco2800.ducktales.rendering.animation.SpriteInterpolator;
 import uq.deco2800.ducktales.resources.ResourceType;
-import uq.deco2800.ducktales.util.Tickable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,13 +24,7 @@ import java.util.List;
 public class BuildingSprite extends EntitySprite {
     /** The sprites list for different types of animations */
     private BuildingAnimation constructionAnimation; // animation during construction
-    private List<Image> idleAnimationDayFrames; // when construction is done
-    private List<Image> idleAnimationNightFrames; // when construction is done
     private BuildingAnimation idleAnimation; // playing animations
-    private double duration; // idle animation duration
-    private ResourceType buildingType;
-
-    private TimeManager gameTime = new TimeManager();
     
     /** Flags */
     // Whether to automatically reverse the idle animation
@@ -76,9 +67,6 @@ public class BuildingSprite extends EntitySprite {
     public void setupIdleAnimation(List<Image> frames,  
     		double duration, boolean autoReverse) {
         this.idleAnimation = new BuildingAnimation(frames, duration);
-        //this.idleAnimationDayFrames = framesSwap;
-        this.idleAnimationNightFrames = frames;
-        this.duration = duration;
         this.autoReverse = autoReverse;
     }
 

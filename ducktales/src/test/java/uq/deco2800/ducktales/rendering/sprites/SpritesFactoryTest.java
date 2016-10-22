@@ -94,4 +94,47 @@ public class SpritesFactoryTest extends ApplicationTest {
     public void start(Stage stage) throws Exception {
 
     }
+    
+    /**
+     * test the night and day animation methods to change the animation
+     */
+    @Test
+    public void testSchoolBuildingSwap() {
+        int buildingIndex = 0;
+
+        ResourceSpriteRegister.getInstance();
+
+        ResourceType school = SCHOOL;
+        
+        BuildingSprite building = SpritesFactory.createBuildingSprite(
+                buildingIndex, school);
+
+        assertEquals(building.getIndex(), buildingIndex);
+        assertEquals(building.getEntityType(), school);
+        
+        assertEquals(false, building.nightAnimation());
+        assertEquals(building.getIndex(), buildingIndex);
+        assertEquals(building.getEntityType(), school);
+        
+        assertEquals(false, building.dayAnimation());
+        assertEquals(building.getIndex(), buildingIndex);
+        assertEquals(building.getEntityType(), school);
+        
+        // wait for 'construction' to finish then retest
+        try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        assertEquals(true, building.nightAnimation());
+        assertEquals(building.getIndex(), buildingIndex);
+        assertEquals(building.getEntityType(), school);
+        
+        assertEquals(true, building.dayAnimation());
+        assertEquals(building.getIndex(), buildingIndex);
+        assertEquals(building.getEntityType(), school);
+        
+    }
+      
 }
