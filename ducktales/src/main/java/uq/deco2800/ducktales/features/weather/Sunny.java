@@ -20,9 +20,9 @@ public class Sunny extends Weather {
 		return true;
 	}	
 	
-	//does not occur on water
+	//occurs on water
 	public boolean isWater() {
-		return false;
+		return true;
 	}
 	
 	//occurs on land only.
