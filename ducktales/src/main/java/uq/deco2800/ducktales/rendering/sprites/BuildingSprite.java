@@ -179,13 +179,13 @@ public class BuildingSprite extends EntitySprite {
      * 
      * @return true if the frames are updated to night animation
      */
-	public boolean nightAnimation() {
+	public boolean nightAnimation(ResourceType building) {
 		// make sure the construction animation has been completed
 		if (this.timeline.getTotalDuration() == Duration.INDEFINITE) {
 			this.stopAnimation();
 		
-			setupIdleAnimation(SpritesImages.schoolNight(), 3, true);
-			interpolator = new SpriteInterpolator(SpritesImages.schoolNight());
+			setupIdleAnimation(SpritesImages.nightAnimation(building), 3, true);
+			interpolator = new SpriteInterpolator(SpritesImages.nightAnimation(building));
 			playIdleAnimation();
 			return true;
 		}
@@ -200,13 +200,34 @@ public class BuildingSprite extends EntitySprite {
      * 
      * @return true if the frames are updated to day animation
      */
-	public boolean dayAnimation() {
+	public boolean dayAnimation(ResourceType building) {
 		// make sure the construction animation has been completed
 		if (this.timeline.getTotalDuration() == Duration.INDEFINITE) {
 			this.stopAnimation();
 		
-			setupIdleAnimation(SpritesImages.schoolDay(), 3, true);
-			interpolator = new SpriteInterpolator(SpritesImages.schoolDay());
+			setupIdleAnimation(SpritesImages.dayAnimation(building), 3, true);
+			interpolator = new SpriteInterpolator(SpritesImages.dayAnimation(building));
+			playIdleAnimation();
+			return true;
+		}
+		return false;
+	}
+	
+	/**
+     * Change the idle animation frames to those of the winter animation, 
+     * and restart the animation. Will return false if the construction 
+     * animation is not complete, and no changes were made. If construction 
+     * is completed, will return true once changes are made.
+     * 
+     * @return true if the frames are updated to winter animation
+     */
+	public boolean winterAnimation(ResourceType building) {
+		// make sure the construction animation has been completed
+		if (this.timeline.getTotalDuration() == Duration.INDEFINITE) {
+			this.stopAnimation();
+		
+			setupIdleAnimation(SpritesImages.winterAnimation(building), 3, true);
+			interpolator = new SpriteInterpolator(SpritesImages.winterAnimation(building));
 			playIdleAnimation();
 			return true;
 		}

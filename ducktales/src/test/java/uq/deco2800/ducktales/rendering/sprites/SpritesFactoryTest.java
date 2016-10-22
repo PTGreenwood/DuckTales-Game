@@ -112,11 +112,11 @@ public class SpritesFactoryTest extends ApplicationTest {
         assertEquals(building.getIndex(), buildingIndex);
         assertEquals(building.getEntityType(), school);
         
-        assertEquals(false, building.nightAnimation());
+        assertEquals(false, building.nightAnimation(SCHOOL));
         assertEquals(building.getIndex(), buildingIndex);
         assertEquals(building.getEntityType(), school);
         
-        assertEquals(false, building.dayAnimation());
+        assertEquals(false, building.dayAnimation(SCHOOL));
         assertEquals(building.getIndex(), buildingIndex);
         assertEquals(building.getEntityType(), school);
         
@@ -127,11 +127,11 @@ public class SpritesFactoryTest extends ApplicationTest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        assertEquals(true, building.nightAnimation());
+        assertEquals(true, building.nightAnimation(SCHOOL));
         assertEquals(building.getIndex(), buildingIndex);
         assertEquals(building.getEntityType(), school);
         
-        assertEquals(true, building.dayAnimation());
+        assertEquals(true, building.dayAnimation(SCHOOL));
         assertEquals(building.getIndex(), buildingIndex);
         assertEquals(building.getEntityType(), school);
         

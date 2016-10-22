@@ -64,7 +64,7 @@ public class World implements Tickable {
 	
 	private ArrayList<Boolean> nightAnimation = new ArrayList<Boolean>();
 	
-	private boolean winterAnimation = false;
+	private ArrayList<Boolean> winterAnimation = new ArrayList<Boolean>();
 	
 	/**
 	 * Instantiates a World with the given specified parameters, with the tiles
@@ -356,6 +356,9 @@ public class World implements Tickable {
 		
 		List<BuildingSprite> buildingSprites = buildingManager.getBuildingSprites();
 		
+		boolean isWinter = (timeManager.seasonManager.getCurrentSeason().toString() 
+				== "winter");
+
 		for (int x = 0; x < buildingSprites.size(); x++) {
 			// Set the new buildings to be true of false depending on time of day (to get 
 			// right animation started) 
@@ -364,20 +367,29 @@ public class World implements Tickable {
 					nightAnimation.add(y, !timeManager.isNight());
 				}
 			}
+			if (winterAnimation.size() < buildingSprites.size()) {
+				for (int y = winterAnimation.size(); y < buildingSprites.size(); y++) {
+					winterAnimation.add(y, !isWinter);
+				}
+			}
 			// Its night time, change animation to night type
-			if (buildingSprites.get(x).getEntityType() == ResourceType.SCHOOL 
-					&& !nightAnimation.get(x) && timeManager.isNight()) {
+			if (!nightAnimation.get(x) && timeManager.isNight()) {
 				BuildingSprite buildingSprite = buildingSprites.get(x);
-				if (buildingSprite.nightAnimation()) {
+				if (buildingSprite.nightAnimation(buildingSprite.getEntityType())) {
 					nightAnimation.set(x, true);
 				}
 			} 
 			// Its day time, change animation to day type
-			else if (buildingSprites.get(x).getEntityType() == ResourceType.SCHOOL 
-					&& nightAnimation.get(x) && !timeManager.isNight()) {
+			else if (nightAnimation.get(x) && !timeManager.isNight()) {
 				BuildingSprite buildingSprite = buildingSprites.get(x);
-				if (buildingSprite.dayAnimation()) {
+				if (buildingSprite.dayAnimation(buildingSprite.getEntityType())) {
 					nightAnimation.set(x, false);
+				}
+			}
+			if (!winterAnimation.get(x) && isWinter) {
+				BuildingSprite buildingSprite = buildingSprites.get(x);
+				if (buildingSprite.winterAnimation(buildingSprite.getEntityType())) {
+					winterAnimation.set(x, true);
 				}
 			}
 		}
