@@ -1,8 +1,14 @@
 package uq.deco2800.ducktales.features.achievements;
 
 import javafx.scene.image.Image;
-import uq.deco2800.ducktales.features.level.LevelHandler;
 
+
+import uq.deco2800.ducktales.features.level.LevelHandler;
+/**
+ * Controller for the Levels achievement. 
+ * @author Joshua You
+ *
+ */
 public class AchievementLevelController {
 	
 	
@@ -21,7 +27,7 @@ public class AchievementLevelController {
 	public AchievementLevelController() {
 		
 	}
-	
+
 	public Image getAchievementLevelImage() {
 		Image achievementImage = null;
 		

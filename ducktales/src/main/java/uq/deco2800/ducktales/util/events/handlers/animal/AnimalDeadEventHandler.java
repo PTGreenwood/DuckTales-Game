@@ -29,7 +29,8 @@ public class AnimalDeadEventHandler extends GameEventHandler implements EventHan
 	public AnimalDeadEventHandler(GameManager gameManager) {
 		super(gameManager);
 		this.gameManager = gameManager;
-		resourceEntityManager = gameManager.getResourceEntityManager();
+		resourceEntityManager = gameManager.getMainEntityManager()
+				.getResourceEntityManager();
 	}
 
 	@Override

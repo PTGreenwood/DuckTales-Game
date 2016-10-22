@@ -14,6 +14,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.TextField;
 import uq.deco2800.ducktales.DuckTalesController;
 import uq.deco2800.ducktales.features.market.AllTradesController;
+import uq.deco2800.singularity.clients.ducktales.DucktalesClient;
 import uq.deco2800.ducktales.features.login.LoginVistaNavigator;;
 
 public class LoginGUITest extends GuiTest {
@@ -38,6 +39,10 @@ public class LoginGUITest extends GuiTest {
 
 			// store a reference to the allTradesController instance
 			this.loginManager = loader.<LoginManager> getController();
+			
+			DucktalesClient client = new DucktalesClient();
+			
+			this.loginManager.setClient(client);
 			
 			LoginVistaNavigator.setMainController(loginManager);
 

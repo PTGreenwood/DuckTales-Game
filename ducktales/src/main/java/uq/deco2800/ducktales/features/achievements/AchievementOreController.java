@@ -6,7 +6,7 @@ import uq.deco2800.ducktales.features.inventory.InventoryManager;
 public class AchievementOreController {
 	
 	private Image ore1 = new Image("achievements/ore100.png");
-	private Image ore2 = new Image("achievements/ore100.png");
+	private Image ore2 = new Image("achievements/ore1000.png");
 	
 	private InventoryManager inventoryManager;
 	
