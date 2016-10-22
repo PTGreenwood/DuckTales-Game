@@ -3,6 +3,9 @@ package uq.deco2800.ducktales.features.weather;
 /**
  * Properties for weather type: SNOW 
  * 
+ * Store and retrieve all of the weather related activity of this type of
+ * weather.
+ * 
  * @author mattyleggy
  *
  */

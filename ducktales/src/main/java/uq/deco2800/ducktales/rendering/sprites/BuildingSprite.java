@@ -5,6 +5,8 @@ import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.scene.image.Image;
 import javafx.util.Duration;
+import uq.deco2800.ducktales.features.time.TimeManager;
+import uq.deco2800.ducktales.rendering.animation.SpriteInterpolator;
 import uq.deco2800.ducktales.resources.ResourceType;
 
 import java.util.ArrayList;
@@ -22,8 +24,8 @@ import java.util.List;
 public class BuildingSprite extends EntitySprite {
     /** The sprites list for different types of animations */
     private BuildingAnimation constructionAnimation; // animation during construction
-    private BuildingAnimation idleAnimation; // when construction is done
-
+    private BuildingAnimation idleAnimation; // playing animations
+    
     /** Flags */
     // Whether to automatically reverse the idle animation
     private boolean autoReverse = true;
@@ -38,6 +40,7 @@ public class BuildingSprite extends EntitySprite {
      */
     public BuildingSprite(int index, ResourceType buildingType) {
         super(index, buildingType);
+        //this.buildingType = buildingType;
     }
 
     /**
@@ -61,7 +64,8 @@ public class BuildingSprite extends EntitySprite {
      * @param duration
      *          The duration of the animation
      */
-    public void setupIdleAnimation(List<Image> frames, double duration, boolean autoReverse) {
+    public void setupIdleAnimation(List<Image> frames,  
+    		double duration, boolean autoReverse) {
         this.idleAnimation = new BuildingAnimation(frames, duration);
         this.autoReverse = autoReverse;
     }
@@ -166,4 +170,92 @@ public class BuildingSprite extends EntitySprite {
             deepCopy(frames, this.frames);
         }
     }
+	
+    /**
+     * Change the idle animation frames to those of the night animation, 
+     * and restart the animation. Will return false if the construction 
+     * animation is not complete, and no changes were made. If construction 
+     * is completed, will return true once changes are made.
+     * 
+     * @return true if the frames are updated to night animation
+     */
+	public boolean nightAnimation(ResourceType building) {
+		// make sure the construction animation has been completed
+		if (this.timeline.getTotalDuration() == Duration.INDEFINITE &&
+				!SpritesImages.nightAnimation(building).isEmpty()) {
+			this.stopAnimation();
+		
+			setupIdleAnimation(SpritesImages.nightAnimation(building), 3, true);
+			interpolator = new SpriteInterpolator(SpritesImages.nightAnimation(building));
+			playIdleAnimation();
+			return true;
+		}
+		return false;
+	}
+	
+	/**
+     * Change the idle animation frames to those of the day animation, 
+     * and restart the animation. Will return false if the construction 
+     * animation is not complete, and no changes were made. If construction 
+     * is completed, will return true once changes are made.
+     * 
+     * @return true if the frames are updated to day animation
+     */
+	public boolean dayAnimation(ResourceType building) {
+		// make sure the construction animation has been completed
+		if (this.timeline.getTotalDuration() == Duration.INDEFINITE &&
+				!SpritesImages.dayAnimation(building).isEmpty()) {
+			this.stopAnimation();
+		
+			setupIdleAnimation(SpritesImages.dayAnimation(building), 3, true);
+			interpolator = new SpriteInterpolator(SpritesImages.dayAnimation(building));
+			playIdleAnimation();
+			return true;
+		}
+		return false;
+	}
+	
+	/**
+     * Change the idle animation frames to those of the winter animation, 
+     * and restart the animation. Will return false if the construction 
+     * animation is not complete, and no changes were made. If construction 
+     * is completed, will return true once changes are made.
+     * 
+     * @return true if the frames are updated to winter animation
+     */
+	public boolean winterDayAnimation(ResourceType building) {
+		// make sure the construction animation has been completed
+		if (this.timeline.getTotalDuration() == Duration.INDEFINITE &&
+				!SpritesImages.winterDayAnimation(building).isEmpty()) {
+			this.stopAnimation();
+		
+			setupIdleAnimation(SpritesImages.winterDayAnimation(building), 3, true);
+			interpolator = new SpriteInterpolator(SpritesImages.winterDayAnimation(building));
+			playIdleAnimation();
+			return true;
+		}
+		return false;
+	}
+	
+	/**
+     * Change the idle animation frames to those of the winter animation, 
+     * and restart the animation. Will return false if the construction 
+     * animation is not complete, and no changes were made. If construction 
+     * is completed, will return true once changes are made.
+     * 
+     * @return true if the frames are updated to winter animation
+     */
+	public boolean winterNightAnimation(ResourceType building) {
+		// make sure the construction animation has been completed
+		if (this.timeline.getTotalDuration() == Duration.INDEFINITE &&
+				SpritesImages.winterNightAnimation(building).isEmpty() == false) {
+			this.stopAnimation();
+		
+			setupIdleAnimation(SpritesImages.winterNightAnimation(building), 3, true);
+			interpolator = new SpriteInterpolator(SpritesImages.winterNightAnimation(building));
+			playIdleAnimation();
+			return true;
+		}
+		return false;
+	}
 }

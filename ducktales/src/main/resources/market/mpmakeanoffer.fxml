@@ -7,39 +7,39 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="700.0" style="-fx-background-color: #71716F;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="365.0" prefWidth="700.0" style="-fx-background-color: #71716F;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane layoutX="490.0" prefHeight="380.0" prefWidth="210.0" style="-fx-background-color: #593c2c;">
+      <AnchorPane layoutX="490.0" prefHeight="365.0" prefWidth="210.0" style="-fx-background-color: #593c2c;">
          <children>
-            <Pane layoutX="34.0" layoutY="25.0" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: white;" />
-            <Label layoutX="34.0" layoutY="195.0" text="Item Name" textFill="WHITE">
+            <Pane layoutX="32.0" layoutY="25.0" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: white;" />
+            <Label layoutX="32.0" layoutY="195.0" text="Item Name" textFill="WHITE">
                <font>
                   <Font name="Press Start 2P" size="12.0" />
                </font>
             </Label>
-            <Label layoutX="34.0" layoutY="218.0" text="Quantity" textFill="WHITE">
+            <Label layoutX="32.0" layoutY="218.0" text="Quantity" textFill="WHITE">
                <font>
                   <Font name="Press Start 2P" size="12.0" />
                </font>
             </Label>
-            <Label layoutX="34.0" layoutY="242.0" text="User" textFill="WHITE">
+            <Label layoutX="32.0" layoutY="242.0" text="User" textFill="WHITE">
                <font>
                   <Font name="Press Start 2P" size="12.0" />
                </font>
             </Label>
-            <Button fx:id="placeOfferBtn" layoutX="34.0" layoutY="273.0" mnemonicParsing="false" onMouseReleased="#placeOffer" prefHeight="28.0" prefWidth="150.0" style="-fx-background-color: #80ab4a; -fx-background-radius: 0px;" styleClass="menu" text="Place Offer" textFill="WHITE">
+            <Button fx:id="placeOfferBtn" layoutX="32.0" layoutY="269.0" mnemonicParsing="false" onMouseReleased="#placeOffer" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #80ab4a; -fx-border-color: #efba1a; -fx-border-width: 3px; -fx-background-radius: 0px;" styleClass="menu" text="Place Offer" textFill="WHITE">
                <font>
-                  <Font name="Press Start 2P" size="12.0" />
+                  <Font name="Press Start 2P" size="10.0" />
                </font>
             </Button>
-            <Button fx:id="placeOfferBtn1" layoutX="34.0" layoutY="316.0" mnemonicParsing="false" onMouseReleased="#placeOffer" prefHeight="28.0" prefWidth="150.0" style="-fx-background-color: #80ab4a; -fx-background-radius: 0px;" styleClass="menu" text="Cancel" textFill="WHITE">
+            <Button fx:id="placeOfferBtn1" layoutX="32.0" layoutY="312.0" mnemonicParsing="false" onMouseReleased="#placeOffer" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #80ab4a; -fx-border-color: #efba1a; -fx-border-width: 3px; -fx-background-radius: 0px;" styleClass="menu" text="Cancel" textFill="WHITE">
                <font>
-                  <Font name="Press Start 2P" size="12.0" />
+                  <Font name="Press Start 2P" size="10.0" />
                </font>
             </Button>
          </children>
       </AnchorPane>
-      <AnchorPane prefHeight="380.0" prefWidth="200.0" style="-fx-background-color: #593c2c;">
+      <AnchorPane prefHeight="365.0" prefWidth="200.0" style="-fx-background-color: #593c2c;">
          <children>
             <Pane layoutX="25.0" layoutY="25.0" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: white;" />
             <Label layoutX="25.0" layoutY="195.0" text="Item Name" textFill="WHITE">
@@ -59,17 +59,17 @@
             </Label>
          </children>
       </AnchorPane>
-      <Label layoutX="217.0" layoutY="48.0" text="Item Name" textFill="WHITE">
+      <Label layoutX="216.0" layoutY="28.0" text="Item Name" textFill="WHITE">
          <font>
             <Font name="Press Start 2P" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="217.0" layoutY="144.0" text="Quantity" textFill="WHITE">
+      <Label layoutX="216.0" layoutY="124.0" text="Quantity" textFill="WHITE">
          <font>
             <Font name="Press Start 2P" size="14.0" />
          </font>
       </Label>
-      <ComboBox fx:id="itemNameCombo" layoutX="217.0" layoutY="76.0" onAction="#itemSelected" prefHeight="40.0" prefWidth="260.0" style="-fx-background-color: white;" />
-      <ComboBox fx:id="itemNameCombo1" layoutX="217.0" layoutY="174.0" onAction="#itemSelected" prefHeight="40.0" prefWidth="260.0" style="-fx-background-color: white;" />
+      <ComboBox fx:id="itemNameCombo" layoutX="216.0" layoutY="56.0" onAction="#itemSelected" prefHeight="40.0" prefWidth="260.0" style="-fx-background-color: white;" />
+      <ComboBox fx:id="itemNameCombo1" layoutX="216.0" layoutY="154.0" onAction="#itemSelected" prefHeight="40.0" prefWidth="260.0" style="-fx-background-color: white;" />
    </children>
 </Pane>

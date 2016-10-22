@@ -65,6 +65,7 @@ public class ResourceInfoRegister {
         register (SAWMILL, Sawmill.X_LENGTH, Sawmill.Y_LENGTH, Sawmill.PASSABILITY);
         register (SCHOOL, School.X_LENGTH, School.Y_LENGTH, School.PASSABILITY);
         register (GYMNASIUM, Gymnasium.X_LENGTH, Gymnasium.Y_LENGTH, Gymnasium.PASSABILITY);
+        register (STORAGEBARN, StorageBarn.X_LENGTH, StorageBarn.Y_LENGTH, StorageBarn.PASSABILITY);
     }
 
     /**
@@ -179,6 +180,9 @@ public class ResourceInfoRegister {
             case GYMNASIUM:
                 building = new Gymnasium(x, y);
                 break;
+            case STORAGEBARN:
+                building = new StorageBarn(x, y);
+                break;
             case CONSTRUCTION:
                 break;
         }
@@ -231,8 +235,8 @@ public class ResourceInfoRegister {
     	DroppableResourceEntity droppableResourceEntity = null;
     	// Check for all droppableResourceEntity's here
     	switch(droppableResourceType) {
-    	case CLOUD:
-    		droppableResourceEntity = new Feather(x, y, droppableResourceType);
+    	case DUCK:
+    		droppableResourceEntity = new Feather(droppableResourceType, x, y);
     	}
     	return droppableResourceEntity;
     }

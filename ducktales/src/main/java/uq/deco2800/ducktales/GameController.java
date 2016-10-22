@@ -197,7 +197,7 @@ public class GameController implements Initializable{
     	closeButton.setVisible(true);
     	missionManager.missionCompletedAction(1);
     }
-    
+        
     @FXML
     public void showTutorial() {
     	
@@ -483,7 +483,6 @@ public class GameController implements Initializable{
             AnchorPane.setLeftAnchor(root, 250.0);
             
             
-            tutorialManager.hideButtons();
             // initially hide it first
             tutorialManager.hideTutorial();
             
@@ -613,7 +612,7 @@ public class GameController implements Initializable{
             AnchorPane.setTopAnchor(root, 580.0);
             AnchorPane.setLeftAnchor(root, 350.0);            
 
-            helperManager.hideHelper();
+            //helperManager.hideHelper();
             
         } catch (IOException e) {
             logger.info("Unable to load Helper:" + e);
