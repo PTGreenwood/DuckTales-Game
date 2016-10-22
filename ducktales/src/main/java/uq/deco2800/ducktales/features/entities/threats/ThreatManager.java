@@ -2,6 +2,7 @@ package uq.deco2800.ducktales.features.entities.threats;
 
 import uq.deco2800.ducktales.World;
 import uq.deco2800.ducktales.rendering.sprites.ThreatSprite;
+import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.SecondaryManager;
 import uq.deco2800.ducktales.util.exceptions.GameSetupException;
 
@@ -50,12 +51,12 @@ public class ThreatManager extends SecondaryManager {
 		ThreatFactory.enemiesList.clear();
 
 		// -------Enemies--------
-		ThreatFactory.createLevel1Enemy(ThreatFactory.EnemyType.RACCOON);
-		ThreatFactory.createLevel1Enemy(ThreatFactory.EnemyType.BEETLE);
-		ThreatFactory.createLevel1Enemy(ThreatFactory.EnemyType.WILD_VILLAGER);
+		ThreatFactory.createLevel1Enemy(ResourceType.RACCOON);
+		ThreatFactory.createLevel1Enemy(ResourceType.BEETLE);
+		ThreatFactory.createLevel1Enemy(ResourceType.WILD_VILLAGER);
 		// ------Effects---------
-		ThreatFactory.createLevel1Effect(ThreatFactory.EffectType.BLACK_SMOKE);
-		ThreatFactory.createLevel1Effect(ThreatFactory.EffectType.SHAKE);
+		ThreatFactory.createLevel1Effect(ResourceType.BLACK_SMOKE);
+		ThreatFactory.createLevel1Effect(ResourceType.SHAKE);
 	}
 
 	/**
@@ -67,14 +68,14 @@ public class ThreatManager extends SecondaryManager {
 		ThreatFactory.enemiesList.clear();
 
 		// -------Enemies--------
-		ThreatFactory.createLevel2Enemy(ThreatFactory.EnemyType.WOLF);
-		ThreatFactory.createLevel2Enemy(ThreatFactory.EnemyType.CROW);
-		ThreatFactory.createLevel2Enemy(ThreatFactory.EnemyType.GORILLA);
-		ThreatFactory.createLevel2Enemy(ThreatFactory.EnemyType.EVIL_DUCK);
+		ThreatFactory.createLevel2Enemy(ResourceType.WOLF);
+		ThreatFactory.createLevel2Enemy(ResourceType.CROW);
+		ThreatFactory.createLevel2Enemy(ResourceType.GORILLA);
+		ThreatFactory.createLevel2Enemy(ResourceType.EVIL_DUCK);
 		
 		// ------Effects---------
-		ThreatFactory.createLevel2Effect(ThreatFactory.EffectType.POISON_CLOUD);
-		ThreatFactory.createLevel2Effect(ThreatFactory.EffectType.RUMBLE);
+		ThreatFactory.createLevel2Effect(ResourceType.POISON_CLOUD);
+		ThreatFactory.createLevel2Effect(ResourceType.RUMBLE);
 	}
 
 	/**
@@ -86,13 +87,13 @@ public class ThreatManager extends SecondaryManager {
 		ThreatFactory.enemiesList.clear();
 		
 		// -------Enemies--------
-		ThreatFactory.createLevel3Enemy(ThreatFactory.EnemyType.LION);
-		ThreatFactory.createLevel3Enemy(ThreatFactory.EnemyType.CHIMP);
-		ThreatFactory.createLevel3Enemy(ThreatFactory.EnemyType.BEAR);
+		ThreatFactory.createLevel3Enemy(ResourceType.LION);
+		ThreatFactory.createLevel3Enemy(ResourceType.CHIMP);
+		ThreatFactory.createLevel3Enemy(ResourceType.BEAR);
 		
 		// ------Effects---------
-		ThreatFactory.createLevel3Effect(ThreatFactory.EffectType.EARTHQUAKE);
-		ThreatFactory.createLevel3Effect(ThreatFactory.EffectType.GREEN_FEL_FIRE);
+		ThreatFactory.createLevel3Effect(ResourceType.EARTHQUAKE);
+		ThreatFactory.createLevel3Effect(ResourceType.GREEN_FEL_FIRE);
 	}
 
 	/**
@@ -104,13 +105,13 @@ public class ThreatManager extends SecondaryManager {
 		ThreatFactory.enemiesList.clear();
 
 		// -------Enemies--------
-		ThreatFactory.createLevel4Enemy(ThreatFactory.EnemyType.ZOMBIE_DUCK);
-		ThreatFactory.createLevel4Enemy(ThreatFactory.EnemyType.ROBBER);
-		ThreatFactory.createLevel4Enemy(ThreatFactory.EnemyType.ELEPHANT);
+		ThreatFactory.createLevel4Enemy(ResourceType.ZOMBIE_DUCK);
+		ThreatFactory.createLevel4Enemy(ResourceType.ROBBER);
+		ThreatFactory.createLevel4Enemy(ResourceType.ELEPHANT);
 		
 		// ------Effects---------
-		ThreatFactory.createLevel4Effect(ThreatFactory.EffectType.BLIGHT);
-		ThreatFactory.createLevel4Effect(ThreatFactory.EffectType.FEL);
+		ThreatFactory.createLevel4Effect(ResourceType.BLIGHT);
+		ThreatFactory.createLevel4Effect(ResourceType.FEL);
 
 		
 	}
