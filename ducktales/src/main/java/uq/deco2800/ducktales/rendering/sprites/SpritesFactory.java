@@ -101,6 +101,8 @@ public class SpritesFactory {
                 return createSchool(index, ResourceType.SCHOOL);
             case GYMNASIUM:
                 return createGymnasium(index, ResourceType.GYMNASIUM);
+            case STORAGEBARN:
+                return createStorageBarn(index, ResourceType.STORAGEBARN);
             default:
                 throw new GameSetupException("The given building type is" +
                         " not yet registered in SpritesFactory. Unable to" +
@@ -646,6 +648,39 @@ public class SpritesFactory {
      * @return The EntitySprite representing a quarry
      */
     private static BuildingSprite createQuarry(int index, ResourceType type) {
+        // The sprite to be returned
+        BuildingSprite sprite = new BuildingSprite(index, type);
+
+        // Setup the frames for the animation
+        List<Image> imageList = new ArrayList<>();
+        ResourceSpriteRegister register = ResourceSpriteRegister.getInstance();
+
+        // Now add all the images representing the animation here, one-by-one
+        //imageList.add(register.getResourceImage(ResourceType.DIRT_1));  DOES NOT WORK
+        imageList.add(register.getResourceImage(ResourceType.CONSTRUCTION_2));
+        imageList.add(register.getResourceImage(ResourceType.CONSTRUCTION));
+        imageList.add(register.getResourceImage(ResourceType.QUARRY));
+
+        // After all images are set up, now call these methods to set up the
+        // actual animation code
+        sprite.setImageList(imageList); // Give the interpolator the list of images
+        sprite.setupAnimation(5 * REAL_MINUTE); // Set up the actual animation, passing the duration
+        sprite.startAnimation(); // Start the actual animation
+
+        return sprite;
+    }
+    
+    /**
+     * Create a storage barn
+     *
+     * @param index
+     *          The index of the sprite
+     * @param type
+     *          The type of the sprite
+     *
+     * @return The EntitySprite representing a storage barn
+     */
+    private static BuildingSprite createStorageBarn(int index, ResourceType type) {
         // The sprite to be returned
         BuildingSprite sprite = new BuildingSprite(index, type);
 
