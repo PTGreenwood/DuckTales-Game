@@ -17,6 +17,7 @@ import uq.deco2800.ducktales.resources.ResourceInfoRegister;
 
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.features.landscape.tiles.Tile;
+import uq.deco2800.ducktales.features.time.TimeManager;
 import uq.deco2800.ducktales.rendering.sprites.BuildingSprite;
 import uq.deco2800.ducktales.util.*;
 
@@ -62,6 +63,8 @@ public class World implements Tickable {
 	private int timer = 0;
 	
 	private boolean nightAnimation = false;
+	
+	private boolean winterAnimation = false;
 	
 	/**
 	 * Instantiates a World with the given specified parameters, with the tiles
@@ -352,14 +355,19 @@ public class World implements Tickable {
 		// declared here, as not used elsewhere within the class
 		MainEntityManager mainManager = MainEntityManager.getInstance();
 		BuildingManager buildingManager = mainManager.getBuildingManager();
+		GameManager gameManager = GameManager.getGameManager();
+		TimeManager timeManager = gameManager.getTimeManager();
+		
 		List<BuildingSprite> buildingSprites = buildingManager.getBuildingSprites();
+		
 		for (int x = 0; x < buildingSprites.size(); x++) {
-			if (buildingSprites.get(x).getEntityType() == ResourceType.SCHOOL && timer > 1000
-					&& nightAnimation == false) {
+			if (buildingSprites.get(x).getEntityType() == ResourceType.SCHOOL 
+					&& nightAnimation == false && timeManager.isNight()) {
 				BuildingSprite buildingSprite = buildingSprites.get(x);
-				buildingSprite.nightAnimation();
-				System.err.println(timer);
-				nightAnimation = true;
+				if (buildingSprite.nightAnimation()) {
+					System.err.println(timer);
+					nightAnimation = true;
+				}
 			}
 		}
 		

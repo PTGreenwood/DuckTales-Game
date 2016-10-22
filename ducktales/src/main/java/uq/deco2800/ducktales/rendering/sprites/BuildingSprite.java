@@ -193,14 +193,17 @@ public class BuildingSprite extends EntitySprite {
     }
 
 	
-	public void nightAnimation() {
+	public boolean nightAnimation() {
+		if (this.timeline.getTotalDuration() == Duration.INDEFINITE) {
+			System.out.println("sdfsafdasfdsdfsadffasdf");
+			this.stopAnimation();
 		
-		System.out.println("sdfsafdasfdsdfsadffasdf");
-		this.stopAnimation();
-		
-		setupIdleAnimation(SpritesImages.schoolNight(), 3, true);
-		interpolator = new SpriteInterpolator(SpritesImages.schoolNight());
-		playIdleAnimation();
+			setupIdleAnimation(SpritesImages.schoolNight(), 3, true);
+			interpolator = new SpriteInterpolator(SpritesImages.schoolNight());
+			playIdleAnimation();
+			return true;
+		}
+		return false;
 		
 	}
 }
