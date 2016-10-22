@@ -6,9 +6,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 
-public class MissionTutorialController {
+public class MissionGameController {
 
-	
 	@FXML
 	private Label labelTop;
 	
@@ -32,7 +31,7 @@ public class MissionTutorialController {
 	@FXML
 	private ImageView box3;
 	
-	public MissionTutorialController() {
+	public MissionGameController() {
 		
 	}
 	
@@ -51,5 +50,4 @@ public class MissionTutorialController {
 	public BorderPane getMainWindow() {
 		return this.mainWindow;
 	}
-	
 }

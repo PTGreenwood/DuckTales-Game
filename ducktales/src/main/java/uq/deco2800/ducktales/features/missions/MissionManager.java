@@ -44,20 +44,20 @@ public class MissionManager {
 	private static final Logger LOGGER = Logger.getLogger(MissionManager.class.getName());
 			
 	/** Initialize classes */
-	private AchievementHandler achievementMain = AchievementHandler.getInstance();
 	private MissionHandler missionMain = MissionHandler.getInstance();
 	private LevelHandler levelMain = LevelHandler.getInstance();
-	private MissionProgressIndicator piMain = MissionProgressIndicator.getInstance();	
 	
 	private MissionMainController missionMainController;
 	private MissionTutorialController missionTutorialController;
 	private MissionProgressController missionProgressConroller;
+	private MissionGameController missionGameController;
 		
 	public MissionManager() {
 		
 		this.missionMainController = new MissionMainController();
 		this.missionTutorialController = new MissionTutorialController();
 		this.missionProgressConroller = new MissionProgressController();
+		this.missionGameController = new MissionGameController();
 	}
 	
 	public void loadMain() {
@@ -83,7 +83,8 @@ public class MissionManager {
 	private void removeAllPane() {
 		rightPane.getChildren().removeAll(missionMainController.getMainWindow(), 
 				this.missionTutorialController.getMainWindow(),
-				this.missionProgressConroller.getMainWindow());
+				this.missionProgressConroller.getMainWindow(),
+				this.missionGameController.getMainWindow());
 	}
 	
 	@FXML
@@ -100,7 +101,9 @@ public class MissionManager {
 			
 			missionProgressConroller = loader.getController();
 			
+			this.missionProgressConroller.setProgressPercentage(missionMain.getNumberOfCompletedMissions()/6);
 			root.setCenter(this.missionProgressConroller.getProgressIndicator());
+			
 			
 			rightPane.getChildren().add(root);
 		} catch (IOException e) {
@@ -138,6 +141,35 @@ public class MissionManager {
 		
 	}
 	
+	@FXML
+	private void loadGame() {		
+		
+		this.removeAllPane();
+		
+		URL location = getClass().getResource("/missions/missionGame.fxml");
+												
+		FXMLLoader loader = new FXMLLoader(location);
+		
+		try {
+			BorderPane root = loader.load();
+			
+			missionGameController = loader.getController();
+			
+			this.missionGameController.getBox1().setImage(
+					missionMain.getmissionImageCompleted(3));
+			this.missionGameController.getBox2().setImage(
+					missionMain.getmissionImageCompleted(4));
+			this.missionGameController.getBox3().setImage(
+					missionMain.getmissionImageCompleted(5));
+			
+			rightPane.getChildren().add(root);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			LOGGER.log(Level.SEVERE, e.toString(), e);
+		}
+		
+	}
+	
 	/**
 	 * Actions when the certain mission is completed
 	 * 
@@ -157,6 +189,7 @@ public class MissionManager {
         //Increment percentage of progress indicator in achievement
         missionMain.countNumberOfCompletedMissions();
         
+        this.missionProgressConroller.getProgressIndicator().setProgress(0.2);
         
         //If progress indicator is full then level up
         if(levelMain.getProgressBar().getProgress() >= 1.0) {
