@@ -2,12 +2,13 @@ package uq.deco2800.ducktales.features.entities;
 
 import java.io.IOException;
 
-import javafx.scene.layout.Pane;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import uq.deco2800.ducktales.GameManager;
 import uq.deco2800.ducktales.World;
 import uq.deco2800.ducktales.features.entities.agententities.AnimalManager;
 import uq.deco2800.ducktales.features.entities.worldentities.BuildingManager;
-import uq.deco2800.ducktales.features.landscape.tiles.TilesManager;
+import uq.deco2800.ducktales.features.helper.HelperManager;
 import uq.deco2800.ducktales.resources.ResourceInfoRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.Coordinate;
@@ -24,9 +25,8 @@ import uq.deco2800.ducktales.util.exceptions.GameSetupException;
  * @author Leggy, khoiphan21
  */
 public class MainEntityManager implements Tickable {
-
-    /** The world pane to add entities onto */
-    private Pane worldDisplay;
+    /** The logger */
+    private static final Logger LOGGER = LoggerFactory.getLogger(MainEntityManager.class);
 
     /** The Instance of this object */
     private static final MainEntityManager INSTANCE = new MainEntityManager();
@@ -37,9 +37,6 @@ public class MainEntityManager implements Tickable {
     /** The game manager */
     private GameManager gameManager;
 
-    /** The other secondary managers */
-    private TilesManager tilesManager;
-
     /** Helper Managers instantiated by this class */
     private AnimalManager animalManager;
     private BuildingManager buildingManager;
@@ -47,7 +44,10 @@ public class MainEntityManager implements Tickable {
 
     /** The registers */
     ResourceInfoRegister infoRegister;
-
+    
+    /** Boolean variables for building*/
+    private boolean isBuildingBuilt = false;
+    
     /**
      * Main constructor of the {@link MainEntityManager} class
      */
@@ -56,6 +56,8 @@ public class MainEntityManager implements Tickable {
         animalManager = new AnimalManager();
         buildingManager = new BuildingManager();
         peonManager = new PeonManager();
+
+        infoRegister = ResourceInfoRegister.getInstance();
     }
 
     /**
@@ -101,7 +103,7 @@ public class MainEntityManager implements Tickable {
      *          The y-coordinate of the tile where the animal will be added onto
      */
     public void addAnimal(ResourceType animalType, int x, int y) {
-        animalManager.addAnimal(animalType, x, y);
+        animalManager.addAnimal(animalType, x, y);      
     }
 
     /**
@@ -121,13 +123,21 @@ public class MainEntityManager implements Tickable {
             if (buildingType == ResourceType.HOUSE) {
                 // Tell the peon manager to add a peon at the given house
                 this.addPeonToHouse(x, y);
+                
             }
+            
+            //If building is added in the game, change the variable of isBuildingBuilt to true
+            this.isBuildingBuilt = true;
+            
+            
         } else {
             // the location requested for the building is not correct.
             // Ideally: display some sort of message to the user
         }
+        
     }
-
+    
+    
     /**
      * Add a peon to the given house location. The peon will always be added
      * to the 'front' of the house - where it can be seen by the player
@@ -140,9 +150,6 @@ public class MainEntityManager implements Tickable {
     public void addPeonToHouse(int houseLocationX, int houseLocationY) {
         // The final locations where the peon will be added to
         Coordinate finalLocation;
-
-        // The register to get the size of the house
-        ResourceInfoRegister infoRegister = ResourceInfoRegister.getInstance();
 
         // Get the final location using the path finding algorithm
         finalLocation = SpiralPathFinding.getFrontCoordinate(
@@ -168,13 +175,18 @@ public class MainEntityManager implements Tickable {
      */
     public void addPeon(int x, int y) {
         try {
-            peonManager.addPeon(x, y);
-        } catch (IOException exception) {
+            peonManager.addPeon(x, y);            
+            
+        } catch (IOException e) {
             // IOException may be due to the 'generateName' method of Peon class
-            exception.printStackTrace();
+            LOGGER.info("Failed to add a peon to the game", e);
         }
     }
-
+    
+    
+    public boolean getIsBuildingBuilt() {
+    	return this.isBuildingBuilt;
+    }
     /**
      * Move all the entity sprites in the game by the given x- and y- amount
      * @param xAmount
@@ -185,6 +197,7 @@ public class MainEntityManager implements Tickable {
     public void moveAllEntities(double xAmount, double yAmount) {
         animalManager.moveAllAnimalsSprites(xAmount, yAmount);
         buildingManager.moveAllBuildingSprites(xAmount, yAmount);
+        peonManager.moveAllPeonSprites(xAmount, yAmount);
     }
 
     /**
@@ -206,27 +219,6 @@ public class MainEntityManager implements Tickable {
     public void setGameManager(GameManager gameManager) {
         this.gameManager = gameManager;
 
-    }
-
-    /**
-     * Pass this manager a handle on the Tiles Manager
-     *
-     * @param tilesManager
-     *          The tiles manager of the game
-     */
-    public void setTilesManager(TilesManager tilesManager) {
-        this.tilesManager = tilesManager;
-    }
-
-    /**
-     * Pass this manager a handle on the world display, for it to add entities
-     * into
-     *
-     * @param worldDisplay
-     *          The display where all entities in the world is rendered onto
-     */
-    public void setWorldDisplay(Pane worldDisplay) {
-        this.worldDisplay = worldDisplay;
     }
 
     @Override
@@ -263,6 +255,18 @@ public class MainEntityManager implements Tickable {
         this.animalManager.setGameManager(this.gameManager);
         this.buildingManager.setGameManager(this.gameManager);
         this.peonManager.setGameManager(this.gameManager);
+    }
+    
+    
+    /** 
+     * Method to return the current instance of the building manager. 
+     * Returns the instance of the building manager that contains all the 
+     * sprites in the game.
+     * 
+     * @return the instance of the building manager intialised.
+     */
+    public BuildingManager getBuildingManager() {
+    	return this.buildingManager;
     }
 
 }

@@ -2,8 +2,6 @@ package uq.deco2800.ducktales.features.weather;
 
 import java.util.*;
 
-import javax.print.attribute.standard.MediaSize.Other;
-
 /**
  * @author mattyleggy
  *
@@ -111,9 +109,18 @@ public class WeatherEvents {
 			int randomPick = randomChance.nextInt(possibilities.size());			
 			return possibilities.get(randomPick).getWeather();
 		}
-		return null;
+		return new Fire();
 	}
 
+	/** 
+	 * Remove all weatherEvents within the HashSet.
+	 * 
+	 * @author Peter Greenwood.
+	 */
+	public void removeAllWeatherEvents() {
+		this.weatherEvents.clear();
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

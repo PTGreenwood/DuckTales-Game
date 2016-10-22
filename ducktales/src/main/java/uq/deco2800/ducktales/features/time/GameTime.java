@@ -16,7 +16,7 @@ public class GameTime implements Tickable {
 	// Instantiate the GameTime
 	protected int day;
 	protected int year;
-	protected Season season;
+	protected int seasonDayTracker;
 
 	private int hour;
 	private int minute;
@@ -34,10 +34,10 @@ public class GameTime implements Tickable {
 
 		this.day = 1; // Set day of calendar at 1
 		this.year = 1; // Set year of calendar at 1
-
+		this.seasonDayTracker = 1;
 		// As fixed variables are set for day and year
 		// So to will the season automatically start in Spring
-		this.season = Season.SPRING;
+		//this.season = //Fix to be Sprig yet changeable on command
 
 		// Considering making this just one number and mathing it to get the
 		// right time depending on day and year. Can then also have total time
@@ -118,9 +118,8 @@ public class GameTime implements Tickable {
 			}
 			if (hour == 24) {
 				day++;
+				seasonDayTracker++;
 				hour = 0;
-				// Left this hear to print out the time once a day
-				System.out.println(printGameTime());
 			}
 			if (this.day / this.year > 80) {
 				this.year++;
@@ -128,9 +127,7 @@ public class GameTime implements Tickable {
 		} else {
 			tickCounter++;
 		}
-		// Uncomment this to see a print out of the current time every minute
-		// update
-		// System.out.println(printGameTime());
+
 	}
 
 	/**
@@ -151,25 +148,6 @@ public class GameTime implements Tickable {
 		return this.year;
 	}
 
-	/**
-	 * Retrieves the current season
-	 * 
-	 * @return Season: currentSeason of world
-	 */
-	public Season getCurrentSeason() {
-		return season;
-	}
-
-	/**
-	 * Sets the current season to be a season passed in Note: must be of type
-	 * Season
-	 *
-	 * @param Season
-	 *            season: Spring, Summer, Autumn or Winter
-	 */
-	public void setSeason(Season season) {
-		this.season = season;
-	}
 
 	/**
 	 * Sets the current year of the Calendar to be whatever is passed in
@@ -215,11 +193,34 @@ public class GameTime implements Tickable {
 	}
 
 	/**
+	 * Get the seasonalDay Tracker. 20 days in each season
+	 * 
+	 * @return int
+	 * 			- Returns the day within the season.
+	 */
+	public int getSeasonalDayTracker() {
+		return this.seasonDayTracker;
+	}
+	
+	/**
+	 * Reset the seasonalDay tracker when changing seasons
+	 *
+	 */
+	public void resetTracker() {
+		this.seasonDayTracker = 1;
+	}
+	
+	/**
+	 * Updates the dayTracker when dayTime Ticks over
+	 */
+	/*
+	
+	/**
 	 * Returns the percent chance of the fire weather event occurring as an
 	 * integer. This chance is different depending on the season.
 	 * 
 	 * @return a integer of the percent chance of fire
-	 */
+	 
 	public int getChanceOfFire() {
 		int chance = 0;
 		switch (this.getCurrentSeason()) {
@@ -244,7 +245,7 @@ public class GameTime implements Tickable {
 	 * integer. This chance is different depending on the season.
 	 * 
 	 * @return a integer of the percent chance of rain
-	 */
+	 
 	public int getChanceOfRain() {
 		int chance = 0;
 		switch (getCurrentSeason()) {
@@ -269,7 +270,7 @@ public class GameTime implements Tickable {
 	 * integer. This chance is different depending on the season.
 	 * 
 	 * @return a integer of the percent chance of a cyclone
-	 */
+	 
 	public int getChanceOfCyclone() {
 		int chance = 0;
 		switch (getCurrentSeason()) {
@@ -294,7 +295,7 @@ public class GameTime implements Tickable {
 	 * integer. This chance is different depending on the season.
 	 * 
 	 * @return a integer of the percent chance of a tornado
-	 */
+	 
 	public int getChanceOfTornado() {
 		int chance = 0;
 		switch (getCurrentSeason()) {
@@ -319,7 +320,7 @@ public class GameTime implements Tickable {
 	 * integer. This chance is different depending on the season.
 	 * 
 	 * @return a integer of the percent chance of lightning
-	 */
+	 
 	public int getChanceOfLightning() {
 		int chance = 0;
 		switch (getCurrentSeason()) {
@@ -344,7 +345,7 @@ public class GameTime implements Tickable {
 	 * integer. This chance is different depending on the season.
 	 * 
 	 * @return a integer of the percent chance of thunder
-	 */
+	 
 	public int getChanceOfThunder() {
 		int chance = 0;
 		switch (getCurrentSeason()) {
@@ -369,7 +370,7 @@ public class GameTime implements Tickable {
 	 * integer. This chance is different depending on the season.
 	 * 
 	 * @return a integer of the percent chance of a whirlpool
-	 */
+	 
 	public int getChanceOfWhirlpool() {
 		int chance = 0;
 		switch (getCurrentSeason()) {
@@ -387,5 +388,5 @@ public class GameTime implements Tickable {
 			break;
 		}
 		return chance;
-	}
+	}*/
 }

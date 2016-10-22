@@ -7,35 +7,35 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="146.0" prefWidth="270.0" style="-fx-background-color: #71716F; -fx-border-color: #C29161; -fx-border-width: 3px;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="140.0" prefWidth="270.0" style="-fx-background-color: #71716F; -fx-border-color: #C29161; -fx-border-width: 2px;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Region fx:id="itemPictureRegion" layoutX="18.0" layoutY="22.0" prefHeight="74.0" prefWidth="72.0" style="-fx-background-color: #ffffffff;" />
-      <Button fx:id="viewOffersBtn" layoutX="102.0" layoutY="75.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="151.0" style="-fx-background-color: #80ab4a; -fx-border-radius: 0px;" text="View Offers" textFill="WHITE">
+      <Region fx:id="itemPictureRegion" layoutX="20.0" layoutY="49.0" prefHeight="80.0" prefWidth="80.0" style="-fx-background-color: #ffffffff;" />
+      <Button fx:id="viewOffersBtn" layoutX="107.0" layoutY="49.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #80ab4a; -fx-border-color: #efba1a; -fx-border-width: 3px; -fx-background-radius: 0px;" text="View Offers" textFill="WHITE">
          <font>
             <Font name="Press Start 2P" size="10.0" />
          </font>
       </Button>
-      <TextField layoutX="101.0" layoutY="17.0" prefHeight="10.0" prefWidth="100.0" style="-fx-background-color: #71716F;">
+      <TextField layoutX="17.0" layoutY="20.0" prefHeight="21.0" prefWidth="119.0" style="-fx-background-color: #71716F;">
          <font>
             <Font size="10.0" />
          </font>
       </TextField>
-      <Label fx:id="itemNameLabel" layoutX="104.0" layoutY="25.0" text="Item Name" textFill="WHITE">
+      <Label fx:id="itemNameLabel" layoutX="20.0" layoutY="20.0" text="Item Name" textFill="WHITE">
          <font>
             <Font name="Press Start 2P" size="12.0" />
          </font>
       </Label>
-      <TextField layoutX="101.0" layoutY="47.0" prefHeight="4.0" prefWidth="100.0" style="-fx-background-color: #71716F;">
+      <TextField layoutX="133.0" layoutY="20.0" prefHeight="4.0" prefWidth="100.0" style="-fx-background-color: #71716F;">
          <font>
-            <Font name="Press Start 2P" size="10.0" />
+            <Font name="Press Start 2P" size="12.0" />
          </font>
       </TextField>
-      <Label fx:id="quantityLabel" layoutX="105.0" layoutY="50.0" text="Quantity" textFill="WHITE">
+      <Label fx:id="quantityLabel" layoutX="136.0" layoutY="20.0" text="Quantity" textFill="WHITE">
          <font>
-            <Font name="Press Start 2P" size="10.0" />
+            <Font name="Press Start 2P" size="12.0" />
          </font>
       </Label>
-      <Button fx:id="deleteBtn" layoutX="102.0" layoutY="105.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="151.0" style="-fx-background-color: #80ab4a; -fx-border-radius: 0px;" text="Delete" textFill="WHITE">
+      <Button fx:id="deleteBtn" layoutX="107.0" layoutY="97.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #80ab4a; -fx-border-color: #efba1a; -fx-border-width: 3px; -fx-background-radius: 0px;" text="Delete" textFill="WHITE">
          <font>
             <Font name="Press Start 2P" size="10.0" />
          </font>

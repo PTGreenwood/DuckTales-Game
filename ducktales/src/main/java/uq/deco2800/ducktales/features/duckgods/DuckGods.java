@@ -37,17 +37,8 @@ public abstract class DuckGods {
     public String getDuckName() {
     	return duckName;
     }
-    /** to get what needed to sacrifice
-     * 
-     * @return
-     */
-    public String[] getSacrifice() {
-    	String[] Sacrifice ={this.getrequiredSacrifice(),this.getrequiredAmount()};
-    	return Sacrifice;
-    } 
     private String getrequiredAmount() {
-	// TODO Auto-generated method stub
-	return null;
+	    return "";
     }
 	public String getrequiredSacrifice() {
     	return requiredSacrifice;
@@ -68,7 +59,7 @@ public abstract class DuckGods {
     }
 
     public void worship() {
-        if(isBuilt==true && isSelected==true) {
+        if(isBuilt && !isSelected) {
             isWorshiped = true;
         }
     }

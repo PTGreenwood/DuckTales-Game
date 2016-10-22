@@ -1,7 +1,7 @@
 package uq.deco2800.ducktales.jobframework;
 
 import org.junit.Test;
-import uq.deco2800.ducktales.features.entities.agententities.Peon;
+import uq.deco2800.ducktales.features.entities.peons.Peon;
 import uq.deco2800.ducktales.features.jobframework.JobType;
 import uq.deco2800.ducktales.features.jobframework.Priest;
 import static org.junit.Assert.*;
@@ -9,12 +9,17 @@ import static org.junit.Assert.*;
 /**
  * @author Nicolas Turner (TheFractal on github and Fractal on slack)
  */
+/*
+ * Have commented this out as there is now no more priest class.
+ * Replaced with teacher instead.
+ * 
+
 public class PriestTest {
 	private Priest priest = new Priest();
 
 	@Test
 	public void qualificationTest() {
-		Peon peon = new Peon(10, 10);
+		Peon peon = new Peon(10, 10, "John Doe");
 		peon.setStrength(priest.getRequiredStrength() + 1);
 		peon.setIntelligence(priest.getRequiredIntelligence() + 1);
 
@@ -25,7 +30,7 @@ public class PriestTest {
 	}
 
 	public void applicationTest() {
-		Peon peon = new Peon(10, 10);
+		Peon peon = new Peon(10, 10, "John Doe");
 		peon.setStrength(priest.getRequiredStrength() + 1);
 		peon.setIntelligence(priest.getRequiredIntelligence() + 1);
 
@@ -34,7 +39,7 @@ public class PriestTest {
 	}
 
 	public void notQualifiedBothTest() {
-		Peon peon = new Peon(10, 10);
+		Peon peon = new Peon(10, 10, "John Doe");
 		peon.setStrength(priest.getRequiredStrength() - 1);
 		peon.setIntelligence(priest.getRequiredIntelligence() - 1);
 
@@ -42,7 +47,7 @@ public class PriestTest {
 	}
 
 	public void notQualifiedStrengthTest() {
-		Peon peon = new Peon(10, 10);
+		Peon peon = new Peon(10, 10, "John Doe");
 		peon.setStrength(priest.getRequiredStrength() - 1);
 		peon.setIntelligence(priest.getRequiredIntelligence() + 1);
 
@@ -50,7 +55,7 @@ public class PriestTest {
 	}
 
 	public void notQualifiedIntelligenceTest() {
-		Peon peon = new Peon(10, 10);
+		Peon peon = new Peon(10, 10, "John Doe");
 		peon.setStrength(priest.getRequiredStrength() + 1);
 		peon.setIntelligence(priest.getRequiredIntelligence() - 1);
 
@@ -59,7 +64,7 @@ public class PriestTest {
 
 	@Test
 	public void notQualifiedBothMentorTest() {
-		Peon peon = new Peon(10, 10);
+		Peon peon = new Peon(10, 10, "John Doe");
 		peon.setStrength(priest.getMentorStrength() - 1);
 		peon.setIntelligence(priest.getMentorIntelligence() - 1);
 		peon.applyForJob(priest);
@@ -68,14 +73,14 @@ public class PriestTest {
 	}
 
 	public void notQualifiedStrengthMentorTest() {
-		Peon peon = new Peon(10, 10);
+		Peon peon = new Peon(10, 10, "John Doe");
 		peon.setIntelligence(priest.getMentorIntelligence() + 1);
 
 		assertFalse(priest.canBeMentor(peon));
 	}
 
 	public void notQualifiedIntelligenceMentorTest() {
-		Peon peon = new Peon(10, 10);
+		Peon peon = new Peon(10, 10, "John Doe");
 		peon.setStrength(priest.getMentorStrength() + 1);
 		peon.setIntelligence(priest.getMentorIntelligence() - 1);
 
@@ -83,10 +88,10 @@ public class PriestTest {
 	}
 
 	public void qualifiedBothMentorTest() {
-		Peon peon = new Peon(10, 10);
+		Peon peon = new Peon(10, 10, "John Doe");
 		peon.setStrength(priest.getMentorStrength() + 1);
 		peon.setIntelligence(priest.getMentorIntelligence() + 1);
 
 		assertTrue(priest.canBeMentor(peon));
 	}
-}
+}*/

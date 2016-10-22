@@ -45,8 +45,8 @@ subprojects {
 
   dependencies {
     // DECO2800 dependencies
-    compile (group: 'uq.deco2800.singularity', name: 'common', version: '0.1-SNAPSHOT', changing: true)
-    compile (group: 'uq.deco2800.singularity', name: 'clients', version: '0.1-SNAPSHOT', changing: true)
+    compile (group: 'uq.deco2800.singularity', name: 'common', version: '0.3-SNAPSHOT', changing: true)
+    compile (group: 'uq.deco2800.singularity', name: 'clients', version: '0.3-SNAPSHOT', changing: true)
 
     // Logging via Log4J 2.0 using the SLF4J API
     compile group: 'org.slf4j', name:'slf4j-api', version: '1.7.12'

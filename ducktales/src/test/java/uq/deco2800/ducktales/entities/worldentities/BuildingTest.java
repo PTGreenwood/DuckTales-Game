@@ -1559,33 +1559,70 @@ public class BuildingTest {
 		entity.produceMaterial();
 		entity.produceMaterial();
 		assertEquals(entity.getStorage().toString(), "[(TIMBER,50,8), (LUMBER,50,0)]");
+		for (int i = 0; i < 50; i++) {
+			entity.produceMaterial();
+		}
+		assertEquals(entity.getStorage().toString(), "[(TIMBER,50,8), (LUMBER,50,0)]");
 	}
 	
 	/**
 	 * Test the produceMaterial method. 
 	 */
-	@Test (expected = UnsupportedOperationException.class)
+	@Test
 	public void FarmProcessTest() {
 		Farm entity = new Farm(1,1);
 		entity.produceMaterial();
+		entity.produceMaterial();
+		assertEquals(entity.getStorage().toString(), "[(FOOD,50,2)]");
+		entity.produceMaterial();
+		entity.produceMaterial();
+		entity.produceMaterial();
+		entity.produceMaterial();
+		assertEquals(entity.getStorage().toString(), "[(FOOD,50,6)]");
+		for (int i = 0; i < 50; i++) {
+			entity.produceMaterial();
+		}
+		assertEquals(entity.getStorage().toString(), "[(FOOD,50,50)]");
 	}
 	
 	/**
 	 * Test the produceMaterial method. 
 	 */
-	@Test (expected = UnsupportedOperationException.class)
+	@Test
 	public void QuarryProcessTest() {
 		Quarry entity = new Quarry(1,1);
 		entity.produceMaterial();
+		entity.produceMaterial();
+		assertEquals(entity.getStorage().toString(), "[(STONE,50,2)]");
+		entity.produceMaterial();
+		entity.produceMaterial();
+		entity.produceMaterial();
+		entity.produceMaterial();
+		assertEquals(entity.getStorage().toString(), "[(STONE,50,6)]");
+		for (int i = 0; i < 50; i++) {
+			entity.produceMaterial();
+		}
+		assertEquals(entity.getStorage().toString(), "[(STONE,50,50)]");
 	}
 	
 	/**
 	 * Test the produceMaterial method. 
 	 */
-	@Test (expected = UnsupportedOperationException.class)
+	@Test 
 	public void MineProcessTest() {
 		Mine entity = new Mine(1,1);
 		entity.produceMaterial();
+		entity.produceMaterial();
+		assertEquals(entity.getStorage().toString(), "[(ORE,50,2)]");
+		entity.produceMaterial();
+		entity.produceMaterial();
+		entity.produceMaterial();
+		entity.produceMaterial();
+		assertEquals(entity.getStorage().toString(), "[(ORE,50,6)]");
+		for (int i = 0; i < 50; i++) {
+			entity.produceMaterial();
+		}
+		assertEquals(entity.getStorage().toString(), "[(ORE,50,50)]");
 	}
 	
 	/**
@@ -1595,5 +1632,21 @@ public class BuildingTest {
 	public void StorageBarnProcessTest() {
 		StorageBarn entity = new StorageBarn(1,1);
 		entity.produceMaterial();
+	}
+	
+	/**
+	 * Test to ProduceStorageBuilding method. 
+	 */
+	@Test 
+	public void buildingTypeTest() {
+		Building entity = new StorageBarn(1,1);
+		StorageProduceBuilding entitySP = new StorageBarn(1,1);
+		Building entity2 = new Sawmill(3,5);
+		StorageProduceBuilding entity2SP = new Sawmill(3,5);
+		Building entity3 = new House(9,10);
+		
+		assertEquals(entity.toStorageProduceBuilding(entity), entitySP);
+		assertEquals(entity2.toStorageProduceBuilding(entity2), entity2SP);
+		assertEquals(entity3.toStorageProduceBuilding(entity3), null);
 	}
 }

@@ -2,18 +2,17 @@ package uq.deco2800.ducktales.features.weather;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import uq.deco2800.ducktales.features.hud.menu.MenuManager;
+import uq.deco2800.ducktales.features.seasons.SeasonManager;
+import uq.deco2800.ducktales.features.time.TimeManager;
 import uq.deco2800.ducktales.util.SecondaryManager;
 import uq.deco2800.ducktales.util.Tickable;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -26,8 +25,8 @@ import java.util.ResourceBundle;
  * 
  * @author mattleggy
  */
-public class WeatherManager
-		implements SecondaryManager, Initializable, Tickable {
+public class WeatherManager extends SecondaryManager
+		implements Initializable, Tickable {
 	// may not need this any more...
 	private WeatherCanvas weatherCanvas;
 	// main weather display pane
@@ -49,11 +48,11 @@ public class WeatherManager
 	private WeatherEvents weatherEvents;
 	// current weather event
 	private Weather currentWeather;
+	private int currentHour;
+	private int currentDay;
 
-	@Override
-	public void reload() {
-
-	}
+	private TimeManager timeManager;
+	private SeasonManager seasonManager;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -70,33 +69,52 @@ public class WeatherManager
 		AnchorPane.setTopAnchor(weatherDisplayCanvas, 0.0);
 		AnchorPane.setBottomAnchor(weatherDisplayCanvas, 0.0);
 		context = weatherDisplayCanvas.getGraphicsContext2D();
-		// weatherManager.tick();
-		for (int i = 0; i < 50; i++) {
+		// weatherManager.tick();		
+
+		weatherEvents = new WeatherEvents();
+		currentHour = -1;
+		
+		this.createShapes(50,this.isFalling());
+
+		weatherDisplayCanvas.setMouseTransparent(true);
+		weatherDisplay.getChildren().add(weatherDisplayCanvas);		
+	}
+
+	/**
+	 * Create the shapes at random position to be drawn onto the canvas. Must be
+	 * greater than 0.
+	 * 
+	 * @param amount
+	 *            the amount of shapes to be drawn onto the canvas, must be
+	 *            greater than 0.
+	 */
+	private void createShapes(int amount, boolean falling) {
+		shapes.clear();
+		for (int i = 0; i < amount; i++) {
 			int randX = (int) Math.ceil(Math.random() * canvasWidth);
 			int randY = (int) Math.ceil(Math.random() * canvasHeight);
 			int randDirection = (int) Math.floor(Math.random() * 7) - 3;
-			int randAcceleration = (int) (Math.random() * 5) + 10; // random
-																	// acceleration
+			int randAcceleration = (int) (Math.random() * 5) + 10;
+			/*if (!falling)
+				randAcceleration = randAcceleration*-1;*/
 			WeatherCanvasShape shape = new WeatherCanvasShape(randX, randY,
 					randDirection, randAcceleration);
 			shapes.add(shape);
 			drawPositions(randX, randY, randDirection);
 		}
+	}
 
-		weatherEvents = new WeatherEvents();
-		try {
-			weatherEvents.add(new WeatherChance(new Rain(), 10));
-			weatherEvents.add(new WeatherChance(new Snow(), 90));
-			// weatherEvents.add(new WeatherChance(new
-			// Storm(StormType.LIGHTNING), 30));
-		} catch (InvalidWeatherChanceException exception) {
+	public void setTimeManager(TimeManager timeManager) {
+		this.timeManager = timeManager;
+		this.seasonManager = timeManager.getSeasonManager();
+	}
 
-		}
+	public TimeManager getTimeManager() {
+		return this.timeManager;
+	}
 
-		currentWeather = getWeatherPossibility();
-
-		weatherDisplayCanvas.setMouseTransparent(true);
-		weatherDisplay.getChildren().add(weatherDisplayCanvas);
+	public SeasonManager getSeasonManager() {
+		return this.seasonManager;
 	}
 
 	/**
@@ -174,7 +192,7 @@ public class WeatherManager
 		context.arc(x, y, 20, 20, 2 * Math.PI, 1);
 		context.stroke();
 		context.fill();
-		context.setLineWidth(20);
+		context.setLineWidth(5);
 		context.stroke();
 	}
 
@@ -201,27 +219,92 @@ public class WeatherManager
 		if (tickCount == 1) {
 			Platform.runLater(() -> {
 				context.clearRect(0, 0, canvasWidth, canvasHeight);
-				if (weatherEvents.size() > 0) {
-					for (WeatherCanvasShape shape : shapes) {
-						if (shape.getX() > canvasWidth) {
-							shape.setX(-20);
-						} else {
-							shape.setX((shape.getX() + (shape.getDirection())));
-						}
-						if (shape.getY() > canvasHeight) {
-							shape.setY(-20);
-						} else {
-							shape.setY(
-									(shape.getY() + shape.getAcceleration()));
-						}
-						drawPositions(shape.getX(), shape.getY(),
-								shape.getDirection());
-					}
-				}
+				this.setCurrentWeather();
+				this.drawShapes();
 			});
 			tickCount = 0;
 		}
 		tickCount++;
+	}
+
+	private void drawShapes() {
+		if (weatherEvents.size() > 0 && currentWeather != null) {
+			for (WeatherCanvasShape shape : shapes) {
+				this.shiftPositions(shape);
+			}
+		}
+	}
+
+	/**
+	 * If the shape falls outside of the bounds of the canvas, reset it to be in
+	 * a new position where it can reappear onto the canvas.
+	 * 
+	 * @param shape
+	 *            the shape to shift positions of
+	 */
+	private void shiftPositions(WeatherCanvasShape shape) {
+		if (shape.getX() > canvasWidth) {
+			// shape.setX((int) Math.ceil(Math.random() *
+			// canvasWidth));
+			shape.setX(-20);
+		} else {
+			shape.setX((shape.getX() + (shape.getDirection())));
+		}
+		if (shape.getY() > canvasHeight) {
+			shape.setY(-20);
+		} else {
+			shape.setY((shape.getY() + shape.getAcceleration()));
+		}
+		drawPositions(shape.getX(), shape.getY(), shape.getDirection());
+	}
+
+	private void setCurrentWeather() {
+		if (this.getTimeManager() != null) {
+			int hour = this.getTimeManager().getGameTimeObject().getHour();
+			int day = this.getTimeManager().getGameTimeObject().getCurrentDay();
+			if (currentHour != hour) {
+				currentHour = hour;
+				currentDay = day;
+				WeatherEvents seasonEvents = this.getSeasonManager()
+						.getCurrentSeason().getSeasonalWeatherEvents();
+				setWeatherEvents(seasonEvents);
+				System.out.println(
+						this.getSeasonManager().getCurrentSeason().getName()
+								+ ": " + seasonEvents);
+				currentWeather = getWeatherPossibility();				
+				this.setLighting();
+			}
+		}
+	}
+
+	private boolean isFalling() {
+		if (currentWeather instanceof Rain || currentWeather instanceof Snow)
+			return true;
+		return false;
+	}
+
+	private void setLighting() {
+		if(this.getTimeManager().isNight()) {
+			setNight();
+		} else {
+			setDay();
+		}
+	}
+
+	private void setDay() {
+		this.removeClasses();
+		weatherDisplay.getStyleClass().add("day");
+	}
+
+	private void setNight() {
+		this.removeClasses();
+		weatherDisplay.getStyleClass().add("night");
+	}
+
+	private void removeClasses() {
+		for (int i = 0; i < weatherDisplay.getStyleClass().size(); i++) {
+			weatherDisplay.getStyleClass().remove(0);
+		}
 	}
 
 }

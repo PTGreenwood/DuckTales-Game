@@ -22,7 +22,7 @@ import java.util.ResourceBundle;
  * Created on 7/09/2016.
  * @author khoiphan21
  */
-public class WorldDisplayManager implements Initializable, SecondaryManager {
+public class WorldDisplayManager extends SecondaryManager implements Initializable {
     /** The pane where all world objects will be added to */
     @FXML
     private Pane worldDisplay;
@@ -52,11 +52,6 @@ public class WorldDisplayManager implements Initializable, SecondaryManager {
 
     }
 
-    @Override
-    public void reload() {
-    	//initializeWorld();
-    }
-
     /**
      * This method is called by Game Manager when all managers have been set up,
      * which will render the initial world onto the display
@@ -80,7 +75,7 @@ public class WorldDisplayManager implements Initializable, SecondaryManager {
 	 * @param weather
 	 * 			weather to change current scene to
 	 * @param pane
-	 * 			pane to place the weather effecst into
+	 * 			pane to place the weather effects into
 	 */
 	public void changeWeather(Weather weather, Pane pane) {
 		WeatherEffect weatherEffect = weather.getWeatherEffect();
@@ -105,8 +100,9 @@ public class WorldDisplayManager implements Initializable, SecondaryManager {
 	 *  
 	 */
 	public void changeLightLevel(Pane pane) {
-        if (this.gameManager.getTimeManager() == null) {
-            System.err.println("time manager is still empty");
+        //getTimeManager is now getCalendarManager.
+		if (this.gameManager.getTimeManager() == null) {
+            System.err.println("Time manager is still empty");
         } else {
         	//This will change once it's all worked out.
             //boolean nightTime = this.gameManager.getTimeManager().isNight();

@@ -3,24 +3,28 @@ package uq.deco2800.ducktales.features.hud.menu;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.RowConstraints;
-import javafx.scene.text.Text;
+import uq.deco2800.ducktales.features.hud.HUDSprite;
 import uq.deco2800.ducktales.features.hud.menu.animal.AnimalMenuSprite;
 import uq.deco2800.ducktales.features.hud.menu.building.BuildingMenuSprite;
 import uq.deco2800.ducktales.rendering.info.WorldEntityInfo;
 import uq.deco2800.ducktales.resources.ResourceType;
-import uq.deco2800.ducktales.util.SecondaryManager;
 
 import static uq.deco2800.ducktales.resources.ResourceType.BAKERY;
 import static uq.deco2800.ducktales.resources.ResourceType.BUTCHER;
@@ -39,6 +43,7 @@ import static uq.deco2800.ducktales.resources.ResourceType.QUARRY;
 import static uq.deco2800.ducktales.resources.ResourceType.SAWMILL;
 import static uq.deco2800.ducktales.resources.ResourceType.SCHOOL;
 import static uq.deco2800.ducktales.resources.ResourceType.GYMNASIUM;
+import static uq.deco2800.ducktales.resources.ResourceType.STORAGEBARN;
 import static uq.deco2800.ducktales.resources.ResourceType.SHEEP;
 import static uq.deco2800.ducktales.resources.ResourceType.COW;
 
@@ -47,19 +52,18 @@ import static uq.deco2800.ducktales.resources.ResourceType.COW;
  *
  * Created on 7/09/2016.
  */
-public class MenuManager implements Initializable, SecondaryManager {
+public class MenuManager implements Initializable {
 	/**
 	 * CONSTANTS
 	 */
 	// TODO: TO ADD NEW BUILDINGS, REGISTER THEIR NAMES HERE
-	private static final ResourceType[] BUILDINGS = { BAKERY, BUTCHER, CEMETERY,
-			CHURCH, COMMUNITY_BUILDING, FARM, FORGE, HOSPITAL, HOUSE, SCHOOL,
-			GYMNASIUM, MINE, OBSERVATORY, PASTURE, QUARRY, SAWMILL, };
+	private static final ResourceType[] BUILDINGS = { BAKERY, BUTCHER, CEMETERY, CHURCH, COMMUNITY_BUILDING, FARM,
+			FORGE, HOSPITAL, HOUSE, SCHOOL, GYMNASIUM, MINE, OBSERVATORY, PASTURE, QUARRY, SAWMILL, STORAGEBARN};
 	// TODO: TO ADD NEW ANIMALS, REGISTER THEIR NAMES HERE
 	public static final ResourceType[] ANIMALS = { SHEEP, DUCK, COW };
 
 	// enum to check which is selected, a BUILDING or an ANIMAL
-	public enum MenuType {
+	public static enum MenuType {
 		BUILDING, ANIMAL
 	}
 
@@ -72,6 +76,9 @@ public class MenuManager implements Initializable, SecondaryManager {
 	private Button nextGridButton;
 	@FXML
 	private Button previousGridButton;
+	
+	// Logger for the class
+	private static final Logger LOGGER = Logger.getLogger(MenuManager.class.getName());
 
 	// building options list to be displayed in HUD
 	private ArrayList<GridPane> buildingOptionList;
@@ -79,20 +86,18 @@ public class MenuManager implements Initializable, SecondaryManager {
 	private ArrayList<GridPane> animalOptionList;
 
 	// amount of rows in the options grid
-	private final int gridRows = 7;
+	private static final int GRIDROWS = 7;
 	// amount of columns in the options grid
-	private final int gridColumns = 2;
+	private static final int GRIDCOLUMNS = 2;
 
 	/** The lists of menu sprites */
-	private ArrayList<BuildingMenuSprite> buildingMenuSprites;
-	private ArrayList<AnimalMenuSprite> animalMenuSprites;
+	private static ArrayList<BuildingMenuSprite> buildingMenuSprites;
+	private static ArrayList<AnimalMenuSprite> animalMenuSprites;
 
 	/** Helpers for rendering information */
 	private WorldEntityInfo worldEntityInfo;
 
-	// Current grid visible in the HUD
-	private String currentGrid;
-	private int currentGridIndex;
+	private static GridActive gridActive = null;;
 
 	/**
 	 * This method is called when FXML Loader instantiates this class
@@ -107,6 +112,7 @@ public class MenuManager implements Initializable, SecondaryManager {
 		animalOptionList = new ArrayList<>();
 		nextGridButton.setVisible(false);
 		previousGridButton.setVisible(false);
+		gridActive = new GridActive();
 		// Instantiating and set up the menus
 		setupMenus();
 	}
@@ -119,24 +125,22 @@ public class MenuManager implements Initializable, SecondaryManager {
 	 * @param index
 	 *            the index of the list which is visible
 	 */
-	private void setCurrentGrid(String grid, int index) {
-		this.currentGrid = grid;
-		this.currentGridIndex = index;
-		
-		if (this.currentGridIndex == 0)
+	private void setCurrentGrid(MenuType currentMenu, int gridIndex) {
+		gridActive.setGridActive(currentMenu, gridIndex);
+		if (gridActive.getCurrentGridIndex() == 0)
 			previousGridButton.setVisible(false);
-		else 
+		else
 			previousGridButton.setVisible(true);
-		
-		switch (this.currentGrid) {
-		case "buildings":
-			if (this.currentGridIndex == (buildingOptionList.size()-1))
+
+		switch (gridActive.getCurrentMenu()) {
+		case BUILDING:
+			if (gridActive.getCurrentGridIndex() == (buildingOptionList.size() - 1))
 				nextGridButton.setVisible(false);
 			else
 				nextGridButton.setVisible(true);
 			break;
-		case "animals":
-			if (this.currentGridIndex == (animalOptionList.size()-1))
+		case ANIMAL:
+			if (gridActive.getCurrentGridIndex() == (animalOptionList.size() - 1))
 				nextGridButton.setVisible(false);
 			else
 				nextGridButton.setVisible(true);
@@ -144,23 +148,26 @@ public class MenuManager implements Initializable, SecondaryManager {
 		}
 	}
 
-	/**
-	 * 
-	 * @author mattyleggy
-	 * 
-	 * @return the grid which is currently visible in the HUD
-	 */
-	private String getCurrentGrid() {
-		return this.currentGrid;
+	public static void selectItemByIndex(int index) {
+		int currentGridIndex = getCurrentGrid().getCurrentGridIndex();
+		MenuType currentMenu = getCurrentGrid().getCurrentMenu();
+		int itemIndex = index + (currentGridIndex * (GRIDROWS * GRIDCOLUMNS));
+		if (currentMenu.equals(MenuType.BUILDING)) {
+			if (itemIndex < MenuManager.buildingMenuSprites.size())
+				triggerMouseClick(MenuManager.buildingMenuSprites.get(itemIndex));
+		} else if (currentMenu.equals(MenuType.ANIMAL)) {
+			if (itemIndex < MenuManager.animalMenuSprites.size())
+				triggerMouseClick(MenuManager.animalMenuSprites.get(itemIndex));
+		}
 	}
 
-	/**
-	 * @author mattyleggy
-	 * 
-	 * @return the grid index which is currently visible in the HUD
-	 */
-	private int getCurrentGridIndex() {
-		return this.currentGridIndex;
+	private static void triggerMouseClick(HUDSprite sprite) {
+		Event.fireEvent(sprite, new MouseEvent(MouseEvent.MOUSE_CLICKED, 0, 0, 0, 0, MouseButton.PRIMARY, 1, true, true,
+				true, true, true, true, true, true, true, true, null));
+	}
+
+	public static GridActive getCurrentGrid() {
+		return gridActive;
 	}
 
 	/**
@@ -181,7 +188,7 @@ public class MenuManager implements Initializable, SecondaryManager {
 		this.clearOptionPane();
 		GridPane gridPane = buildingOptionList.get(index);
 		optionPane.getChildren().add(gridPane);
-		setCurrentGrid("buildings", index);
+		this.setCurrentGrid(MenuType.BUILDING, index);
 	}
 
 	/**
@@ -202,7 +209,7 @@ public class MenuManager implements Initializable, SecondaryManager {
 		this.clearOptionPane();
 		GridPane gridPane = animalOptionList.get(index);
 		optionPane.getChildren().add(gridPane);
-		setCurrentGrid("animals", index);
+		this.setCurrentGrid(MenuType.ANIMAL, index);
 	}
 
 	/**
@@ -212,21 +219,21 @@ public class MenuManager implements Initializable, SecondaryManager {
 	 */
 	@FXML
 	public void nextGrid() {
-		int currentIndex = this.getCurrentGridIndex();
+		int currentIndex = gridActive.getCurrentGridIndex();
 		int newIndex;
-		switch (this.getCurrentGrid()) {
-		case "buildings":
+		switch (gridActive.getCurrentMenu()) {
+		case BUILDING:
 			if (currentIndex < (this.buildingOptionList.size() - 1)) {
 				newIndex = currentIndex + 1;
 				this.showBuildingMenuFromIndex(newIndex);
-				setCurrentGrid("buildings", newIndex);
+				this.setCurrentGrid(MenuType.BUILDING, newIndex);
 			}
 			break;
-		case "animals":
+		case ANIMAL:
 			if (currentIndex < (this.animalOptionList.size() - 1)) {
 				newIndex = currentIndex + 1;
 				this.showAnimalMenuFromIndex(newIndex);
-				setCurrentGrid("animals", newIndex);
+				this.setCurrentGrid(MenuType.ANIMAL, newIndex);
 			}
 			break;
 		}
@@ -239,20 +246,20 @@ public class MenuManager implements Initializable, SecondaryManager {
 	 */
 	@FXML
 	public void previousGrid() {
-		int currentIndex = this.getCurrentGridIndex();
+		int currentIndex = gridActive.getCurrentGridIndex();
 		int newIndex;
 		if (currentIndex > 0) {
-			switch (this.getCurrentGrid()) {
-			case "buildings":
+			switch (gridActive.getCurrentMenu()) {
+			case BUILDING:
 				newIndex = currentIndex - 1;
 				this.showBuildingMenuFromIndex(newIndex);
-				setCurrentGrid("buildings", newIndex);
+				this.setCurrentGrid(MenuType.BUILDING, newIndex);
 
 				break;
-			case "animals":
+			case ANIMAL:
 				newIndex = currentIndex - 1;
 				this.showAnimalMenuFromIndex(newIndex);
-				setCurrentGrid("animals", newIndex);
+				this.setCurrentGrid(MenuType.ANIMAL, newIndex);
 				break;
 			}
 		}
@@ -283,9 +290,8 @@ public class MenuManager implements Initializable, SecondaryManager {
 			if (!worldEntityInfo.containEntity(sprite.getSpriteType())) {
 				// this building is not yet registered in the manager. not
 				// rendered
-				System.err.println(
-						"BuildingMenuSprite " + sprite.getSpriteType() + " is "
-								+ "not yet registered in WorldEntityInfo");
+				System.err.println("BuildingMenuSprite " + sprite.getSpriteType() + " is "
+						+ "not yet registered in WorldEntityInfo");
 				continue;
 			}
 
@@ -359,7 +365,7 @@ public class MenuManager implements Initializable, SecondaryManager {
 	 * 
 	 * @author mattyleggy
 	 * 
-	 * @param gridPane
+	 * @param gridPaneList
 	 *            the GridPane to assign the constraints to
 	 */
 	private void setGridConstraints(ArrayList<GridPane> gridPaneList) {
@@ -368,14 +374,14 @@ public class MenuManager implements Initializable, SecondaryManager {
 			// set the column width
 			ColumnConstraints columnConstraints = new ColumnConstraints();
 			columnConstraints.setPrefWidth(100);
-			for (int i = 0; i < this.gridColumns; i++) {
+			for (int i = 0; i < this.GRIDCOLUMNS; i++) {
 				gridPane.getColumnConstraints().add(columnConstraints);
 			}
 
 			// set the row height
 			RowConstraints rowConstraints = new RowConstraints();
 			rowConstraints.setPrefHeight(57);
-			for (int i = 0; i < this.gridRows; i++) {
+			for (int i = 0; i < this.GRIDROWS; i++) {
 				gridPane.getRowConstraints().add(rowConstraints);
 			}
 		}
@@ -423,24 +429,21 @@ public class MenuManager implements Initializable, SecondaryManager {
 		}
 	}
 
-	private void setBuildingSpriteSizing(BuildingMenuSprite sprite,
-			double uiScale) {
+	private void setBuildingSpriteSizing(BuildingMenuSprite sprite, double uiScale) {
 		// Get the size of the building in tile-unit first
 		int xLength = 0;
 		int yLength = 0;
 		try {
-			xLength = worldEntityInfo.getBuildingLength(sprite.getSpriteType(),
-					worldEntityInfo.XLENGTH);
-			yLength = worldEntityInfo.getBuildingLength(sprite.getSpriteType(),
-					worldEntityInfo.YLENGTH);
+			xLength = worldEntityInfo.getBuildingLength(sprite.getSpriteType(), worldEntityInfo.XLENGTH);
+			yLength = worldEntityInfo.getBuildingLength(sprite.getSpriteType(), worldEntityInfo.YLENGTH);
 		} catch (Exception e) {
-			System.err.println(e.getMessage());
+			LOGGER.log(Level.SEVERE, e.toString(), e);
 		}
 
 		if (xLength == 0 || yLength == 0) {
 			// this building is not yet registered
-			System.err.println("BuildingMenuSprite: " + sprite.getSpriteType()
-					+ "is" + " not yet registered in WorldEntityInfo");
+			System.err.println(
+					"BuildingMenuSprite: " + sprite.getSpriteType() + "is" + " not yet registered in WorldEntityInfo");
 			return;
 		}
 
@@ -461,11 +464,7 @@ public class MenuManager implements Initializable, SecondaryManager {
 	 * @return the maximum amount of options available in the GridPanes
 	 */
 	private int getMaxOptions() {
-		return this.gridRows * this.gridColumns;
+		return this.GRIDROWS * this.GRIDCOLUMNS;
 	}
 
-	@Override
-	public void reload() {
-
-	}
 }

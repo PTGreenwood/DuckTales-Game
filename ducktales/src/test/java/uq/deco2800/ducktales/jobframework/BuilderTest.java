@@ -1,7 +1,7 @@
 package uq.deco2800.ducktales.jobframework;
 
 import org.junit.Test;
-import uq.deco2800.ducktales.features.entities.agententities.Peon;
+import uq.deco2800.ducktales.features.entities.peons.Peon;
 import uq.deco2800.ducktales.features.jobframework.Builder;
 import uq.deco2800.ducktales.features.jobframework.JobType;
 
@@ -15,7 +15,7 @@ public class BuilderTest {
 
 	@Test
 	public void qualificationTest() {
-		Peon peon = new Peon(10, 10);
+		Peon peon = new Peon(10, 10, "John Doe");
 		peon.setStrength(builder.getRequiredStrength() + 1);
 		peon.setIntelligence(builder.getRequiredIntelligence() + 1);
 
@@ -26,7 +26,7 @@ public class BuilderTest {
 	}
 
 	public void applicationTest() {
-		Peon peon = new Peon(10, 10);
+		Peon peon = new Peon(10, 10, "John Doe");
 		peon.setStrength(builder.getRequiredStrength() + 1);
 		peon.setIntelligence(builder.getRequiredIntelligence() + 1);
 
@@ -35,7 +35,7 @@ public class BuilderTest {
 	}
 
 	public void notQualifiedBothTest() {
-		Peon peon = new Peon(10, 10);
+		Peon peon = new Peon(10, 10, "John Doe");
 		peon.setStrength(builder.getRequiredStrength() - 1);
 		peon.setIntelligence(builder.getRequiredIntelligence() - 1);
 
@@ -43,7 +43,7 @@ public class BuilderTest {
 	}
 
 	public void notQualifiedStrengthTest() {
-		Peon peon = new Peon(10, 10);
+		Peon peon = new Peon(10, 10, "John Doe");
 		peon.setStrength(builder.getRequiredStrength() - 1);
 		peon.setIntelligence(builder.getRequiredIntelligence() + 1);
 
@@ -51,7 +51,7 @@ public class BuilderTest {
 	}
 
 	public void notQualifiedIntelligenceTest() {
-		Peon peon = new Peon(10, 10);
+		Peon peon = new Peon(10, 10, "John Doe");
 		peon.setStrength(builder.getRequiredStrength() + 1);
 		peon.setIntelligence(builder.getRequiredIntelligence() - 1);
 
@@ -60,7 +60,7 @@ public class BuilderTest {
 
 	@Test
 	public void notQualifiedBothMentorTest() {
-		Peon peon = new Peon(10, 10);
+		Peon peon = new Peon(10, 10, "John Doe");
 		peon.setStrength(builder.getMentorStrength() - 1);
 		peon.setIntelligence(builder.getMentorIntelligence() - 1);
 		peon.applyForJob(builder);
@@ -69,14 +69,14 @@ public class BuilderTest {
 	}
 
 	public void notQualifiedStrengthMentorTest() {
-		Peon peon = new Peon(10, 10);
+		Peon peon = new Peon(10, 10, "John Doe");
 		peon.setIntelligence(builder.getMentorIntelligence() + 1);
 
 		assertFalse(builder.canBeMentor(peon));
 	}
 
 	public void notQualifiedIntelligenceMentorTest() {
-		Peon peon = new Peon(10, 10);
+		Peon peon = new Peon(10, 10, "John Doe");
 		peon.setStrength(builder.getMentorStrength() + 1);
 		peon.setIntelligence(builder.getMentorIntelligence() - 1);
 
@@ -84,7 +84,7 @@ public class BuilderTest {
 	}
 
 	public void qualifiedBothMentorTest() {
-		Peon peon = new Peon(10, 10);
+		Peon peon = new Peon(10, 10, "John Doe");
 		peon.setStrength(builder.getMentorStrength() + 1);
 		peon.setIntelligence(builder.getMentorIntelligence() + 1);
 
@@ -92,7 +92,7 @@ public class BuilderTest {
 	}
 
 	public void builderBuiltMentorTest1() {
-		Peon peon = new Peon(10, 10);
+		Peon peon = new Peon(10, 10, "John Doe");
 		// peon has enough in both but didn't build enough buildings
 		peon.setStrength(builder.getMentorStrength() + 1);
 		peon.setIntelligence(builder.getMentorIntelligence() + 1);
@@ -101,7 +101,7 @@ public class BuilderTest {
 	}
 
 	public void builderBuiltMentorTest2() {
-		Peon peon = new Peon(10, 10);
+		Peon peon = new Peon(10, 10, "John Doe");
 		for (int i = 0; i < 21; i++) {
 			builder.build(peon);
 		}

@@ -11,52 +11,44 @@ import static org.junit.Assert.assertEquals;
  */
 public class InventoryManagerTest {
     //* Test initialize a inventory container */
-        private InventoryManager inventory = new InventoryManager(0, 0, 0);
+        private InventoryManager inventory = new InventoryManager(0, 0, 0, 0, 0);
 
 
     @Test
     //* Test the get and update function of inventoryManager class */
-    public void getWoodAmount() throws Exception {
-        inventory.updateWoodAmount(2);
-        assertEquals(2, inventory.getWoodAmount());
-        System.out.println("getWoodAmount()");
+    public void getWoodAmountTest() throws Exception {
+        inventory.updateTimberAmount(2);
+        assertEquals(2, inventory.getTimberAmount());
     }
 
     @Test
-    public void updateWoodAmount() throws Exception {
-        inventory.updateWoodAmount(-4);
-        assertEquals(0, inventory.getWoodAmount());
-        System.out.println("getWoodAmount()");
+    (expected=Exception.class)
+    public void updateTimberAmountTest() throws Exception {
+    	inventory.updateTimberAmount(-4);
     }
 
     @Test
-    public void getOresAmount() throws Exception {
-        inventory.updateOresAmount(46);
-        assertEquals(46, inventory.getOresAmount());
-        System.out.println("getOresAmount()");
+    public void getStoneAmountTest() throws Exception {
+        inventory.updateStoneAmount(46);
+        assertEquals(46, inventory.getStoneAmount());
+    }
+    
+    @Test
+    (expected=Exception.class)
+    public void updateStoneAmountTest() throws Exception {
+    	inventory.updateStoneAmount(-4);
     }
 
     @Test
-    public void updateOresAmount() throws Exception {
-        inventory.updateOresAmount(-5);
-        inventory.updateOresAmount(1);
-        assertEquals(1, inventory.getOresAmount());
-        System.out.println("getOresAmount()");
+    public void getMeatAmountTest() throws Exception {
+        inventory.updateMeatAmount(20);
+        assertEquals(20, inventory.getMeatAmount());
     }
 
     @Test
-    public void getFoodAmount() throws Exception {
-        inventory.updateFoodAmount(-10);
-        inventory.updateFoodAmount(20);
-        assertEquals(20, inventory.getFoodAmount());
-        System.out.println("getFoodAmount()");
-    }
-
-    @Test
-    public void updateFoodAmount() throws Exception {
-        inventory.updateFoodAmount(4);
-        assertEquals(4, inventory.getFoodAmount());
-        System.out.println("getFoodAmount()");
+    (expected=Exception.class)
+    public void updateMeatAmountTest() throws Exception {
+    	inventory.updateStoneAmount(-4);
     }
 
 }

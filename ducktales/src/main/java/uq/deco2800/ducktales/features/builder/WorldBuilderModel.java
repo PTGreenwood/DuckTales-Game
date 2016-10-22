@@ -90,7 +90,6 @@ public class WorldBuilderModel {
         } else if (type == ENTITY) {
             name = "entity";
         }
-        //System.out.println("Current resource is: " + resource.toString());
         return new Object[] {name, resource};
     }
 }

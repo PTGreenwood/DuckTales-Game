@@ -114,6 +114,9 @@ public class Mine extends StorageProduceBuilding {
 	 * Currently unimplemented for Mine
 	 */
 	protected void produceMaterialBuilding() {
-		throw new UnsupportedOperationException();
+		if (storage.get(0).getRight()<storage.get(0).getMiddle()) {
+			this.addGoods(production.ORE, 1);
+		}
+		System.out.println(storage);
 	}
 }

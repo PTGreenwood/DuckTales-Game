@@ -1,11 +1,11 @@
 package uq.deco2800.ducktales.features.entities.worldentities;
 
-import uq.deco2800.ducktales.features.entities.SecondaryEntityManager;
 import uq.deco2800.ducktales.rendering.sprites.BuildingSprite;
 import uq.deco2800.ducktales.rendering.sprites.Sprite;
 import uq.deco2800.ducktales.rendering.sprites.SpritesFactory;
 import uq.deco2800.ducktales.resources.ResourceInfoRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
+import uq.deco2800.ducktales.util.SecondaryManager;
 import uq.deco2800.ducktales.util.exceptions.GameSetupException;
 
 import java.util.ArrayList;
@@ -19,7 +19,7 @@ import java.util.List;
  * Created on 12/10/2016.
  * @author khoiphan21
  */
-public class BuildingManager extends SecondaryEntityManager {
+public class BuildingManager extends SecondaryManager {
     /** The list of building sprites */
     private List<BuildingSprite> buildingSprites;
 
@@ -114,5 +114,15 @@ public class BuildingManager extends SecondaryEntityManager {
                         "instantiated");
             }
         }
+    }
+    
+    /**
+     * Method to access all the building sprites currently within the 
+     * game. If no building sprites exist an empty list is returned.
+     * 
+     * @return the list of all buildingsprites within the world.
+     */
+    public List<BuildingSprite> getBuildingSprites() {
+    	return buildingSprites;
     }
 }
