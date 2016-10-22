@@ -254,11 +254,9 @@ public class MenuManager implements Initializable {
 	 * 
 	 * @author mattyleggy
 	 * 
-	 * @param index
-	 *            index value of the array to load
 	 */
 	@FXML
-	public void showAnimalsMenu(int index) {
+	public void showAnimalsMenu() {
 		if (animalOptionList.size() > 0) {
 			showAnimalMenuFromIndex(0);
 		}
