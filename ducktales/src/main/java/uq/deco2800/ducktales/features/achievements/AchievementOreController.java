@@ -14,6 +14,12 @@ public class AchievementOreController {
 		this.inventoryManager = new InventoryManager(0,0,0,0,0);
 	}
 	
+	private static final AchievementOreController INSTANCE = new AchievementOreController();
+	
+	public static AchievementOreController getInstance() {
+		return INSTANCE;
+	}
+	
 	public Image getAchievementOreImage() {
 		Image achievementImage = null;
 		

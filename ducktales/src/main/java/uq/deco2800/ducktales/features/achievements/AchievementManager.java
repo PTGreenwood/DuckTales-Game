@@ -14,7 +14,7 @@ import javafx.scene.layout.BorderPane;
 /**
  * Manage all fxml action of the achievement 
  * 
- * @author Naehyung Kim
+ * @author Naehyung Kim and Joshua You
  * 
  */
 public class AchievementManager {
@@ -70,6 +70,8 @@ public class AchievementManager {
 	private AchievementLevelController levelController = AchievementLevelController.getInstance();
 	private AchievementMissionController missionController = AchievementMissionController.getInstance();
 	private AchievementScoreController scoreController = AchievementScoreController.getInstance();
+	private AchievementOreController oreController = AchievementOreController.getInstance();
+	private AchievementWoodController woodController = AchievementWoodController.getInstance();
 	
 	public AchievementManager() {
 				
@@ -116,14 +118,16 @@ public class AchievementManager {
 	@FXML
 	private void loadOre() {
 		
-		this.loadAchievement("ORE", "Achievement Ore Description", ore1);
-		
+		this.loadAchievement("ORE", "Achievement Ore Description",
+			this.oreController.getAchievementOreImage());;
+			
 	}
 	
 	@FXML
 	private void loadWood() {
 		
-		this.loadAchievement("WOOD", "Achievement Wood Description", wood1);
+		this.loadAchievement("WOOD", "Achievement Wood Description",
+				this.woodController.getAchievementWoodImage());;
 		
 	}
 	
@@ -132,6 +136,8 @@ public class AchievementManager {
 		
 		this.loadAchievement("PEONS", "Achievement Peons Description", peons1);
 	}
+	
+
 	/**
 	 * Show and hide main window
 	 */
