@@ -9,14 +9,14 @@ import javafx.stage.Stage;
 
 public class MissionGameControllerTest extends ApplicationTest {
 
-	
+	/*
 	@Test
 	public void ImageViewTest() {
 		MissionGameController gameController = new MissionGameController();
 		//System.out.println(gameController.getBox1().getImage().impl_getUrl());
 		assertTrue(gameController.getBox1().getImage() == null);
 	}
-	
+	*/
 	
 	@Override
 	public void start(Stage stage) throws Exception {
