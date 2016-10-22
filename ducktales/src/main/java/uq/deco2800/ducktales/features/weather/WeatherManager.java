@@ -24,6 +24,7 @@ import java.util.ResourceBundle;
  * canvas.
  * 
  * @author mattleggy
+ *
  */
 public class WeatherManager extends SecondaryManager
 		implements Initializable, Tickable {
@@ -46,14 +47,17 @@ public class WeatherManager extends SecondaryManager
 	private WeatherEvents weatherEvents;
 	// current weather event
 	private Weather currentWeather;
+	// current hour of the day
 	private int currentHour;
+	// current day of the month
 	private int currentDay;
-
+	// time manager to interact with
 	private TimeManager timeManager;
+	// season manager based off time manager
 	private SeasonManager seasonManager;
 
 	@Override
-	public void initialize(URL location, ResourceBundle resources) {		
+	public void initialize(URL location, ResourceBundle resources) {
 		shapes = new ArrayList<WeatherCanvasShape>();
 
 		canvasHeight = 737;
@@ -66,15 +70,15 @@ public class WeatherManager extends SecondaryManager
 		AnchorPane.setTopAnchor(weatherDisplayCanvas, 0.0);
 		AnchorPane.setBottomAnchor(weatherDisplayCanvas, 0.0);
 		context = weatherDisplayCanvas.getGraphicsContext2D();
-		// weatherManager.tick();		
 
 		weatherEvents = new WeatherEvents();
 		currentHour = -1;
-		
-		this.createShapes(50,this.isFalling());
+
+		// create 50 shapes to fall
+		this.createShapes(50, this.isFalling());
 
 		weatherDisplayCanvas.setMouseTransparent(true);
-		weatherDisplay.getChildren().add(weatherDisplayCanvas);		
+		weatherDisplay.getChildren().add(weatherDisplayCanvas);
 	}
 
 	/**
@@ -92,8 +96,9 @@ public class WeatherManager extends SecondaryManager
 			int randY = (int) Math.ceil(Math.random() * canvasHeight);
 			int randDirection = (int) Math.floor(Math.random() * 7) - 3;
 			int randAcceleration = (int) (Math.random() * 5) + 10;
-			/*if (!falling)
-				randAcceleration = randAcceleration*-1;*/
+			/*
+			 * if (!falling) randAcceleration = randAcceleration*-1;
+			 */
 			WeatherCanvasShape shape = new WeatherCanvasShape(randX, randY,
 					randDirection, randAcceleration);
 			shapes.add(shape);
@@ -101,37 +106,55 @@ public class WeatherManager extends SecondaryManager
 		}
 	}
 
+	/**
+	 * Set the time manager and the season manager based off the time manager.
+	 * 
+	 * @param timeManager
+	 *            the time manager to set
+	 */
 	public void setTimeManager(TimeManager timeManager) {
 		this.timeManager = timeManager;
 		this.seasonManager = timeManager.getSeasonManager();
 	}
 
+	/**
+	 * Get the time manager that is active for the weather events
+	 * 
+	 * @return the time manager currently in use
+	 */
 	public TimeManager getTimeManager() {
 		return this.timeManager;
 	}
 
+	/**
+	 * Get the season manager that is in use by the time manager.
+	 * 
+	 * @return the season manager in use
+	 */
 	public SeasonManager getSeasonManager() {
 		return this.seasonManager;
 	}
 
 	/**
-	 * Set the weather events
+	 * Set the list of weather events for the current season to use in game.
 	 * 
 	 * @param events
+	 *            the list of events to be used in game
 	 */
 	private void setWeatherEvents(WeatherEvents events) {
 		this.weatherEvents = events;
 	}
 
 	/**
-	 * Get a weather event based on chance
+	 * Get a weather event based on a percentage chance for the current season
 	 * 
-	 * @return
+	 * @return the weather event to use for the canvas. If the weather event is
+	 *         sunny then use rain instead for demonstration purposes.
 	 */
 	private Weather getWeatherPossibility() {
-		Weather weather = this.weatherEvents.getWeatherPossibility();		
+		Weather weather = this.weatherEvents.getWeatherPossibility();
 		if (weather.toString().equals("sunny"))
-			weather = new Rain();		
+			weather = new Rain();
 		return weather;
 	}
 
@@ -158,11 +181,15 @@ public class WeatherManager extends SecondaryManager
 
 	/**
 	 * 
-	 * Draw rain onto the canvas
+	 * Draws rain in the provided x and y coordinates and direction to draw the
+	 * weather effects on the canvas
 	 * 
 	 * @param x
+	 *            - X coordinate of the effect
 	 * @param y
+	 *            - Y coordinate of the effect
 	 * @param direction
+	 *            - which direction the effect will go
 	 */
 	private void drawRain(int x, int y, int direction) {
 		context.beginPath();
@@ -178,11 +205,15 @@ public class WeatherManager extends SecondaryManager
 
 	/**
 	 * 
-	 * Draw fire onto the canvas
+	 * Draws fire in the provided x and y coordinates and direction to draw the
+	 * weather effects on the canvas
 	 * 
 	 * @param x
+	 *            - X coordinate of the effect
 	 * @param y
+	 *            - Y coordinate of the effect
 	 * @param direction
+	 *            - which direction the effect will go
 	 */
 	private void drawFire(int x, int y, int direction) {
 		context.beginPath();
@@ -196,11 +227,15 @@ public class WeatherManager extends SecondaryManager
 
 	/**
 	 * 
-	 * Draw snow onto the canvas
+	 * Draws Snow in the provided x and y coordinates and direction to draw the
+	 * weather effects on the canvas
 	 * 
 	 * @param x
+	 *            - X coordinate of the effect
 	 * @param y
+	 *            - Y coordinate of the effect
 	 * @param direction
+	 *            - which direction the effect will go
 	 */
 	private void drawSnow(int x, int y, int direction) {
 		context.beginPath();
@@ -225,6 +260,9 @@ public class WeatherManager extends SecondaryManager
 		tickCount++;
 	}
 
+	/**
+	 * For each shape in the shapes list, shift the positions to a new position.
+	 */
 	private void drawShapes() {
 		if (weatherEvents.size() > 0 && currentWeather != null) {
 			for (WeatherCanvasShape shape : shapes) {
@@ -256,6 +294,12 @@ public class WeatherManager extends SecondaryManager
 		drawPositions(shape.getX(), shape.getY(), shape.getDirection());
 	}
 
+	/**
+	 * 
+	 * Every hour find a new weather event and set it to the current weather.
+	 * This will then be reflected on the canvas.
+	 * 
+	 */
 	private void setCurrentWeather() {
 		if (this.getTimeManager() != null) {
 			int hour = this.getTimeManager().getGameTimeObject().getHour();
@@ -269,36 +313,62 @@ public class WeatherManager extends SecondaryManager
 				System.out.println(
 						this.getSeasonManager().getCurrentSeason().getName()
 								+ ": " + seasonEvents);
-				currentWeather = getWeatherPossibility();				
+				currentWeather = getWeatherPossibility();
 				this.setLighting();
 			}
 		}
 	}
 
+	/**
+	 * Return whether the weather effect has a falling animation or not.
+	 * 
+	 * @return true if the weather event is falling, otherwise false.
+	 */
 	private boolean isFalling() {
 		if (currentWeather instanceof Rain || currentWeather instanceof Snow)
 			return true;
 		return false;
 	}
 
+	/**
+	 * 
+	 * Set the lighting of the canvas to night or day depending on the time of
+	 * day.
+	 * 
+	 */
 	private void setLighting() {
-		if(this.getTimeManager().isNight()) {
+		if (this.getTimeManager().isNight()) {
 			setNight();
 		} else {
 			setDay();
 		}
 	}
 
+	/**
+	 * 
+	 * Remove all CSS classes from the canvas and add the day CSS class
+	 * 
+	 */
 	private void setDay() {
 		this.removeClasses();
 		weatherDisplay.getStyleClass().add("day");
 	}
 
+	/**
+	 *
+	 * Remove all CSS classes from the canvas and add the night CSS class
+	 * 
+	 */
 	private void setNight() {
 		this.removeClasses();
 		weatherDisplay.getStyleClass().add("night");
 	}
 
+	/**
+	 *
+	 * Remove all classes attached to the canvas.
+	 * 
+	 */
 	private void removeClasses() {
 		for (int i = 0; i < weatherDisplay.getStyleClass().size(); i++) {
 			weatherDisplay.getStyleClass().remove(0);
