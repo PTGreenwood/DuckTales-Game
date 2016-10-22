@@ -35,10 +35,9 @@ public class MissionHandler {
 	private Image checkedBox = new Image("/missions/boxChecked.png");
 	
 	/** Initialize classes */	
-	LevelHandler levelMain = LevelHandler.getInstance();
-	
+	LevelHandler levelMain = LevelHandler.getInstance();	
 	MissionProgressController piController = MissionProgressController.getInstance();
-	private MissionProgressController missionProgressController = MissionProgressController.getInstance();
+	
 	private static MissionHandler instance = new MissionHandler();
 	
 	

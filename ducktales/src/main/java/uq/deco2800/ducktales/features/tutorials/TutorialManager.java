@@ -74,7 +74,9 @@ public class TutorialManager {
 	
 	private Image npcImage = new Image("/tutorials/Helper.png");
 	
-	private int basicInterfaceTutorialNumber = 0;
+	private String basicInterfaceString = "Interface";
+	private String buildingsString = "Buildings";
+	private String marketPlaceString = "Market Place";
 	
 	public void loadMain() {
 		this.hideButtons();
@@ -85,7 +87,7 @@ public class TutorialManager {
 	
 	@FXML
 	private void loadBasicInterface1() {
-		this.loadTutorial("Interface", this.tutorialImage1, "Basic Interface 1");
+		this.loadTutorial(basicInterfaceString, this.tutorialImage1, "Basic Interface 1");
 		previous.setOnAction((event) -> 
 		loadBasicInterface1()
 		);
@@ -96,7 +98,7 @@ public class TutorialManager {
 	
 	@FXML
 	private void loadBasicInterface2() {
-		this.loadTutorial("Interface", this.tutorialImage2, "Basic Interface 2");
+		this.loadTutorial(basicInterfaceString, this.tutorialImage2, "Basic Interface 2");
 		previous.setOnAction((event) -> 
 		loadBasicInterface1()
 		);
@@ -107,7 +109,7 @@ public class TutorialManager {
 	
 	@FXML
 	private void loadBasicInterface3() {
-		this.loadTutorial("Interface", this.tutorialImage3, "Basic Interface 3");
+		this.loadTutorial(basicInterfaceString, this.tutorialImage3, "Basic Interface 3");
 		previous.setOnAction((event) -> 
 		loadBasicInterface2()
 		);
@@ -118,7 +120,7 @@ public class TutorialManager {
 	
 	@FXML
 	private void loadBasicInterface4() {
-		this.loadTutorial("Interface", this.tutorialImage4, "Basic Interface 4");
+		this.loadTutorial(basicInterfaceString, this.tutorialImage4, "Basic Interface 4");
 		previous.setOnAction((event) -> 
 		loadBasicInterface3()
 		);
@@ -142,7 +144,7 @@ public class TutorialManager {
 	
 	@FXML
 	private void loadBuildings1() {
-		this.loadTutorial("Buildings", this.buildingsImage1, "Buildings 1");
+		this.loadTutorial(buildingsString, this.buildingsImage1, "Buildings 1");
 		previous.setOnAction((event) -> 
 		loadBuildings1()
 		);
@@ -153,7 +155,7 @@ public class TutorialManager {
 	
 	@FXML
 	private void loadBuildings2() {
-		this.loadTutorial("Buildings", this.buildingsImage2, "Buildings 2");
+		this.loadTutorial(buildingsString, this.buildingsImage2, "Buildings 2");
 		previous.setOnAction((event) -> 
 		loadBuildings1()
 		);
@@ -164,7 +166,7 @@ public class TutorialManager {
 	
 	@FXML
 	private void loadBuildings3() {
-		this.loadTutorial("Buildings", this.buildingsImage3, "Buildings 3");
+		this.loadTutorial(buildingsString, this.buildingsImage3, "Buildings 3");
 		previous.setOnAction((event) -> 
 		loadBuildings2()
 		);
@@ -175,7 +177,7 @@ public class TutorialManager {
 	
 	@FXML
 	private void loadMarketPlace1() {
-		this.loadTutorial("Market Place", this.marketPlaceImage1, "Market Place 1");
+		this.loadTutorial(marketPlaceString, this.marketPlaceImage1, "Market Place 1");
 		previous.setOnAction((event) -> 
 		loadMarketPlace1()
 		);
@@ -187,7 +189,7 @@ public class TutorialManager {
 	
 	@FXML
 	private void loadMarketPlace2() {
-		this.loadTutorial("Market Place", this.marketPlaceImage2, "Market Place 2");
+		this.loadTutorial(marketPlaceString, this.marketPlaceImage2, "Market Place 2");
 		previous.setOnAction((event) -> 
 		loadMarketPlace1()
 		);
@@ -199,7 +201,7 @@ public class TutorialManager {
 	
 	@FXML
 	private void loadMarketPlace3() {
-		this.loadTutorial("Market Place", this.marketPlaceImage3, "Market Place 3");
+		this.loadTutorial(marketPlaceString, this.marketPlaceImage3, "Market Place 3");
 		previous.setOnAction((event) -> 
 		loadMarketPlace2()
 		);
@@ -210,7 +212,7 @@ public class TutorialManager {
 	
 	@FXML
 	private void loadMarketPlace4() {
-		this.loadTutorial("Market Place", this.marketPlaceImage4, "Market Place 4");
+		this.loadTutorial(marketPlaceString, this.marketPlaceImage4, "Market Place 4");
 		previous.setOnAction((event) -> 
 		loadMarketPlace3()
 		);

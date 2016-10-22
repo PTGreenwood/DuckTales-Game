@@ -14,10 +14,10 @@ public class MissionHandlerTest extends ApplicationTest {
 		
 		MissionHandler missionHandler = new MissionHandler();
 		
-		String actualImageString = "/missions/boxUnchecked.png";
+		String actualImageURL = "/missions/boxUnchecked.png";
 		
 		for(int i = 0; i < 8; i++) {
-			assertTrue(missionHandler.getmissionImageCompleted(i).impl_getUrl().contains(actualImageString));
+			assertTrue(missionHandler.getmissionImageCompleted(i).impl_getUrl().contains(actualImageURL));
 		}
 		
 	}
@@ -36,6 +36,16 @@ public class MissionHandlerTest extends ApplicationTest {
 		assertTrue(missionHandler.getNumberOfCompletedMissions() == countNumberOfZeros);
 	}
 	
+	@Test
+	public void missionImageCompletedTest() {
+		MissionHandler missionHandler = new MissionHandler();
+		missionHandler.missionImageCompleted(0);
+		String expectedImageURL = missionHandler.getmissionImageCompleted(0).impl_getUrl();
+		
+		String actualImageURL = "/missions/boxChecked.png";
+		
+		assertTrue(expectedImageURL.contains(actualImageURL));
+	}
 	
 	@Test
 	public void singletonTest() {

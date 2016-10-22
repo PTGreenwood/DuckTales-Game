@@ -2,7 +2,12 @@ package uq.deco2800.ducktales.features.missions;
 
 import java.net.URL;
 
+import org.junit.Test;
 import org.testfx.framework.junit.ApplicationTest;
+
+import static org.testfx.api.FxAssert.verifyThat;
+import static org.testfx.matcher.base.NodeMatchers.hasText;
+import static org.testfx.matcher.base.NodeMatchers.isNotNull;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -27,5 +32,7 @@ public class MissionManagerTest extends ApplicationTest {
 		stage.setScene(tutorialScene);
 		stage.show();
     }
+	
+	
 
 }
