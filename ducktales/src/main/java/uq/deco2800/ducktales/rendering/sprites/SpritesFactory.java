@@ -19,7 +19,7 @@ import static uq.deco2800.ducktales.resources.ResourceType.*;
  */
 public class SpritesFactory {
     /** CONSTANTS */
-    private static final int REAL_MINUTE = 1; // In seconds
+    private static final int REAL_MINUTE = 3; // In seconds
 
 	static int initTime;
 	static GameTime gameTime = new GameTime();
@@ -167,15 +167,6 @@ public class SpritesFactory {
         // The sprite to be returned
         BuildingSprite sprite = new BuildingSprite(index, type);
 
-        // Define the key frames for the idle animation
-//        ResourceType[] idleFrames = {
-//            HOSPITAL_1,
-//            HOSPITAL_2,
-//            HOSPITAL_3,
-//            HOSPITAL_4,
-//            HOSPITAL_5
-//        };
-
         // Setup the sprite with the given parameters
         setupBuildingSprite(
                 sprite,
@@ -183,7 +174,6 @@ public class SpritesFactory {
                 5.0*REAL_MINUTE,
                 1.0, // Total time of idle animation
                 SpritesImages.dayAnimation(type),
-                //idleFrames,
                 false
         );
         return sprite;
@@ -204,15 +194,6 @@ public class SpritesFactory {
     	
         BuildingSprite sprite = new BuildingSprite(index, type);
 
-        // Define the key frames for the idle animation
-//        ResourceType[] idleFrames = {
-//                ResourceType.BAKERY_1,
-//                ResourceType.BAKERY_2,
-//                ResourceType.BAKERY_3,
-//                ResourceType.BAKERY_4,
-//                ResourceType.BAKERY_5
-//        };
-
         // Setup the sprite with the given parameters
         setupBuildingSprite(
                 sprite,
@@ -220,7 +201,6 @@ public class SpritesFactory {
                 REAL_MINUTE*4.0, // from the time passed in the building class
                 1.0, // Total time of idle animation
                 SpritesImages.dayAnimation(type),
-                //idleFrames,
                 true
         );
 
@@ -274,19 +254,6 @@ public class SpritesFactory {
         // The sprite to be returned
         BuildingSprite sprite = new BuildingSprite(index, type);
 
-        // Define the key frames for the idle animation
-//        ResourceType[] idleFrames = {
-//                ResourceType.BUTCHER_1,
-//                ResourceType.BUTCHER_2,
-//                ResourceType.BUTCHER_3,
-//                ResourceType.BUTCHER_4,
-//                ResourceType.BUTCHER_5,
-//                ResourceType.BUTCHER_5,
-//                ResourceType.BUTCHER_5,
-//                ResourceType.BUTCHER_5,
-//                ResourceType.BUTCHER_5
-//        };
-
         // Setup the sprite with the given parameters
         setupBuildingSprite(
                 sprite,
@@ -294,7 +261,6 @@ public class SpritesFactory {
                 7.0*REAL_MINUTE,
                 2.0, // Total time of idle animation
                 SpritesImages.dayAnimation(type),
-                //idleFrames,
                 false
         );
         return sprite;
@@ -314,29 +280,6 @@ public class SpritesFactory {
         // The sprite to be returned
         BuildingSprite sprite = new BuildingSprite(index, type);
 
-        // Define the key frames for the idle animation
-        /*ResourceType[] idleFrames = {
-                ResourceType.CEMETERY_1,
-                ResourceType.CEMETERY_2,
-                ResourceType.CEMETERY_3,
-                ResourceType.CEMETERY_4,
-                ResourceType.CEMETERY_5,
-                ResourceType.CEMETERY_6,
-                ResourceType.CEMETERY_7,
-                ResourceType.CEMETERY_8,
-                ResourceType.CEMETERY_9,
-                ResourceType.CEMETERY_10,
-                ResourceType.CEMETERY_11,
-                ResourceType.CEMETERY_12,
-                ResourceType.CEMETERY_13,
-                ResourceType.CEMETERY_14,
-                ResourceType.CEMETERY_15,
-                ResourceType.CEMETERY_16,
-                ResourceType.CEMETERY_16,
-                ResourceType.CEMETERY_16,
-                ResourceType.CEMETERY_16
-        };*/
-
         // Setup the sprite with the given parameters
         setupBuildingSprite(
                 sprite,
@@ -344,7 +287,6 @@ public class SpritesFactory {
                 2.0*REAL_MINUTE,
                 2.0, // Total time of idle animation
                 SpritesImages.dayAnimation(type),
-                //idleFrames,
                 false
         );
 
@@ -365,15 +307,6 @@ public class SpritesFactory {
         // The sprite to be returned
         BuildingSprite sprite = new BuildingSprite(index, type);
 
-        // Define the key frames for the idle animation
-//        ResourceType[] idleFrames = {
-//                ResourceType.CHURCH_1,
-//                ResourceType.CHURCH_2,
-//                ResourceType.CHURCH_3,
-//                ResourceType.CHURCH_4,
-//                ResourceType.CHURCH_5
-//        };
-
         // Setup the sprite with the given parameters
         setupBuildingSprite(
                 sprite,
@@ -381,7 +314,6 @@ public class SpritesFactory {
                 9.0*REAL_MINUTE,
                 1.0, // Total time of idle animation
                 SpritesImages.dayAnimation(type),
-                //idleFrames,
                 true
         );
 
@@ -402,15 +334,6 @@ public class SpritesFactory {
         // The sprite to be returned
     	 BuildingSprite sprite = new BuildingSprite(index, type);
 
-         // Define the key frames for the idle animation
-//         ResourceType[] idleFrames = {
-//                 ResourceType.CHURCH_1,
-//                 ResourceType.CHURCH_2,
-//                 ResourceType.CHURCH_3,
-//                 ResourceType.CHURCH_4,
-//                 ResourceType.CHURCH_5
-//         };
-
          // Setup the sprite with the given parameters
          setupBuildingSprite(
                  sprite,
@@ -418,7 +341,6 @@ public class SpritesFactory {
                  8.0*REAL_MINUTE,
                  1.0, // Total time of idle animation
                  SpritesImages.dayAnimation(type),
-                 //idleFrames,
                  true
         );
          
@@ -472,16 +394,7 @@ public class SpritesFactory {
     private static BuildingSprite createForge(int index, ResourceType type) {
         // The sprite to be returned
         BuildingSprite sprite = new BuildingSprite(index, type);
-
-        // Define the key frames for the idle animation
-//        ResourceType[] idleFrames = {
-//             ResourceType.FORGE_1,
-//             ResourceType.FORGE_2,
-//             ResourceType.FORGE_3,
-//             ResourceType.FORGE_4,
-//             ResourceType.FORGE_5,
-//        };
-
+        
         // Setup the sprite with the given parameters
         setupBuildingSprite(
                 sprite,
@@ -489,7 +402,6 @@ public class SpritesFactory {
                 2.0*REAL_MINUTE,
                 1.0, // Total time of idle animation
                 SpritesImages.dayAnimation(type),
-                //idleFrames,
                 false
         );
         return sprite;
@@ -509,15 +421,6 @@ public class SpritesFactory {
         // The sprite to be returned
         BuildingSprite sprite = new BuildingSprite(index, type);
 
-        // Define the key frames for the idle animation
-//        ResourceType[] idleFrames = {
-//            HOUSE_1,
-//            HOUSE_2,
-//            HOUSE_3,
-//            HOUSE_4,
-//            HOUSE_5,
-//        };
-
         // Setup the sprite with the given parameters
         setupBuildingSprite(
                 sprite,
@@ -525,7 +428,6 @@ public class SpritesFactory {
                 2.0*REAL_MINUTE,
                 1.0, // Total time of idle animation
                 SpritesImages.dayAnimation(type),
-                //idleFrames,
                 false
         );
 
@@ -546,14 +448,6 @@ public class SpritesFactory {
         // The sprite to be returned
         BuildingSprite sprite = new BuildingSprite(index, type);
 
-        // Define the key frames for the idle animation
-//        ResourceType[] idleFrames = {
-//            MINE_1,
-//            MINE_2,
-//            MINE_3,
-//            MINE_4
-//        };
-
         // Setup the sprite with the given parameters
         setupBuildingSprite(
                 sprite,
@@ -561,7 +455,6 @@ public class SpritesFactory {
                 3.0*REAL_MINUTE,
                 1.0, // Total time of idle animation
                 SpritesImages.dayAnimation(type),
-                //idleFrames,
                 false
         );
         return sprite;
@@ -581,15 +474,6 @@ public class SpritesFactory {
         // The sprite to be returned
         BuildingSprite sprite = new BuildingSprite(index, type);
 
-        // Define the key frames for the idle animation
-//        ResourceType[] idleFrames = {
-//                ResourceType.OBSERVATORY_1,
-//                ResourceType.OBSERVATORY_2,
-//                ResourceType.OBSERVATORY_3,
-//                ResourceType.OBSERVATORY_4,
-//                ResourceType.OBSERVATORY_5
-//        };
-
         // Setup the sprite with the given parameters
         setupBuildingSprite(
                 sprite,
@@ -597,7 +481,6 @@ public class SpritesFactory {
                 5.0*REAL_MINUTE,
                 1.0, // Total time of idle animation
                 SpritesImages.dayAnimation(type),
-                //idleFrames,
                 true
         );
 
@@ -717,16 +600,6 @@ public class SpritesFactory {
         // The sprite to be returned
         BuildingSprite sprite = new BuildingSprite(index, type);
 
-        // Define the key frames for the idle animation
-//        ResourceType[] idleFrames = {
-//                ResourceType.SAWMILL_1,
-//                ResourceType.SAWMILL_2,
-//                ResourceType.SAWMILL_3,
-//                ResourceType.SAWMILL_4,
-//                ResourceType.SAWMILL_5,
-//                ResourceType.SAWMILL_6,
-//        };
-
         // Setup the sprite with the given parameters
         setupBuildingSprite(
                 sprite,
@@ -803,15 +676,6 @@ public class SpritesFactory {
         // The sprite to be returned
     	BuildingSprite sprite = new BuildingSprite(index, type);
 
-        // Define the key frames for the idle animation
-//        ResourceType[] idleFrames = {
-//                ResourceType.SCHOOL_1,
-//                ResourceType.SCHOOL_2,
-//                ResourceType.SCHOOL_3,
-//                ResourceType.SCHOOL_4,
-//                ResourceType.SCHOOL_5,
-//        };
-
         // Setup the sprite with the given parameters
         setupBuildingSprite(
                 sprite,
@@ -819,7 +683,6 @@ public class SpritesFactory {
                 3.0*REAL_MINUTE,
                 2.0, // Total time of idle animation
                 SpritesImages.dayAnimation(type),
-                //idleFrames,
                 true
         );
 
@@ -840,15 +703,6 @@ public class SpritesFactory {
         // The sprite to be returned
         BuildingSprite sprite = new BuildingSprite(index, type);
 
-        // Define the key frames for the idle animation
-//        ResourceType[] idleFrames = {
-//            GYMNASIUM_1,
-//            GYMNASIUM_2,
-//            GYMNASIUM_3,
-//            GYMNASIUM_4,
-//            GYMNASIUM_5,
-//        };
-
         // Setup the sprite with the given parameters
         setupBuildingSprite(
                 sprite,
@@ -856,7 +710,6 @@ public class SpritesFactory {
                 2.0*REAL_MINUTE,
                 2.0, // Total time of idle animation
                 SpritesImages.dayAnimation(type),
-                //idleFrames,
                 false
         );
         return sprite;
