@@ -37,7 +37,7 @@ public class Tree extends ResourceEntity {
 	 *            y location of the tree
 	 * @throws Exception
 	 */
-	public Tree(double x, double y) throws Exception {
+	public Tree(double x, double y) {
 		super(x, y, 1, 1, rare(TYPES), DEFVALUE);
 		// Scheduling the runnable to run every minute in real time.
 		scheduler.scheduleAtFixedRate(createRunnable(this), 24, 24, 
@@ -95,5 +95,32 @@ public class Tree extends ResourceEntity {
 	@Override
 	public boolean isPassable() {
 		return false;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+		if (!super.equals(o)) {
+			return false;
+		}
+
+		Tree tree = (Tree) o;
+
+		return tree.hashCode() == this.hashCode();
+
+	}
+
+	@Override
+	public int hashCode() {
+		// this is okay since the location of a tree should not change
+		int result = 31 * (int) this.getX();
+		result = 31 * result + (int) this.getY();
+
+		return result;
 	}
 }

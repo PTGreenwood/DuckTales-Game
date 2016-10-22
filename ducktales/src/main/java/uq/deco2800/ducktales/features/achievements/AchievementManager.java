@@ -102,7 +102,7 @@ public class AchievementManager {
 	@FXML
 	private void loadLevel() {
 		
-		this.loadAchievement("LEVEL", "Achievement Level Description", 
+		this.loadAchievement("LEVEL", "Your achievement level of level is the same level as your level.", 
 				this.levelController.getAchievementLevelImage());
 		
 	}
@@ -110,7 +110,7 @@ public class AchievementManager {
 	@FXML
 	private void loadMission() {
 		
-		this.loadAchievement("MISSION", "Achievement Mission Description",
+		this.loadAchievement("MISSION", "Your missions completion level.",
 				this.missionController.getAchievementMissionImage());;
 			
 	}
@@ -118,7 +118,7 @@ public class AchievementManager {
 	@FXML
 	private void loadOre() {
 		
-		this.loadAchievement("ORE", "Achievement Ore Description",
+		this.loadAchievement("ORE", "You have collected many ores and that is good. Good job.",
 			this.oreController.getAchievementOreImage());;
 			
 	}
@@ -126,7 +126,7 @@ public class AchievementManager {
 	@FXML
 	private void loadWood() {
 		
-		this.loadAchievement("WOOD", "Achievement Wood Description",
+		this.loadAchievement("WOOD", "You're a true lumberjack. This is your wood gathering level.",
 				this.woodController.getAchievementWoodImage());;
 		
 	}
@@ -134,7 +134,7 @@ public class AchievementManager {
 	@FXML
 	private void loadPeons() {
 		
-		this.loadAchievement("PEONS", "Achievement Peons Description", peons1);
+		this.loadAchievement("PEONS", "You have many peons to live for eons.", peons1);
 	}
 	
 
