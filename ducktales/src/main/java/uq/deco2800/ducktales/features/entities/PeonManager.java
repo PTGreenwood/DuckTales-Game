@@ -74,6 +74,25 @@ public class PeonManager extends SecondaryManager{
     }
 
     /**
+     * Retrieve a sprite of a peon. The parameter passed in is the name of
+     * the peon, which is also the unique ID of that peon. return {@code null}
+     * if the name is invalid
+     *
+     * @param name
+     *          The name of the peon whose sprite is to be retrieved
+     * @return the sprite of the peon whose name is given
+     *         {@code null} if the name is not in the list of peon sprites
+     */
+    public PeonSprite getPeonSprite(String name) {
+        if (peonSprites.containsKey(name)) {
+            return peonSprites.get(name);
+        } else {
+            return null;
+        }
+    }
+
+
+    /**
      * Move all the peon sprites by the given x- and y-amount on the screen
      *
      * @param xAmount
