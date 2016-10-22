@@ -14,8 +14,8 @@ import uq.deco2800.ducktales.features.missions.MissionHandler;
  * @author Naehyung Kim and Justin Kuhnel
  * 
  */
-public class AchievementHandler {
-	private static final AchievementHandler INSTANCE = new AchievementHandler();
+public class AchievementScoreController {
+	private static final AchievementScoreController INSTANCE = new AchievementScoreController();
 	
 	/** Achievement Score */
 	private int intAchieve;
@@ -33,7 +33,7 @@ public class AchievementHandler {
 	 * 
 	 * @return <CODE>INSTANCE</CODE>
 	 */
-	public static AchievementHandler getInstance() {
+	public static AchievementScoreController getInstance() {
 		return INSTANCE;
 	}
 	
@@ -41,8 +41,9 @@ public class AchievementHandler {
 	 * Main constructor of {@link Achievement} class
 	 * 
 	 */
-	public AchievementHandler() {
+	public AchievementScoreController() {
 		this.intAchieve = 0;		
+		this.inventoryManager = new InventoryManager(0,0,0,0,0);
 	}
 	
 	/**
@@ -66,24 +67,24 @@ public class AchievementHandler {
 	
 	/**Sets value for varying difficulties of achievements, 
 	for each specific difficulty adds specified value to the achievement score */
-	public void achieveVeryEasy() {
-		this.intAchieve = this.intAchieve + 10;
+	private void achieveVeryEasy() {
+		this.intAchieve = this.intAchieve + 1;
 	}
 	
-    public void achieveEasy() {
-	    this.intAchieve = this.intAchieve + 25;
+	private void achieveEasy() {
+	    this.intAchieve = this.intAchieve + 2;
     }
     
-    public void achieveMedium() {
-	    this.intAchieve = this.intAchieve + 50;
+	private void achieveMedium() {
+	    this.intAchieve = this.intAchieve + 3;
     }
     
-    public void achieveHard() {
-	    this.intAchieve = this.intAchieve + 75;
+	private void achieveHard() {
+	    this.intAchieve = this.intAchieve + 4;
     }
     
-    public void achieveVeryHard() {
-	    this.intAchieve = this.intAchieve + 100;
+	private void achieveVeryHard() {
+	    this.intAchieve = this.intAchieve + 5;
     }
     
     
@@ -94,7 +95,7 @@ public class AchievementHandler {
      * @throws Exception 
      * 
      */
-   public void achievementHolder() throws Exception {
+   public int achievementHolder() {
 	   if(MissionHandler.numberOfCompletedMissions == 1)
 	    {
 	    this.achieveVeryEasy();
@@ -142,11 +143,17 @@ public class AchievementHandler {
 	    }
 	    if(levelHandler.getLevel() == 1)
 	    {
-	    	inventoryManager.updateTimberAmount(10);
-	    	inventoryManager.updateMeatAmount(10);
-	    	inventoryManager.updateWoolAmount(10);
-	    	inventoryManager.updateFeatherAmount(10);
-	    	inventoryManager.updateStoneAmount(10);
+	    	try {
+				inventoryManager.updateTimberAmount(10);
+				inventoryManager.updateMeatAmount(10);
+		    	inventoryManager.updateWoolAmount(10);
+		    	inventoryManager.updateFeatherAmount(10);
+		    	inventoryManager.updateStoneAmount(10);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	    	
 	    }
 
 	   
@@ -220,11 +227,16 @@ public class AchievementHandler {
 	    }
 	    else if(inventoryManager.getMeatAmount() >= 2500 && achievementToggleWood == 4){
 	    	this.achieveVeryHard();
-	    	inventoryManager.updateTimberAmount(50);
-	    	inventoryManager.updateStoneAmount(50);
-	    	inventoryManager.updateMeatAmount(100);
+	    	try {
+				inventoryManager.updateTimberAmount(50);
+				inventoryManager.updateStoneAmount(50);
+		    	inventoryManager.updateMeatAmount(100);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	    }
-	    
+	    /*
 	    if(world.getNumberOfPeons() == 1 && achievementTogglePeons == 0){
 	    	this.achieveVeryEasy();
 	    	achievementTogglePeons ++;
@@ -241,14 +253,15 @@ public class AchievementHandler {
 	    	this.achieveHard();
 	    	achievementTogglePeons ++;
 	    }
-	    
+	    */
 	    if(ThreatManager.returnEnemies().equals(1) && achievementToggleThreats == 0){
 	    	this.achieveMedium();
 	    }
 	    else if(ThreatManager.returnEnemies().equals(5) && achievementToggleThreats == 1){
 	    	this.achieveVeryHard();
 	    }
-	  
+	    return this.intAchieve;
    }
+   
    
 }
