@@ -40,6 +40,14 @@ public class AchievementManager {
 	private Button wood;
 	@FXML
 	private Button ore;
+	@FXML
+	private Button peons;
+	@FXML
+	private Button threats;
+	@FXML
+	private Button food;
+	@FXML
+	private Button extra;
 	
 	@FXML
 	private Label topLabel;
@@ -56,6 +64,8 @@ public class AchievementManager {
 	private Image ore1 = new Image("achievements/ore100.png");
 	
 	private Image wood1 = new Image("achievements/wood100.png");
+	
+	private Image peons1 = new Image("peon/basic_peon.png");
 	
 	private AchievementLevelController levelController = AchievementLevelController.getInstance();
 	private AchievementMissionController missionController = AchievementMissionController.getInstance();
@@ -117,6 +127,11 @@ public class AchievementManager {
 		
 	}
 	
+	@FXML
+	private void loadPeons() {
+		
+		this.loadAchievement("PEONS", "Achievement Peons Description", peons1);
+	}
 	/**
 	 * Show and hide main window
 	 */
