@@ -1,8 +1,5 @@
 package uq.deco2800.ducktales.features.achievements;
 
-import java.io.IOException;
-import java.net.URL;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import javafx.fxml.FXML;

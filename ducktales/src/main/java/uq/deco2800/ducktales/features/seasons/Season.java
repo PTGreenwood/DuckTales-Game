@@ -1,5 +1,8 @@
 package uq.deco2800.ducktales.features.seasons;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import uq.deco2800.ducktales.features.weather.Fire;
 import uq.deco2800.ducktales.features.weather.InvalidWeatherChanceException;
 import uq.deco2800.ducktales.features.weather.Rain;
@@ -29,6 +32,8 @@ public abstract class Season {
 	protected float windLevel;
 	protected float fireDanger;
 	
+	// Logger for the class
+	private static final Logger LOGGER = Logger.getLogger(Season.class.getName());
 
 	public WeatherEvents weatherEvents;
 
@@ -262,7 +267,7 @@ public abstract class Season {
     		this.weatherEvents.add(rainChance);
 
     	}  catch (InvalidWeatherChanceException e) {
-    		System.out.println("ERROR: Chance must be > 0 and <= 100 and weather Cannot be Null");
+    		LOGGER.log(Level.SEVERE, e.toString(), e);
     	}
 	}
 	
@@ -274,7 +279,7 @@ public abstract class Season {
 		//Making this fairly static at the moment
 		//Keeping a note here: CurrentTemperature should be increasing/decreasing as the
 		//day keeps moving on which means the chances should be constantly updating. 
-		int initialFireChance = (int) (this.currentTemperature );
+		int initialFireChance = (this.currentTemperature );
 		
 		Weather fire = new Fire();
     	try {
@@ -282,7 +287,7 @@ public abstract class Season {
     		this.weatherEvents.add(fireChance);
 
     	}  catch (Exception e) {
-    		System.out.println("ERROR: Chance must be > 0 and <= 100 and weather Cannot be Null");
+    		LOGGER.log(Level.SEVERE, e.toString(), e);
     	}
 	}
 	
@@ -301,7 +306,7 @@ public abstract class Season {
     		WeatherChance snowChance = new WeatherChance(snow, initialSnowChance);
     		this.weatherEvents.add(snowChance);
     	}  catch (InvalidWeatherChanceException e) {
-    		System.out.println("ERROR: Chance must be > 0 and <= 100 and weather Cannot be Null");
+    		LOGGER.log(Level.SEVERE, e.toString(), e);
     	}
 	}
 	
@@ -316,7 +321,7 @@ public abstract class Season {
     		WeatherChance stormChance = new WeatherChance(storm, initialStormChance);
     		this.weatherEvents.add(stormChance);
     	}  catch (InvalidWeatherChanceException e) {
-    		System.out.println("ERROR: Chance must be > 0 and <= 100 and weather Cannot be Null");
+    		LOGGER.log(Level.SEVERE, e.toString(), e);
     	}
 	}
 

@@ -172,7 +172,7 @@ public class ResourceSpriteRegister {
 		addResource(SCHOOL, "/buildings/school.png");
 		addResource(GYMNASIUM, "/buildings/gymnasium.png");
 		addResource(BUTCHER, "/buildings/butcher.png");
-		addResource(BARN, "/buildings/storagebarn.png");
+		addResource(STORAGEBARN, "/buildings/storagebarn.png");
 
 		addResource(BAKERY, "/buildings/bakery.png");
 		addResource(COMMUNITY_BUILDING, "/buildings/community_building.png");
@@ -201,6 +201,8 @@ public class ResourceSpriteRegister {
 		addResource(BAKERY_3, "/buildings/bakery/bakery_3.png");
 		addResource(BAKERY_4, "/buildings/bakery/bakery_4.png");
 		addResource(BAKERY_5, "/buildings/bakery/bakery_5.png");
+		
+		
 		// Butcher
 		addResource(BUTCHER_1, "/buildings/butcher/butcher_1.png");
 		addResource(BUTCHER_2, "/buildings/butcher/butcher_2.png");
@@ -230,6 +232,12 @@ public class ResourceSpriteRegister {
 		addResource(CHURCH_3, "/buildings/church/church_3.png");
 		addResource(CHURCH_4, "/buildings/church/church_4.png");
 		addResource(CHURCH_5, "/buildings/church/church_5.png");
+		// Community Building
+		addResource(COMMUNITY_BUILDING_1, "/buildings/community_building/community_building_1.png");
+		addResource(COMMUNITY_BUILDING_2, "/buildings/community_building/community_building_2.png");
+		addResource(COMMUNITY_BUILDING_3, "/buildings/community_building/community_building_3.png");
+		addResource(COMMUNITY_BUILDING_4, "/buildings/community_building/community_building_4.png");
+		addResource(COMMUNITY_BUILDING_5, "/buildings/community_building/community_building_5.png");
 		// Observatory
 		addResource(OBSERVATORY_1, "/buildings/observatory/observatory_1.png");
 		addResource(OBSERVATORY_2, "/buildings/observatory/observatory_2.png");
@@ -272,7 +280,21 @@ public class ResourceSpriteRegister {
 		addResource(MINE_2, "/buildings/mine/mine_2.png");
 		addResource(MINE_3, "/buildings/mine/mine_3.png");
 		addResource(MINE_4, "/buildings/mine/mine_4.png");
-
+		// School - Night
+		addResource(SCHOOL_NIGHT_1, "/buildings/school_night/school_night_1.png");
+		addResource(SCHOOL_NIGHT_2, "/buildings/school_night/school_night_2.png");
+		addResource(SCHOOL_NIGHT_3, "/buildings/school_night/school_night_3.png");
+		addResource(SCHOOL_NIGHT_4, "/buildings/school_night/school_night_4.png");
+		addResource(SCHOOL_NIGHT_5, "/buildings/school_night/school_night_5.png");
+		addResource(SCHOOL_NIGHT_6, "/buildings/school_night/school_night_6.png");
+		// School
+		addResource(SCHOOL_1, "/buildings/school/school_1.png");
+		addResource(SCHOOL_2, "/buildings/school/school_2.png");
+		addResource(SCHOOL_3, "/buildings/school/school_3.png");
+		addResource(SCHOOL_4, "/buildings/school/school_4.png");
+		addResource(SCHOOL_5, "/buildings/school/school_5.png");
+		
+		
 
 		// Advanced buildings' animations
 		// Butcher
@@ -287,6 +309,25 @@ public class ResourceSpriteRegister {
 		addResource(ADV_HOSPITAL_3, "/buildings/adv_hospital/adv_hospital_3.png");
 		addResource(ADV_HOSPITAL_4, "/buildings/adv_hospital/adv_hospital_4.png");
 		addResource(ADV_HOSPITAL_5, "/buildings/adv_hospital/adv_hospital_5.png");
+		// Bakery
+		addResource(BAKERY_1_ADV, "/buildings/adv_bakery/adv_bakery_1.png");
+		addResource(BAKERY_2_ADV, "/buildings/adv_bakery/adv_bakery_2.png");
+		addResource(BAKERY_3_ADV, "/buildings/adv_bakery/adv_bakery_3.png");
+		addResource(BAKERY_4_ADV, "/buildings/adv_bakery/adv_bakery_4.png");
+		addResource(BAKERY_5_ADV, "/buildings/adv_bakery/adv_bakery_5.png");
+		
+		addResource(BAKERY_1_ADV_NIGHT, "/buildings/adv_bakery_night/adv_bakery_night_2.png");
+		addResource(BAKERY_2_ADV_NIGHT, "/buildings/adv_bakery_night/adv_bakery_night_2.png");
+		addResource(BAKERY_3_ADV_NIGHT, "/buildings/adv_bakery_night/adv_bakery_night_3.png");
+		addResource(BAKERY_4_ADV_NIGHT, "/buildings/adv_bakery_night/adv_bakery_night_4.png");
+		addResource(BAKERY_5_ADV_NIGHT, "/buildings/adv_bakery_night/adv_bakery_night_5.png");
+		addResource(BAKERY_6_ADV_NIGHT, "/buildings/adv_bakery_night/adv_bakery_night_6.png");
+		// Sawmill
+		addResource(SAWMILL_ADV_1, "/buildings/adv_sawmill/adv_sawmill_1.png");
+		addResource(SAWMILL_ADV_2, "/buildings/adv_sawmill/adv_sawmill_2.png");
+		addResource(SAWMILL_ADV_3, "/buildings/adv_sawmill/adv_sawmill_3.png");
+		addResource(SAWMILL_ADV_4, "/buildings/adv_sawmill/adv_sawmill_4.png");
+		addResource(SAWMILL_ADV_5, "/buildings/adv_sawmill/adv_sawmill_5.png");
 
 	}
 

@@ -2,22 +2,15 @@ package uq.deco2800.ducktales.features.missions;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
-import javafx.scene.control.ProgressIndicator;
 import uq.deco2800.ducktales.features.achievements.AchievementHandler;
 import uq.deco2800.ducktales.features.level.LevelHandler;
 
@@ -46,6 +39,9 @@ public class MissionManager {
 	
 	@FXML
 	private Label topLabel;
+	
+	// Logger for the class
+	private static final Logger LOGGER = Logger.getLogger(MissionManager.class.getName());
 			
 	/** Initialize classes */
 	private AchievementHandler achievementMain = AchievementHandler.getInstance();
@@ -53,12 +49,20 @@ public class MissionManager {
 	private LevelHandler levelMain = LevelHandler.getInstance();
 	private MissionProgressIndicator piMain = MissionProgressIndicator.getInstance();	
 	
-	private MissionMainController missionMainController = MissionMainController.getInstance();
+	private MissionMainController missionMainController;
+	private MissionTutorialController missionTutorialController;
+	private MissionProgressController missionProgressConroller;
 		
 	public MissionManager() {
+		
+		this.missionMainController = new MissionMainController();
+		this.missionTutorialController = new MissionTutorialController();
+		this.missionProgressConroller = new MissionProgressController();
 	}
 	
 	public void loadMain() {
+		
+		this.removeAllPane();
 		
 		URL location = getClass().getResource("/missions/missionMain.fxml");
 												
@@ -72,17 +76,65 @@ public class MissionManager {
 			rightPane.getChildren().add(root);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.log(Level.SEVERE, e.toString(), e);
 		}
 	}
 	
+	private void removeAllPane() {
+		rightPane.getChildren().removeAll(missionMainController.getMainWindow(), 
+				this.missionTutorialController.getMainWindow(),
+				this.missionProgressConroller.getMainWindow());
+	}
+	
 	@FXML
-	private void loadTutorial() {
+	private void loadProgress() {
 				
+		this.removeAllPane();
+		
+		URL location = getClass().getResource("/missions/missionProgress.fxml");
+												
+		FXMLLoader loader = new FXMLLoader(location);
+		
+		try {
+			BorderPane root = loader.load();
+			
+			missionProgressConroller = loader.getController();
+			
+			root.setCenter(this.missionProgressConroller.getProgressIndicator());
+			
+			rightPane.getChildren().add(root);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			LOGGER.log(Level.SEVERE, e.toString(), e);
+		}
 	}
 		
 	@FXML
-	private void loadProgress() {		
+	private void loadTutorial() {		
+		
+		this.removeAllPane();
+		
+		URL location = getClass().getResource("/missions/missionTutorial.fxml");
+												
+		FXMLLoader loader = new FXMLLoader(location);
+		
+		try {
+			BorderPane root = loader.load();
+			
+			missionTutorialController = loader.getController();
+			
+			this.missionTutorialController.getBox1().setImage(
+					missionMain.getmissionImageCompleted(0));
+			this.missionTutorialController.getBox2().setImage(
+					missionMain.getmissionImageCompleted(1));
+			this.missionTutorialController.getBox3().setImage(
+					missionMain.getmissionImageCompleted(2));
+			
+			rightPane.getChildren().add(root);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			LOGGER.log(Level.SEVERE, e.toString(), e);
+		}
 		
 	}
 	
@@ -100,10 +152,11 @@ public class MissionManager {
 	    }
 		
 		//Untick mission2 box in Achievement window of Gamebeta when marketplace is clicked
-		missionMain.MissionImageCompleted(missionNumber);
+		missionMain.missionImageCompleted(missionNumber);
 		
         //Increment percentage of progress indicator in achievement
         missionMain.countNumberOfCompletedMissions();
+        
         
         //If progress indicator is full then level up
         if(levelMain.getProgressBar().getProgress() >= 1.0) {

@@ -93,6 +93,8 @@ public class GameManager {
     private ResourceEntityManager resourceEntityManager;
     private PeonInformationDisplayManager peonInformationDisplayManager;
     
+    private static GameManager gameManager;
+    
     /**
      * Instantiate an empty game manager and createBuildingSprite a new default world
      */
@@ -111,6 +113,7 @@ public class GameManager {
                 DEFAULT_WORLD_WIDTH,
                 DEFAULT_WORLD_HEIGHT
         );
+        gameManager = this;
     }
 
     /**
@@ -267,7 +270,7 @@ public class GameManager {
 
     /**
      * Retrieve the manager that manages the missions in the game
-     *
+     * 
      * @return the manager of the missions in the game
      */
     public MissionManager getMissionManager() {
@@ -481,6 +484,10 @@ public class GameManager {
      */
     public void setPeonInformationDisplayManager(PeonInformationDisplayManager peonInformationDisplayManager) {
         this.peonInformationDisplayManager = peonInformationDisplayManager;
+    }
+    
+    public static GameManager getGameManager() {
+    	return gameManager;
     }
 
     /**

@@ -1,10 +1,7 @@
 package uq.deco2800.ducktales.features.login;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.PrintStream;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.ws.rs.WebApplicationException;
 
@@ -34,13 +31,11 @@ public class SignUpController  {
     @FXML
     private PasswordField passwordField2;
     
+    // Logger for the class
+ 	private static final Logger LOGGER = Logger.getLogger(SignUpController.class.getName());
+    
     private static DucktalesClient client = null;
     
-    boolean IsExitUser(String s)
-    {
-    	
-    	return false;
-    }
 
     @FXML protected void handleSignUpButtonAction(ActionEvent event) throws Exception {
     	boolean bexit = false;
@@ -52,32 +47,29 @@ public class SignUpController  {
     		
             if(username.getText().toString().length() >= 6 && passwordField.getText().toString().length() >= 6)
             {
-            	if(!bexit)
-        		{
-            		User user = new User(signUpUsername, "Unknown", null, "Unknown", signUpPassword);
-            		
-            		try {
-        				user = client.createUser(user);
-            		
-            		} catch (WebApplicationException e) {
-            			switch (e.getResponse().getStatus()) {
-        				case 409:
-        					actiontarget.setText("Sign up error: Username already exists");
-        				default:
-        					// Other exception occurred
-            			}
-            		} catch (JsonProcessingException i) {
-        				// Error processing json
-
-        			} catch (Exception i) {
-        				// Other error logging in
-        			}
-            		
-            		// Go back to Login view
-            		
-            		LoginVistaNavigator.loadVista(LoginVistaNavigator.LOGIN);
-            		// LoginController.close();
-        		}
+	    		User user = new User(signUpUsername, "Unknown", null, "Unknown", signUpPassword);
+	    		
+	    		try {
+					user = client.createUser(user);
+	    		
+	    		} catch (WebApplicationException e) {
+	    			LOGGER.log(Level.SEVERE, e.toString(), e);
+	    			if (e.getResponse().getStatus() == 409) {
+	    				actiontarget.setText("Sign up error: Username already exists");
+	    			} else {
+	    				
+	    			}
+	    			
+	    		} catch (JsonProcessingException e) {
+	    			LOGGER.log(Level.SEVERE, e.toString(), e);
+	
+				} catch (Exception e) {
+					LOGGER.log(Level.SEVERE, e.toString(), e);
+				}
+	    		
+	    		// Go back to Login view
+	    		
+	    		LoginVistaNavigator.loadVista(LoginVistaNavigator.LOGIN);
             }
             else
             {
@@ -91,7 +83,7 @@ public class SignUpController  {
     }
     
     @FXML
-    protected void viewLoginPage(ActionEvent event) {
+    protected void viewLoginPage() {
     	LoginVistaNavigator.loadVista(LoginVistaNavigator.LOGIN);
     }
     

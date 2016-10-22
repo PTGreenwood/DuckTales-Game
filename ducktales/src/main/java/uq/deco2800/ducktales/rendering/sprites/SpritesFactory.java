@@ -143,7 +143,7 @@ public class SpritesFactory {
     public static DroppedResourceSprite createDroppableResourceSprite(ResourceType type) {
         DroppedResourceSprite sprite = new DroppedResourceSprite(type);
         switch(type) {
-        case CLOUD: 
+        case DUCK: 
             sprite.setImage(ResourceSpriteRegister.getInstance().getResourceImage(
                     ResourceType.CLOUD
             ));
@@ -751,23 +751,26 @@ public class SpritesFactory {
      */
     private static BuildingSprite createSchool(int index, ResourceType type) {
         // The sprite to be returned
-        BuildingSprite sprite = new BuildingSprite(index, type);
+    	BuildingSprite sprite = new BuildingSprite(index, type);
 
-        // Setup the frames for the animation
-        List<Image> imageList = new ArrayList<>();
-        ResourceSpriteRegister register = ResourceSpriteRegister.getInstance();
+        // Define the key frames for the idle animation
+        ResourceType[] idleFrames = {
+                ResourceType.SCHOOL_1,
+                ResourceType.SCHOOL_2,
+                ResourceType.SCHOOL_3,
+                ResourceType.SCHOOL_4,
+                ResourceType.SCHOOL_5,
+        };
 
-        // Now add all the images representing the animation here, one-by-one
-        //imageList.add(register.getResourceImage(ResourceType.DIRT_1));  DOES NOT WORK
-        imageList.add(register.getResourceImage(ResourceType.CONSTRUCTION_2));
-        imageList.add(register.getResourceImage(ResourceType.CONSTRUCTION));
-        imageList.add(register.getResourceImage(ResourceType.SCHOOL));
-
-        // After all images are set up, now call these methods to set up the
-        // actual animation code
-        sprite.setImageList(imageList); // Give the interpolator the list of images
-        sprite.setupAnimation(3 * REAL_MINUTE); // Set up the actual animation, passing the duration
-        sprite.startAnimation(); // Start the actual animation
+        // Setup the sprite with the given parameters
+        setupBuildingSprite(
+                sprite,
+                type,
+                3.0*REAL_MINUTE,
+                2.0, // Total time of idle animation
+                idleFrames,
+                true
+        );
 
         return sprite;
     }

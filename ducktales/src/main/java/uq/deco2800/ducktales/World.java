@@ -2,21 +2,23 @@ package uq.deco2800.ducktales;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
-
-import uq.deco2800.ducktales.features.entities.Entity;
-
+import uq.deco2800.ducktales.features.entities.MainEntityManager;
 import uq.deco2800.ducktales.features.entities.agententities.Animal;
 import uq.deco2800.ducktales.features.entities.peons.Peon;
 import uq.deco2800.ducktales.features.entities.resourceentities.DroppableResourceEntity;
 import uq.deco2800.ducktales.features.entities.threats.Threat;
 import uq.deco2800.ducktales.features.entities.worldentities.Building;
+import uq.deco2800.ducktales.features.entities.worldentities.BuildingManager;
 import uq.deco2800.ducktales.features.entities.worldentities.StorageProduceBuilding;
 import uq.deco2800.ducktales.resources.ResourceInfoRegister;
 
 
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.features.landscape.tiles.Tile;
+import uq.deco2800.ducktales.features.time.TimeManager;
+import uq.deco2800.ducktales.rendering.sprites.BuildingSprite;
 import uq.deco2800.ducktales.util.*;
 
 import static uq.deco2800.ducktales.resources.ResourceType.*;
@@ -50,7 +52,7 @@ public class World implements Tickable {
 	private ArrayList<Building> buildings; // All the buildings in the game
 	private HashMap<String, Peon> peons; // All the peons in the game
 	private ArrayList<Threat> threats;
-	private HashMap<Integer, DroppableResourceEntity> droppedResources; // All the dropped resources in the game
+	private ArrayList<DroppableResourceEntity> droppedResources; // All the dropped resources in the game
 
 	/** The registers */
 	private ResourceInfoRegister infoRegister = ResourceInfoRegister.getInstance();
@@ -59,6 +61,10 @@ public class World implements Tickable {
 	ArrayList<ResourceType> productionBuildingsList;
 	
 	private int timer = 0;
+	
+	private ArrayList<Boolean> nightAnimation = new ArrayList<Boolean>();
+	
+	private boolean winterAnimation = false;
 	
 	/**
 	 * Instantiates a World with the given specified parameters, with the tiles
@@ -219,10 +225,10 @@ public class World implements Tickable {
 	 * Get the droppedResource with the given index
 	 * 
 	 * @return The dropped resource at the given index in the droppedResources 
-	 *         HashMap
+	 *         List
 	 */
 	public DroppableResourceEntity getDroppedResource(int index) {
-		if(droppedResources.containsKey(index)) {
+		if(droppedResources.contains(index)) {
 			return droppedResources.get(index);
 		} else {
 			throw new RuntimeException("Fail to retrieve a droppedResource."
@@ -233,20 +239,16 @@ public class World implements Tickable {
 	}
 	
 	/**
-	 * Set a dropped resource in the droppedResource HashMap using the 
-	 * given Key and Value
+	 * Set a dropped resource in the droppedResource List using the 
+	 * given Value
 	 */
-	public void setDroppedResoure(int key, DroppableResourceEntity value) {
-		if(droppedResources.containsKey(key)) {
+	public void addDroppedResoure(DroppableResourceEntity value) {
+		if(droppedResources.contains(value)) {
 			throw new RuntimeException("droppedResources already contains "
-					+ "a dropped resource with key: " + key);
-		} else if(droppedResources.containsValue(value)) {
-			throw new RuntimeException("droppedResources already contains"
-					+ "a dropped resource of the value: " + value);
+					+ "a dropped resource with value: " + value);
 		} else {
-			droppedResources.put(key, value);
-		}
-		
+			droppedResources.add(value);
+		}	
 	}
 
 	/**
@@ -344,6 +346,43 @@ public class World implements Tickable {
 	@Override
 	public void tick() {
 		timer++;
+		
+		// change the animation between day/night animation depending on time of day
+		// declared here, as not used elsewhere within the class
+		MainEntityManager mainManager = MainEntityManager.getInstance();
+		BuildingManager buildingManager = mainManager.getBuildingManager();
+		GameManager gameManager = GameManager.getGameManager();
+		TimeManager timeManager = gameManager.getTimeManager();
+		
+		List<BuildingSprite> buildingSprites = buildingManager.getBuildingSprites();
+		
+		for (int x = 0; x < buildingSprites.size(); x++) {
+			// Set the new buildings to be true of false depending on time of day (to get 
+			// right animation started) 
+			if (nightAnimation.size() < buildingSprites.size()) {
+				for (int y = nightAnimation.size(); y < buildingSprites.size(); y++) {
+					nightAnimation.add(y, !timeManager.isNight());
+				}
+			}
+			// Its night time, change animation to night type
+			if (buildingSprites.get(x).getEntityType() == ResourceType.SCHOOL 
+					&& nightAnimation.get(x) == false && timeManager.isNight()) {
+				BuildingSprite buildingSprite = buildingSprites.get(x);
+				if (buildingSprite.nightAnimation()) {
+					nightAnimation.set(x, true);
+				}
+			} 
+			// Its day time, change animation to day type
+			else if (buildingSprites.get(x).getEntityType() == ResourceType.SCHOOL 
+					&& nightAnimation.get(x) == true && !timeManager.isNight()) {
+				BuildingSprite buildingSprite = buildingSprites.get(x);
+				if (buildingSprite.dayAnimation()) {
+					System.err.println(timer);
+					nightAnimation.set(x, false);
+				}
+			}
+		}
+		
 		// Update all the tiles
 		for (int y = 0; y < tiles.getHeight(); y++) {
 			for (int x = 0; x < tiles.getWidth(); x++) {

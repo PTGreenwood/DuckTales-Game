@@ -115,4 +115,14 @@ public class BuildingManager extends SecondaryManager {
             }
         }
     }
+    
+    /**
+     * Method to access all the building sprites currently within the 
+     * game. If no building sprites exist an empty list is returned.
+     * 
+     * @return the list of all buildingsprites within the world.
+     */
+    public List<BuildingSprite> getBuildingSprites() {
+    	return buildingSprites;
+    }
 }
