@@ -38,18 +38,6 @@ public abstract class Weather {
 	}
 	
 	/**
-	 * Check if it is currently raining
-	 * Returns true has the possibility of turning into a storm, or snow depends of the seasons
-	 * Fire can't stay in rain
-	 * 
-	 * @return true if it is raining
-	 * 		   false if is not raining
-	 */
-	public boolean isRaining() {
-		return false;
-	}
-	
-	/**
 	 * Check if the weather events occurs on:
 	 * 
 	 * 	  land - isLand() 

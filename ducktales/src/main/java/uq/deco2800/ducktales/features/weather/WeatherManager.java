@@ -27,8 +27,6 @@ import java.util.ResourceBundle;
  */
 public class WeatherManager extends SecondaryManager
 		implements Initializable, Tickable {
-	// may not need this any more...
-	private WeatherCanvas weatherCanvas;
 	// main weather display pane
 	@FXML
 	private Pane weatherDisplay;
@@ -55,8 +53,7 @@ public class WeatherManager extends SecondaryManager
 	private SeasonManager seasonManager;
 
 	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		weatherCanvas = new WeatherCanvas();
+	public void initialize(URL location, ResourceBundle resources) {		
 		shapes = new ArrayList<WeatherCanvasShape>();
 
 		canvasHeight = 737;
@@ -132,8 +129,9 @@ public class WeatherManager extends SecondaryManager
 	 * @return
 	 */
 	private Weather getWeatherPossibility() {
-		Weather weather = this.weatherEvents.getWeatherPossibility();
-		System.out.println("Weather: " + weather);
+		Weather weather = this.weatherEvents.getWeatherPossibility();		
+		if (weather.toString().equals("sunny"))
+			weather = new Rain();		
 		return weather;
 	}
 
