@@ -64,8 +64,6 @@ public class World implements Tickable {
 	
 	private ArrayList<Boolean> nightAnimation = new ArrayList<Boolean>();
 	
-	private boolean winterAnimation = false;
-	
 	/**
 	 * Instantiates a World with the given specified parameters, with the tiles
 	 * type default to GRASS_1
@@ -355,7 +353,10 @@ public class World implements Tickable {
 		TimeManager timeManager = gameManager.getTimeManager();
 		
 		List<BuildingSprite> buildingSprites = buildingManager.getBuildingSprites();
-		
+				
+		boolean isWinter = (timeManager.seasonManager.getCurrentSeason().getName() 
+				== "winter");
+
 		for (int x = 0; x < buildingSprites.size(); x++) {
 			// Set the new buildings to be true of false depending on time of day (to get 
 			// right animation started) 
@@ -363,20 +364,38 @@ public class World implements Tickable {
 				for (int y = nightAnimation.size(); y < buildingSprites.size(); y++) {
 					nightAnimation.add(y, !timeManager.isNight());
 				}
-			}
-			// Its night time, change animation to night type
-			if (buildingSprites.get(x).getEntityType() == ResourceType.SCHOOL 
-					&& !nightAnimation.get(x) && timeManager.isNight()) {
+			}		
+			
+			
+			// Day time during winter
+			if ((isWinter) && // Check its winter
+					// Check its day time and not updated
+					(!timeManager.isNight() && nightAnimation.get(x))) { 
 				BuildingSprite buildingSprite = buildingSprites.get(x);
-				if (buildingSprite.nightAnimation()) {
+				if (buildingSprite.winterDayAnimation(buildingSprite.getEntityType())) {
+					nightAnimation.set(x, true);
+				}
+			}
+			// Night time during winter
+			else if ((isWinter) && // Check its winter
+					// Check its night and not updated
+					(timeManager.isNight() && !nightAnimation.get(x))) {
+				BuildingSprite buildingSprite = buildingSprites.get(x);
+				if (buildingSprite.winterNightAnimation(buildingSprite.getEntityType())) {
+					nightAnimation.set(x, false);
+				}
+			}
+			// Its night time, change animation to night type - NOT WINTER
+			else if (!nightAnimation.get(x) && timeManager.isNight()) {
+				BuildingSprite buildingSprite = buildingSprites.get(x);
+				if (buildingSprite.nightAnimation(buildingSprite.getEntityType())) {
 					nightAnimation.set(x, true);
 				}
 			} 
-			// Its day time, change animation to day type
-			else if (buildingSprites.get(x).getEntityType() == ResourceType.SCHOOL 
-					&& nightAnimation.get(x) && !timeManager.isNight()) {
+			// Its day time, change animation to day type - NOT WINTER
+			else if (nightAnimation.get(x) && !timeManager.isNight()) {
 				BuildingSprite buildingSprite = buildingSprites.get(x);
-				if (buildingSprite.dayAnimation()) {
+				if (buildingSprite.dayAnimation(buildingSprite.getEntityType())) {
 					nightAnimation.set(x, false);
 				}
 			}
