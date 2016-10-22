@@ -635,22 +635,15 @@ public class SpritesFactory {
             double constructionTime,
             double idleAnimationTime,
             List<Image> idleFrames,
-            //ResourceType[] idleAnimationFrames,
             boolean autoReverse) {
         // Setup the frames for the animations
         List<Image> constructionFrames = new ArrayList<>();
-        //List<Image> idleFrames = new ArrayList<>();
         ResourceSpriteRegister register = ResourceSpriteRegister.getInstance();
 
         // Now add all the images representing the construction animation here
         constructionFrames.add(register.getResourceImage(ResourceType.CONSTRUCTION_2));
         constructionFrames.add(register.getResourceImage(ResourceType.CONSTRUCTION));
         constructionFrames.add(register.getResourceImage(buildingType));
-
-        // Add all the frames for the idle animation
-//        for (ResourceType frameType : idleAnimationFrames) {
-//            idleFrames.add(register.getResourceImage(frameType));
-//        }
 
         // After all images are set up, now call these methods to set up the
         // actual animation code
