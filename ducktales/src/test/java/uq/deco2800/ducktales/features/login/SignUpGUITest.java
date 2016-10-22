@@ -19,6 +19,8 @@ public class SignUpGUITest extends GuiTest {
 	LoginManager loginManager;
 	
 	SignUpController signUpController;
+	
+	DucktalesClient client;
 
 	/**
 	 * Set up for TestFX.
@@ -35,9 +37,9 @@ public class SignUpGUITest extends GuiTest {
 			// store a reference to the allTradesController instance
 			this.signUpController = loader.<SignUpController> getController();
 			
-			DucktalesClient client = new DucktalesClient();
+			this.client = new DucktalesClient();
 			
-			this.loginManager.setClient(client);
+			this.loginManager.setClient(this.client);
 			
 			LoginVistaNavigator.setMainController(loginManager);
 
@@ -72,6 +74,13 @@ public class SignUpGUITest extends GuiTest {
 				getText().equals(validPassword));
 		assertTrue(((TextField) GuiTest.find("#passwordField2")).
 				getText().equals(validPassword));
+	}
+	
+	@Test
+	public void clientTest() {
+		this.signUpController.setClient(this.client);
+		
+		assertTrue(this.client.equals(this.signUpController.getClient()));
 	}
 
 }
