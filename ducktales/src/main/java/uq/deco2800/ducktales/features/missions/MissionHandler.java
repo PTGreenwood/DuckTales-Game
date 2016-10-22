@@ -28,7 +28,7 @@ public class MissionHandler {
 	
 	private int[] countCompletedMissions;	
 
-	public static double numberOfCompletedMissions = 0.0;
+	private double numberOfCompletedMissions = 0.0;
 
 	/** Load checked and unchecked box */
 	private Image uncheckedBox = new Image("/missions/boxUnchecked.png");
