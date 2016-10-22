@@ -4,6 +4,7 @@ import java.util.Random;
 
 import uq.deco2800.ducktales.features.entities.worldentities.WorldEntity;
 import uq.deco2800.ducktales.resources.ResourceType;
+import uq.deco2800.ducktales.util.exceptions.GameSetupException;
 
 /**
  * Abstract representation of all static Resource entities.
@@ -13,19 +14,27 @@ import uq.deco2800.ducktales.resources.ResourceType;
  */
 public abstract class ResourceEntity extends WorldEntity {
 
-	//Default starting value of Resource nodes
+	// Default starting value of Resource nodes
 	public static final int DEFVALUE = 100;
-	//Actual, editable value the Resources nodes will take
+
+	// Actual, editable value the Resources nodes will take
 	protected int value;
 
 	/**
 	 * Main constructor of the Resource Entity class.
-	 * @param x, x location of the resource
-	 * @param y, y location of the resource
-	 * @param lengthX, length of the resource (x direction) 
-	 * @param lengthY, length of the resource (y direction)
-	 * @param type, resource type
-	 * @param value, the amount that can be harvested from the resource
+	 * 
+	 * @param x,
+	 *            x location of the resource
+	 * @param y,
+	 *            y location of the resource
+	 * @param lengthX,
+	 *            length of the resource (x direction)
+	 * @param lengthY,
+	 *            length of the resource (y direction)
+	 * @param type,
+	 *            resource type
+	 * @param value,
+	 *            the amount that can be harvested from the resource
 	 */
 	protected ResourceEntity(double x, double y, int lengthX, int lengthY, ResourceType type, int value) {
 		super(x, y, lengthX, lengthY, type);
@@ -38,77 +47,85 @@ public abstract class ResourceEntity extends WorldEntity {
 	 * @return Returns true if this WorldEntity is passable.
 	 */
 	public abstract boolean isPassable();
-	
+
 	/**
-	 * Called during constructor of a new Resource.
-	 * Has a 5% chance of spawning as a rare Resource with different visual and starting value.	
+	 * Called during constructor of a new Resource. Has a 5% chance of spawning
+	 * as a rare Resource with different visual and starting value.
 	 * 
 	 * @param TYPES
-	 * 			   Array of appearances the Resource can take, 
-	 * 			   with the last one always being the rare option.
+	 *            Array of appearances the Resource can take, with the last one
+	 *            always being the rare option.
 	 * 
 	 * @return Returns the ResourceType that the Resource will use
 	 */
-	public static ResourceType rare(ResourceType[] types){
+	public static ResourceType rare(ResourceType[] types) {
 		Random randomGenerator = new Random();
 		int randomInt = randomGenerator.nextInt(100);
-		if(randomInt < 5){
-			return types[types.length-1];
-		} else{
+		if (randomInt < 5) {
+			return types[types.length - 1];
+		} else {
 			return types[0];
 		}
 	}
-	
+
 	/**
 	 * Sets the resource value of the Resource to x
 	 * 
 	 * @param x
-	 * 		   The new value of the Resource
+	 *            The new value of the Resource
 	 * 
-	 * @throws exception if value is < 0
-	 */	
-	protected void setValue(int x){
-		if(x > 0){
+	 * @throws exception
+	 *             if value is < 0
+	 */
+	protected void setValue(int x) {
+		if (x > 0) {
 			this.value = x;
-		}else{
-			//throw new exception
+		} else {
+			throw new GameSetupException("value of a resource must be" +
+					" positive");
 		}
-	}	
-	
+	}
+
 	/**
+	 * Returns the value of the resource.
+	 * 
 	 * @return The value of the Resource
-	 */		
-	public int getValue(){
+	 */
+	public int getValue() {
 		return value;
 	}
+
 	/**
 	 * Increase the value of the Resource by a specified amount
 	 * 
 	 * @param x
-	 * 		   The amount to add to the Resource value.
+	 *            The amount to add to the Resource value.
 	 * 
-	 * @throws exception if x is negative.
+	 * @throws Exception
+	 *             if x is negative.
 	 */
-	public void increaseValue(int x){
-		if(x > 0){
+	public void increaseValue(int x) throws Exception {
+		if (x > 0) {
 			value += x;
-		}else{
-			//throw new exception
+		} else {
+			throw new Exception();
 		}
 	}
+
 	/**
 	 * Decrease the value of the Resource by a specified amount
 	 * 
 	 * @param x
-	 * 		   The amount to remove from the Resource value.
+	 *            The amount to remove from the Resource value.
 	 * 
-	 * @throws exception if x is negative.
+	 * @throws Exception
+	 *             if x is negative.
 	 */
-	public void decreaseValue(int x){
-		if(x > 0){
+	public void decreaseValue(int x) throws Exception {
+		if (x > 0) {
 			value -= x;
-		}else{
-			//throw new exception
+		} else {
+			throw new Exception();
 		}
 	}
 }
