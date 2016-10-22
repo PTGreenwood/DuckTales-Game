@@ -86,6 +86,7 @@ public class World implements Tickable {
 
 		// Instantiate game model
 		this.tiles = new Array2D<>(width, height);
+		this.trees = new HashMap<>(50);
 		this.animals = new ArrayList<>(50);
 		this.buildings = new ArrayList<>(50);
 		this.peons = new HashMap<>(50);
@@ -212,6 +213,23 @@ public class World implements Tickable {
 			throw new GameSetupException("Failed to add a tree to the world." +
 					" A tree with the same hashcode already exists in the " +
 					"model");
+		}
+	}
+
+	/**
+	 * Retrieve the {@link Tree} with the given hashcode from the game model
+	 * {@link GameSetupException} is thrown if the given hashcode is not
+	 * a key in the hashmap
+	 *
+	 * @param treeHashcode
+	 * 			The hashcode of the tree to be retrieved
+	 */
+	public Tree getTree(int treeHashcode) {
+		if (trees.containsKey(treeHashcode)) {
+			return trees.get(treeHashcode);
+		} else {
+			throw new GameSetupException("A tree with the given hashcode" +
+					" does not exist in the game model");
 		}
 	}
 

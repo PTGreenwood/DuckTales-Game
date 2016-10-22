@@ -81,10 +81,9 @@ public class Tree extends ResourceEntity{
 
 	@Override
 	public int hashCode() {
-		int result = super.hashCode();
-
 		// this is okay since the location of a tree should not change
-		result = 31 * result + (int) this.getX() + (int) this.getY();
+		int result = 31 * (int) this.getX();
+		result = 31 * result + (int) this.getY();
 
 		return result;
 	}
