@@ -60,4 +60,32 @@ public class Tree extends ResourceEntity{
 	public boolean isPassable() {
 		return false;
 	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+		if (!super.equals(o)) {
+			return false;
+		}
+
+		Tree tree = (Tree) o;
+
+		return tree.hashCode() == this.hashCode();
+
+	}
+
+	@Override
+	public int hashCode() {
+		int result = super.hashCode();
+
+		// this is okay since the location of a tree should not change
+		result = 31 * result + (int) this.getX() + (int) this.getY();
+
+		return result;
+	}
 }

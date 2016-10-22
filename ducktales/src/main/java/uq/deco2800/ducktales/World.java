@@ -8,6 +8,7 @@ import uq.deco2800.ducktales.features.entities.MainEntityManager;
 import uq.deco2800.ducktales.features.entities.agententities.Animal;
 import uq.deco2800.ducktales.features.entities.peons.Peon;
 import uq.deco2800.ducktales.features.entities.resourceentities.DroppableResourceEntity;
+import uq.deco2800.ducktales.features.entities.resourceentities.Tree;
 import uq.deco2800.ducktales.features.entities.threats.Threat;
 import uq.deco2800.ducktales.features.entities.worldentities.Building;
 import uq.deco2800.ducktales.features.entities.worldentities.BuildingManager;
@@ -20,6 +21,7 @@ import uq.deco2800.ducktales.features.landscape.tiles.Tile;
 import uq.deco2800.ducktales.features.time.TimeManager;
 import uq.deco2800.ducktales.rendering.sprites.BuildingSprite;
 import uq.deco2800.ducktales.util.*;
+import uq.deco2800.ducktales.util.exceptions.GameSetupException;
 
 import static uq.deco2800.ducktales.resources.ResourceType.*;
 
@@ -52,6 +54,7 @@ public class World implements Tickable {
 	private ArrayList<Building> buildings; // All the buildings in the game
 	private HashMap<String, Peon> peons; // All the peons in the game
 	private ArrayList<Threat> threats;
+	private HashMap<Integer, Tree> trees;
 	private ArrayList<DroppableResourceEntity> droppedResources; // All the dropped resources in the game
 
 	/** The registers */
@@ -189,9 +192,26 @@ public class World implements Tickable {
 		if (peons.containsKey(peonName)) {
 			return peons.get(peonName);
 		} else {
-			throw new RuntimeException("Fail to retrieve a peon. Peon with" +
+			throw new GameSetupException("Fail to retrieve a peon. Peon with" +
 					" name: \"" + peonName + "\" has not been added to the" +
 					"game yet.");
+		}
+	}
+
+	/**
+	 * Add a tree to the world model, throwing an exception if a tree with
+	 * the same hashcode is already in the model
+	 *
+	 * @param tree
+	 * 			The tree to be added to the model
+	 */
+	public void addTree(Tree tree) {
+		if (!trees.containsKey(tree.hashCode())) {
+			trees.put(tree.hashCode(), tree);
+		} else {
+			throw new GameSetupException("Failed to add a tree to the world." +
+					" A tree with the same hashcode already exists in the " +
+					"model");
 		}
 	}
 

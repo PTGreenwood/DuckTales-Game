@@ -6,11 +6,9 @@ import java.util.List;
 
 import uq.deco2800.ducktales.features.entities.agententities.Animal;
 import uq.deco2800.ducktales.features.entities.agententities.AnimalManager;
-import uq.deco2800.ducktales.rendering.sprites.AnimalSprite;
-import uq.deco2800.ducktales.rendering.sprites.DroppedResourceSprite;
-import uq.deco2800.ducktales.rendering.sprites.Sprite;
-import uq.deco2800.ducktales.rendering.sprites.SpritesFactory;
+import uq.deco2800.ducktales.rendering.sprites.*;
 import uq.deco2800.ducktales.resources.ResourceInfoRegister;
+import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.SecondaryManager;
 import uq.deco2800.ducktales.util.exceptions.AnimalNotRegisteredException;
@@ -32,10 +30,57 @@ public class ResourceEntityManager extends SecondaryManager{
     private List<DroppedResourceSprite> resourceSprites;
 
     /**
+     * List of all trees currently rendered into the game
+     * The key is the hashcode of the corresponding {@link Tree} object
+     */
+    private HashMap<Integer, TreeSprite> treeSprites;
+
+    /**
      * Instantiate an empty resource manager
      */
     public ResourceEntityManager() {
         resourceSprites = new ArrayList<DroppedResourceSprite>();
+    }
+
+    /**
+     * Add a tree of the given type to the given location. This code will
+     * also instantiate a sprite of the tree and add it to the world
+     *
+     * @param treeType
+     *          The type of the tree to be created and added
+     * @param x
+     *          The x-coordinate of the tile where the tree shold be on
+     * @param y
+     *          The y-coordinate of that said tile
+     */
+    public void addTree(ResourceType treeType, int x, int y) {
+        // Instantiate a tree, passing in its location
+        Tree tree = new Tree(x, y);
+
+        // Instantiate a sprite with the type of the given tree
+        TreeSprite sprite = new TreeSprite(tree.hashCode());
+        sprite.setImage(ResourceSpriteRegister.getInstance()
+                .getResourceImage(treeType));
+
+        // Add the tree and its sprites to the corresponding lists
+        if (world != null) {
+            world.addTree(tree);
+        } else {
+            throw new GameSetupException("ResourceEntityManager does not have" +
+                    " a handle on the World yet. Please make sure this manager's" +
+                    " 'world' variable is instantiated before attempting to add" +
+                    " a tree");
+        }
+        treeSprites.put(tree.hashCode(), sprite);
+
+        // Now add the sprite to the game world
+        if (gameManager != null) {
+            gameManager.getWorldDisplayManager().getWorldDisplay().getChildren()
+                    .add(sprite);
+        } else {
+            throw new GameSetupException("ResourceEntityManager does not have " +
+                    "a handle on GameManager yet before attempt to add a tree");
+        }
     }
 	
     /**
