@@ -35,6 +35,8 @@ public class MissionManager {
 	private Button main;
 	@FXML
 	private Button progress;
+	@FXML
+	private Button Secret;
 	
 	@FXML
 	private Label topLabel;
@@ -50,6 +52,7 @@ public class MissionManager {
 	private MissionTutorialController missionTutorialController;
 	private MissionProgressController missionProgressConroller;
 	private MissionGameController missionGameController;
+	private MissionSecretController missionSecretController;
 		
 	public MissionManager() {
 		
@@ -57,6 +60,7 @@ public class MissionManager {
 		this.missionTutorialController = new MissionTutorialController();
 		this.missionProgressConroller = new MissionProgressController();
 		this.missionGameController = new MissionGameController();
+		this.missionSecretController = new MissionSecretController();
 	}
 	
 	public void loadMain() {
@@ -83,7 +87,8 @@ public class MissionManager {
 		rightPane.getChildren().removeAll(missionMainController.getMainWindow(), 
 				this.missionTutorialController.getMainWindow(),
 				this.missionProgressConroller.getMainWindow(),
-				this.missionGameController.getMainWindow());
+				this.missionGameController.getMainWindow(),
+				this.missionSecretController.getMainWindow());
 	}
 	
 	@FXML
@@ -167,6 +172,40 @@ public class MissionManager {
 			LOGGER.log(Level.SEVERE, e.toString(), e);
 		}
 		
+	}
+	
+	@FXML
+	private void loadSecret() {
+		
+		this.removeAllPane();
+		
+		URL location = getClass().getResource("/missions/missionSecret.fxml");
+												
+		FXMLLoader loader = new FXMLLoader(location);
+		
+		try {
+			BorderPane root = loader.load();
+			
+			missionSecretController = loader.getController();
+			
+			if (levelMain.getLevel() == 2) {
+				missionSecretController.getMission1().setText(" 1. Secret Mission 1");
+			} else if (levelMain.getLevel() == 3) {
+				missionSecretController.getMission1().setText(" 1. Secret Mission 1");
+				missionSecretController.getMission2().setText(" 2. Secret Mission 2");
+			}
+			
+			this.missionSecretController.getBox1().setImage(
+					missionMain.getmissionImageCompleted(6));
+			this.missionSecretController.getBox2().setImage(
+					missionMain.getmissionImageCompleted(7));
+			
+			
+			rightPane.getChildren().add(root);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			LOGGER.log(Level.SEVERE, e.toString(), e);
+		}
 	}
 	
 	/**
