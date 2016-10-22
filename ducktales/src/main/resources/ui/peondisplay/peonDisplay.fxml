@@ -23,7 +23,7 @@
       </AnchorPane>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="general-pane-color">
          <children>
-            <Label alignment="CENTER" layoutX="10.0" layoutY="14.0" prefHeight="25.0" prefWidth="38.0" styleClass="header" text="GENERAL" textAlignment="CENTER" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+            <Label alignment="CENTER" layoutX="10.0" layoutY="14.0" prefHeight="25.0" prefWidth="38.0" styleClass="header" text="GENERAL" textAlignment="CENTER" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0" />
             <AnchorPane layoutX="20.0" layoutY="35.0" prefHeight="30.0" prefWidth="200.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
                <children>
                   <Label prefHeight="25.0" prefWidth="94.0" text="Name:" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
@@ -55,8 +55,8 @@
       </AnchorPane>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="general-pane-color">
          <children>
-            <Label alignment="CENTER" layoutX="10.0" layoutY="14.0" prefHeight="25.0" prefWidth="38.0" styleClass="header" text="STATUS" textAlignment="CENTER" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
-            <HBox alignment="CENTER" layoutX="20.0" layoutY="65.0" prefHeight="30.0" prefWidth="200.0" spacing="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+            <Label alignment="CENTER" layoutX="10.0" layoutY="14.0" prefHeight="25.0" prefWidth="38.0" styleClass="header" text="STATUS" textAlignment="CENTER" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0" />
+            <HBox alignment="CENTER" layoutX="20.0" layoutY="21.0" prefHeight="30.0" prefWidth="200.0" spacing="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
                <children>
                   <Label prefHeight="25.0" prefWidth="70.0" text="Hunger:">
                      <HBox.margin>
@@ -66,12 +66,42 @@
                   <Label fx:id="peonHunger" alignment="CENTER_RIGHT" layoutX="10.0" layoutY="10.0" prefHeight="25.0" prefWidth="100.0" text="[peonHunger]" />
                </children>
             </HBox>
-            <HBox layoutX="20.0" layoutY="95.0" prefHeight="30.0" prefWidth="200.0" spacing="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+            <HBox layoutX="20.0" layoutY="42.0" prefHeight="25.0" prefWidth="200.0" spacing="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
                <children>
                   <Label prefHeight="25.0" prefWidth="70.0" text="Thirst:" />
                   <Label fx:id="peonThirst" alignment="CENTER_RIGHT" layoutX="10.0" layoutY="10.0" prefHeight="25.0" prefWidth="100.0" text="[peonThirst]" />
                </children>
             </HBox>
+            <Label alignment="CENTER" layoutX="50.0" layoutY="53.0" prefHeight="25.0"  styleClass="header" prefWidth="150.0" text="TOOL UPGRADE" textAlignment="CENTER" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="65.0" />         		
+           			
+             <HBox layoutX="20.0" layoutY="90.0" prefHeight="10.0" prefWidth="500.0" spacing="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+         		<children>
+         			<Label prefHeight="25.0" prefWidth="140.0" text="Current Tool Level:">
+                    	<HBox.margin>
+                        	<Insets />
+                     	</HBox.margin>
+                 	</Label>
+                 	<Label fx:id="currentToolLevel" alignment="CENTER_RIGHT" layoutX="20.0" layoutY="10.0" prefHeight="25.0" prefWidth="100.0" text="[toolLevel]" />
+            	</children>
+         	</HBox>
+         	
+         	<HBox layoutX="20.0" layoutY="108.0" prefHeight="10.0" prefWidth="300.0" spacing="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+         		<children>
+         			<Label prefHeight="25.0" prefWidth="320.0" text="Cost to Upgrade:">
+                    	<HBox.margin>
+                        	<Insets />
+                     	</HBox.margin>
+                 	</Label>
+                 	<Label fx:id="resourceCost" alignment="CENTER_RIGHT" layoutX="00.0" layoutY="5.0" prefHeight="25.0" prefWidth="300.0" text="[costRes]" />
+                </children>
+            </HBox>
+            
+            <HBox layoutX="76.0" layoutY="129.0" prefHeight="10.0" prefWidth="300.0" spacing="10.0" AnchorPane.leftAnchor="64.0" AnchorPane.rightAnchor="60.0">
+            	<children>
+            		<Button onAction="#handleUpgradeToolButtonAction" alignment="CENTER" layoutX="50.0" layoutY="161.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="78.0" text="Upgrade" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="20.0" />
+            	</children>
+            </HBox>
+
          </children>
          <HBox.margin>
             <Insets />
@@ -79,14 +109,14 @@
       </AnchorPane>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="general-pane-color">
          <children>
-            <Label alignment="CENTER" layoutY="14.0" prefHeight="25.0" prefWidth="38.0" styleClass="header" text="JOB" textAlignment="CENTER" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+            <Label alignment="CENTER" layoutY="14.0" prefHeight="25.0" prefWidth="38.0" styleClass="header" text="JOB" textAlignment="CENTER" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0" />
             <ScrollPane fx:id="jobList" hbarPolicy="NEVER" layoutY="33.0" prefHeight="89.0" prefWidth="173.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" />
             <Label fx:id="peonJobStatus" alignment="CENTER" layoutX="10.0" layoutY="34.0" prefHeight="39.0" prefWidth="170.0" text="UNEMPLOYED" textAlignment="CENTER" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Button fx:id="assignJobButton" layoutX="74.0" layoutY="161.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="82.0" text="Assign" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" />
+            <Button fx:id="assignJobButton" layoutX="74.0" layoutY="163.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="82.0" text="Assign" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" />
          </children>
          <padding>
             <Insets bottom="10.0" />

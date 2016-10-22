@@ -52,7 +52,7 @@ public class World implements Tickable {
 	private ArrayList<Building> buildings; // All the buildings in the game
 	private HashMap<String, Peon> peons; // All the peons in the game
 	private ArrayList<Threat> threats;
-	private HashMap<Integer, DroppableResourceEntity> droppedResources; // All the dropped resources in the game
+	private ArrayList<DroppableResourceEntity> droppedResources; // All the dropped resources in the game
 
 	/** The registers */
 	private ResourceInfoRegister infoRegister = ResourceInfoRegister.getInstance();
@@ -225,10 +225,10 @@ public class World implements Tickable {
 	 * Get the droppedResource with the given index
 	 * 
 	 * @return The dropped resource at the given index in the droppedResources 
-	 *         HashMap
+	 *         List
 	 */
 	public DroppableResourceEntity getDroppedResource(int index) {
-		if(droppedResources.containsKey(index)) {
+		if(droppedResources.contains(index)) {
 			return droppedResources.get(index);
 		} else {
 			throw new RuntimeException("Fail to retrieve a droppedResource."
@@ -239,20 +239,16 @@ public class World implements Tickable {
 	}
 	
 	/**
-	 * Set a dropped resource in the droppedResource HashMap using the 
-	 * given Key and Value
+	 * Set a dropped resource in the droppedResource List using the 
+	 * given Value
 	 */
-	public void setDroppedResoure(int key, DroppableResourceEntity value) {
-		if(droppedResources.containsKey(key)) {
+	public void addDroppedResoure(DroppableResourceEntity value) {
+		if(droppedResources.contains(value)) {
 			throw new RuntimeException("droppedResources already contains "
-					+ "a dropped resource with key: " + key);
-		} else if(droppedResources.containsValue(value)) {
-			throw new RuntimeException("droppedResources already contains"
-					+ "a dropped resource of the value: " + value);
+					+ "a dropped resource with value: " + value);
 		} else {
-			droppedResources.put(key, value);
-		}
-		
+			droppedResources.add(value);
+		}	
 	}
 
 	/**

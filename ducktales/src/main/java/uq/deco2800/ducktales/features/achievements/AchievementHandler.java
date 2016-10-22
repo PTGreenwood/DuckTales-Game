@@ -3,6 +3,7 @@ package uq.deco2800.ducktales.features.achievements;
 
 
 import uq.deco2800.ducktales.World;
+import uq.deco2800.ducktales.features.entities.threats.ThreatManager;
 import uq.deco2800.ducktales.features.inventory.InventoryManager;
 import uq.deco2800.ducktales.features.level.LevelHandler;
 import uq.deco2800.ducktales.features.missions.MissionHandler;
@@ -26,6 +27,7 @@ public class AchievementHandler {
 	public int achievementToggleOres = 0;
 	public int achievementToggleFood = 0;
 	public int achievementTogglePeons = 0;
+	public int achievementToggleThreats = 0;
 	/**
 	 * Constructor of {@link Achievement}.
 	 * 
@@ -89,9 +91,10 @@ public class AchievementHandler {
      * Contains all achievements.
      * 
      * @author Justin Kuhnel
+     * @throws Exception 
      * 
      */
-   public void achievementHolder() {
+   public void achievementHolder() throws Exception {
 	   if(MissionHandler.numberOfCompletedMissions == 1)
 	    {
 	    this.achieveVeryEasy();
@@ -139,85 +142,87 @@ public class AchievementHandler {
 	    }
 	    if(levelHandler.getLevel() == 1)
 	    {
-	    	inventoryManager.updateWoodAmount(10);
-	    	inventoryManager.updateOresAmount(10);
-	    	inventoryManager.updateFoodAmount(10);
+	    	inventoryManager.updateTimberAmount(10);
+	    	inventoryManager.updateMeatAmount(10);
+	    	inventoryManager.updateWoolAmount(10);
+	    	inventoryManager.updateFeatherAmount(10);
+	    	inventoryManager.updateStoneAmount(10);
 	    }
 
 	   
 	    /** Selects which achievement to run based upon the achievement toggle value
 	    * before moving on to the next toggle value**/
 	     
-	    if(inventoryManager.getWoodAmount() >= 10 && achievementToggleWood == 0)
+	    if(inventoryManager.getTimberAmount() >= 10 && achievementToggleWood == 0)
 	    {
 	    	this.achieveVeryEasy();
 	    	achievementToggleWood ++;
 	    }
-	    else if(inventoryManager.getWoodAmount() >= 150 && achievementToggleWood == 1){
+	    else if(inventoryManager.getTimberAmount() >= 150 && achievementToggleWood == 1){
 	    	this.achieveEasy();
 	    	achievementToggleWood ++;
 	    }
-	    else if(inventoryManager.getWoodAmount() >= 300 && achievementToggleWood == 2){
+	    else if(inventoryManager.getTimberAmount() >= 300 && achievementToggleWood == 2){
 	    	this.achieveMedium();
 	    	achievementToggleWood ++;
 	    }
-	    else if(inventoryManager.getWoodAmount() >= 750 && achievementToggleWood == 3){
+	    else if(inventoryManager.getTimberAmount() >= 750 && achievementToggleWood == 3){
 	    	this.achieveHard();
 	    	achievementToggleWood ++;
 	    }
-	    else if(inventoryManager.getWoodAmount() >= 2500 && achievementToggleWood == 4){
+	    else if(inventoryManager.getTimberAmount() >= 2500 && achievementToggleWood == 4){
 	    	this.achieveVeryHard();
 	    	
 	    }
 	   
 	    /** Selects which achievement to run based upon the achievement toggle value
 	     * before moving on to the next toggle value**/
-	    if(inventoryManager.getOresAmount() >= 10 && achievementToggleWood == 0)
+	    if(inventoryManager.getStoneAmount() >= 10 && achievementToggleWood == 0)
 	    {
 	    	this.achieveVeryEasy();
 	    	achievementToggleOres ++;
 	    }
-	    else if(inventoryManager.getOresAmount() >= 150 && achievementToggleWood == 1){
+	    else if(inventoryManager.getStoneAmount() >= 150 && achievementToggleWood == 1){
 	    	this.achieveEasy();
 	    	achievementToggleOres ++;
 	    }
-	    else if(inventoryManager.getOresAmount() >= 300 && achievementToggleWood == 2){
+	    else if(inventoryManager.getStoneAmount() >= 300 && achievementToggleWood == 2){
 	    	this.achieveMedium();
 	    	achievementToggleOres ++;
 	    }
-	    else if(inventoryManager.getOresAmount() >= 750 && achievementToggleWood == 3){
+	    else if(inventoryManager.getStoneAmount() >= 750 && achievementToggleWood == 3){
 	    	this.achieveHard();
 	    	achievementToggleOres ++;
 	    }
-	    else if(inventoryManager.getOresAmount() >= 2500 && achievementToggleWood == 4){
+	    else if(inventoryManager.getStoneAmount() >= 2500 && achievementToggleWood == 4){
 	    	this.achieveVeryHard();
 	    	
 	    }
 	    
 	    /** Selects which achievement to run based upon the achievement toggle value 
 	     * before moving on to the next toggle value**/
-	    if(inventoryManager.getFoodAmount() >= 10 && achievementToggleWood == 0)
+	    if(inventoryManager.getMeatAmount() >= 10 && achievementToggleWood == 0)
 	    {
 	    	this.achieveVeryEasy();
 	    	achievementToggleFood ++;
 	    }
-	    else if(inventoryManager.getFoodAmount() >= 150 && achievementToggleWood == 1){
+	    else if(inventoryManager.getMeatAmount() >= 150 && achievementToggleWood == 1){
 	    	this.achieveEasy();
 	    	achievementToggleFood ++;
 	    }
-	    else if(inventoryManager.getFoodAmount() >= 300 && achievementToggleWood == 2){
+	    else if(inventoryManager.getMeatAmount() >= 300 && achievementToggleWood == 2){
 	    	this.achieveMedium();
 	    	achievementToggleFood ++;
 	    }
-	    else if(inventoryManager.getFoodAmount() >= 750 && achievementToggleWood == 3){
+	    else if(inventoryManager.getMeatAmount() >= 750 && achievementToggleWood == 3){
 	    	this.achieveHard();
 	    	achievementToggleFood ++;
 	    }
-	    else if(inventoryManager.getFoodAmount() >= 2500 && achievementToggleWood == 4){
+	    else if(inventoryManager.getMeatAmount() >= 2500 && achievementToggleWood == 4){
 	    	this.achieveVeryHard();
-	    	inventoryManager.updateWoodAmount(50);
-	    	inventoryManager.updateOresAmount(50);
-	    	inventoryManager.updateFoodAmount(100);
+	    	inventoryManager.updateTimberAmount(50);
+	    	inventoryManager.updateStoneAmount(50);
+	    	inventoryManager.updateMeatAmount(100);
 	    }
 	    
 	    if(world.getNumberOfPeons() == 1 && achievementTogglePeons == 0){
@@ -237,7 +242,12 @@ public class AchievementHandler {
 	    	achievementTogglePeons ++;
 	    }
 	    
-	    
+	    if(ThreatManager.returnEnemies().equals(1) && achievementToggleThreats == 0){
+	    	this.achieveMedium();
+	    }
+	    else if(ThreatManager.returnEnemies().equals(5) && achievementToggleThreats == 1){
+	    	this.achieveVeryHard();
+	    }
 	  
    }
    

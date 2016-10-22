@@ -143,7 +143,7 @@ public class SpritesFactory {
     public static DroppedResourceSprite createDroppableResourceSprite(ResourceType type) {
         DroppedResourceSprite sprite = new DroppedResourceSprite(type);
         switch(type) {
-        case CLOUD: 
+        case DUCK: 
             sprite.setImage(ResourceSpriteRegister.getInstance().getResourceImage(
                     ResourceType.CLOUD
             ));
