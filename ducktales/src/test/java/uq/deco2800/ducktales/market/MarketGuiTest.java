@@ -37,9 +37,15 @@ public class MarketGuiTest extends GuiTest {
 
 		// Attempt to create the root node.
 		try {
-			parent = FXMLLoader.load(getClass()
-					 .getResource(MarketVistaNavigator.MAIN));
-
+			FXMLLoader loader = 
+					new FXMLLoader(getClass()
+							.getResource(MarketVistaNavigator.MAIN));
+			
+			parent = loader.load();
+			
+			this.marketManager = loader.<MarketManager>getController();
+			
+			MarketVistaNavigator.setMainController(marketManager);
 
 		} catch (IOException e) {
 

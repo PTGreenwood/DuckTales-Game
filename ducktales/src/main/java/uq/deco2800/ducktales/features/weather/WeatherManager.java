@@ -309,10 +309,7 @@ public class WeatherManager extends SecondaryManager
 				currentDay = day;
 				WeatherEvents seasonEvents = this.getSeasonManager()
 						.getCurrentSeason().getSeasonalWeatherEvents();
-				setWeatherEvents(seasonEvents);
-				System.out.println(
-						this.getSeasonManager().getCurrentSeason().getName()
-								+ ": " + seasonEvents);
+				setWeatherEvents(seasonEvents);				
 				currentWeather = getWeatherPossibility();
 				this.setLighting();
 			}

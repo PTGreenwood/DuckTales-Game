@@ -14,6 +14,12 @@ public class AchievementWoodController {
 		this.inventoryManager = new InventoryManager(0,0,0,0,0);
 	}
 	
+	private static final AchievementWoodController INSTANCE = new AchievementWoodController();
+	
+	public static AchievementWoodController getInstance() {
+		return INSTANCE;
+	}
+	
 	public Image getAchievementWoodImage() {
 		Image achievementImage = null;
 		
