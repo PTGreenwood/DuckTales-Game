@@ -348,7 +348,6 @@ public class ResourceSpriteRegister {
 		/*
 		 * ANIMALS
 		 */
-		addResource(DUCK, "/animal/duck/DUCKDown0.png");
 		addResource(DUCK_1_1, "/animal/duck_1_1.png");
 
 		addResource(DUCKDown0, "/animal/duck/DUCKDown0.png");
@@ -369,14 +368,19 @@ public class ResourceSpriteRegister {
 		addResource(SHEEPRight0, "/animal/sheep/SHEEPRight0.png");
 		addResource(SHEEPRight1, "/animal/sheep/SHEEPRight1.png");
 
-		addResource(SHEEP, "/animal/sheep_with_wool.png");
-
-		addResource(COW, "/animal/cow/COW.png");
 		// addResource(COWUpRight, "/COWUpRight.png");
 		// addResource(COWUpLeft, "/COWUpLeft.png");
 		// addResource(COWDownRight, "/COWDownRight.png");
 		// addResource(COWDownLeft, "/COWDownLeft.png");
-	}	
+
+		/*
+		 * For the Menu
+		 */
+		addResource(SHEEP, "/animal/menu/sheep_stand.png");
+		addResource(WOLF, "/animal/menu/wolf_front.png");
+		addResource(COW, "/animal/menu/cow_front.png");
+		addResource(DUCK, "/animal/menu/duck_stand.png");
+	}
 	
 	/**
 	 * Add the resources for droppable resource entitis, 

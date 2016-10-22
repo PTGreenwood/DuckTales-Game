@@ -1,9 +1,6 @@
 	package uq.deco2800.ducktales.resources;
 
-import uq.deco2800.ducktales.features.entities.agententities.Animal;
-import uq.deco2800.ducktales.features.entities.agententities.Cow;
-import uq.deco2800.ducktales.features.entities.agententities.Duck;
-import uq.deco2800.ducktales.features.entities.agententities.Sheep;
+import uq.deco2800.ducktales.features.entities.agententities.*;
 import uq.deco2800.ducktales.features.entities.resourceentities.DroppableResourceEntity;
 import uq.deco2800.ducktales.features.entities.resourceentities.Feather;
 import uq.deco2800.ducktales.features.entities.worldentities.*;
@@ -214,6 +211,9 @@ public class ResourceInfoRegister {
                 break;
             case DUCK:
                 animal = new Duck(x, y);
+                break;
+            case WOLF:
+                animal = new Wolf(x, y);
                 break;
         }
 
