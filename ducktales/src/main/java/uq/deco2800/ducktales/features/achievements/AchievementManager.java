@@ -46,8 +46,6 @@ public class AchievementManager {
 	private Button threats;
 	@FXML
 	private Button food;
-	@FXML
-	private Button extra;
 	
 	@FXML
 	private Label topLabel;
