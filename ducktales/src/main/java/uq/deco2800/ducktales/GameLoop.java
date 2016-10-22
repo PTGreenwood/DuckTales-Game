@@ -102,6 +102,10 @@ public class GameLoop implements Runnable {
 		GameLoop.paused = false;
 
 	}
+	
+	public static int getGameSpeed(){
+		return gameSpeed;
+	}
 
 	/**
 	 * Modifies the gameLoop to keep going or not
@@ -121,6 +125,10 @@ public class GameLoop implements Runnable {
 
 	public static void justPlay() {
 		GameLoop.paused = false;
+	}
+	
+	public static boolean isPaused(){
+		return GameLoop.paused;
 	}
 
 	/**
