@@ -37,15 +37,15 @@ public class TileTest {
 		assertTrue("getWorldEntityType() returns unexpected worldEntityType",
 				testTile.getWorldEntityType().equals(ResourceType.NONE));
 		assertFalse("getWorldEntityType() returns unexpected worldEntityType",
-				testTile.getWorldEntityType().equals(ResourceType.TREE_1_SUMMER));
+				testTile.getWorldEntityType().equals(ResourceType.TREE_1));
 		
 		// Test setTileType() and setWorldEntityType().
 		testTile.setTileType(ResourceType.WATER);
 		assertTrue("setTileType() sets unexpected tileType",
 				testTile.getTileType().equals(ResourceType.WATER));
-		testTile.setWorldEntityType(ResourceType.TREE_1_SUMMER);
+		testTile.setWorldEntityType(ResourceType.TREE_1);
 		assertTrue("setWorldEntityType() sets unexpected worldEntityType",
-				testTile.getWorldEntityType().equals(ResourceType.TREE_1_SUMMER));
+				testTile.getWorldEntityType().equals(ResourceType.TREE_1));
 		
 	}
 }
