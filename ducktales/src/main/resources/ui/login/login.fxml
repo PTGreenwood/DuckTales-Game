@@ -31,9 +31,9 @@
        <PasswordField fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
     <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="4">
        <children>
-              <Button onAction="#handleSubmitButtonAction" style="-fx-background-color: #1b1464; -fx-border-color: white;" text="Sign In" textFill="WHITE" />
-              <Button onAction="#handleSignUpButtonAction" style="-fx-background-color: #1b1464; -fx-border-color: white;" text="Sign Up" textFill="WHITE" />
-            <Button onAction="#closeLoginFrame" style="-fx-background-color: #1b1464; -fx-border-color: white;" text="Close" textFill="WHITE" />
+              <Button fx:id="signIn" onAction="#handleSubmitButtonAction" style="-fx-background-color: #1b1464; -fx-border-color: white;" text="Sign In" textFill="WHITE" />
+              <Button fx:id="signUp" onAction="#handleSignUpButtonAction" style="-fx-background-color: #1b1464; -fx-border-color: white;" text="Sign Up" textFill="WHITE" />
+            <Button fx:id="close" onAction="#closeLoginFrame" style="-fx-background-color: #1b1464; -fx-border-color: white;" text="Close" textFill="WHITE" />
        </children>
    </HBox>
    
