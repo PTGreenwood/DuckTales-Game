@@ -31,6 +31,7 @@ public class MissionGameController {
 	@FXML
 	private ImageView box3;
 	
+	
 	public MissionGameController() {
 		
 	}
