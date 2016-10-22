@@ -4,6 +4,7 @@ import java.util.Random;
 
 import uq.deco2800.ducktales.features.entities.worldentities.WorldEntity;
 import uq.deco2800.ducktales.resources.ResourceType;
+import uq.deco2800.ducktales.util.exceptions.GameSetupException;
 
 /**
  * Abstract representation of all static Resource entities.
@@ -76,11 +77,12 @@ public abstract class ResourceEntity extends WorldEntity {
 	 * @throws exception
 	 *             if value is < 0
 	 */
-	protected void setValue(int x) throws Exception {
+	protected void setValue(int x) {
 		if (x > 0) {
 			this.value = x;
 		} else {
-			throw new Exception();
+			throw new GameSetupException("value of a resource must be" +
+					" positive");
 		}
 	}
 

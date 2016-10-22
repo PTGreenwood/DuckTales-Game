@@ -4,9 +4,11 @@ import java.io.IOException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import uq.deco2800.ducktales.GameController;
 import uq.deco2800.ducktales.GameManager;
 import uq.deco2800.ducktales.World;
 import uq.deco2800.ducktales.features.entities.agententities.AnimalManager;
+import uq.deco2800.ducktales.features.entities.resourceentities.ResourceEntityManager;
 import uq.deco2800.ducktales.features.entities.worldentities.BuildingManager;
 import uq.deco2800.ducktales.features.helper.HelperManager;
 import uq.deco2800.ducktales.resources.ResourceInfoRegister;
@@ -25,6 +27,9 @@ import uq.deco2800.ducktales.util.exceptions.GameSetupException;
  * @author Leggy, khoiphan21
  */
 public class MainEntityManager implements Tickable {
+    /** CONSTANTS */
+    private static final int NUMBER_OF_TREES_INITIALLY = 10;
+
     /** The logger */
     private static final Logger LOGGER = LoggerFactory.getLogger(MainEntityManager.class);
 
@@ -41,6 +46,7 @@ public class MainEntityManager implements Tickable {
     private AnimalManager animalManager;
     private BuildingManager buildingManager;
     private PeonManager peonManager;
+    private ResourceEntityManager resourceEntityManager;
 
     /** The registers */
     ResourceInfoRegister infoRegister;
@@ -56,6 +62,7 @@ public class MainEntityManager implements Tickable {
         animalManager = new AnimalManager();
         buildingManager = new BuildingManager();
         peonManager = new PeonManager();
+        resourceEntityManager = new ResourceEntityManager();
 
         infoRegister = ResourceInfoRegister.getInstance();
     }
@@ -74,6 +81,19 @@ public class MainEntityManager implements Tickable {
      * entities, and createBuildingSprite the corresponding sprites
      */
     public void startRoutine() {
+        if (this.world == null) {
+            throw new GameSetupException("MainEntityManager does not have" +
+                    " a reference on World yet");
+        } else if (this.gameManager == null) {
+            throw new GameSetupException("MainEntityManager does not have " +
+                    "a reference on GameManager yet");
+        }
+        // Give the resource entity manager the handle on the world and
+        // game manager
+        resourceEntityManager.setWorld(this.world);
+        resourceEntityManager.setGameManager(this.gameManager);
+        resourceEntityManager.createRandomTrees(NUMBER_OF_TREES_INITIALLY);
+
         // Load the size register
         infoRegister = ResourceInfoRegister.getInstance();
 
@@ -89,6 +109,27 @@ public class MainEntityManager implements Tickable {
             throw new GameSetupException(
                     "Entity Manager has not received a handle on World");
         }
+    }
+
+    /**
+     * Retrieve the manager for all resource entities of the game.
+     *
+     * @return The manager for all resource entities of the game
+     */
+    public ResourceEntityManager getResourceEntityManager() {
+        return resourceEntityManager;
+    }
+
+    /**
+     * Give the primary manager a reference of the resource entity manager.
+     * This is mainly required for testing purposes
+     *
+     * @param resourceEntityManager
+     *          The manager for all resource entities in the game, such as trees,
+     *          rocks, stones, etc.
+     */
+    public void setResourceEntityManager(ResourceEntityManager resourceEntityManager) {
+        this.resourceEntityManager = resourceEntityManager;
     }
 
     /**
@@ -200,6 +241,7 @@ public class MainEntityManager implements Tickable {
         animalManager.moveAllAnimalsSprites(xAmount, yAmount);
         buildingManager.moveAllBuildingSprites(xAmount, yAmount);
         peonManager.moveAllPeonSprites(xAmount, yAmount);
+        resourceEntityManager.moveAllSprites(xAmount, yAmount);
     }
 
     /**

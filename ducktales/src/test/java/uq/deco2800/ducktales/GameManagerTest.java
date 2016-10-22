@@ -1,5 +1,6 @@
 package uq.deco2800.ducktales;
 
+import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -19,6 +20,10 @@ import uq.deco2800.ducktales.features.tutorials.TutorialManager;
 import uq.deco2800.ducktales.features.weather.WeatherManager;
 import uq.deco2800.ducktales.rendering.worlddisplay.CursorManager;
 import uq.deco2800.ducktales.rendering.worlddisplay.WorldDisplayManager;
+import uq.deco2800.ducktales.util.exceptions.GameSetupException;
+
+import java.io.IOException;
+import java.net.URL;
 
 import static org.junit.Assert.*;
 
@@ -154,16 +159,6 @@ public class GameManagerTest extends ApplicationTest {
         gameManager.setMainEntityManager(entityManager);
 
         assertEquals(entityManager, gameManager.getMainEntityManager());
-    }
-
-    @Test
-    public void testBasicResourceEntityManagerCreation() {
-        ResourceEntityManager resourceEntityManager = new ResourceEntityManager();
-
-        GameManager gameManager = new GameManager(this.rootPane);
-        gameManager.setResourceEntityManager(resourceEntityManager);
-
-        assertEquals(resourceEntityManager, gameManager.getResourceEntityManager());
     }
 
     @Test
