@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Random;
 
 import uq.deco2800.ducktales.GameManager;
+import uq.deco2800.ducktales.features.entities.PeonManager;
 import uq.deco2800.ducktales.features.entities.agententities.AgentEntity;
 import uq.deco2800.ducktales.features.jobframework.Job;
 import uq.deco2800.ducktales.features.jobframework.JobType;
@@ -52,7 +53,8 @@ public class Peon extends AgentEntity {
 																		// debuff
 																		// by
 																		// PeonBuffType.BUFFNAME
-
+	
+	
 	// Job related information
 
 	private JobType job = JobType.JOBLESS;
@@ -642,7 +644,9 @@ public class Peon extends AgentEntity {
 		}
 	}
 
-
+	public void updateSprite(){
+		PeonSprite peonSprite = PeonManager.getPeonSprite(this.name);
+	}
 
 	
 }
