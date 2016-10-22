@@ -223,14 +223,36 @@ public class BuildingSprite extends EntitySprite {
      * 
      * @return true if the frames are updated to winter animation
      */
-	public boolean winterAnimation(ResourceType building) {
+	public boolean winterDayAnimation(ResourceType building) {
 		// make sure the construction animation has been completed
 		if (this.timeline.getTotalDuration() == Duration.INDEFINITE &&
-				SpritesImages.winterAnimation(building)!= null) {
+				SpritesImages.winterDayAnimation(building)!= null) {
 			this.stopAnimation();
 		
-			setupIdleAnimation(SpritesImages.winterAnimation(building), 3, true);
-			interpolator = new SpriteInterpolator(SpritesImages.winterAnimation(building));
+			setupIdleAnimation(SpritesImages.winterDayAnimation(building), 3, true);
+			interpolator = new SpriteInterpolator(SpritesImages.winterDayAnimation(building));
+			playIdleAnimation();
+			return true;
+		}
+		return false;
+	}
+	
+	/**
+     * Change the idle animation frames to those of the winter animation, 
+     * and restart the animation. Will return false if the construction 
+     * animation is not complete, and no changes were made. If construction 
+     * is completed, will return true once changes are made.
+     * 
+     * @return true if the frames are updated to winter animation
+     */
+	public boolean winterNightAnimation(ResourceType building) {
+		// make sure the construction animation has been completed
+		if (this.timeline.getTotalDuration() == Duration.INDEFINITE &&
+				SpritesImages.winterNightAnimation(building)!= null) {
+			this.stopAnimation();
+		
+			setupIdleAnimation(SpritesImages.winterNightAnimation(building), 3, true);
+			interpolator = new SpriteInterpolator(SpritesImages.winterNightAnimation(building));
 			playIdleAnimation();
 			return true;
 		}

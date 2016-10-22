@@ -13,7 +13,7 @@ import uq.deco2800.ducktales.resources.ResourceType;
 /**
  * Class to contain the images for animations for the buildings. Only 
  * for buildings with animations that are to swap (night and day, or 
- * non-winter and winter).
+ * non-winterDay and winterDay).
  * 
  * Note: null is returned by all methods if the resource is not a valid 
  * building, or if there are no animation images for that type
@@ -24,8 +24,8 @@ import uq.deco2800.ducktales.resources.ResourceType;
 public class SpritesImages {
 	
 	/**
-	 * Select the winter animation for the building. calls the relevant method 
-	 * to return the list of images for the buildings winter animation.
+	 * Select the winterDay animation for the building. calls the relevant method 
+	 * to return the list of images for the buildings winterDay animation.
 	 * 
 	 * @param building to get animation images for
 	 * @return list of animation images
@@ -485,8 +485,8 @@ public class SpritesImages {
 	}
 
 	/**
-	 * Select the winter animation for the building. calls the relevant method 
-	 * to return the list of images for the buildings winter animation.
+	 * Select the winterDay animation for the building. calls the relevant method 
+	 * to return the list of images for the buildings winterDay animation.
 	 * 
 	 * @param building to get animation images for
 	 * @return list of animation images
@@ -885,61 +885,61 @@ public class SpritesImages {
 	}
 	
 	/**
-	 * Select the winter animation for the building. calls the relevant method 
-	 * to return the list of images for the buildings winter animation.
+	 * Select the winterDay animation for the building. calls the relevant method 
+	 * to return the list of images for the buildings winterDay animation.
 	 * 
 	 * @param building to get animation images for
 	 * @return list of animation images
 	 */
-	public static List<Image> winterAnimation(ResourceType building) {
+	public static List<Image> winterDayAnimation(ResourceType building) {
 		switch (building) {
 			case BAKERY:
-				return winterBakery();
+				return winterDayBakery();
 			case BARN:
-				return winterBarn();
+				return winterDayBarn();
 			case BUTCHER:
-				return winterButcher();
+				return winterDayButcher();
 			case CEMETERY:
-				return winterCemetery();
+				return winterDayCemetery();
 			case CHURCH:
-				return winterChurch();
+				return winterDayChurch();
 			case COMMUNITY_BUILDING:
-				return winterCommunityBuilding();
+				return winterDayCommunityBuilding();
 			case FARM:
-				return winterFarm();
+				return winterDayFarm();
 			case FORGE:
-				return winterForge();
+				return winterDayForge();
 			case GYMNASIUM:
-				return winterGymnasium();
+				return winterDayGymnasium();
 			case HOSPITAL:
-				return winterHospital();
+				return winterDayHospital();
 			case HOUSE:
-				return winterHouse();
+				return winterDayHouse();
 			case MINE:
-				return winterMine();
+				return winterDayMine();
 			case OBSERVATORY:
-				return winterObservatory();
+				return winterDayObservatory();
 			case PASTURE:
-				return winterPasture();
+				return winterDayPasture();
 			case QUARRY:
-				return winterQuarry();
+				return winterDayQuarry();
 			case SAWMILL:
-				return winterSawmill();
+				return winterDaySawmill();
 			case SCHOOL:
-				return winterSchool();
+				return winterDaySchool();
 			case STORAGEBARN:
-				return winterStorageBarn();
+				return winterDayStorageBarn();
 		}
 		return null;
 	}
 	
 	/**
-	 * Images for animation of the bakery during the winter.
+	 * Images for animation of the bakery during the winterDay.
 	 * 
 	 * @return list containing images of the bakery animation during 
-	 * the winter
+	 * the winterDay
 	 */
-	protected static List<Image> winterBakery() {
+	protected static List<Image> winterDayBakery() {
 		ResourceType[] idleFrames = {
 				
 		};
@@ -953,12 +953,12 @@ public class SpritesImages {
 	
 
 	/**
-	 * Images for animation of the barn during the winter.
+	 * Images for animation of the barn during the winterDay.
 	 * 
 	 * @return list containing images of the barn animation during 
-	 * the winter
+	 * the winterDay
 	 */
-	protected static List<Image> winterBarn() {
+	protected static List<Image> winterDayBarn() {
 		ResourceType[] idleFrames = {
 				
 		};
@@ -972,12 +972,12 @@ public class SpritesImages {
 	
 
 	/**
-	 * Images for animation of the butcher during the winter.
+	 * Images for animation of the butcher during the winterDay.
 	 * 
 	 * @return list containing images of the butcher animation during 
-	 * the winter
+	 * the winterDay
 	 */
-	protected static List<Image> winterButcher() {
+	protected static List<Image> winterDayButcher() {
 		ResourceType[] idleFrames = {
 				
 		};
@@ -991,12 +991,12 @@ public class SpritesImages {
 	
 
 	/**
-	 * Images for animation of the cemetery during the winter.
+	 * Images for animation of the cemetery during the winterDay.
 	 * 
 	 * @return list containing images of the cememtery animation during 
-	 * the winter
+	 * the winterDay
 	 */
-	protected static List<Image> winterCemetery() {
+	protected static List<Image> winterDayCemetery() {
 		ResourceType[] idleFrames = {
 				
 		};
@@ -1010,12 +1010,12 @@ public class SpritesImages {
 	
 
 	/**
-	 * Images for animation of the church during the winter.
+	 * Images for animation of the church during the winterDay.
 	 * 
 	 * @return list containing images of the church animation during 
-	 * the winter
+	 * the winterDay
 	 */
-	protected static List<Image> winterChurch() {
+	protected static List<Image> winterDayChurch() {
 		ResourceType[] idleFrames = {
 				
 		};
@@ -1029,12 +1029,12 @@ public class SpritesImages {
 	
 
 	/**
-	 * Images for animation of the community building during the winter.
+	 * Images for animation of the community building during the winterDay.
 	 * 
 	 * @return list containing images of the community building animation 
-	 * during the winter
+	 * during the winterDay
 	 */
-	protected static List<Image> winterCommunityBuilding() {
+	protected static List<Image> winterDayCommunityBuilding() {
 		ResourceType[] idleFrames = {
 				
 		};
@@ -1048,12 +1048,12 @@ public class SpritesImages {
 	
 
 	/**
-	 * Images for animation of the farm during the winter.
+	 * Images for animation of the farm during the winterDay.
 	 * 
 	 * @return list containing images of the farm animation during 
-	 * the winter
+	 * the winterDay
 	 */
-	protected static List<Image> winterFarm() {
+	protected static List<Image> winterDayFarm() {
 		ResourceType[] idleFrames = {
 				
 		};
@@ -1067,12 +1067,12 @@ public class SpritesImages {
 	
 
 	/**
-	 * Images for animation of the forge during the winter.
+	 * Images for animation of the forge during the winterDay.
 	 * 
 	 * @return list containing images of the forge animation during 
-	 * the winter
+	 * the winterDay
 	 */
-	protected static List<Image> winterForge() {
+	protected static List<Image> winterDayForge() {
 		ResourceType[] idleFrames = {
 				
 		};
@@ -1086,12 +1086,12 @@ public class SpritesImages {
 	
 
 	/**
-	 * Images for animation of the gymnasium during the winter.
+	 * Images for animation of the gymnasium during the winterDay.
 	 * 
 	 * @return list containing images of the gymnasium animation during 
-	 * the winter
+	 * the winterDay
 	 */
-	protected static List<Image> winterGymnasium() {
+	protected static List<Image> winterDayGymnasium() {
 		ResourceType[] idleFrames = {
 				
 		};
@@ -1105,12 +1105,12 @@ public class SpritesImages {
 	
 
 	/**
-	 * Images for animation of the hospital during the winter.
+	 * Images for animation of the hospital during the winterDay.
 	 * 
 	 * @return list containing images of the hospital animation during 
-	 * the winter
+	 * the winterDay
 	 */
-	protected static List<Image> winterHospital() {
+	protected static List<Image> winterDayHospital() {
 		ResourceType[] idleFrames = {
 				
 		};
@@ -1124,12 +1124,12 @@ public class SpritesImages {
 	
 
 	/**
-	 * Images for animation of the house during the winter.
+	 * Images for animation of the house during the winterDay.
 	 * 
 	 * @return list containing images of the house animation during 
-	 * the winter
+	 * the winterDay
 	 */
-	protected static List<Image> winterHouse() {
+	protected static List<Image> winterDayHouse() {
 		ResourceType[] idleFrames = {
 				
 		};
@@ -1143,12 +1143,12 @@ public class SpritesImages {
 	
 
 	/**
-	 * Images for animation of the mine during the winter.
+	 * Images for animation of the mine during the winterDay.
 	 * 
 	 * @return list containing images of the mine animation during 
-	 * the winter
+	 * the winterDay
 	 */
-	protected static List<Image> winterMine() {
+	protected static List<Image> winterDayMine() {
 		ResourceType[] idleFrames = {
 				
 		};
@@ -1162,12 +1162,12 @@ public class SpritesImages {
 	
 
 	/**
-	 * Images for animation of the observatory during the winter.
+	 * Images for animation of the observatory during the winterDay.
 	 * 
 	 * @return list containing images of the observatory animation during 
-	 * the winter
+	 * the winterDay
 	 */
-	protected static List<Image> winterObservatory() {
+	protected static List<Image> winterDayObservatory() {
 		ResourceType[] idleFrames = {
 				
 		};
@@ -1181,12 +1181,12 @@ public class SpritesImages {
 	
 
 	/**
-	 * Images for animation of the pasture during the winter.
+	 * Images for animation of the pasture during the winterDay.
 	 * 
 	 * @return list containing images of the pasture animation during 
-	 * the winter
+	 * the winterDay
 	 */
-	protected static List<Image> winterPasture() {
+	protected static List<Image> winterDayPasture() {
 		ResourceType[] idleFrames = {
 				
 		};
@@ -1200,12 +1200,12 @@ public class SpritesImages {
 	
 
 	/**
-	 * Images for animation of the quarry during the winter.
+	 * Images for animation of the quarry during the winterDay.
 	 * 
 	 * @return list containing images of the quarry animation during 
-	 * the winter
+	 * the winterDay
 	 */
-	protected static List<Image> winterQuarry() {
+	protected static List<Image> winterDayQuarry() {
 		ResourceType[] idleFrames = {
 				
 		};
@@ -1219,12 +1219,12 @@ public class SpritesImages {
 	
 
 	/**
-	 * Images for animation of the sawmill during the winter.
+	 * Images for animation of the sawmill during the winterDay.
 	 * 
 	 * @return list containing images of the sawmill animation during 
-	 * the winter
+	 * the winterDay
 	 */
-	protected static List<Image> winterSawmill() {
+	protected static List<Image> winterDaySawmill() {
 		ResourceType[] idleFrames = {
 				
 		};
@@ -1238,12 +1238,12 @@ public class SpritesImages {
 	
 
 	/**
-	 * Images for animation of the school during the winter.
+	 * Images for animation of the school during the winterDay.
 	 * 
 	 * @return list containing images of the school animation during 
-	 * the winter
+	 * the winterDay
 	 */
-	protected static List<Image> winterSchool() {
+	protected static List<Image> winterDaySchool() {
 		ResourceType[] idleFrames = {
 				
 		};
@@ -1257,12 +1257,402 @@ public class SpritesImages {
 	
 
 	/**
-	 * Images for animation of the storage barn during the winter.
+	 * Images for animation of the storage barn during the winterDay.
 	 * 
 	 * @return list containing images of the storage barn animation during 
-	 * the winter
+	 * the winterDay
 	 */
-	protected static List<Image> winterStorageBarn() {
+	protected static List<Image> winterDayStorageBarn() {
+		ResourceType[] idleFrames = {
+				
+		};
+		List<Image> idleAnimationFrames = new ArrayList<>();
+	    ResourceSpriteRegister register = ResourceSpriteRegister.getInstance();
+	    for (ResourceType frameType : idleFrames) {
+            idleAnimationFrames.add(register.getResourceImage(frameType));
+        }
+		return null ; //idleAnimationFrames;
+	}
+	
+	/**
+	 * Select the winterNight animation for the building. calls the relevant method 
+	 * to return the list of images for the buildings winterNight animation.
+	 * 
+	 * @param building to get animation images for
+	 * @return list of animation images
+	 */
+	public static List<Image> winterNightAnimation(ResourceType building) {
+		switch (building) {
+			case BAKERY:
+				return winterNightBakery();
+			case BARN:
+				return winterNightBarn();
+			case BUTCHER:
+				return winterNightButcher();
+			case CEMETERY:
+				return winterNightCemetery();
+			case CHURCH:
+				return winterNightChurch();
+			case COMMUNITY_BUILDING:
+				return winterNightCommunityBuilding();
+			case FARM:
+				return winterNightFarm();
+			case FORGE:
+				return winterNightForge();
+			case GYMNASIUM:
+				return winterNightGymnasium();
+			case HOSPITAL:
+				return winterNightHospital();
+			case HOUSE:
+				return winterNightHouse();
+			case MINE:
+				return winterNightMine();
+			case OBSERVATORY:
+				return winterNightObservatory();
+			case PASTURE:
+				return winterNightPasture();
+			case QUARRY:
+				return winterNightQuarry();
+			case SAWMILL:
+				return winterNightSawmill();
+			case SCHOOL:
+				return winterNightSchool();
+			case STORAGEBARN:
+				return winterNightStorageBarn();
+		}
+		return null;
+	}
+	
+	/**
+	 * Images for animation of the bakery during the winterNight.
+	 * 
+	 * @return list containing images of the bakery animation during 
+	 * the winterNight
+	 */
+	protected static List<Image> winterNightBakery() {
+		ResourceType[] idleFrames = {
+				
+		};
+		List<Image> idleAnimationFrames = new ArrayList<>();
+	    ResourceSpriteRegister register = ResourceSpriteRegister.getInstance();
+	    for (ResourceType frameType : idleFrames) {
+            idleAnimationFrames.add(register.getResourceImage(frameType));
+        }
+		return null; //idleAnimationFrames;
+	}
+	
+
+	/**
+	 * Images for animation of the barn during the winterNight.
+	 * 
+	 * @return list containing images of the barn animation during 
+	 * the winterNight
+	 */
+	protected static List<Image> winterNightBarn() {
+		ResourceType[] idleFrames = {
+				
+		};
+		List<Image> idleAnimationFrames = new ArrayList<>();
+	    ResourceSpriteRegister register = ResourceSpriteRegister.getInstance();
+	    for (ResourceType frameType : idleFrames) {
+            idleAnimationFrames.add(register.getResourceImage(frameType));
+        }
+		return null; //idleAnimationFrames;
+	}
+	
+
+	/**
+	 * Images for animation of the butcher during the winterNight.
+	 * 
+	 * @return list containing images of the butcher animation during 
+	 * the winterNight
+	 */
+	protected static List<Image> winterNightButcher() {
+		ResourceType[] idleFrames = {
+				
+		};
+		List<Image> idleAnimationFrames = new ArrayList<>();
+	    ResourceSpriteRegister register = ResourceSpriteRegister.getInstance();
+	    for (ResourceType frameType : idleFrames) {
+            idleAnimationFrames.add(register.getResourceImage(frameType));
+        }
+		return null; //idleAnimationFrames;
+	}
+	
+
+	/**
+	 * Images for animation of the cemetery during the winterNight.
+	 * 
+	 * @return list containing images of the cememtery animation during 
+	 * the winterNight
+	 */
+	protected static List<Image> winterNightCemetery() {
+		ResourceType[] idleFrames = {
+				
+		};
+		List<Image> idleAnimationFrames = new ArrayList<>();
+	    ResourceSpriteRegister register = ResourceSpriteRegister.getInstance();
+	    for (ResourceType frameType : idleFrames) {
+            idleAnimationFrames.add(register.getResourceImage(frameType));
+        }
+		return null; //idleAnimationFrames;
+	}
+	
+
+	/**
+	 * Images for animation of the church during the winterNight.
+	 * 
+	 * @return list containing images of the church animation during 
+	 * the winterNight
+	 */
+	protected static List<Image> winterNightChurch() {
+		ResourceType[] idleFrames = {
+				
+		};
+		List<Image> idleAnimationFrames = new ArrayList<>();
+	    ResourceSpriteRegister register = ResourceSpriteRegister.getInstance();
+	    for (ResourceType frameType : idleFrames) {
+            idleAnimationFrames.add(register.getResourceImage(frameType));
+        }
+		return null; //idleAnimationFrames;
+	}
+	
+
+	/**
+	 * Images for animation of the community building during the winterNight.
+	 * 
+	 * @return list containing images of the community building animation 
+	 * during the winterDay
+	 */
+	protected static List<Image> winterNightCommunityBuilding() {
+		ResourceType[] idleFrames = {
+				
+		};
+		List<Image> idleAnimationFrames = new ArrayList<>();
+	    ResourceSpriteRegister register = ResourceSpriteRegister.getInstance();
+	    for (ResourceType frameType : idleFrames) {
+            idleAnimationFrames.add(register.getResourceImage(frameType));
+        }
+		return null; //idleAnimationFrames;
+	}
+	
+
+	/**
+	 * Images for animation of the farm during the winterNight.
+	 * 
+	 * @return list containing images of the farm animation during 
+	 * the winterNight
+	 */
+	protected static List<Image> winterNightFarm() {
+		ResourceType[] idleFrames = {
+				
+		};
+		List<Image> idleAnimationFrames = new ArrayList<>();
+	    ResourceSpriteRegister register = ResourceSpriteRegister.getInstance();
+	    for (ResourceType frameType : idleFrames) {
+            idleAnimationFrames.add(register.getResourceImage(frameType));
+        }
+		return null; //idleAnimationFrames;
+	}
+	
+
+	/**
+	 * Images for animation of the forge during the winterNight.
+	 * 
+	 * @return list containing images of the forge animation during 
+	 * the winterNight
+	 */
+	protected static List<Image> winterNightForge() {
+		ResourceType[] idleFrames = {
+				
+		};
+		List<Image> idleAnimationFrames = new ArrayList<>();
+	    ResourceSpriteRegister register = ResourceSpriteRegister.getInstance();
+	    for (ResourceType frameType : idleFrames) {
+            idleAnimationFrames.add(register.getResourceImage(frameType));
+        }
+		return null; //idleAnimationFrames;
+	}
+	
+
+	/**
+	 * Images for animation of the gymnasium during the winterNight.
+	 * 
+	 * @return list containing images of the gymnasium animation during 
+	 * the winterNight
+	 */
+	protected static List<Image> winterNightGymnasium() {
+		ResourceType[] idleFrames = {
+				
+		};
+		List<Image> idleAnimationFrames = new ArrayList<>();
+	    ResourceSpriteRegister register = ResourceSpriteRegister.getInstance();
+	    for (ResourceType frameType : idleFrames) {
+            idleAnimationFrames.add(register.getResourceImage(frameType));
+        }
+		return null; //idleAnimationFrames;
+	}
+	
+
+	/**
+	 * Images for animation of the hospital during the winterNight.
+	 * 
+	 * @return list containing images of the hospital animation during 
+	 * the winterNight
+	 */
+	protected static List<Image> winterNightHospital() {
+		ResourceType[] idleFrames = {
+				
+		};
+		List<Image> idleAnimationFrames = new ArrayList<>();
+	    ResourceSpriteRegister register = ResourceSpriteRegister.getInstance();
+	    for (ResourceType frameType : idleFrames) {
+            idleAnimationFrames.add(register.getResourceImage(frameType));
+        }
+		return null; //idleAnimationFrames;
+	}
+	
+
+	/**
+	 * Images for animation of the house during the winterNight.
+	 * 
+	 * @return list containing images of the house animation during 
+	 * the winterNight
+	 */
+	protected static List<Image> winterNightHouse() {
+		ResourceType[] idleFrames = {
+				
+		};
+		List<Image> idleAnimationFrames = new ArrayList<>();
+	    ResourceSpriteRegister register = ResourceSpriteRegister.getInstance();
+	    for (ResourceType frameType : idleFrames) {
+            idleAnimationFrames.add(register.getResourceImage(frameType));
+        }
+		return null; //idleAnimationFrames;
+	}
+	
+
+	/**
+	 * Images for animation of the mine during the winterNight.
+	 * 
+	 * @return list containing images of the mine animation during 
+	 * the winterNight
+	 */
+	protected static List<Image> winterNightMine() {
+		ResourceType[] idleFrames = {
+				
+		};
+		List<Image> idleAnimationFrames = new ArrayList<>();
+	    ResourceSpriteRegister register = ResourceSpriteRegister.getInstance();
+	    for (ResourceType frameType : idleFrames) {
+            idleAnimationFrames.add(register.getResourceImage(frameType));
+        }
+		return null; //idleAnimationFrames;
+	}
+	
+
+	/**
+	 * Images for animation of the observatory during the winterNight.
+	 * 
+	 * @return list containing images of the observatory animation during 
+	 * the winterNight
+	 */
+	protected static List<Image> winterNightObservatory() {
+		ResourceType[] idleFrames = {
+				
+		};
+		List<Image> idleAnimationFrames = new ArrayList<>();
+	    ResourceSpriteRegister register = ResourceSpriteRegister.getInstance();
+	    for (ResourceType frameType : idleFrames) {
+            idleAnimationFrames.add(register.getResourceImage(frameType));
+        }
+		return null;//idleAnimationFrames;
+	}
+	
+
+	/**
+	 * Images for animation of the pasture during the winterNight.
+	 * 
+	 * @return list containing images of the pasture animation during 
+	 * the winterNight
+	 */
+	protected static List<Image> winterNightPasture() {
+		ResourceType[] idleFrames = {
+				
+		};
+		List<Image> idleAnimationFrames = new ArrayList<>();
+	    ResourceSpriteRegister register = ResourceSpriteRegister.getInstance();
+	    for (ResourceType frameType : idleFrames) {
+            idleAnimationFrames.add(register.getResourceImage(frameType));
+        }
+		return null;//idleAnimationFrames;
+	}
+	
+
+	/**
+	 * Images for animation of the quarry during the winterNight.
+	 * 
+	 * @return list containing images of the quarry animation during 
+	 * the winterNight
+	 */
+	protected static List<Image> winterNightQuarry() {
+		ResourceType[] idleFrames = {
+				
+		};
+		List<Image> idleAnimationFrames = new ArrayList<>();
+	    ResourceSpriteRegister register = ResourceSpriteRegister.getInstance();
+	    for (ResourceType frameType : idleFrames) {
+            idleAnimationFrames.add(register.getResourceImage(frameType));
+        }
+		return null;//idleAnimationFrames;
+	}
+	
+
+	/**
+	 * Images for animation of the sawmill during the winterNight.
+	 * 
+	 * @return list containing images of the sawmill animation during 
+	 * the winterNight
+	 */
+	protected static List<Image> winterNightSawmill() {
+		ResourceType[] idleFrames = {
+				
+		};
+		List<Image> idleAnimationFrames = new ArrayList<>();
+	    ResourceSpriteRegister register = ResourceSpriteRegister.getInstance();
+	    for (ResourceType frameType : idleFrames) {
+            idleAnimationFrames.add(register.getResourceImage(frameType));
+        }
+		return null;//idleAnimationFrames;
+	}
+	
+
+	/**
+	 * Images for animation of the school during the winterNight.
+	 * 
+	 * @return list containing images of the school animation during 
+	 * the winterNight
+	 */
+	protected static List<Image> winterNightSchool() {
+		ResourceType[] idleFrames = {
+				
+		};
+		List<Image> idleAnimationFrames = new ArrayList<>();
+	    ResourceSpriteRegister register = ResourceSpriteRegister.getInstance();
+	    for (ResourceType frameType : idleFrames) {
+            idleAnimationFrames.add(register.getResourceImage(frameType));
+        }
+		return null;//idleAnimationFrames;
+	}
+	
+
+	/**
+	 * Images for animation of the storage barn during the winterNight.
+	 * 
+	 * @return list containing images of the storage barn animation during 
+	 * the winterNight
+	 */
+	protected static List<Image> winterNightStorageBarn() {
 		ResourceType[] idleFrames = {
 				
 		};

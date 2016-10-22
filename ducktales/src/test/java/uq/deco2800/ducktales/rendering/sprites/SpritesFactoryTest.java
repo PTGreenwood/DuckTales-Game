@@ -121,6 +121,11 @@ public class SpritesFactoryTest extends ApplicationTest {
         assertEquals(building.getIndex(), buildingIndex);
         assertEquals(building.getEntityType(), school);
         
+        assertEquals(false, building.winterDayAnimation(SCHOOL));
+        assertEquals(false, building.winterNightAnimation(SCHOOL));
+        assertEquals(false, building.winterDayAnimation(PASTURE));
+        assertEquals(false, building.winterNightAnimation(PASTURE));
+        
         assertEquals(false, building.nightAnimation(PASTURE));
         
         assertEquals(false, building.dayAnimation(PASTURE));
@@ -143,6 +148,11 @@ public class SpritesFactoryTest extends ApplicationTest {
         assertEquals(false, building.nightAnimation(PASTURE));
         
         assertEquals(false, building.dayAnimation(PASTURE));
+        
+        assertEquals(false, building.winterDayAnimation(SCHOOL));
+        assertEquals(false, building.winterNightAnimation(SCHOOL));
+        assertEquals(false, building.winterDayAnimation(PASTURE));
+        assertEquals(false, building.winterNightAnimation(PASTURE));
         
     }
       
