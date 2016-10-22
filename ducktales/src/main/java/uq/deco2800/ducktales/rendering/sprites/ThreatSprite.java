@@ -9,6 +9,7 @@ import uq.deco2800.ducktales.features.entities.threats.Enemy;
 import uq.deco2800.ducktales.features.entities.threats.Threat;
 import uq.deco2800.ducktales.features.entities.threats.ThreatFactory;
 import uq.deco2800.ducktales.features.entities.threats.ThreatManager;
+import uq.deco2800.ducktales.resources.ResourceType;
 
 /**
  * This class is used to construct the sprite for a threat.
@@ -29,7 +30,7 @@ public class ThreatSprite extends EntitySprite {
 	private HashMap<Threat, Image> threatImageHashMap;
 	
 	private int threatIndex;
-	private ThreatFactory.EnemyType threatType;
+	private ResourceType threatType;
 	
 	private Image threatSprite;
 	
@@ -42,7 +43,7 @@ public class ThreatSprite extends EntitySprite {
 	private int tweenFrames; // the period between the current frame & the next one
 	
 	//constructor
-	public ThreatSprite(int threatIndex, ThreatFactory.EnemyType threatType){
+	public ThreatSprite(int threatIndex, ResourceType threatType){
 		
 		// set name/index
 		this.threatIndex = threatIndex;
