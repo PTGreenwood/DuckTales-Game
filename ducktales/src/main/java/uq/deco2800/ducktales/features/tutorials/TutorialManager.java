@@ -55,13 +55,24 @@ public class TutorialManager {
 	@FXML
 	private Button marketPlace;
 	@FXML
-	private Button aboutDuck;
+	private Button NPC;
 	
 	
 	private Image tutorialImage1 = new Image("/tutorials/basicInterface1.png");
 	private Image tutorialImage2 = new Image("/tutorials/basicInterface2.png");
 	private Image tutorialImage3 = new Image("/tutorials/basicInterface3.png");
 	private Image tutorialImage4 = new Image("/tutorials/basicInterface4.png");
+	
+	private Image buildingsImage1 = new Image("/tutorials/buildings1.png");
+	private Image buildingsImage2 = new Image("/tutorials/buildings2.png");
+	private Image buildingsImage3 = new Image("/tutorials/buildings3.png");
+	
+	private Image marketPlaceImage1 = new Image("/tutorials/marketPlace1.png");
+	private Image marketPlaceImage2 = new Image("/tutorials/marketPlace2.png");
+	private Image marketPlaceImage3 = new Image("/tutorials/marketPlace3.png");
+	private Image marketPlaceImage4 = new Image("/tutorials/marketPlace4.png");
+	
+	private Image npcImage = new Image("/tutorials/Helper.png");
 	
 	private int basicInterfaceTutorialNumber = 0;
 	
@@ -74,7 +85,7 @@ public class TutorialManager {
 	
 	@FXML
 	private void loadBasicInterface1() {
-		this.loadTutorial(this.tutorialImage1, "Basic Interface 1");
+		this.loadTutorial("Interface", this.tutorialImage1, "Basic Interface 1");
 		previous.setOnAction((event) -> 
 		loadBasicInterface1()
 		);
@@ -85,7 +96,7 @@ public class TutorialManager {
 	
 	@FXML
 	private void loadBasicInterface2() {
-		this.loadTutorial(this.tutorialImage2, "Basic Interface 2");
+		this.loadTutorial("Interface", this.tutorialImage2, "Basic Interface 2");
 		previous.setOnAction((event) -> 
 		loadBasicInterface1()
 		);
@@ -96,7 +107,7 @@ public class TutorialManager {
 	
 	@FXML
 	private void loadBasicInterface3() {
-		this.loadTutorial(this.tutorialImage3, "Basic Interface 3");
+		this.loadTutorial("Interface", this.tutorialImage3, "Basic Interface 3");
 		previous.setOnAction((event) -> 
 		loadBasicInterface2()
 		);
@@ -107,7 +118,7 @@ public class TutorialManager {
 	
 	@FXML
 	private void loadBasicInterface4() {
-		this.loadTutorial(this.tutorialImage4, "Basic Interface 4");
+		this.loadTutorial("Interface", this.tutorialImage4, "Basic Interface 4");
 		previous.setOnAction((event) -> 
 		loadBasicInterface3()
 		);
@@ -116,9 +127,9 @@ public class TutorialManager {
 		);
 	}
 	
-	private void loadTutorial(Image image, String string) {
+	private void loadTutorial(String title, Image image, String string) {
 		this.showButtons();
-		this.labelTop.setText("INTERFACE");
+		this.labelTop.setText(title);
 		this.tutorialDescription.setVisible(false);
 		this.tutorialImage.setVisible(true);
 		this.tutorialLabel.setVisible(true);
@@ -127,6 +138,99 @@ public class TutorialManager {
 		this.tutorialLabel.setAlignment(Pos.CENTER);	
 	}
 	
+	
+	
+	@FXML
+	private void loadBuildings1() {
+		this.loadTutorial("Buildings", this.buildingsImage1, "Buildings 1");
+		previous.setOnAction((event) -> 
+		loadBuildings1()
+		);
+		next.setOnAction((event) -> 
+		loadBuildings2()
+		);
+	}
+	
+	@FXML
+	private void loadBuildings2() {
+		this.loadTutorial("Buildings", this.buildingsImage2, "Buildings 2");
+		previous.setOnAction((event) -> 
+		loadBuildings1()
+		);
+		next.setOnAction((event) -> 
+		loadBuildings3()
+		);
+	}
+	
+	@FXML
+	private void loadBuildings3() {
+		this.loadTutorial("Buildings", this.buildingsImage3, "Buildings 3");
+		previous.setOnAction((event) -> 
+		loadBuildings2()
+		);
+		next.setOnAction((event) -> 
+		loadBuildings3()
+		);
+	}
+	
+	@FXML
+	private void loadMarketPlace1() {
+		this.loadTutorial("Market Place", this.marketPlaceImage1, "Market Place 1");
+		previous.setOnAction((event) -> 
+		loadMarketPlace1()
+		);
+		next.setOnAction((event) -> 
+		loadMarketPlace2()
+		);
+	}
+	
+	
+	@FXML
+	private void loadMarketPlace2() {
+		this.loadTutorial("Market Place", this.marketPlaceImage2, "Market Place 2");
+		previous.setOnAction((event) -> 
+		loadMarketPlace1()
+		);
+		next.setOnAction((event) -> 
+		loadMarketPlace3()
+		);
+		
+	}
+	
+	@FXML
+	private void loadMarketPlace3() {
+		this.loadTutorial("Market Place", this.marketPlaceImage3, "Market Place 3");
+		previous.setOnAction((event) -> 
+		loadMarketPlace2()
+		);
+		next.setOnAction((event) -> 
+		loadMarketPlace4()
+		);
+	}
+	
+	@FXML
+	private void loadMarketPlace4() {
+		this.loadTutorial("Market Place", this.marketPlaceImage4, "Market Place 4");
+		previous.setOnAction((event) -> 
+		loadMarketPlace3()
+		);
+		next.setOnAction((event) -> 
+		loadMarketPlace4()
+		);
+		
+	}
+	
+	@FXML
+	private void loadNPC() {
+		this.hideButtons();
+		this.labelTop.setText("NPC");
+		this.tutorialDescription.setVisible(false);
+		this.tutorialImage.setVisible(true);
+		this.tutorialLabel.setVisible(true);
+		this.tutorialImage.setImage(this.npcImage);
+		this.tutorialLabel.setText("Description of NPC");
+		this.tutorialLabel.setAlignment(Pos.CENTER);
+	}
 	
 	@FXML
 	private void enlargeImage() {
