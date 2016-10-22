@@ -68,8 +68,9 @@ public class SpritesImages {
 				return daySchool();
 			case STORAGEBARN:
 				return dayStorageBarn();
+			default:
+				return null;
 		}
-		return null;
 	}
 	
 
@@ -111,7 +112,7 @@ public class SpritesImages {
 	    for (ResourceType frameType : idleFrames) {
             idleAnimationFrames.add(register.getResourceImage(frameType));
         }
-		return null; //idleAnimationFrames;
+		return  idleAnimationFrames;
 	}
 	
 
@@ -240,7 +241,7 @@ public class SpritesImages {
 	    for (ResourceType frameType : idleFrames) {
             idleAnimationFrames.add(register.getResourceImage(frameType));
         }
-		return null; //idleAnimationFrames;
+		return  idleAnimationFrames;
 	}
 	
 
@@ -396,7 +397,7 @@ public class SpritesImages {
 	    for (ResourceType frameType : idleFrames) {
             idleAnimationFrames.add(register.getResourceImage(frameType));
         }
-		return null; //idleAnimationFrames;
+		return  idleAnimationFrames;
 	}
 	
 
@@ -415,7 +416,7 @@ public class SpritesImages {
 	    for (ResourceType frameType : idleFrames) {
             idleAnimationFrames.add(register.getResourceImage(frameType));
         }
-		return null; //idleAnimationFrames;
+		return  idleAnimationFrames;
 	}
 	
 
@@ -481,7 +482,7 @@ public class SpritesImages {
 	    for (ResourceType frameType : idleFrames) {
             idleAnimationFrames.add(register.getResourceImage(frameType));
         }
-		return null; //idleAnimationFrames;
+		return  idleAnimationFrames;
 	}
 
 	/**
@@ -529,8 +530,9 @@ public class SpritesImages {
 				return nightSchool();
 			case STORAGEBARN:
 				return nightStorageBarn();
+			default:
+				return null;
 		}
-		return null;
 	}
 	
 	/**
@@ -548,7 +550,7 @@ public class SpritesImages {
 	    for (ResourceType frameType : idleFrames) {
             idleAnimationFrames.add(register.getResourceImage(frameType));
         }
-		return null; //idleAnimationFrames;
+		return  idleAnimationFrames;
 	}
 	
 
@@ -567,7 +569,7 @@ public class SpritesImages {
 	    for (ResourceType frameType : idleFrames) {
             idleAnimationFrames.add(register.getResourceImage(frameType));
         }
-		return null; //idleAnimationFrames;
+		return  idleAnimationFrames;
 	}
 	
 
@@ -586,7 +588,7 @@ public class SpritesImages {
 	    for (ResourceType frameType : idleFrames) {
             idleAnimationFrames.add(register.getResourceImage(frameType));
         }
-		return null; //idleAnimationFrames;
+		return  idleAnimationFrames;
 	}
 	
 
@@ -605,7 +607,7 @@ public class SpritesImages {
 	    for (ResourceType frameType : idleFrames) {
             idleAnimationFrames.add(register.getResourceImage(frameType));
         }
-		return null ; //idleAnimationFrames;
+		return   idleAnimationFrames;
 	}
 	
 
@@ -624,7 +626,7 @@ public class SpritesImages {
 	    for (ResourceType frameType : idleFrames) {
             idleAnimationFrames.add(register.getResourceImage(frameType));
         }
-		return null; //idleAnimationFrames;
+		return  idleAnimationFrames;
 	}
 	
 
@@ -643,7 +645,7 @@ public class SpritesImages {
 	    for (ResourceType frameType : idleFrames) {
             idleAnimationFrames.add(register.getResourceImage(frameType));
         }
-		return null; //idleAnimationFrames;
+		return  idleAnimationFrames;
 	}
 	
 
@@ -662,7 +664,7 @@ public class SpritesImages {
 	    for (ResourceType frameType : idleFrames) {
             idleAnimationFrames.add(register.getResourceImage(frameType));
         }
-		return null; //idleAnimationFrames;
+		return  idleAnimationFrames;
 	}
 	
 
@@ -681,7 +683,7 @@ public class SpritesImages {
 	    for (ResourceType frameType : idleFrames) {
             idleAnimationFrames.add(register.getResourceImage(frameType));
         }
-		return null; //idleAnimationFrames;
+		return  idleAnimationFrames;
 	}
 	
 
@@ -724,7 +726,7 @@ public class SpritesImages {
 	    for (ResourceType frameType : idleFrames) {
             idleAnimationFrames.add(register.getResourceImage(frameType));
         }
-		return null; //idleAnimationFrames;
+		return  idleAnimationFrames;
 	}
 	
 
@@ -743,7 +745,7 @@ public class SpritesImages {
 	    for (ResourceType frameType : idleFrames) {
             idleAnimationFrames.add(register.getResourceImage(frameType));
         }
-		return null; //idleAnimationFrames;
+		return  idleAnimationFrames;
 	}
 	
 
@@ -762,7 +764,7 @@ public class SpritesImages {
 	    for (ResourceType frameType : idleFrames) {
             idleAnimationFrames.add(register.getResourceImage(frameType));
         }
-		return null;// idleAnimationFrames;
+		return  idleAnimationFrames;
 	}
 	
 
@@ -781,7 +783,7 @@ public class SpritesImages {
 	    for (ResourceType frameType : idleFrames) {
             idleAnimationFrames.add(register.getResourceImage(frameType));
         }
-		return null;//idleAnimationFrames;
+		return idleAnimationFrames;
 	}
 	
 
@@ -800,7 +802,7 @@ public class SpritesImages {
 	    for (ResourceType frameType : idleFrames) {
             idleAnimationFrames.add(register.getResourceImage(frameType));
         }
-		return null; //idleAnimationFrames;
+		return  idleAnimationFrames;
 	}
 	
 
@@ -819,7 +821,7 @@ public class SpritesImages {
 	    for (ResourceType frameType : idleFrames) {
             idleAnimationFrames.add(register.getResourceImage(frameType));
         }
-		return null; //idleAnimationFrames;
+		return  idleAnimationFrames;
 	}
 	
 
@@ -838,7 +840,7 @@ public class SpritesImages {
 	    for (ResourceType frameType : idleFrames) {
             idleAnimationFrames.add(register.getResourceImage(frameType));
         }
-		return null; //idleAnimationFrames;
+		return  idleAnimationFrames;
 	}
 	
 
@@ -881,7 +883,7 @@ public class SpritesImages {
 	    for (ResourceType frameType : idleFrames) {
             idleAnimationFrames.add(register.getResourceImage(frameType));
         }
-		return null; //idleAnimationFrames;
+		return  idleAnimationFrames;
 	}
 	
 	/**
@@ -929,8 +931,9 @@ public class SpritesImages {
 				return winterDaySchool();
 			case STORAGEBARN:
 				return winterDayStorageBarn();
+			default:
+				return null;
 		}
-		return null;
 	}
 	
 	/**
@@ -948,7 +951,7 @@ public class SpritesImages {
 	    for (ResourceType frameType : idleFrames) {
             idleAnimationFrames.add(register.getResourceImage(frameType));
         }
-		return null; //idleAnimationFrames;
+		return  idleAnimationFrames;
 	}
 	
 
@@ -967,7 +970,7 @@ public class SpritesImages {
 	    for (ResourceType frameType : idleFrames) {
             idleAnimationFrames.add(register.getResourceImage(frameType));
         }
-		return null; //idleAnimationFrames;
+		return  idleAnimationFrames;
 	}
 	
 
@@ -986,7 +989,7 @@ public class SpritesImages {
 	    for (ResourceType frameType : idleFrames) {
             idleAnimationFrames.add(register.getResourceImage(frameType));
         }
-		return null; //idleAnimationFrames;
+		return  idleAnimationFrames;
 	}
 	
 
@@ -1005,7 +1008,7 @@ public class SpritesImages {
 	    for (ResourceType frameType : idleFrames) {
             idleAnimationFrames.add(register.getResourceImage(frameType));
         }
-		return null; //idleAnimationFrames;
+		return  idleAnimationFrames;
 	}
 	
 
@@ -1024,7 +1027,7 @@ public class SpritesImages {
 	    for (ResourceType frameType : idleFrames) {
             idleAnimationFrames.add(register.getResourceImage(frameType));
         }
-		return null; //idleAnimationFrames;
+		return  idleAnimationFrames;
 	}
 	
 
@@ -1043,7 +1046,7 @@ public class SpritesImages {
 	    for (ResourceType frameType : idleFrames) {
             idleAnimationFrames.add(register.getResourceImage(frameType));
         }
-		return null; //idleAnimationFrames;
+		return  idleAnimationFrames;
 	}
 	
 
@@ -1062,7 +1065,7 @@ public class SpritesImages {
 	    for (ResourceType frameType : idleFrames) {
             idleAnimationFrames.add(register.getResourceImage(frameType));
         }
-		return null; //idleAnimationFrames;
+		return  idleAnimationFrames;
 	}
 	
 
@@ -1081,7 +1084,7 @@ public class SpritesImages {
 	    for (ResourceType frameType : idleFrames) {
             idleAnimationFrames.add(register.getResourceImage(frameType));
         }
-		return null; //idleAnimationFrames;
+		return  idleAnimationFrames;
 	}
 	
 
@@ -1100,7 +1103,7 @@ public class SpritesImages {
 	    for (ResourceType frameType : idleFrames) {
             idleAnimationFrames.add(register.getResourceImage(frameType));
         }
-		return null; //idleAnimationFrames;
+		return  idleAnimationFrames;
 	}
 	
 
@@ -1119,7 +1122,7 @@ public class SpritesImages {
 	    for (ResourceType frameType : idleFrames) {
             idleAnimationFrames.add(register.getResourceImage(frameType));
         }
-		return null; //idleAnimationFrames;
+		return  idleAnimationFrames;
 	}
 	
 
@@ -1138,7 +1141,7 @@ public class SpritesImages {
 	    for (ResourceType frameType : idleFrames) {
             idleAnimationFrames.add(register.getResourceImage(frameType));
         }
-		return null; //idleAnimationFrames;
+		return  idleAnimationFrames;
 	}
 	
 
@@ -1157,7 +1160,7 @@ public class SpritesImages {
 	    for (ResourceType frameType : idleFrames) {
             idleAnimationFrames.add(register.getResourceImage(frameType));
         }
-		return null; //idleAnimationFrames;
+		return  idleAnimationFrames;
 	}
 	
 
@@ -1176,7 +1179,7 @@ public class SpritesImages {
 	    for (ResourceType frameType : idleFrames) {
             idleAnimationFrames.add(register.getResourceImage(frameType));
         }
-		return null;//idleAnimationFrames;
+		return idleAnimationFrames;
 	}
 	
 
@@ -1195,7 +1198,7 @@ public class SpritesImages {
 	    for (ResourceType frameType : idleFrames) {
             idleAnimationFrames.add(register.getResourceImage(frameType));
         }
-		return null;//idleAnimationFrames;
+		return idleAnimationFrames;
 	}
 	
 
@@ -1214,7 +1217,7 @@ public class SpritesImages {
 	    for (ResourceType frameType : idleFrames) {
             idleAnimationFrames.add(register.getResourceImage(frameType));
         }
-		return null;//idleAnimationFrames;
+		return idleAnimationFrames;
 	}
 	
 
@@ -1233,7 +1236,7 @@ public class SpritesImages {
 	    for (ResourceType frameType : idleFrames) {
             idleAnimationFrames.add(register.getResourceImage(frameType));
         }
-		return null;//idleAnimationFrames;
+		return idleAnimationFrames;
 	}
 	
 
@@ -1252,7 +1255,7 @@ public class SpritesImages {
 	    for (ResourceType frameType : idleFrames) {
             idleAnimationFrames.add(register.getResourceImage(frameType));
         }
-		return null;//idleAnimationFrames;
+		return idleAnimationFrames;
 	}
 	
 
@@ -1271,7 +1274,7 @@ public class SpritesImages {
 	    for (ResourceType frameType : idleFrames) {
             idleAnimationFrames.add(register.getResourceImage(frameType));
         }
-		return null ; //idleAnimationFrames;
+		return idleAnimationFrames;
 	}
 	
 	/**
@@ -1319,8 +1322,9 @@ public class SpritesImages {
 				return winterNightSchool();
 			case STORAGEBARN:
 				return winterNightStorageBarn();
+			default:
+				return null;
 		}
-		return null;
 	}
 	
 	/**
@@ -1338,7 +1342,7 @@ public class SpritesImages {
 	    for (ResourceType frameType : idleFrames) {
             idleAnimationFrames.add(register.getResourceImage(frameType));
         }
-		return null; //idleAnimationFrames;
+		return  idleAnimationFrames;
 	}
 	
 
@@ -1357,7 +1361,7 @@ public class SpritesImages {
 	    for (ResourceType frameType : idleFrames) {
             idleAnimationFrames.add(register.getResourceImage(frameType));
         }
-		return null; //idleAnimationFrames;
+		return  idleAnimationFrames;
 	}
 	
 
@@ -1376,7 +1380,7 @@ public class SpritesImages {
 	    for (ResourceType frameType : idleFrames) {
             idleAnimationFrames.add(register.getResourceImage(frameType));
         }
-		return null; //idleAnimationFrames;
+		return  idleAnimationFrames;
 	}
 	
 
@@ -1395,7 +1399,7 @@ public class SpritesImages {
 	    for (ResourceType frameType : idleFrames) {
             idleAnimationFrames.add(register.getResourceImage(frameType));
         }
-		return null; //idleAnimationFrames;
+		return  idleAnimationFrames;
 	}
 	
 
@@ -1414,7 +1418,7 @@ public class SpritesImages {
 	    for (ResourceType frameType : idleFrames) {
             idleAnimationFrames.add(register.getResourceImage(frameType));
         }
-		return null; //idleAnimationFrames;
+		return  idleAnimationFrames;
 	}
 	
 
@@ -1433,7 +1437,7 @@ public class SpritesImages {
 	    for (ResourceType frameType : idleFrames) {
             idleAnimationFrames.add(register.getResourceImage(frameType));
         }
-		return null; //idleAnimationFrames;
+		return  idleAnimationFrames;
 	}
 	
 
@@ -1452,7 +1456,7 @@ public class SpritesImages {
 	    for (ResourceType frameType : idleFrames) {
             idleAnimationFrames.add(register.getResourceImage(frameType));
         }
-		return null; //idleAnimationFrames;
+		return  idleAnimationFrames;
 	}
 	
 
@@ -1471,7 +1475,7 @@ public class SpritesImages {
 	    for (ResourceType frameType : idleFrames) {
             idleAnimationFrames.add(register.getResourceImage(frameType));
         }
-		return null; //idleAnimationFrames;
+		return  idleAnimationFrames;
 	}
 	
 
@@ -1490,7 +1494,7 @@ public class SpritesImages {
 	    for (ResourceType frameType : idleFrames) {
             idleAnimationFrames.add(register.getResourceImage(frameType));
         }
-		return null; //idleAnimationFrames;
+		return  idleAnimationFrames;
 	}
 	
 
@@ -1509,7 +1513,7 @@ public class SpritesImages {
 	    for (ResourceType frameType : idleFrames) {
             idleAnimationFrames.add(register.getResourceImage(frameType));
         }
-		return null; //idleAnimationFrames;
+		return  idleAnimationFrames;
 	}
 	
 
@@ -1528,7 +1532,7 @@ public class SpritesImages {
 	    for (ResourceType frameType : idleFrames) {
             idleAnimationFrames.add(register.getResourceImage(frameType));
         }
-		return null; //idleAnimationFrames;
+		return  idleAnimationFrames;
 	}
 	
 
@@ -1547,7 +1551,7 @@ public class SpritesImages {
 	    for (ResourceType frameType : idleFrames) {
             idleAnimationFrames.add(register.getResourceImage(frameType));
         }
-		return null; //idleAnimationFrames;
+		return  idleAnimationFrames;
 	}
 	
 
@@ -1566,7 +1570,7 @@ public class SpritesImages {
 	    for (ResourceType frameType : idleFrames) {
             idleAnimationFrames.add(register.getResourceImage(frameType));
         }
-		return null;//idleAnimationFrames;
+		return idleAnimationFrames;
 	}
 	
 
@@ -1585,7 +1589,7 @@ public class SpritesImages {
 	    for (ResourceType frameType : idleFrames) {
             idleAnimationFrames.add(register.getResourceImage(frameType));
         }
-		return null;//idleAnimationFrames;
+		return idleAnimationFrames;
 	}
 	
 
@@ -1604,7 +1608,7 @@ public class SpritesImages {
 	    for (ResourceType frameType : idleFrames) {
             idleAnimationFrames.add(register.getResourceImage(frameType));
         }
-		return null;//idleAnimationFrames;
+		return idleAnimationFrames;
 	}
 	
 
@@ -1623,7 +1627,7 @@ public class SpritesImages {
 	    for (ResourceType frameType : idleFrames) {
             idleAnimationFrames.add(register.getResourceImage(frameType));
         }
-		return null;//idleAnimationFrames;
+		return idleAnimationFrames;
 	}
 	
 
@@ -1642,7 +1646,7 @@ public class SpritesImages {
 	    for (ResourceType frameType : idleFrames) {
             idleAnimationFrames.add(register.getResourceImage(frameType));
         }
-		return null;//idleAnimationFrames;
+		return idleAnimationFrames;
 	}
 	
 
@@ -1661,7 +1665,7 @@ public class SpritesImages {
 	    for (ResourceType frameType : idleFrames) {
             idleAnimationFrames.add(register.getResourceImage(frameType));
         }
-		return null ; //idleAnimationFrames;
+		return idleAnimationFrames;
 	}
 	
 }
