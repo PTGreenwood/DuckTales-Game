@@ -1,4 +1,4 @@
-package uq.deco2800.ducktales;
+package uq.deco2800.ducktales.features.weather;
 
 import java.util.*;
 import org.junit.*;
@@ -162,11 +162,6 @@ public class WeatherTest {
 		
 		WeatherEvents testEvents = new WeatherEvents();
 		testEvents.add(new WeatherChance(new Fire(), 30));
-		//System.out.println(testEvents.hashCode());
-		//System.out.println(weatherEvent.hashCode());
-		
-		//Need to fix this one... should be true
-		//Assert.assertTrue(testEvents.equals(weatherEvent));		
 	}
 	
 	@Test
