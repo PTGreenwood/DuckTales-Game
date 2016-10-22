@@ -11,7 +11,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import uq.deco2800.ducktales.features.achievements.AchievementHandler;
 import uq.deco2800.ducktales.features.level.LevelHandler;
 
 /**

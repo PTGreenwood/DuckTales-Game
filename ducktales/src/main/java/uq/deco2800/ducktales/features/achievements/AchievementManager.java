@@ -59,7 +59,7 @@ public class AchievementManager {
 	
 	private AchievementLevelController levelController = AchievementLevelController.getInstance();
 	private AchievementMissionController missionController = AchievementMissionController.getInstance();
-	
+	private AchievementScoreController scoreController = AchievementScoreController.getInstance();
 	
 	public AchievementManager() {
 				
@@ -68,6 +68,7 @@ public class AchievementManager {
 	public void loadMain() {
 		
 		this.topLabel.setText("ACHIEVEMENT");
+		this.bottomLabel.setText("Achievement Score : " + this.scoreController.achievementHolder());
 		this.achievementMainDescription.setVisible(true);
 		this.achievementDescription.setVisible(false);
 		this.achievementImageView.setVisible(false);
