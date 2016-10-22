@@ -67,23 +67,23 @@ public class AchievementScoreController {
 	
 	/**Sets value for varying difficulties of achievements, 
 	for each specific difficulty adds specified value to the achievement score */
-	private void achieveVeryEasy() {
+	public void achieveVeryEasy() {
 		this.intAchieve = this.intAchieve + 1;
 	}
 	
-	private void achieveEasy() {
+	public void achieveEasy() {
 	    this.intAchieve = this.intAchieve + 2;
     }
     
-	private void achieveMedium() {
+	public void achieveMedium() {
 	    this.intAchieve = this.intAchieve + 3;
     }
     
-	private void achieveHard() {
+	public void achieveHard() {
 	    this.intAchieve = this.intAchieve + 4;
     }
     
-	private void achieveVeryHard() {
+	public void achieveVeryHard() {
 	    this.intAchieve = this.intAchieve + 5;
     }
     
