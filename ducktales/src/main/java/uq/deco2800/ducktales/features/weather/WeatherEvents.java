@@ -70,25 +70,6 @@ public class WeatherEvents {
 		return "[" + returnString + "]";
 	}
 
-	@Override
-	public boolean equals(Object other) {
-
-		if (other == null) {
-			return false;
-		}
-
-		if (!(other instanceof WeatherEvents)) {
-			return false;
-		}
-
-		final WeatherEvents otherEvent = (WeatherEvents) other;
-		if (!this.getWeatherEvents().equals(otherEvent.getWeatherEvents())) {
-			return false;
-		}
-
-		return true;
-	}
-
 	/**
 	 * Get a random weather event based on the chance of that event occurring.
 	 * 
@@ -109,7 +90,7 @@ public class WeatherEvents {
 			int randomPick = randomChance.nextInt(possibilities.size());			
 			return possibilities.get(randomPick).getWeather();
 		}
-		return new Fire();
+		return new Sunny();
 	}
 
 	/** 
@@ -120,19 +101,4 @@ public class WeatherEvents {
 	public void removeAllWeatherEvents() {
 		this.weatherEvents.clear();
 	}
-	
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + this.getWeatherEvents().hashCode();
-		return result;
-	}
-
-	/*
-	 * @Override public boolean equals(Object object) { System.out.println("a");
-	 * if (!(object instanceof WeatherEvents)) return false; WeatherEvents other
-	 * = (WeatherEvents) object; return
-	 * (this.getWeatherEvents().contains(other.getWeatherEvents())); }
-	 */
 }
