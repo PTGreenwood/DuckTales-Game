@@ -193,6 +193,7 @@ public class DuckTalesController implements Initializable {
 	 */
 	public void quitApplication() {
 		Platform.exit();
+		//System.exit(0);
 	}
 
 	/**

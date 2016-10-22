@@ -13,9 +13,9 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 
 public class MoviePlayerController implements Initializable{
-    @FXML private MediaView mv;
-    private MediaPlayer mp;
-    private Media me;
+    @FXML private  MediaView mv;
+    private static MediaPlayer mp;
+    private  Media me;
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
@@ -29,5 +29,9 @@ public class MoviePlayerController implements Initializable{
 		width.bind(Bindings.selectDouble(mv.sceneProperty(), "width"));
 		height.bind(Bindings.selectDouble(mv.sceneProperty(), "height"));
 	} 
+	public static void closeAudio()
+	{
+		mp.pause();
+	}
 
 }
