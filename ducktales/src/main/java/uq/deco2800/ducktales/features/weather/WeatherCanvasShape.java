@@ -21,7 +21,7 @@ public class WeatherCanvasShape {
 	private int acceleration;
 
 	/*
-	 * invariant
+	 * invariant:
 	 * 
 	 * && x, y, direction, acceleration can be any valid number (negative or
 	 * positive)

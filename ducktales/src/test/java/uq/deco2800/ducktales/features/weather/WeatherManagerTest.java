@@ -3,7 +3,6 @@ package uq.deco2800.ducktales.features.weather;
 import org.junit.Assert;
 import org.junit.Test;
 
-import uq.deco2800.ducktales.GameManager;
 import uq.deco2800.ducktales.features.seasons.SeasonManager;
 import uq.deco2800.ducktales.features.time.TimeManager;
 

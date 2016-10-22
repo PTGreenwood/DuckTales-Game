@@ -162,11 +162,6 @@ public class WeatherTest {
 		
 		WeatherEvents testEvents = new WeatherEvents();
 		testEvents.add(new WeatherChance(new Fire(), 30));
-		//System.out.println(testEvents.hashCode());
-		//System.out.println(weatherEvent.hashCode());
-		
-		//Need to fix this one... should be true
-		//Assert.assertTrue(testEvents.equals(weatherEvent));		
 	}
 	
 	@Test
