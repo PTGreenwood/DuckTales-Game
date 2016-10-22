@@ -394,7 +394,7 @@ public class ResourceSpriteRegister {
 		addResource(BOX, "/box2.png");
 		addResource(LONG_BOX, "/longbox.png");
 		addResource(WOOD_BOX, "/wood_stock.png");
-		addResource(TREE_1, "/tree_1.png");
+		addResource(TREE_1, "/gameresources/trees/seasons/tree_1_summer.png");
 		addResource(TREE_2, "/tree_2.png");
 		addResource(TREE_3, "/tree_3.png");
 		addResource(ROCK_1, "/rock_1.png");

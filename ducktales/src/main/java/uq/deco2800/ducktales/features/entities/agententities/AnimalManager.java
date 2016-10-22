@@ -88,7 +88,8 @@ public class AnimalManager extends SecondaryManager{
     }
 
     /**
-     * Update the location of the sprites based on the location values stored in the model
+     * Update the location of the sprites based on the location values
+     * stored in the model
      */
     public void updateSpriteLocations() {
         Animal animal;

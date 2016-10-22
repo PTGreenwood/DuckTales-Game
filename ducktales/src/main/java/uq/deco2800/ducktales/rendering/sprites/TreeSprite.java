@@ -10,7 +10,7 @@ import uq.deco2800.ducktales.features.entities.resourceentities.Tree;
  * Created on 22/10/2016.
  * @author khoiphan21
  */
-public class TreeSprite extends Sprite {
+public class TreeSprite extends EntitySprite {
 
     /**
      * The hashcode of the corresponding {@link Tree} object, used to

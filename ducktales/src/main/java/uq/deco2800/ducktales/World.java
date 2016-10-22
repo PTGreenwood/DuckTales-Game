@@ -358,7 +358,8 @@ public class World implements Tickable {
 	 * 		The length y of the building - define how many tiles to the upper left
 	 * 		will be checked
 	 *
-	 * @return Whether the building can be added to this tile
+	 * @return true if the location given is available
+	 * 		   false otherwise
 	 */
 	public boolean checkTileAvailability(int startX, int startY, int xLength, int yLength) {
 		for (int x = 0; x < xLength; x++) {
