@@ -6,10 +6,6 @@ package uq.deco2800.ducktales.features.weather;
  */
 @SuppressWarnings("serial")
 public class InvalidWeatherChanceException extends Exception {
-	public InvalidWeatherChanceException() {
-        super();
-    }
-
     public InvalidWeatherChanceException(String s) {
         super(s);
     }

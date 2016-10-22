@@ -1,4 +1,4 @@
-package uq.deco2800.ducktales.util.events.handlers;
+package uq.deco2800.ducktales.util.events.handlers.keyboard;
 
 import org.junit.Assert;
 import org.junit.Test;
