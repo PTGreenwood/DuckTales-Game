@@ -3,6 +3,9 @@ package uq.deco2800.ducktales.features.weather;
 import java.util.*;
 
 /**
+ * Build a list of WeatherEvents for a given season or time consisting of
+ * WeatherChance. WeatherChances can be removed or added at any time.
+ * 
  * @author mattyleggy
  *
  */
@@ -76,24 +79,24 @@ public class WeatherEvents {
 	 * @return a random Weather event if there is a chance of one occurring
 	 *         otherwise null.
 	 */
-	public Weather getWeatherPossibility() {		
+	public Weather getWeatherPossibility() {
 		Random random = new Random();
 		int percent = random.nextInt(100) + 1; // random number from 1 - 100
-		ArrayList<WeatherChance> possibilities = new ArrayList<>();		
+		ArrayList<WeatherChance> possibilities = new ArrayList<>();
 		for (WeatherChance chance : this.weatherEvents) {
 			if (percent <= chance.getChance())
 				possibilities.add(chance);
 		}
-		
-		if (possibilities.size() > 0) {			
-			Random randomChance = new Random();			
-			int randomPick = randomChance.nextInt(possibilities.size());			
+
+		if (possibilities.size() > 0) {
+			Random randomChance = new Random();
+			int randomPick = randomChance.nextInt(possibilities.size());
 			return possibilities.get(randomPick).getWeather();
 		}
 		return new Sunny();
 	}
 
-	/** 
+	/**
 	 * Remove all weatherEvents within the HashSet.
 	 * 
 	 * @author Peter Greenwood.

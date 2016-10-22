@@ -1,5 +1,12 @@
 package uq.deco2800.ducktales.features.weather;
 
+/**
+ * Store and retrieve a weather event and chance of that event from occurring to
+ * be used in WeatherEvents.
+ * 
+ * @author mattyleggy
+ *
+ */
 public class WeatherChance {
 
 	// weather event that could occur
