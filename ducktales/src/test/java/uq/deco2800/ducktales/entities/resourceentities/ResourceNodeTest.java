@@ -17,9 +17,24 @@ import uq.deco2800.ducktales.features.entities.Entity;
 import uq.deco2800.ducktales.features.entities.resourceentities.*;
 import uq.deco2800.ducktales.resources.ResourceType;
 
+/**
+ * 
+ * @author Jake Wood
+ *
+ * Tests the creation of all resource types and their behaviors.
+ *
+ */
 public class ResourceNodeTest {
+	
+	/**
+	 * 
+	 * Tests the creation of the tree type.
+	 * 
+	 * @throws Exception
+	 */
 	@Test
-	public void TreeTest(){
+	(expected = Exception.class)
+	public void TreeTest() throws Exception{
 		Tree entity1 = new Tree(2, 3);
 		Tree entity2 = new Tree(4, 5);
 		Tree entity3 = new Tree(1, 1);
@@ -68,8 +83,15 @@ public class ResourceNodeTest {
 		assertTrue("Correct xLength", entity3.getYLength() == 1);
 	}
 	
+	/**
+	 * 
+	 * Tests the creation of the Rock type of resource.
+	 * 
+	 * @throws Exception
+	 */
 	@Test
-	public void RockTest(){
+	(expected = Exception.class)
+	public void RockTest() throws Exception{
 		Rock entity1 = new Rock(2, 3);
 		Rock entity2 = new Rock(4, 5);
 		Rock entity3 = new Rock(1, 1);
@@ -117,6 +139,13 @@ public class ResourceNodeTest {
 		assertTrue("Correct xLength", entity3.getXLength() == 1);
 		assertTrue("Correct xLength", entity3.getYLength() == 1);
 	}
+	
+	
+	
+	
+	
+	
+	
 	
 	@Test
 	public void RareTest(){
