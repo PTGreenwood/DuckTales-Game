@@ -169,6 +169,8 @@ public class MainEntityManager implements Tickable {
             
             //If building is added in the game, change the variable of isBuildingBuilt to true
             this.isBuildingBuilt = true;
+            //Actions when the mission is completed
+            gameManager.getMissionManager().missionCompletedAction(3);
             
             
         } else {

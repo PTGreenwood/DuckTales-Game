@@ -27,7 +27,8 @@ public class HelperManager {
 	
 	private MainEntityManager mainEntityManager = MainEntityManager.getInstance();
 	
-	private String helperString1 = "Click I to open mission interface and finish tutorial missions." 
+	private String helperString1 = "Click I to open mission interface and" + "\n"
+			+ "finish tutorial missions." 
 			+ "\n" + "And click me again";
 	private String helperString2 = "Add any building onto the tiles"
 			+ "\n" + "And click me again";

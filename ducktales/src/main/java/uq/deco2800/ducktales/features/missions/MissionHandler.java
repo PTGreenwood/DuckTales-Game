@@ -21,6 +21,8 @@ public class MissionHandler {
 	private ImageView mission4ImageCompleted;
 	private ImageView mission5ImageCompleted;
 	private ImageView mission6ImageCompleted;
+	private ImageView mission7ImageCompleted;
+	private ImageView mission8ImageCompleted;
 	
 	private ArrayList<ImageView> missionsArray;
 	
@@ -56,7 +58,7 @@ public class MissionHandler {
 	 */
 	public MissionHandler() {
 		
-		this.countCompletedMissions = new int[6];
+		this.countCompletedMissions = new int[8];
 		Arrays.fill(this.countCompletedMissions, 0);
 		this.missionsArray = new ArrayList<ImageView>();
 		this.mission1ImageCompleted = new ImageView();
@@ -65,6 +67,8 @@ public class MissionHandler {
 		this.mission4ImageCompleted = new ImageView();
 		this.mission5ImageCompleted = new ImageView();
 		this.mission6ImageCompleted = new ImageView();
+		this.mission7ImageCompleted = new ImageView();
+		this.mission8ImageCompleted = new ImageView();
 		
 		this.missionsArray.add(0, this.mission1ImageCompleted);
 		this.missionsArray.add(1, this.mission2ImageCompleted);
@@ -72,8 +76,10 @@ public class MissionHandler {
 		this.missionsArray.add(3, this.mission4ImageCompleted);
 		this.missionsArray.add(4, this.mission5ImageCompleted);
 		this.missionsArray.add(5, this.mission6ImageCompleted);
+		this.missionsArray.add(6, this.mission7ImageCompleted);
+		this.missionsArray.add(7, this.mission8ImageCompleted);
 		
-		for(int i = 0; i < 6; i++) {
+		for(int i = 0; i < 8; i++) {
 			this.missionsArray.get(i).setImage(uncheckedBox);
 		}
 	}	
