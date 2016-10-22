@@ -62,7 +62,7 @@ public class World implements Tickable {
 	
 	private int timer = 0;
 	
-	private boolean nightAnimation = false;
+	private ArrayList<Boolean> nightAnimation = new ArrayList<Boolean>();
 	
 	private boolean winterAnimation = false;
 	
@@ -361,12 +361,28 @@ public class World implements Tickable {
 		List<BuildingSprite> buildingSprites = buildingManager.getBuildingSprites();
 		
 		for (int x = 0; x < buildingSprites.size(); x++) {
+			// Set the new buildings to be true of false depending on time of day (to get 
+			// right animation started) 
+			if (nightAnimation.size() < buildingSprites.size()) {
+				for (int y = nightAnimation.size(); y < buildingSprites.size(); y++) {
+					nightAnimation.add(y, !timeManager.isNight());
+				}
+			}
+			// Its night time, change animation to night type
 			if (buildingSprites.get(x).getEntityType() == ResourceType.SCHOOL 
-					&& nightAnimation == false && timeManager.isNight()) {
+					&& nightAnimation.get(x) == false && timeManager.isNight()) {
 				BuildingSprite buildingSprite = buildingSprites.get(x);
 				if (buildingSprite.nightAnimation()) {
+					nightAnimation.set(x, true);
+				}
+			} 
+			// Its day time, change animation to day type
+			else if (buildingSprites.get(x).getEntityType() == ResourceType.SCHOOL 
+					&& nightAnimation.get(x) == true && !timeManager.isNight()) {
+				BuildingSprite buildingSprite = buildingSprites.get(x);
+				if (buildingSprite.dayAnimation()) {
 					System.err.println(timer);
-					nightAnimation = true;
+					nightAnimation.set(x, false);
 				}
 			}
 		}

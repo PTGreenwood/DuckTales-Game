@@ -182,20 +182,18 @@ public class BuildingSprite extends EntitySprite {
             deepCopy(frames, this.frames);
         }
     }
-    
-    public void swap(int newAnimation) {
-    	if (newAnimation == 0) {
-    		System.err.println("dfksdhfskjdfhksjd");
-    	} else {
-    		setupIdleAnimation(SpritesImages.schoolDay(), 9, true);
-    		interpolator = new SpriteInterpolator(SpritesImages.schoolDay());
-    	}
-    }
-
 	
+    /**
+     * Change the idle animation frames to those of the night animation, 
+     * and restart the animation. Will return false if the construction 
+     * animation is not complete, and no changes were made. If construction 
+     * is completed, will return true once changes are made.
+     * 
+     * @return true if the frames are updated to night animation
+     */
 	public boolean nightAnimation() {
+		// make sure the construction animation has been completed
 		if (this.timeline.getTotalDuration() == Duration.INDEFINITE) {
-			System.out.println("sdfsafdasfdsdfsadffasdf");
 			this.stopAnimation();
 		
 			setupIdleAnimation(SpritesImages.schoolNight(), 3, true);
@@ -204,6 +202,26 @@ public class BuildingSprite extends EntitySprite {
 			return true;
 		}
 		return false;
+	}
+	
+	/**
+     * Change the idle animation frames to those of the day animation, 
+     * and restart the animation. Will return false if the construction 
+     * animation is not complete, and no changes were made. If construction 
+     * is completed, will return true once changes are made.
+     * 
+     * @return true if the frames are updated to day animation
+     */
+	public boolean dayAnimation() {
+		// make sure the construction animation has been completed
+		if (this.timeline.getTotalDuration() == Duration.INDEFINITE) {
+			this.stopAnimation();
 		
+			setupIdleAnimation(SpritesImages.schoolDay(), 3, true);
+			interpolator = new SpriteInterpolator(SpritesImages.schoolDay());
+			playIdleAnimation();
+			return true;
+		}
+		return false;
 	}
 }
