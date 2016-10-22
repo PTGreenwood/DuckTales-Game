@@ -269,21 +269,20 @@ public class GameManager {
     public void setHelperManager(HelperManager helperManager) {
     	this.helperManager = helperManager;
     }
-<<<<<<< HEAD
+    
     public NotificationManager getNotificationManager() {
     	return notificationManager;
     }
     public void setNotificationManager(NotificationManager notificationManager) {
     	this.notificationManager = notificationManager;
     }
-=======
+
 
     /**
      * Retrieve the manager that manages the missions in the game
      * 
      * @return the manager of the missions in the game
      */
->>>>>>> master
     public MissionManager getMissionManager() {
         return missionManager;
     }

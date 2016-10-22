@@ -141,13 +141,9 @@ public class GameController implements Initializable{
         gameManager.setMainEntityManager(this.mainEntityManager);
         gameManager.setTutorialManager(this.tutorialManager);      
         gameManager.setHelperManager(this.helperManager);
-<<<<<<< HEAD
         gameManager.setNotificationManager(this.notificationManager);
-        
-=======
         gameManager.setPeonInformationDisplayManager(this.peonInformationDisplayManager);
 
->>>>>>> master
         // Now officially call the game starting method from Game Manager
         gameManager.startGame();        
         // Game Controller's job of setting up the UI is done.
@@ -205,7 +201,6 @@ public class GameController implements Initializable{
     	closeButton.setVisible(true);
     	missionManager.missionCompletedAction(1);
     }
-<<<<<<< HEAD
     
     /**
      * Show the notification bar
@@ -217,9 +212,6 @@ public class GameController implements Initializable{
     	notificationManager.showNotifications();
     }
     
-=======
-        
->>>>>>> master
     @FXML
     public void showTutorial() {
     	

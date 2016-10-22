@@ -26,14 +26,9 @@ import java.util.List;
 public class BuildingSprite extends EntitySprite {
     /** The sprites list for different types of animations */
     private BuildingAnimation constructionAnimation; // animation during construction
-<<<<<<< HEAD
     private BuildingAnimation idleAnimation; // when construction is done
-    private NotificationManager notificationManager;
+    private NotificationManager notificationManager;   
 
-=======
-    private BuildingAnimation idleAnimation; // playing animations
-    
->>>>>>> master
     /** Flags */
     // Whether to automatically reverse the idle animation
     private boolean autoReverse = true;
