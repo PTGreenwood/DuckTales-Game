@@ -1,128 +1,98 @@
 package uq.deco2800.ducktales;
 
-import java.io.IOException;
-import java.net.URL;
-
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.DataLine;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.Mixer;
-import javax.sound.sampled.UnsupportedAudioFileException;
-import org.slf4j.Logger; 
-import org.slf4j.LoggerFactory;
-
-/**
- * Handles all application audio.
- */
-public class GameSound {
-	private Mixer mixer;
-	private Clip clip;
-	// Error log
-	String lineUnavailable = "Line Unavailble";
-	//add a logger to fix code vulnerability 
-	private static Logger logger = LoggerFactory.getLogger(GameLoop.class);
-	/**
-	 * Loads and plays audio file.
-	 * 
-	 * @param location Directory of audio file to be played.
-	 */
-	public void playThisSound(String location){
-		Mixer.Info[] mixInfos = AudioSystem.getMixerInfo();
-		/**for(Mixer.Info info: mixInfos){
-			System.out.println(  info.getName() +" - - - " + info.getDescription() );
-		}
-		**/
-		mixer = AudioSystem.getMixer(mixInfos[0]);
-		DataLine.Info dataInfo = new DataLine.Info(Clip.class, null);
-		try { 
-			clip =(Clip)mixer.getLine(dataInfo);
-			}
-		catch(LineUnavailableException lue){ 
-			logger.info(lineUnavailable, lue);
-			}
-		
-		try {
-			URL soundURL = GameSound.class.getResource(location);
-			AudioInputStream audioStream = AudioSystem.getAudioInputStream(soundURL);
-			clip.open(audioStream);
-		}
-		
-		catch(LineUnavailableException lue){logger.info(lineUnavailable, lue);}
-		catch(UnsupportedAudioFileException uafe){logger.info("Unsupported Audio File", uafe);}
-		catch(IOException ioe){ logger.info("IOException", ioe);}
-		clip.start();
-		
-		{
-			try{
-				Thread.sleep(50);
-				}
-			catch(InterruptedException ie){
-				logger.info("Interrupted Exception"+ie);
-				Thread.currentThread().interrupt();
-				}
-			
-		} while(clip.isActive());
-	}
-	
-	/**
-	 * Overlay sounds.
-	 * 
-	 * @param location Directory of audio file to be overlaid.
-	 */
-	public void overlayThisSound(String location){
-		Mixer.Info[] mixInfos	=AudioSystem.getMixerInfo();
-		/**for(Mixer.Info info: mixInfos){
-			System.out.println(  info.getName() +" - - - " + info.getDescription() );
-		}
-		**/
-		mixer = AudioSystem.getMixer(mixInfos[0]);
-		DataLine.Info dataInfo = new DataLine.Info(Clip.class, null);
-		try { 
-			clip =(Clip)mixer.getLine(dataInfo);
-			}
-		catch(LineUnavailableException lue){ 
-			logger.info(lineUnavailable, lue);
-			}
-		
-		try{
-			URL soundURL = GameSound.class.getResource(location);
-			AudioInputStream audioStream = AudioSystem.getAudioInputStream(soundURL);
-			clip.open(audioStream);			
-		}
-		
-		catch(LineUnavailableException lue){
-			logger.info("Line unavailable", lue);
-			}
-		catch(UnsupportedAudioFileException uafe){
-			logger.info("Unsupported audio file", uafe);
-			}
-		catch(IOException ioe){ 
-			logger.info("IO Exception found with sound url", ioe);
-			}
-		clip.start();
-		
-		{
-			try{
-				Thread.sleep(50);
-				}
-			catch(InterruptedException ie) {
-				logger.info("Interupted Exception caught", ie);
-				Thread.currentThread().interrupt();
-				}
-			
-		} while(clip.isActive());
-
-	}
-	
-	/**
-	 * Ends playback of current sound.
-	 * 
-	 * 
-	 */
-	public void stopSound(){
-		
-	}
-	
-}
+import java.io.File; 
+import java.io.IOException; 
+import javax.sound.sampled.AudioFormat; 
+import javax.sound.sampled.AudioInputStream; 
+import javax.sound.sampled.AudioSystem; 
+import javax.sound.sampled.DataLine; 
+import javax.sound.sampled.FloatControl; 
+import javax.sound.sampled.LineUnavailableException; 
+import javax.sound.sampled.SourceDataLine; 
+import javax.sound.sampled.UnsupportedAudioFileException; 
+ 
+public class GameSound extends Thread { 
+ 
+    private String filename;
+ 
+    private Position curPosition;
+ 
+    private final int EXTERNAL_BUFFER_SIZE = 524288; // 128Kb 
+ 
+    enum Position { 
+        LEFT, RIGHT, NORMAL
+    };
+ 
+    public GameSound(String wavfile) { 
+        filename = wavfile;
+        curPosition = Position.NORMAL;
+    } 
+ 
+    public GameSound(String wavfile, Position p) { 
+        filename = wavfile;
+        curPosition = p;
+    } 
+ 
+    public void run() { 
+ 
+        File soundFile = new File(filename);
+        if (!soundFile.exists()) { 
+            System.err.println("Wave file is not found: " + filename);
+            return;
+        } 
+ 
+        AudioInputStream audioInputStream = null;
+        try { 
+            audioInputStream = AudioSystem.getAudioInputStream(soundFile);
+        } catch (UnsupportedAudioFileException e1) { 
+            e1.printStackTrace();
+            return;
+        } catch (IOException e1) { 
+            e1.printStackTrace();
+            return;
+        } 
+ 
+        AudioFormat format = audioInputStream.getFormat();
+        SourceDataLine auline = null;
+        DataLine.Info info = new DataLine.Info(SourceDataLine.class, format);
+ 
+        try { 
+            auline = (SourceDataLine) AudioSystem.getLine(info);
+            auline.open(format);
+        } catch (LineUnavailableException e) { 
+            e.printStackTrace();
+            return;
+        } catch (Exception e) { 
+            e.printStackTrace();
+            return;
+        } 
+ 
+        if (auline.isControlSupported(FloatControl.Type.PAN)) { 
+            FloatControl pan = (FloatControl) auline
+                    .getControl(FloatControl.Type.PAN);
+            if (curPosition == Position.RIGHT) 
+                pan.setValue(1.0f);
+            else if (curPosition == Position.LEFT) 
+                pan.setValue(-1.0f);
+        } 
+ 
+        auline.start();
+        int nBytesRead = 0;
+        byte[] abData = new byte[EXTERNAL_BUFFER_SIZE];
+ 
+        try { 
+            while (nBytesRead != -1) { 
+                nBytesRead = audioInputStream.read(abData, 0, abData.length);
+                if (nBytesRead >= 0) 
+                    auline.write(abData, 0, nBytesRead);
+            } 
+        } catch (IOException e) { 
+            e.printStackTrace();
+            return;
+        } finally { 
+            auline.drain();
+            auline.close();
+        } 
+ 
+    } 
+} 

@@ -147,6 +147,10 @@ public class GameManager {
         // Now set up the entity manager and start its routine
         mainEntityManager.startRoutine();
 
+        //Play theme song for the start of the game
+        new GameSound("src/main/resources/sounds/EmotionalRain.wav").start();
+        
+        
         // Start the manager of all the horrible threats in the world.
         threatManager = new ThreatManager();
         threatManager.setWorld(this.world);
