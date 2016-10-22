@@ -3,9 +3,9 @@ package uq.deco2800.ducktales.entities.resourceentities;
 import static org.junit.Assert.assertTrue;
 import static uq.deco2800.ducktales.resources.ResourceType.ROCK_1;
 import static uq.deco2800.ducktales.resources.ResourceType.ROCK_2;
-import static uq.deco2800.ducktales.resources.ResourceType.TREE_1;
-import static uq.deco2800.ducktales.resources.ResourceType.TREE_2;
-import static uq.deco2800.ducktales.resources.ResourceType.TREE_3;
+import static uq.deco2800.ducktales.resources.ResourceType.TREE_1_SUMMER;
+import static uq.deco2800.ducktales.resources.ResourceType.TREE_2_SUMMER;
+import static uq.deco2800.ducktales.resources.ResourceType.TREE_3_SUMMER;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -149,13 +149,13 @@ public class ResourceNodeTest {
 	
 	@Test
 	public void RareTest(){
-		ResourceType[] TYPES1 = {TREE_1, TREE_2, TREE_3};
+		ResourceType[] TYPES1 = {TREE_1_SUMMER, TREE_2_SUMMER, TREE_3_SUMMER};
 		ResourceType[] TYPES2 = {ROCK_1, ROCK_2};
 		ResourceType type1 = ResourceEntity.rare(TYPES1);
 		ResourceType type2 = ResourceEntity.rare(TYPES2);
-		assertTrue("Valid ResourceType", type1.equals(TREE_1) 
-				|| type1.equals(TREE_2) 
-				|| type1.equals(TREE_3));
+		assertTrue("Valid ResourceType", type1.equals(TREE_1_SUMMER) 
+				|| type1.equals(TREE_2_SUMMER) 
+				|| type1.equals(TREE_3_SUMMER));
 		assertTrue("Valid ResourceType", type2.equals(ROCK_1) 
 				|| type2.equals(ROCK_2));
 	}

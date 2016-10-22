@@ -78,7 +78,7 @@ public class ResourceEntityManager extends SecondaryManager {
             // At this point, randomX and randomY should be available
             // final checks:
             if (world.checkTileAvailability(randomX, randomY, 1, 1)) {
-                resourceManager.addTree(ResourceType.TREE_1, randomX, randomY);
+                resourceManager.addTree(ResourceType.TREE_1_SUMMER, randomX, randomY);
             }
         }
         System.err.println("\n\n\n Number of trees in the world:" +

@@ -2,7 +2,11 @@ package uq.deco2800.ducktales.features.entities.resourceentities;
 
 import java.util.Random;
 
+import uq.deco2800.ducktales.GameManager;
 import uq.deco2800.ducktales.features.entities.worldentities.WorldEntity;
+import uq.deco2800.ducktales.features.seasons.Season;
+import uq.deco2800.ducktales.features.seasons.SeasonManager;
+import uq.deco2800.ducktales.features.time.TimeManager;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.exceptions.GameSetupException;
 
@@ -13,6 +17,11 @@ import uq.deco2800.ducktales.util.exceptions.GameSetupException;
  *
  */
 public abstract class ResourceEntity extends WorldEntity {
+	
+	/** The main manager of the game */
+    protected GameManager gameManager;
+    
+    protected Season season;
 
 	// Default starting value of Resource nodes
 	public static final int DEFVALUE = 100;
@@ -36,10 +45,24 @@ public abstract class ResourceEntity extends WorldEntity {
 	 * @param value,
 	 *            the amount that can be harvested from the resource
 	 */
-	protected ResourceEntity(double x, double y, int lengthX, int lengthY, ResourceType type, int value) {
+	protected ResourceEntity(double x, double y, int lengthX, int lengthY, 
+			ResourceType type, int value) {
 		super(x, y, lengthX, lengthY, type);
 		this.value = value;
 	}
+	
+	/**
+     * Give this resourceEntity a reference of the primary manager
+     *
+     * @param gameManager
+     *          The primary manager of the game, from which ALL information
+     *          can be retrieved regarding other managers
+     */
+    public void setGameManager(GameManager gameManager) {
+        this.gameManager = gameManager;
+    }
+    
+    
 
 	/**
 	 * Returns true if this {@link WorldEntity} is passable.
@@ -69,17 +92,17 @@ public abstract class ResourceEntity extends WorldEntity {
 	}
 
 	/**
-	 * Sets the resource value of the Resource to x
+	 * Sets the resource value of the Resource to amount
 	 * 
-	 * @param x
+	 * @param amount
 	 *            The new value of the Resource
 	 * 
 	 * @throws exception
 	 *             if value is < 0
 	 */
-	protected void setValue(int x) {
-		if (x > 0) {
-			this.value = x;
+	protected void setValue(int amount) {
+		if (amount > 0) {
+			this.value = amount;
 		} else {
 			throw new GameSetupException("value of a resource must be" +
 					" positive");
@@ -87,7 +110,8 @@ public abstract class ResourceEntity extends WorldEntity {
 	}
 
 	/**
-	 * Returns the value of the resource.
+	 * Method that will return a numerical representation of the amount of resources
+	 * contained in this entity..
 	 * 
 	 * @return The value of the Resource
 	 */
@@ -96,36 +120,36 @@ public abstract class ResourceEntity extends WorldEntity {
 	}
 
 	/**
-	 * Increase the value of the Resource by a specified amount
+	 * Increase the amount of resources contained in this Resource by a specified amount
 	 * 
-	 * @param x
+	 * @param amount
 	 *            The amount to add to the Resource value.
 	 * 
 	 * @throws Exception
-	 *             if x is negative.
+	 *             if amount is negative.
 	 */
-	public void increaseValue(int x) throws Exception {
-		if (x > 0) {
-			value += x;
+	public void increaseValue(int amount) throws Exception {
+		if (amount > 0) {
+			value += amount;
 		} else {
-			throw new Exception();
+			throw new IllegalArgumentException("amount cannot be negative.");
 		}
 	}
 
 	/**
-	 * Decrease the value of the Resource by a specified amount
+	 * Decrease the amount of resources contained in this Resource by a specified amount
 	 * 
-	 * @param x
+	 * @param amount
 	 *            The amount to remove from the Resource value.
 	 * 
 	 * @throws Exception
-	 *             if x is negative.
+	 *             if amount is negative.
 	 */
-	public void decreaseValue(int x) throws Exception {
-		if (x > 0) {
-			value -= x;
+	public void decreaseValue(int amount) throws Exception {
+		if (amount > 0) {
+			value -= amount;
 		} else {
-			throw new Exception();
+			throw new IllegalArgumentException("amount cannot be negative.");
 		}
 	}
 }
