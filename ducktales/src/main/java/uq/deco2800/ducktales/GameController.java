@@ -620,7 +620,7 @@ public class GameController implements Initializable{
             AnchorPane.setTopAnchor(root, 20.0);
             AnchorPane.setLeftAnchor(root, 300.0);            
 
-            //notificationManager.hideNotifications();
+            notificationManager.hideNotifications();
             
         } catch (IOException e) {
             System.err.println("Unable to load Notifications");
