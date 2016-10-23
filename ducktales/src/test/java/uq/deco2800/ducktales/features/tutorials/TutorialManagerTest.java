@@ -58,20 +58,21 @@ public class TutorialManagerTest extends ApplicationTest {
 	/**
 	 * Check market place title has same title as expected
 	 */
+	/*
 	@Test
 	public void loadMarketPlace() {
 		
 		clickOn("#marketPlace");
 		verifyThat("#labelTop", hasText("Market Place"));
 	}
-	
-	/**
-	 * Check npc title has same title as expected
-	 */
-	@Test
-	public void loadNPC() {
-		
-		clickOn("#NPC");
-		verifyThat("#labelTop",  hasText("NPC"));
-	}
+	*/
+//	/**
+//	 * Check npc title has same title as expected
+//	 */
+//	@Test
+//	public void loadNPC() {
+//
+//		clickOn("#NPC");
+//		verifyThat("#labelTop",  hasText("NPC"));
+//	}
 }

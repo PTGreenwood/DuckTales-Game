@@ -28,6 +28,7 @@ import uq.deco2800.ducktales.util.events.handlers.custom.TileEnteredHandler;
 import uq.deco2800.ducktales.util.events.handlers.keyboard.InGameKeyboardHandler;
 import uq.deco2800.ducktales.util.events.handlers.mouse.InGameMouseClickedHandler;
 import uq.deco2800.ducktales.util.events.handlers.mouse.InGameMouseMovedHandler;
+import uq.deco2800.ducktales.util.events.handlers.job.JobSpritePeonClickedEventHandler;
 import uq.deco2800.ducktales.util.events.handlers.peon.PeonClickedEventHandler;
 import uq.deco2800.ducktales.util.events.peon.PeonClickedEvent;
 import uq.deco2800.ducktales.util.events.tile.TileClickedEvent;
@@ -41,6 +42,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import static uq.deco2800.ducktales.resources.ResourceType.*;
+
+import uq.deco2800.ducktales.util.events.job.JobSpritePeonClickedEvent;
 
 /**
  * <p>
@@ -511,6 +514,10 @@ public class GameManager {
         		new AnimalDeadEventHandler(this);
         PeonClickedEventHandler peonClickedEventHandler =
                 new PeonClickedEventHandler(this);
+        JobSpritePeonClickedEventHandler jobSpritePeonClickedEventHandler =
+                new JobSpritePeonClickedEventHandler(this);
+
+
 
         // Handler for when a sprite in the menu is selected
         root.addEventHandler(MenuSelectedEvent.MENU_SELECTED_EVENT, menuSelectedEventHandler );
@@ -530,6 +537,9 @@ public class GameManager {
         root.addEventHandler(AnimalDeadEvent.ANIMAL_DEAD_EVENT, animalDeadEventHandler);
         // Handler for when a peon sprite is clicked
         root.addEventHandler(PeonClickedEvent.PEON_CLICKED_EVENT, peonClickedEventHandler);
+        // Handler for when job sprite is clicked
+        root.addEventHandler(JobSpritePeonClickedEvent.PEON_JOB_SPRITE_CLICKED_EVENT, 
+                jobSpritePeonClickedEventHandler);
     }
 
     /**
