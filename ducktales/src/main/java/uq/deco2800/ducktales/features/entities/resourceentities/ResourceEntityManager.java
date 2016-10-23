@@ -133,6 +133,17 @@ public class ResourceEntityManager extends SecondaryManager {
         gameManager.getWorldDisplayManager().getWorldDisplay().getChildren()
                 .add(sprite);
     }
+    
+    /**
+     * Return the sprite of a tree given its unique key vale
+     * 
+     * @param key
+     * 			The unique identifier of a particular tree, in this case the hashcode
+     */
+	public TreeSprite getTree(int key){
+		return treeSprites.get(key);
+	}
+	
 	
     /**
      * Add a resource drop at the location specified, this method mainly is used
