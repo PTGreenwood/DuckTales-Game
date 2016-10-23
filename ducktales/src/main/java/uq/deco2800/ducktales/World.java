@@ -116,6 +116,15 @@ public class World implements Tickable {
 	}
 
 	/**
+	 * Get the default tile type.
+	 * 
+	 * @return The ResourceType used as the default tile type.
+	 */
+	public static ResourceType getDefaultTileType() {
+		return DEFAULT_TILE_TYPE;
+	}
+
+	/**
 	 * Retrieves a Tile at the specified coordinates.
 	 *
 	 * @param x
