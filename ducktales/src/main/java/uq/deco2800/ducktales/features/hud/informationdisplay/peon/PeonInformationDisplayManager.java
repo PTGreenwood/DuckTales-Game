@@ -180,7 +180,7 @@ public class PeonInformationDisplayManager
         
     	// 	Get the information of the peon
     	Image peonSpriteImage = rsr.getInstance().getResourceImage(this.peon.getType());
-        peonImage.setImage(peonSpriteImage);
+        //peonImage.setImage(peonSpriteImage);
         
         peonName.setText(peon.getPeonName());
         peonIntelligence.setText(Integer.toString(peon.getIntelligence()));
@@ -195,24 +195,20 @@ public class PeonInformationDisplayManager
         rootDisplay.setVisible(true);
     }
 
-
     /**
-     * Chagne the peon image in the GUI
-     * 
+     * Method that updates the tool on button press.
+     * Needs to be migrated to JobSpritePeonClickedEventHandler I guess.
      * 
      */
-    public void changePeonWindow() {
-    	Image peonSpriteImage = rsr.getInstance().getResourceImage(this.peon.getType());
-        peonImage.setImage(peonSpriteImage);
-        
-    }
     @FXML public void handleUpgradeToolButtonAction() {
     	
     	this.peon.upgradeTool();
+    	//this.peon.updateType(newType);
     	displayPeon();
-
+    	
     }
 }
+
 
 
 

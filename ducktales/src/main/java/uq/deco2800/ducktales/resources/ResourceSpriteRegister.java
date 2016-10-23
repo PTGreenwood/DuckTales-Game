@@ -479,7 +479,7 @@ public class ResourceSpriteRegister {
 	
 	private void addJobResources(){
 		addResource(PEON, "/peon/basic_peon.png");
-		addResource(MINER_LV1_1, "/peon/jobs/miner.png");
+		/*addResource(MINER_LV1_1, "/peon/jobs/miner.png");
 		addResource(MINER_LV1_2, "/peon/jobs/miner_1.png");
 		addResource(MINER_LV1_3, "/peon/jobs/miner_2.png");
 		addResource(MINER_LV1_4, "/peon/jobs/miner_3.png");
@@ -504,8 +504,7 @@ public class ResourceSpriteRegister {
 		addResource(PRIEST_LV1_3, "/peon/jobs/priest_2.png");
 		addResource(PRIEST_LV1_4, "/peon/jobs/priest_3.png");
 	
-		/*
-		 * PEONS
+		*/
 		 
 		
 		
@@ -559,7 +558,7 @@ public class ResourceSpriteRegister {
 		addResource(TEACHER_LV1_1, "/peon/jobs/teacher_1.png");
 		addResource(TEACHER_LV2_1, "/toolsUpgrade/teacher/teacher_lv2.png");	
 		addResource(TEACHER_LV3_1, "/toolsUpgrade/teacher/teacher_lv3.png");	
-		*/
+
 		
 		
 	}

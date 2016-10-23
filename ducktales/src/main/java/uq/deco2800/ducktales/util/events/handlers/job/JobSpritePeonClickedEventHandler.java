@@ -9,6 +9,7 @@ import uq.deco2800.ducktales.features.jobframework.Builder;
 import uq.deco2800.ducktales.features.jobframework.Doctor;
 import uq.deco2800.ducktales.features.jobframework.Farmer;
 import uq.deco2800.ducktales.features.jobframework.Job;
+import uq.deco2800.ducktales.features.jobframework.JobType;
 import uq.deco2800.ducktales.features.jobframework.Lumberjack;
 import uq.deco2800.ducktales.features.jobframework.Miner;
 import uq.deco2800.ducktales.features.jobframework.Priest;
@@ -41,7 +42,6 @@ public class JobSpritePeonClickedEventHandler extends GameEventHandler
         PeonInformationDisplayManager displayManager =
                 gameManager.getPeonInformationDisplayManager();
         Peon peon = displayManager.getCurrentlyDisplayedPeon();
-        
 
     	
         // Task 2
@@ -78,6 +78,8 @@ public class JobSpritePeonClickedEventHandler extends GameEventHandler
                 break;
         }
         peon.applyForJob(job);
+        Image peonSpriteImage = rsr.getInstance().getResourceImage(peon.getType());
+        gameManager.getMainEntityManager().getPeonManager().getPeonSprite(peon.getPeonName()).setImage(peonSpriteImage);
 
         // Task 3
         displayManager.setPeon(peon);
