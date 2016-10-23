@@ -19,7 +19,7 @@ import uq.deco2800.ducktales.resources.ResourceType;
 
 /**
  * 
- * @author Jake Wood
+ * @author Jake Wood, Andrew Georgiou
  *
  *         Tests the creation of all resource types and their behaviors.
  *
@@ -52,33 +52,36 @@ public class ResourceNodeTest {
 
 		// Test getValue
 		assertTrue("Correct default value",
-				entity1.getValue() == ResourceEntity.DEFVALUE || entity1.getValue() == 2 * ResourceEntity.DEFVALUE);
-
-		// Test increaseValue
-		entity2.increaseValue(50);
-		assertTrue("Correct value", entity2.getValue() == ResourceEntity.DEFVALUE + 50
-				|| entity2.getValue() == 2 * ResourceEntity.DEFVALUE + 50);
-		entity2.increaseValue(0);
-		assertTrue("Correct value", entity2.getValue() == ResourceEntity.DEFVALUE + 50
-				|| entity2.getValue() == 2 * ResourceEntity.DEFVALUE + 50);
-		entity2.increaseValue(-50);
-		assertTrue("Correct value", entity2.getValue() == ResourceEntity.DEFVALUE + 50
-				|| entity2.getValue() == 2 * ResourceEntity.DEFVALUE + 50);
-
-		// Test decrease Value
-		entity3.decreaseValue(50);
-		assertTrue("Correct value", entity3.getValue() == ResourceEntity.DEFVALUE - 50
-				|| entity3.getValue() == 2 * ResourceEntity.DEFVALUE - 50);
-		entity3.decreaseValue(0);
-		assertTrue("Correct value", entity3.getValue() == ResourceEntity.DEFVALUE - 50
-				|| entity3.getValue() == 2 * ResourceEntity.DEFVALUE - 50);
-		entity3.decreaseValue(-50);
-		assertTrue("Correct value", entity3.getValue() == ResourceEntity.DEFVALUE - 50
-				|| entity3.getValue() == 2 * ResourceEntity.DEFVALUE - 50);
+				entity1.getValue() == ResourceEntity.defaultValue || entity1.getValue() == 2 * ResourceEntity.defaultValue);
 
 		// Test getx/gety
-		assertTrue("Correct xLength", entity3.getXLength() == 1);
-		assertTrue("Correct xLength", entity3.getYLength() == 1);
+				assertTrue("Correct xLength", entity3.getXLength() == 1);
+				assertTrue("Correct xLength", entity3.getYLength() == 1);
+				
+		// Test valid values
+		entity2.increaseValue(50);
+		assertTrue("Correct value", entity2.getValue() == ResourceEntity.defaultValue + 50
+				|| entity2.getValue() == 2 * ResourceEntity.defaultValue + 50);
+		entity3.decreaseValue(50);
+		assertTrue("Correct value", entity3.getValue() == ResourceEntity.defaultValue - 50
+				|| entity3.getValue() == 2 * ResourceEntity.defaultValue - 50);
+		
+		// Test invalid values
+		entity2.increaseValue(0);
+		assertTrue("Correct value", entity2.getValue() == ResourceEntity.defaultValue + 50
+				|| entity2.getValue() == 2 * ResourceEntity.defaultValue + 50);
+		entity2.increaseValue(-50);
+		assertTrue("Correct value", entity2.getValue() == ResourceEntity.defaultValue + 50
+				|| entity2.getValue() == 2 * ResourceEntity.defaultValue + 50);
+		entity3.decreaseValue(50);
+		assertTrue("Correct value", entity3.getValue() == ResourceEntity.defaultValue - 50
+				|| entity3.getValue() == 2 * ResourceEntity.defaultValue - 50);
+		entity3.decreaseValue(0);
+		assertTrue("Correct value", entity3.getValue() == ResourceEntity.defaultValue - 50
+				|| entity3.getValue() == 2 * ResourceEntity.defaultValue - 50);
+		entity3.decreaseValue(-50);
+		assertTrue("Correct value", entity3.getValue() == ResourceEntity.defaultValue - 50
+				|| entity3.getValue() == 2 * ResourceEntity.defaultValue - 50);		
 	}
 
 	/**
@@ -107,33 +110,33 @@ public class ResourceNodeTest {
 
 		// Test getValue
 		assertTrue("Correct default value",
-				entity1.getValue() == ResourceEntity.DEFVALUE || entity1.getValue() == 2 * ResourceEntity.DEFVALUE);
-
-		// Test increaseValue
-		entity2.increaseValue(50);
-		assertTrue("Correct value", entity2.getValue() == ResourceEntity.DEFVALUE + 50
-				|| entity2.getValue() == 2 * ResourceEntity.DEFVALUE + 50);
-		entity2.increaseValue(0);
-		assertTrue("Correct value", entity2.getValue() == ResourceEntity.DEFVALUE + 50
-				|| entity2.getValue() == 2 * ResourceEntity.DEFVALUE + 50);
-		entity2.increaseValue(-50);
-		assertTrue("Correct value", entity2.getValue() == ResourceEntity.DEFVALUE + 50
-				|| entity2.getValue() == 2 * ResourceEntity.DEFVALUE + 50);
-
-		// Test decrease Value
-		entity3.decreaseValue(50);
-		assertTrue("Correct value", entity3.getValue() == ResourceEntity.DEFVALUE - 50
-				|| entity3.getValue() == 2 * ResourceEntity.DEFVALUE - 50);
-		entity3.decreaseValue(0);
-		assertTrue("Correct value", entity3.getValue() == ResourceEntity.DEFVALUE - 50
-				|| entity3.getValue() == 2 * ResourceEntity.DEFVALUE - 50);
-		entity3.decreaseValue(-50);
-		assertTrue("Correct value", entity3.getValue() == ResourceEntity.DEFVALUE - 50
-				|| entity3.getValue() == 2 * ResourceEntity.DEFVALUE - 50);
+				entity1.getValue() == ResourceEntity.defaultValue || entity1.getValue() == 2 * ResourceEntity.defaultValue);
 
 		// Test getx/gety
 		assertTrue("Correct xLength", entity3.getXLength() == 1);
 		assertTrue("Correct xLength", entity3.getYLength() == 1);
+		
+		// Test valid values
+		entity2.increaseValue(50);
+		assertTrue("Correct value", entity2.getValue() == ResourceEntity.defaultValue + 50
+				|| entity2.getValue() == 2 * ResourceEntity.defaultValue + 50);
+		entity3.decreaseValue(50);
+		assertTrue("Correct value", entity3.getValue() == ResourceEntity.defaultValue - 50
+				|| entity3.getValue() == 2 * ResourceEntity.defaultValue - 50);
+		
+		// Test invalid values
+		entity2.increaseValue(0);
+		assertTrue("Correct value", entity2.getValue() == ResourceEntity.defaultValue + 50
+				|| entity2.getValue() == 2 * ResourceEntity.defaultValue + 50);
+		entity2.increaseValue(-50);
+		assertTrue("Correct value", entity2.getValue() == ResourceEntity.defaultValue + 50
+				|| entity2.getValue() == 2 * ResourceEntity.defaultValue + 50);
+		entity3.decreaseValue(0);
+		assertTrue("Correct value", entity3.getValue() == ResourceEntity.defaultValue - 50
+				|| entity3.getValue() == 2 * ResourceEntity.defaultValue - 50);
+		entity3.decreaseValue(-50);
+		assertTrue("Correct value", entity3.getValue() == ResourceEntity.defaultValue - 50
+				|| entity3.getValue() == 2 * ResourceEntity.defaultValue - 50);
 	}
 
 	/**
@@ -162,33 +165,33 @@ public class ResourceNodeTest {
 
 		// Test getValue
 		assertTrue("Correct default value",
-				entity1.getValue() == ResourceEntity.DEFVALUE || entity1.getValue() == 2 * ResourceEntity.DEFVALUE);
-
-		// Test increaseValue
-		entity2.increaseValue(50);
-		assertTrue("Correct value", entity2.getValue() == ResourceEntity.DEFVALUE + 50
-				|| entity2.getValue() == 2 * ResourceEntity.DEFVALUE + 50);
-		entity2.increaseValue(0);
-		assertTrue("Correct value", entity2.getValue() == ResourceEntity.DEFVALUE + 50
-				|| entity2.getValue() == 2 * ResourceEntity.DEFVALUE + 50);
-		entity2.increaseValue(-50);
-		assertTrue("Correct value", entity2.getValue() == ResourceEntity.DEFVALUE + 50
-				|| entity2.getValue() == 2 * ResourceEntity.DEFVALUE + 50);
-
-		// Test decrease Value
-		entity3.decreaseValue(50);
-		assertTrue("Correct value", entity3.getValue() == ResourceEntity.DEFVALUE - 50
-				|| entity3.getValue() == 2 * ResourceEntity.DEFVALUE - 50);
-		entity3.decreaseValue(0);
-		assertTrue("Correct value", entity3.getValue() == ResourceEntity.DEFVALUE - 50
-				|| entity3.getValue() == 2 * ResourceEntity.DEFVALUE - 50);
-		entity3.decreaseValue(-50);
-		assertTrue("Correct value", entity3.getValue() == ResourceEntity.DEFVALUE - 50
-				|| entity3.getValue() == 2 * ResourceEntity.DEFVALUE - 50);
+				entity1.getValue() == ResourceEntity.defaultValue || entity1.getValue() == 2 * ResourceEntity.defaultValue);
 
 		// Test getx/gety
 		assertTrue("Correct xLength", entity3.getXLength() == 1);
 		assertTrue("Correct xLength", entity3.getYLength() == 1);
+		
+		// Test valid values
+		entity2.increaseValue(50);
+		assertTrue("Correct value", entity2.getValue() == ResourceEntity.defaultValue + 50
+				|| entity2.getValue() == 2 * ResourceEntity.defaultValue + 50);
+		entity3.decreaseValue(50);
+		assertTrue("Correct value", entity3.getValue() == ResourceEntity.defaultValue - 50
+				|| entity3.getValue() == 2 * ResourceEntity.defaultValue - 50);
+		
+		// Test invalid values
+		entity2.increaseValue(0);
+		assertTrue("Correct value", entity2.getValue() == ResourceEntity.defaultValue + 50
+				|| entity2.getValue() == 2 * ResourceEntity.defaultValue + 50);
+		entity2.increaseValue(-50);
+		assertTrue("Correct value", entity2.getValue() == ResourceEntity.defaultValue + 50
+				|| entity2.getValue() == 2 * ResourceEntity.defaultValue + 50);
+		entity3.decreaseValue(0);
+		assertTrue("Correct value", entity3.getValue() == ResourceEntity.defaultValue - 50
+				|| entity3.getValue() == 2 * ResourceEntity.defaultValue - 50);
+		entity3.decreaseValue(-50);
+		assertTrue("Correct value", entity3.getValue() == ResourceEntity.defaultValue - 50
+				|| entity3.getValue() == 2 * ResourceEntity.defaultValue - 50);
 	}
 
 	/**
@@ -219,57 +222,53 @@ public class ResourceNodeTest {
 
 		// Test getValue
 		assertTrue("Correct default value",
-				entity1.getValue() == ResourceEntity.DEFVALUE || entity1.getValue() == 2 * ResourceEntity.DEFVALUE);
+				entity1.getValue() == ResourceEntity.defaultValue || entity1.getValue() == 2 * ResourceEntity.defaultValue);
 		assertTrue("Correct default value",
-				entity4.getValue() == ResourceEntity.DEFVALUE || entity4.getValue() == 2 * ResourceEntity.DEFVALUE);
+				entity4.getValue() == ResourceEntity.defaultValue || entity4.getValue() == 2 * ResourceEntity.defaultValue);
 
-		// Test increaseValue
+		// Test valid values
 		entity2.increaseValue(50);
-		assertTrue("Correct value", entity2.getValue() == ResourceEntity.DEFVALUE + 50
-				|| entity2.getValue() == 2 * ResourceEntity.DEFVALUE + 50);
-		entity2.increaseValue(0);
-		assertTrue("Correct value", entity2.getValue() == ResourceEntity.DEFVALUE + 50
-				|| entity2.getValue() == 2 * ResourceEntity.DEFVALUE + 50);
-		entity2.increaseValue(-50);
-		assertTrue("Correct value", entity2.getValue() == ResourceEntity.DEFVALUE + 50
-				|| entity2.getValue() == 2 * ResourceEntity.DEFVALUE + 50);
-
+		assertTrue("Correct value", entity2.getValue() == ResourceEntity.defaultValue + 50
+				|| entity2.getValue() == 2 * ResourceEntity.defaultValue + 50);
 		entity5.increaseValue(50);
-		assertTrue("Correct value", entity5.getValue() == ResourceEntity.DEFVALUE + 50
-				|| entity5.getValue() == 2 * ResourceEntity.DEFVALUE + 50);
-		entity5.increaseValue(0);
-		assertTrue("Correct value", entity5.getValue() == ResourceEntity.DEFVALUE + 50
-				|| entity5.getValue() == 2 * ResourceEntity.DEFVALUE + 50);
-		entity5.increaseValue(-50);
-		assertTrue("Correct value", entity5.getValue() == ResourceEntity.DEFVALUE + 50
-				|| entity5.getValue() == 2 * ResourceEntity.DEFVALUE + 50);
-
-		// Test decrease Value
+		assertTrue("Correct value", entity5.getValue() == ResourceEntity.defaultValue + 50
+				|| entity5.getValue() == 2 * ResourceEntity.defaultValue + 50);
 		entity3.decreaseValue(50);
-		assertTrue("Correct value", entity3.getValue() == ResourceEntity.DEFVALUE - 50
-				|| entity3.getValue() == 2 * ResourceEntity.DEFVALUE - 50);
-		entity3.decreaseValue(0);
-		assertTrue("Correct value", entity3.getValue() == ResourceEntity.DEFVALUE - 50
-				|| entity3.getValue() == 2 * ResourceEntity.DEFVALUE - 50);
-		entity3.decreaseValue(-50);
-		assertTrue("Correct value", entity3.getValue() == ResourceEntity.DEFVALUE - 50
-				|| entity3.getValue() == 2 * ResourceEntity.DEFVALUE - 50);
-
+		assertTrue("Correct value", entity3.getValue() == ResourceEntity.defaultValue - 50
+				|| entity3.getValue() == 2 * ResourceEntity.defaultValue - 50);
 		entity6.decreaseValue(50);
-		assertTrue("Correct value", entity6.getValue() == ResourceEntity.DEFVALUE - 50
-				|| entity6.getValue() == 2 * ResourceEntity.DEFVALUE - 50);
+		assertTrue("Correct value", entity6.getValue() == ResourceEntity.defaultValue - 50
+				|| entity6.getValue() == 2 * ResourceEntity.defaultValue - 50);		
+		
+		// Test invalid values
+		
+		
+		entity2.increaseValue(0);
+		assertTrue("Correct value", entity2.getValue() == ResourceEntity.defaultValue + 50
+				|| entity2.getValue() == 2 * ResourceEntity.defaultValue + 50);
+		entity2.increaseValue(-50);
+		assertTrue("Correct value", entity2.getValue() == ResourceEntity.defaultValue + 50
+				|| entity2.getValue() == 2 * ResourceEntity.defaultValue + 50);		
+		entity5.increaseValue(0);
+		assertTrue("Correct value", entity5.getValue() == ResourceEntity.defaultValue + 50
+				|| entity5.getValue() == 2 * ResourceEntity.defaultValue + 50);
+		entity5.increaseValue(-50);
+		assertTrue("Correct value", entity5.getValue() == ResourceEntity.defaultValue + 50
+				|| entity5.getValue() == 2 * ResourceEntity.defaultValue + 50);
+		
+		// Test invalid values		
+		entity3.decreaseValue(0);
+		assertTrue("Correct value", entity3.getValue() == ResourceEntity.defaultValue - 50
+				|| entity3.getValue() == 2 * ResourceEntity.defaultValue - 50);
+		entity3.decreaseValue(-50);
+		assertTrue("Correct value", entity3.getValue() == ResourceEntity.defaultValue - 50
+				|| entity3.getValue() == 2 * ResourceEntity.defaultValue - 50);		
 		entity6.decreaseValue(0);
-		assertTrue("Correct value", entity6.getValue() == ResourceEntity.DEFVALUE - 50
-				|| entity6.getValue() == 2 * ResourceEntity.DEFVALUE - 50);
+		assertTrue("Correct value", entity6.getValue() == ResourceEntity.defaultValue - 50
+				|| entity6.getValue() == 2 * ResourceEntity.defaultValue - 50);
 		entity6.decreaseValue(-50);
-		assertTrue("Correct value", entity6.getValue() == ResourceEntity.DEFVALUE - 50
-				|| entity6.getValue() == 2 * ResourceEntity.DEFVALUE - 50);
-
-		// Test getx/gety
-		assertTrue("Correct xLength", entity3.getXLength() == 1);
-		assertTrue("Correct xLength", entity3.getYLength() == 1);
-		assertTrue("Correct xLength", entity6.getXLength() == 1);
-		assertTrue("Correct xLength", entity6.getYLength() == 1);
+		assertTrue("Correct value", entity6.getValue() == ResourceEntity.defaultValue - 50
+				|| entity6.getValue() == 2 * ResourceEntity.defaultValue - 50);
 	}
 
 	@Test

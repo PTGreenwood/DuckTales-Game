@@ -5,7 +5,6 @@ import org.slf4j.LoggerFactory;
 import uq.deco2800.ducktales.features.entities.MainEntityManager;
 import uq.deco2800.ducktales.features.time.TimeManager;
 import uq.deco2800.ducktales.features.weather.WeatherManager;
-import uq.deco2800.ducktales.features.time.DayNightManager;
 import uq.deco2800.ducktales.util.exceptions.GameSetupException;
 
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -33,7 +32,6 @@ public class GameLoop implements Runnable {
 	private TimeManager timeManager;
 	private MainEntityManager mainEntityManager;
 
-	// private DayNightManager daynightManager; //not in use currently
 	private WeatherManager weatherManager;
 
 	private static boolean paused;
@@ -102,6 +100,10 @@ public class GameLoop implements Runnable {
 		GameLoop.paused = false;
 
 	}
+	
+	public static int getGameSpeed(){
+		return gameSpeed;
+	}
 
 	/**
 	 * Modifies the gameLoop to keep going or not
@@ -121,6 +123,10 @@ public class GameLoop implements Runnable {
 
 	public static void justPlay() {
 		GameLoop.paused = false;
+	}
+	
+	public static boolean isPaused(){
+		return GameLoop.paused;
 	}
 
 	/**

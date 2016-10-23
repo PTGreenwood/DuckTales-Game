@@ -19,10 +19,13 @@ public abstract class ResourceEntity extends WorldEntity {
     protected GameManager gameManager;
     
 	// Default starting value of Resource nodes
-	public static final int DEFVALUE = 100;
+	public static final int defaultValue = 100;
 
 	// Actual, editable value the Resources nodes will take
 	protected int value;
+	
+	// The ResourceEntityManager
+	protected ResourceEntityManager resourceEntityManager;
 
 	/**
 	 * Main constructor of the Resource Entity class.
@@ -57,6 +60,15 @@ public abstract class ResourceEntity extends WorldEntity {
         this.gameManager = gameManager;
     }
     
+    /**
+	 * Set the resourceEntitymanager.
+	 * 
+	 * @param resourceEntityManager
+	 *            the manager to set
+	 */
+	public void setResourceEntityManager(ResourceEntityManager resourceEntityManager) {
+		this.resourceEntityManager = resourceEntityManager;
+	}
     
 
 	/**

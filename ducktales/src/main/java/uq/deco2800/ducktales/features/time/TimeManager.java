@@ -72,39 +72,44 @@ public class TimeManager extends SecondaryManager implements Initializable, Tick
 	@FXML
 	public void pauseGame() {
 		GameLoop.justPause();
+		timeDisplay.getStylesheets().remove(0);
+		timeDisplay.getStylesheets().add(getClass().getResource("/time/timeDisplayPauseEvent.css").toExternalForm());
 	}
 
 	@FXML
 	public void playGame() {
 		GameLoop.justPlay();
 		GameLoop.setSpeedModifier(1);
+		timeDisplay.getStylesheets().remove(0);
+		timeDisplay.getStylesheets().add(getClass().getResource("/time/timeDisplayNoEvents.css").toExternalForm());
 		System.out.println("Speed 1x"); // set time scale to default
 	}
 
 	@FXML
 	public void fastForwardGame() {
 		GameLoop.setSpeedModifier(1.5);
+		timeDisplay.getStylesheets().remove(0);
+		timeDisplay.getStylesheets().add(getClass().getResource("/time/timeDisplay1.5xEvent.css").toExternalForm());
 		System.out.println("Speed 1.5x"); // set time scale to 1.5x
 	}
 
 	@FXML
 	public void doubleFastForwardGame() {
 		GameLoop.setSpeedModifier(2.5);
+		timeDisplay.getStylesheets().remove(0);
+		timeDisplay.getStylesheets().add(getClass().getResource("/time/timeDisplay2.5xEvents.css").toExternalForm());
 		System.out.println("Speed 2.5x"); // set time scale to 2.5x
 	}
 
 	@Override
 	public void tick() {
-
 		gameTime.tick();
 		// Display the new time\
-		final int currentYear = gameTime.getCurrentYear();
+
 		final int currentDay = gameTime.getCurrentDay();
 		final int currentHour = gameTime.getHour();
 		final String currentMinute = String.format("%02d", gameTime.getMinute());
-		final String timeText = "Current Time is: " + currentHour + ":" + currentMinute + ", Day " + currentDay
-				+ " Year " + currentYear;
-		final int dayTracker = gameTime.getSeasonalDayTracker();
+
 		final int currentTemperature = this.getSeasonManager().getCurrentSeason().getCurrentTemperature();
 		final String degreeSymbol = "\u00b0";
 
@@ -120,13 +125,9 @@ public class TimeManager extends SecondaryManager implements Initializable, Tick
 			}
 
 			this.seasonManager.updateSeason(seasonNumber);
-			System.out.println("Season Update: " + seasonManager.getCurrentSeason().getName());
 
 			gameTime.resetTracker();
 
-		} else {
-			// Doesn't do anything if it's already the same season. Will save on
-			// processing time (I HOPE).
 		}
 
 		// Checking to update temperature on gameTick
@@ -136,10 +137,10 @@ public class TimeManager extends SecondaryManager implements Initializable, Tick
 			int randomNumber = (int) Math.floor(Math.random() * 2);
 			if ((currentHour < this.seasonManager.getCurrentSeason().getTimeNightFall())
 					&& (currentHour > this.seasonManager.getCurrentSeason().getTimeDayBreak())) {
-				System.out.println(randomNumber);
+				
 				this.seasonManager.updateTemperature(randomNumber, true);
 			} else {
-				System.out.println(randomNumber);
+
 				this.seasonManager.updateTemperature(randomNumber, false);
 			}
 		}
@@ -181,12 +182,11 @@ public class TimeManager extends SecondaryManager implements Initializable, Tick
 	}
 
 	public void setTime(int hour) {
-		gameTime.setHour(hour);
+		this.getGameTimeObject().setHour(hour);
 	}
 
 	/**
-	 * Gets the current gameTime Object This was added in for a test. Will
-	 * probably remove later.
+	 * Gets the current gameTime Object This was added in for a test. 
 	 * 
 	 * @return gameTime - The GameTime object being managed done
 	 */
@@ -217,4 +217,12 @@ public class TimeManager extends SecondaryManager implements Initializable, Tick
 		return this.seasonManager;
 	}
 
+	/**
+	 * Sets an object of GameTime. Used for JUnit testing purposes.
+	 * FXML testing and the overridden initialise function causes GameTime
+	 * to not be instantiated on TimeManager creation.
+	 */
+	public void setGameTimeObject(GameTime gt) {
+		this.gameTime = gt;
+	}
 }

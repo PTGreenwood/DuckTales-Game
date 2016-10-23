@@ -4,6 +4,9 @@ import org.junit.Test;
 import org.junit.Assert;
 
 public class SnowTest {
+	/**
+	 * Test the weather effect to check that the default settings are correct.
+	 */
 	@Test
 	public void snowTest() {
 		Snow snow = new Snow();

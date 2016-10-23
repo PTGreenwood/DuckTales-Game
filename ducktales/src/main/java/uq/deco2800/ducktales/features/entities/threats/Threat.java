@@ -4,6 +4,7 @@ import java.util.Random;
 
 import uq.deco2800.ducktales.World;
 import uq.deco2800.ducktales.features.entities.Entity;
+import uq.deco2800.ducktales.features.entities.agententities.Animal;
 import uq.deco2800.ducktales.features.entities.peons.Peon;
 import uq.deco2800.ducktales.features.entities.worldentities.Building;
 import uq.deco2800.ducktales.features.landscape.tiles.Tile;
@@ -13,7 +14,7 @@ import uq.deco2800.ducktales.resources.ResourceType;
  * Handles game threats in the form of enemies
  * and effects.
  * 
- *@author Wian and Krista
+ *@author Wian, Krista, and Zainab
  *
  */
 public class Threat extends Entity {
@@ -37,8 +38,16 @@ public class Threat extends Entity {
 	protected boolean isPassable; // detects whether a tile is passable
 
 	private World world;
+	private String worldName;
+	private int worldWidth;
+	private int worldHeight;
+	
 	private Peon peon;
 	private Building building;
+	private Animal animal;
+	
+	private int resource;
+	private int reduceResource = 1;
 
 	/**
 	 * Enemy takes a string name and a type of enemy which is Creature or Effect
@@ -66,7 +75,9 @@ public class Threat extends Entity {
 	}
 
 	public void setWorld(World world) {
-		//Need to implement
+		worldName = world.getName();
+		worldWidth = world.getHeight();
+		worldHeight = world.getWidth();
 	}
 
 	/**
@@ -143,7 +154,7 @@ public class Threat extends Entity {
 
 	/**
 	 * 
-	 * @return StartTime if it exists or 0 if the timer has expired or otherwise
+	 * @return StartTime if it exists or 0 if the timer has expired or otherwise.
 	 */
 	public float returnStartTime() {
 		if (hasStartTimer) {
@@ -155,7 +166,7 @@ public class Threat extends Entity {
 
 	/**
 	 * 
-	 * @return EndTime if it exists or 0 if the timer has expired or otherwise
+	 * @return EndTime if it exists or 0 if the timer has expired or otherwise.
 	 */
 	public float returnEndTime() {
 		if (hasEndTimer) {
@@ -184,10 +195,11 @@ public class Threat extends Entity {
 	 * @return randomX
 	 */
 	public double getRandomX() {
-		int maxWidth = world.getWidth();
+		//System.out.println("world width = "+ worldWidth);
 		Random random = new Random();
-		randomX = (double) random.nextInt(maxWidth) + 1;
+		randomX = (double) random.nextInt(worldWidth) + 1;
 		// need condition statement to check if the randomX intersect w/ tile not passable
+		//System.out.println("random x = "+ randomX);
 		return randomX;
 	}
 
@@ -197,10 +209,11 @@ public class Threat extends Entity {
 	 * @return randomY
 	 */
 	public double getRandomY() {
-		int maxHeight = world.getHeight();
+		//System.out.println("world Height = "+ worldHeight);
 		Random random = new Random();
-		randomY = (double) random.nextInt(maxHeight) + 1;
+		randomY = (double) random.nextInt(worldHeight) + 1;
 		// need condition statement to check if the randomY intersect w/ tile not passable
+		//System.out.println("random y = "+ randomY);
 		return randomY;
 	}
 	
@@ -500,15 +513,37 @@ public class Threat extends Entity {
 	}
 	
 	/**
+	 * Method to detect Animal/Enemy collisions
+	 * 
+	 * @return a boolean value which is true if the
+	 * threat has collided with an animal, and false if it has not
+	 */
+	public boolean checkAnimalCollision(){
+		Tile temptile = world.getTile(this.getXInt(), this.getYInt());
+		ResourceType tempType = temptile.getTileType();
+		switch(tempType) {
+		case DUCK:
+			return true;
+		case COW:
+			return true;
+		case SHEEP:
+			return true;
+		default:
+			return false;
+		}
+	}
+	
+	/**
 	 * Method to change the Peon's integer health value
 	 * upon collision with an enemy
-	 * 
+	 * & reduce the Peon's resource value.
 	 */
 	public void peonHealthDamage() {
 		boolean peonCollision = checkPeonCollision();
 		if (peonCollision) {
 			int currentPeonHealth = peon.getHealth();
 			int newPeonHealth = currentPeonHealth - levelOfDamage;
+			resourceDamage();
 			if (newPeonHealth >= 1) {
 				peon.setHealth(newPeonHealth);
 			}
@@ -531,11 +566,42 @@ public class Threat extends Entity {
 		}
 	}
 	
+	/**
+	 * 
+	 * @return int resource - the Peon's resource value
+	 */
+	public int getTheValueOfResourceForPeon(){
+		return resource = peon.getResources();
+	}
+	
+	/**
+	 * Reducing the Peon's resource value.
+	 */
+	public void resourceDamage(){
+		resource = resource - reduceResource;
+	}
+	
+	/**
+	 * Method to change an animal's integer health value
+	 * upon collision with an enemy
+	 * 
+	 */
+	public void animalHealthDamage(){
+		boolean animalCollision = checkAnimalCollision();
+		if (animalCollision) {
+			int currentAnimalHealth = animal.getHealth();
+			int newAnimalHealth = currentAnimalHealth - levelOfDamage;
+			resourceDamage();
+			if (newAnimalHealth >= 1) {
+				animal.setHealth(newAnimalHealth);
+			}
+		}
+	}
+	
 	//Create 2d array
 
 	@Override
 	public void tick() {
-		// TODO Auto-generated method stub
 		
 	}
 

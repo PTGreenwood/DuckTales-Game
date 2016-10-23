@@ -118,6 +118,5 @@ public class Sawmill extends StorageProduceBuilding {
 			this.addGoods(production.LUMBER, -1);
 			this.addGoods(production.TIMBER, 2);
 		}
-		System.out.println(storage);
 	}
 }

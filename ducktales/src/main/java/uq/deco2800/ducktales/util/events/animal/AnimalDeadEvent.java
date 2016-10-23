@@ -1,12 +1,7 @@
 package uq.deco2800.ducktales.util.events.animal;
 
-import javafx.beans.NamedArg;
-import javafx.event.Event;
-import javafx.event.EventTarget;
 import javafx.event.EventType;
-import uq.deco2800.ducktales.features.entities.agententities.Animal;
 import uq.deco2800.ducktales.resources.ResourceType;
-import uq.deco2800.ducktales.util.events.ui.UIEvent;
 
 /**
  * This event is fired whenever an animal dies, this class is intended
@@ -16,6 +11,11 @@ import uq.deco2800.ducktales.util.events.ui.UIEvent;
  */
 public class AnimalDeadEvent extends AnimalEvent{
 	
+	/**
+	 * Required serialVersionUID variable 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	/** The event type */
     public static final EventType<AnimalDeadEvent> ANIMAL_DEAD_EVENT =
             new EventType<>("ANIMAL DEAD EVENT");

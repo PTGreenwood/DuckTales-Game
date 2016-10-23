@@ -22,7 +22,8 @@ import uq.deco2800.ducktales.util.exceptions.GameSetupException;
 public class ResourceEntityManager extends SecondaryManager {
 
 	/**
-	 * The list of resource sprites Using a HashMap to store the sprites
+	 * The list of resource sprites Using an ArrayList
+	 * to store the sprites
 	 */
 	private List<DroppedResourceSprite> resourceSprites;
 
@@ -54,7 +55,8 @@ public class ResourceEntityManager extends SecondaryManager {
         }
 
         // Grab the resource entity manager
-        ResourceEntityManager resourceManager = gameManager.getMainEntityManager()
+        ResourceEntityManager resourceManager = gameManager.
+        		 getMainEntityManager()
                 .getResourceEntityManager();
 
         // The bounds to randomize integers with
@@ -97,12 +99,12 @@ public class ResourceEntityManager extends SecondaryManager {
         // Check for reference on world and game manager
         if (world == null) {
             throw new GameSetupException("ResourceEntityManager does not have" +
-                    " a handle on the World yet. Please make sure this manager's" +
-                    " 'world' variable is instantiated before attempting to add" +
-                    " a tree");
+                " a handle on the World yet. Please make sure this manager's" +
+                " 'world' variable is instantiated before attempting to add" +
+                " a tree");
         } else if (gameManager == null) {
-            throw new GameSetupException("ResourceEntityManager does not have " +
-                    "a handle on GameManager yet before attempt to add a tree");
+           throw new GameSetupException("ResourceEntityManager does not have " +
+                   "a handle on GameManager yet before attempt to add a tree");
         }
 
         // Check if the given x- and y-coordinates are within the bounds
@@ -132,10 +134,11 @@ public class ResourceEntityManager extends SecondaryManager {
     }
     
     /**
-     * Return the sprite of a tree given its unique key vale
+     * Return the sprite of a tree given its unique key value
      * 
      * @param key
-     * 			The unique identifier of a particular tree, in this case the hashcode
+     * 			The unique identifier of a particular tree, in this case 
+     *          the hashcode
      */
 	public TreeSprite getTree(int key){
 		return treeSprites.get(key);
@@ -144,8 +147,8 @@ public class ResourceEntityManager extends SecondaryManager {
 	
     /**
      * Add a resource drop at the location specified, this method mainly is used
-     * to drop an animal related resource when an animal dies (e.g. drop beef resource
-     * when a cow dies, etc)
+     * to drop an animal related resource when an animal dies (e.g. drop 
+     * beef resource when a cow dies, etc)
      *
      * @param type
      *          The type of resource to be added
@@ -169,7 +172,8 @@ public class ResourceEntityManager extends SecondaryManager {
 	 */
 	public void dropResource(ResourceType type, int x, int y) {
 		// Construct a new droppable resource from the given type
-		DroppableResourceEntity resource = ResourceInfoRegister.createDroppableResource(type, x, y);
+		DroppableResourceEntity resource = ResourceInfoRegister.
+				createDroppableResource(type, x, y);
 
 		// check if the droppable resource has been registered
 		if (resource != null) {
@@ -177,32 +181,38 @@ public class ResourceEntityManager extends SecondaryManager {
 				resource.setGameManager(this.gameManager);
 			} else {
 				throw new GameSetupException(
-						"Droppable resource class does not have" + "a reference of Game Manager yet");
+						"Droppable resource class does not have" + 
+				        "a reference of Game Manager yet");
 			}
 
 			// Add that droppable resource to the droppable resource list
-			world.addDroppedResoure(resource);
+			world.addDroppedResource(resource);
 
 			// Add the sprite of the resource to the sprites list, and set
 			// the position of that sprite
-			DroppedResourceSprite sprite = SpritesFactory.createDroppableResourceSprite(type);
+			DroppedResourceSprite sprite = SpritesFactory.
+					createDroppableResourceSprite(type);
 
 			if (sprite == null) {
-				throw new GameSetupException("Sprite of type " + type + " is not yet registered in SpritesFactory");
+				throw new GameSetupException("Sprite of type " + 
+			    type + " is not yet registered in SpritesFactory");
 			}
 
 			// Setup the sprite
-			Sprite.setupEntitySprite(sprite, x, y, gameManager.getWorldDisplayManager().getTilesManager());
+			Sprite.setupEntitySprite(sprite, x, y, gameManager.
+					getWorldDisplayManager().getTilesManager());
 
 			// Add the sprite to the array list
 			resourceSprites.add(sprite);
 
 			// Add the sprite to the world display
-			gameManager.getWorldDisplayManager().getWorldDisplay().getChildren().add(sprite);
+			gameManager.getWorldDisplayManager().getWorldDisplay().
+			       getChildren().add(sprite);
 
 		} else {
 			throw new DroppableResourceNotRegisteredException(
-					"The droppable resource requested" + " is not yet registered in ResourceInfoRegister");
+					"The droppable resource requested" + " "
+				    + "is not yet registered in ResourceInfoRegister");
 		}
 	}
 

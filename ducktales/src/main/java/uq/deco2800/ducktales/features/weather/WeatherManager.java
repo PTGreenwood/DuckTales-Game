@@ -315,6 +315,33 @@ public class WeatherManager extends SecondaryManager
 			}
 		}
 	}
+	
+	/**
+	 * Checks for peon affecting weather types and returns as a string.
+	 * Hacky AF, but avoids dealing with whole weather package in peon class.
+	 * 
+	 * @return lower case string of "rain", "storm", "snow", "sunny" for
+	 * 		respective weather or "none" otherwise
+	 */
+	
+	public String peonEffect() {
+		String current = "";
+		if (currentWeather instanceof Rain){
+			current = "rain";
+		}
+		else if (currentWeather instanceof Storm){
+			current = "storm";
+		}
+		else if (currentWeather instanceof Snow){
+			current = "snow";
+		}
+		else if (currentWeather instanceof Sunny){
+			current = "sunny";
+		}
+		else current = "none";
+		
+		return current;
+	}
 
 	/**
 	 * Return whether the weather effect has a falling animation or not.

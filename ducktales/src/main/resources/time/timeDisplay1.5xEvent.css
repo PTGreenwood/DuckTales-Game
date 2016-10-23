@@ -1,0 +1,19 @@
+@font-face {
+    src: url('../fonts/PressStart2P.ttf');
+}
+
+#timeDisplay {
+    -fx-background-image: url("../hud/time1.5x.png");
+    -fx-background-size: auto 100%;    
+}
+
+.displayText {
+    -fx-font-size: 7px;
+    -fx-font-family: "Press Start 2P";    
+}
+
+.displayButton {
+	-fx-background-color: transparent;
+	-fx-padding: 0 13 0 13;
+
+}
