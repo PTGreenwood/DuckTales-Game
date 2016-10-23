@@ -1,67 +1,11 @@
 package uq.deco2800.ducktales.resources;
 
+import static uq.deco2800.ducktales.resources.ResourceType.*;
+
 import java.util.concurrent.ConcurrentHashMap;
 
 import javafx.scene.image.Image;
 import uq.deco2800.ducktales.util.exceptions.GameSetupException;
-
-import static uq.deco2800.ducktales.resources.ResourceType.*;
-
-import static uq.deco2800.ducktales.resources.ResourceType.BAKERY;
-import static uq.deco2800.ducktales.resources.ResourceType.BLANK;
-import static uq.deco2800.ducktales.resources.ResourceType.BOX;
-import static uq.deco2800.ducktales.resources.ResourceType.BUTCHER;
-import static uq.deco2800.ducktales.resources.ResourceType.CHURCH;
-import static uq.deco2800.ducktales.resources.ResourceType.COMMUNITY_BUILDING;
-import static uq.deco2800.ducktales.resources.ResourceType.CONSTRUCTION;
-import static uq.deco2800.ducktales.resources.ResourceType.COW;
-import static uq.deco2800.ducktales.resources.ResourceType.COW_FRONT_RIGHT;
-import static uq.deco2800.ducktales.resources.ResourceType.CYAN;
-import static uq.deco2800.ducktales.resources.ResourceType.CYAN_CROSSED;
-import static uq.deco2800.ducktales.resources.ResourceType.DUCK;
-import static uq.deco2800.ducktales.resources.ResourceType.DUCKDown0;
-import static uq.deco2800.ducktales.resources.ResourceType.DUCKDown1;
-import static uq.deco2800.ducktales.resources.ResourceType.DUCKLeft0;
-import static uq.deco2800.ducktales.resources.ResourceType.DUCKLeft1;
-import static uq.deco2800.ducktales.resources.ResourceType.DUCKRight0;
-import static uq.deco2800.ducktales.resources.ResourceType.DUCKRight1;
-import static uq.deco2800.ducktales.resources.ResourceType.DUCKUp0;
-import static uq.deco2800.ducktales.resources.ResourceType.DUCKUp1;
-import static uq.deco2800.ducktales.resources.ResourceType.DUCK_1_1;
-import static uq.deco2800.ducktales.resources.ResourceType.FORGE;
-import static uq.deco2800.ducktales.resources.ResourceType.GRASS_1;
-import static uq.deco2800.ducktales.resources.ResourceType.GRASS_2;
-import static uq.deco2800.ducktales.resources.ResourceType.GRASS_3;
-import static uq.deco2800.ducktales.resources.ResourceType.GRASS_4;
-import static uq.deco2800.ducktales.resources.ResourceType.HOSPITAL;
-import static uq.deco2800.ducktales.resources.ResourceType.HOUSE;
-import static uq.deco2800.ducktales.resources.ResourceType.LONG_BOX;
-import static uq.deco2800.ducktales.resources.ResourceType.MINE;
-import static uq.deco2800.ducktales.resources.ResourceType.OBSERVATORY;
-import static uq.deco2800.ducktales.resources.ResourceType.PASTURE;
-import static uq.deco2800.ducktales.resources.ResourceType.PEON;
-import static uq.deco2800.ducktales.resources.ResourceType.ROCK_1;
-import static uq.deco2800.ducktales.resources.ResourceType.ROCK_2;
-import static uq.deco2800.ducktales.resources.ResourceType.SAWMILL;
-import static uq.deco2800.ducktales.resources.ResourceType.SHEEP;
-import static uq.deco2800.ducktales.resources.ResourceType.SHEEPRight0;
-import static uq.deco2800.ducktales.resources.ResourceType.SHEEPRight1;
-import static uq.deco2800.ducktales.resources.ResourceType.TREE_1_SUMMER;
-import static uq.deco2800.ducktales.resources.ResourceType.TREE_2_SUMMER;
-import static uq.deco2800.ducktales.resources.ResourceType.TREE_3_SUMMER;
-import static uq.deco2800.ducktales.resources.ResourceType.TREE_1_AUTUMN;
-import static uq.deco2800.ducktales.resources.ResourceType.TREE_2_AUTUMN;
-import static uq.deco2800.ducktales.resources.ResourceType.TREE_3_AUTUMN;
-import static uq.deco2800.ducktales.resources.ResourceType.TREE_1_WINTER;
-import static uq.deco2800.ducktales.resources.ResourceType.TREE_2_WINTER;
-import static uq.deco2800.ducktales.resources.ResourceType.TREE_3_WINTER;
-import static uq.deco2800.ducktales.resources.ResourceType.TREE_1_SPRING;
-import static uq.deco2800.ducktales.resources.ResourceType.TREE_2_SPRING;
-import static uq.deco2800.ducktales.resources.ResourceType.TREE_3_SPRING;
-import static uq.deco2800.ducktales.resources.ResourceType.VOID;
-import static uq.deco2800.ducktales.resources.ResourceType.WATER;
-import static uq.deco2800.ducktales.resources.ResourceType.WOOD_BOX;
-import static uq.deco2800.ducktales.resources.ResourceType.YELLOW;
 
 
 /**
@@ -408,7 +352,7 @@ public class ResourceSpriteRegister {
 		//Farmer
 		addResource(FARMER, "/peon/jobs/farmer.png");		
 		//GymCoach
-		addResource(GYMCOACH, "/peon/jobs/GymCoach.png");	
+		addResource(GYMCOACH, "/peon/jobs/gymcoach.png");	
 		//Priest
 		addResource(PRIEST, "/peon/jobs/priest_Church.png");		
 		//Stonemason

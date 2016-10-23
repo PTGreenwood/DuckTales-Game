@@ -862,9 +862,12 @@ public class Peon extends AgentEntity {
 
 		} else if(job == JobType.MASON) {
 			return this.allTools.get(8);
-
-		} else if(job == JobType.JOBLESS) {
+			
+		} else if(job == JobType.GYMCOACH) {
 			return this.allTools.get(9);
+			
+		} else if(job == JobType.JOBLESS) {
+			return this.allTools.get(10);
 		}
 		return null;
 	}
