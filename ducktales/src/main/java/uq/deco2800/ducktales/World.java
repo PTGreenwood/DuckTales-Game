@@ -405,8 +405,8 @@ public class World implements Tickable {
 		
 		List<BuildingSprite> buildingSprites = buildingManager.getBuildingSprites();
 				
-		boolean isWinter = (timeManager.seasonManager.getCurrentSeason().getName() 
-				== "Winter");
+		boolean isWinter = timeManager.seasonManager.getCurrentSeason().getName() 
+				== "Winter";
 
 		for (int x = 0; x < buildingSprites.size(); x++) {
 			// Set the new buildings to be true of false depending on time of day (to get 
@@ -425,7 +425,6 @@ public class World implements Tickable {
 				BuildingSprite buildingSprite = buildingSprites.get(x);
 				if (buildingSprite.winterDayAnimation(buildingSprite.getEntityType())) {
 					nightAnimation.set(x, true);
-					System.out.println("a");
 				}
 			}
 			// Night time during winter
@@ -435,7 +434,6 @@ public class World implements Tickable {
 				BuildingSprite buildingSprite = buildingSprites.get(x);
 				if (buildingSprite.winterNightAnimation(buildingSprite.getEntityType())) {
 					nightAnimation.set(x, false);
-					System.out.println("b");
 				}
 			}
 			// Its night time, change animation to night type - NOT WINTER
@@ -443,7 +441,6 @@ public class World implements Tickable {
 				BuildingSprite buildingSprite = buildingSprites.get(x);
 				if (buildingSprite.nightAnimation(buildingSprite.getEntityType())) {
 					nightAnimation.set(x, true);
-					System.out.println("c");
 				}
 			} 
 			// Its day time, change animation to day type - NOT WINTER
@@ -451,7 +448,6 @@ public class World implements Tickable {
 				BuildingSprite buildingSprite = buildingSprites.get(x);
 				if (buildingSprite.dayAnimation(buildingSprite.getEntityType())) {
 					nightAnimation.set(x, false);
-					System.out.println("d");
 				}
 			}
 		}
