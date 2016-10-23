@@ -105,13 +105,11 @@ public class TimeManager extends SecondaryManager implements Initializable, Tick
 	public void tick() {
 		gameTime.tick();
 		// Display the new time\
-		final int currentYear = gameTime.getCurrentYear();
+
 		final int currentDay = gameTime.getCurrentDay();
 		final int currentHour = gameTime.getHour();
 		final String currentMinute = String.format("%02d", gameTime.getMinute());
-		final String timeText = "Current Time is: " + currentHour + ":" + currentMinute + ", Day " + currentDay
-				+ " Year " + currentYear;
-		final int dayTracker = gameTime.getSeasonalDayTracker();
+
 		final int currentTemperature = this.getSeasonManager().getCurrentSeason().getCurrentTemperature();
 		final String degreeSymbol = "\u00b0";
 
@@ -127,13 +125,9 @@ public class TimeManager extends SecondaryManager implements Initializable, Tick
 			}
 
 			this.seasonManager.updateSeason(seasonNumber);
-			System.out.println("Season Update: " + seasonManager.getCurrentSeason().getName());
 
 			gameTime.resetTracker();
 
-		} else {
-			// Doesn't do anything if it's already the same season. Will save on
-			// processing time (I HOPE).
 		}
 
 		// Checking to update temperature on gameTick
@@ -143,10 +137,10 @@ public class TimeManager extends SecondaryManager implements Initializable, Tick
 			int randomNumber = (int) Math.floor(Math.random() * 2);
 			if ((currentHour < this.seasonManager.getCurrentSeason().getTimeNightFall())
 					&& (currentHour > this.seasonManager.getCurrentSeason().getTimeDayBreak())) {
-				System.out.println(randomNumber);
+				
 				this.seasonManager.updateTemperature(randomNumber, true);
 			} else {
-				System.out.println(randomNumber);
+
 				this.seasonManager.updateTemperature(randomNumber, false);
 			}
 		}

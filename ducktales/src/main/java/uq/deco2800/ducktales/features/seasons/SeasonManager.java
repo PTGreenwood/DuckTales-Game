@@ -15,13 +15,6 @@ import uq.deco2800.ducktales.features.seasons.Season;
  *
  */
 public class SeasonManager{
-
-    /* Implement all Season Types */
-    /*protected Season spring;
-    protected Season summer;
-    protected Season autumn;
-    protected Season winter;
-    */
 	
     /* Setup intial Season Stuff for Season Manager */
     Season spring;
@@ -33,14 +26,6 @@ public class SeasonManager{
     private Season currentSeason;
     
     public SeasonManager() {
-    	/*
-    	 * Needs to instantiate:
-    	 * 
-    	 * Which season it currently is.
-    	 * What weather events it has
-    	 * What chance of the events happening do they have?
-    	 * 
-    	 */
     	
     	spring = new Spring();
     	summer = new Summer();
@@ -64,7 +49,8 @@ public class SeasonManager{
 		for (Season seasonIterator : this.seasonList) {
 				seasonIterator.getSeasonalWeatherEvents().removeAllWeatherEvents();
 				seasonIterator.setRainWeather();
-				seasonIterator.setFireWeather();			
+				seasonIterator.setFireWeather();	
+				
 				//added in extra weather - @mattyleggy
 				seasonIterator.setSnowWeather();
 				seasonIterator.setStormWeather();
@@ -107,7 +93,7 @@ public class SeasonManager{
      * Has bounds of minTemperature and maxTemperature declared
      * within each season.
      * 
-     * For note:
+     * For note - taken from individual season classes:
      * Spring: Max = 20, Min = 11 
      * Summer: Max = 26, Min = 16 
      * Autumn: Max = 18, Min = 8
