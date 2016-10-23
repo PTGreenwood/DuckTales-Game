@@ -1,5 +1,7 @@
 package uq.deco2800.ducktales.features.achievements;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -16,6 +18,9 @@ import javafx.scene.layout.BorderPane;
  * 
  */
 public class AchievementManager {
+	/** The logger for all messages and exceptions */
+	private static Logger logger = LoggerFactory.getLogger(
+			AchievementManager.class);
 	
 	/** Main window */
 	@FXML
@@ -64,6 +69,11 @@ public class AchievementManager {
 	/** Description of each achievement */
 	@FXML
 	private Label achievementDescription;
+
+	
+	private Image ore1 = new Image("achievements/ore100.png");
+	
+	private Image wood1 = new Image("achievements/wood100.png");
 	
 	private Image peons1 = new Image("peon/basic_peon.png");
 	
