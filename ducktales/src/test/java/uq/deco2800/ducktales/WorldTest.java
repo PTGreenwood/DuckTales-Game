@@ -105,6 +105,9 @@ public class WorldTest {
     	Building testBuilding = new Butcher(2, 2);
     	typicalWorld.addBuilding(testBuilding, 2,  2,  2,  2);
     	assertTrue(typicalWorld.getEntitiesNumber() == 8);
+    	
+    	assertTrue(typicalWorld.checkTileAvailability(15, 15, 2, 2));
+    	assertFalse(typicalWorld.checkTileAvailability(2, 2, 2, 2));
     }
     
     /** Test illegal constuctor parameter. */
@@ -210,7 +213,7 @@ public class WorldTest {
     	}
     }
     
-    /** Test adding same droppable entity twice. */
+    /** Test adding same building twice. */
     @Test (expected = GameSetupException.class)
     public void testAddBuilding() {
         World testWorld = new World("TestWorld", 10, 10);

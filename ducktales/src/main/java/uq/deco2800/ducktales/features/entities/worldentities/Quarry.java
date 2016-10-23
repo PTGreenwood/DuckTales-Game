@@ -117,6 +117,5 @@ public class Quarry extends StorageProduceBuilding {
 		if (storage.get(0).getRight()<storage.get(0).getMiddle()) {
 			this.addGoods(production.STONE, 1);
 		}
-		System.out.println(storage);
 	}
 }

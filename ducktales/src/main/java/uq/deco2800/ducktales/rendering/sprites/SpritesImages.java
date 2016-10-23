@@ -15,13 +15,13 @@ import uq.deco2800.ducktales.resources.ResourceType;
  * for buildings with animations that are to swap (night and day, or 
  * non-winterDay and winterDay).
  * 
- * Note: null is returned by all methods if the resource is not a valid 
+ * Note: an empty list is returned by all methods if the resource is not a valid 
  * building, or if there are no animation images for that type
  * 
  * @author Gabrielle Hodge, 43590526
  *
  */
-public class SpritesImages {
+class SpritesImages {
 	
 	/**
 	 * Select the winterDay animation for the building. calls the relevant method 
@@ -69,7 +69,7 @@ public class SpritesImages {
 			case STORAGEBARN:
 				return dayStorageBarn();
 			default:
-				return null;
+				return new ArrayList<>();
 		}
 	}
 	
@@ -531,7 +531,7 @@ public class SpritesImages {
 			case STORAGEBARN:
 				return nightStorageBarn();
 			default:
-				return null;
+				return new ArrayList<>();
 		}
 	}
 	
@@ -932,7 +932,7 @@ public class SpritesImages {
 			case STORAGEBARN:
 				return winterDayStorageBarn();
 			default:
-				return null;
+				return new ArrayList<>();
 		}
 	}
 	
@@ -1332,7 +1332,7 @@ public class SpritesImages {
 			case STORAGEBARN:
 				return winterNightStorageBarn();
 			default:
-				return null;
+				return new ArrayList<>();
 		}
 	}
 	
