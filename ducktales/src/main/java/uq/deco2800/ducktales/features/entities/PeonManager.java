@@ -22,16 +22,22 @@ public class PeonManager extends SecondaryManager{
 
     /** The list of peon sprites */
     private HashMap<String, PeonSprite> peonSprites;
-    private Job builder = new Builder();
-    private Job miner = new Miner();
-    private Job lumberjack = new Lumberjack();
-    private Job doctor = new Doctor();
-    private Job farmer = new Farmer();
-    private ArrayList<Job> availableJobs = new ArrayList<Job>(Arrays.asList(builder, miner, lumberjack, doctor, farmer));
+    private Job builder;
+    private Job miner;
+    private Job lumberjack;
+    private Job doctor;
+    private Job farmer;
+    private ArrayList<Job> availableJobs;
     /**
      * Initialize a peon manager with initial sprite list capacity of 50
      */
     public PeonManager() {
+        this.availableJobs = new ArrayList<Job>(Arrays.asList(builder, miner, lumberjack, doctor, farmer));
+        this.farmer = new Farmer();
+        this.doctor = new Doctor();
+        this.lumberjack = new Lumberjack();
+        this.miner = new Miner();
+        this.builder = new Builder();
         peonSprites = new HashMap<>(50);
     }
     
