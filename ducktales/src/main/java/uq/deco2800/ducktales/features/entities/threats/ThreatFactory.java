@@ -3,6 +3,7 @@ package uq.deco2800.ducktales.features.entities.threats;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import uq.deco2800.ducktales.rendering.sprites.EffectSprite;
 import uq.deco2800.ducktales.rendering.sprites.EnemySprite;
 import uq.deco2800.ducktales.resources.ResourceType;
 
@@ -24,10 +25,12 @@ public class ThreatFactory {
 	private static String timer = "Timer";
 	protected static ArrayList<Effect> effectsList = new ArrayList<Effect>();
 	protected static ArrayList<Enemy> enemiesList = new ArrayList<Enemy>();
-	//list for enemy ad threat sprites to be stored in
-	protected static ArrayList<EnemySprite> enemySpriteList = new ArrayList<EnemySprite>();
 	public static HashMap<Integer, Enemy> enemyMap = new HashMap<Integer, Enemy>();
     public static HashMap<Integer, Effect> effectMap = new HashMap<Integer, Effect>();
+	
+    //list for enemy and effect sprites to be stored in
+	protected static ArrayList<EnemySprite> enemySpriteList = new ArrayList<EnemySprite>();
+	protected static ArrayList<EffectSprite> effectSpriteList = new ArrayList<EffectSprite>();
 	
 	 /**
      * Create enemies at level 1
