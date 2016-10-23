@@ -21,7 +21,7 @@ import uq.deco2800.ducktales.util.SecondaryManager;
  */
 public class TilesManager extends SecondaryManager {
     /** The logger */
-    private static Logger LOGGER = LoggerFactory.getLogger(TilesManager.class);
+    private static Logger logger = LoggerFactory.getLogger(TilesManager.class);
 
     /** The root pane where everything will be added into */
     private Pane rootPane;
@@ -207,7 +207,7 @@ public class TilesManager extends SecondaryManager {
                     WorldEntityInfo.YLENGTH
             );
         } catch (Exception e) {
-            LOGGER.info("failed to add a building to a tile", e);
+            logger.info("failed to add a building to a tile", e);
             return;
         }
 

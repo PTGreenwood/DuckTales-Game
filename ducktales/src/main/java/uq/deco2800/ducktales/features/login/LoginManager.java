@@ -3,8 +3,6 @@ package uq.deco2800.ducktales.features.login;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.layout.StackPane;
-import uq.deco2800.ducktales.features.market.MarketModel;
-import uq.deco2800.ducktales.features.market.MarketVistaNavigator;
 import uq.deco2800.singularity.clients.ducktales.DucktalesClient;
 
 /**

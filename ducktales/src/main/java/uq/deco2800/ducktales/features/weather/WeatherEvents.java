@@ -2,9 +2,10 @@ package uq.deco2800.ducktales.features.weather;
 
 import java.util.*;
 
-import javax.print.attribute.standard.MediaSize.Other;
-
 /**
+ * Build a list of WeatherEvents for a given season or time consisting of
+ * WeatherChance. WeatherChances can be removed or added at any time.
+ * 
  * @author mattyleggy
  *
  */
@@ -72,60 +73,35 @@ public class WeatherEvents {
 		return "[" + returnString + "]";
 	}
 
-	@Override
-	public boolean equals(Object other) {
-
-		if (other == null) {
-			return false;
-		}
-
-		if (!(other instanceof WeatherEvents)) {
-			return false;
-		}
-
-		final WeatherEvents otherEvent = (WeatherEvents) other;
-		if (!this.getWeatherEvents().equals(otherEvent.getWeatherEvents())) {
-			return false;
-		}
-
-		return true;
-	}
-
 	/**
 	 * Get a random weather event based on the chance of that event occurring.
 	 * 
 	 * @return a random Weather event if there is a chance of one occurring
 	 *         otherwise null.
 	 */
-	public Weather getWeatherPossibility() {		
+	public Weather getWeatherPossibility() {
 		Random random = new Random();
 		int percent = random.nextInt(100) + 1; // random number from 1 - 100
-		ArrayList<WeatherChance> possibilities = new ArrayList<>();		
+		ArrayList<WeatherChance> possibilities = new ArrayList<>();
 		for (WeatherChance chance : this.weatherEvents) {
 			if (percent <= chance.getChance())
 				possibilities.add(chance);
 		}
-		
-		if (possibilities.size() > 0) {			
-			Random randomChance = new Random();			
-			int randomPick = randomChance.nextInt(possibilities.size());			
+
+		if (possibilities.size() > 0) {
+			Random randomChance = new Random();
+			int randomPick = randomChance.nextInt(possibilities.size());
 			return possibilities.get(randomPick).getWeather();
 		}
-		return new Fire();
+		return new Sunny();
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + this.getWeatherEvents().hashCode();
-		return result;
-	}
-
-	/*
-	 * @Override public boolean equals(Object object) { System.out.println("a");
-	 * if (!(object instanceof WeatherEvents)) return false; WeatherEvents other
-	 * = (WeatherEvents) object; return
-	 * (this.getWeatherEvents().contains(other.getWeatherEvents())); }
+	/**
+	 * Remove all weatherEvents within the HashSet.
+	 * 
+	 * @author Peter Greenwood.
 	 */
+	public void removeAllWeatherEvents() {
+		this.weatherEvents.clear();
+	}
 }

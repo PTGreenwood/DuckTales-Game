@@ -4,7 +4,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.control.Button?>
 
-<AnchorPane fx:id="timeDisplay" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="63.0" prefWidth="186.0" stylesheets="@timeDisplay.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uq.deco2800.ducktales.features.time.TimeManager">
+<AnchorPane fx:id="timeDisplay" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="63.0" prefWidth="186.0" stylesheets="@timeDisplayNoEvents.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uq.deco2800.ducktales.features.time.TimeManager">
 	<children>           
        <Text fx:id="timeDisplayText" fill="WHITE" layoutX="11.5" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="displayText" text="TIME" textAlignment="CENTER" wrappingWidth="55.999998301267624" />
        <Text fx:id="dayDisplayText" fill="WHITE" layoutX="72.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="displayText" text="DAY" textAlignment="CENTER" wrappingWidth="47.999998301267624" />
@@ -13,5 +13,6 @@
        <Button fx:id="timePlay" onAction="#playGame" layoutX="67.0" layoutY="37.0" styleClass="displayButton" />
        <Button fx:id="timeFastForward" onAction="#fastForwardGame" layoutX="93.0" layoutY="37.0" styleClass="displayButton" />
        <Button fx:id="timeDoubleFastForward" onAction="#doubleFastForwardGame" layoutX="119.0" layoutY="37.0" styleClass="displayButton" /> 
+
 	</children>
 </AnchorPane>

@@ -3,6 +3,7 @@ package uq.deco2800.ducktales.util.events.handlers.animal;
 import javafx.event.EventHandler;
 import uq.deco2800.ducktales.GameManager;
 import uq.deco2800.ducktales.features.entities.resourceentities.ResourceEntityManager;
+import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.events.animal.AnimalDeadEvent;
 import uq.deco2800.ducktales.util.events.handlers.GameEventHandler;
 
@@ -17,6 +18,8 @@ public class AnimalDeadEventHandler extends GameEventHandler implements EventHan
 	/** Secondary Managers */ 
 	private ResourceEntityManager resourceEntityManager;
 	
+	private ResourceType resourceType;
+	
     /**
      * Create a handler for the AnimalDeadEvent event
      *
@@ -26,12 +29,13 @@ public class AnimalDeadEventHandler extends GameEventHandler implements EventHan
 	public AnimalDeadEventHandler(GameManager gameManager) {
 		super(gameManager);
 		this.gameManager = gameManager;
-		resourceEntityManager = gameManager.getResourceEntityManager();
+		resourceEntityManager = gameManager.getMainEntityManager()
+				.getResourceEntityManager();
 	}
 
 	@Override
 	public void handle(AnimalDeadEvent event) {
-		//resourceEntityManager.dropResource(type, x, y);
+		resourceEntityManager.dropResource(event.getAnimalType(), event.getX(), event.getY());
 	}
 
 }

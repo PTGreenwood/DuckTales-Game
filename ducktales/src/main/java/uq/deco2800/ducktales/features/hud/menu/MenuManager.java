@@ -3,13 +3,18 @@ package uq.deco2800.ducktales.features.hud.menu;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -21,32 +26,16 @@ import uq.deco2800.ducktales.features.hud.menu.animal.AnimalMenuSprite;
 import uq.deco2800.ducktales.features.hud.menu.building.BuildingMenuSprite;
 import uq.deco2800.ducktales.rendering.info.WorldEntityInfo;
 import uq.deco2800.ducktales.resources.ResourceType;
-import uq.deco2800.ducktales.util.SecondaryManager;
+import uq.deco2800.ducktales.util.events.handlers.keyboard.KeyboardManager;
 
-import static uq.deco2800.ducktales.resources.ResourceType.BAKERY;
-import static uq.deco2800.ducktales.resources.ResourceType.BUTCHER;
-import static uq.deco2800.ducktales.resources.ResourceType.CEMETERY;
-import static uq.deco2800.ducktales.resources.ResourceType.CHURCH;
-import static uq.deco2800.ducktales.resources.ResourceType.COMMUNITY_BUILDING;
-import static uq.deco2800.ducktales.resources.ResourceType.DUCK;
-import static uq.deco2800.ducktales.resources.ResourceType.FARM;
-import static uq.deco2800.ducktales.resources.ResourceType.FORGE;
-import static uq.deco2800.ducktales.resources.ResourceType.HOSPITAL;
-import static uq.deco2800.ducktales.resources.ResourceType.HOUSE;
-import static uq.deco2800.ducktales.resources.ResourceType.MINE;
-import static uq.deco2800.ducktales.resources.ResourceType.OBSERVATORY;
-import static uq.deco2800.ducktales.resources.ResourceType.PASTURE;
-import static uq.deco2800.ducktales.resources.ResourceType.QUARRY;
-import static uq.deco2800.ducktales.resources.ResourceType.SAWMILL;
-import static uq.deco2800.ducktales.resources.ResourceType.SCHOOL;
-import static uq.deco2800.ducktales.resources.ResourceType.GYMNASIUM;
-import static uq.deco2800.ducktales.resources.ResourceType.SHEEP;
-import static uq.deco2800.ducktales.resources.ResourceType.COW;
+import static uq.deco2800.ducktales.resources.ResourceType.*;
 
 /**
  * This manager manages the menu section of the HUD
  *
  * Created on 7/09/2016.
+ * 
+ * Many changes applied by mattyleggy.
  */
 public class MenuManager implements Initializable {
 	/**
@@ -55,9 +44,10 @@ public class MenuManager implements Initializable {
 	// TODO: TO ADD NEW BUILDINGS, REGISTER THEIR NAMES HERE
 	private static final ResourceType[] BUILDINGS = { BAKERY, BUTCHER, CEMETERY,
 			CHURCH, COMMUNITY_BUILDING, FARM, FORGE, HOSPITAL, HOUSE, SCHOOL,
-			GYMNASIUM, MINE, OBSERVATORY, PASTURE, QUARRY, SAWMILL, };
+			GYMNASIUM, MINE, OBSERVATORY, PASTURE, QUARRY, SAWMILL,
+			STORAGEBARN };
 	// TODO: TO ADD NEW ANIMALS, REGISTER THEIR NAMES HERE
-	public static final ResourceType[] ANIMALS = { SHEEP, DUCK, COW };
+	protected static final ResourceType[] ANIMALS = { SHEEP, DUCK, COW, WOLF };
 
 	// enum to check which is selected, a BUILDING or an ANIMAL
 	public enum MenuType {
@@ -65,14 +55,29 @@ public class MenuManager implements Initializable {
 	}
 
 	/** GUI containers */
+	// The parent Node for all menus
 	@FXML
-	private AnchorPane menuPane; // The parent Node for all menus
+	private AnchorPane menuPane;
+
+	// the pane to store all the menu options
 	@FXML
 	private Pane optionPane;
+
+	// the pane for the keyboard shortcuts
+	@FXML
+	private Pane optionTextPane;
+
+	// the button to go to the new grid
 	@FXML
 	private Button nextGridButton;
+
+	// the button to go to the previous grid
 	@FXML
 	private Button previousGridButton;
+
+	// Logger for the class
+	private static final Logger LOGGER = Logger
+			.getLogger(MenuManager.class.getName());
 
 	// building options list to be displayed in HUD
 	private ArrayList<GridPane> buildingOptionList;
@@ -80,9 +85,9 @@ public class MenuManager implements Initializable {
 	private ArrayList<GridPane> animalOptionList;
 
 	// amount of rows in the options grid
-	private final int gridRows = 7;
+	private static final int GRIDROWS = 7;
 	// amount of columns in the options grid
-	private final int gridColumns = 2;
+	private static final int GRIDCOLUMNS = 2;
 
 	/** The lists of menu sprites */
 	private static ArrayList<BuildingMenuSprite> buildingMenuSprites;
@@ -91,10 +96,38 @@ public class MenuManager implements Initializable {
 	/** Helpers for rendering information */
 	private WorldEntityInfo worldEntityInfo;
 
-	private GridActive gridActive;
-	// Current grid visible in the HUD
-	private String currentGrid;
-	private int currentGridIndex;
+	// The grid that is currently active on the HUD.
+	private static GridActive gridActive = null;
+
+	/* Text display for all keyboard shortcuts */
+	@FXML
+	private Text optionOne;
+	@FXML
+	private Text optionTwo;
+	@FXML
+	private Text optionThree;
+	@FXML
+	private Text optionFour;
+	@FXML
+	private Text optionFive;
+	@FXML
+	private Text optionSix;
+	@FXML
+	private Text optionSeven;
+	@FXML
+	private Text optionEight;
+	@FXML
+	private Text optionNine;
+	@FXML
+	private Text optionTen;
+	@FXML
+	private Text optionEleven;
+	@FXML
+	private Text optionTwelve;
+	@FXML
+	private Text optionThirteen;
+	@FXML
+	private Text optionFourteen;
 
 	/**
 	 * This method is called when FXML Loader instantiates this class
@@ -109,12 +142,16 @@ public class MenuManager implements Initializable {
 		animalOptionList = new ArrayList<>();
 		nextGridButton.setVisible(false);
 		previousGridButton.setVisible(false);
-		gridActive = new GridActive();
+		gridActive = new GridActive();		
 		// Instantiating and set up the menus
 		setupMenus();
-	}
+	}	
 
 	/**
+	 * Set the current active grid to the provided menu and index value. The
+	 * current grid is that which is visible from the main HUD on the right hand
+	 * side of the screen.
+	 * 
 	 * @author mattyleggy
 	 * 
 	 * @param grid
@@ -122,22 +159,25 @@ public class MenuManager implements Initializable {
 	 * @param index
 	 *            the index of the list which is visible
 	 */
-	private void setCurrentGrid(MenuType currentMenu, int gridIndex) {	
-		gridActive.setGridActive(currentMenu, gridIndex);		
+	private void setCurrentGrid(MenuType currentMenu, int gridIndex) {
+		gridActive.setGridActive(currentMenu, gridIndex);
+		this.displayShortcuts();
 		if (gridActive.getCurrentGridIndex() == 0)
 			previousGridButton.setVisible(false);
-		else 
+		else
 			previousGridButton.setVisible(true);
-		
+
 		switch (gridActive.getCurrentMenu()) {
 		case BUILDING:
-			if (gridActive.getCurrentGridIndex() == (buildingOptionList.size()-1))
+			if (gridActive
+					.getCurrentGridIndex() == (buildingOptionList.size() - 1))
 				nextGridButton.setVisible(false);
 			else
 				nextGridButton.setVisible(true);
 			break;
 		case ANIMAL:
-			if (gridActive.getCurrentGridIndex() == (animalOptionList.size()-1))
+			if (gridActive
+					.getCurrentGridIndex() == (animalOptionList.size() - 1))
 				nextGridButton.setVisible(false);
 			else
 				nextGridButton.setVisible(true);
@@ -145,17 +185,65 @@ public class MenuManager implements Initializable {
 		}
 	}
 
-
-	public static BuildingMenuSprite getBuildingSpriteByIndex(int index) {		
-		return MenuManager.buildingMenuSprites.get(index);
-	}
-	
-	public static AnimalMenuSprite getAnimalSpriteByIndex(int index) {		
-		return MenuManager.animalMenuSprites.get(index);
+	/**
+	 * 
+	 * Select an item from the menu based on an index and trigger a mouse click
+	 * to select that item to allow it to be placed on the game board.
+	 * 
+	 * If the given index is outside of the bounds of the array then it won't
+	 * select any item.
+	 * 
+	 * @author mattyleggy
+	 * 
+	 * @param index
+	 *            the index value of the item to be selected
+	 */
+	public static void selectItemByIndex(int index) {
+		int currentGridIndex = getCurrentGrid().getCurrentGridIndex();
+		MenuType currentMenu = getCurrentGrid().getCurrentMenu();
+		int itemIndex = index + (currentGridIndex * (GRIDROWS * GRIDCOLUMNS));
+		if (currentMenu.equals(MenuType.BUILDING)) {
+			if (itemIndex < MenuManager.buildingMenuSprites.size())
+				triggerMouseClick(
+						MenuManager.buildingMenuSprites.get(itemIndex));
+		} else if (currentMenu.equals(MenuType.ANIMAL)) {
+			if (itemIndex < MenuManager.animalMenuSprites.size())
+				triggerMouseClick(MenuManager.animalMenuSprites.get(itemIndex));
+		}
 	}
 
 	/**
-	 * Show the buildings menu
+	 * Trigger a mouse click event in the main game for a given sprite. Upon the
+	 * mouse click this would select the item to be ready to be placed on the
+	 * game board.
+	 * 
+	 * @author mattyleggy
+	 * 
+	 * @param sprite
+	 *            the sprite to trigger a mouse click on
+	 */
+	private static void triggerMouseClick(HUDSprite sprite) {
+		Event.fireEvent(sprite,
+				new MouseEvent(MouseEvent.MOUSE_CLICKED, 0, 0, 0, 0,
+						MouseButton.PRIMARY, 1, true, true, true, true, true,
+						true, true, true, true, true, null));
+	}
+
+	/**
+	 * Get the grid which is currently active in the HUD
+	 * 
+	 * @author mattyleggy
+	 * 
+	 * @return the current grid active on the HUD
+	 */
+	public static GridActive getCurrentGrid() {
+		return gridActive;
+	}
+
+	/**
+	 * Show the buildings menu in the HUD on the right hand side.
+	 * 
+	 * @author mattyleggy
 	 */
 	@FXML
 	public void showBuildingsMenu() {
@@ -165,18 +253,25 @@ public class MenuManager implements Initializable {
 	}
 
 	/**
+	 * Show the building menu in the HUD based on a given index value.
+	 * 
+	 * @author mattyleggy
+	 * 
 	 * @param index
 	 *            index value of the array to load
 	 */
 	private void showBuildingMenuFromIndex(int index) {
 		this.clearOptionPane();
 		GridPane gridPane = buildingOptionList.get(index);
-		optionPane.getChildren().add(gridPane);		
+		optionPane.getChildren().add(gridPane);
 		this.setCurrentGrid(MenuType.BUILDING, index);
 	}
 
 	/**
-	 * Show the animals menu
+	 * Show the animal menu in the HUD based on a given index value
+	 * 
+	 * @author mattyleggy
+	 * 
 	 */
 	@FXML
 	public void showAnimalsMenu() {
@@ -186,6 +281,10 @@ public class MenuManager implements Initializable {
 	}
 
 	/**
+	 * Show the animal menu in the HUD based on a given index value
+	 * 
+	 * @author mattyleggy
+	 * 
 	 * @param index
 	 *            index value of the array to load
 	 */
@@ -195,11 +294,47 @@ public class MenuManager implements Initializable {
 		optionPane.getChildren().add(gridPane);
 		this.setCurrentGrid(MenuType.ANIMAL, index);
 	}
+	
+	/**
+	 * Display the keyboard shortcuts of the individual buildings/animals in the
+	 * boxes of the grid.
+	 */
+	private void displayShortcuts() {
+		optionOne.setText(
+				KeyboardManager.getBuildFirstKeyCombination().getName());
+		optionTwo.setText(
+				KeyboardManager.getBuildSecondKeyCombination().getName());
+		optionThree.setText(
+				KeyboardManager.getBuildThirdKeyCombination().getName());
+		optionFour.setText(
+				KeyboardManager.getBuildFourthKeyCombination().getName());
+		optionFive.setText(
+				KeyboardManager.getBuildFifthKeyCombination().getName());
+		optionSix.setText(
+				KeyboardManager.getBuildSixthKeyCombination().getName());
+		optionSeven.setText(
+				KeyboardManager.getBuildSeventhKeyCombination().getName());
+		optionEight.setText(
+				KeyboardManager.getBuildEighthKeyCombination().getName());
+		optionNine.setText(
+				KeyboardManager.getBuildNinthKeyCombination().getName());
+		optionTen.setText(
+				KeyboardManager.getBuildTenthKeyCombination().getName());
+		optionEleven.setText(
+				KeyboardManager.getBuildEleventhKeyCombination().getName());
+		optionTwelve.setText(
+				KeyboardManager.getBuildTwelfthKeyCombination().getName());
+		optionThirteen.setText(
+				KeyboardManager.getBuildThirteenthKeyCombination().getName());
+		optionFourteen.setText(
+				KeyboardManager.getBuildFourteenthKeyCombination().getName());
+	}
 
 	/**
+	 * Show the next grid in the HUD based on the current grid that is active.
+	 * 
 	 * @author mattyleggy
 	 * 
-	 *         Show the next Grid in the HUD
 	 */
 	@FXML
 	public void nextGrid() {
@@ -224,9 +359,12 @@ public class MenuManager implements Initializable {
 	}
 
 	/**
+	 * 
+	 * Show the previous Grid in the HUD based on the current grid that is
+	 * active.
+	 * 
 	 * @author mattyleggy
 	 * 
-	 *         Show the previous Grid in the HUD
 	 */
 	@FXML
 	public void previousGrid() {
@@ -297,6 +435,9 @@ public class MenuManager implements Initializable {
 
 	/**
 	 * Set up the animals menu
+	 * 
+	 * Modified by mattyleggy to include adding to the grids.
+	 * 
 	 */
 	private void setupAnimalsMenu() {
 		int column = 0;
@@ -359,14 +500,14 @@ public class MenuManager implements Initializable {
 			// set the column width
 			ColumnConstraints columnConstraints = new ColumnConstraints();
 			columnConstraints.setPrefWidth(100);
-			for (int i = 0; i < this.gridColumns; i++) {
+			for (int i = 0; i < this.GRIDCOLUMNS; i++) {
 				gridPane.getColumnConstraints().add(columnConstraints);
 			}
 
 			// set the row height
 			RowConstraints rowConstraints = new RowConstraints();
 			rowConstraints.setPrefHeight(57);
-			for (int i = 0; i < this.gridRows; i++) {
+			for (int i = 0; i < this.GRIDROWS; i++) {
 				gridPane.getRowConstraints().add(rowConstraints);
 			}
 		}
@@ -375,6 +516,8 @@ public class MenuManager implements Initializable {
 	/**
 	 * Set up the buildings menu for players to select buildings to add to the
 	 * world
+	 * 
+	 * Modified by mattyleggy to add to the grids.
 	 */
 	private void setupBuildingsMenu() {
 		// Check if the buildings menu has been instantiated before
@@ -414,18 +557,27 @@ public class MenuManager implements Initializable {
 		}
 	}
 
+	/**
+	 * Set the building sprite sizing based on the given sprite and the
+	 * ui-scale.
+	 * 
+	 * @param sprite
+	 *            the sprite to adjust the size of
+	 * @param uiScale
+	 *            the scale to resize by
+	 */
 	private void setBuildingSpriteSizing(BuildingMenuSprite sprite,
 			double uiScale) {
 		// Get the size of the building in tile-unit first
 		int xLength = 0;
 		int yLength = 0;
-		try {			
+		try {
 			xLength = worldEntityInfo.getBuildingLength(sprite.getSpriteType(),
 					worldEntityInfo.XLENGTH);
 			yLength = worldEntityInfo.getBuildingLength(sprite.getSpriteType(),
 					worldEntityInfo.YLENGTH);
 		} catch (Exception e) {
-			System.err.println(e.getMessage());
+			LOGGER.log(Level.SEVERE, e.toString(), e);
 		}
 
 		if (xLength == 0 || yLength == 0) {
@@ -452,7 +604,7 @@ public class MenuManager implements Initializable {
 	 * @return the maximum amount of options available in the GridPanes
 	 */
 	private int getMaxOptions() {
-		return this.gridRows * this.gridColumns;
+		return this.GRIDROWS * this.GRIDCOLUMNS;
 	}
 
 }

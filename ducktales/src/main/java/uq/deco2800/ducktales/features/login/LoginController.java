@@ -3,7 +3,6 @@ import java.io.IOException;
 
 import javax.ws.rs.WebApplicationException;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
