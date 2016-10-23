@@ -77,7 +77,7 @@ public class HelperManager {
 				setImageAndText(duckImage, helperString1);
 				break;
 			case 1:
-				if(this.missionHandler.getNumberOfCompletedMissions() == 3.0) {
+				if(this.missionHandler.getNumberOfCompletedMissions() == 3) {
 					setImageAndText(duckImage, helperString2);
 				} else {					
 					helperLoadNumber -= 1;
