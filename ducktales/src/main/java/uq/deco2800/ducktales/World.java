@@ -343,7 +343,7 @@ public class World implements Tickable {
 	 * @return the number of entities in the world
 	 */
 	public int getEntitiesNumber() {
-		return animals.size() + buildings.size() + peons.size();
+		return animals.size() + buildings.size() + peons.size() + trees.size();
 	}
 
 	/**
