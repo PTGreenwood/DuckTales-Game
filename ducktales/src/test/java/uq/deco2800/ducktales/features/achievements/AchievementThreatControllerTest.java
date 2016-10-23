@@ -7,12 +7,18 @@ import javafx.stage.Stage;
 
 public class AchievementThreatControllerTest extends ApplicationTest {
 
+	/**
+	 * Check Image from AchievementThreatController contains actual URL from the image
+	 */
 	@Test
 	public void imageTest() {
+		
 		/*
 		AchievementThreatController threatController = AchievementThreatController.getInstance();
 		
 		String expectedImageURL = threatController.getAchievementThreatImage().impl_getUrl();
+		
+		
 		System.out.println(expectedImageURL);
 		*/
 	}

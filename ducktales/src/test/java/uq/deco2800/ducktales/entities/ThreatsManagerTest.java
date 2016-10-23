@@ -1,9 +1,13 @@
 package uq.deco2800.ducktales.entities;
 
+import javafx.stage.Stage;
 import org.junit.Test;
+import org.testfx.framework.junit.ApplicationTest;
 
 import java.util.ArrayList;
 
+import uq.deco2800.ducktales.World;
+import uq.deco2800.ducktales.features.entities.threats.Threat;
 import uq.deco2800.ducktales.features.entities.threats.Effect;
 import uq.deco2800.ducktales.features.entities.threats.Enemy;
 import uq.deco2800.ducktales.features.entities.threats.ThreatManager;
@@ -11,17 +15,59 @@ import uq.deco2800.ducktales.features.entities.threats.ThreatFactory;
 
 import static org.junit.Assert.*;
 
-public class ThreatsManagerTest {
+
+public class ThreatsManagerTest extends ApplicationTest{
+	
+	ThreatManager TM = new ThreatManager();
 	
 	@Test 
-	public void testForLvl1(){
+	public void testForThreatsLvl1(){
+		
+		
+		String name= "world";
+		int worldWidth = 700;
+		int worldHeight = 700;
+		World world = new World(name, worldWidth, worldHeight);
 		
 		Enemy enemy1 = new Enemy("Raccoon");
-		Enemy enemy2 = new Enemy("Beetle");
-		Enemy enemy3 = new Enemy("Wild Villager");
+		enemy1.setWorld(world);
+		assertNotNull("Enemy cannot be null.", enemy1);
+		assertNotNull("The enemy's speed cannot be null.", enemy1.getRandomX());
+		assertNotNull("The enemy's speed cannot be null.", enemy1.getRandomY());
+		assertNotNull("Enemy's X coordinate cannot be null.", enemy1.getX());
+		assertNotNull("Enemy's Y coordinate cannot be null.", enemy1.getY());
+		assertNotNull("The enemy's level of damage cannot be null", enemy1.getTheLevelOfDamage());
+		assertNotNull("The enemy's speed cannot be null.", enemy1.getSpeed());
 		
-		Effect efect1 = new Effect("Shake");
-		Effect efect2 = new Effect("Black Smoke");
+		Enemy enemy2 = new Enemy("Beetle");
+		enemy2.setWorld(world);
+		assertNotNull("Enemy cannot be null.", enemy2);
+		assertNotNull("The enemy's speed cannot be null.", enemy2.getRandomX());
+		assertNotNull("The enemy's speed cannot be null.", enemy2.getRandomY());
+		assertNotNull("Enemy's X coordinate cannot be null.", enemy2.getX());
+		assertNotNull("Enemy's Y coordinate cannot be null.", enemy2.getY());
+		assertNotNull("The enemy's level of damage cannot be null", enemy2.getTheLevelOfDamage());
+		assertNotNull("The enemy's speed cannot be null.", enemy2.getSpeed());
+		
+		Enemy enemy3 = new Enemy("Wild Villager");
+		enemy3.setWorld(world);
+		assertNotNull("Enemy cannot be null.", enemy3);
+		assertNotNull("The enemy's speed cannot be null.", enemy3.getRandomX());
+		assertNotNull("The enemy's speed cannot be null.", enemy3.getRandomY());
+		assertNotNull("Enemy's X coordinate cannot be null.", enemy3.getX());
+		assertNotNull("Enemy's Y coordinate cannot be null.", enemy3.getY());
+		assertNotNull("The enemy's level of damage cannot be null", enemy3.getTheLevelOfDamage());
+		assertNotNull("The enemy's speed cannot be null.", enemy3.getSpeed());
+		
+		Effect effect1 = new Effect("Black Smoke");
+		effect1.setWorld(world);
+		assertNotNull("Effect cannot be null.", effect1);
+		assertNotNull("Effect's X coordinate cannot be null.", effect1.getX());
+		assertNotNull("Effect's Y coordinate cannot be null.", effect1.getY());
+		assertNotNull("The effect's level of damage cannot be null", effect1.getTheLevelOfDamage());
+		assertNotNull("The effect's speed cannot be null.", effect1.getSpeed());
+		
+		Effect effect2 = new Effect("Shake");
 
 		ArrayList<Enemy> enemiesList = new ArrayList<Enemy>();
 		enemiesList.add(enemy1);
@@ -29,188 +75,29 @@ public class ThreatsManagerTest {
 		enemiesList.add(enemy3);
 		
 		ArrayList<Effect> effectsList = new ArrayList<Effect>();
-		effectsList.add(efect1);
-		effectsList.add(efect2);
-		
-	}
-
-	@Test
-	public void testForLvl2() {
-
-		// Temporary commented out due to errors
-//		TM.threatsLvl2();
-//
-//		assertTrue("Effects list is incorrect",
-//				TM.returnEffects().get(0).toString().equals(effectsList.get(0).toString()));
-//		assertTrue("Effects list is incorrect",
-//				TM.returnEffects().get(1).toString().equals(effectsList.get(1).toString()));
-//		assertTrue("Enemies list is incorrect",
-//				TM.returnEnemies().get(0).toString().equals(enemiesList.get(0).toString()));
-//		assertTrue("Enemies list is incorrect",
-//				TM.returnEnemies().get(1).toString().equals(enemiesList.get(1).toString()));
+		effectsList.add(effect1);
+		effectsList.add(effect2);
 
 	}
 
 	@Test
-	public void testForLvl3() {
-
-		// Temp Variables
-		ArrayList<Effect> effectsList = new ArrayList<Effect>();
-		ArrayList<Enemy> enemiesList = new ArrayList<Enemy>();
-
-		effectsList.clear();
-		enemiesList.clear();
-
-		// Temp variables
-		Effect tempEffect;
-		Enemy tempEnemy;
-
-		// ------Effects---------
-		// Create Temp variable
-		tempEffect = new Effect("Earthqauke");
-		// Add parameters to temp variable
-		// ------------
-		tempEffect.setStartTimer(20, "Timer");
-		tempEffect.setEndTimer(50);
-
-		// Add temp variable to list
-		effectsList.add(tempEffect);
-
-		// Create Temp variable
-		tempEffect = new Effect("Green Fel Fire");
-		// Add parameters to temp variable
-		// ------------
-		tempEffect.setStartTimer(50, "Timer");
-		tempEffect.setEndTimer(100);
-		// Add temp variable to list
-		effectsList.add(tempEffect);
-
-		// -------Enemies--------
-		//Create Temp variable
-	 	tempEnemy = new Enemy("Lion");
-	 	// affects people and animals
-	 	//Add parameters to temp variable
-	 	//------------
-	 	tempEnemy.setStartTimer(20,"Timer");
-	 	tempEnemy.setEndTimer(50);
-	 	//Add temp variable to list
-	 	enemiesList.add(tempEnemy);
-	 	
-	 	//Create Temp variable
-	 	tempEnemy = new Enemy("Chimp");
-	 	// affects resources
-	 	//Add parameters to temp variable
-	 	//------------
-	 	tempEnemy.setStartTimer(20,"Timer");
-	 	tempEnemy.setEndTimer(50);
-	 	//Add temp variable to list
-	 	enemiesList.add(tempEnemy);
-	 	
-	 	//Create Temp variable
-	 	tempEnemy = new Enemy("Bear");
-	 	// affects buildings
-	 	//Add parameters to temp variable
-	 	//------------		 	
-	 	tempEnemy.setStartTimer(20, "Timer");
-	 	tempEnemy.setEndTimer(50);
-	 	//Add temp variable to list
-	 	enemiesList.add(tempEnemy);
-
-		
-	 	/* Temporarily Commented out due to errors
-	 	TM.threatsLvl3();
-
-		assertTrue("Effects list is incorrect",
-				TM.returnEffects().get(0).toString().equals(effectsList.get(0).toString()));
-		assertTrue("Effects list is incorrect",
-				TM.returnEffects().get(1).toString().equals(effectsList.get(1).toString()));
-		assertTrue("Enemies list is incorrect",
-				TM.returnEnemies().get(0).toString().equals(enemiesList.get(0).toString()));
-		assertTrue("Enemies list is incorrect",
-				TM.returnEnemies().get(1).toString().equals(enemiesList.get(1).toString()));
-				
-		*/
+	public void testForThreatsLvl2() {
 
 	}
 
 	@Test
-	public void testForLvl4() {
-
-		// Temp Variables
-		ArrayList<Effect> effectsList = new ArrayList<Effect>();
-		ArrayList<Enemy> enemiesList = new ArrayList<Enemy>();
-
-		effectsList.clear();
-		enemiesList.clear();
-
-		// Temp variables
-		Effect tempEffect;
-		Enemy tempEnemy;
-
-		// ------Effects---------
-		// Create Temp variable
-		tempEffect = new Effect("Blight");
-		// Add parameters to temp variable
-		// ------------
-		tempEffect.setStartTimer(20, "Timer");
-		tempEffect.setEndTimer(50);
-
-		// Add temp variable to list
-		effectsList.add(tempEffect);
-
-		// Create Temp variable
-		tempEffect = new Effect("Fel");
-		// Add parameters to temp variable
-		// ------------
-		tempEffect.setStartTimer(50, "Timer");
-		tempEffect.setEndTimer(100);
-		// Add temp variable to list
-		effectsList.add(tempEffect);
-
-		// -------Enemies--------
-		//Create Temp variable
-	 	tempEnemy = new Enemy("Zombie Duck");
-	 	// affects people and animals
-	 	//Add parameters to temp variable
-	 	//------------
-	 	tempEnemy.setStartTimer(20,"Timer");
-	 	tempEnemy.setEndTimer(50);
-	 	//Add temp variable to list
-	 	enemiesList.add(tempEnemy);
-	 	
-	 	//Create Temp variable
-	 	tempEnemy = new Enemy("Robber");
-	 	// affects resources
-	 	//Add parameters to temp variable
-	 	//------------
-	 	tempEnemy.setStartTimer(20,"Timer");
-	 	tempEnemy.setEndTimer(50);
-	 	//Add temp variable to list
-	 	enemiesList.add(tempEnemy);
-	 	
-	 	//Create Temp variable
-	 	tempEnemy = new Enemy("Elephant");
-	 	// affects buildings
-	 	//Add parameters to temp variable
-	 	//------------		 	
-	 	tempEnemy.setStartTimer(20, "Timer");
-	 	tempEnemy.setEndTimer(50);
-	 	//Add temp variable to list
-	 	enemiesList.add(tempEnemy);
-
+	public void testForThreatsLvl3() {
 		
-	 	/* Temporarily Commented out due to errors
-	 	TM.threatsLvl4();
+	}
 
-		assertTrue("Effects list is incorrect",
-				TM.returnEffects().get(0).toString().equals(effectsList.get(0).toString()));
-		assertTrue("Effects list is incorrect",
-				TM.returnEffects().get(1).toString().equals(effectsList.get(1).toString()));
-		assertTrue("Enemies list is incorrect",
-				TM.returnEnemies().get(0).toString().equals(enemiesList.get(0).toString()));
-		assertTrue("Enemies list is incorrect",
-				TM.returnEnemies().get(1).toString().equals(enemiesList.get(1).toString()));
-			*/
+	@Test
+	public void testForThreatsLvl4() {
+
+	}
+
+	@Override
+	public void start(Stage stage) throws Exception {
+		
 	}
 
 }
