@@ -46,7 +46,7 @@
                      <children>
                         <Label fx:id="tutorialDescription" layoutX="201.0" layoutY="193.0" text="Description of Tutorial" />
                         <ImageView fx:id="tutorialImage" fitHeight="300.0" fitWidth="500.0" layoutX="25.0" layoutY="14.0" onMouseClicked="#enlargeImage" onMouseMoved="#enlargeImage" pickOnBounds="true" preserveRatio="true" />
-                        <Label fx:id="tutorialLabel" layoutX="75.0" layoutY="321.0" prefHeight="50.0" prefWidth="400.0" />
+                        <Label fx:id="tutorialLabel" layoutX="75.0" layoutY="321.0" prefHeight="50.0" prefWidth="400.0" style="-fx-font-family: &quot;Press Start 2P&quot;; -fx-font-size: 10px;" textFill="WHITE" wrapText="true" />
                      </children>
                   </AnchorPane>
                </center>

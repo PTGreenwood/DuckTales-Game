@@ -9,24 +9,24 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="achievementWindow" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-border-radius: 20; -fx-border-color: brown; -fx-background-radius: 20; -fx-background-color: rgba(255, 255, 255, 0.5);" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uq.deco2800.ducktales.features.achievements.AchievementManager">
+<AnchorPane fx:id="achievementWindow" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #593c2c;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uq.deco2800.ducktales.features.achievements.AchievementManager">
    <children>
       <HBox layoutX="193.0" layoutY="150.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <AnchorPane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="level" layoutX="4.0" layoutY="10.0" mnemonicParsing="false" onAction="#loadLevel" prefHeight="40.0" prefWidth="90.0" style="-fx-border-color: brown; -fx-background-color: rgba(255, 255, 255, 0.5); -fx-font-family: &quot;Press Start 2P&quot;;" text="Level" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
-                  <Button fx:id="mission" layoutX="100.0" layoutY="10.0" mnemonicParsing="false" onAction="#loadMission" prefHeight="40.0" prefWidth="90.0" style="-fx-background-color: rgba(255, 255, 255, 0.5); -fx-border-color: brown; -fx-font-family: &quot;Press Start 2P&quot;;" text="Mission" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="60.0" />
-                  <Button fx:id="ore" layoutX="4.0" layoutY="106.0" mnemonicParsing="false" onAction="#loadOre" prefHeight="40.0" prefWidth="90.0" style="-fx-border-color: brown; -fx-background-color: rgba(255, 255, 255, 0.5); -fx-font-family: &quot;Press Start 2P&quot;;" text="Ore" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="110.0" />
-                  <Button fx:id="wood" layoutX="100.0" layoutY="106.0" mnemonicParsing="false" onAction="#loadWood" prefHeight="40.0" prefWidth="90.0" style="-fx-border-color: brown; -fx-background-color: rgba(255, 255, 255, 0.5); -fx-font-family: &quot;Press Start 2P&quot;;" text="Wood" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="160.0" />
-                  <Button fx:id="peons" layoutX="4.0" layoutY="199.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" style="-fx-border-color: brown; -fx-background-color: rgba(255, 255, 255, 0.5); -fx-font-family: &quot;Press Start 2P&quot;;" text="Peons" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="210.0" />
-                  <Button fx:id="threats" layoutX="100.0" layoutY="199.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" style="-fx-border-color: brown; -fx-background-color: rgba(255, 255, 255, 0.5); -fx-font-family: &quot;Press Start 2P&quot;;" text="Threats" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="260.0" />
-                  <Button fx:id="food" layoutX="4.0" layoutY="293.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" style="-fx-border-color: brown; -fx-background-color: rgba(255, 255, 255, 0.5); -fx-font-family: &quot;Press Start 2P&quot;;" text="Food" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="310.0" />
+                  <Button fx:id="level" layoutX="4.0" layoutY="10.0" mnemonicParsing="false" onAction="#loadLevel" prefHeight="40.0" prefWidth="90.0" style="-fx-border-color: #efba1a; -fx-background-color: #C29161; -fx-font-family: &quot;Press Start 2P&quot;; -fx-border-width: 4px;" text="Level" textFill="WHITE" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                  <Button fx:id="mission" layoutX="100.0" layoutY="10.0" mnemonicParsing="false" onAction="#loadMission" prefHeight="40.0" prefWidth="90.0" style="-fx-border-color: #efba1a; -fx-background-color: #C29161; -fx-font-family: &quot;Press Start 2P&quot;; -fx-border-width: 4px;" text="Mission" textFill="WHITE" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="60.0" />
+                  <Button fx:id="ore" layoutX="4.0" layoutY="106.0" mnemonicParsing="false" onAction="#loadOre" prefHeight="40.0" prefWidth="90.0" style="-fx-border-color: #efba1a; -fx-background-color: #C29161; -fx-font-family: &quot;Press Start 2P&quot;; -fx-border-width: 4px;" text="Ore" textFill="WHITE" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="110.0" />
+                  <Button fx:id="wood" layoutX="100.0" layoutY="106.0" mnemonicParsing="false" onAction="#loadWood" prefHeight="40.0" prefWidth="90.0" style="-fx-border-color: #efba1a; -fx-background-color: #C29161; -fx-font-family: &quot;Press Start 2P&quot;; -fx-border-width: 4px;" text="Wood" textFill="WHITE" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="160.0" />
+                  <Button fx:id="peons" layoutX="4.0" layoutY="199.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" style="-fx-border-color: #efba1a; -fx-background-color: #C29161; -fx-font-family: &quot;Press Start 2P&quot;; -fx-border-width: 4px;" text="Peons" textFill="WHITE" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="210.0" />
+                  <Button fx:id="threats" layoutX="100.0" layoutY="199.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" style="-fx-border-color: #efba1a; -fx-background-color: #C29161; -fx-font-family: &quot;Press Start 2P&quot;; -fx-border-width: 4px;" text="Threats" textFill="WHITE" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="260.0" />
+                  <Button fx:id="food" layoutX="4.0" layoutY="293.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" style="-fx-border-color: #efba1a; -fx-background-color: #C29161; -fx-font-family: &quot;Press Start 2P&quot;; -fx-border-width: 4px;" text="Food" textFill="WHITE" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="310.0" />
                </children>
             </AnchorPane>
             <BorderPane fx:id="rightPane" prefHeight="200.0" prefWidth="400.0">
                <top>
-                  <Label fx:id="topLabel" style="-fx-font-family: &quot;Press Start 2P&quot;;" text="ACHIEVEMENT" BorderPane.alignment="CENTER">
+                  <Label fx:id="topLabel" style="-fx-font-family: &quot;Press Start 2P&quot;; -fx-font-size: 32px;" text="ACHIEVEMENTS" textFill="WHITE" BorderPane.alignment="CENTER">
                      <font>
                         <Font name="System Bold" size="36.0" />
                      </font>
@@ -39,7 +39,7 @@
                   </Label>
                </top>
                <bottom>
-                  <Label fx:id="bottomLabel" style="-fx-font-family: &quot;Press Start 2P&quot;;" text="Achievement Score" BorderPane.alignment="CENTER">
+                  <Label fx:id="bottomLabel" style="-fx-font-family: &quot;Press Start 2P&quot;;" text="Achievement Score" textFill="WHITE" BorderPane.alignment="CENTER">
                      <BorderPane.margin>
                         <Insets bottom="10.0" />
                      </BorderPane.margin>
@@ -48,9 +48,9 @@
                <right>
                   <AnchorPane fx:id="innerPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Label fx:id="achievementMainDescription" layoutX="108.0" layoutY="142.0" text="Description of Achievement" />
+                        <Label fx:id="achievementMainDescription" layoutX="108.0" layoutY="142.0" style="-fx-font-family: &quot;Press Start 2P&quot;;" textFill="WHITE" />
                         <ImageView fx:id="achievementImageView" fitHeight="150.0" fitWidth="150.0" layoutX="125.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="125.0" AnchorPane.rightAnchor="124.0" AnchorPane.topAnchor="34.0" />
-                        <Label fx:id="achievementDescription" layoutX="7.0" layoutY="222.0" prefHeight="90.0" prefWidth="379.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+                        <Label fx:id="achievementDescription" layoutX="7.0" layoutY="222.0" prefHeight="90.0" prefWidth="379.0" style="-fx-font-family: &quot;Press Start 2P&quot;;" textFill="WHITE" wrapText="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" />
                      </children>
                   </AnchorPane>
                </right>
