@@ -350,42 +350,42 @@ public class ResourceSpriteRegister {
 		addResource(LUMBERJACK_LV2_3, "/toolsUpgrade/lumberjack/lumberjack_lv2_back_right.png");
 		addResource(LUMBERJACK_LV2_4, "/toolsUpgrade/lumberjack/lumberjack_lv2_right.png");
 		
-		addResource(LUMBERJACK_LV3, "/toolsUpgrade/lumberjack/lumberjack_lv3.png");
+		addResource(LUMBERJACK_LV3_1, "/toolsUpgrade/lumberjack/lumberjack_lv3.png");
 		
 		//Miner
-		addResource(MINER, "/peon/jobs/miner_1.png");
-		addResource(MINER_LV2, "/toolsUpgrade/miner/miner_lv2.png");
-		addResource(MINER_LV3, "/toolsUpgrade/miner/miner_lv3.png");
+		addResource(MINER_LV1_1, "/peon/jobs/miner_1.png");
+		addResource(MINER_LV2_1, "/toolsUpgrade/miner/miner_lv2.png");
+		addResource(MINER_LV3_1, "/toolsUpgrade/miner/miner_lv3.png");
 		//Blacksmith
-		addResource(BLACKSMITH, "/peon/jobs/blacksmiths_1.png");	
-		addResource(BLACKSMITH_LV2, "/toolsUpgrade/blacksmith/blacksmiths_lv2.png");
-		addResource(BLACKSMITH_LV3, "/toolsUpgrade/blacksmith/blacksmiths_lv3.png");
+		addResource(BLACKSMITH_LV1_1, "/peon/jobs/blacksmiths_1.png");	
+		addResource(BLACKSMITH_LV2_1, "/toolsUpgrade/blacksmith/blacksmiths_lv2.png");
+		addResource(BLACKSMITH_LV3_1, "/toolsUpgrade/blacksmith/blacksmiths_lv3.png");
 		//Builder
-		addResource(BUILDER, "/peon/jobs/builder_1.png");		
-		addResource(BUILDER_LV2, "/toolsUpgrade/builder/builder_lv2.png");
-		addResource(BUILDER_LV3, "/toolsUpgrade/builder/builder_lv3_left.png");
+		addResource(BUILDER_LV1_1, "/peon/jobs/builder_1.png");		
+		addResource(BUILDER_LV2_1, "/toolsUpgrade/builder/builder_lv2.png");
+		addResource(BUILDER_LV3_1, "/toolsUpgrade/builder/builder_lv3_left.png");
 		//Doctor
-		addResource(DOCTOR, "/peon/jobs/doctor_1.png");	
-		addResource(DOCTOR_LV2, "/toolsUpgrade/doctor/doctor_lv2.png");
-		addResource(DOCTOR_LV3, "/toolsUpgrade/doctor/doctor_lv3_left.png");
+		addResource(DOCTOR_LV1_1, "/peon/jobs/doctor_1.png");	
+		addResource(DOCTOR_LV2_1, "/toolsUpgrade/doctor/doctor_lv2.png");
+		addResource(DOCTOR_LV3_1, "/toolsUpgrade/doctor/doctor_lv3_left.png");
 		//Farmer
-		addResource(FARMER, "/peon/jobs/farmer_1.png");		
-		addResource(FARMER_LV2, "/toolsUpgrade/farmer/farmer_lv2.png");
-		addResource(FARMER_LV3, "/toolsUpgrade/farmer/farmer_lv3_left.png");
+		addResource(FARMER_LV1_1, "/peon/jobs/farmer_1.png");		
+		addResource(FARMER_LV2_1, "/toolsUpgrade/farmer/farmer_lv2.png");
+		addResource(FARMER_LV3_1, "/toolsUpgrade/farmer/farmer_lv3_left.png");
 		//GymCoach
-		addResource(GYMCOACH, "/peon/jobs/GymCoach_1.png");
-		addResource(GYMCOACH_LV2, "/toolsUpgrade/gymcoach/gymcoach_lv2.png");
-		addResource(GYMCOACH_LV3, "/toolsUpgrade/gymcoach/gymcoach_lv3_left.png");
+		addResource(GYMCOACH_LV1_1, "/peon/jobs/GymCoach_1.png");
+		addResource(GYMCOACH_LV2_1, "/toolsUpgrade/gymcoach/gymcoach_lv2.png");
+		addResource(GYMCOACH_LV3_1, "/toolsUpgrade/gymcoach/gymcoach_lv3_left.png");
 		//Priest
-		addResource(PRIEST, "/peon/jobs/priest_Church.png");		
+		addResource(PRIEST_LV1_1, "/peon/jobs/priest_Church.png");		
 		//Stonemason
-		addResource(STONE_MASON, "/peon/jobs/stonemason.png");
-		addResource(STONE_MASON_LV2, "/toolsUpgrade/stonemason/stonemason_lv2.png");	
-		addResource(STONE_MASON_LV3, "/toolsUpgrade/stonemason/stonemason_lv3.png");	
+		addResource(STONE_MASON_LV1_1, "/peon/jobs/stonemason.png");
+		addResource(STONE_MASON_LV2_1, "/toolsUpgrade/stonemason/stonemason_lv2.png");	
+		addResource(STONE_MASON_LV3_1, "/toolsUpgrade/stonemason/stonemason_lv3.png");	
 		//Teacher
-		addResource(TEACHER, "/peon/jobs/teacher_1.png");
-		addResource(TEACHER_LV2, "/toolsUpgrade/teacher/teacher_lv2.png");	
-		addResource(TEACHER_LV3, "/toolsUpgrade/teacher/teacher_lv3.png");	
+		addResource(TEACHER_LV1_1, "/peon/jobs/teacher_1.png");
+		addResource(TEACHER_LV2_1, "/toolsUpgrade/teacher/teacher_lv2.png");	
+		addResource(TEACHER_LV3_1, "/toolsUpgrade/teacher/teacher_lv3.png");	
 		
 		
 		/*
