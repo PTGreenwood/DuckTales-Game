@@ -9,11 +9,14 @@ import uq.deco2800.ducktales.resources.ResourceType;
 /**
  * 
  * This class creates enemy and
- * effects types and defines
- * their parameters
+ * effects types for each of the predifined levels and defines
+ * their parameters.
  * 
  * Created by Krista Harrison and Wian Botha
  * @author kristasusanne, wianb
+ *
+ *
+ *
  */
 
 public class ThreatFactory {
