@@ -86,8 +86,6 @@ public class PeonInformationDisplayManager
     @FXML
     ScrollPane jobList;
 
-    @FXML
-    Label peonJobStatus;
     // @FXML
     // Button assignJobButton;
 
