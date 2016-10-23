@@ -14,6 +14,7 @@ import uq.deco2800.ducktales.util.SecondaryManager;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 import uq.deco2800.ducktales.features.jobframework.*;
 import uq.deco2800.ducktales.rendering.info.WorldEntityInfo;
@@ -137,11 +138,11 @@ public class PeonInformationDisplayManager
 		JobSprite doctorSprite = new JobSprite(ResourceType.DOCTOR);
 		JobSprite farmerSprite = new JobSprite(ResourceType.FARMER);
 		JobSprite priestSprite = new JobSprite(ResourceType.PRIEST);
-		JobSprite [] jobsList = new JobSprite [](
+		ArrayList<JobSprite> jobsList = new ArrayList<JobSprite>(Arrays.asList(
 				lumberjackSprite, minerSprite, builderSprite,
 				doctorSprite, farmerSprite, priestSprite
-			);
-		for (JobSprite jobsprite : jobslist){
+			));
+		for (JobSprite jobsprite : jobsList){
 			jobsprite.setFitHeight(100); // set max height to 100px
     		jobsprite.setFitWidth(100); // Will set it to a square
 			jobList.getChildren().add(jobsprite);
