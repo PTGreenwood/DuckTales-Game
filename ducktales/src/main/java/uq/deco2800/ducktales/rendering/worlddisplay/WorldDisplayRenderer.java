@@ -120,7 +120,7 @@ public class WorldDisplayRenderer extends AnimationTimer {
      *
      * @return The amount to move the world in the x-direction by
      */
-    private int getXMovementAmount() {
+    public int getXMovementAmount() {
         if (hDirection == HDirection.LEFT) {
             return -panSpeed;
         } else if (hDirection == HDirection.RIGHT) {
@@ -136,7 +136,7 @@ public class WorldDisplayRenderer extends AnimationTimer {
      *
      * @return The amount to move the world in the y-direction by
      */
-    private int getYMovementAmount() {
+    public int getYMovementAmount() {
         if (vDirection == VDirection.UP) {
             return -panSpeed;
         } else if (vDirection == VDirection.DOWN) {
