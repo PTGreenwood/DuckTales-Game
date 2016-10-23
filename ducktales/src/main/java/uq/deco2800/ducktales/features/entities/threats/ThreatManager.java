@@ -15,12 +15,6 @@ import java.util.*;
  */
 public class ThreatManager extends SecondaryManager {
 
-    
-    
-
-    public ThreatManager() {
-    }
-
 	/**
 	 * Add one initial threat to the world. This is for testing purposes only
 	 */
@@ -40,8 +34,9 @@ public class ThreatManager extends SecondaryManager {
 	}
 	/**
 	 * Set threat level 1.
+	 * @throws Exception 
 	 */
-	public void threatsLvl1() {
+	public void threatsLvl1() throws Exception {
 		// Clear Effects
 		ThreatFactory.effectsList.clear();
 		ThreatFactory.enemiesList.clear();
@@ -57,8 +52,9 @@ public class ThreatManager extends SecondaryManager {
 
 	/**
 	 * Set threat level 2.
+	 * @throws Exception 
 	 */
-	public void threatsLvl2() {
+	public void threatsLvl2() throws Exception {
 		// Clear Effects
 		ThreatFactory.effectsList.clear();
 		ThreatFactory.enemiesList.clear();
@@ -76,8 +72,9 @@ public class ThreatManager extends SecondaryManager {
 
 	/**
 	 * Set threat level 3.
+	 * @throws Exception 
 	 */
-	public void threatsLvl3() {
+	public void threatsLvl3() throws Exception {
 		// Clear Effects
 		ThreatFactory.effectsList.clear();
 		ThreatFactory.enemiesList.clear();
@@ -94,8 +91,9 @@ public class ThreatManager extends SecondaryManager {
 
 	/**
 	 * Set threat level 4.
+	 * @throws Exception 
 	 */
-	public void threatsLvl4() {
+	public void threatsLvl4() throws Exception {
 		// Clear Effects
 		ThreatFactory.effectsList.clear();
 		ThreatFactory.enemiesList.clear();

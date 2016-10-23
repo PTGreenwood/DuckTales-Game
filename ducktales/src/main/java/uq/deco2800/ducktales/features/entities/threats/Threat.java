@@ -236,13 +236,6 @@ public class Threat extends Entity {
 		}
 		return false;
 	}
-
-//	public void addImage(String imageName) {
-//		imageStore.add(imageName);
-//		// imageStore.add(imageName);
-//		// getClass()
-//		// new Image(getClass().getResource(imageName).toString()));
-//	}
 	
 	/**
 	 * @return a double which is the x
