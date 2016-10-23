@@ -74,7 +74,7 @@ public class WeatherChance {
 	}
 
 	/**
-	 * Get the weather event
+	 * Get the weather that is assigned to a given chance
 	 * 
 	 * @return the weather event
 	 */
