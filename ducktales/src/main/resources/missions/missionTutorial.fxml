@@ -34,7 +34,7 @@
                   <Insets />
                </GridPane.margin>
             </ImageView>
-            <Label fx:id="mission1" text="1. Click T to open Tutorial" GridPane.rowIndex="1">
+            <Label fx:id="mission1" style="-fx-font-family: &quot;Press Start 2P&quot;; -fx-font-size: 11px;" text="1. Click T to open Tutorial" textFill="WHITE" GridPane.rowIndex="1">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
@@ -45,7 +45,7 @@
                   <Insets />
                </GridPane.margin>
             </Label>
-            <Label fx:id="mission2" text="2. Click H to open Achievement" GridPane.rowIndex="2">
+            <Label fx:id="mission2" style="-fx-font-family: &quot;Press Start 2P&quot;; -fx-font-size: 10px;" text="2. Click H to open Achievement" textFill="WHITE" GridPane.rowIndex="2">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
@@ -53,7 +53,7 @@
                   <Insets left="10.0" />
                </padding>
             </Label>
-            <Label fx:id="mission3" text="3. Click M to open MarketPlace" GridPane.rowIndex="3">
+            <Label fx:id="mission3" style="-fx-font-family: &quot;Press Start 2P&quot;; -fx-font-size: 10px;" text="3. Click M to open MarketPlace" textFill="WHITE" GridPane.rowIndex="3">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
@@ -68,7 +68,7 @@
       </GridPane>
    </center>
    <top>
-      <Label fx:id="labelTop" style="-fx-font-family: &quot;Press Start 2P&quot;;" text="TUTORIAL" BorderPane.alignment="CENTER">
+      <Label fx:id="labelTop" style="-fx-font-family: &quot;Press Start 2P&quot;;" text="TUTORIAL" textFill="WHITE" BorderPane.alignment="CENTER">
          <font>
             <Font name="System Bold" size="36.0" />
          </font>

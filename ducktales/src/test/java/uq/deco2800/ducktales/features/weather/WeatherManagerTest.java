@@ -7,6 +7,9 @@ import uq.deco2800.ducktales.features.seasons.SeasonManager;
 import uq.deco2800.ducktales.features.time.TimeManager;
 
 public class WeatherManagerTest {
+	/**
+	 * Test the WeatherManager being used with setters and getters
+	 */
 	@Test
 	public void testGettersAndSetters() {
 		WeatherManager weatherManager = new WeatherManager();

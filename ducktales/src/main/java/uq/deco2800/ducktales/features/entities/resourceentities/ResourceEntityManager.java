@@ -181,7 +181,7 @@ public class ResourceEntityManager extends SecondaryManager {
 			}
 
 			// Add that droppable resource to the droppable resource list
-			world.addDroppedResoure(resource);
+			world.addDroppedResource(resource);
 
 			// Add the sprite of the resource to the sprites list, and set
 			// the position of that sprite
@@ -222,7 +222,7 @@ public class ResourceEntityManager extends SecondaryManager {
                 sprite.setLayoutX(sprite.getLayoutX() + xAmount);
                 sprite.setLayoutY(sprite.getLayoutY() + yAmount);
             } else {
-                throw new RuntimeException("A TREE sprite is not yet " +
+                throw new GameSetupException("A TREE sprite is not yet " +
                         "instantiated");
             }
         }

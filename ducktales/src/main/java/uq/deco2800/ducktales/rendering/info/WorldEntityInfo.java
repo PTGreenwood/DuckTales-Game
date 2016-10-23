@@ -1,6 +1,7 @@
 package uq.deco2800.ducktales.rendering.info;
 
 import uq.deco2800.ducktales.resources.ResourceType;
+import uq.deco2800.ducktales.util.exceptions.GameSetupException;
 
 import java.util.HashMap;
 
@@ -118,19 +119,18 @@ public class WorldEntityInfo {
      *
      * @return the length of the building in the given direction
      *
-     * @throws Exception
+     * @throws GameSetupException
      *          When the registry is internally inconsistent
      */
-    public int getBuildingLength(ResourceType buildingType, int index)
-    throws Exception {
+    public int getBuildingLength(ResourceType buildingType, int index) {
         // Check if the registry has the building type given
         if (!buildingSizeInfo.containsKey(buildingType)) {
-            throw new Exception("BuildingMenuSprite type requested is not yet registered.");
+            throw new GameSetupException("BuildingMenuSprite type requested is not yet registered.");
         }
 
         // The building type given is in the registry. Check the requested index
         if (index != XLENGTH && index != YLENGTH) {
-            throw new Exception("The index given must be " +
+            throw new GameSetupException("The index given must be " +
                     "WorldEntityInfo.XLENGTH or YLENGTH. Given index" +
                     "is: " + index);
         }

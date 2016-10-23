@@ -14,13 +14,17 @@ import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.AStar;
 import uq.deco2800.ducktales.util.Point;
 
+import uq.deco2800.ducktales.features.entities.peons.PeonBuffType;
+import uq.deco2800.ducktales.features.entities.peons.PeonDebuffType;
+import uq.deco2800.ducktales.features.seasons.SeasonManager;
+
 /**
  * Class representing the worker. Peon will have 1000 health, 100 hunger and
  * thirst hunger and thirst will decrease (be more hungry/thirsty) over time
  * lower hunger/thirst will affect its strength
  *
  * @author Leggy, Jin Shin, Daniel Leong, Peter Greenwood.
- * 
+ *
  *
  */
 public class Peon extends AgentEntity {
@@ -33,7 +37,10 @@ public class Peon extends AgentEntity {
 	private static final ResourceType TYPE = ResourceType.PEON;
 	private List<Point> goalPoints;
 
-	private int time = 0;
+	/** Timers for in-game effects **/
+	private int autoDecreaseTime = 0;
+
+
 	private double speed = 0.05;
 	private int health = 1000;
 	private int hunger = 100;
@@ -58,7 +65,10 @@ public class Peon extends AgentEntity {
 	private JobType job = JobType.JOBLESS;
 	private double qualification = 0;
 	private boolean mentorStatus = false;
-	
+
+	//season Manager
+	private SeasonManager season = new SeasonManager();
+
 	//Tool related information
 	private ToolType tool = ToolType.NOTHING;
 
@@ -87,7 +97,7 @@ public class Peon extends AgentEntity {
 		this.goalPoints = new ArrayList<>();
 		this.buildingsMade = 0;
 		this.allTools = new ArrayList<ArrayList<ToolType>>();
-		
+
 		constructList();
 
 	}
@@ -168,7 +178,7 @@ public class Peon extends AgentEntity {
 
 	/**
 	 * Set up an value of peon can carry the resource start up from 0
-	 * 
+	 *
 	 * @param newResource
 	 */
 	public void setResource(int newResource) {
@@ -195,7 +205,7 @@ public class Peon extends AgentEntity {
 	 */
 	public void setJob(JobType job) {
 		this.job = job;
-		
+
 		//Set the tool to be level 0
 		this.setTool(getJobToolList(job).get(0));
 	}
@@ -207,7 +217,7 @@ public class Peon extends AgentEntity {
 	/**
 	 * May need to rework this? This functionality might be better inside of the
 	 * job selection window. Nick
-	 * 
+	 *
 	 * Peon applies for job. If peon is qualified, it gets the job. Doesn't get
 	 * it otherwise.
 	 *
@@ -230,7 +240,7 @@ public class Peon extends AgentEntity {
 	/**
 	 * Will a peon ever be jobless again after he has been assigned a job? I
 	 * feel like this is a case that will never happen. Nick
-	 * 
+	 *
 	 * Peon quits job if it has one
 	 */
 	public void quitJob() {
@@ -270,16 +280,16 @@ public class Peon extends AgentEntity {
 		this.qualification = qualification;
 	}
 	/**
-	 * 
+	 *
 	 * @param tool - the current equipped tool
 	 * @return - returns the total harvest rate for the peon
 	 */
 	public double getQualificationToolEquipped() {
-		return qualification + tool.getQualificationModifier(); 
+		return qualification + tool.getQualificationModifier();
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * @param tool - the tool to check
 	 * @return - returns the qualification modifier of the given tool.
 	 */
@@ -418,7 +428,7 @@ public class Peon extends AgentEntity {
 	}
 
 	/**
-	 * 
+	 *
 	 * @return amount of buildings made
 	 */
 	public int getBuildingsMade() {
@@ -442,6 +452,8 @@ public class Peon extends AgentEntity {
 			calculateRenderingOrderValues();
 
 			autoDecrease();
+			checkPeonStatus();
+
 		} else {
 			// this peon doesn't know who the main manager is
 			return;
@@ -468,7 +480,7 @@ public class Peon extends AgentEntity {
 
 	/**
 	 * Give the peon the handle on the manager of the game
-	 * 
+	 *
 	 * @param gameManager
 	 */
 	public void setGameManager(GameManager gameManager) {
@@ -481,13 +493,13 @@ public class Peon extends AgentEntity {
 	 *
 	 */
 	private void autoDecrease() {
-		++time;
+		++autoDecreaseTime;
 
 		// natural decrease
-		if (time == 180) {
+		if (autoDecreaseTime == 180) {
 			hunger -= 2;
 			thirst -= 3;
-			time = 0;
+			autoDecreaseTime = 0;
 		}
 	}
 
@@ -495,18 +507,148 @@ public class Peon extends AgentEntity {
 	 * function that decrease the Peon's stats according to the weather
 	 * different weather will have different effect on peon's stats.
 	 */
-	private void weatherEffect() {
-		// need to be implemented
+	private void weatherEffectOnPeon() {
+
+	}
+
+	private void temperatureEffectOnPeon() {
+
+	}
+
+	/** Function that check the status of Peon to add buff/debuff - health/hunger/thirst **/
+	private void checkPeonStatus() {
+		checkPeonHealth();
+		checkPeonHunger();
+		checkPeonThirst();
 	}
 
 	/**
-	 * function that check the status of Peon to add buff/debuff - hunger/thirst
-	 * threshold
-	 */
-	private void checkPeonStatus() {
-		// need to be implemented
+		* Fucntion that check Peon's Health and add/remove buff/debuff accordingly
+		* - first remove all buff/debuff relating to health
+		*	- then add buff
+	  */
+	private void checkPeonHealth() {
+		int currentHealth = getHealth();
+
+		if (currentHealth >= 900) { //HEALTHY Buff
+			removeBuff(PeonBuffType.NEAR_PERFECT);
+			removeDebuff(PeonDebuffType.SICKLY);
+			removeDebuff(PeonDebuffType.NEAR_DEATH);
+
+			//add HEALTHY buff
+			addBuff(PeonBuffType.HEALTHY);
+
+		}
+		else if (currentHealth >= 650 && currentHealth <= 899 ) { //NEAR_PERFECT Buff
+			removeBuff(PeonBuffType.HEALTHY);
+			removeDebuff(PeonDebuffType.SICKLY);
+			removeDebuff(PeonDebuffType.NEAR_DEATH);
+
+			addBuff(PeonBuffType.NEAR_PERFECT);
+		}
+		else if (currentHealth >= 400 && currentHealth <= 649) { //NO buff/debuff
+			removeBuff(PeonBuffType.HEALTHY);
+			removeBuff(PeonBuffType.NEAR_PERFECT);
+			removeDebuff(PeonDebuffType.SICKLY);
+			removeDebuff(PeonDebuffType.NEAR_DEATH);
+		}
+		else if (currentHealth >= 200 && currentHealth <= 399) { //SICKLY Debuff
+			removeBuff(PeonBuffType.HEALTHY);
+			removeBuff(PeonBuffType.NEAR_PERFECT);
+			removeDebuff(PeonDebuffType.NEAR_DEATH);
+
+			addDebuff(PeonDebuffType.SICKLY);
+		}
+		else if (currentHealth > 0 && currentHealth <= 199) {
+			removeBuff(PeonBuffType.HEALTHY);
+			removeBuff(PeonBuffType.NEAR_PERFECT);
+			removeDebuff(PeonDebuffType.SICKLY);
+
+			addDebuff(PeonDebuffType.NEAR_DEATH);
+		}
+		else if ( currentHealth == 0) {
+			//Peon Dead...
+		}
 	}
-	
+
+	private void checkPeonHunger() {
+		int currentHunger = getHunger();
+
+		if (currentHunger >= 90) { //WELL_FED Buff
+			removeBuff(PeonBuffType.STUFFED);
+			removeDebuff(PeonDebuffType.HUNGRY);
+			removeDebuff(PeonDebuffType.STARVING);
+
+			addBuff(PeonBuffType.WELL_FED);
+		}
+		else if (currentHunger >= 65 && currentHunger <= 89) { //STUFFED Buff
+			removeBuff(PeonBuffType.WELL_FED);
+			removeDebuff(PeonDebuffType.HUNGRY);
+			removeDebuff(PeonDebuffType.STARVING);
+
+			addBuff(PeonBuffType.STUFFED);
+		}
+		else if (currentHunger >= 40 && currentHunger <= 64) { //NO buff/debuff
+			removeBuff(PeonBuffType.WELL_FED);
+			removeBuff(PeonBuffType.STUFFED);
+			removeDebuff(PeonDebuffType.HUNGRY);
+			removeDebuff(PeonDebuffType.STARVING);
+		}
+		else if (currentHunger >= 20 && currentHunger <= 39) { //Hungry Debuff
+			removeBuff(PeonBuffType.WELL_FED);
+			removeBuff(PeonBuffType.STUFFED);
+			removeDebuff(PeonDebuffType.STARVING);
+
+			addDebuff(PeonDebuffType.HUNGRY);
+		}
+		else if (currentHunger >= 0 && currentHunger <= 19) { //STARVING Debuff
+			removeBuff(PeonBuffType.WELL_FED);
+			removeBuff(PeonBuffType.STUFFED);
+			removeDebuff(PeonDebuffType.HUNGRY);
+
+			addDebuff(PeonDebuffType.STARVING);
+		}
+	}
+
+	private void checkPeonThirst() {
+		int currentThirst = getThirst();
+
+		if (currentThirst >= 90) { //WATERLOGGED Buff
+			removeBuff(PeonBuffType.HYDRATED);
+			removeDebuff(PeonDebuffType.THIRSTY);
+			removeDebuff(PeonDebuffType.PARCHED);
+
+			addBuff(PeonBuffType.WATERLOGGED);
+		}
+		else if (currentThirst >= 65 && currentThirst <= 89) { //HYDRATED Buff
+			removeBuff(PeonBuffType.WATERLOGGED);
+			removeDebuff(PeonDebuffType.THIRSTY);
+			removeDebuff(PeonDebuffType.PARCHED);
+
+			addBuff(PeonBuffType.HYDRATED);
+		}
+		else if (currentThirst >= 40 && currentThirst <= 64) { //NO buff/debuff
+			removeBuff(PeonBuffType.WATERLOGGED);
+			removeBuff(PeonBuffType.HYDRATED);
+			removeDebuff(PeonDebuffType.THIRSTY);
+			removeDebuff(PeonDebuffType.PARCHED);
+		}
+		else if (currentThirst >= 20 && currentThirst <= 39) { //Thirsty Debuff
+			removeBuff(PeonBuffType.WATERLOGGED);
+			removeBuff(PeonBuffType.HYDRATED);
+			removeDebuff(PeonDebuffType.PARCHED);
+
+			addDebuff(PeonDebuffType.THIRSTY);
+		}
+		else if (currentThirst >= 0 && currentThirst <= 19) { //PARCHED Debuff
+			removeBuff(PeonBuffType.WATERLOGGED);
+			removeBuff(PeonBuffType.HYDRATED);
+			removeDebuff(PeonDebuffType.THIRSTY);
+
+			addDebuff(PeonDebuffType.PARCHED);
+		}
+	}
+
 	/**
 	 * this sets the tool to the peon, tool is the tool that will get set
 	 * it also checks if the peon's job is suitable for the tool
@@ -518,19 +660,19 @@ public class Peon extends AgentEntity {
 		}
 
 	}
-	
+
 	/**
 	 * Get the tool the peon has currently equipped
-	 * 
+	 *
 	 * @return ToolType tool
 	 */
 	public ToolType getTool() {
 		return this.tool;
 	}
-	
+
 	/**
 	 * Upgrade Tool the peon currently has by 1.
-	 * 
+	 *
 	 */
 	public void upgradeTool() {
 		if((this.getTool().getToolLevel() < 2) && (this.getTool() != null)) {
@@ -542,14 +684,14 @@ public class Peon extends AgentEntity {
 					//do nothing.
 					System.out.println("Get a job you jobless bum");
 				}
-			
+
 			} catch (IndexOutOfBoundsException e) {
 				System.out.println("Can't upgrade this tool. Max upgrade reached");
 			}
 		}
 		//Otherwise don't update cause there is no way to.
 	}
-	
+
 	/**
      * Constructs an ArrayList<ArrayList<ToolType>> To be pulled to get information when needed
      * Not sure of any other way to access all the enums values... as .values() didn't work :S
@@ -569,61 +711,61 @@ public class Peon extends AgentEntity {
 
     	this.allTools.addAll(Arrays.asList(lumberJackTools, minerTools, builderTools, doctorTools, farmerTools, teacherTools, blacksmithTools, bakerTools, masonTools, joblessTools ));
     }
-    
+
     /**
      * Returns the list containing all the ENUM Values
      * @return ArrayList<ArrayList<ToolType>>
-     * 
+     *
      * Chosen to go this route rather than .values() to do soemthing things with it.
      */
 	public ArrayList<ArrayList<ToolType>> getAllToolsList() {
 		return this.allTools;
 	}
-	
+
 	/**
 	 * Returns the List containing only the tools for the job.
 	 * This is only being used to get the tool list.
-	 * 
+	 *
 	 * @param job - the currentJob
-	 * @return the arrayList. 
+	 * @return the arrayList.
 	 */
 	public ArrayList<ToolType> getJobToolList(JobType job) {
 		if(job == JobType.LUMBERJACK) {
 			return this.allTools.get(0);
-			
+
 		} else if(job == JobType.MINER) {
 			return this.allTools.get(1);
-			
+
 		} else if(job == JobType.BUILDER) {
 			return this.allTools.get(2);
-			
+
 		} else if(job == JobType.DOCTOR) {
 			return this.allTools.get(3);
-			
+
 		} else if(job == JobType.FARMER) {
 			return this.allTools.get(4);
-			
+
 		} else if(job == JobType.TEACHER) {
 			return this.allTools.get(5);
-		
+
 		} else if(job == JobType.BLACKSMITH) {
 			return this.allTools.get(6);
-			
+
 		} else if(job == JobType.BAKER) {
 			return this.allTools.get(7);
-			
+
 		} else if(job == JobType.MASON) {
 			return this.allTools.get(8);
-			
+
 		} else if(job == JobType.JOBLESS) {
 			return this.allTools.get(9);
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Returns a string of resources needed to upgrade the tool
-	 * 
+	 *
 	 * @return String resources
 	 */
 	public String getResourceNeededForUpgrade(ArrayList<ToolType> tool, int currentLevel) {
@@ -634,7 +776,7 @@ public class Peon extends AgentEntity {
 			int stoneNeed = tool.get(currentLevel).getStoneCost();
 			int metalNeed = tool.get(currentLevel).getMetalCost();;
 			int foodNeed = tool.get(currentLevel).getFoodCost();;
-		
+
 			String returnStatement = "" + timberNeed + "/" + stoneNeed + "/" + metalNeed + "/" + foodNeed;
 			return returnStatement;
 		}
@@ -642,5 +784,5 @@ public class Peon extends AgentEntity {
 
 
 
-	
+
 }

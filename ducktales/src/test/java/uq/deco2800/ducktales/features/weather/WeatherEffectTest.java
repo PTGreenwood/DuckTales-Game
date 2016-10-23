@@ -4,6 +4,9 @@ import org.junit.Test;
 import org.junit.Assert;
 
 public class WeatherEffectTest {
+	/**
+	 * Test the WeatherEffect class with setters and getters
+	 */
 	@Test
 	public void testWeatherEffects() {
 		WeatherEffect effect = new WeatherEffect("fire.gif");
