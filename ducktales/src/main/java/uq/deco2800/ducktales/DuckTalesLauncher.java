@@ -31,7 +31,6 @@ public class DuckTalesLauncher extends Application {
 		launch(args);
 	}
 	
-
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		URL location = getClass().getResource("/ducktales.fxml");

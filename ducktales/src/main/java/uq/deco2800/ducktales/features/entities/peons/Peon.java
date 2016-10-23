@@ -40,7 +40,8 @@ public class Peon extends AgentEntity {
 	/** Timers for in-game effects **/
 	private int autoDecreaseTime = 0, //natural hunger/thirst decrease
 							hungryTime = 0, thirstyTime = 0, //hunger/thirst debuff
-							hotTime = 0, coldTime = 0; //temperature debuff
+							hotTime = 0, coldTime = 0, //deciding temperature debuff
+							tempHotTime = 0, tempColdTime = 0; //used to determine health decrease
 
 	private double speed = 0.05;
 	private int health = 1000;
@@ -507,6 +508,49 @@ public class Peon extends AgentEntity {
 	}
 
 	/**
+	 * Function that checks the status of Peon to add buff/debuff - health/hunger/thirst
+	 * also decrease health according to the debuffs
+	 */
+	private void checkPeonStatus() {
+		checkPeonHealth();
+		checkPeonHunger();
+		checkPeonThirst();
+		temperatureEffectOnPeon();
+
+		/** Measure how long the peon is exposed to the debuff **/
+		//HUNGER related
+		if (debuffs.contains(PeonDebuffType.HUNGRY)) { hungryTime += 1; }
+		else if (debuffs.contains(PeonDebuffType.STARVING)) { hungryTime += 2; }
+		else if (!debuffs.contains(PeonDebuffType.HUNGRY)
+							&& !debuffs.contains(PeonDebuffType.STARVING)) { hungryTime = 0; }
+
+		//THIRST related
+		if (debuffs.contains(PeonDebuffType.THIRSTY)) { thirstyTime += 1; }
+		else if (debuffs.contains(PeonDebuffType.PARCHED)) { thirstyTime += 2; }
+		else if (!debuffs.contains(PeonDebuffType.THIRSTY)
+							&& !debuffs.contains(PeonDebuffType.PARCHED)) { thirstyTime = 0; }
+
+		//Temperatue releated
+		// - HOT
+		if (debuffs.contains(PeonDebuffType.HOT)) { tempHotTime += 1; }
+		else if (debuffs.contains(PeonDebuffType.BURNING)) { tempHotTime += 2; }
+		else if (!debuffs.contains(PeonDebuffType.HOT)
+							&& !debuffs.contains(PeonDebuffType.BURNING)) { tempHotTime = 0; }
+
+		// - COLD
+		if (debuffs.contains(PeonDebuffType.COLD)) { tempColdTime += 1; }
+		else if (debuffs.contains(PeonDebuffType.FREEZING)) { tempColdTime += 2; }
+		else if (!debuffs.contains(PeonDebuffType.COLD)
+							&& !debuffs.contains(PeonDebuffType.FREEZING)) { tempColdTime = 0; }
+
+		/** Needs thorough tests to balance out **/
+		if (hungryTime >= 60) { setHealth(getHealth() - 15); }
+		if (thirstyTime >= 60) { setHealth(getHealth() -15); }
+		if (tempHotTime >= 80) { setHealth(getHealth() - 10); }
+		if (tempColdTime >= 80) { setHealth(getHealth() - 10); }
+	}
+
+	/**
 	 * function that decreases the Peon's stats according to the weather
 	 * different weather will have different effect on peon's stats.
 	 */
@@ -515,7 +559,23 @@ public class Peon extends AgentEntity {
 	}
 
 	/**
-	 * function that
+	 * Function that adds debuffs relating to temperature
+	 *	- Calculate the exposed time on certain temperature
+	 *	- At certain threshold of exposed time, add an appropriate debuffs
+	 *
+	 *	TEMP 23 - 26
+	 *		- Increase HotTime by 2
+	 *	TEMP 19 - 22
+	 *		- Increase HotTime by 1
+	 *	TEMP 11 - 18
+	 *		- No Increase
+	 *	TEMP 5 - 10
+	 *		- Increase ColdTime by 1
+	 *	TEMP 0 - 4
+	 *		- Increase ColdTime by 2
+	 *
+	 * HotTime >= 120 adds BURNING and 60 <= HotTime < 120 adds HOT
+	 * ColdTime >= 120 adds FREEZING and 60 <= ColdTime < 120 adds COLD
 	 */
 
 	private void temperatureEffectOnPeon() {
@@ -547,33 +607,24 @@ public class Peon extends AgentEntity {
 			else if ( (hotTime - 2) == 0 ) { hotTime = 0; }
 			else if ( (hotTime - 2) < 0 ) { coldTime = -(hotTime - 2); hotTime = 0;}
 		}
-	}
 
-	/**
-	 * Function that checks the status of Peon to add buff/debuff - health/hunger/thirst
-	 * also decrease health according to the debuffs
-	 */
-	private void checkPeonStatus() {
-		checkPeonHealth();
-		checkPeonHunger();
-		checkPeonThirst();
+		if (hotTime >= 120) {
+			removeDebuff(PeonDebuffType.HOT);
+			addDebuff(PeonDebuffType.BURNING);
+		}
+		else if (hotTime < 120 && hotTime >= 60) {
+			removeDebuff(PeonDebuffType.BURNING); //if hotTime decrease from over 60
+			addDebuff(PeonDebuffType.HOT);
+		}
 
-		/** Measure how long the peon is exposed to the debuff **/
-		//HUNGER related
-		if (debuffs.contains(PeonDebuffType.HUNGRY)) { hungryTime += 1; }
-		else if (debuffs.contains(PeonDebuffType.STARVING)) { hungryTime += 2; }
-		else if (!debuffs.contains(PeonDebuffType.HUNGRY)
-							&& !debuffs.contains(PeonDebuffType.STARVING)) { hungryTime = 0; }
-
-		//THIRST related
-		if (debuffs.contains(PeonDebuffType.THIRSTY)) { thirstyTime += 1; }
-		else if (debuffs.contains(PeonDebuffType.PARCHED)) { thirstyTime += 2; }
-		else if (!debuffs.contains(PeonDebuffType.THIRSTY)
-							&& !debuffs.contains(PeonDebuffType.PARCHED)) { thirstyTime = 0; }
-
-		// every 60 hungryTime/thirstyTime, loses health by 15
-		if (hungryTime >= 60) { setHealth(getHealth() - 15); }
-		if (thirstyTime >= 60) { setHealth(getHealth() -15); }
+		if (coldTime >= 120) {
+			removeDebuff(PeonDebuffType.COLD);
+			addDebuff(PeonDebuffType.FREEZING);
+		}
+		else if (coldTime < 120 && coldTime >= 60) {
+			removeDebuff(PeonDebuffType.FREEZING);
+			addDebuff(PeonDebuffType.COLD);
+		}
 	}
 
 	/**
