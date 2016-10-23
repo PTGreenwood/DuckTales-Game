@@ -45,30 +45,24 @@ public class Animal extends AgentEntity {
 	private static final int MAXSTARTTHIRST = 50;
 	private static final int MINSTARTSTRENGTH = 0;
 	private static final int MAXSTARTSTRENGTH = 50;
-	private static final int HUNGERINCREASERATE = 10; // Rate at which hunger
-														// will increase.
-	private static final int THIRSTINCREASERATE = 10; // Rate at which thirst
-														// will increase.
-	private static final int HEALTHDECREASERATE = 10; // Rate at which health
-														// will decrease.
+	private static final int HUNGERINCREASERATE = 10; 
+	private static final int THIRSTINCREASERATE = 10;	
+	private static final int HEALTHDECREASERATE = 10; 
 	protected int health; // The animal's state of health.
 	protected int hunger; // The animal's state of hunger.
 	protected int thirst; // The animal's state of thirst.
 	protected int strength; // The animal's strength.
 	protected double speed; // The animal's movement speed.
 	protected ResourceType type; // The type of the animal
-	private int time = 0; // Interval in game minutes with which attributes will
-							// decrease.
+	private int time = 0; // Interval in game minutes with which attributes will decrease.
 	private boolean canBeKilled; // Determines whether the animal can be killed.
-	private boolean outOfZone; // Determines whether the animal is out of its
-								// zone
+	private boolean outOfZone; // Determines whether the animal is out of its zone
 	private boolean isDead = false; // Whether the animal is dead.
 	private String direction; // The direction that the animal is travelling.
 	private List<Point> goalPoints;
 	private MainEntityManager mainEntityManager = MainEntityManager.getInstance();
 	// The variables below are used to alternate images for animation.
-	private int animationStage; // Determines which of the two images per
-								// direction is rendered.
+	private int animationStage; // Determines which of the two images per direction is rendered.
 	private int currentAnimationTick;
 	private int animationSpeed;
 
