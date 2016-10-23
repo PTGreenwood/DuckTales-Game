@@ -41,14 +41,6 @@ public class BuildingMenuSprite extends HUDSprite {
                         event.getSceneX(), event.getSceneY()));
             }
         });
-    }
-    
-    public void selectSprite() {
-    	Point cursorPoints = MouseInfo.getPointerInfo().getLocation();    	
-    	fireEvent(new MenuSelectedEvent(
-                MenuManager.MenuType.BUILDING, this.getSpriteType(),
-                cursorPoints.getX(), cursorPoints.getY()));    	
-    }
-
+    }   
 
 }

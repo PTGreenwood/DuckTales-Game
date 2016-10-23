@@ -45,9 +45,18 @@ import static uq.deco2800.ducktales.resources.ResourceType.SAWMILL;
 import static uq.deco2800.ducktales.resources.ResourceType.SHEEP;
 import static uq.deco2800.ducktales.resources.ResourceType.SHEEPRight0;
 import static uq.deco2800.ducktales.resources.ResourceType.SHEEPRight1;
-import static uq.deco2800.ducktales.resources.ResourceType.TREE_1;
-import static uq.deco2800.ducktales.resources.ResourceType.TREE_2;
-import static uq.deco2800.ducktales.resources.ResourceType.TREE_3;
+import static uq.deco2800.ducktales.resources.ResourceType.TREE_1_SUMMER;
+import static uq.deco2800.ducktales.resources.ResourceType.TREE_2_SUMMER;
+import static uq.deco2800.ducktales.resources.ResourceType.TREE_3_SUMMER;
+import static uq.deco2800.ducktales.resources.ResourceType.TREE_1_AUTUMN;
+import static uq.deco2800.ducktales.resources.ResourceType.TREE_2_AUTUMN;
+import static uq.deco2800.ducktales.resources.ResourceType.TREE_3_AUTUMN;
+import static uq.deco2800.ducktales.resources.ResourceType.TREE_1_WINTER;
+import static uq.deco2800.ducktales.resources.ResourceType.TREE_2_WINTER;
+import static uq.deco2800.ducktales.resources.ResourceType.TREE_3_WINTER;
+import static uq.deco2800.ducktales.resources.ResourceType.TREE_1_SPRING;
+import static uq.deco2800.ducktales.resources.ResourceType.TREE_2_SPRING;
+import static uq.deco2800.ducktales.resources.ResourceType.TREE_3_SPRING;
 import static uq.deco2800.ducktales.resources.ResourceType.VOID;
 import static uq.deco2800.ducktales.resources.ResourceType.WATER;
 import static uq.deco2800.ducktales.resources.ResourceType.WOOD_BOX;
@@ -263,6 +272,13 @@ public class ResourceSpriteRegister {
 		addResource(GYMNASIUM_3, "/buildings/gymnasium/gymnasium_3.png");
 		addResource(GYMNASIUM_4, "/buildings/gymnasium/gymnasium_4.png");
 		addResource(GYMNASIUM_5, "/buildings/gymnasium/gymnasium_5.png");
+		
+		addResource(GYMNASIUM_NIGHT_1, "/buildings/gymnasium_night/gymnasium_night_1.png");
+		addResource(GYMNASIUM_NIGHT_2, "/buildings/gymnasium_night/gymnasium_night_2.png");
+		addResource(GYMNASIUM_NIGHT_3, "/buildings/gymnasium_night/gymnasium_night_3.png");
+		addResource(GYMNASIUM_NIGHT_4, "/buildings/gymnasium_night/gymnasium_night_4.png");
+		addResource(GYMNASIUM_NIGHT_5, "/buildings/gymnasium_night/gymnasium_night_5.png");
+		addResource(GYMNASIUM_NIGHT_6, "/buildings/gymnasium_night/gymnasium_night_6.png");
 		// Hospital
 		addResource(HOSPITAL_1, "/buildings/hospital/hospital_1.png");
 		addResource(HOSPITAL_2, "/buildings/hospital/hospital_2.png");
@@ -341,7 +357,6 @@ public class ResourceSpriteRegister {
 		/*
 		 * ANIMALS
 		 */
-		addResource(DUCK, "/animal/duck/DUCKDown0.png");
 		addResource(DUCK_1_1, "/animal/duck_1_1.png");
 
 		addResource(DUCKDown0, "/animal/duck/DUCKDown0.png");
@@ -362,14 +377,19 @@ public class ResourceSpriteRegister {
 		addResource(SHEEPRight0, "/animal/sheep/SHEEPRight0.png");
 		addResource(SHEEPRight1, "/animal/sheep/SHEEPRight1.png");
 
-		addResource(SHEEP, "/animal/sheep_with_wool.png");
-
-		addResource(COW, "/animal/cow/COW.png");
 		// addResource(COWUpRight, "/COWUpRight.png");
 		// addResource(COWUpLeft, "/COWUpLeft.png");
 		// addResource(COWDownRight, "/COWDownRight.png");
 		// addResource(COWDownLeft, "/COWDownLeft.png");
-	}	
+
+		/*
+		 * For the Menu
+		 */
+		addResource(SHEEP, "/animal/menu/sheep_stand.png");
+		addResource(WOLF, "/animal/menu/wolf_front.png");
+		addResource(COW, "/animal/menu/cow_front.png");
+		addResource(DUCK, "/animal/menu/duck_stand.png");
+	}
 	
 	/**
 	 * Add the resources for droppable resource entitis, 
@@ -387,9 +407,18 @@ public class ResourceSpriteRegister {
 		addResource(BOX, "/box2.png");
 		addResource(LONG_BOX, "/longbox.png");
 		addResource(WOOD_BOX, "/wood_stock.png");
-		addResource(TREE_1, "/tree_1.png");
-		addResource(TREE_2, "/tree_2.png");
-		addResource(TREE_3, "/tree_3.png");
+		addResource(TREE_1_SUMMER, "/gameresources/trees/seasons/tree_1_summer.png");
+		addResource(TREE_2_SUMMER, "/gameresources/trees/seasons/tree_2_summer.png");
+		addResource(TREE_3_SUMMER, "/gameresources/trees/seasons/tree_3_summer.png");
+		addResource(TREE_1_AUTUMN, "/gameresources/trees/seasons/tree_1_autumn.png");
+		addResource(TREE_2_AUTUMN, "/gameresources/trees/seasons/tree_2_autumn.png");
+		addResource(TREE_3_AUTUMN, "/gameresources/trees/seasons/tree_3_autumn.png");
+		addResource(TREE_1_WINTER, "/gameresources/trees/seasons/tree_1_winter.png");
+		addResource(TREE_2_WINTER, "/gameresources/trees/seasons/tree_2_winter.png");
+		addResource(TREE_3_WINTER, "/gameresources/trees/seasons/tree_3_winter.png");
+		addResource(TREE_1_SPRING, "/gameresources/trees/seasons/tree_1_spring.png");
+		addResource(TREE_2_SPRING, "/gameresources/trees/seasons/tree_2_spring.png");
+		addResource(TREE_3_SPRING, "/gameresources/trees/seasons/tree_3_spring.png");		
 		addResource(ROCK_1, "/rock_1.png");
 		addResource(ROCK_2, "/rock_2.png");
 	}

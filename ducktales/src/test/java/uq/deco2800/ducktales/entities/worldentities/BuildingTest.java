@@ -1633,4 +1633,20 @@ public class BuildingTest {
 		StorageBarn entity = new StorageBarn(1,1);
 		entity.produceMaterial();
 	}
+	
+	/**
+	 * Test to ProduceStorageBuilding method. 
+	 */
+	@Test 
+	public void buildingTypeTest() {
+		Building entity = new StorageBarn(1,1);
+		StorageProduceBuilding entitySP = new StorageBarn(1,1);
+		Building entity2 = new Sawmill(3,5);
+		StorageProduceBuilding entity2SP = new Sawmill(3,5);
+		Building entity3 = new House(9,10);
+		
+		assertEquals(entity.toStorageProduceBuilding(entity), entitySP);
+		assertEquals(entity2.toStorageProduceBuilding(entity2), entity2SP);
+		assertEquals(entity3.toStorageProduceBuilding(entity3), null);
+	}
 }

@@ -2,318 +2,425 @@
 <class-diagram version="1.1.10" icons="true" automaticImage="PNG" always-add-relationships="false" 
   generalizations="true" realizations="true" associations="true" dependencies="false" nesting-relationships="true" 
   router="FAN">  
-  <class id="1" language="java" name="uq.deco2800.ducktales.features.entities.worldentities.Butcher" project="ducktales" 
-    file="/ducktales/src/main/java/uq/deco2800/ducktales/features/entities/worldentities/Butcher.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="701" y="1296"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="2" language="java" name="uq.deco2800.ducktales.features.entities.worldentities.Hospital" 
+  <class id="1" language="java" name="uq.deco2800.ducktales.features.entities.worldentities.Hospital" 
     project="ducktales" 
     file="/ducktales/src/main/java/uq/deco2800/ducktales/features/entities/worldentities/Hospital.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="431" y="1143"/>    
+    <position height="-1" width="-1" x="514" y="-229"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="3" language="java" name="uq.deco2800.ducktales.features.entities.worldentities.Mine" project="ducktales" 
+  <class id="2" language="java" name="uq.deco2800.ducktales.features.entities.worldentities.Mine" project="ducktales" 
     file="/ducktales/src/main/java/uq/deco2800/ducktales/features/entities/worldentities/Mine.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="243" y="603"/>    
+    <position height="-1" width="-1" x="1877" y="750"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="uq.deco2800.ducktales.features.entities.worldentities.Box" project="ducktales" 
+  <class id="3" language="java" name="uq.deco2800.ducktales.features.entities.worldentities.Box" project="ducktales" 
     file="/ducktales/src/main/java/uq/deco2800/ducktales/features/entities/worldentities/Box.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="967" y="1383"/>    
+    <position height="-1" width="-1" x="261" y="-133"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="uq.deco2800.ducktales.features.entities.worldentities.Sawmill" project="ducktales" 
+  <class id="4" language="java" name="uq.deco2800.ducktales.features.entities.worldentities.Sawmill" project="ducktales" 
     file="/ducktales/src/main/java/uq/deco2800/ducktales/features/entities/worldentities/Sawmill.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1278" y="1410"/>    
+    <position height="-1" width="-1" x="2306" y="790"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="6" language="java" name="uq.deco2800.ducktales.features.entities.worldentities.Church" project="ducktales" 
+  <class id="5" language="java" name="uq.deco2800.ducktales.features.entities.worldentities.Church" project="ducktales" 
     file="/ducktales/src/main/java/uq/deco2800/ducktales/features/entities/worldentities/Church.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1549" y="1396"/>    
+    <position height="-1" width="-1" x="136" y="103"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="7" language="java" name="uq.deco2800.ducktales.features.entities.worldentities.Farm" project="ducktales" 
-    file="/ducktales/src/main/java/uq/deco2800/ducktales/features/entities/worldentities/Farm.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1813" y="1310"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <enumeration id="8" language="java" name="uq.deco2800.ducktales.features.entities.worldentities.Building.production" 
+  <class id="6" language="java" name="uq.deco2800.ducktales.features.entities.worldentities.WorldEntity" 
     project="ducktales" 
-    file="/ducktales/src/main/java/uq/deco2800/ducktales/features/entities/worldentities/Building.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="946" y="-300"/>    
+    file="/ducktales/src/main/java/uq/deco2800/ducktales/features/entities/worldentities/WorldEntity.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2053" y="128"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <enumeration id="7" language="java" 
+    name="uq.deco2800.ducktales.features.entities.worldentities.StorageProduceBuilding.production" project="ducktales" 
+    file="/ducktales/src/main/java/uq/deco2800/ducktales/features/entities/worldentities/StorageProduceBuilding.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2392" y="-25"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </enumeration>  
-  <class id="9" language="java" name="uq.deco2800.ducktales.features.entities.worldentities.WorldEntity" 
-    project="ducktales" 
-    file="/ducktales/src/main/java/uq/deco2800/ducktales/features/entities/worldentities/WorldEntity.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="649" y="-92"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="10" language="java" name="uq.deco2800.ducktales.features.entities.worldentities.Bakery" project="ducktales" 
-    file="/ducktales/src/main/java/uq/deco2800/ducktales/features/entities/worldentities/Bakery.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="315" y="343"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="11" language="java" name="uq.deco2800.ducktales.features.entities.worldentities.Building" 
-    project="ducktales" 
-    file="/ducktales/src/main/java/uq/deco2800/ducktales/features/entities/worldentities/Building.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1262" y="683"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="12" language="java" name="uq.deco2800.ducktales.features.entities.worldentities.Constructor" 
-    project="ducktales" 
-    file="/ducktales/src/main/java/uq/deco2800/ducktales/features/entities/worldentities/Constructor.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1324" y="-195"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="13" language="java" name="uq.deco2800.ducktales.features.entities.worldentities.Barn" project="ducktales" 
+  <class id="8" language="java" name="uq.deco2800.ducktales.features.entities.worldentities.Barn" project="ducktales" 
     file="/ducktales/src/main/java/uq/deco2800/ducktales/features/entities/worldentities/Barn.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="580" y="203"/>    
+    <position height="-1" width="-1" x="239" y="315"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="14" language="java" name="uq.deco2800.ducktales.features.entities.worldentities.House" project="ducktales" 
-    file="/ducktales/src/main/java/uq/deco2800/ducktales/features/entities/worldentities/House.java" binary="false" 
+  <class id="9" language="java" name="uq.deco2800.ducktales.features.entities.worldentities.School" project="ducktales" 
+    file="/ducktales/src/main/java/uq/deco2800/ducktales/features/entities/worldentities/School.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1571" y="103"/>    
+    <position height="-1" width="-1" x="366" y="543"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="15" language="java" name="uq.deco2800.ducktales.features.entities.worldentities.Cemetery" 
-    project="ducktales" 
-    file="/ducktales/src/main/java/uq/deco2800/ducktales/features/entities/worldentities/Cemetery.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="322" y="856"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="16" language="java" name="uq.deco2800.ducktales.features.entities.worldentities.CommunityBuilding" 
+  <class id="10" language="java" name="uq.deco2800.ducktales.features.entities.worldentities.CommunityBuilding" 
     project="ducktales" 
     file="/ducktales/src/main/java/uq/deco2800/ducktales/features/entities/worldentities/CommunityBuilding.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1846" y="157"/>    
+    <position height="-1" width="-1" x="505" y="779"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="17" language="java" name="uq.deco2800.ducktales.features.entities.worldentities.LongBox" 
-    project="ducktales" 
-    file="/ducktales/src/main/java/uq/deco2800/ducktales/features/entities/worldentities/LongBox.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2097" y="230"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="18" language="java" name="uq.deco2800.ducktales.features.entities.worldentities.Observatory" 
-    project="ducktales" 
-    file="/ducktales/src/main/java/uq/deco2800/ducktales/features/entities/worldentities/Observatory.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2235" y="470"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="19" language="java" name="uq.deco2800.ducktales.features.entities.worldentities.Quarry" project="ducktales" 
+  <class id="11" language="java" name="uq.deco2800.ducktales.features.entities.worldentities.Quarry" project="ducktales" 
     file="/ducktales/src/main/java/uq/deco2800/ducktales/features/entities/worldentities/Quarry.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2179" y="970"/>    
+    <position height="-1" width="-1" x="2750" y="750"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="20" language="java" name="uq.deco2800.ducktales.features.entities.worldentities.Forge" project="ducktales" 
+  <class id="12" language="java" name="uq.deco2800.ducktales.features.entities.worldentities.StorageBarn" 
+    project="ducktales" 
+    file="/ducktales/src/main/java/uq/deco2800/ducktales/features/entities/worldentities/StorageBarn.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2843" y="201"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="uq.deco2800.ducktales.features.entities.worldentities.Forge" project="ducktales" 
     file="/ducktales/src/main/java/uq/deco2800/ducktales/features/entities/worldentities/Forge.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2276" y="723"/>    
+    <position height="-1" width="-1" x="680" y="999"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="21" language="java" name="uq.deco2800.ducktales.features.entities.worldentities.Pasture" 
+  <class id="14" language="java" name="uq.deco2800.ducktales.features.entities.worldentities.StorageProduceBuilding" 
+    project="ducktales" 
+    file="/ducktales/src/main/java/uq/deco2800/ducktales/features/entities/worldentities/StorageProduceBuilding.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2272" y="354"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="uq.deco2800.ducktales.features.entities.worldentities.Pasture" 
     project="ducktales" 
     file="/ducktales/src/main/java/uq/deco2800/ducktales/features/entities/worldentities/Pasture.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2088" y="1210"/>    
+    <position height="-1" width="-1" x="947" y="1055"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <generalization id="22">    
-    <end type="SOURCE" refId="14"/>    
-    <end type="TARGET" refId="11"/>  
-  </generalization>  
-  <generalization id="23">    
-    <end type="SOURCE" refId="17"/>    
-    <end type="TARGET" refId="11"/>  
-  </generalization>  
-  <generalization id="24">    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="11"/>  
-  </generalization>  
-  <generalization id="25">    
-    <end type="SOURCE" refId="18"/>    
-    <end type="TARGET" refId="11"/>  
-  </generalization>  
-  <generalization id="26">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="11"/>  
-  </generalization>  
+  <class id="16" language="java" name="uq.deco2800.ducktales.features.entities.worldentities.Butcher" 
+    project="ducktales" 
+    file="/ducktales/src/main/java/uq/deco2800/ducktales/features/entities/worldentities/Butcher.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1218" y="1039"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="17" language="java" name="uq.deco2800.ducktales.features.entities.worldentities.Farm" project="ducktales" 
+    file="/ducktales/src/main/java/uq/deco2800/ducktales/features/entities/worldentities/Farm.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3220" y="550"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="18" language="java" name="uq.deco2800.ducktales.features.entities.worldentities.Gymnasium" 
+    project="ducktales" 
+    file="/ducktales/src/main/java/uq/deco2800/ducktales/features/entities/worldentities/Gymnasium.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1481" y="1035"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="19" language="java" name="uq.deco2800.ducktales.features.entities.worldentities.Bakery" project="ducktales" 
+    file="/ducktales/src/main/java/uq/deco2800/ducktales/features/entities/worldentities/Bakery.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="784" y="-261"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="20" language="java" name="uq.deco2800.ducktales.features.entities.worldentities.BuildingManager" 
+    project="ducktales" 
+    file="/ducktales/src/main/java/uq/deco2800/ducktales/features/entities/worldentities/BuildingManager.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2051" y="-17"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="21" language="java" name="uq.deco2800.ducktales.features.entities.worldentities.Building" 
+    project="ducktales" 
+    file="/ducktales/src/main/java/uq/deco2800/ducktales/features/entities/worldentities/Building.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1215" y="471"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="22" language="java" name="uq.deco2800.ducktales.features.entities.worldentities.Constructor" 
+    project="ducktales" 
+    file="/ducktales/src/main/java/uq/deco2800/ducktales/features/entities/worldentities/Constructor.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2144" y="-292"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="23" language="java" name="uq.deco2800.ducktales.features.entities.worldentities.House" project="ducktales" 
+    file="/ducktales/src/main/java/uq/deco2800/ducktales/features/entities/worldentities/House.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1043" y="-285"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="24" language="java" name="uq.deco2800.ducktales.features.entities.worldentities.Cemetery" 
+    project="ducktales" 
+    file="/ducktales/src/main/java/uq/deco2800/ducktales/features/entities/worldentities/Cemetery.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1298" y="-329"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="25" language="java" name="uq.deco2800.ducktales.features.entities.worldentities.LongBox" 
+    project="ducktales" 
+    file="/ducktales/src/main/java/uq/deco2800/ducktales/features/entities/worldentities/LongBox.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1553" y="-313"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="26" language="java" name="uq.deco2800.ducktales.features.entities.worldentities.Observatory" 
+    project="ducktales" 
+    file="/ducktales/src/main/java/uq/deco2800/ducktales/features/entities/worldentities/Observatory.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1796" y="-277"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
   <generalization id="27">    
-    <end type="SOURCE" refId="15"/>    
-    <end type="TARGET" refId="11"/>  
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="21"/>  
   </generalization>  
   <generalization id="28">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="11"/>  
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="21"/>  
   </generalization>  
-  <dependency id="29">    
-    <end type="SOURCE" refId="12"/>    
-    <end type="TARGET" refId="8"/>  
-  </dependency>  
+  <generalization id="29">    
+    <end type="SOURCE" refId="24"/>    
+    <end type="TARGET" refId="21"/>  
+  </generalization>  
   <generalization id="30">    
-    <end type="SOURCE" refId="21"/>    
-    <end type="TARGET" refId="11"/>  
+    <end type="SOURCE" refId="26"/>    
+    <end type="TARGET" refId="21"/>  
   </generalization>  
-  <association id="31">    
-    <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="32" name="productionType"/>      
-      <multiplicity id="33" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="8" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="34">    
-    <end type="SOURCE" refId="12"/>    
-    <end type="TARGET" refId="11"/>  
+  <generalization id="31">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="14"/>  
+  </generalization>  
+  <generalization id="32">    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="21"/>  
+  </generalization>  
+  <dependency id="33">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="7"/>  
   </dependency>  
+  <generalization id="34">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="21"/>  
+  </generalization>  
   <generalization id="35">    
-    <end type="SOURCE" refId="10"/>    
-    <end type="TARGET" refId="11"/>  
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="21"/>  
   </generalization>  
   <generalization id="36">    
-    <end type="SOURCE" refId="19"/>    
-    <end type="TARGET" refId="11"/>  
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="14"/>  
   </generalization>  
-  <generalization id="37">    
-    <end type="SOURCE" refId="16"/>    
-    <end type="TARGET" refId="11"/>  
-  </generalization>  
+  <dependency id="37">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="7"/>  
+  </dependency>  
   <generalization id="38">    
-    <end type="SOURCE" refId="13"/>    
-    <end type="TARGET" refId="11"/>  
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="21"/>  
   </generalization>  
   <generalization id="39">    
-    <end type="SOURCE" refId="11"/>    
-    <end type="TARGET" refId="9"/>  
+    <end type="SOURCE" refId="21"/>    
+    <end type="TARGET" refId="6"/>  
   </generalization>  
-  <generalization id="40">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="11"/>  
-  </generalization>  
-  <generalization id="41">    
-    <end type="SOURCE" refId="20"/>    
-    <end type="TARGET" refId="11"/>  
-  </generalization>  
-  <generalization id="42">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="11"/>  
-  </generalization>  
+  <association id="40">    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="41" name="productionType"/>      
+      <multiplicity id="42" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
   <nesting id="43">    
-    <end type="SOURCE" refId="11"/>    
-    <end type="TARGET" refId="8"/>  
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="7"/>  
   </nesting>  
   <generalization id="44">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="11"/>  
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="21"/>  
   </generalization>  
   <generalization id="45">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="11"/>  
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="21"/>  
   </generalization>  
+  <dependency id="46">    
+    <end type="SOURCE" refId="21"/>    
+    <end type="TARGET" refId="14"/>  
+  </dependency>  
+  <dependency id="47">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="7"/>  
+  </dependency>  
+  <dependency id="48">    
+    <end type="SOURCE" refId="22"/>    
+    <end type="TARGET" refId="21"/>  
+  </dependency>  
+  <generalization id="49">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="14"/>  
+  </generalization>  
+  <dependency id="50">    
+    <end type="SOURCE" refId="22"/>    
+    <end type="TARGET" refId="14"/>  
+  </dependency>  
+  <generalization id="51">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="21"/>  
+  </generalization>  
+  <generalization id="52">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="21"/>  
+  </generalization>  
+  <generalization id="53">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="14"/>  
+  </generalization>  
+  <generalization id="54">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="21"/>  
+  </generalization>  
+  <dependency id="55">    
+    <end type="SOURCE" refId="22"/>    
+    <end type="TARGET" refId="7"/>  
+  </dependency>  
+  <dependency id="56">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="7"/>  
+  </dependency>  
+  <generalization id="57">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="21"/>  
+  </generalization>  
+  <generalization id="58">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="14"/>  
+  </generalization>  
+  <generalization id="59">    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="21"/>  
+  </generalization>  
+  <dependency id="60">    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="7"/>  
+  </dependency>  
+  <generalization id="61">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="21"/>  
+  </generalization>  
+  <dependency id="62">    
+    <end type="SOURCE" refId="20"/>    
+    <end type="TARGET" refId="21"/>  
+  </dependency>  
+  <dependency id="63">    
+    <end type="SOURCE" refId="21"/>    
+    <end type="TARGET" refId="14"/>  
+  </dependency>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    
