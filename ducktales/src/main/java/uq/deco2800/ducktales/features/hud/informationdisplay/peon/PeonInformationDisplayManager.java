@@ -103,20 +103,8 @@ public class PeonInformationDisplayManager
 
     public void setPeon(Peon peon) {
     	this.peon = peon;
-    	//Setting peons with jobs/tools for testing here.
-    	//
-         //Setting to axe level 1 to start with.
-        //peon.setTool(ToolType.AXElevel1);
-    	//this.peon.setJob(JobType.LUMBERJACK);
-		//this.peon.setJob(JobType.BLACKSMITH);
-		//this.peon.setJob(JobType.MINER);
-		//this.peon.setJob(JobType.BUILDER);
-		//this.peon.setJob(JobType.DOCTOR);
-		//this.peon.setJob(JobType.FARMER);
-    	//this.peon.setJob(JobType.GYMCOACH);
-		//this.peon.setJob(JobType.MASON);
-		//this.peon.setJob(JobType.TEACHER);
-    	this.peon.setJob(JobType.JOBLESS);
+    	
+
     }
     
     /**
@@ -126,6 +114,9 @@ public class PeonInformationDisplayManager
     public void displayPeon() {
 
         // Get the information of the peon
+        Image peonSpriteImage = rsr.getInstance().getResourceImage(this.peon.getType());
+        peonImage.setImage(peonSpriteImage);
+        
         peonName.setText(peon.getPeonName());
         peonIntelligence.setText(Integer.toString(peon.getIntelligence()));
         peonStrength.setText(Integer.toString(peon.getStrength()));
@@ -155,43 +146,53 @@ public class PeonInformationDisplayManager
     }
     
     @FXML public void setLumberJack() {
-    	
+    	this.peon.setJob(JobType.LUMBERJACK);
+    	updatePeonSprite(ResourceType.LUMBERJACK);
     }
     
     @FXML public void setMiner() {
-    	
+    	this.peon.setJob(JobType.MINER);
+    	updatePeonSprite(ResourceType.MINER);   	
     }    
     
     @FXML public void setBuilder() {
-    	
+    	this.peon.setJob(JobType.BUILDER);
+    	updatePeonSprite(ResourceType.BUILDER);   	
     }
     
     @FXML public void setDoctor() {
-    	
+    	this.peon.setJob(JobType.DOCTOR);
+    	updatePeonSprite(ResourceType.DOCTOR);   	
     }
     
     @FXML public void setFarmer() {
-    	
+    	this.peon.setJob(JobType.FARMER);
+    	updatePeonSprite(ResourceType.FARMER);    	
     }    
     
     @FXML public void setTeacher() {
-    	
+    	this.peon.setJob(JobType.TEACHER);
+    	updatePeonSprite(ResourceType.TEACHER);    	
     }
     
     @FXML public void setBlackSmith() {
-    	
+    	this.peon.setJob(JobType.BLACKSMITH);
+    	updatePeonSprite(ResourceType.BLACKSMITH);    	
     }
     
     @FXML public void setMason() {
-    	
+    	this.peon.setJob(JobType.MASON);
+    	updatePeonSprite(ResourceType.STONE_MASON);    	
     }
     
     @FXML public void setGymCoach() {
-    	
+    	this.peon.setJob(JobType.GYMCOACH);
+    	updatePeonSprite(ResourceType.GYMCOACH);   	
     }
     
     @FXML public void setJobless() {
-    	
+    	this.peon.setJob(JobType.JOBLESS);
+    	updatePeonSprite(ResourceType.PEON);    	
     }
     
     @FXML public void handleUpgradeToolButtonAction() {
@@ -207,15 +208,7 @@ public class PeonInformationDisplayManager
     					updatePeonSprite(ResourceType.LUMBERJACK);
     				}
     				break;
-    		
-    		/*case BAKER:
-					if(toolLevel == 1) {
-						updatePeonSprite(ResourceType.BAKER);
-					} else {
-						updatePeonSprite(ResourceType.LUMBERJACK);
-					}
-					break;
-			*/
+
     		case BLACKSMITH:
 					if(toolLevel == 1) {
 						updatePeonSprite(ResourceType.BLACKSMITH);
