@@ -44,7 +44,6 @@ public class AchievementMissionController {
 	public Image getAchievementMissionImage() {
 		Image achievementImage = null;
 		
-				
 		if(missionHandler.getNumberOfCompletedMissions() <= 1.0) {
 			
 			achievementImage = mission1;

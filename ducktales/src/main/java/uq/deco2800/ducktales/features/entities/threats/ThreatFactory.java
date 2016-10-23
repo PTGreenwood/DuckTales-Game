@@ -23,6 +23,7 @@ import uq.deco2800.ducktales.resources.ResourceType;
 public class ThreatFactory {
 	 /** CONSTANTS */
 	private static String timer = "Timer";
+	private static String invalidEnemy = "Invalid enemy type";
 	protected static ArrayList<Effect> effectsList = new ArrayList<Effect>();
 	protected static ArrayList<Enemy> enemiesList = new ArrayList<Enemy>();
 	public static HashMap<Integer, Enemy> enemyMap = new HashMap<Integer, Enemy>();
@@ -37,18 +38,22 @@ public class ThreatFactory {
      *
      * @param ResourceType
      *          the type of the enemy to be created
+	 * @throws Exception 
      *          
      */
-	public static void createLevel1Enemy(ResourceType enemy) {
+	public static void createLevel1Enemy(ResourceType enemy) throws Exception {
 		switch(enemy) {
 		case RACCOON:
 				createRaccoon(ResourceType.RACCOON);
+				break;
 		case BEETLE:
 				createBeetle(ResourceType.BEETLE);
+				break;
 		case WILD_VILLAGER:
 				createWildVillager(ResourceType.WILD_VILLAGER);
+				break;
 		default:
-			// throw error message
+			throw new Exception(invalidEnemy);
 		}
 		
 	}
@@ -58,16 +63,19 @@ public class ThreatFactory {
      *
      * @param ResourceType
      *          the type of the effect to be created
+	 * @throws Exception 
      *          
      */
-	public static void createLevel1Effect(ResourceType effect) {
+	public static void createLevel1Effect(ResourceType effect) throws Exception {
 		switch(effect) {
 		case BLACK_SMOKE:
 				createBlackSmoke(ResourceType.BLACK_SMOKE);
+				break;
 		case SHAKE:
 				createShake(ResourceType.SHAKE);
+				break;
 		default:
-			//throw error message
+			throw new Exception(invalidEnemy);
 		}
 	}
 	
@@ -76,22 +84,27 @@ public class ThreatFactory {
      *
      * @param ResourceType
      *          the type of the enemy to be created
+	 * @throws Exception 
      *          
      */
-	public static void createLevel2Enemy(ResourceType enemy) {
+	public static void createLevel2Enemy(ResourceType enemy) throws Exception {
 		switch(enemy) {
 		// note the name of this resource had to be changed to 
-		// ENEMY_WOLF due to the pre-existence of a WOLF resource
-		case ENEMY_WOLF:
-				createWolf(ResourceType.ENEMY_WOLF);
+		// enemyWolf due to the pre-existence of a WOLF resource
+		case ENEMYWOLF:
+				createWolf(ResourceType.ENEMYWOLF);
+				break;
 		case CROW:
 				createCrow(ResourceType.CROW);
+				break;
 		case GORILLA:
 				createGorilla(ResourceType.GORILLA);
+				break;
 		case EVIL_DUCK:
 				createEvilDuck(ResourceType.EVIL_DUCK);
+				break;
 		default:
-			//Throw error message
+			throw new Exception(invalidEnemy);
 		}	
 	}
 	
@@ -100,16 +113,19 @@ public class ThreatFactory {
      *
      * @param ResourceType
      *          the type of the effect to be created
+	 * @throws Exception 
      *          
      */
-	public static void createLevel2Effect(ResourceType effect) {
+	public static void createLevel2Effect(ResourceType effect) throws Exception {
 		switch(effect) {
 		case POISON_CLOUD:
 				createPoisonCloud(ResourceType.POISON_CLOUD);
+				break;
 		case RUMBLE:
 				createRumble(ResourceType.RUMBLE);
+				break;
 		default:
-			//Throw error message
+			throw new Exception(invalidEnemy);
 		}
 	}
 	
@@ -118,19 +134,22 @@ public class ThreatFactory {
      *
      * @param ResourceType
      *          the type of the enemy to be created
+	 * @throws Exception 
      *          
      */
-	public static void createLevel3Enemy(ResourceType enemy) {
+	public static void createLevel3Enemy(ResourceType enemy) throws Exception {
 		switch(enemy) {
 		case LION:
 				createLion(ResourceType.LION);
+				break;
 		case CHIMP:
 				createChimp(ResourceType.CHIMP);
+				break;
 		case BEAR:
 				createBear(ResourceType.BEAR);
-		
+				break;
 		default:
-			//Throw error message
+			throw new Exception(invalidEnemy);
 		}
 	}
 	
@@ -139,16 +158,19 @@ public class ThreatFactory {
      *
      * @param ResourceType
      *          the type of the effect to be created
+	 * @throws Exception 
      *          
      */
-	public static void createLevel3Effect(ResourceType effect) {
+	public static void createLevel3Effect(ResourceType effect) throws Exception {
 		switch(effect) {
 		case EARTHQUAKE: 
 			createEarthquake(ResourceType.EARTHQUAKE);
+			break;
 		case GREEN_FEL_FIRE:
 			createGreenFelFire(ResourceType.GREEN_FEL_FIRE);
+			break;
 		default:
-			//Throw error message
+			throw new Exception(invalidEnemy);
 		}
 	}
 	
@@ -157,18 +179,22 @@ public class ThreatFactory {
      *
      * @param ResourceType
      *          the type of the enemy to be created
+	 * @throws Exception 
      *          
      */
-	public static void createLevel4Enemy(ResourceType enemy) {
+	public static void createLevel4Enemy(ResourceType enemy) throws Exception {
 		switch(enemy) {
 		case ZOMBIE_DUCK:
 				createZombieDuck(ResourceType.ZOMBIE_DUCK);
+				break;
 		case ROBBER:
 				createRobber(ResourceType.ROBBER);
+				break;
 		case ELEPHANT:
 				createElephant(ResourceType.ELEPHANT);
+				break;
 		default:
-			//Throw error message
+			throw new Exception(invalidEnemy);
 		}	
 	}
 	
@@ -177,16 +203,19 @@ public class ThreatFactory {
      *
      * @param ResourceType
      *          the type of the effect to be created
+	 * @throws Exception 
      *          
      */
-	public static void createLevel4Effect(ResourceType effect) {
+	public static void createLevel4Effect(ResourceType effect) throws Exception {
 		switch(effect) {
 		case BLIGHT:
 				createBlight(ResourceType.BLIGHT);
+				break;
 		case FEL:
 				createFel(ResourceType.FEL);
+				break;
 		default:
-			//Throw error message
+			throw new Exception(invalidEnemy);
 		}
 	}
 	
@@ -392,10 +421,10 @@ public class ThreatFactory {
      * 		the effect type to be created from the ResourceType class
      *          
      */
-	private static void createWolf(ResourceType enemy_wolf) {
+	private static void createWolf(ResourceType enemyWolf) {
 		Enemy wolfEnemy = new Enemy("Wolf");
 		setEnemyParameters(wolfEnemy, 20, 50, 30);
-		EnemySprite wolfSprite = new EnemySprite(0, enemy_wolf);
+		EnemySprite wolfSprite = new EnemySprite(0, enemyWolf);
 		enemySpriteList.add(wolfSprite);
 	}
 	

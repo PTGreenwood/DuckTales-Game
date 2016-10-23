@@ -5,14 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
-import uq.deco2800.ducktales.features.entities.agententities.Animal;
-import uq.deco2800.ducktales.features.entities.agententities.AnimalManager;
 import uq.deco2800.ducktales.rendering.sprites.*;
 import uq.deco2800.ducktales.resources.ResourceInfoRegister;
 import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.SecondaryManager;
-import uq.deco2800.ducktales.util.exceptions.AnimalNotRegisteredException;
 import uq.deco2800.ducktales.util.exceptions.DroppableResourceNotRegisteredException;
 import uq.deco2800.ducktales.util.exceptions.GameSetupException;
 
