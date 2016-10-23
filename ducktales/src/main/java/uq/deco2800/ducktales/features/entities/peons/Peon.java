@@ -38,7 +38,7 @@ public class Peon extends AgentEntity {
 	private List<Point> goalPoints;
 
 	/** Timers for in-game effects **/
-	private int autoDecreaseTime = 0, temperatureTime = 0;
+	private int autoDecreaseTime = 0;
 
 
 	private double speed = 0.05;
@@ -452,6 +452,7 @@ public class Peon extends AgentEntity {
 			calculateRenderingOrderValues();
 
 			autoDecrease();
+			checkPeonStatus();
 
 		} else {
 			// this peon doesn't know who the main manager is
@@ -495,10 +496,10 @@ public class Peon extends AgentEntity {
 		++autoDecreaseTime;
 
 		// natural decrease
-		if (time == 180) {
+		if (autoDecreaseTime == 180) {
 			hunger -= 2;
 			thirst -= 3;
-			time = 0;
+			autoDecreaseTime = 0;
 		}
 	}
 
@@ -511,8 +512,6 @@ public class Peon extends AgentEntity {
 	}
 
 	private void temperatureEffectOnPeon() {
-		++temperatureTime;
-
 
 	}
 
@@ -548,24 +547,27 @@ public class Peon extends AgentEntity {
 			addBuff(PeonBuffType.NEAR_PERFECT);
 		}
 		else if (currentHealth >= 400 && currentHealth <= 649) { //NO buff/debuff
-			removeBuff(PeonBuffType.HEALTH);
+			removeBuff(PeonBuffType.HEALTHY);
 			removeBuff(PeonBuffType.NEAR_PERFECT);
 			removeDebuff(PeonDebuffType.SICKLY);
 			removeDebuff(PeonDebuffType.NEAR_DEATH);
 		}
 		else if (currentHealth >= 200 && currentHealth <= 399) { //SICKLY Debuff
-			removeBuff(PeonBuffType.HEALTH);
+			removeBuff(PeonBuffType.HEALTHY);
 			removeBuff(PeonBuffType.NEAR_PERFECT);
 			removeDebuff(PeonDebuffType.NEAR_DEATH);
 
 			addDebuff(PeonDebuffType.SICKLY);
 		}
 		else if (currentHealth > 0 && currentHealth <= 199) {
-			removeBuff(PeonBuffType.HEALTH);
+			removeBuff(PeonBuffType.HEALTHY);
 			removeBuff(PeonBuffType.NEAR_PERFECT);
 			removeDebuff(PeonDebuffType.SICKLY);
 
 			addDebuff(PeonDebuffType.NEAR_DEATH);
+		}
+		else if ( currentHealth == 0) {
+			//Peon Dead...
 		}
 	}
 
@@ -602,7 +604,7 @@ public class Peon extends AgentEntity {
 		else if (currentHunger >= 0 && currentHunger <= 19) { //STARVING Debuff
 			removeBuff(PeonBuffType.WELL_FED);
 			removeBuff(PeonBuffType.STUFFED);
-			removeDebuff(PeonDebuffType.STUFFED);
+			removeDebuff(PeonDebuffType.HUNGRY);
 
 			addDebuff(PeonDebuffType.STARVING);
 		}
@@ -611,34 +613,34 @@ public class Peon extends AgentEntity {
 	private void checkPeonThirst() {
 		int currentThirst = getThirst();
 
-		if (currentHunger >= 90) { //WATERLOGGED Buff
+		if (currentThirst >= 90) { //WATERLOGGED Buff
 			removeBuff(PeonBuffType.HYDRATED);
 			removeDebuff(PeonDebuffType.THIRSTY);
 			removeDebuff(PeonDebuffType.PARCHED);
 
 			addBuff(PeonBuffType.WATERLOGGED);
 		}
-		else if (currentHunger >= 65 && currentHunger <= 89) { //HYDRATED Buff
+		else if (currentThirst >= 65 && currentThirst <= 89) { //HYDRATED Buff
 			removeBuff(PeonBuffType.WATERLOGGED);
 			removeDebuff(PeonDebuffType.THIRSTY);
 			removeDebuff(PeonDebuffType.PARCHED);
 
 			addBuff(PeonBuffType.HYDRATED);
 		}
-		else if (currentHunger >= 40 && currentHunger <= 64) { //NO buff/debuff
+		else if (currentThirst >= 40 && currentThirst <= 64) { //NO buff/debuff
 			removeBuff(PeonBuffType.WATERLOGGED);
 			removeBuff(PeonBuffType.HYDRATED);
 			removeDebuff(PeonDebuffType.THIRSTY);
 			removeDebuff(PeonDebuffType.PARCHED);
 		}
-		else if (currentHunger >= 20 && currentHunger <= 39) { //Thirsty Debuff
+		else if (currentThirst >= 20 && currentThirst <= 39) { //Thirsty Debuff
 			removeBuff(PeonBuffType.WATERLOGGED);
 			removeBuff(PeonBuffType.HYDRATED);
 			removeDebuff(PeonDebuffType.PARCHED);
 
 			addDebuff(PeonDebuffType.THIRSTY);
 		}
-		else if (currentHunger >= 0 && currentHunger <= 19) { //PARCHED Debuff
+		else if (currentThirst >= 0 && currentThirst <= 19) { //PARCHED Debuff
 			removeBuff(PeonBuffType.WATERLOGGED);
 			removeBuff(PeonBuffType.HYDRATED);
 			removeDebuff(PeonDebuffType.THIRSTY);
