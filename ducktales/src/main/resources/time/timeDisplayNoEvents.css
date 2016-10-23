@@ -3,7 +3,7 @@
 }
 
 #timeDisplay {
-    -fx-background-image: url("../hud/timeTempButtons.png");
+    -fx-background-image: url("../hud/timePlay.png");
     -fx-background-size: auto 100%;    
 }
 
