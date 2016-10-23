@@ -2,6 +2,9 @@ package uq.deco2800.ducktales.features.achievements;
 
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import uq.deco2800.ducktales.World;
 import uq.deco2800.ducktales.features.entities.threats.ThreatManager;
 import uq.deco2800.ducktales.features.inventory.InventoryManager;
@@ -20,15 +23,19 @@ public class AchievementScoreController {
 	/** Achievement Score */
 	private int intAchieve;
 	
+	/** Initialize classes */
 	private LevelHandler levelHandler = LevelHandler.getInstance();
 	private MissionHandler missionHandler = MissionHandler.getInstance();
 	private InventoryManager inventoryManager;
+	
 	private World world;
+	
 	public int achievementToggleWood = 0;
 	public int achievementToggleOres = 0;
 	public int achievementToggleFood = 0;
 	public int achievementTogglePeons = 0;
 	public int achievementToggleThreats = 0;
+	
 	/**
 	 * Constructor of {@link Achievement}.
 	 * 

@@ -25,10 +25,11 @@ public class MissionManager {
 	@FXML	
 	private AnchorPane missionWindow;
 	
+	/** right pane of main window */
 	@FXML
 	private AnchorPane rightPane;
 	
-	
+	/** Buttons on leftpane of the main window */
 	@FXML
 	private Button tutorial;
 	@FXML
@@ -38,6 +39,7 @@ public class MissionManager {
 	@FXML
 	private Button Secret;
 	
+	/** title label */
 	@FXML
 	private Label topLabel;
 	
@@ -46,14 +48,17 @@ public class MissionManager {
 			
 	/** Initialize classes */
 	private MissionHandler missionMain = MissionHandler.getInstance();
-	private LevelHandler levelMain = LevelHandler.getInstance();
-	
+	private LevelHandler levelMain = LevelHandler.getInstance();	
 	private MissionMainController missionMainController;
 	private MissionTutorialController missionTutorialController;
 	private MissionProgressController missionProgressConroller;
 	private MissionGameController missionGameController;
 	private MissionSecretController missionSecretController;
-		
+	
+	/**
+	 * Main constructor of {@link Missions} class
+	 * 
+	 */
 	public MissionManager() {
 		
 		this.missionMainController = new MissionMainController();
@@ -63,6 +68,9 @@ public class MissionManager {
 		this.missionSecretController = new MissionSecretController();
 	}
 	
+	/**
+	 * Load main mission window.
+	 */
 	public void loadMain() {
 		
 		this.removeAllPane();
@@ -83,6 +91,9 @@ public class MissionManager {
 		}
 	}
 	
+	/**
+	 * Remove all pane
+	 */
 	private void removeAllPane() {
 		rightPane.getChildren().removeAll(missionMainController.getMainWindow(), 
 				this.missionTutorialController.getMainWindow(),
@@ -91,6 +102,9 @@ public class MissionManager {
 				this.missionSecretController.getMainWindow());
 	}
 	
+	/**
+	 * Load the mission window with mission progress circle 
+	 */
 	@FXML
 	private void loadProgress() {
 				
@@ -116,6 +130,9 @@ public class MissionManager {
 		}
 	}
 		
+	/**
+	 * Load tutorial missions window
+	 */
 	@FXML
 	private void loadTutorial() {		
 		
@@ -145,6 +162,9 @@ public class MissionManager {
 		
 	}
 	
+	/**
+	 * Load main game mission window
+	 */
 	@FXML
 	private void loadGame() {		
 		
@@ -174,6 +194,9 @@ public class MissionManager {
 		
 	}
 	
+	/**
+	 * load secret mission window.
+	 */
 	@FXML
 	private void loadSecret() {
 		

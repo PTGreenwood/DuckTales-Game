@@ -26,7 +26,7 @@ public class GameSound extends Thread {
     private Position curPosition;
  
     
-    private final int EXTERNAL_BUFFER_SIZE = 524288; // 128Kb 
+    private static final int externalBufferSize = 524288; // 128Kb 
  
     enum Position { 
         LEFT, RIGHT, NORMAL
@@ -98,7 +98,7 @@ public class GameSound extends Thread {
  
         auline.start();
         int nBytesRead = 0;
-        byte[] abData = new byte[EXTERNAL_BUFFER_SIZE];
+        byte[] abData = new byte[externalBufferSize];
  
         try { 
             while (nBytesRead != -1) { 

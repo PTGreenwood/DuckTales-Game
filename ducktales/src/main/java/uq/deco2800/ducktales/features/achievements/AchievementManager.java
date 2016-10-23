@@ -26,12 +26,15 @@ public class AchievementManager {
 	@FXML
 	private AnchorPane achievementWindow;	
 	
+	/** Right pane of the main window */
 	@FXML
 	private BorderPane rightPane;
 	
+	/** Inner pane of the rightPane */
 	@FXML
 	private AnchorPane innerPane;
 	
+	/** Buttons on left Pane of the main window */
 	@FXML
 	private Button level;
 	@FXML
@@ -47,34 +50,51 @@ public class AchievementManager {
 	@FXML
 	private Button food;
 	
+	/** Title label in rightPane */
 	@FXML
 	private Label topLabel;
+	
+	/** Label at the bottom in rightPane */
 	@FXML
 	private Label bottomLabel;
+	
+	/** Label for Achievement Description */
 	@FXML
 	private Label achievementMainDescription;
 	
+	/** ImageView for achievement */
 	@FXML
 	private ImageView achievementImageView;
+	
+	/** Description of each achievement */
 	@FXML
 	private Label achievementDescription;
 
+	
 	private Image ore1 = new Image("achievements/ore100.png");
 	
 	private Image wood1 = new Image("achievements/wood100.png");
 	
 	private Image peons1 = new Image("peon/basic_peon.png");
 	
+	/** Initialize classes */
 	private AchievementLevelController levelController = AchievementLevelController.getInstance();
 	private AchievementMissionController missionController = AchievementMissionController.getInstance();
 	private AchievementScoreController scoreController = AchievementScoreController.getInstance();
 	private AchievementOreController oreController = AchievementOreController.getInstance();
 	private AchievementWoodController woodController = AchievementWoodController.getInstance();
 	
+	/**
+	 * Main constructor of {@link Achievement} class
+	 * 
+	 */
 	public AchievementManager() {
 				
 	}
 	
+	/**
+	 *  Load Main window for achievement. It contains Achievement Title and description of Achievement.
+	 */
 	public void loadMain() {
 		
 		this.topLabel.setText("ACHIEVEMENT");
@@ -85,6 +105,12 @@ public class AchievementManager {
 
 	}
 	
+	/**
+	 * This method set the basic design of the achievement with its title, image and description.
+	 * @param title Title of the Achievement such as Ore, Wood, Peons...
+	 * @param description Description of the Achievement
+	 * @param achievementImage Image of the Achievement
+	 */
 	private void loadAchievement(String title, String description, Image achievementImage) {
 		
 		this.topLabel.setText(title);
@@ -97,6 +123,9 @@ public class AchievementManager {
 		
 	}
 	
+	/**
+	 * Load level achievement in the Achievement GUI.
+	 */
 	@FXML
 	private void loadLevel() {
 		
@@ -105,6 +134,9 @@ public class AchievementManager {
 		
 	}
 	
+	/**
+	 * Load Misison Achievement in the Achievement GUI.
+	 */
 	@FXML
 	private void loadMission() {
 		
@@ -113,6 +145,9 @@ public class AchievementManager {
 			
 	}
 	
+	/**
+	 * Load Ore Achievement in the Achievement GUI.
+	 */
 	@FXML
 	private void loadOre() {
 		
@@ -121,6 +156,9 @@ public class AchievementManager {
 			
 	}
 	
+	/**
+	 * Load Wood Achievement in the Achievement GUI.
+	 */
 	@FXML
 	private void loadWood() {
 		
@@ -129,6 +167,9 @@ public class AchievementManager {
 		
 	}
 	
+	/**
+	 * Load Peon Achievement in the Achievement GUI.
+	 */
 	@FXML
 	private void loadPeons() {
 		
