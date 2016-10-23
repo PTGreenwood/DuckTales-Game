@@ -24,6 +24,7 @@ public class PeonTest {
 
     //Test to see if Peon has no null attributes
     assertNotNull("Peon cannot be null", peon);
+    assertNotNull("Peon name cannot be null", peon.getPeonName());
     assertNotNull("X coordinate cannot be null.", peon.getX());
     assertNotNull("Y coordinate cannot be null.", peon.getY());
     assertNotNull("ResourceType of Peon cannot be null", peon.getType());
@@ -34,11 +35,17 @@ public class PeonTest {
     assertNotNull("Strength cannot be null", peon.getStrength());
     assertNotNull("Resource cannot be null", peon.getResources());
     assertNotNull("Intelligence cannot be null", peon.getIntelligence());
-    assertNotNull("Job cannot be null", peon.getJob());   
+    assertNotNull("Job cannot be null", peon.getJob());
     assertNotNull("Qualification cannot be null", peon.getQualificationToolEquipped());
     assertNotNull("Tree choppsed cannot be null", peon.getTreesChopped());
     assertNotNull("Mentor status cannot be null", peon.getMentorStatus());
+
+    //Test to see if Peon returns expected values on instantiation
+    assertTrue("Peon cannot be dead on instantiation", peon.isDead() == false);
+
     //Test attributes setters
+    peon.setPeonName("Jin Shin");
+    assertTrue("peon name should now be Jin Shin", peon.getPeonName() == "Jin Shin");
     peon.setHealth(1001);
     assertTrue("peon health should be 1000 if parameter is greater than 1000", peon.getHealth() == 1000);
     peon.setHealth(-1);
@@ -81,5 +88,7 @@ public class PeonTest {
     assertTrue("no duplicate is allowed in buffs", peon.getBuffs().size() == 2);
     peon.removeBuff(PeonBuffType.STUFFED);
     assertTrue("peon now should only have one buff left", peon.getBuffs().size() == 1);
+    peon.setIsDead();
+    assertTrue("peon now should be dead", peon.isDead() == true);
   }
 }
