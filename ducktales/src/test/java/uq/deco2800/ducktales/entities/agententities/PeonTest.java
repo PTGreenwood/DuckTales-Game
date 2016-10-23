@@ -39,6 +39,10 @@ public class PeonTest {
     assertNotNull("Qualification cannot be null", peon.getQualificationToolEquipped());
     assertNotNull("Tree choppsed cannot be null", peon.getTreesChopped());
     assertNotNull("Mentor status cannot be null", peon.getMentorStatus());
+
+    //Test to see if Peon returns expected values on instantiation
+    assertTrue("Peon cannot be dead on instantiation", peon.isDead() == false);
+
     //Test attributes setters
     peon.setPeonName("Jin Shin");
     assertTrue("peon name should now be Jin Shin", peon.getPeonName() == "Jin Shin");
@@ -84,5 +88,7 @@ public class PeonTest {
     assertTrue("no duplicate is allowed in buffs", peon.getBuffs().size() == 2);
     peon.removeBuff(PeonBuffType.STUFFED);
     assertTrue("peon now should only have one buff left", peon.getBuffs().size() == 1);
+    peon.setIsDead();
+    assertTrue("peon now should be dead", peon.isDead() == true);
   }
 }
