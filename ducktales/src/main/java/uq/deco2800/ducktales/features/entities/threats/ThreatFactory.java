@@ -54,7 +54,6 @@ public class ThreatFactory {
 		default:
 			throw new GameSetupException(invalidEnemy);
 		}
-		
 	}
 	
 	 /**
@@ -263,7 +262,7 @@ public class ThreatFactory {
 	}
 	
 
-	// Level 1 Effects
+	// Level 1 Effects-----------------------
 	
 	 /**
      * Create black smoke effect, assign its
@@ -281,8 +280,7 @@ public class ThreatFactory {
 		setEffectParameters(blackSmokeEffect, 20, 50, 20);
 		EnemySprite blackSmokeSprite = new EnemySprite(0, blackSmoke);
 		enemySpriteList.add(blackSmokeSprite);
-		putInEffectHashMap(blackSmokeEffect);
-		
+		putInEffectHashMap(blackSmokeEffect);	
 	}
 	
 	 /**
@@ -300,11 +298,10 @@ public class ThreatFactory {
 		Effect shakeEffect = new Effect("Shake");
 		setEffectParameters(shakeEffect, 50, 100, 20);
 		EnemySprite shakeSprite = new EnemySprite(0, shake);
-		enemySpriteList.add(shakeSprite);
-		
+		enemySpriteList.add(shakeSprite);	
 	}
 	
-	// Level 1 Enemies
+	// Level 1 Enemies------------------------
 	
 	 /**
      * Create raccoon enemy, assign its
@@ -321,8 +318,7 @@ public class ThreatFactory {
 		Enemy raccoonEnemy = new Enemy("Raccoon");
 		setEnemyParameters(raccoonEnemy, 20, 50, 20);
 		EnemySprite raccoonSprite = new EnemySprite(0, raccoon);
-		enemySpriteList.add(raccoonSprite);
-			
+		enemySpriteList.add(raccoonSprite);		
 	}
 	
 	 /**
@@ -340,8 +336,7 @@ public class ThreatFactory {
 		Enemy beetleEnemy = new Enemy("Beetle");
 		setEnemyParameters(beetleEnemy, 20, 50, 20);
 		EnemySprite beetleSprite = new EnemySprite(0, beetle);
-		enemySpriteList.add(beetleSprite);
-		
+		enemySpriteList.add(beetleSprite);	
 	}
 	
 	 /**
@@ -362,7 +357,8 @@ public class ThreatFactory {
 		enemySpriteList.add(wildVillagerSprite);
 	}
 	
-	// Level 2 Effects
+	
+	// Level 2 Effects--------------------------
 	
 	 /**
      * Create poison cloud effect, assign its
@@ -401,7 +397,7 @@ public class ThreatFactory {
 		enemySpriteList.add(rumbleSprite);
 	}
 	
-	// Level 2 Enemies
+	// Level 2 Enemies---------------------------
 
 	 /**
      * Create wolf enemy, assign its
@@ -475,7 +471,7 @@ public class ThreatFactory {
 		enemySpriteList.add(evilDuckSprite);
 	}
 	
-	// Level 3 Effects
+	// Level 3 Effects---------------------------
 
 	 /**
      * Create earthquake effect, assign its
@@ -513,7 +509,7 @@ public class ThreatFactory {
 		enemySpriteList.add(greenFelFireSprite);
 	}
 	
-	// Level 3 Enemies
+	// Level 3 Enemies-------------------------------
 	
 	 /**
      * Create lion enemy, assign its
@@ -568,8 +564,9 @@ public class ThreatFactory {
 		EnemySprite bearSprite = new EnemySprite(0, bear);
 		enemySpriteList.add(bearSprite);
 	}
+
 	
-	// Level 4 Effects
+	// Level 4 Effects-----------------------------
 	
 	 /**
      * Create blight effect, assign its
@@ -607,7 +604,8 @@ public class ThreatFactory {
 		enemySpriteList.add(felSprite);
 	}
 	
-	// Level 4 Enemies
+	
+	// Level 4 Enemies-----------------------------
 	
 	 /**
      * Create zombie duck enemy, assign its
@@ -680,5 +678,4 @@ public class ThreatFactory {
 	public static void clearEffectHashMap(){
 		effectMap.clear();
 	}
-
 }

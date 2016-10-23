@@ -4,6 +4,7 @@ import java.util.Random;
 
 import uq.deco2800.ducktales.World;
 import uq.deco2800.ducktales.features.entities.Entity;
+import uq.deco2800.ducktales.features.entities.agententities.Animal;
 import uq.deco2800.ducktales.features.entities.peons.Peon;
 import uq.deco2800.ducktales.features.entities.worldentities.Building;
 import uq.deco2800.ducktales.features.landscape.tiles.Tile;
@@ -43,6 +44,10 @@ public class Threat extends Entity {
 	
 	private Peon peon;
 	private Building building;
+	private Animal animal;
+	
+	private int resource;
+	private int reduceResource = 1;
 
 	/**
 	 * Enemy takes a string name and a type of enemy which is Creature or Effect
@@ -149,7 +154,7 @@ public class Threat extends Entity {
 
 	/**
 	 * 
-	 * @return StartTime if it exists or 0 if the timer has expired or otherwise
+	 * @return StartTime if it exists or 0 if the timer has expired or otherwise.
 	 */
 	public float returnStartTime() {
 		if (hasStartTimer) {
@@ -161,7 +166,7 @@ public class Threat extends Entity {
 
 	/**
 	 * 
-	 * @return EndTime if it exists or 0 if the timer has expired or otherwise
+	 * @return EndTime if it exists or 0 if the timer has expired or otherwise.
 	 */
 	public float returnEndTime() {
 		if (hasEndTimer) {
@@ -508,15 +513,37 @@ public class Threat extends Entity {
 	}
 	
 	/**
+	 * Method to detect Animal/Enemy collisions
+	 * 
+	 * @return a boolean value which is true if the
+	 * threat has collided with an animal, and false if it has not
+	 */
+	public boolean checkAnimalCollision(){
+		Tile temptile = world.getTile(this.getXInt(), this.getYInt());
+		ResourceType tempType = temptile.getTileType();
+		switch(tempType) {
+		case DUCK:
+			return true;
+		case COW:
+			return true;
+		case SHEEP:
+			return true;
+		default:
+			return false;
+		}
+	}
+	
+	/**
 	 * Method to change the Peon's integer health value
 	 * upon collision with an enemy
-	 * 
+	 * & reduce the Peon's resource value.
 	 */
 	public void peonHealthDamage() {
 		boolean peonCollision = checkPeonCollision();
 		if (peonCollision) {
 			int currentPeonHealth = peon.getHealth();
 			int newPeonHealth = currentPeonHealth - levelOfDamage;
+			resourceDamage();
 			if (newPeonHealth >= 1) {
 				peon.setHealth(newPeonHealth);
 			}
@@ -539,11 +566,42 @@ public class Threat extends Entity {
 		}
 	}
 	
+	/**
+	 * 
+	 * @return int resource - the Peon's resource value
+	 */
+	public int getTheValueOfResourceForPeon(){
+		return resource = peon.getResources();
+	}
+	
+	/**
+	 * Reducing the Peon's resource value.
+	 */
+	public void resourceDamage(){
+		resource = resource - reduceResource;
+	}
+	
+	/**
+	 * Method to change an animal's integer health value
+	 * upon collision with an enemy
+	 * 
+	 */
+	public void animalHealthDamage(){
+		boolean animalCollision = checkAnimalCollision();
+		if (animalCollision) {
+			int currentAnimalHealth = animal.getHealth();
+			int newAnimalHealth = currentAnimalHealth - levelOfDamage;
+			resourceDamage();
+			if (newAnimalHealth >= 1) {
+				animal.setHealth(newAnimalHealth);
+			}
+		}
+	}
+	
 	//Create 2d array
 
 	@Override
 	public void tick() {
-		// TODO Auto-generated method stub
 		
 	}
 

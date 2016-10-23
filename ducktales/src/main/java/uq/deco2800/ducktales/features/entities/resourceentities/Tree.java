@@ -1,13 +1,27 @@
 package uq.deco2800.ducktales.features.entities.resourceentities;
 
-import static uq.deco2800.ducktales.resources.ResourceType.*;
+import static uq.deco2800.ducktales.resources.ResourceType.TREE_1_AUTUMN;
+import static uq.deco2800.ducktales.resources.ResourceType.TREE_1_SPRING;
+import static uq.deco2800.ducktales.resources.ResourceType.TREE_1_SUMMER;
+import static uq.deco2800.ducktales.resources.ResourceType.TREE_1_WINTER;
+import static uq.deco2800.ducktales.resources.ResourceType.TREE_2_AUTUMN;
+import static uq.deco2800.ducktales.resources.ResourceType.TREE_2_SPRING;
+import static uq.deco2800.ducktales.resources.ResourceType.TREE_2_SUMMER;
+import static uq.deco2800.ducktales.resources.ResourceType.TREE_2_WINTER;
+import static uq.deco2800.ducktales.resources.ResourceType.TREE_3_AUTUMN;
+import static uq.deco2800.ducktales.resources.ResourceType.TREE_3_SPRING;
+import static uq.deco2800.ducktales.resources.ResourceType.TREE_3_SUMMER;
+import static uq.deco2800.ducktales.resources.ResourceType.TREE_3_WINTER;
 
-import java.util.concurrent.*;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import uq.deco2800.ducktales.features.entities.peons.Peon;
 import uq.deco2800.ducktales.features.seasons.SeasonManager;
+import uq.deco2800.ducktales.features.seasons.SeasonType;
 import uq.deco2800.ducktales.features.time.TimeManager;
 import uq.deco2800.ducktales.rendering.sprites.TreeSprite;
 import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
@@ -34,10 +48,7 @@ public class Tree extends ResourceEntity {
 	
 	// Manager for the Seasons
     private SeasonManager seasonManager;
-	private TimeManager timeManager;
-	
-	// The ResourceEntityManager
-	private ResourceEntityManager resourceEntityManager;
+	private TimeManager timeManager;	
 
 	// Logger for the class
 	private static final Logger LOGGER = Logger.getLogger(Tree.class.getName());
@@ -52,7 +63,7 @@ public class Tree extends ResourceEntity {
 	 * @throws Exception
 	 */
 	public Tree(double x, double y) {
-		super(x, y, 1, 1, rare(SPRING_TYPES), DEFVALUE);
+		super(x, y, 1, 1, rare(SPRING_TYPES), defaultValue);
 		// Scheduling the runnable to run every minute in real time.
 		scheduler.scheduleAtFixedRate(createRunnable(this), 24, 24, 
 				TimeUnit.MINUTES);
@@ -61,7 +72,7 @@ public class Tree extends ResourceEntity {
 		 * rare, set the value of the Resource to be double.
 		 */
 		if (this.getType() == SPRING_TYPES[SPRING_TYPES.length - 1]) {
-			this.setValue(2 * DEFVALUE);
+			this.setValue(2 * defaultValue);
 		}
 	}
 
@@ -100,7 +111,7 @@ public class Tree extends ResourceEntity {
 	 *  
 	 */
 	private void updateSprite(){
-		String season = seasonManager.getCurrentSeason().getName();
+		SeasonType season = seasonManager.getCurrentSeason().getName();
 		TreeSprite sprite = resourceEntityManager.getTree(this.hashCode());
 		if(season.equals("Summer")){
 			sprite.setImage(ResourceSpriteRegister.getInstance().getResourceImage(TREE_1_SUMMER));
@@ -118,7 +129,7 @@ public class Tree extends ResourceEntity {
 	 *  
 	 */
 	private void updateRareSprite(){
-		String season = seasonManager.getCurrentSeason().getName();
+		SeasonType season = seasonManager.getCurrentSeason().getName();
 		TreeSprite sprite = resourceEntityManager.getTree(this.hashCode());
 		if(season.equals("Summer")){
 			sprite.setImage(ResourceSpriteRegister.getInstance().getResourceImage(TREE_3_SUMMER));
@@ -142,15 +153,7 @@ public class Tree extends ResourceEntity {
 		this.seasonManager = timeManager.getSeasonManager();
 	}
 	
-	/**
-	 * Set the resourceEntitymanager.
-	 * 
-	 * @param resourceEntityManager
-	 *            the manager to set
-	 */
-	public void setResourceEntityManager(ResourceEntityManager resourceEntityManager) {
-		this.resourceEntityManager = resourceEntityManager;
-	}
+	
 	
 	
 	/**

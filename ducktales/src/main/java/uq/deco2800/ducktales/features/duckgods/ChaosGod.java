@@ -19,9 +19,9 @@ public class ChaosGod extends DuckGods {
 		super(name, bonus, image);
 	}
 	 
-//	public void giveaward() {
+//	public void giveAward() {
 //		
-//		/**provides rewards to the user which would result a possitive impact
+//		/**provides rewards to the user which would result a positive impact
 //		e.g. buffs
 //		*/
 //		
@@ -34,7 +34,7 @@ public class ChaosGod extends DuckGods {
 //		
 //	}
 //	
-//	public void givepenalty() {
+//	public void givePenalty() {
 //		
 //		/**
 //		 * provides penalties to the user which would result a negative impact

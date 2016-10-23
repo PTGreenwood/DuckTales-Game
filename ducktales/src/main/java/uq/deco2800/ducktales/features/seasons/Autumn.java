@@ -9,7 +9,7 @@ public class Autumn extends Season {
 	// it to be, so if you want minTemperature you'd put int minTemperature
 	// because you'd want to save that as an integer
 	public Autumn() {
-		super.name = "Autumn";
+		super.name = SeasonType.AUTUMN;
 		super.humidityLevel = 1.8f;
 		super.maxTemperature = 18;
 		super.currentTemperature = 12;

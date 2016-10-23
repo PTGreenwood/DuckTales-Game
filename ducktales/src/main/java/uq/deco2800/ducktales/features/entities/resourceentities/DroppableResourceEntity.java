@@ -24,7 +24,7 @@ public class DroppableResourceEntity extends ResourceEntity {
 	 *            the ResourceType of the entity
 	 */
 	public DroppableResourceEntity(int x, int y, ResourceType type) {
-		super(x, y, 1, 1, type, DEFVALUE);
+		super(x, y, 1, 1, type, defaultValue);
 	}
 
 	/**

@@ -31,7 +31,6 @@ public class DuckTalesLauncher extends Application {
 		launch(args);
 	}
 	
-
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		URL location = getClass().getResource("/ducktales.fxml");
@@ -46,8 +45,12 @@ public class DuckTalesLauncher extends Application {
 		Stage s = new Stage();
 		s.setScene(scene2);
 		s.showAndWait();
+		
 		// call the function here to avoid the audio to keep playing
 		MoviePlayerController.closeAudio();
+		s.close();
+		s = null;
+		
 		primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent t) {

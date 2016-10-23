@@ -1,4 +1,4 @@
-package uq.deco2800.ducktales;
+package uq.deco2800.ducktales.time;
 
 import uq.deco2800.ducktales.features.time.GameTime;
 import uq.deco2800.ducktales.features.seasons.Season;

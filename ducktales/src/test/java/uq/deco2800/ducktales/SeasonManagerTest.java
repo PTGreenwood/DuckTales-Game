@@ -1,25 +1,5 @@
 package uq.deco2800.ducktales;
 
-import uq.deco2800.ducktales.features.time.GameTime;
-import uq.deco2800.ducktales.features.time.TimeManager;
-import uq.deco2800.ducktales.features.seasons.Season;
-import uq.deco2800.ducktales.features.seasons.Spring;
-import uq.deco2800.ducktales.features.seasons.Summer;
-import uq.deco2800.ducktales.features.seasons.Autumn;
-import uq.deco2800.ducktales.features.seasons.Winter;
-
-import uq.deco2800.ducktales.features.weather.Weather;
-import uq.deco2800.ducktales.features.weather.InvalidWeatherChanceException;
-import uq.deco2800.ducktales.features.weather.Rain;
-import uq.deco2800.ducktales.features.weather.Snow;
-import uq.deco2800.ducktales.features.weather.Storm;
-import uq.deco2800.ducktales.features.weather.StormType;
-import uq.deco2800.ducktales.features.weather.Fire;
-import uq.deco2800.ducktales.features.weather.WeatherChance;
-import uq.deco2800.ducktales.features.weather.WeatherEvents;
-
-import uq.deco2800.ducktales.features.seasons.SeasonManager;
-
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
@@ -27,6 +7,24 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Test;
+
+import uq.deco2800.ducktales.features.seasons.Autumn;
+import uq.deco2800.ducktales.features.seasons.Season;
+import uq.deco2800.ducktales.features.seasons.SeasonManager;
+import uq.deco2800.ducktales.features.seasons.SeasonType;
+import uq.deco2800.ducktales.features.seasons.Spring;
+import uq.deco2800.ducktales.features.seasons.Summer;
+import uq.deco2800.ducktales.features.seasons.Winter;
+import uq.deco2800.ducktales.features.time.TimeManager;
+import uq.deco2800.ducktales.features.weather.Fire;
+import uq.deco2800.ducktales.features.weather.InvalidWeatherChanceException;
+import uq.deco2800.ducktales.features.weather.Rain;
+import uq.deco2800.ducktales.features.weather.Snow;
+import uq.deco2800.ducktales.features.weather.Storm;
+import uq.deco2800.ducktales.features.weather.StormType;
+import uq.deco2800.ducktales.features.weather.Weather;
+import uq.deco2800.ducktales.features.weather.WeatherChance;
+import uq.deco2800.ducktales.features.weather.WeatherEvents;
 
 public class SeasonManagerTest {
 
@@ -44,12 +42,12 @@ public class SeasonManagerTest {
 		SeasonManager sm = new SeasonManager();
 		tm.setSeasonManager(sm);
 		
-		String correctSpringSeasonName = "Spring";
-		String correctSummerSeasonName = "Summer";
-		String correctAutumnSeasonName = "Autumn";
-		String correctWinterSeasonName = "Winter";
+		SeasonType correctSpringSeasonName = SeasonType.SPRING;
+		SeasonType correctSummerSeasonName = SeasonType.SUMMER;
+		SeasonType correctAutumnSeasonName = SeasonType.AUTUMN;
+		SeasonType correctWinterSeasonName = SeasonType.WINTER;
 				
-		String season;
+		SeasonType season;
 		
 		/*
 		 * Correct Updating of the Seasons

@@ -17,7 +17,6 @@ import uq.deco2800.ducktales.util.Point;
 import uq.deco2800.ducktales.features.entities.peons.PeonBuffType;
 import uq.deco2800.ducktales.features.entities.peons.PeonDebuffType;
 import uq.deco2800.ducktales.features.seasons.SeasonManager;
-
 /**
  * Class representing the worker. Peon will have 1000 health, 100 hunger and
  * thirst hunger and thirst will decrease (be more hungry/thirsty) over time
@@ -38,8 +37,13 @@ public class Peon extends AgentEntity {
 	private List<Point> goalPoints;
 
 	/** Timers for in-game effects **/
-	private int autoDecreaseTime = 0, hungryTime = 0, thirstyTime = 0;
-
+	private int autoDecreaseTime = 0; //natural hunger/thirst decrease
+	private int hungryTime = 0; // hunger debuff timer
+	private int thirstyTime = 0; // thirst debuff timer
+	private int	hotTime = 0;
+	private int coldTime = 0; //deciding temperature debuff
+	private int tempHotTime = 0;
+	private int tempColdTime = 0; //used to determine health decrease
 
 	private double speed = 0.05;
 	private int health = 1000;
@@ -361,7 +365,9 @@ public class Peon extends AgentEntity {
 	}
 
 	/**
-	 * add a debuff to Peon
+	 * Add a debuff to Peon's debuffs array if not already exists.
+	 *
+	 * @param PeonDebuffType debuff: PeonDebuffType.DEBUFFNAME
 	 */
 	public void addDebuff(PeonDebuffType debuff) {
 		if (!debuffs.contains(debuff)) {
@@ -370,7 +376,9 @@ public class Peon extends AgentEntity {
 	}
 
 	/**
-	 * remove a debuff from Peon
+	 * Remove a debuff from Peon's debuffs array if exists.
+	 *
+	 * @param PeonDebuffType debuff: PeonDebuffType.DEBUFFNAME
 	 */
 	public void removeDebuff(PeonDebuffType debuff) {
 		int index = debuffs.indexOf(debuff);
@@ -381,17 +389,18 @@ public class Peon extends AgentEntity {
 	}
 
 	/**
-	 * return all debuffs that Peon has - to access each debuff in the arraylist
-	 * use ArrayList built-in functions such as .get(index) or .contains(var
-	 * name) when .get(index) used to compare to string use
-	 * .get(index).toString() method
+	 * Return a list of all Peon's current debuffs
+	 *
+	 * @return List<PeonDebuffType>
 	 */
 	public List<PeonDebuffType> getDebuffs() {
 		return this.debuffs;
 	}
 
 	/**
-	 * add a buff to Peon
+	 * Add a buff to Peon's buffs array if not already exists.
+	 *
+	 * @param PeonBuffType buff: PeonBuffType.BUFFNAME
 	 */
 	public void addBuff(PeonBuffType buff) {
 		if (!buffs.contains(buff)) {
@@ -400,7 +409,9 @@ public class Peon extends AgentEntity {
 	}
 
 	/**
-	 * remove a buff from Peon
+	 * Remove a buff from Peon's buffs array if not already exists.
+	 *
+	 * @param PeonBuffType buff: PeonBuffType.BUFFNAME
 	 */
 	public void removeBuff(PeonBuffType buff) {
 		int index = buffs.indexOf(buff);
@@ -411,10 +422,9 @@ public class Peon extends AgentEntity {
 	}
 
 	/**
-	 * return all buffs that Peon has - to access each buff in the arraylist use
-	 * ArrayList built-in functions such as .get(index) or .contains(var name)
-	 * when .get(index) used to compare to string use .get(index).toString()
-	 * method
+	 * Return a list of all Peon's current buffs
+	 *
+	 * @return List<PeonBuffType>
 	 */
 	public List<PeonBuffType> getBuffs() {
 		return this.buffs;
@@ -488,12 +498,12 @@ public class Peon extends AgentEntity {
 
 	/**
 	 * function that auto decrease the Peon's hunger and thirst and health
-	 * decrease hunger -= 2 and thirst -=3 every 3 hours
-	 * decrease health under certain threshold of hunger/thirst
+	 * 	- decrease hunger -= 2 and thirst -=3 every 3 hours
+	 * 	- decrease health under certain threshold of hunger/thirst
 	 */
 	private void autoDecrease() {
-		int currentHunger = getHunger(),
-				currentThirst = getThirst();
+		int currentHunger = getHunger();
+		int	currentThirst = getThirst();
 
 		++autoDecreaseTime;
 
@@ -506,25 +516,15 @@ public class Peon extends AgentEntity {
 	}
 
 	/**
-	 * function that decrease the Peon's stats according to the weather
-	 * different weather will have different effect on peon's stats.
-	 */
-	private void weatherEffectOnPeon() {
-
-	}
-
-	private void temperatureEffectOnPeon() {
-		int currentTemp = season.getCurrentSeason().getCurrentTemperature();
-	}
-
-	/**
-	 * Function that check the status of Peon to add buff/debuff - health/hunger/thirst
-	 * also decrease health according to the debuffs
+	 * A method checking the status of Peon to add buff/debuff - health/hunger/thirst.
+	 * Also decrease Peon's Health according to the applying debuffs.
 	 */
 	private void checkPeonStatus() {
 		checkPeonHealth();
 		checkPeonHunger();
 		checkPeonThirst();
+		temperatureEffectOnPeon();
+		weatherEffectOnPeon(getHunger(), getThirst());
 
 		/** Measure how long the peon is exposed to the debuff **/
 		//HUNGER related
@@ -539,19 +539,122 @@ public class Peon extends AgentEntity {
 		else if (!debuffs.contains(PeonDebuffType.THIRSTY)
 							&& !debuffs.contains(PeonDebuffType.PARCHED)) { thirstyTime = 0; }
 
-		// every 60 hungryTime/thirstyTime, loses health by 15
-		if (hungryTime >= 60) {
-			setHealth(getHealth() - 15);
+		//Temperatue releated
+		// - HOT
+		if (debuffs.contains(PeonDebuffType.HOT)) { tempHotTime += 1; }
+		else if (debuffs.contains(PeonDebuffType.BURNING)) { tempHotTime += 2; }
+		else if (!debuffs.contains(PeonDebuffType.HOT)
+							&& !debuffs.contains(PeonDebuffType.BURNING)) { tempHotTime = 0; }
+
+		// - COLD
+		if (debuffs.contains(PeonDebuffType.COLD)) { tempColdTime += 1; }
+		else if (debuffs.contains(PeonDebuffType.FREEZING)) { tempColdTime += 2; }
+		else if (!debuffs.contains(PeonDebuffType.COLD)
+							&& !debuffs.contains(PeonDebuffType.FREEZING)) { tempColdTime = 0; }
+
+		/** Needs thorough tests to balance out **/
+		if (hungryTime >= 60) { setHealth(getHealth() - 15); }
+		if (thirstyTime >= 60) { setHealth(getHealth() -15); }
+		if (tempHotTime >= 80) { setHealth(getHealth() - 10); }
+		if (tempColdTime >= 80) { setHealth(getHealth() - 10); }
+	}
+
+	/**
+	 * Function that alters the Peon's status according to the weather
+	 * different weather will have different effect on peon's stats.
+	 *
+	 * @param int currentHunger, int currentThirst
+	 */
+	private void weatherEffectOnPeon(int currentHunger, int currentThirst) {
+		 String current = this.gameManager.getWeatherManager().peonEffect();
+		 if (current == "rain"){
+			 setThirst(currentThirst + 4);
+		 }
+		 else if (current == "storm"){
+			 setThirst(currentThirst + 1);
 		}
-		if (thirstyTime >= 60) {
-			setHealth(getHealth() -15);
+		 else if (current == "snow"){
+			 setHunger(currentHunger - 1);
+		}
+		 else if (current == "sunny"){
+			 setThirst(currentThirst - 1);
 		}
 	}
 
 	/**
-		* Fucntion that check Peon's Health and add/remove buff/debuff accordingly
-		* - first remove all buff/debuff relating to health
-		*	- then add buff
+	 * Function that adds debuffs relating to temperature
+	 *	- Calculate the exposed time on certain temperature
+	 *	- At certain threshold of exposed time, add an appropriate debuffs
+	 *
+	 *	TEMP 23 - 26
+	 *		- Increase HotTime by 2
+	 *	TEMP 19 - 22
+	 *		- Increase HotTime by 1
+	 *	TEMP 11 - 18
+	 *		- No Increase
+	 *	TEMP 5 - 10
+	 *		- Increase ColdTime by 1
+	 *	TEMP 0 - 4
+	 *		- Increase ColdTime by 2
+	 *
+	 * HotTime >= 120 adds BURNING and 60 <= HotTime < 120 adds HOT
+	 * ColdTime >= 120 adds FREEZING and 60 <= ColdTime < 120 adds COLD
+	 */
+
+	private void temperatureEffectOnPeon() {
+		int currentTemp = season.getCurrentSeason().getCurrentTemperature();
+
+		if (currentTemp >= 23) {
+			if (coldTime == 0) { hotTime += 2; }
+			else if ( (coldTime - 2) > 0 ) { coldTime -= 2; }
+			else if ( (coldTime - 2) == 0 ) { coldTime = 0; }
+			else if ( (coldTime - 2) < 0 ) { hotTime = -(coldTime - 2); coldTime = 0;}
+		}
+		else if (currentTemp <= 22 && currentTemp >= 19) {
+			if (coldTime == 0) { hotTime += 1; }
+			else if ( (coldTime - 1) > 0 ) { coldTime -= 1; }
+			else if ( (coldTime - 1) == 0 ) { coldTime = 0; }
+		}
+		else if (currentTemp <= 18 && currentTemp >= 11) {
+			if (coldTime > 0) { coldTime -= 1; }
+			if (hotTime > 0) { hotTime -= 1; }
+		}
+		else if (currentTemp <= 10 && currentTemp >= 5) {
+			if (hotTime == 0) { coldTime += 1; }
+			else if ( (hotTime - 1) > 0 ) { hotTime -= 1; }
+			else if ( (hotTime - 1) == 0 ) { hotTime = 0; }
+		}
+		else if (currentTemp <= 4 && currentTemp >= 0) {
+			if (hotTime == 0) { coldTime += 2; }
+			else if ( (hotTime - 2) > 0 ) { hotTime -= 2; }
+			else if ( (hotTime - 2) == 0 ) { hotTime = 0; }
+			else if ( (hotTime - 2) < 0 ) { coldTime = -(hotTime - 2); hotTime = 0;}
+		}
+
+		if (hotTime >= 120) {
+			removeDebuff(PeonDebuffType.HOT);
+			addDebuff(PeonDebuffType.BURNING);
+		}
+		else if (hotTime < 120 && hotTime >= 60) {
+			removeDebuff(PeonDebuffType.BURNING); //if hotTime decrease from over 60
+			addDebuff(PeonDebuffType.HOT);
+		}
+
+		if (coldTime >= 120) {
+			removeDebuff(PeonDebuffType.COLD);
+			addDebuff(PeonDebuffType.FREEZING);
+		}
+		else if (coldTime < 120 && coldTime >= 60) {
+			removeDebuff(PeonDebuffType.FREEZING);
+			addDebuff(PeonDebuffType.COLD);
+		}
+	}
+
+	/**
+		* A method checking Peon's Health and add/remove buff or debuff according
+		* to its thresholds. 0 < Health < 1000
+		*
+		*		- Each threshold will remove other debuffs and add the new buff
 	  */
 	private void checkPeonHealth() {
 		int currentHealth = getHealth();
@@ -597,6 +700,12 @@ public class Peon extends AgentEntity {
 		}
 	}
 
+	/**
+	 * A method checking Peon's Hunger and add/remove buff or debuff according
+	 * to its thresholds. 0 < Hunger < 100
+	 *
+	 * 	- Each threshold will remove other debuffs and add the new buff
+	 */
 	private void checkPeonHunger() {
 		int currentHunger = getHunger();
 
@@ -636,6 +745,12 @@ public class Peon extends AgentEntity {
 		}
 	}
 
+	/**
+	 * A method checking Peon's Thirst and add/remove buff or debuff according
+	 * to its thresholds. 0 < Thirst < 100
+	 *
+	 * 	- Each threshold will remove other debuffs and add the new buff
+	 */
 	private void checkPeonThirst() {
 		int currentThirst = getThirst();
 
@@ -704,7 +819,7 @@ public class Peon extends AgentEntity {
 		if((this.getTool().getToolLevel() < 2) && (this.getTool() != null)) {
 			try {
 				if(this.getJobToolList(this.job).get(this.getTool().getToolLevel() + 1) != null) {
-					this.tool = (this.getJobToolList(this.getJob()).get(this.getTool().getToolLevel() + 1));
+					this.tool = this.getJobToolList(this.getJob()).get(this.getTool().getToolLevel() + 1);
 				} else {
 					//Hold up. There is no next tool for this job.
 					//do nothing.
@@ -713,6 +828,7 @@ public class Peon extends AgentEntity {
 
 			} catch (IndexOutOfBoundsException e) {
 				System.out.println("Can't upgrade this tool. Max upgrade reached");
+				throw e;
 			}
 		}
 		//Otherwise don't update cause there is no way to.
@@ -744,7 +860,7 @@ public class Peon extends AgentEntity {
      *
      * Chosen to go this route rather than .values() to do soemthing things with it.
      */
-	public ArrayList<ArrayList<ToolType>> getAllToolsList() {
+	public List<ArrayList<ToolType>> getAllToolsList() {
 		return this.allTools;
 	}
 

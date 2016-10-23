@@ -18,10 +18,10 @@ public class Rock extends ResourceEntity {
 	 */
 	public Rock(double x, double y) {
 
-		super(x, y, 1, 1, rare(TYPES), DEFVALUE);
+		super(x, y, 1, 1, rare(TYPES), defaultValue);
 
 		if (this.getType() == TYPES[TYPES.length - 1]) {
-			this.setValue(2 * DEFVALUE);
+			this.setValue(2 * defaultValue);
 		}
 	}
 

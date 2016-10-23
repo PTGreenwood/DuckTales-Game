@@ -34,6 +34,9 @@ public class MissionGameControllerTest extends ApplicationTest {
 		stage.show();
     }
 	
+	/**
+	 * Check missions have right Text
+	 */
 	@Test
 	public void checkMissions() {
 
@@ -42,6 +45,9 @@ public class MissionGameControllerTest extends ApplicationTest {
 		//verifyThat("#labelTop", hasText("GAME"));
 	}
 	
+	/**
+	 * Check variables are not null
+	 */
 	@Test
     public void testIsNotNull() {
 
