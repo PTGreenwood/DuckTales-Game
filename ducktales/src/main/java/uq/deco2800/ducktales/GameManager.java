@@ -90,8 +90,9 @@ public class GameManager {
     private TimeManager timeManager;
     private ThreatManager threatManager;
     private WeatherManager weatherManager;
-    private ResourceEntityManager resourceEntityManager;
     private PeonInformationDisplayManager peonInformationDisplayManager;
+    
+    private static GameManager gameManager;
     
     /**
      * Instantiate an empty game manager and createBuildingSprite a new default world
@@ -111,6 +112,7 @@ public class GameManager {
                 DEFAULT_WORLD_WIDTH,
                 DEFAULT_WORLD_HEIGHT
         );
+        gameManager = this;
     }
 
     /**
@@ -145,6 +147,16 @@ public class GameManager {
         // Now set up the entity manager and start its routine
         mainEntityManager.startRoutine();
 
+        //Play theme song for the start of the game
+	        //Create Variable for first song to be played.
+	        GameSound Sound1 = new GameSound("src/main/resources/sounds/EmotionalRain.wav");
+	        //Play first song
+	        Sound1.start();
+      
+        
+        
+        
+        
         // Start the manager of all the horrible threats in the world.
         threatManager = new ThreatManager();
         threatManager.setWorld(this.world);
@@ -267,7 +279,7 @@ public class GameManager {
 
     /**
      * Retrieve the manager that manages the missions in the game
-     *
+     * 
      * @return the manager of the missions in the game
      */
     public MissionManager getMissionManager() {
@@ -393,30 +405,6 @@ public class GameManager {
     }
 
     /**
-     * Retrieve the manager for all resource entities of the game. Currently the
-     * {@link ResourceEntityManager} is instantiated in {@link GameController}, but
-     * in the future it should be moved to {@link MainEntityManager} if it is not
-     * loaded via FXMLLoader
-     *
-     * @return The manager for all resource entities of the game
-     */
-    public ResourceEntityManager getResourceEntityManager() {
-    	return resourceEntityManager;
-    }
-
-    /**
-     * Give the primary manager a reference of the resource entity manager.
-     * This is mainly required for testing purposes
-     *
-     * @param resourceEntityManager
-     *          The manager for all resource entities in the game, such as trees,
-     *          rocks, stones, etc.
-     */
-    public void setResourceEntityManager(ResourceEntityManager resourceEntityManager) {
-    	this.resourceEntityManager = resourceEntityManager;
-    }
-
-    /**
      * Retrieve the manager for the game time. It will also have information
      * about the current game time, as well as have controls over it
      *
@@ -481,6 +469,10 @@ public class GameManager {
      */
     public void setPeonInformationDisplayManager(PeonInformationDisplayManager peonInformationDisplayManager) {
         this.peonInformationDisplayManager = peonInformationDisplayManager;
+    }
+    
+    public static GameManager getGameManager() {
+    	return gameManager;
     }
 
     /**

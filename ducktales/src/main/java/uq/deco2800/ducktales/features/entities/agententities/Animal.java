@@ -8,6 +8,7 @@ import javafx.event.Event;
 import uq.deco2800.ducktales.GameManager;
 import uq.deco2800.ducktales.features.entities.MainEntityManager;
 import uq.deco2800.ducktales.features.entities.peons.Peon;
+import uq.deco2800.ducktales.features.entities.resourceentities.ResourceEntityManager;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.AStar;
 import uq.deco2800.ducktales.util.Point;
@@ -23,6 +24,12 @@ public class Animal extends AgentEntity {
     /** The main manager of the game */
     protected GameManager gameManager;
     
+    /** The animal manager of the game */
+    protected AnimalManager animalManager;
+    
+    /** The droppable resource entity manager of the game */
+    protected ResourceEntityManager resourceEntityManager; 
+    
     /** instance of AnimalDeadEvent */
     private AnimalDeadEvent animalDeadEvent;
 
@@ -32,11 +39,11 @@ public class Animal extends AgentEntity {
     private static final int MAXSTARTHUNGER = 50;
     private static final int MINSTARTTHIRST = 0;
     private static final int MAXSTARTTHIRST = 50;
-    private static final int MINSTARTSTRENGTH = 1;
-    private static final int MAXSTARTSTRENGTH = 20;
-    private static final int HUNGERINCREASERATE = 5; // Rate at which hunger will increase.
-    private static final int THIRSTINCREASERATE = 5; // Rate at which thirst will increase.
-    private static final int HEALTHDECREASERATE = 5; // Rate at which health will decrease.
+    private static final int MINSTARTSTRENGTH = 0;
+    private static final int MAXSTARTSTRENGTH = 50;
+    private static final int HUNGERINCREASERATE = 10; // Rate at which hunger will increase.
+    private static final int THIRSTINCREASERATE = 10; // Rate at which thirst will increase.
+    private static final int HEALTHDECREASERATE = 10; // Rate at which health will decrease.
     protected int health; // The animal's state of health.
     protected int hunger; // The animal's state of hunger.
     protected int thirst; // The animal's state of thirst.
@@ -101,8 +108,10 @@ public class Animal extends AgentEntity {
                 newDir = "Up";
             }
             setDirection(newDir);
-//            updateType(ResourceType.valueOf(getSprite()));
             point.moveToward(goalPoints.get(0), getSpeed());
+        }
+        if(isDead()) {
+        	// change sprite to death animation
         }
         statusUpdate();
         calculateRenderingOrderValues();
@@ -150,11 +159,14 @@ public class Animal extends AgentEntity {
     private void statusUpdate() {
         time += 1;
         // the animal's hunger, thirst and/or health will be incremented every 3 minutes.
-        if (time == 180) {
+        if (time == 120) {
             setHunger(getHunger() + HUNGERINCREASERATE);
             setThirst(getThirst() + THIRSTINCREASERATE);
-            if (getHunger() == 0 || getThirst() == 0) {
+            if (getHunger() >= 50 || getThirst() >= 50) {
                 setHealth(getHealth() - HEALTHDECREASERATE);
+            }
+            if(getHealth() <= 0) {
+            	setIsDead();
             }
             time = 0; // reset timer until next update
         }
@@ -165,17 +177,13 @@ public class Animal extends AgentEntity {
      */
     public void setIsDead() {
             this.isDead = true;
-            //setOffAnimalDeadEvent();
-            // fire AnimalDeadEvent when an animal dies
-            // entityManager.removeEntity(this);
-            // MainEntityManager.removeEntity(this);
     }
     
     /**
      * Fires an event for when an animal dies
      */
     public void setOffAnimalDeadEvent() {
-    	Event.fireEvent(animalDeadEvent.getTarget(), new AnimalDeadEvent(type, this.getX() +1, this.getY()+1));
+    	Event.fireEvent(animalDeadEvent.getTarget(), new AnimalDeadEvent(type, this.getX(), this.getY()));
     }
 
     /**
@@ -451,5 +459,13 @@ public class Animal extends AgentEntity {
      */
     public void setOutOfZone(boolean x) {
         this.outOfZone = x;
+    }
+    
+    /**
+     * Get the resourceType of the animal
+     * @return the resourceType of the animal
+     */
+    public ResourceType getType() {
+    	return this.type;
     }
 }

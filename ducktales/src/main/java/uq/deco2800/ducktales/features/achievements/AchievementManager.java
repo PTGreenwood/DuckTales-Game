@@ -14,7 +14,7 @@ import javafx.scene.layout.BorderPane;
 /**
  * Manage all fxml action of the achievement 
  * 
- * @author Naehyung Kim
+ * @author Naehyung Kim and Joshua You
  * 
  */
 public class AchievementManager {
@@ -40,6 +40,12 @@ public class AchievementManager {
 	private Button wood;
 	@FXML
 	private Button ore;
+	@FXML
+	private Button peons;
+	@FXML
+	private Button threats;
+	@FXML
+	private Button food;
 	
 	@FXML
 	private Label topLabel;
@@ -57,9 +63,13 @@ public class AchievementManager {
 	
 	private Image wood1 = new Image("achievements/wood100.png");
 	
+	private Image peons1 = new Image("peon/basic_peon.png");
+	
 	private AchievementLevelController levelController = AchievementLevelController.getInstance();
 	private AchievementMissionController missionController = AchievementMissionController.getInstance();
-	
+	private AchievementScoreController scoreController = AchievementScoreController.getInstance();
+	private AchievementOreController oreController = AchievementOreController.getInstance();
+	private AchievementWoodController woodController = AchievementWoodController.getInstance();
 	
 	public AchievementManager() {
 				
@@ -68,6 +78,7 @@ public class AchievementManager {
 	public void loadMain() {
 		
 		this.topLabel.setText("ACHIEVEMENT");
+		this.bottomLabel.setText("Achievement Score : " + this.scoreController.achievementHolder());
 		this.achievementMainDescription.setVisible(true);
 		this.achievementDescription.setVisible(false);
 		this.achievementImageView.setVisible(false);
@@ -89,7 +100,7 @@ public class AchievementManager {
 	@FXML
 	private void loadLevel() {
 		
-		this.loadAchievement("LEVEL", "Achievement Level Description", 
+		this.loadAchievement("LEVEL", "Your achievement level of level is the same level as your level.", 
 				this.levelController.getAchievementLevelImage());
 		
 	}
@@ -97,7 +108,7 @@ public class AchievementManager {
 	@FXML
 	private void loadMission() {
 		
-		this.loadAchievement("MISSION", "Achievement Mission Description",
+		this.loadAchievement("MISSION", "Your missions completion level.",
 				this.missionController.getAchievementMissionImage());;
 			
 	}
@@ -105,17 +116,26 @@ public class AchievementManager {
 	@FXML
 	private void loadOre() {
 		
-		this.loadAchievement("ORE", "Achievement Ore Description", ore1);
-		
+		this.loadAchievement("ORE", "You have collected many ores and that is good. Good job.",
+			this.oreController.getAchievementOreImage());;
+			
 	}
 	
 	@FXML
 	private void loadWood() {
 		
-		this.loadAchievement("WOOD", "Achievement Wood Description", wood1);
+		this.loadAchievement("WOOD", "You're a true lumberjack. This is your wood gathering level.",
+				this.woodController.getAchievementWoodImage());;
 		
 	}
 	
+	@FXML
+	private void loadPeons() {
+		
+		this.loadAchievement("PEONS", "You have many peons to live for eons.", peons1);
+	}
+	
+
 	/**
 	 * Show and hide main window
 	 */
