@@ -37,10 +37,13 @@ public class Peon extends AgentEntity {
 	private List<Point> goalPoints;
 
 	/** Timers for in-game effects **/
-	private int autoDecreaseTime = 0, //natural hunger/thirst decrease
-							hungryTime = 0, thirstyTime = 0, //hunger/thirst debuff
-							hotTime = 0, coldTime = 0, //deciding temperature debuff
-							tempHotTime = 0, tempColdTime = 0; //used to determine health decrease
+	private int autoDecreaseTime = 0; //natural hunger/thirst decrease
+	private int hungryTime = 0; // hunger debuff timer
+	private int thirstyTime = 0; // thirst debuff timer
+	private int	hotTime = 0;
+	private int coldTime = 0; //deciding temperature debuff
+	private int tempHotTime = 0;
+	private int tempColdTime = 0; //used to determine health decrease
 
 	private double speed = 0.05;
 	private int health = 1000;
@@ -499,8 +502,8 @@ public class Peon extends AgentEntity {
 	 * 	- decrease health under certain threshold of hunger/thirst
 	 */
 	private void autoDecrease() {
-		int currentHunger = getHunger(),
-				currentThirst = getThirst();
+		int currentHunger = getHunger();
+		int	currentThirst = getThirst();
 
 		++autoDecreaseTime;
 
@@ -816,7 +819,7 @@ public class Peon extends AgentEntity {
 		if((this.getTool().getToolLevel() < 2) && (this.getTool() != null)) {
 			try {
 				if(this.getJobToolList(this.job).get(this.getTool().getToolLevel() + 1) != null) {
-					this.tool = (this.getJobToolList(this.getJob()).get(this.getTool().getToolLevel() + 1));
+					this.tool = this.getJobToolList(this.getJob()).get(this.getTool().getToolLevel() + 1);
 				} else {
 					//Hold up. There is no next tool for this job.
 					//do nothing.
@@ -825,6 +828,7 @@ public class Peon extends AgentEntity {
 
 			} catch (IndexOutOfBoundsException e) {
 				System.out.println("Can't upgrade this tool. Max upgrade reached");
+				throw e;
 			}
 		}
 		//Otherwise don't update cause there is no way to.
@@ -856,7 +860,7 @@ public class Peon extends AgentEntity {
      *
      * Chosen to go this route rather than .values() to do soemthing things with it.
      */
-	public ArrayList<ArrayList<ToolType>> getAllToolsList() {
+	public List<ArrayList<ToolType>> getAllToolsList() {
 		return this.allTools;
 	}
 
