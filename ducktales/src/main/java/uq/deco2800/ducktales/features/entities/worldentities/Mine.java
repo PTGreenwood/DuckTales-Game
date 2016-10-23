@@ -117,6 +117,5 @@ public class Mine extends StorageProduceBuilding {
 		if (storage.get(0).getRight()<storage.get(0).getMiddle()) {
 			this.addGoods(production.ORE, 1);
 		}
-		System.out.println(storage);
 	}
 }
