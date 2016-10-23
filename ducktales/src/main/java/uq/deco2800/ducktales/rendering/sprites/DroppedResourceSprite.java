@@ -10,7 +10,7 @@ import uq.deco2800.ducktales.resources.ResourceType;
  */
 public class DroppedResourceSprite extends EntitySprite {
 	
-	// the resourceType of the dropped resource
+	/** the resourceType of the dropped resource */
 	private ResourceType droppableResourceType;
 	
     /**

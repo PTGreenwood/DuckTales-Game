@@ -6,5 +6,9 @@ package uq.deco2800.ducktales.features.entities.peons;
  * @author Jin Shin
  */
 public enum PeonDebuffType {
-  HUNGRY,THIRSTY, SICKLY, NEAR_DEATH, STARVING, PARCHED
+  SICKLY, NEAR_DEATH,
+  HUNGRY, STARVING,
+  THIRSTY, PARCHED,
+  HOT, BURING,
+  COLD, FREEZING
 }

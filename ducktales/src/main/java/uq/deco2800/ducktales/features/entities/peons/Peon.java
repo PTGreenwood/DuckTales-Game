@@ -38,8 +38,9 @@ public class Peon extends AgentEntity {
 	private List<Point> goalPoints;
 
 	/** Timers for in-game effects **/
-	private int autoDecreaseTime = 0;
-
+	private int autoDecreaseTime = 0, //natural hunger/thirst decrease
+							hungryTime = 0, thirstyTime = 0, //hunger/thirst debuff
+							hotTime = 0, coldTime = 0; //temperature debuff
 
 	private double speed = 0.05;
 	private int health = 1000;
@@ -451,9 +452,8 @@ public class Peon extends AgentEntity {
 			}
 			calculateRenderingOrderValues();
 
-			autoDecrease();
-			checkPeonStatus();
-
+			checkPeonStatus(); //add/remove buff/debuff
+			autoDecrease(); //natural decrease in peon's health/hunger/thirst
 		} else {
 			// this peon doesn't know who the main manager is
 			return;
@@ -488,38 +488,92 @@ public class Peon extends AgentEntity {
 	}
 
 	/**
-	 * function that auto decrease the Peon's hunger and thirst - natural
-	 * decrease hunger -= 2 and thirst -=3 every 3 hours - weather decrease
-	 *
+	 * function that auto decrease the Peon's hunger and thirst and health
+	 * decrease hunger -= 2 and thirst -=3 every 3 hours
+	 * decrease health under certain threshold of hunger/thirst
 	 */
 	private void autoDecrease() {
+		int currentHunger = getHunger(),
+				currentThirst = getThirst();
+
 		++autoDecreaseTime;
 
 		// natural decrease
 		if (autoDecreaseTime == 180) {
-			hunger -= 2;
-			thirst -= 3;
+			setHunger(currentHunger - 2);
+			setThirst(currentThirst - 3);
 			autoDecreaseTime = 0;
 		}
 	}
 
 	/**
-	 * function that decrease the Peon's stats according to the weather
+	 * function that decreases the Peon's stats according to the weather
 	 * different weather will have different effect on peon's stats.
 	 */
 	private void weatherEffectOnPeon() {
 
 	}
 
-	private void temperatureEffectOnPeon() {
+	/**
+	 * function that
+	 */
 
+	private void temperatureEffectOnPeon() {
+		int currentTemp = season.getCurrentSeason().getCurrentTemperature();
+
+		if (currentTemp >= 23) {
+			if (coldTime == 0) { hotTime += 2; }
+			else if ( (coldTime - 2) > 0 ) { coldTime -= 2; }
+			else if ( (coldTime - 2) == 0 ) { coldTime = 0; }
+			else if ( (coldTime - 2) < 0 ) { hotTime = -(coldTime - 2); coldTime = 0;}
+		}
+		else if (currentTemp <= 22 && currentTemp >= 19) {
+			if (coldTime == 0) { hotTime += 1; }
+			else if ( (coldTime - 1) > 0 ) { coldTime -= 1; }
+			else if ( (coldTime - 1) == 0 ) { coldTime = 0; }
+		}
+		else if (currentTemp <= 18 && currentTemp >= 11) {
+			if (coldTime > 0) { coldTime -= 1; }
+			if (hotTime > 0) { hotTime -= 1; }
+		}
+		else if (currentTemp <= 10 && currentTemp >= 5) {
+			if (hotTime == 0) { coldTime += 1; }
+			else if ( (hotTime - 1) > 0 ) { hotTime -= 1; }
+			else if ( (hotTime - 1) == 0 ) { hotTime = 0; }
+		}
+		else if (currentTemp <= 4 && currentTemp >= 0) {
+			if (hotTime == 0) { coldTime += 2; }
+			else if ( (hotTime - 2) > 0 ) { hotTime -= 2; }
+			else if ( (hotTime - 2) == 0 ) { hotTime = 0; }
+			else if ( (hotTime - 2) < 0 ) { coldTime = -(hotTime - 2); hotTime = 0;}
+		}
 	}
 
-	/** Function that check the status of Peon to add buff/debuff - health/hunger/thirst **/
+	/**
+	 * Function that checks the status of Peon to add buff/debuff - health/hunger/thirst
+	 * also decrease health according to the debuffs
+	 */
 	private void checkPeonStatus() {
 		checkPeonHealth();
 		checkPeonHunger();
 		checkPeonThirst();
+
+		/** Measure how long the peon is exposed to the debuff **/
+		//HUNGER related
+		if (debuffs.contains(PeonDebuffType.HUNGRY)) { hungryTime += 1; }
+		else if (debuffs.contains(PeonDebuffType.STARVING)) { hungryTime += 2; }
+		else if (!debuffs.contains(PeonDebuffType.HUNGRY)
+							&& !debuffs.contains(PeonDebuffType.STARVING)) { hungryTime = 0; }
+
+		//THIRST related
+		if (debuffs.contains(PeonDebuffType.THIRSTY)) { thirstyTime += 1; }
+		else if (debuffs.contains(PeonDebuffType.PARCHED)) { thirstyTime += 2; }
+		else if (!debuffs.contains(PeonDebuffType.THIRSTY)
+							&& !debuffs.contains(PeonDebuffType.PARCHED)) { thirstyTime = 0; }
+
+		// every 60 hungryTime/thirstyTime, loses health by 15
+		if (hungryTime >= 60) { setHealth(getHealth() - 15); }
+		if (thirstyTime >= 60) { setHealth(getHealth() -15); }
 	}
 
 	/**
