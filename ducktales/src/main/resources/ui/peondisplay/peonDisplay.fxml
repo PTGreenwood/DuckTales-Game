@@ -8,7 +8,6 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.text.Font?>
 
 <HBox fx:id="rootDisplay" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="180.0" prefWidth="800.0" spacing="10.0" styleClass="peon-display-root" stylesheets="@peonDisplay.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uq.deco2800.ducktales.features.hud.informationdisplay.peon.PeonInformationDisplayManager">
    <children>
@@ -73,7 +72,7 @@
                   <Label fx:id="peonThirst" alignment="CENTER_RIGHT" layoutX="10.0" layoutY="10.0" prefHeight="25.0" prefWidth="100.0" text="[peonThirst]" />
                </children>
             </HBox>
-            <Label alignment="CENTER" layoutX="50.0" layoutY="53.0" prefHeight="25.0"  styleClass="header" prefWidth="150.0" text="TOOL UPGRADE" textAlignment="CENTER" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="65.0" />         		
+            <Label alignment="CENTER" layoutX="50.0" layoutY="53.0" prefHeight="25.0" prefWidth="150.0" styleClass="header" text="TOOL UPGRADE" textAlignment="CENTER" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="65.0" />         		
            			
              <HBox layoutX="20.0" layoutY="90.0" prefHeight="10.0" prefWidth="500.0" spacing="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
          		<children>
@@ -99,7 +98,7 @@
             
             <HBox layoutX="76.0" layoutY="129.0" prefHeight="10.0" prefWidth="300.0" spacing="10.0" AnchorPane.leftAnchor="64.0" AnchorPane.rightAnchor="60.0">
             	<children>
-            		<Button onAction="#handleUpgradeToolButtonAction" fx:id="upgradeToolsButton" alignment="CENTER" layoutX="50.0" layoutY="161.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="78.0" text="Upgrade" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="20.0" />
+            		<Button fx:id="upgradeToolsButton" alignment="CENTER" layoutX="50.0" layoutY="161.0" mnemonicParsing="false" onAction="#handleUpgradeToolButtonAction" prefHeight="20.0" prefWidth="78.0" text="Upgrade" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="20.0" />
             	</children>
             </HBox>
 
@@ -112,17 +111,10 @@
       <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="general-pane-color">
          <children>
             <Label alignment="CENTER" layoutY="14.0" prefHeight="25.0" prefWidth="38.0" styleClass="header" text="JOB" textAlignment="CENTER" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0" />
-				<Button fx:id="lumberjackButton" onAction="#setLumberJack" layoutX="13.0" layoutY = "28" prefHeight="15" prefWidth="70.0" text="lumberJack"></Button>
-				<Button fx:id="minerButton" onAction="#setMiner" layoutX="13.0" layoutY = "53" prefHeight="15" prefWidth="70.0" text="Miner"></Button>
-				<Button fx:id="builderButton" onAction="#setBuilder" layoutX="13.0" layoutY = "79" prefHeight="15" prefWidth="70.0" text="Builder"></Button>
-				<Button fx:id="doctorButton" onAction="#setDoctor" layoutX="13.0" layoutY = "105" prefHeight="15" prefWidth="70.0" text="Doctor"></Button>
-				<Button fx:id="farmerButton" onAction="#setFarmer" layoutX="13.0" layoutY = "131" prefHeight="15" prefWidth="70.0" text="Farmer"></Button>
-				<Button fx:id="teacherButton" onAction="#setTeacher" layoutX="118.0" layoutY = "28" prefHeight="15" prefWidth="70.0" text="Teacher"></Button>
-				<Button fx:id="blackSmithButton" onAction="#setBlackSmith" layoutX="118.0" layoutY = "53" prefHeight="15" prefWidth="70.0" text="BlackSmith"></Button>
-				<Button fx:id="masonButton" onAction="#setMason" layoutX="118.0" layoutY = "79" prefHeight="15" prefWidth="70.0" text="Mason"></Button>
-				<Button fx:id="gymCoachButton" onAction="#setGymCoach" layoutX="118.0" layoutY = "105" prefHeight="15" prefWidth="70.0" text="GymCoach"></Button>
-            	<Button fx:id="joblessButton" onAction="#setJobless" layoutX="118.0" layoutY = "131" prefHeight="15" prefWidth="70.0" text="Jobless"></Button>
-            	</children>
+
+            <ScrollPane fx:id="jobList" hbarPolicy="NEVER" layoutY="33.0" prefHeight="89.0" prefWidth="173.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+            <Button fx:id="assignJobButton" layoutX="74.0" layoutY="163.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="82.0" text="Assign" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" />
+         </children>
          <padding>
             <Insets bottom="10.0" />
          </padding>

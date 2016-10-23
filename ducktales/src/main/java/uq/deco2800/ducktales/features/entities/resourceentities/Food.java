@@ -19,7 +19,7 @@ public class Food extends ResourceEntity {
 	 *            y location of the food
 	 */
 	public Food(int x, int y, ResourceType type) {
-		super(x, y, 1, 1, type, DEFVALUE);
+		super(x, y, 1, 1, type, defaultValue);
 	}
 
 	/**

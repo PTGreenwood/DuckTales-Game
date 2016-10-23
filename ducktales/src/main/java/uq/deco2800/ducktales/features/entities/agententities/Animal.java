@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import com.sun.media.jfxmedia.logging.Logger;
+
 import javafx.event.Event;
 import uq.deco2800.ducktales.GameManager;
 import uq.deco2800.ducktales.features.entities.MainEntityManager;
@@ -14,17 +16,12 @@ import uq.deco2800.ducktales.util.AStar;
 import uq.deco2800.ducktales.util.Point;
 import uq.deco2800.ducktales.util.events.animal.AnimalDeadEvent;
 
-import uq.deco2800.ducktales.features.seasons.SeasonManager;
-
 /**
  * This class represents the base class for all animals.
  *
  * @author Josh Benavides
  */
 public class Animal extends AgentEntity {
-	/** the season manager of the game */
-	private SeasonManager season = new SeasonManager();
-
 	/** The main manager of the game */
 	protected GameManager gameManager;
 
@@ -45,9 +42,9 @@ public class Animal extends AgentEntity {
 	private static final int MAXSTARTTHIRST = 50;
 	private static final int MINSTARTSTRENGTH = 0;
 	private static final int MAXSTARTSTRENGTH = 50;
-	private static final int HUNGERINCREASERATE = 10; 
-	private static final int THIRSTINCREASERATE = 10;	
-	private static final int HEALTHDECREASERATE = 10; 
+	private static final int HUNGERINCREASERATE = 10;
+	private static final int THIRSTINCREASERATE = 10;
+	private static final int HEALTHDECREASERATE = 10;
 	protected int health; // The animal's state of health.
 	protected int hunger; // The animal's state of hunger.
 	protected int thirst; // The animal's state of thirst.
@@ -59,8 +56,7 @@ public class Animal extends AgentEntity {
 	private boolean outOfZone; // Determines whether the animal is out of its zone
 	private boolean isDead = false; // Whether the animal is dead.
 	private String direction; // The direction that the animal is travelling.
-	private List<Point> goalPoints;
-	private MainEntityManager mainEntityManager = MainEntityManager.getInstance();
+	private List<Point> goalPoints; // list of travel points for an animal
 	// The variables below are used to alternate images for animation.
 	private int animationStage; // Determines which of the two images per direction is rendered.
 	private int currentAnimationTick;
@@ -117,7 +113,6 @@ public class Animal extends AgentEntity {
 		}
 		statusUpdate();
 		calculateRenderingOrderValues();
-		System.out.println(season.getCurrentSeason().getCurrentTemperature());
 	}
 
 	/**
@@ -135,14 +130,14 @@ public class Animal extends AgentEntity {
 						random.nextDouble() * gameManager.getWorld().getHeight());
 			}
 			List<AStar.Tuple> path = AStar.aStar(point, goalPoint, gameManager.getWorld());
-			List<Point> goalPoints = new ArrayList<Point>();
+			List<Point> goalPointsList = new ArrayList<Point>();
 			for (AStar.Tuple tuple : path) {
-				goalPoints.add(new Point(tuple.getX(), tuple.getY()));
+				goalPointsList.add(new Point(tuple.getX(), tuple.getY()));
 			}
 
-			System.err.println("Goal points: " + goalPoints);
+			System.err.println("Goal points: " + goalPointsList);
 
-			return goalPoints;
+			return goalPointsList;
 		} else {
 			return null;
 		}
@@ -202,9 +197,6 @@ public class Animal extends AgentEntity {
 		if (this.getOutOfZone()) {
 			opponent.setHealth(opponent.getHealth() - this.getStrength());
 		}
-		// if (opponent.getHealth() <= 0) {
-		// mainEntityManager.removeEntity(opponent);
-		// }
 	}
 
 	/**
@@ -485,7 +477,7 @@ public class Animal extends AgentEntity {
 
 	/**
 	 * Get the resourceType of the animal
-	 * 
+	 *
 	 * @return the resourceType of the animal
 	 */
 	public ResourceType getType() {

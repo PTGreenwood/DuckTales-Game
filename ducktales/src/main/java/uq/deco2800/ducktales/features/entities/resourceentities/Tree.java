@@ -48,10 +48,7 @@ public class Tree extends ResourceEntity {
 	
 	// Manager for the Seasons
     private SeasonManager seasonManager;
-	private TimeManager timeManager;
-	
-	// The ResourceEntityManager
-	private ResourceEntityManager resourceEntityManager;
+	private TimeManager timeManager;	
 
 	// Logger for the class
 	private static final Logger LOGGER = Logger.getLogger(Tree.class.getName());
@@ -66,7 +63,7 @@ public class Tree extends ResourceEntity {
 	 * @throws Exception
 	 */
 	public Tree(double x, double y) {
-		super(x, y, 1, 1, rare(SPRING_TYPES), DEFVALUE);
+		super(x, y, 1, 1, rare(SPRING_TYPES), defaultValue);
 		// Scheduling the runnable to run every minute in real time.
 		scheduler.scheduleAtFixedRate(createRunnable(this), 24, 24, 
 				TimeUnit.MINUTES);
@@ -75,7 +72,7 @@ public class Tree extends ResourceEntity {
 		 * rare, set the value of the Resource to be double.
 		 */
 		if (this.getType() == SPRING_TYPES[SPRING_TYPES.length - 1]) {
-			this.setValue(2 * DEFVALUE);
+			this.setValue(2 * defaultValue);
 		}
 	}
 
@@ -156,15 +153,7 @@ public class Tree extends ResourceEntity {
 		this.seasonManager = timeManager.getSeasonManager();
 	}
 	
-	/**
-	 * Set the resourceEntitymanager.
-	 * 
-	 * @param resourceEntityManager
-	 *            the manager to set
-	 */
-	public void setResourceEntityManager(ResourceEntityManager resourceEntityManager) {
-		this.resourceEntityManager = resourceEntityManager;
-	}
+	
 	
 	
 	/**
@@ -174,7 +163,8 @@ public class Tree extends ResourceEntity {
 	 * @param loggers
 	 * 
 	 */
-	public void lumber(Peon loggers) {
+	public void lumber(Peon loggers) throws Exception {
+            this.decreaseValue(10);
 	}
 
 	/**

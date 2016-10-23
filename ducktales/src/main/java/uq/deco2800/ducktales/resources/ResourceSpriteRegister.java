@@ -7,6 +7,64 @@ import java.util.concurrent.ConcurrentHashMap;
 import javafx.scene.image.Image;
 import uq.deco2800.ducktales.util.exceptions.GameSetupException;
 
+import static uq.deco2800.ducktales.resources.ResourceType.*;
+
+import static uq.deco2800.ducktales.resources.ResourceType.BAKERY;
+import static uq.deco2800.ducktales.resources.ResourceType.BLANK;
+import static uq.deco2800.ducktales.resources.ResourceType.BOX;
+import static uq.deco2800.ducktales.resources.ResourceType.BUTCHER;
+import static uq.deco2800.ducktales.resources.ResourceType.CHURCH;
+import static uq.deco2800.ducktales.resources.ResourceType.COMMUNITY_BUILDING;
+import static uq.deco2800.ducktales.resources.ResourceType.CONSTRUCTION;
+import static uq.deco2800.ducktales.resources.ResourceType.COW;
+import static uq.deco2800.ducktales.resources.ResourceType.COW_FRONT_RIGHT;
+import static uq.deco2800.ducktales.resources.ResourceType.CYAN;
+import static uq.deco2800.ducktales.resources.ResourceType.CYAN_CROSSED;
+import static uq.deco2800.ducktales.resources.ResourceType.DUCK;
+import static uq.deco2800.ducktales.resources.ResourceType.DUCKDown0;
+import static uq.deco2800.ducktales.resources.ResourceType.DUCKDown1;
+import static uq.deco2800.ducktales.resources.ResourceType.DUCKLeft0;
+import static uq.deco2800.ducktales.resources.ResourceType.DUCKLeft1;
+import static uq.deco2800.ducktales.resources.ResourceType.DUCKRight0;
+import static uq.deco2800.ducktales.resources.ResourceType.DUCKRight1;
+import static uq.deco2800.ducktales.resources.ResourceType.DUCKUp0;
+import static uq.deco2800.ducktales.resources.ResourceType.DUCKUp1;
+import static uq.deco2800.ducktales.resources.ResourceType.DUCK_1_1;
+import static uq.deco2800.ducktales.resources.ResourceType.FORGE;
+import static uq.deco2800.ducktales.resources.ResourceType.GRASS_1;
+import static uq.deco2800.ducktales.resources.ResourceType.GRASS_2;
+import static uq.deco2800.ducktales.resources.ResourceType.GRASS_3;
+import static uq.deco2800.ducktales.resources.ResourceType.GRASS_4;
+import static uq.deco2800.ducktales.resources.ResourceType.HOSPITAL;
+import static uq.deco2800.ducktales.resources.ResourceType.HOUSE;
+import static uq.deco2800.ducktales.resources.ResourceType.LONG_BOX;
+import static uq.deco2800.ducktales.resources.ResourceType.MINE;
+import static uq.deco2800.ducktales.resources.ResourceType.OBSERVATORY;
+import static uq.deco2800.ducktales.resources.ResourceType.PASTURE;
+import static uq.deco2800.ducktales.resources.ResourceType.PEON;
+import static uq.deco2800.ducktales.resources.ResourceType.ROCK_1;
+import static uq.deco2800.ducktales.resources.ResourceType.ROCK_2;
+import static uq.deco2800.ducktales.resources.ResourceType.SAWMILL;
+import static uq.deco2800.ducktales.resources.ResourceType.SHEEP;
+import static uq.deco2800.ducktales.resources.ResourceType.SHEEPRight0;
+import static uq.deco2800.ducktales.resources.ResourceType.SHEEPRight1;
+import static uq.deco2800.ducktales.resources.ResourceType.TREE_1_SUMMER;
+import static uq.deco2800.ducktales.resources.ResourceType.TREE_2_SUMMER;
+import static uq.deco2800.ducktales.resources.ResourceType.TREE_3_SUMMER;
+import static uq.deco2800.ducktales.resources.ResourceType.TREE_1_AUTUMN;
+import static uq.deco2800.ducktales.resources.ResourceType.TREE_2_AUTUMN;
+import static uq.deco2800.ducktales.resources.ResourceType.TREE_3_AUTUMN;
+import static uq.deco2800.ducktales.resources.ResourceType.TREE_1_WINTER;
+import static uq.deco2800.ducktales.resources.ResourceType.TREE_2_WINTER;
+import static uq.deco2800.ducktales.resources.ResourceType.TREE_3_WINTER;
+import static uq.deco2800.ducktales.resources.ResourceType.TREE_1_SPRING;
+import static uq.deco2800.ducktales.resources.ResourceType.TREE_2_SPRING;
+import static uq.deco2800.ducktales.resources.ResourceType.TREE_3_SPRING;
+import static uq.deco2800.ducktales.resources.ResourceType.VOID;
+import static uq.deco2800.ducktales.resources.ResourceType.WATER;
+import static uq.deco2800.ducktales.resources.ResourceType.WOOD_BOX;
+import static uq.deco2800.ducktales.resources.ResourceType.YELLOW;
+
 
 /**
  * Every resource of the same type will have some common attributes such as name,
@@ -65,6 +123,8 @@ public class ResourceSpriteRegister {
 		addAgentEntitiesResources();
 
 		addBuildingResources();
+
+		addJobResources();
 
 	}
 
@@ -334,60 +394,7 @@ public class ResourceSpriteRegister {
 	}
 
 	private void addAgentEntitiesResources() {
-		/*
-		 * PEONS
-		 */
-		addResource(PEON, "/peon/basic_peon.png");
-		
-		//LumberJack
-		addResource(LUMBERJACK_LV1_1, "/peon/jobs/lumberjacks_1.png");
-		addResource(LUMBERJACK_LV1_2, "/peon/jobs/lumberjacks_2.png");
-		addResource(LUMBERJACK_LV1_3, "/peon/jobs/lumberjacks_3.png");
-		addResource(LUMBERJACK_LV1_4, "/peon/jobs/lumberjacks_4.png");
-		
-		addResource(LUMBERJACK_LV2_1, "/toolsUpgrade/lumberjack/lumberjack_lv2.png");
-		addResource(LUMBERJACK_LV2_2, "/toolsUpgrade/lumberjack/lumberjack_lv2_back_left.png");
-		addResource(LUMBERJACK_LV2_3, "/toolsUpgrade/lumberjack/lumberjack_lv2_back_right.png");
-		addResource(LUMBERJACK_LV2_4, "/toolsUpgrade/lumberjack/lumberjack_lv2_right.png");
-		
-		addResource(LUMBERJACK_LV3_1, "/toolsUpgrade/lumberjack/lumberjack_lv3.png");
-		
-		//Miner
-		addResource(MINER_LV1_1, "/peon/jobs/miner_1.png");
-		addResource(MINER_LV2_1, "/toolsUpgrade/miner/miner_lv2.png");
-		addResource(MINER_LV3_1, "/toolsUpgrade/miner/miner_lv3.png");
-		//Blacksmith
-		addResource(BLACKSMITH_LV1_1, "/peon/jobs/blacksmiths_1.png");	
-		addResource(BLACKSMITH_LV2_1, "/toolsUpgrade/blacksmith/blacksmiths_lv2.png");
-		addResource(BLACKSMITH_LV3_1, "/toolsUpgrade/blacksmith/blacksmiths_lv3.png");
-		//Builder
-		addResource(BUILDER_LV1_1, "/peon/jobs/builder_1.png");		
-		addResource(BUILDER_LV2_1, "/toolsUpgrade/builder/builder_lv2.png");
-		addResource(BUILDER_LV3_1, "/toolsUpgrade/builder/builder_lv3_left.png");
-		//Doctor
-		addResource(DOCTOR_LV1_1, "/peon/jobs/doctor_1.png");	
-		addResource(DOCTOR_LV2_1, "/toolsUpgrade/doctor/doctor_lv2.png");
-		addResource(DOCTOR_LV3_1, "/toolsUpgrade/doctor/doctor_lv3_left.png");
-		//Farmer
-		addResource(FARMER_LV1_1, "/peon/jobs/farmer_1.png");		
-		addResource(FARMER_LV2_1, "/toolsUpgrade/farmer/farmer_lv2.png");
-		addResource(FARMER_LV3_1, "/toolsUpgrade/farmer/farmer_lv3_left.png");
-		//GymCoach
-		addResource(GYMCOACH_LV1_1, "/peon/jobs/GymCoach_1.png");
-		addResource(GYMCOACH_LV2_1, "/toolsUpgrade/gymcoach/gymcoach_lv2.png");
-		addResource(GYMCOACH_LV3_1, "/toolsUpgrade/gymcoach/gymcoach_lv3_left.png");
-		//Priest
-		addResource(PRIEST_LV1_1, "/peon/jobs/priest_Church.png");		
-		//Stonemason
-		addResource(STONE_MASON_LV1_1, "/peon/jobs/stonemason.png");
-		addResource(STONE_MASON_LV2_1, "/toolsUpgrade/stonemason/stonemason_lv2.png");	
-		addResource(STONE_MASON_LV3_1, "/toolsUpgrade/stonemason/stonemason_lv3.png");	
-		//Teacher
-		addResource(TEACHER_LV1_1, "/peon/jobs/teacher_1.png");
-		addResource(TEACHER_LV2_1, "/toolsUpgrade/teacher/teacher_lv2.png");	
-		addResource(TEACHER_LV3_1, "/toolsUpgrade/teacher/teacher_lv3.png");	
-		
-		
+
 		/*
 		 * ANIMALS
 		 */
@@ -468,6 +475,89 @@ public class ResourceSpriteRegister {
 
 		addResource(WATER, "/water.png");
 		addResource(BLANK, "/blank.png");
+	}
+	
+	private void addJobResources(){
+		/*addResource(MINER_LV1_1, "/peon/jobs/miner.png");
+		addResource(MINER_LV1_2, "/peon/jobs/miner_1.png");
+		addResource(MINER_LV1_3, "/peon/jobs/miner_2.png");
+		addResource(MINER_LV1_4, "/peon/jobs/miner_3.png");
+		addResource(BUILDER_LV1_1, "/peon/jobs/builder.png");
+		addResource(BUILDER_LV1_2, "/peon/jobs/builder_1.png");
+		addResource(BUILDER_LV1_3, "/peon/jobs/builder_1.png");
+		addResource(BUILDER_LV1_4, "/peon/jobs/builder_1.png");
+		addResource(DOCTOR_LV1_1, "/peon/jobs/doctor.png");
+		addResource(DOCTOR_LV1_2, "/peon/jobs/doctor_1.png");
+		addResource(DOCTOR_LV1_3, "/peon/jobs/doctor_2.png");
+		addResource(DOCTOR_LV1_4, "/peon/jobs/doctor_3.png");
+		addResource(LUMBERJACK_LV1_1, "/peon/jobs/lumberjacks.png");
+		addResource(LUMBERJACK_LV1_2, "/peon/jobs/lumberjacks_1.png");
+		addResource(LUMBERJACK_LV1_3, "/peon/jobs/lumberjacks_2.png");
+		addResource(LUMBERJACK_LV1_4, "/peon/jobs/lumberjacks_3.png");
+		addResource(FARMER_LV1_1, "/peon/jobs/farmer.png");
+		addResource(FARMER_LV1_2, "/peon/jobs/farmer_1.png");
+		addResource(FARMER_LV1_3, "/peon/jobs/farmer_2.png");
+		addResource(FARMER_LV1_4, "/peon/jobs/farmer_3.png");
+		addResource(PRIEST_LV1_1, "/peon/jobs/priest.png");
+		addResource(PRIEST_LV1_2, "/peon/jobs/priest_1.png");
+		addResource(PRIEST_LV1_3, "/peon/jobs/priest_2.png");
+		addResource(PRIEST_LV1_4, "/peon/jobs/priest_3.png");*/
+		
+		/*
+		 * PEONS
+		 */
+		addResource(PEON, "/peon/basic_peon.png");
+		
+		//LumberJack
+		addResource(LUMBERJACK_LV1_1, "/peon/jobs/lumberjacks_1.png");
+		addResource(LUMBERJACK_LV1_2, "/peon/jobs/lumberjacks_2.png");
+		addResource(LUMBERJACK_LV1_3, "/peon/jobs/lumberjacks_3.png");
+		addResource(LUMBERJACK_LV1_4, "/peon/jobs/lumberjacks_4.png");
+		
+		addResource(LUMBERJACK_LV2_1, "/toolsUpgrade/lumberjack/lumberjack_lv2.png");
+		addResource(LUMBERJACK_LV2_2, "/toolsUpgrade/lumberjack/lumberjack_lv2_back_left.png");
+		addResource(LUMBERJACK_LV2_3, "/toolsUpgrade/lumberjack/lumberjack_lv2_back_right.png");
+		addResource(LUMBERJACK_LV2_4, "/toolsUpgrade/lumberjack/lumberjack_lv2_right.png");
+		
+		addResource(LUMBERJACK_LV3_1, "/toolsUpgrade/lumberjack/lumberjack_lv3.png");
+		
+		//Miner
+		addResource(MINER_LV1_1, "/peon/jobs/miner_1.png");
+		addResource(MINER_LV2_1, "/toolsUpgrade/miner/miner_lv2.png");
+		addResource(MINER_LV3_1, "/toolsUpgrade/miner/miner_lv3.png");
+		//Blacksmith
+		addResource(BLACKSMITH_LV1_1, "/peon/jobs/blacksmiths_1.png");	
+		addResource(BLACKSMITH_LV2_1, "/toolsUpgrade/blacksmith/blacksmiths_lv2.png");
+		addResource(BLACKSMITH_LV3_1, "/toolsUpgrade/blacksmith/blacksmiths_lv3.png");
+		//Builder
+		addResource(BUILDER_LV1_1, "/peon/jobs/builder_1.png");		
+		addResource(BUILDER_LV2_1, "/toolsUpgrade/builder/builder_lv2.png");
+		addResource(BUILDER_LV3_1, "/toolsUpgrade/builder/builder_lv3_left.png");
+		//Doctor
+		addResource(DOCTOR_LV1_1, "/peon/jobs/doctor_1.png");	
+		addResource(DOCTOR_LV2_1, "/toolsUpgrade/doctor/doctor_lv2.png");
+		addResource(DOCTOR_LV3_1, "/toolsUpgrade/doctor/doctor_lv3_left.png");
+		//Farmer
+		addResource(FARMER_LV1_1, "/peon/jobs/farmer_1.png");		
+		addResource(FARMER_LV2_1, "/toolsUpgrade/farmer/farmer_lv2.png");
+		addResource(FARMER_LV3_1, "/toolsUpgrade/farmer/farmer_lv3_left.png");
+		//GymCoach
+		addResource(GYMCOACH_LV1_1, "/peon/jobs/GymCoach_1.png");
+		addResource(GYMCOACH_LV2_1, "/toolsUpgrade/gymcoach/gymcoach_lv2.png");
+		addResource(GYMCOACH_LV3_1, "/toolsUpgrade/gymcoach/gymcoach_lv3_left.png");
+		//Priest
+		addResource(PRIEST_LV1_1, "/peon/jobs/priest_Church.png");		
+		//Stonemason
+		addResource(STONE_MASON_LV1_1, "/peon/jobs/stonemason.png");
+		addResource(STONE_MASON_LV2_1, "/toolsUpgrade/stonemason/stonemason_lv2.png");	
+		addResource(STONE_MASON_LV3_1, "/toolsUpgrade/stonemason/stonemason_lv3.png");	
+		//Teacher
+		addResource(TEACHER_LV1_1, "/peon/jobs/teacher_1.png");
+		addResource(TEACHER_LV2_1, "/toolsUpgrade/teacher/teacher_lv2.png");	
+		addResource(TEACHER_LV3_1, "/toolsUpgrade/teacher/teacher_lv3.png");	
+		
+		
+		
 	}
 
 }
