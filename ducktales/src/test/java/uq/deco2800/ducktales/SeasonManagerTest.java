@@ -246,4 +246,51 @@ public class SeasonManagerTest {
     		 
     	}
 	
+	
+	/*Fourth Test
+	 * 
+	 * Testing for the return of WeatherEvents hashSet;
+	 */
+	@Test
+	public void updateTemperatureTest() {
+		TimeManager tm = new TimeManager();
+		SeasonManager sm = new SeasonManager();
+		tm.setSeasonManager(sm);
+		
+		int initialTemperature = tm.getSeasonManager().getCurrentSeason().getCurrentTemperature();
+
+		int correctTemperatureAfterIncreaseBy1 = initialTemperature + 1;
+
+		//Test for temperature Increment by 1
+		tm.getSeasonManager().updateTemperature(1, true);
+
+		assertEquals(correctTemperatureAfterIncreaseBy1, 
+				tm.getSeasonManager().getCurrentSeason().getCurrentTemperature());
+		
+		int correctTemperatureAfterIncreaseBy2 = tm.getSeasonManager().getCurrentSeason().getCurrentTemperature() + 2;
+		
+		//Test for temperature Increment by 2 
+		tm.getSeasonManager().updateTemperature(2, true);
+
+		assertEquals(correctTemperatureAfterIncreaseBy2, 
+				tm.getSeasonManager().getCurrentSeason().getCurrentTemperature());
+		
+		int correctTemperatureAfterDecreaseBy2 = tm.getSeasonManager().getCurrentSeason().getCurrentTemperature() - 2;
+		
+		//Test for temperature decrement by 2 
+		tm.getSeasonManager().updateTemperature(2, false);
+
+		assertEquals(correctTemperatureAfterDecreaseBy2,
+				tm.getSeasonManager().getCurrentSeason().getCurrentTemperature());
+		
+		int correctTemperatureAfterDecreaseBy1 = tm.getSeasonManager().getCurrentSeason().getCurrentTemperature() - 1;	
+
+
+		//Test for temperature decrement by 1
+		tm.getSeasonManager().updateTemperature(1, false);
+
+		assertEquals(correctTemperatureAfterDecreaseBy1, 
+				tm.getSeasonManager().getCurrentSeason().getCurrentTemperature());
+		
+	}
 }
