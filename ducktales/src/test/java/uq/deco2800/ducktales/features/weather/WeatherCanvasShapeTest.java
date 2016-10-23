@@ -4,6 +4,9 @@ import org.junit.Test;
 import org.junit.Assert;
 
 public class WeatherCanvasShapeTest {
+	/**
+	 *	Test the setters and getters of the WeatherCanvasChape 
+	 */
 	@Test
 	public void testShapeGetAndSet() {
 		int x = 0;
@@ -50,6 +53,9 @@ public class WeatherCanvasShapeTest {
 
 	}
 	
+	/**
+	 * Test a shape being created with positive integers
+	 */
 	@Test
 	public void testPositiveShapeCreation() {
 		int x = 9;
@@ -69,6 +75,9 @@ public class WeatherCanvasShapeTest {
 						+ "direction: 12, acceleration: 99)");
 	}
 	
+	/**
+	 * Test a shape being created with negative integers
+	 */
 	@Test
 	public void testNegativeShapeCreation() {
 		int x = -9;

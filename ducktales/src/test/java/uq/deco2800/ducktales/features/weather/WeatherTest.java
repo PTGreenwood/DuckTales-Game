@@ -13,7 +13,7 @@ import uq.deco2800.ducktales.features.weather.*;
 public class WeatherTest {
 
 	/**
-	 * Test weather events
+	 * Test weather events for different weather types
 	 */
 	@Test
 	public void testWeather() {
@@ -21,7 +21,7 @@ public class WeatherTest {
 		Assert.assertEquals(true, fire.isLand());
 		Assert.assertEquals(false, fire.isWater());
 		Assert.assertEquals(false, fire.isAmphibious());
-		Assert.assertEquals(false, fire.requiresObjectUpdate());		
+		Assert.assertEquals(false, fire.requiresObjectUpdate());
 
 		Rain rain = new Rain();
 		Assert.assertEquals(true, rain.isLand());
@@ -49,7 +49,7 @@ public class WeatherTest {
 		Assert.assertEquals(false, weather.isAmphibious());
 		Assert.assertEquals(false, weather.requiresObjectUpdate());
 	}
-	
+
 	/**
 	 * Test Weather toString methods
 	 */
@@ -108,6 +108,9 @@ public class WeatherTest {
 		Assert.assertEquals("0% of lightning", wc.toString());
 	}
 
+	/**
+	 * Test weather events being created
+	 */
 	@Test
 	public void testWeatherEvent() throws InvalidWeatherChanceException {
 		WeatherEvents weatherEvent = new WeatherEvents();
@@ -117,6 +120,12 @@ public class WeatherTest {
 		weatherEvent.add(fireChance);
 	}
 
+	/**
+	 * Test a negative weather chance
+	 * 
+	 * @throws InvalidWeatherChanceException
+	 *             if chance is negative
+	 */
 	@Test(expected = InvalidWeatherChanceException.class)
 	public void testWeatherChanceException()
 			throws InvalidWeatherChanceException {
@@ -125,6 +134,12 @@ public class WeatherTest {
 		weatherEvent.add(rainChance);
 	}
 
+	/**
+	 * Test a null weather chance
+	 * 
+	 * @throws InvalidWeatherChanceException
+	 *             if the weather is null
+	 */
 	@Test(expected = NullPointerException.class)
 	public void testWeatherChanceException2()
 			throws InvalidWeatherChanceException {
@@ -133,14 +148,9 @@ public class WeatherTest {
 		weatherEvent.add(rainChance);
 	}
 
-	@Test
-	public void testEquals() {
-		Weather fire = new Fire();
-		Weather rain = new Rain();
-		Weather rain2 = new Rain();
-		WeatherEvents we = new WeatherEvents();
-	}
-
+	/**
+	 * Compare hashcodes of the weather objects	 * 
+	 */
 	@Test
 	public void testHashCodes() throws InvalidWeatherChanceException {
 		WeatherEvents weatherEvent = new WeatherEvents();
@@ -154,37 +164,40 @@ public class WeatherTest {
 		WeatherChance fireChance = new WeatherChance(new Fire(), 30);
 		weatherEvent.add(rainChance);
 		weatherEvent.add(fireChance);
-		
+
 		Assert.assertEquals(wc.hashCode(),
 				weatherEvent.getWeatherEvents().hashCode());
 
 		weatherEvent.remove(rainChance);
-		
+
 		WeatherEvents testEvents = new WeatherEvents();
 		testEvents.add(new WeatherChance(new Fire(), 30));
 	}
-	
+
+	/**
+	 * Test the weather effects class for comparisons 
+	 */
 	@Test
 	public void testWeatherEffect() {
 		Fire fire = new Fire();
-		WeatherEffect we = fire.getWeatherEffect();		
-		Assert.assertEquals(null,we.getName());
+		WeatherEffect we = fire.getWeatherEffect();
+		Assert.assertEquals(null, we.getName());
 		we.setName("Fire");
-		Assert.assertEquals("Fire",we.getName());
+		Assert.assertEquals("Fire", we.getName());
 		we.setName("Name");
-		Assert.assertEquals("Name",we.getName());
+		Assert.assertEquals("Name", we.getName());
 		String location = we.getLocation();
-		Assert.assertEquals(location+"fire.gif",we.getSprite());
-		
+		Assert.assertEquals(location + "fire.gif", we.getSprite());
+
 		Rain rain = new Rain();
-		we = rain.getWeatherEffect();		
-		Assert.assertEquals(null,we.getName());
+		we = rain.getWeatherEffect();
+		Assert.assertEquals(null, we.getName());
 		we.setName("Rain");
-		Assert.assertEquals("Rain",we.getName());
+		Assert.assertEquals("Rain", we.getName());
 		we.setName("Name");
-		Assert.assertEquals("Name",we.getName());
+		Assert.assertEquals("Name", we.getName());
 		location = we.getLocation();
-		Assert.assertEquals(location+"rain.gif",we.getSprite());
+		Assert.assertEquals(location + "rain.gif", we.getSprite());
 	}
 
 }
