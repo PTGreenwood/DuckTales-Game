@@ -26,7 +26,7 @@ public class PeonJobSpriteClickedEventHandler extends GameEventHandler
     }
 
     @Override
-    public void handle(PeonClickedEvent event) {
+    public void handle(JobSpritePeonClickedEvent event) {
         // Task 1
         World world = gameManager.getWorld();
         Peon peon = world.getPeon(event.getPeonName());

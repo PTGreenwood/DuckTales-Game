@@ -145,7 +145,7 @@ public class PeonInformationDisplayManager
 		for (JobSprite jobsprite : jobsList){
 			jobsprite.setFitHeight(100); // set max height to 100px
     		jobsprite.setFitWidth(100); // Will set it to a square
-			jobList.getChildren().add(jobsprite);
+			jobList.setContent(jobsprite);
 		}
 			
 			
