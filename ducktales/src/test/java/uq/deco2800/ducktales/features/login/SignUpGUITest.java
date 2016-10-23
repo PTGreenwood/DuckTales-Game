@@ -53,7 +53,10 @@ public class SignUpGUITest extends GuiTest {
 
 		return parent;
 	}
-	
+	/**
+	 * Test for adding a new user to the client
+	 * 
+	 */
 	@Test
 	public void testSuccesfulSignUp() {
 
@@ -75,7 +78,10 @@ public class SignUpGUITest extends GuiTest {
 		assertTrue(((TextField) GuiTest.find("#passwordField2")).
 				getText().equals(validPassword));
 	}
-	
+	/**
+	 * test to check if the  ducktales client is connected
+	 * 
+	 */
 	@Test
 	public void clientTest() {
 		this.signUpController.setClient(this.client);

@@ -3,6 +3,7 @@ package uq.deco2800.ducktales.resources;
 import java.util.concurrent.ConcurrentHashMap;
 
 import javafx.scene.image.Image;
+import uq.deco2800.ducktales.util.exceptions.GameSetupException;
 
 import static uq.deco2800.ducktales.resources.ResourceType.*;
 
@@ -134,7 +135,7 @@ public class ResourceSpriteRegister {
 	 */
 	private void addResource ( ResourceType type, String imageName) {
 		if (resourceTypeRegister.containsKey(type)) {
-			throw new RuntimeException(
+			throw new GameSetupException(
 					"Attempted to add an already registered ResourceTypeInfo \""
 							+ type + "\" to a ResourceSpriteRegister");
 		}
@@ -151,7 +152,7 @@ public class ResourceSpriteRegister {
 	 */
 	public Image getResourceImage(ResourceType resourceType) {
 		if (!resourceTypeRegister.containsKey(resourceType))
-			throw new RuntimeException(
+			throw new GameSetupException(
 					"Attempted to access non-registered ResourceTypeInfo of tile type \""
 							+ resourceType + "\" from a ResourceSpriteRegister");
 		return resourceTypeRegister.get(resourceType);
@@ -195,6 +196,7 @@ public class ResourceSpriteRegister {
 		addResource(MINE, "/buildings/mine.png");
 		addResource(CEMETERY, "/buildings/cemetery_small.png");
 		addResource(FARM, "/buildings/farmhouse.png");
+		addResource(STONEMASON, "/buildings/stonemason.png");
 
 		addBuildingAnimationResources();
 	}
@@ -310,8 +312,48 @@ public class ResourceSpriteRegister {
 		addResource(SCHOOL_4, "/buildings/school/school_4.png");
 		addResource(SCHOOL_5, "/buildings/school/school_5.png");
 		
-		
+		// Winter animations
+		// Bakery
+		addResource(BAKERY_WINTER_1, "/buildings/bakery_winter/bakery_winter_1.png");
+		addResource(BAKERY_WINTER_2, "/buildings/bakery_winter/bakery_winter_2.png");
+		addResource(BAKERY_WINTER_3, "/buildings/bakery_winter/bakery_winter_3.png");
+		addResource(BAKERY_WINTER_4, "/buildings/bakery_winter/bakery_winter_4.png");
+		// Butcher
+		addResource(BUTCHER_WINTER, "/buildings/butcher_winter.png");
+		// Cemetery
+		addResource(CEMETERY_WINTER, "/buildings/cemetery_small_winter.png");
+		// Church
+		addResource(CHURCH_WINTER, "/buildings/church_winter.png");
+		// Community Building
+		addResource(COMMUNITY_BUILDING_WINTER_1, "/buildings/community_building_winter/community_building_winter_1.png");
+		addResource(COMMUNITY_BUILDING_WINTER_2, "/buildings/community_building_winter/community_building_winter_2.png");
+		addResource(COMMUNITY_BUILDING_WINTER_3, "/buildings/community_building_winter/community_building_winter_3.png");
+		addResource(COMMUNITY_BUILDING_WINTER_4, "/buildings/community_building_winter/community_building_winter_4.png");
+		// Forge
+		addResource(FORGE_WINTER, "/buildings/forge_winter.png");
+		// Gymnasium
+		addResource(GYMNASIUM_WINTER_1, "/buildings/gymnasium_winter/gymnasium_winter_1.png");
+		addResource(GYMNASIUM_WINTER_2, "/buildings/gymnasium_winter/gymnasium_winter_2.png");
+		addResource(GYMNASIUM_WINTER_3, "/buildings/gymnasium_winter/gymnasium_winter_3.png");
+		addResource(GYMNASIUM_WINTER_4, "/buildings/gymnasium_winter/gymnasium_winter_4.png");
+		// Hospital
+		addResource(HOSPITAL_WINTER, "/buildings/hospital_winter.png");
+		// House
+		addResource(HOUSE_WINTER, "/buildings/house_winter.png");
+		// Mine
+		addResource(MINE_WINTER, "/buildings/mine_winter.png");
+		// Observatory
+		addResource(OBSERVATORY_WINTER, "/buildings/observatory_winter.png");
+		// Sawmill
+		addResource(SAWMILL_WINTER, "/buildings/sawmill_winter.png");
+		// School
+		addResource(SCHOOL_WINTER, "/buildings/school_winter.png");
+		// Stonemason
+		addResource(STONEMASON_WINTER, "/buildings/stonemason_winter.png");
+		// Storage Barn
+		addResource(STORAGEBARN_WINTER, "/buildings/storagebarn_winter.png");
 
+		
 		// Advanced buildings' animations
 		// Butcher
 		addResource(ADV_BUTCHER_1, "/buildings/adv_butcher/adv_butcher_01.png");

@@ -9,7 +9,10 @@ import javafx.stage.Stage;
 import uq.deco2800.ducktales.features.inventory.InventoryManager;
 
 public class AchievementOreControllerTest extends ApplicationTest {
-
+	
+	/**
+	 * Check Image from AchievementOreController contains actual URL from the image
+	 */
 	@Test
 	public void imageTest() {
 		AchievementOreController oreController = new AchievementOreController();

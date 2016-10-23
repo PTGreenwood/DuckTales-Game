@@ -18,6 +18,8 @@ import uq.deco2800.ducktales.resources.ResourceInfoRegister;
 
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.features.landscape.tiles.Tile;
+import uq.deco2800.ducktales.features.seasons.Season;
+import uq.deco2800.ducktales.features.seasons.Winter;
 import uq.deco2800.ducktales.features.time.TimeManager;
 import uq.deco2800.ducktales.rendering.sprites.BuildingSprite;
 import uq.deco2800.ducktales.util.*;
@@ -55,7 +57,7 @@ public class World implements Tickable {
 	private HashMap<String, Peon> peons; // All the peons in the game
 	private ArrayList<Threat> threats;
 	private HashMap<Integer, Tree> trees;
-	private ArrayList<DroppableResourceEntity> droppedResources; // All the dropped resources in the game
+	private HashMap<Integer, DroppableResourceEntity> droppedResources; // All the dropped resources in the game
 
 	/** The registers */
 	private ResourceInfoRegister infoRegister = ResourceInfoRegister.getInstance();
@@ -91,6 +93,7 @@ public class World implements Tickable {
 		this.buildings = new ArrayList<>(50);
 		this.peons = new HashMap<>(50);
 		this.threats = new ArrayList<>(50);
+		this.droppedResources = new HashMap<>(50);
 
 		for (int x = 0; x < width; x++) {
 			for (int y = 0; y < height; y++) {
@@ -163,7 +166,7 @@ public class World implements Tickable {
 	 */
 	public void addAnimal(Animal animal) {
 		if (animals.contains(animal)) {
-			throw new RuntimeException("Animal already exists in the game");
+			throw new GameSetupException("Animal already exists in the game");
 		} else {
 			animals.add(animal);
 		}
@@ -183,7 +186,7 @@ public class World implements Tickable {
 		if (!peons.containsKey(peonName)) {
 			peons.put(peonName, peonObject);
 		} else {
-			throw new RuntimeException("Peon name already exists. Please" +
+			throw new GameSetupException("Peon name already exists. Please" +
 					"make sure peon name is checked when adding a new one");
 		}
 	}
@@ -272,14 +275,13 @@ public class World implements Tickable {
 	 * @return The dropped resource at the given index in the droppedResources 
 	 *         List
 	 */
-	public DroppableResourceEntity getDroppedResource(int index) {
-		if(droppedResources.contains(index)) {
-			return droppedResources.get(index);
+	public DroppableResourceEntity getDroppedResource(int hashCode) {
+		if(droppedResources.containsKey(hashCode)) {
+			return droppedResources.get(hashCode);
 		} else {
-			throw new RuntimeException("Fail to retrieve a droppedResource."
-				+ " droppedResource with" +
-				" key: \"" + index + "\" has not been added to the" +
-				"game yet.");
+			throw new GameSetupException("Fail to retrieve a droppedResource."
+				+ " droppedResource with the given hashCode has not been added"
+					+ " to the game yet.");
 		}
 	}
 	
@@ -287,12 +289,12 @@ public class World implements Tickable {
 	 * Set a dropped resource in the droppedResource List using the 
 	 * given Value
 	 */
-	public void addDroppedResoure(DroppableResourceEntity value) {
-		if(droppedResources.contains(value)) {
-			throw new RuntimeException("droppedResources already contains "
+	public void addDroppedResource(DroppableResourceEntity value) {
+		if(droppedResources.containsKey(value.hashCode())) {
+			throw new GameSetupException("droppedResources already contains "
 					+ "a dropped resource with value: " + value);
 		} else {
-			droppedResources.add(value);
+			droppedResources.put(value.hashCode(), value);
 		}	
 	}
 
@@ -315,7 +317,7 @@ public class World implements Tickable {
 							int xLength, int yLength) {
 		// Add the entity
 		if (buildings.contains(building)) {
-			throw new RuntimeException("This building has already " +
+			throw new GameSetupException("This building has already " +
 					"been added to the world");
 		} else {
 			buildings.add(building);
@@ -343,7 +345,8 @@ public class World implements Tickable {
 	 * @return the number of entities in the world
 	 */
 	public int getEntitiesNumber() {
-		return animals.size() + buildings.size() + peons.size();
+		return animals.size() + buildings.size() + peons.size() + trees.size()
+				+ droppedResources.size();
 	}
 
 	/**
@@ -402,15 +405,15 @@ public class World implements Tickable {
 		
 		List<BuildingSprite> buildingSprites = buildingManager.getBuildingSprites();
 				
-		boolean isWinter = (timeManager.seasonManager.getCurrentSeason().getName() 
-				== "winter");
+		boolean isWinter = timeManager.seasonManager.getCurrentSeason().getName() 
+				== "Winter";
 
 		for (int x = 0; x < buildingSprites.size(); x++) {
 			// Set the new buildings to be true of false depending on time of day (to get 
 			// right animation started) 
 			if (nightAnimation.size() < buildingSprites.size()) {
 				for (int y = nightAnimation.size(); y < buildingSprites.size(); y++) {
-					nightAnimation.add(y, !timeManager.isNight());
+					nightAnimation.add(y, timeManager.isNight());
 				}
 			}		
 			
@@ -434,14 +437,14 @@ public class World implements Tickable {
 				}
 			}
 			// Its night time, change animation to night type - NOT WINTER
-			else if (!nightAnimation.get(x) && timeManager.isNight()) {
+			else if (!nightAnimation.get(x) && timeManager.isNight() && !isWinter) {
 				BuildingSprite buildingSprite = buildingSprites.get(x);
 				if (buildingSprite.nightAnimation(buildingSprite.getEntityType())) {
 					nightAnimation.set(x, true);
 				}
 			} 
 			// Its day time, change animation to day type - NOT WINTER
-			else if (nightAnimation.get(x) && !timeManager.isNight()) {
+			else if (nightAnimation.get(x) && !timeManager.isNight() && !isWinter) {
 				BuildingSprite buildingSprite = buildingSprites.get(x);
 				if (buildingSprite.dayAnimation(buildingSprite.getEntityType())) {
 					nightAnimation.set(x, false);

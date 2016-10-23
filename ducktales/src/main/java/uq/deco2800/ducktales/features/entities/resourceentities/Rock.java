@@ -15,9 +15,8 @@ public class Rock extends ResourceEntity {
 	 *            x location of the rock
 	 * @param y,
 	 *            y location of the rock
-	 * @throws Exception
 	 */
-	public Rock(double x, double y) throws Exception {
+	public Rock(double x, double y) {
 
 		super(x, y, 1, 1, rare(TYPES), DEFVALUE);
 

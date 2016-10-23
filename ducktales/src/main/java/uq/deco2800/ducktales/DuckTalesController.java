@@ -103,13 +103,13 @@ public class DuckTalesController implements Initializable {
 			// Show the main UI
 			showPane(gamePane);
 		}
-
+		
 	}
 
 	/**
 	 * This is a helper method that helps setup the main UI of the game
 	 */
-	private void setupMainUI(FXMLLoader loader) throws Exception {
+	private void setupMainUI(FXMLLoader loader) {
 		// Load the FXML
 		try {
 			gamePane = loader.load();
@@ -123,8 +123,9 @@ public class DuckTalesController implements Initializable {
 		AnchorPane.setRightAnchor(gamePane, 0.0);
 		AnchorPane.setTopAnchor(gamePane, 0.0);
 		AnchorPane.setBottomAnchor(gamePane, 0.0);
+		
 	}
-
+	
 	/**
 	 * This method is called when "Build World" button is pressed
 	 *
@@ -161,6 +162,7 @@ public class DuckTalesController implements Initializable {
 	 */
 	public void quitApplication() {
 		Platform.exit();
+		//System.exit(0);
 	}
 
 	/**

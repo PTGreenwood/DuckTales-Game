@@ -12,6 +12,9 @@ import uq.deco2800.ducktales.features.missions.MissionHandler;
 
 public class AchievementScoreControllerTest extends ApplicationTest {
 	
+	/**
+	 * Check achievementScoreController initiate variables with proper values
+	 */
 	@Test
 	public void initTest() {
 		AchievementScoreController scoreController = new AchievementScoreController();
@@ -20,6 +23,9 @@ public class AchievementScoreControllerTest extends ApplicationTest {
 		assertTrue(expectedAchievementScore == actualAchievementScore);
 	}
 	
+	/**
+	 * Check the setAchieve methods 
+	 */
 	@Test
 	public void setAchieveTest() {
 		AchievementScoreController scoreController = new AchievementScoreController();
@@ -29,6 +35,9 @@ public class AchievementScoreControllerTest extends ApplicationTest {
 		assertTrue(expectedAchievementScore == actualAchievementScore);		
 	}
 	
+	/**
+	 * Check that difficulty methods increment intAchieve or not.
+	 */
 	@Test
 	public void difficultyScoreTest() {
 		AchievementScoreController scoreController = new AchievementScoreController();
@@ -54,6 +63,9 @@ public class AchievementScoreControllerTest extends ApplicationTest {
 		assertTrue(scoreController.getAchieve() == 5);
 	}
 
+	/**
+	 * Check the achievementHolder method in the class.
+	 */
 	@Test
 	public void achievementHolderTest() {
 		
@@ -64,6 +76,9 @@ public class AchievementScoreControllerTest extends ApplicationTest {
 	
 	}
 	
+	/**
+	 * Check instance in the class works properly
+	 */
 	@Test
 	public void singletonTest() {
 		AchievementScoreController scoreController = AchievementScoreController.getInstance();

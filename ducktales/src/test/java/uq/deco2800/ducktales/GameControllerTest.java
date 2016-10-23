@@ -28,13 +28,6 @@ public class GameControllerTest extends ApplicationTest{
         initializeGameController("/ducktales.fxml"); // Just a random fxml
     }
 
-    @Test
-    public void testGameControllerInstantiation() throws IOException{
-        GameController gameController = initializeGameController(FXML_LOCATION);
-
-        assertNotNull(gameController);
-    }
-
     /**
      * Method to instantiate a game controller for testing
      *

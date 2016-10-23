@@ -1,6 +1,9 @@
 package uq.deco2800.ducktales;
 
-import java.io.File; 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.File;
 import java.io.IOException; 
 import javax.sound.sampled.AudioFormat; 
 import javax.sound.sampled.AudioInputStream; 
@@ -19,8 +22,11 @@ import javax.sound.sampled.UnsupportedAudioFileException;
  * @author Wian
  *
  */
-public class GameSound extends Thread { 
- 
+public class GameSound extends Thread {
+    /** The logger */
+    private static final Logger LOGGER = LoggerFactory.getLogger(GameSound.class);
+
+
     private String filename;
  
     private Position curPosition;
@@ -52,7 +58,7 @@ public class GameSound extends Thread {
         File soundFile = new File(filename);
         if (!soundFile.exists()) { 
             //File at location "filename" doesn't exist print File not found
-        	System.err.println("Wave file is not found: " + filename);
+        	LOGGER.info("Wave file is not found: " + filename);
             return;
         } 
  
@@ -63,11 +69,11 @@ public class GameSound extends Thread {
             audioInputStream = AudioSystem.getAudioInputStream(soundFile);
         } 
         //Catch Exceptions
-        catch (UnsupportedAudioFileException e1) { 
-            e1.printStackTrace();
+        catch (UnsupportedAudioFileException e) {
+            LOGGER.debug("Audio file unsupported", e);
             return;
-        } catch (IOException e1) { 
-            e1.printStackTrace();
+        } catch (IOException e) {
+            LOGGER.debug("Unable to open audio file", e);
             return;
         } 
  
@@ -80,10 +86,10 @@ public class GameSound extends Thread {
             auline = (SourceDataLine) AudioSystem.getLine(info);
             auline.open(format);
         } catch (LineUnavailableException e) { 
-            e.printStackTrace();
+            LOGGER.debug("line unavailable", e);
             return;
         } catch (Exception e) { 
-            e.printStackTrace();
+            LOGGER.debug("not sure what happened here", e);
             return;
         } 
  
@@ -107,7 +113,7 @@ public class GameSound extends Thread {
                     auline.write(abData, 0, nBytesRead);
             } 
         } catch (IOException e) { 
-            e.printStackTrace();
+            LOGGER.debug("unable to open file", e);
             return;
         } finally { 
             auline.drain();

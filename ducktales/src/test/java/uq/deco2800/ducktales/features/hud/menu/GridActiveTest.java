@@ -7,6 +7,9 @@ import uq.deco2800.ducktales.features.hud.menu.MenuManager.MenuType;
 import org.junit.Assert;
 
 public class GridActiveTest {
+	/**
+	 * Test the GridActive by using getters and setters 
+	 */
 	@Test
 	public void gridActiveTest() {
 		GridActive gridActive = new GridActive();
