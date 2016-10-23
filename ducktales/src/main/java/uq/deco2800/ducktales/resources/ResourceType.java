@@ -30,6 +30,10 @@ public enum ResourceType {
 
         // PEONS
         PEON,
+        
+        // JOBS
+        LUMBERJACK, MINER, BUILDER, DOCTOR, FARMER, 
+        TEACHER, JOBLESS, BLACKSMITH, BAKER, MASON, PRIEST,
 
 
         // ANIMALS

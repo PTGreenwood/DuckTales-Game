@@ -13,8 +13,13 @@ import uq.deco2800.ducktales.features.peonupgrades.ToolType;
 import uq.deco2800.ducktales.util.SecondaryManager;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
-
+import uq.deco2800.ducktales.features.jobframework.*;
+import uq.deco2800.ducktales.rendering.info.WorldEntityInfo;
+import uq.deco2800.ducktales.resources.ResourceType;
+import uq.deco2800.ducktales.rendering.sprites.JobSprite;
+import uq.deco2800.ducktales.resources.ResourceType.*;
 /**
  * This class is the FXML controller for the peon information display
  *
@@ -56,16 +61,35 @@ public class PeonInformationDisplayManager
     Label currentToolLevel;
     @FXML
     Label resourceCost;
-    @FXML
-    Button upgradeToolsButton;
+    //@FXML
+    //Button upgradeToolbutton;
 
+	private static final ResourceType[] JOBS = {
+        ResourceType.LUMBERJACK, ResourceType.MINER, ResourceType.BUILDER,
+            ResourceType.DOCTOR, ResourceType.FARMER, ResourceType.TEACHER, 
+            ResourceType.JOBLESS, ResourceType.BLACKSMITH, ResourceType.BAKER, 
+            ResourceType.MASON, ResourceType.PRIEST
+	};
+	
+	private static final ArrayList<JobSprite> jobDisplaySprites;
+	/** Helpers for rendering info*/
+	private WorldEntityInfo worldEntityInfo;
+	
+	//in this case would we not need to bring the lumberjack instance from peonManager to here?
+	//possibly addd getter bethods to peonManager for the instances? Put the call in jobSprite?
+	//peons are stored in world
+	
+	
+
+	
     // JOB PANEL
     @FXML
     ScrollPane jobList;
+
     @FXML
     Label peonJobStatus;
-    @FXML
-    Button assignJobButton;
+    // @FXML
+    // Button assignJobButton;
 
     /** The peon to display */
     private Peon peon;
@@ -74,24 +98,63 @@ public class PeonInformationDisplayManager
     public void initialize(URL location, ResourceBundle resources) {
         // Hide the display at first
         rootDisplay.setVisible(false);
-        
     }
 
     public void setPeon(Peon peon) {
     	this.peon = peon;
     	//Setting peons with jobs/tools for testing here.
     	//peon.setJob(JobType.LUMBERJACK);
-         //Setting to axe level 1 to start with.
+        //Setting to axe level 1 to start with.
         //peon.setTool(ToolType.AXElevel1);
     }
     
+    private void setupMenus() {
+		this.jobDisplaySprites = new ArrayList<>();
+		
+		// Add the building sprites
+		for (int i = 0; i < JOBS.length; i++) {
+			jobDisplaySprite sprite = new jobDisplaySprite(JOBS[i]);
+
+			if (!worldEntityInfo.containEntity(sprite.getSpriteType())) {
+				// this building is not yet registered in the manager. not
+				// rendered
+				System.err.println(
+						"jobDisplaySprites " + sprite.getSpriteType() + " is "
+								+ "not yet registered in WorldEntityInfo");
+				continue;
+			}
+
+			jobDisplaySprites.add(sprite);
+		}
+
+		// Set up the menus
+		setupJobMenu();
+	}
+	private void setupJobMenu() {
+		JobSprite lumberjackSprite = new JobSprite(peonName, Lumberjack);
+		JobSprite minerSprite = new JobSprite(peonName, Miner);
+		JobSprite builderSprite = new JobSprite(peonName, Builder);
+		JobSprite doctorSprite = new JobSprite(peonName, Doctor);
+		JobSprite farmerSprite = new JobSprite(peonName, Farmer);
+		JobSprite priestSprite = new JobSprite(peonName, Priest);
+		JobSprite [] jobsList = new JobSprite [](
+				lumberjackSprite, minerSprite, builderSprite,
+				doctorSprite, farmerSprite, priestSprite
+			);
+		for (JobSprite jobsprite : jobslist){
+			jobsprite.setFitHeight(100); // set max height to 100px
+    		jobsprite.setFitWidth(100); // Will set it to a square
+			jobList.getChildren().add(jobsprite);
+		}
+			
+			
+	}
     /**
      * Set the peon to display
      * @param peon
      */
     public void displayPeon() {
 
-       
         // Get the information of the peon
         peonName.setText(peon.getPeonName());
         peonIntelligence.setText(Integer.toString(peon.getIntelligence()));
@@ -111,7 +174,6 @@ public class PeonInformationDisplayManager
     	this.peon.upgradeTool();
     	displayPeon();
     	
-
     	//Still to do.
     	//If on level 3 upgrade.
     	//Set style for button to be grayed out and unclickable.
