@@ -66,6 +66,7 @@ public class AchievementManager {
 	private Label achievementDescription;
 	
 	private Image peons1 = new Image("peon/basic_peon.png");
+	private Image threat1 = new Image("achievements/threats1.png");
 	
 	/** Initialize classes */
 	private AchievementLevelController levelController = AchievementLevelController.getInstance();
@@ -73,6 +74,7 @@ public class AchievementManager {
 	private AchievementScoreController scoreController = AchievementScoreController.getInstance();
 	private AchievementOreController oreController = AchievementOreController.getInstance();
 	private AchievementWoodController woodController = AchievementWoodController.getInstance();
+	private AchievementPeonsController peonsController = AchievementPeonsController.getInstance();
 	
 	/**
 	 * Main constructor of {@link Achievement} class
@@ -163,9 +165,15 @@ public class AchievementManager {
 	@FXML
 	private void loadPeons() {
 		
-		this.loadAchievement("PEONS", "You have many peons to live for eons.", peons1);
+		this.loadAchievement("PEONS", "You have many peons to live for eons.",
+				this.peons1);
 	}
 	
+	@FXML
+	private void loadThreats() {
+		
+		this.loadAchievement("THREATS", "Threats", this.threat1);
+	}
 
 	/**
 	 * Show and hide main window
