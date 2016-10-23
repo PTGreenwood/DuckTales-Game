@@ -37,7 +37,7 @@ public class SignUpController  {
     private static DucktalesClient client = null;
     
 
-    @FXML protected void handleSignUpButtonAction(ActionEvent event) throws Exception {
+    @FXML protected void handleSignUpButtonAction(ActionEvent event) {
     	boolean bexit = false;
     	if(passwordField.getText().equals(passwordField2.getText()))
     	{

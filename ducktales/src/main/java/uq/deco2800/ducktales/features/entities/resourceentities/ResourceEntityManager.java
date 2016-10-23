@@ -222,7 +222,7 @@ public class ResourceEntityManager extends SecondaryManager {
                 sprite.setLayoutX(sprite.getLayoutX() + xAmount);
                 sprite.setLayoutY(sprite.getLayoutY() + yAmount);
             } else {
-                throw new RuntimeException("A TREE sprite is not yet " +
+                throw new GameSetupException("A TREE sprite is not yet " +
                         "instantiated");
             }
         }
