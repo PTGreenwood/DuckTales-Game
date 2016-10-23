@@ -11,3 +11,9 @@
     -fx-font-size: 7px;
     -fx-font-family: "Press Start 2P";    
 }
+
+.displayButton {
+	-fx-background-color: transparent;
+	-fx-padding: 0 13 0 13;
+
+}
