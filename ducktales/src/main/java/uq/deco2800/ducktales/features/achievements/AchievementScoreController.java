@@ -245,24 +245,6 @@ public class AchievementScoreController {
 				LOGGER.debug("Exception in inventory manager", e);
 			}
 	    }
-	    /*
-	    if(world.getNumberOfPeons() == 1 && achievementTogglePeons == 0){
-	    	this.achieveVeryEasy();
-	    	achievementTogglePeons ++;
-	    }
-	    else if(world.getNumberOfPeons() == 10 && achievementTogglePeons == 1){
-	    	this.achieveEasy();
-	    	achievementTogglePeons ++;
-	    }
-	    else if(world.getNumberOfPeons() == 25 && achievementTogglePeons == 2){
-	    	this.achieveMedium();
-	    	achievementTogglePeons ++;
-	    }
-	    else if(world.getNumberOfPeons() == 50 && achievementTogglePeons == 3){
-	    	this.achieveHard();
-	    	achievementTogglePeons ++;
-	    }
-	    */
 	    if(ThreatManager.returnEnemies().equals(1) && achievementToggleThreats == 0){
 	    	this.achieveMedium();
 	    }

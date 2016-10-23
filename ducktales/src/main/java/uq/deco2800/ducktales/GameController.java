@@ -341,82 +341,18 @@ public class GameController implements Initializable{
             weatherDisplay.setOpacity(0.5);
             weatherDisplay.setMouseTransparent(true);            
             rootPane.getChildren().add(weatherDisplay);
-            
-            
-            
-
+                        
             // Position the time display
             AnchorPane.setLeftAnchor(weatherDisplay, 0.0);
             AnchorPane.setRightAnchor(weatherDisplay, 0.0);
             AnchorPane.setTopAnchor(weatherDisplay, 0.0);
             AnchorPane.setBottomAnchor(weatherDisplay, 0.0);
-            
-            /*
-            int canvasHeight = 737;
-            int canvasWidth = 1295;   
-            
-            
-            Canvas mainCanvas = new Canvas(canvasWidth,canvasHeight);            
-            AnchorPane.setLeftAnchor(mainCanvas, 0.0);
-            AnchorPane.setRightAnchor(mainCanvas, 0.0);
-            AnchorPane.setTopAnchor(mainCanvas, 0.0);
-            AnchorPane.setBottomAnchor(mainCanvas, 0.0);
-            GraphicsContext ctx = mainCanvas.getGraphicsContext2D();
-            //weatherManager.tick();
-            Platform.runLater(() -> {            
-	    		for (int i=0; i < 1000; i++) {		
-	    			int randX = (int)Math.ceil(Math.random() * canvasWidth); 		
-	    			int randY = (int)Math.ceil(Math.random() * canvasHeight);		
-	    			int randD = (int)Math.floor(Math.random() * 7) - 3; //random direction between -3 && 3				
-	    			int randA = (int)(Math.random() * 5) + 10; //random acceleration
-	    			ctx.beginPath();            
-	                ctx.setFill(Color.GREEN);
-	                ctx.setStroke(Color.BLUE);
-	                ctx.arc(randX,randY,20,20,2*Math.PI,1);            
-	        		ctx.stroke();
-	        		ctx.fill();		
-	        		ctx.setLineWidth(2);
-	        		ctx.stroke();    
-	        		//ctx.clearRect(0, 0, canvasWidth, canvasHeight);
-	    		}    		
-            });
-            */
-            
-
+                        
         } catch (IOException e) {
             logger.info("Unable to load weather display:" + e);
 
             throw new GameSetupException("unable to load weather display");
         }
-    	
-        /*
-        URL location = getClass().getResource("/weather/weatherEffects.fxml");
-        FXMLLoader loader = new FXMLLoader(location);
-        try {
-            Pane weatherPane = loader.load();     
-
-            weatherManager = loader.getController();
-            //gameManager.setWeatherManager(this.weatherManager);
-            
-            // add the weather pane to the root pane
-            //rootPane.getChildren().add(weatherPane);           
-            weatherPane.setOpacity(0.7);
-            this.worldDisplayManager.changeWeather(new Rain(), weatherPane);
-            // Set the sizing for world pane
-            AnchorPane.setLeftAnchor(weatherPane, 0.0);
-            AnchorPane.setRightAnchor(weatherPane, 0.0);
-            AnchorPane.setTopAnchor(weatherPane, 0.0);
-            AnchorPane.setBottomAnchor(weatherPane, 0.0);
-            
-            
-            
-            
-            
-            
-        } catch (IOException e) {
-            System.err.println("unable to load weather effects");
-        }
-        */
     }
 
     

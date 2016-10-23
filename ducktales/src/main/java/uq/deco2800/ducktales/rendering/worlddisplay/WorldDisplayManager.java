@@ -123,19 +123,10 @@ public class WorldDisplayManager extends SecondaryManager implements Initializab
 	 *  
 	 */
 	public void changeLightLevel(Pane pane) {
-        //getTimeManager is now getCalendarManager.
 		if (this.gameManager.getTimeManager() == null) {
             throw new GameSetupException("Time manager is still empty");
-        } else {
-        	//This will change once it's all worked out.
-            //boolean nightTime = this.gameManager.getTimeManager().isNight();
-        	//Commented out for easy change
-        	
-            //if(nightTime) {
-                //pane.setStyle("-fx-background-image: url('time/nightTime.png')"); //Uncomment this for nightTime
-            //} else {
+        } else {   
                 pane.setStyle("-fx-background-image: url('time/dayTime.png')"); //Uncomment this for dayTime
-            //}
         }
 
 	}

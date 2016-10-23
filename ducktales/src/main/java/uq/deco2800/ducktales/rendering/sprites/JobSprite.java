@@ -25,7 +25,6 @@ public class JobSprite extends HUDSprite {
      */
     public JobSprite(ResourceType peonJob) {
         super(peonJob);
-		//this.job = job;
         setupMouseEventHandlers();
 
     }

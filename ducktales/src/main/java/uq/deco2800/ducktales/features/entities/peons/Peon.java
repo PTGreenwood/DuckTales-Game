@@ -544,35 +544,51 @@ public class Peon extends AgentEntity {
 
 		/** Measure how long the peon is exposed to the debuff **/
 		//HUNGER related
-		if (debuffs.contains(PeonDebuffType.HUNGRY)) { hungryTime += 1; }
-		else if (debuffs.contains(PeonDebuffType.STARVING)) { hungryTime += 2; }
+		if (debuffs.contains(PeonDebuffType.HUNGRY)) { 
+			hungryTime += 1; }
+		else if (debuffs.contains(PeonDebuffType.STARVING)) { 
+			hungryTime += 2; }
 		else if (!debuffs.contains(PeonDebuffType.HUNGRY)
-							&& !debuffs.contains(PeonDebuffType.STARVING)) { hungryTime = 0; }
+							&& !debuffs.contains(PeonDebuffType.STARVING)) { 
+			hungryTime = 0; }
 
 		//THIRST related
-		if (debuffs.contains(PeonDebuffType.THIRSTY)) { thirstyTime += 1; }
-		else if (debuffs.contains(PeonDebuffType.PARCHED)) { thirstyTime += 2; }
+		if (debuffs.contains(PeonDebuffType.THIRSTY)) { 
+			thirstyTime += 1; }
+		else if (debuffs.contains(PeonDebuffType.PARCHED)) { 
+			thirstyTime += 2; }
 		else if (!debuffs.contains(PeonDebuffType.THIRSTY)
-							&& !debuffs.contains(PeonDebuffType.PARCHED)) { thirstyTime = 0; }
+							&& !debuffs.contains(PeonDebuffType.PARCHED)) { 
+			thirstyTime = 0; }
 
 		//Temperatue releated
 		// - HOT
-		if (debuffs.contains(PeonDebuffType.HOT)) { tempHotTime += 1; }
-		else if (debuffs.contains(PeonDebuffType.BURNING)) { tempHotTime += 2; }
+		if (debuffs.contains(PeonDebuffType.HOT)) { 
+			tempHotTime += 1; }
+		else if (debuffs.contains(PeonDebuffType.BURNING)) { 
+			tempHotTime += 2; }
 		else if (!debuffs.contains(PeonDebuffType.HOT)
-							&& !debuffs.contains(PeonDebuffType.BURNING)) { tempHotTime = 0; }
+							&& !debuffs.contains(PeonDebuffType.BURNING)) { 
+			tempHotTime = 0; }
 
 		// - COLD
-		if (debuffs.contains(PeonDebuffType.COLD)) { tempColdTime += 1; }
-		else if (debuffs.contains(PeonDebuffType.FREEZING)) { tempColdTime += 2; }
+		if (debuffs.contains(PeonDebuffType.COLD)) { 
+			tempColdTime += 1; }
+		else if (debuffs.contains(PeonDebuffType.FREEZING)) { 
+			tempColdTime += 2; }
 		else if (!debuffs.contains(PeonDebuffType.COLD)
-							&& !debuffs.contains(PeonDebuffType.FREEZING)) { tempColdTime = 0; }
+							&& !debuffs.contains(PeonDebuffType.FREEZING)) { 
+			tempColdTime = 0; }
 
 		/** Needs thorough tests to balance out **/
-		if (hungryTime >= 60) { setHealth(getHealth() - 15); }
-		if (thirstyTime >= 60) { setHealth(getHealth() -15); }
-		if (tempHotTime >= 80) { setHealth(getHealth() - 10); }
-		if (tempColdTime >= 80) { setHealth(getHealth() - 10); }
+		if (hungryTime >= 60) { 
+			setHealth(getHealth() - 15); }
+		if (thirstyTime >= 60) { 
+			setHealth(getHealth() -15); }
+		if (tempHotTime >= 80) { 
+			setHealth(getHealth() - 10); }
+		if (tempColdTime >= 80) { 
+			setHealth(getHealth() - 10); }
 	}
 
 	/**
@@ -621,30 +637,47 @@ public class Peon extends AgentEntity {
 		int currentTemp = season.getCurrentSeason().getCurrentTemperature();
 
 		if (currentTemp >= 23) {
-			if (coldTime == 0) { hotTime += 2; }
-			else if ( (coldTime - 2) > 0 ) { coldTime -= 2; }
-			else if ( (coldTime - 2) == 0 ) { coldTime = 0; }
-			else if ( (coldTime - 2) < 0 ) { hotTime = -(coldTime - 2); coldTime = 0;}
+			if (coldTime == 0) { 
+				hotTime += 2; }
+			else if ( (coldTime - 2) > 0 ) { 
+				coldTime -= 2; }
+			else if ( (coldTime - 2) == 0 ) { 
+				coldTime = 0; }
+			else if ( (coldTime - 2) < 0 ) { 
+				hotTime = -(coldTime - 2); coldTime = 0;}
 		}
 		else if (currentTemp <= 22 && currentTemp >= 19) {
-			if (coldTime == 0) { hotTime += 1; }
-			else if ( (coldTime - 1) > 0 ) { coldTime -= 1; }
-			else if ( (coldTime - 1) == 0 ) { coldTime = 0; }
+			if (coldTime == 0) { 
+				hotTime += 1; }
+			else if ( (coldTime - 1) > 0 ) { 
+				coldTime -= 1; }
+			else if ( (coldTime - 1) == 0 ) { 
+				coldTime = 0; }
 		}
 		else if (currentTemp <= 18 && currentTemp >= 11) {
-			if (coldTime > 0) { coldTime -= 1; }
-			if (hotTime > 0) { hotTime -= 1; }
+			if (coldTime > 0) { 
+				coldTime -= 1; }
+			if (hotTime > 0) { 
+				hotTime -= 1; }
 		}
 		else if (currentTemp <= 10 && currentTemp >= 5) {
-			if (hotTime == 0) { coldTime += 1; }
-			else if ( (hotTime - 1) > 0 ) { hotTime -= 1; }
-			else if ( (hotTime - 1) == 0 ) { hotTime = 0; }
+			if (hotTime == 0) { 
+				coldTime += 1; }
+			else if ( (hotTime - 1) > 0 ) {
+				hotTime -= 1; }
+			else if ( (hotTime - 1) == 0 ) { 
+				hotTime = 0; }
 		}
 		else if (currentTemp <= 4 && currentTemp >= 0) {
-			if (hotTime == 0) { coldTime += 2; }
-			else if ( (hotTime - 2) > 0 ) { hotTime -= 2; }
-			else if ( (hotTime - 2) == 0 ) { hotTime = 0; }
-			else if ( (hotTime - 2) < 0 ) { coldTime = -(hotTime - 2); hotTime = 0;}
+			if (hotTime == 0) { 
+				coldTime += 2; }
+			else if ( (hotTime - 2) > 0 ) { 
+				hotTime -= 2; }
+			else if ( (hotTime - 2) == 0 ) { 
+				hotTime = 0; }
+			else if ( (hotTime - 2) < 0 ) { 
+				coldTime = -(hotTime - 2); 
+				hotTime = 0;}
 		}
 
 		if (hotTime >= 120) {

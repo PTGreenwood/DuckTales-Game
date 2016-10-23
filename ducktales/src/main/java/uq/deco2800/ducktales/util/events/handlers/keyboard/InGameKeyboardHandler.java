@@ -172,22 +172,13 @@ public class InGameKeyboardHandler extends GameEventHandler
 		} else if (KeyboardManager.getNormalSpeedKeyCombination()
 				.match(event)) {
 			gameManager.getTimeManager().playGame();
-			//GameLoop.setSpeedModifier(1);
-			//System.out.println("Speed 1x"); // set time scale to default
 		} else if (KeyboardManager.getFastSpeedKeyCombination().match(event)) {
 			gameManager.getTimeManager().fastForwardGame();
-			//GameLoop.setSpeedModifier(1.5);
-			//System.out.println("Speed 1.5x"); // set time scale to 1.5151x
 		} else if (KeyboardManager.getFastestSpeedKeyCombination()
 				.match(event)) {
 			gameManager.getTimeManager().doubleFastForwardGame();
-			//GameLoop.setSpeedModifier(2.5);
-			//System.out.println("Speed 2.5x"); // set time scale to 2.5x
-
 		} else if (KeyboardManager.getPauseGameKeyCombination().match(event)) {
 			gameManager.getTimeManager().pauseGame();
-			//GameLoop.pauseWorld();
-			//System.out.println("Pause/UnPause");
 		} else if (KeyboardManager.getBuildFirstKeyCombination().match(event)) {
 			MenuManager.selectItemByIndex(0);
 		} else if (KeyboardManager.getBuildSecondKeyCombination()

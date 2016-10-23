@@ -43,28 +43,4 @@ public class DuckGods {
 	public String getDuckName() {
 		return duckName;
 	}
-
-//	public String getrequiredSacrifice() {
-//		return requiredSacrifice;
-//	}
-//
-//	public void build() {
-//		/**
-//		 * wait for chaoschurch to be built if(isset(chaoschurch)){
-//		 */
-//		isBuilt = true;
-//	}
-//
-//	public void selected() {
-//		/**
-//		 * needs to check mouseListener to see if it's clicked if(clicked)
-//		 */
-//		isSelected = true;
-//	}
-//
-//	public void worship() {
-//		if (isBuilt && !isSelected) {
-//			isWorshiped = true;
-//		}
-//	}
 }
