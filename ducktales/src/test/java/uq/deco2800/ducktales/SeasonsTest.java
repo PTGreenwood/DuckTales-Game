@@ -228,5 +228,57 @@ public class SeasonsTest {
 		
 	}
 	
+	/*Incrementing Testing */
+	@Test
+	public void incrementBoundsAndValues() {
+		TimeManager tm = new TimeManager();
+		SeasonManager sm = new SeasonManager();
+		tm.setSeasonManager(sm);
+		
+		int correctDoNothingTemp = tm.getSeasonManager().getCurrentSeason().getCurrentTemperature();
+		int correctIncrementTillMaxTemp = tm.getSeasonManager().getCurrentSeason().getMaxTemp();
+		//Incrementing (both bounds).
+		//Modifier <0 for a do nothing.
+		tm.getSeasonManager().getCurrentSeason().incrementCurrentTemperature(-5);
+		assertEquals(correctDoNothingTemp, tm.getSeasonManager().getCurrentSeason().getCurrentTemperature());
+		
+		//Modifier >10 for a loop through to reduce the modifier to a doable figure
+		//Result <= maxTemperature.
+		tm.getSeasonManager().getCurrentSeason().incrementCurrentTemperature(20);
+		assertEquals(correctIncrementTillMaxTemp, tm.getSeasonManager().getCurrentSeason().getCurrentTemperature());
+		
+		//Normal incrementing (by 1).
+		tm.getSeasonManager().updateSeason(3); //Resets to new season to have base temperatures again.
+		int correctTemperatureAfterIncrement = tm.getSeasonManager().getCurrentSeason().getCurrentTemperature() + 1;
+		
+		tm.getSeasonManager().getCurrentSeason().incrementCurrentTemperature(1);
+		assertEquals(correctTemperatureAfterIncrement, tm.getSeasonManager().getCurrentSeason().getCurrentTemperature());
+	}
 	
+	/*Decrementing Testing */
+	@Test
+	public void decrementingBoundsAndValues() {
+		TimeManager tm = new TimeManager();
+		SeasonManager sm = new SeasonManager();
+		tm.setSeasonManager(sm);
+		
+		int correctDoNothingTemp = tm.getSeasonManager().getCurrentSeason().getCurrentTemperature();
+		int correctIncrementTillMinTemp = tm.getSeasonManager().getCurrentSeason().getMinTemp();
+		//Incrementing (both bounds).
+		//Modifier <0 for a do nothing.
+		tm.getSeasonManager().getCurrentSeason().decrementCurrentTemperature(-5);
+		assertEquals(correctDoNothingTemp, tm.getSeasonManager().getCurrentSeason().getCurrentTemperature());
+		
+		//Modifier >10 for a loop through to reduce the modifier to a doable figure
+		//Result <= maxTemperature.
+		tm.getSeasonManager().getCurrentSeason().decrementCurrentTemperature(20);
+		assertEquals(correctIncrementTillMinTemp, tm.getSeasonManager().getCurrentSeason().getCurrentTemperature());
+		
+		//Normal decrementing (by 1).
+		tm.getSeasonManager().updateSeason(3); //Resets to new season to have base temperatures again.
+		int correctTemperatureAfterDecrement = tm.getSeasonManager().getCurrentSeason().getCurrentTemperature() - 1;
+		
+		tm.getSeasonManager().getCurrentSeason().decrementCurrentTemperature(1);
+		assertEquals(correctTemperatureAfterDecrement, tm.getSeasonManager().getCurrentSeason().getCurrentTemperature());
+	}
 }
