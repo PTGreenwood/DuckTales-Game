@@ -14,12 +14,16 @@ import uq.deco2800.ducktales.util.AStar;
 import uq.deco2800.ducktales.util.Point;
 import uq.deco2800.ducktales.util.events.animal.AnimalDeadEvent;
 
+import uq.deco2800.ducktales.features.seasons.SeasonManager;
+
 /**
  * This class represents the base class for all animals.
  *
  * @author Josh Benavides
  */
 public class Animal extends AgentEntity {
+	/** the season manager of the game */
+	private SeasonManager season = new SeasonManager();
 
 	/** The main manager of the game */
 	protected GameManager gameManager;
@@ -32,8 +36,7 @@ public class Animal extends AgentEntity {
 
 	/** instance of AnimalDeadEvent */
 	private AnimalDeadEvent animalDeadEvent;
-	
-    /** variables which set an animals base stats */
+
 	private static final int MINSTARTHEALTH = 20;
 	private static final int MAXSTARTHEALTH = 100;
 	private static final int MINSTARTHUNGER = 0;
@@ -42,48 +45,34 @@ public class Animal extends AgentEntity {
 	private static final int MAXSTARTTHIRST = 50;
 	private static final int MINSTARTSTRENGTH = 0;
 	private static final int MAXSTARTSTRENGTH = 50;
-	private static final int HUNGERINCREASERATE = 10; 							
-	private static final int THIRSTINCREASERATE = 10; 						
-	private static final int HEALTHDECREASERATE = 10; 
-	
-	/** variables which represent the animal stats */
-	/** will be set by above variables in game */
+	private static final int HUNGERINCREASERATE = 10; // Rate at which hunger
+														// will increase.
+	private static final int THIRSTINCREASERATE = 10; // Rate at which thirst
+														// will increase.
+	private static final int HEALTHDECREASERATE = 10; // Rate at which health
+														// will decrease.
 	protected int health; // The animal's state of health.
 	protected int hunger; // The animal's state of hunger.
 	protected int thirst; // The animal's state of thirst.
 	protected int strength; // The animal's strength.
 	protected double speed; // The animal's movement speed.
-	protected ResourceType type; // The ResourceType of the animal
-	private int time = 0; // Interval which counts game time
+	protected ResourceType type; // The type of the animal
+	private int time = 0; // Interval in game minutes with which attributes will
+							// decrease.
 	private boolean canBeKilled; // Determines whether the animal can be killed.
-	private boolean outOfZone; // Determines whether animal is in zone/pasture
+	private boolean outOfZone; // Determines whether the animal is out of its
+								// zone
 	private boolean isDead = false; // Whether the animal is dead.
 	private String direction; // The direction that the animal is travelling.
-	private List<Point> goalPoints; // A list of each animals travel path
-	private MainEntityManager mainEntityManager = // The entity manager
-			MainEntityManager.getInstance();
-	
-	/** Variables which aid the change of animal animations
-	 *  when directions is changed */
-	private int animationStage; 
+	private List<Point> goalPoints;
+	private MainEntityManager mainEntityManager = MainEntityManager.getInstance();
+	// The variables below are used to alternate images for animation.
+	private int animationStage; // Determines which of the two images per
+								// direction is rendered.
 	private int currentAnimationTick;
 	private int animationSpeed;
 
-	/**
-	 * The constructor for an animal, creates a new animal with the specified 
-	 * base stats (health, hunger, thirst, strength, speed)
-	 * 
-	 * @param x, the X location of the animal
-	 * @param y, the Y location of the animal
-	 * @param type, the resource type of the animal
-	 * @param health, the health of the animal
-	 * @param hunger, the hunger of the animal
-	 * @param thirst, the thirst of the animal
-	 * @param strength, the strength of the animal
-	 * @param speed, the speed of the animal
-	 */
-	public Animal(int x, int y, ResourceType type, int health, int hunger, 
-			int thirst, int strength, double speed) {
+	public Animal(int x, int y, ResourceType type, int health, int hunger, int thirst, int strength, double speed) {
 		super(x, y, 1, 1, type);
 		this.type = type;
 		this.health = health;
@@ -101,8 +90,7 @@ public class Animal extends AgentEntity {
 	}
 
 	/**
-	 * Original tick method based on tick method from
-	 * World.java
+	 * Original tick
 	 */
 	@Override
 	public void tick() {
@@ -130,35 +118,36 @@ public class Animal extends AgentEntity {
 			setDirection(newDir);
 			point.moveToward(goalPoints.get(0), getSpeed());
 		}
+		if (isDead()) {
+			// change sprite to death animation
+		}
 		statusUpdate();
 		calculateRenderingOrderValues();
+		System.out.println(season.getCurrentSeason().getCurrentTemperature());
 	}
 
 	/**
-	 * Determines the destination of the animal as well as the pathing to 
-	 * get to the destination. Uses AStar algorithm to generate points.
-	 * 
-	 * @return A list of points that represent the travel
-	 *         path of the animal
+	 * Determines the destination of the animal as well as the pathing to get to
+	 * the destination.
 	 */
 	protected List<Point> newGoalPoints() {
 		if (gameManager != null) {
+			// This animal has had a handle on the game manager
 			Random random = new Random();
 			Point goalPoint = null;
-			while (goalPoint == null || !gameManager.getWorld().getTile
-				  (goalPoint).isPassable() && !gameManager.getWorld().
-				  getTile(goalPoint).getTileType().equals(ResourceType.WATER)) 
-			      {goalPoint = new Point(random.nextDouble() * gameManager.
-			      getWorld().getWidth(), random.nextDouble() * gameManager.
-			      getWorld().getHeight());
+			while (goalPoint == null || !gameManager.getWorld().getTile(goalPoint).isPassable()
+					&& !gameManager.getWorld().getTile(goalPoint).getTileType().equals(ResourceType.WATER)) {
+				goalPoint = new Point(random.nextDouble() * gameManager.getWorld().getWidth(),
+						random.nextDouble() * gameManager.getWorld().getHeight());
 			}
-			List<AStar.Tuple> path = AStar.aStar(point, goalPoint, 
-			gameManager.getWorld());
+			List<AStar.Tuple> path = AStar.aStar(point, goalPoint, gameManager.getWorld());
 			List<Point> goalPoints = new ArrayList<Point>();
 			for (AStar.Tuple tuple : path) {
 				goalPoints.add(new Point(tuple.getX(), tuple.getY()));
 			}
+
 			System.err.println("Goal points: " + goalPoints);
+
 			return goalPoints;
 		} else {
 			return null;
@@ -180,9 +169,9 @@ public class Animal extends AgentEntity {
 	 */
 	private void statusUpdate() {
 		time += 1;
-		// Hunger, Thirst, and Health will be updated every 
-		// three minutes
-		if (time == 180) {
+		// the animal's hunger, thirst and/or health will be incremented every 3
+		// minutes.
+		if (time == 120) {
 			setHunger(getHunger() + HUNGERINCREASERATE);
 			setThirst(getThirst() + THIRSTINCREASERATE);
 			if (getHunger() >= 50 || getThirst() >= 50) {
@@ -191,25 +180,22 @@ public class Animal extends AgentEntity {
 			if (getHealth() <= 0) {
 				setIsDead();
 			}
-			time = 0; // reset timer until the next update
+			time = 0; // reset timer until next update
 		}
 	}
 
 	/**
-	 * Marks the animal as dead.
+	 * Marks the animal as dead and removes itself from the mainEntityManager.
 	 */
 	public void setIsDead() {
 		this.isDead = true;
 	}
 
 	/**
-	 * Fires an event for when an animal dies.
-	 * Used to activate the death animation and drop 
-	 * a resource when an animal dies.
+	 * Fires an event for when an animal dies
 	 */
 	public void setOffAnimalDeadEvent() {
-		Event.fireEvent(animalDeadEvent.getTarget(), new 
-		AnimalDeadEvent(type, this.getX(), this.getY()));
+		Event.fireEvent(animalDeadEvent.getTarget(), new AnimalDeadEvent(type, this.getX(), this.getY()));
 	}
 
 	/**
@@ -222,11 +208,14 @@ public class Animal extends AgentEntity {
 		if (this.getOutOfZone()) {
 			opponent.setHealth(opponent.getHealth() - this.getStrength());
 		}
+		// if (opponent.getHealth() <= 0) {
+		// mainEntityManager.removeEntity(opponent);
+		// }
 	}
 
 	/**
 	 * Sets the health that the animal is spawned with. The animal's starting
-	 * health value must be between MINSTARTHEALTH and MAXSTARTHEALTH inclusive
+	 * health value must be between MINSTARTHEALTH and MAXSTARTHEALTH inclusive.
 	 *
 	 * @param startingHealth
 	 *            The starting health value of the animal.
@@ -370,6 +359,8 @@ public class Animal extends AgentEntity {
 		this.strength = newStrength;
 	}
 
+	// Getter Methods Below
+
 	/**
 	 * Returns the animal's current health.
 	 *
@@ -484,6 +475,7 @@ public class Animal extends AgentEntity {
 	 * Identifies whether the animal is out of its zone.
 	 */
 	public boolean getOutOfZone() {
+		// if animal location is out of zone limit:
 		return outOfZone;
 	}
 

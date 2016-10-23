@@ -56,6 +56,10 @@ public class LoginGUITest extends GuiTest {
 
 		return parent;
 	}
+	/**
+	 * Test to check if the entered password  and user name is valid
+	 * 
+	 */
 
 	@Test
 	public void testSuccesfulLogin() {

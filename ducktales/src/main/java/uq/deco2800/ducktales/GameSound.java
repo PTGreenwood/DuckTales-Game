@@ -68,6 +68,7 @@ public class GameSound extends Thread {
         	//Try opening audioInputStream with given sound file
             audioInputStream = AudioSystem.getAudioInputStream(soundFile);
         } 
+        
         //Catch Exceptions
         catch (UnsupportedAudioFileException e) {
             LOGGER.debug("Audio file unsupported", e);
@@ -75,7 +76,13 @@ public class GameSound extends Thread {
         } catch (IOException e) {
             LOGGER.debug("Unable to open audio file", e);
             return;
-        } 
+        } finally {
+        	try {
+				audioInputStream.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+        }
  
         //Get audio format
         AudioFormat format = audioInputStream.getFormat();
@@ -91,7 +98,9 @@ public class GameSound extends Thread {
         } catch (Exception e) { 
             LOGGER.debug("not sure what happened here", e);
             return;
-        } 
+        } finally{
+        	  auline.close();
+        }
  
         if (auline.isControlSupported(FloatControl.Type.PAN)) { 
             FloatControl pan = (FloatControl) auline

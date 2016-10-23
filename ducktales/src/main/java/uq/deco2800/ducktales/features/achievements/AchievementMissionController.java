@@ -48,7 +48,7 @@ public class AchievementMissionController {
 			
 			achievementImage = mission1;
 			
-		} else if (missionHandler.getNumberOfCompletedMissions() == 2.0) {
+		} else if (missionHandler.getNumberOfCompletedMissions() == 2) {
 			
 			achievementImage = mission2;
 			

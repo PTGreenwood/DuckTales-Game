@@ -6,12 +6,8 @@ import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.scene.image.Image;
 import javafx.util.Duration;
-import javafx.event.Event;
-import uq.deco2800.ducktales.GameManager;
-import uq.deco2800.ducktales.features.time.TimeManager;
 import uq.deco2800.ducktales.rendering.animation.SpriteInterpolator;
 import uq.deco2800.ducktales.resources.ResourceType;
-import uq.deco2800.ducktales.util.events.animal.AnimalDeadEvent;
 import uq.deco2800.ducktales.features.notifications.NotificationManager;
 
 import java.util.ArrayList;
@@ -31,7 +27,6 @@ public class BuildingSprite extends EntitySprite {
     private BuildingAnimation constructionAnimation; // animation during construction
     private BuildingAnimation idleAnimation; // when construction is done
     private NotificationManager notificationManager; 
-    private GameManager gameManager;
 
     /** Flags */
     // Whether to automatically reverse the idle animation
@@ -47,7 +42,6 @@ public class BuildingSprite extends EntitySprite {
      */
     public BuildingSprite(int index, ResourceType buildingType) {
         super(index, buildingType);
-        //this.buildingType = buildingType;
     }
 
     /**
@@ -259,7 +253,7 @@ public class BuildingSprite extends EntitySprite {
 	public boolean winterNightAnimation(ResourceType building) {
 		// make sure the construction animation has been completed
 		if (this.timeline.getTotalDuration() == Duration.INDEFINITE &&
-				SpritesImages.winterNightAnimation(building).isEmpty() == false) {
+				!SpritesImages.winterNightAnimation(building).isEmpty()) {
 			this.stopAnimation();
 		
 			setupIdleAnimation(SpritesImages.winterNightAnimation(building), 3, true);

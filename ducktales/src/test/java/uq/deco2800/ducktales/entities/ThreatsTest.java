@@ -2,37 +2,46 @@ package uq.deco2800.ducktales.entities;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-import java.util.Collections;
-
+import javafx.stage.Stage;
 import org.junit.Test;
+import org.testfx.framework.junit.ApplicationTest;
+
 
 import uq.deco2800.ducktales.World;
+import uq.deco2800.ducktales.features.builder.WorldBuilderControllerTest;
 import uq.deco2800.ducktales.features.entities.threats.Effect;
 import uq.deco2800.ducktales.features.entities.threats.Enemy;
 
 
-
-public class ThreatsTest {
+public class ThreatsTest extends ApplicationTest{
 
 	/**
 	 * Test for the threats class as well as enemies and effects
 	 * 
 	 * 
 	 */
-
+	
 	@Test
 	public void basicThreatTest() {
-
+		
+		String name= "world";
+		int worldWidth = 700;
+		int worldHeight = 700;
+		World world = new World(name, worldWidth, worldHeight);
+		
 		Enemy enemy = new Enemy("Raccoon");
 		Effect effect = new Effect("Black Smoke");
-
+		
+		enemy.setWorld(world);
 		assertNotNull("Enemy cannot be null.", enemy);
+		assertNotNull("The enemy's speed cannot be null.", enemy.getRandomX());
+		assertNotNull("The enemy's speed cannot be null.", enemy.getRandomY());
 		assertNotNull("Enemy's X coordinate cannot be null.", enemy.getX());
 		assertNotNull("Enemy's Y coordinate cannot be null.", enemy.getY());
 		assertNotNull("The enemy's level of damage cannot be null", enemy.getTheLevelOfDamage());
 		assertNotNull("The enemy's speed cannot be null.", enemy.getSpeed());
-
+		
+		effect.setWorld(world);
 		assertNotNull("Effect cannot be null.", effect);
 		assertNotNull("Effect's X coordinate cannot be null.", effect.getX());
 		assertNotNull("Effect's Y coordinate cannot be null.", effect.getY());
@@ -63,6 +72,51 @@ public class ThreatsTest {
 		assertEquals(effect.getSpeed(), speed, 5);
 		assertEquals(effect.getTheLevelOfDamage(), levelOfDamage, 20);
 
+	}
+
+	@Test
+	public void basicThreatTest3() {
+		
+		Enemy enemy = new Enemy("Raccoon");
+		Effect effect = new Effect("Black Smoke");
+
+		int levelOfDamage = 10;
+		int speed = 0;
+		enemy.setTheLevelOfDamage(30);
+		assertTrue ("level of damage set is equal to level of damage from get", enemy.getTheLevelOfDamage() == 30);
+		enemy.setTheSpeed(20);
+		assertTrue ("speed from setting speed is equal to speed of get speed", enemy.getSpeed() == 20);
+		effect.setTheLevelOfDamage(30);
+		assertTrue ("level of damage set is equal to level of damage from get", effect.getTheLevelOfDamage() == 30);
+		effect.setTheSpeed(20);
+		assertTrue ("speed from setting speed is equal to speed of get speed", effect.getSpeed() == 20);
+	}
+	@Test
+	public void basicThreatTest4() {
+		
+		Enemy enemy = new Enemy("Raccoon");
+		Effect effect = new Effect("Black Smoke");
+		
+		String name = "world";
+		int worldWidth = 700;
+		int worldHeight = 700;
+		World world = new World("World", 700, 700);
+		
+		enemy.setWorld(world);
+		
+		double randomX=0;
+		double randomY=0;
+		double xCord=0;
+		double yCord=0;
+		
+		enemy.getRandomX();
+		enemy.setXCord();
+		assertTrue("x cord should be between 0 and 700",  xCord >= 0 || xCord <= 700);
+	}
+	
+	@Override
+	public void start(Stage stage) throws Exception {
+		
 	}
 
 }
