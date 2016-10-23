@@ -16,7 +16,7 @@ public class ChaosGod extends DuckGods {
 	*/
 	  
 	public ChaosGod(String name, String bonus, ImageIcon image) {
-		super();
+		super(name, bonus, image);
 	}
 	 
 	public void giveaward() {

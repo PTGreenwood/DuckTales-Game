@@ -15,7 +15,7 @@ public class FireGod extends DuckGods {
 	*/
 	  
 	public FireGod(String name, String bonus, ImageIcon image) {
-		super();
+		super(name, bonus, image);
 	}
 
 	public String getBouns(){
