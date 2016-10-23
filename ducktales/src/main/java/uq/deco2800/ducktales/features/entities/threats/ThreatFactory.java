@@ -23,8 +23,8 @@ public class ThreatFactory {
 	protected static ArrayList<Enemy> enemiesList = new ArrayList<Enemy>();
 	//list for enemy ad threat sprites to be stored in
 	protected static ArrayList<EnemySprite> enemySpriteList = new ArrayList<EnemySprite>();
-	public static HashMap<String, Enemy> enemyMap = new HashMap<String, Enemy>();
-    public static HashMap<String, Effect> effectMap = new HashMap<String, Effect>();
+	public static HashMap<Integer, Enemy> enemyMap = new HashMap<Integer, Enemy>();
+    public static HashMap<Integer, Effect> effectMap = new HashMap<Integer, Effect>();
 	
 	 /**
      * Create enemies at level 1
@@ -636,11 +636,11 @@ public class ThreatFactory {
 	}
 	
 	private static void putInEnemyHashMap(Enemy enemy){
-		enemyMap.put(enemy.toString(), enemy);
+		enemyMap.put(enemy.hashCode(), enemy);
 	}
 	
 	private static void putInEffectHashMap(Effect effect){
-		effectMap.put(effect.toString(), effect);
+		effectMap.put(effect.hashCode(), effect);
 	}
 
 	
