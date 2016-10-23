@@ -111,7 +111,7 @@ public class ThreatFactory {
      *          the type of the effect to be created
      *
      */
-	private static void createLevel2Effect(ResourceType effect) {
+	public static void createLevel2Effect(ResourceType effect) {
 		switch(effect) {
 		case POISON_CLOUD:
 				createPoisonCloud(ResourceType.POISON_CLOUD);
@@ -131,7 +131,7 @@ public class ThreatFactory {
      *          the type of the enemy to be created
      *
      */
-	private static void createLevel3Enemy(ResourceType enemy) {
+	public static void createLevel3Enemy(ResourceType enemy) {
 		switch(enemy) {
 		case LION:
 				createLion(ResourceType.LION);
