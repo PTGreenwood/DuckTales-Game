@@ -6,6 +6,8 @@ import javafx.scene.layout.StackPane;
 import uq.deco2800.singularity.clients.ducktales.DucktalesClient;
 
 /**
+ * Handles the login and sign up views of in DuckTales.
+ * 
  * Based off code from: https://gist.github.com/jewelsea/6460130
  * 
  * @author jewelsea, Mark Belonogoff
@@ -16,6 +18,10 @@ public class LoginManager {
     @FXML
     private StackPane vistaHolder;
     
+    /** 
+     * The DuckTales version of the Singularity client that is used for 
+     * login and trade information communication.
+     */
     private static DucktalesClient client = null;
     
     /**

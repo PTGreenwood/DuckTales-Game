@@ -17,7 +17,9 @@ import org.slf4j.LoggerFactory;
 
 
 /**
- *
+ * The controller for the login.fxml view.
+ * Allows the user to log in using the singularity server.
+ * 
  * @author wentingwang
  */
 public class LoginController  {
