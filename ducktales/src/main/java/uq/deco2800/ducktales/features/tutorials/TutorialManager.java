@@ -1,21 +1,14 @@
 package uq.deco2800.ducktales.features.tutorials;
 
-import java.io.IOException;
-import java.net.URL;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.text.Font;
-import javafx.stage.Stage;
 
 /**
  * Manage all fxml action of main tutorial window
@@ -108,10 +101,10 @@ public class TutorialManager {
 	@FXML
 	private void loadBasicInterface1() {
 		this.loadTutorial(basicInterfaceString, this.tutorialImage1, "Basic Interface 1");
-		previous.setOnAction((event) -> 
+		previous.setOnAction(event -> 
 		loadBasicInterface1()
 		);
-		next.setOnAction((event) -> 
+		next.setOnAction(event -> 
 		loadBasicInterface2()
 		);
 	}
@@ -124,10 +117,10 @@ public class TutorialManager {
 	@FXML
 	private void loadBasicInterface2() {
 		this.loadTutorial(basicInterfaceString, this.tutorialImage2, "Basic Interface 2");
-		previous.setOnAction((event) -> 
+		previous.setOnAction(event -> 
 		loadBasicInterface1()
 		);
-		next.setOnAction((event) -> 
+		next.setOnAction(event -> 
 		loadBasicInterface3()
 		);
 	}
@@ -140,10 +133,10 @@ public class TutorialManager {
 	@FXML
 	private void loadBasicInterface3() {
 		this.loadTutorial(basicInterfaceString, this.tutorialImage3, "Basic Interface 3");
-		previous.setOnAction((event) -> 
+		previous.setOnAction(event -> 
 		loadBasicInterface2()
 		);
-		next.setOnAction((event) -> 
+		next.setOnAction(event -> 
 		loadBasicInterface4()
 		);
 	}
@@ -156,10 +149,10 @@ public class TutorialManager {
 	@FXML
 	private void loadBasicInterface4() {
 		this.loadTutorial(basicInterfaceString, this.tutorialImage4, "Basic Interface 4");
-		previous.setOnAction((event) -> 
+		previous.setOnAction(event -> 
 		loadBasicInterface3()
 		);
-		next.setOnAction((event) -> 
+		next.setOnAction(event -> 
 		loadBasicInterface4()
 		);
 	}
@@ -189,10 +182,10 @@ public class TutorialManager {
 	@FXML
 	private void loadBuildings1() {
 		this.loadTutorial(buildingsString, this.buildingsImage1, "Buildings 1");
-		previous.setOnAction((event) -> 
+		previous.setOnAction(event -> 
 		loadBuildings1()
 		);
-		next.setOnAction((event) -> 
+		next.setOnAction(event -> 
 		loadBuildings2()
 		);
 	}
@@ -205,10 +198,10 @@ public class TutorialManager {
 	@FXML
 	private void loadBuildings2() {
 		this.loadTutorial(buildingsString, this.buildingsImage2, "Buildings 2");
-		previous.setOnAction((event) -> 
+		previous.setOnAction(event -> 
 		loadBuildings1()
 		);
-		next.setOnAction((event) -> 
+		next.setOnAction(event -> 
 		loadBuildings3()
 		);
 	}
@@ -221,10 +214,10 @@ public class TutorialManager {
 	@FXML
 	private void loadBuildings3() {
 		this.loadTutorial(buildingsString, this.buildingsImage3, "Buildings 3");
-		previous.setOnAction((event) -> 
+		previous.setOnAction(event -> 
 		loadBuildings2()
 		);
-		next.setOnAction((event) -> 
+		next.setOnAction(event -> 
 		loadBuildings3()
 		);
 	}
@@ -237,10 +230,10 @@ public class TutorialManager {
 	@FXML
 	private void loadMarketPlace1() {
 		this.loadTutorial(marketPlaceString, this.marketPlaceImage1, "Market Place 1");
-		previous.setOnAction((event) -> 
+		previous.setOnAction(event -> 
 		loadMarketPlace1()
 		);
-		next.setOnAction((event) -> 
+		next.setOnAction(event -> 
 		loadMarketPlace2()
 		);
 	}
@@ -253,10 +246,10 @@ public class TutorialManager {
 	@FXML
 	private void loadMarketPlace2() {
 		this.loadTutorial(marketPlaceString, this.marketPlaceImage2, "Market Place 2");
-		previous.setOnAction((event) -> 
+		previous.setOnAction(event -> 
 		loadMarketPlace1()
 		);
-		next.setOnAction((event) -> 
+		next.setOnAction(event -> 
 		loadMarketPlace3()
 		);
 		
@@ -270,10 +263,10 @@ public class TutorialManager {
 	@FXML
 	private void loadMarketPlace3() {
 		this.loadTutorial(marketPlaceString, this.marketPlaceImage3, "Market Place 3");
-		previous.setOnAction((event) -> 
+		previous.setOnAction(event -> 
 		loadMarketPlace2()
 		);
-		next.setOnAction((event) -> 
+		next.setOnAction(event -> 
 		loadMarketPlace4()
 		);
 	}
@@ -286,10 +279,10 @@ public class TutorialManager {
 	@FXML
 	private void loadMarketPlace4() {
 		this.loadTutorial(marketPlaceString, this.marketPlaceImage4, "Market Place 4");
-		previous.setOnAction((event) -> 
+		previous.setOnAction(event -> 
 		loadMarketPlace3()
 		);
-		next.setOnAction((event) -> 
+		next.setOnAction(event -> 
 		loadMarketPlace4()
 		);
 		
