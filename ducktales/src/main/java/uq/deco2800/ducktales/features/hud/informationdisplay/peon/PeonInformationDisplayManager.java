@@ -71,7 +71,7 @@ public class PeonInformationDisplayManager
             ResourceType.MASON, ResourceType.PRIEST
 	};
 	
-	private static final ArrayList<JobSprite> jobDisplaySprites;
+	private static ArrayList<JobSprite> jobDisplaySprites = new ArrayList<>();
 	/** Helpers for rendering info*/
 	private WorldEntityInfo worldEntityInfo;
 	
@@ -113,7 +113,7 @@ public class PeonInformationDisplayManager
 		
 		// Add the building sprites
 		for (int i = 0; i < JOBS.length; i++) {
-			jobDisplaySprite sprite = new jobDisplaySprite(JOBS[i]);
+			JobSprite sprite = new JobSprite(JOBS[i]);
 
 			if (!worldEntityInfo.containEntity(sprite.getSpriteType())) {
 				// this building is not yet registered in the manager. not
@@ -131,12 +131,12 @@ public class PeonInformationDisplayManager
 		setupJobMenu();
 	}
 	private void setupJobMenu() {
-		JobSprite lumberjackSprite = new JobSprite(peonName, Lumberjack);
-		JobSprite minerSprite = new JobSprite(peonName, Miner);
-		JobSprite builderSprite = new JobSprite(peonName, Builder);
-		JobSprite doctorSprite = new JobSprite(peonName, Doctor);
-		JobSprite farmerSprite = new JobSprite(peonName, Farmer);
-		JobSprite priestSprite = new JobSprite(peonName, Priest);
+		JobSprite lumberjackSprite = new JobSprite(ResourceType.LUMBERJACK);
+		JobSprite minerSprite = new JobSprite(ResourceType.MINER);
+		JobSprite builderSprite = new JobSprite(ResourceType.BUILDER);
+		JobSprite doctorSprite = new JobSprite(ResourceType.DOCTOR);
+		JobSprite farmerSprite = new JobSprite(ResourceType.FARMER);
+		JobSprite priestSprite = new JobSprite(ResourceType.PRIEST);
 		JobSprite [] jobsList = new JobSprite [](
 				lumberjackSprite, minerSprite, builderSprite,
 				doctorSprite, farmerSprite, priestSprite

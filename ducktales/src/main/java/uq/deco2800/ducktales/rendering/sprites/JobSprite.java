@@ -20,9 +20,9 @@ public class JobSprite extends HUDSprite {
      * Create a sprite of the given animal type, and set up its event handlers
      * @param animalType
      */
-    public JobSprite(Peon peon, Job job) {
-        super(peon);
-		this.job = job;
+    public JobSprite(ResourceType peonJob) {
+        super(peonJob);
+		//this.job = job;
         setupMouseEventHandlers();
     }
     public Job getJob(){
