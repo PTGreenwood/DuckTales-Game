@@ -16,9 +16,11 @@ import uq.deco2800.ducktales.util.exceptions.GameSetupException;
  * 
  * Created by Krista Harrison and Wian Botha
  * @author kristasusanne, wianb
-
+ *
+ *
  *
  */
+
 public class ThreatFactory {
 	 /** CONSTANTS */
 	private static String timer = "Timer";
@@ -28,7 +30,7 @@ public class ThreatFactory {
 	protected static final HashMap<Integer, Enemy> enemyMap = new HashMap<Integer, Enemy>();
     protected static final HashMap<Integer, Effect> effectMap = new HashMap<Integer, Effect>();
 	
-    //list for enemy and effect Sprites to be stored in
+    //list for enemy and effect sprites to be stored in
 	protected static ArrayList<EnemySprite> enemySpriteList = new ArrayList<EnemySprite>();
 	protected static ArrayList<EffectSprite> effectSpriteList = new ArrayList<EffectSprite>();
 	
@@ -229,6 +231,8 @@ public class ThreatFactory {
 		effect.setStartTimer(start, timer);
 		effect.setEndTimer(end);
 		effect.setTheLevelOfDamage(damage);
+		double x = effect.getRandomX();
+		double y = effect.getRandomY();
 		putInEffectHashMap(effect);
 		effectsList.add(effect);
 	}
@@ -252,6 +256,8 @@ public class ThreatFactory {
 		enemy.setStartTimer(start, timer);
 		enemy.setEndTimer(end);
 		enemy.setTheLevelOfDamage(damage);
+		double x = enemy.getRandomX();
+		double y = enemy.getRandomY();
 		putInEnemyHashMap(enemy);
 		enemiesList.add(enemy);
 	}
@@ -276,6 +282,7 @@ public class ThreatFactory {
 		EnemySprite blackSmokeSprite = new EnemySprite(0, blackSmoke);
 		enemySpriteList.add(blackSmokeSprite);
 		putInEffectHashMap(blackSmokeEffect);
+		
 	}
 	
 	 /**
@@ -297,9 +304,8 @@ public class ThreatFactory {
 		
 	}
 	
+	// Level 1 Enemies
 	
-	
-	// Level 1 Enemies--------------------
 	 /**
      * Create raccoon enemy, assign its
      * start timer, end timer, level
@@ -356,8 +362,7 @@ public class ThreatFactory {
 		enemySpriteList.add(wildVillagerSprite);
 	}
 	
-	
-	// Level 2 Effects--------------------------------
+	// Level 2 Effects
 	
 	 /**
      * Create poison cloud effect, assign its
@@ -396,8 +401,7 @@ public class ThreatFactory {
 		enemySpriteList.add(rumbleSprite);
 	}
 	
-	
-	// Level 2 Enemies------------------------
+	// Level 2 Enemies
 
 	 /**
      * Create wolf enemy, assign its
@@ -471,8 +475,7 @@ public class ThreatFactory {
 		enemySpriteList.add(evilDuckSprite);
 	}
 	
-	
-	// Level 3 Effects----------------------------
+	// Level 3 Effects
 
 	 /**
      * Create earthquake effect, assign its
@@ -510,8 +513,7 @@ public class ThreatFactory {
 		enemySpriteList.add(greenFelFireSprite);
 	}
 	
-	
-	// Level 3 Enemies----------------------------------------
+	// Level 3 Enemies
 	
 	 /**
      * Create lion enemy, assign its
@@ -567,8 +569,7 @@ public class ThreatFactory {
 		enemySpriteList.add(bearSprite);
 	}
 	
-	
-	// Level 4 Effects-----------------------------------
+	// Level 4 Effects
 	
 	 /**
      * Create blight effect, assign its
@@ -606,7 +607,7 @@ public class ThreatFactory {
 		enemySpriteList.add(felSprite);
 	}
 	
-	// Level 4 Enemies--------------------------------
+	// Level 4 Enemies
 	
 	 /**
      * Create zombie duck enemy, assign its
