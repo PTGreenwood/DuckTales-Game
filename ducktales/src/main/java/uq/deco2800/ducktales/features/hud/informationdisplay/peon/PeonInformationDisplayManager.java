@@ -138,7 +138,6 @@ public class PeonInformationDisplayManager
     	if(!(this.peon.getType() == newType)) {
     		this.peon.updateType(newType);
     	}
-    	
 
         Image peonSpriteImage = rsr.getInstance().getResourceImage(newType);
         peonImage.setImage(peonSpriteImage);
@@ -199,19 +198,20 @@ public class PeonInformationDisplayManager
     	this.peon.upgradeTool();
     	displayPeon();
 		int toolLevel = this.peon.getTool().getToolLevel();
+
     	switch(this.peon.getJob()) {
     		case LUMBERJACK:
 
     				if(toolLevel == 1) {
-    					updatePeonSprite(ResourceType.LUMBERJACK);
+    					updatePeonSprite(ResourceType.LUMBERJACK_LV2);
     				} else {
-    					updatePeonSprite(ResourceType.LUMBERJACK);
+    					updatePeonSprite(ResourceType.LUMBERJACK_LV3);
     				}
     				break;
 
     		case BLACKSMITH:
 					if(toolLevel == 1) {
-						updatePeonSprite(ResourceType.BLACKSMITH);
+						updatePeonSprite(ResourceType.BLACKSMITH_LV2);
 					} else {
 						updatePeonSprite(ResourceType.BLACKSMITH);
 					}
@@ -289,6 +289,7 @@ public class PeonInformationDisplayManager
 			break;
 
     	}
+    	
     	
     	/**
     	1. get the sprite of the peon currently being displayed in the information display panel:

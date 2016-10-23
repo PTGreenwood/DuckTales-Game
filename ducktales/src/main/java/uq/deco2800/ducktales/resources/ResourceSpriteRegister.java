@@ -341,24 +341,44 @@ public class ResourceSpriteRegister {
 		
 		//LumberJack
 		addResource(LUMBERJACK, "/peon/jobs/lumberjacks.png");
+		addResource(LUMBERJACK_LV2, "/toolsUpgrade/lumberjack/lumberjack_lv2.png");
+		addResource(LUMBERJACK_LV3, "/toolsUpgrade/lumberjack/lumberjack_lv3.png");
+		
 		//Miner
-		addResource(MINER, "/peon/jobs/miner.png");		
+		addResource(MINER, "/peon/jobs/miner.png");
+		addResource(MINER_LV2, "/toolsUpgrade/miner/miner_lv2.png");
+		addResource(MINER_LV3, "/toolsUpgrade/miner/miner_lv3.png");
 		//Blacksmith
-		addResource(BLACKSMITH, "/peon/jobs/blacksmiths.png");		
+		addResource(BLACKSMITH, "/peon/jobs/blacksmiths.png");	
+		addResource(BLACKSMITH_LV2, "/toolsUpgrade/blacksmith/blacksmiths_lv2.png");
+		addResource(BLACKSMITH_LV3, "/toolsUpgrade/blacksmith/blacksmiths_lv3.png");
 		//Builder
 		addResource(BUILDER, "/peon/jobs/builder.png");		
+		addResource(BUILDER_LV2, "/toolsUpgrade/builder/builder_lv2.png");
+		addResource(BUILDER_LV3, "/toolsUpgrade/builder/builder_lv3_left.png");
 		//Doctor
-		addResource(DOCTOR, "/peon/jobs/doctor.png");		
+		addResource(DOCTOR, "/peon/jobs/doctor.png");	
+		addResource(DOCTOR_LV2, "/toolsUpgrade/doctor/doctor_lv2.png");
+		addResource(DOCTOR_LV3, "/toolsUpgrade/doctor/doctor_lv3_left.png");
 		//Farmer
 		addResource(FARMER, "/peon/jobs/farmer.png");		
+		addResource(FARMER_LV2, "/toolsUpgrade/farmer/farmer_lv2.png");
+		addResource(FARMER_LV3, "/toolsUpgrade/farmer/farmer_lv3_left.png");
 		//GymCoach
-		addResource(GYMCOACH, "/peon/jobs/gymcoach.png");	
+		addResource(GYMCOACH, "/peon/jobs/gymcoach.png");
+		addResource(GYMCOACH_LV2, "/toolsUpgrade/gymcoach/gymcoach_lv2.png");
+		addResource(GYMCOACH_LV3, "/toolsUpgrade/gymcoach/gymcoach_lv3_left.png");
 		//Priest
 		addResource(PRIEST, "/peon/jobs/priest_Church.png");		
 		//Stonemason
-		addResource(STONE_MASON, "/peon/jobs/stonemason.png");		
+		addResource(STONE_MASON, "/peon/jobs/stonemason.png");
+		addResource(STONE_MASON_LV2, "/toolsUpgrade/stonemason/stonemason_lv2.png");	
+		addResource(STONE_MASON_LV3, "/toolsUpgrade/stonemason/stonemason_lv3.png");	
 		//Teacher
 		addResource(TEACHER, "/peon/jobs/teacher.png");
+		addResource(TEACHER_LV2, "/toolsUpgrade/teacher/teacher_lv2.png");	
+		addResource(TEACHER_LV3, "/toolsUpgrade/teacher/teacher_lv3.png");	
+		
 		
 		/*
 		 * ANIMALS
