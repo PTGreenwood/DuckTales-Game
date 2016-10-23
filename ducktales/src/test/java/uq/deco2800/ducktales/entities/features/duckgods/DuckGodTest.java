@@ -17,7 +17,7 @@ import uq.deco2800.ducktales.features.duckgods.WindGod;
 
 public class DuckGodTest {
 	
-	private DuckGods testGod = new ChaosGod("God Name", null, null);
+	private DuckGods testGod = new DuckGods("God Name", null, null);
 	private DuckGods chaosGod = new ChaosGod("Chaos Name", null, null);
 	private DuckGods earthGod = new EarthGod("Earth Name", null, null);
 	private DuckGods fireGod = new FireGod("Fire Name", null, null);
@@ -51,9 +51,23 @@ public class DuckGodTest {
 	
 	@Test
 	// * Tests the getter for a ducks name */
+	public void getChaosDuckNameTestFail() {
+		chaosGod.getDuckName();
+		assertNotEquals("Name", chaosGod.getDuckName());
+	}
+	
+	@Test
+	// * Tests the getter for a ducks name */
 	public void getEarthDuckNameTest() {
 		earthGod.getDuckName();
 		assertEquals("Earth Name", earthGod.getDuckName());
+	}
+	
+	@Test
+	// * Tests the getter for a ducks name */
+	public void getEarthDuckNameTestFail() {
+		earthGod.getDuckName();
+		assertNotEquals("Name", earthGod.getDuckName());
 	}
 	
 	@Test
@@ -65,9 +79,23 @@ public class DuckGodTest {
 	
 	@Test
 	// * Tests the getter for a ducks name */
+	public void getFireDuckNameTestFail() {
+		fireGod.getDuckName();
+		assertNotEquals("Name", fireGod.getDuckName());
+	}
+	
+	@Test
+	// * Tests the getter for a ducks name */
 	public void getLightDuckNameTest() {
 		lightGod.getDuckName();
 		assertEquals("Light Name", lightGod.getDuckName());
+	}
+	
+	@Test
+	// * Tests the getter for a ducks name */
+	public void getLightDuckNameTestFail() {
+		lightGod.getDuckName();
+		assertNotEquals("Name", lightGod.getDuckName());
 	}
 	
 	@Test
@@ -79,9 +107,23 @@ public class DuckGodTest {
 	
 	@Test
 	// * Tests the getter for a ducks name */
+	public void getMoneyDuckNameTestFail() {
+		moneyGod.getDuckName();
+		assertNotEquals("Name", moneyGod.getDuckName());
+	}
+	
+	@Test
+	// * Tests the getter for a ducks name */
 	public void getRainDuckNameTest() {
 		rainGod.getDuckName();
 		assertEquals("Rain Name", rainGod.getDuckName());
+	}
+	
+	@Test
+	// * Tests the getter for a ducks name */
+	public void getRainDuckNameTestFail() {
+		rainGod.getDuckName();
+		assertNotEquals("Name", rainGod.getDuckName());
 	}
 	
 	@Test
@@ -93,9 +135,23 @@ public class DuckGodTest {
 	
 	@Test
 	// * Tests the getter for a ducks name */
+	public void getThugLifeDuckNameTestFail() {
+		thugLifeGod.getDuckName();
+		assertNotEquals("Name", thugLifeGod.getDuckName());
+	}
+	
+	@Test
+	// * Tests the getter for a ducks name */
 	public void getWindDuckNameTest() {
 		windGod.getDuckName();
 		assertEquals("Wind Name", windGod.getDuckName());
+	}
+	
+	@Test
+	// * Tests the getter for a ducks name */
+	public void getWindDuckNameTestFail() {
+		windGod.getDuckName();
+		assertNotEquals("Name", windGod.getDuckName());
 	}
 	
 }
