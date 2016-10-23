@@ -68,7 +68,13 @@ public class SpritesImagesTest extends ApplicationTest {
         };
         
         for (ResourceType buildingType : buildings) {
-        	assertEquals(true, SpritesImages.winterDayAnimation(buildingType).isEmpty());
+        	if (buildingType == GYMNASIUM || buildingType == BAKERY || 
+        			buildingType == BUTCHER || buildingType == COMMUNITY_BUILDING
+        			|| buildingType == HOSPITAL) {
+        		assertEquals(false, SpritesImages.winterDayAnimation(buildingType).isEmpty());
+        	} else {
+        		assertEquals(true, SpritesImages.winterDayAnimation(buildingType).isEmpty());
+        	}
         }
 	}
 	

@@ -944,7 +944,7 @@ public class SpritesImages {
 	 */
 	protected static List<Image> winterDayBakery() {
 		ResourceType[] idleFrames = {
-				
+				BAKERY_WINTER,
 		};
 		List<Image> idleAnimationFrames = new ArrayList<>();
 	    ResourceSpriteRegister register = ResourceSpriteRegister.getInstance();
@@ -982,7 +982,7 @@ public class SpritesImages {
 	 */
 	protected static List<Image> winterDayButcher() {
 		ResourceType[] idleFrames = {
-				
+				BUTCHER_WINTER,
 		};
 		List<Image> idleAnimationFrames = new ArrayList<>();
 	    ResourceSpriteRegister register = ResourceSpriteRegister.getInstance();
@@ -1039,7 +1039,7 @@ public class SpritesImages {
 	 */
 	protected static List<Image> winterDayCommunityBuilding() {
 		ResourceType[] idleFrames = {
-				
+				COMMUNITY_BUILDING_WINTER,
 		};
 		List<Image> idleAnimationFrames = new ArrayList<>();
 	    ResourceSpriteRegister register = ResourceSpriteRegister.getInstance();
@@ -1096,7 +1096,7 @@ public class SpritesImages {
 	 */
 	protected static List<Image> winterDayGymnasium() {
 		ResourceType[] idleFrames = {
-				
+				GYMNASIUM_WINTER,
 		};
 		List<Image> idleAnimationFrames = new ArrayList<>();
 	    ResourceSpriteRegister register = ResourceSpriteRegister.getInstance();
@@ -1115,7 +1115,7 @@ public class SpritesImages {
 	 */
 	protected static List<Image> winterDayHospital() {
 		ResourceType[] idleFrames = {
-				
+				HOSPITAL_WINTER,
 		};
 		List<Image> idleAnimationFrames = new ArrayList<>();
 	    ResourceSpriteRegister register = ResourceSpriteRegister.getInstance();
@@ -1335,7 +1335,7 @@ public class SpritesImages {
 	 */
 	protected static List<Image> winterNightBakery() {
 		ResourceType[] idleFrames = {
-				
+				BAKERY_WINTER,
 		};
 		List<Image> idleAnimationFrames = new ArrayList<>();
 	    ResourceSpriteRegister register = ResourceSpriteRegister.getInstance();

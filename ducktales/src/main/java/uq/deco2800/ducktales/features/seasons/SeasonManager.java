@@ -47,7 +47,7 @@ public class SeasonManager{
     	autumn = new Autumn();
     	winter = new Winter();
 
-    	this.currentSeason = spring;
+    	this.currentSeason = winter;
     	
     	this.seasonList = new ArrayList<Season>();
     	this.seasonList.addAll(Arrays.asList(spring, summer, autumn, winter));

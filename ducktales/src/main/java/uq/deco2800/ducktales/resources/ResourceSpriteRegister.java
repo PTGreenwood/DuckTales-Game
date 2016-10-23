@@ -310,8 +310,19 @@ public class ResourceSpriteRegister {
 		addResource(SCHOOL_4, "/buildings/school/school_4.png");
 		addResource(SCHOOL_5, "/buildings/school/school_5.png");
 		
-		
+		// Winter animations
+		// Bakery
+		addResource(BAKERY_WINTER, "/buildings/bakery_winter.png");
+		// Butcher
+		addResource(BUTCHER_WINTER, "/buildings/butcher_winter.png");
+		// Community Building
+		addResource(COMMUNITY_BUILDING_WINTER, "/buildings/community_building_winter.png");
+		// Gymnasium
+		addResource(GYMNASIUM_WINTER, "/buildings/gymnasium_winter.png");
+		// Hospital
+		addResource(HOSPITAL_WINTER, "/buildings/hospital_winter.png");
 
+		
 		// Advanced buildings' animations
 		// Butcher
 		addResource(ADV_BUTCHER_1, "/buildings/adv_butcher/adv_butcher_01.png");
