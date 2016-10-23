@@ -340,8 +340,16 @@ public class ResourceSpriteRegister {
 		addResource(PEON, "/peon/basic_peon.png");
 		
 		//LumberJack
-		addResource(LUMBERJACK, "/peon/jobs/lumberjacks_1.png");
-		addResource(LUMBERJACK_LV2, "/toolsUpgrade/lumberjack/lumberjack_lv2.png");
+		addResource(LUMBERJACK_LV1_1, "/peon/jobs/lumberjacks_1.png");
+		addResource(LUMBERJACK_LV1_2, "/peon/jobs/lumberjacks_2.png");
+		addResource(LUMBERJACK_LV1_3, "/peon/jobs/lumberjacks_3.png");
+		addResource(LUMBERJACK_LV1_4, "/peon/jobs/lumberjacks_4.png");
+		
+		addResource(LUMBERJACK_LV2_1, "/toolsUpgrade/lumberjack/lumberjack_lv2.png");
+		addResource(LUMBERJACK_LV2_2, "/toolsUpgrade/lumberjack/lumberjack_lv2_back_left.png");
+		addResource(LUMBERJACK_LV2_3, "/toolsUpgrade/lumberjack/lumberjack_lv2_back_right.png");
+		addResource(LUMBERJACK_LV2_4, "/toolsUpgrade/lumberjack/lumberjack_lv2_right.png");
+		
 		addResource(LUMBERJACK_LV3, "/toolsUpgrade/lumberjack/lumberjack_lv3.png");
 		
 		//Miner
