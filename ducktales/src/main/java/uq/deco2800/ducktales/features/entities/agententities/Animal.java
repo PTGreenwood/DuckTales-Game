@@ -14,22 +14,25 @@ import uq.deco2800.ducktales.util.AStar;
 import uq.deco2800.ducktales.util.Point;
 import uq.deco2800.ducktales.util.events.animal.AnimalDeadEvent;
 
+import uq.deco2800.ducktales.features.seasons.SeasonManager;
+
 /**
  * Base class for all animals.
  *
  * @author Josh Benavides
  */
 public class Animal extends AgentEntity {
+    private SeasonManager season = new SeasonManager();
 
     /** The main manager of the game */
     protected GameManager gameManager;
-    
+
     /** The animal manager of the game */
     protected AnimalManager animalManager;
-    
+
     /** The droppable resource entity manager of the game */
-    protected ResourceEntityManager resourceEntityManager; 
-    
+    protected ResourceEntityManager resourceEntityManager;
+
     /** instance of AnimalDeadEvent */
     private AnimalDeadEvent animalDeadEvent;
 
@@ -115,6 +118,7 @@ public class Animal extends AgentEntity {
         }
         statusUpdate();
         calculateRenderingOrderValues();
+        System.out.println(season.getCurrentSeason().getCurrentTemperature());
     }
 
     /**
@@ -178,7 +182,7 @@ public class Animal extends AgentEntity {
     public void setIsDead() {
             this.isDead = true;
     }
-    
+
     /**
      * Fires an event for when an animal dies
      */
@@ -460,7 +464,7 @@ public class Animal extends AgentEntity {
     public void setOutOfZone(boolean x) {
         this.outOfZone = x;
     }
-    
+
     /**
      * Get the resourceType of the animal
      * @return the resourceType of the animal
