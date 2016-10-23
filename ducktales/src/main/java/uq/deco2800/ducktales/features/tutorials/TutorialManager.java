@@ -29,25 +29,33 @@ public class TutorialManager {
 	@FXML
 	private AnchorPane tutorialWindow;
 	
+	/** right pane of main window */
 	@FXML
 	private BorderPane rightPane;
 	
+	/** title label */
 	@FXML
 	private Label labelTop;
 	
+	/** buttons for next and previous page */
 	@FXML
 	private Button next;
 	@FXML
 	private Button previous;
 	
+	/** Image for tutorial */
 	@FXML
 	private ImageView tutorialImage;
+	
+	/** description of the image */
 	@FXML
 	private Label tutorialLabel;
 	
+	/** simple description of tutorial */
 	@FXML
 	private Label tutorialDescription;
 	
+	/** Buttons on the leftPane of the window */
 	@FXML
 	private Button basicInterface;
 	@FXML
@@ -57,27 +65,34 @@ public class TutorialManager {
 	@FXML
 	private Button NPC;
 	
-	
+	/** images used for basic interface */
 	private Image tutorialImage1 = new Image("/tutorials/basicInterface1.png");
 	private Image tutorialImage2 = new Image("/tutorials/basicInterface2.png");
 	private Image tutorialImage3 = new Image("/tutorials/basicInterface3.png");
 	private Image tutorialImage4 = new Image("/tutorials/basicInterface4.png");
 	
+	/** images used for buildings tutorial */
 	private Image buildingsImage1 = new Image("/tutorials/buildings1.png");
 	private Image buildingsImage2 = new Image("/tutorials/buildings2.png");
 	private Image buildingsImage3 = new Image("/tutorials/buildings3.png");
 	
+	/** images used for marketPlace tutorial */
 	private Image marketPlaceImage1 = new Image("/tutorials/marketPlace1.png");
 	private Image marketPlaceImage2 = new Image("/tutorials/marketPlace2.png");
 	private Image marketPlaceImage3 = new Image("/tutorials/marketPlace3.png");
 	private Image marketPlaceImage4 = new Image("/tutorials/marketPlace4.png");
 	
+	/** images used for npc tutorial */
 	private Image npcImage = new Image("/tutorials/Helper.png");
 	
+	/** titles for each tutorial */
 	private String basicInterfaceString = "Interface";
 	private String buildingsString = "Buildings";
 	private String marketPlaceString = "Market Place";
 	
+	/**
+	 * Load main window of the tutorial
+	 */
 	public void loadMain() {
 		this.hideButtons();
 		this.tutorialImage.setVisible(false);
@@ -85,6 +100,11 @@ public class TutorialManager {
 		this.tutorialDescription.setVisible(true);
 	}
 	
+	/** 
+	 * load first page of basic interface
+	 * with its proper action on next and previous buttons
+	 * 
+	 */
 	@FXML
 	private void loadBasicInterface1() {
 		this.loadTutorial(basicInterfaceString, this.tutorialImage1, "Basic Interface 1");
@@ -96,6 +116,11 @@ public class TutorialManager {
 		);
 	}
 	
+	/** 
+	 * load second page of basic interface
+	 * with its proper action on next and previous buttons
+	 * 
+	 */
 	@FXML
 	private void loadBasicInterface2() {
 		this.loadTutorial(basicInterfaceString, this.tutorialImage2, "Basic Interface 2");
@@ -107,6 +132,11 @@ public class TutorialManager {
 		);
 	}
 	
+	/** 
+	 * load third page of basic interface
+	 * with its proper action on next and previous buttons
+	 * 
+	 */
 	@FXML
 	private void loadBasicInterface3() {
 		this.loadTutorial(basicInterfaceString, this.tutorialImage3, "Basic Interface 3");
@@ -118,6 +148,11 @@ public class TutorialManager {
 		);
 	}
 	
+	/** 
+	 * load fourth page of basic interface
+	 * with its proper action on next and previous buttons
+	 * 
+	 */
 	@FXML
 	private void loadBasicInterface4() {
 		this.loadTutorial(basicInterfaceString, this.tutorialImage4, "Basic Interface 4");
@@ -129,19 +164,28 @@ public class TutorialManager {
 		);
 	}
 	
-	private void loadTutorial(String title, Image image, String string) {
+	/**
+	 * Set basic design for all tutorial pages with its title, image and description. 
+	 * @param title
+	 * @param image
+	 * @param string
+	 */
+	private void loadTutorial(String title, Image image, String description) {
 		this.showButtons();
 		this.labelTop.setText(title);
 		this.tutorialDescription.setVisible(false);
 		this.tutorialImage.setVisible(true);
 		this.tutorialLabel.setVisible(true);
 		this.tutorialImage.setImage(image);
-		this.tutorialLabel.setText(string);
+		this.tutorialLabel.setText(description);
 		this.tutorialLabel.setAlignment(Pos.CENTER);	
 	}
 	
-	
-	
+	/** 
+	 * load first page of buildings
+	 * with its proper action on next and previous buttons
+	 * 
+	 */	
 	@FXML
 	private void loadBuildings1() {
 		this.loadTutorial(buildingsString, this.buildingsImage1, "Buildings 1");
@@ -153,6 +197,11 @@ public class TutorialManager {
 		);
 	}
 	
+	/** 
+	 * load second page of buildings
+	 * with its proper action on next and previous buttons
+	 * 
+	 */	
 	@FXML
 	private void loadBuildings2() {
 		this.loadTutorial(buildingsString, this.buildingsImage2, "Buildings 2");
@@ -164,6 +213,11 @@ public class TutorialManager {
 		);
 	}
 	
+	/** 
+	 * load third page of buildings
+	 * with its proper action on next and previous buttons
+	 * 
+	 */	
 	@FXML
 	private void loadBuildings3() {
 		this.loadTutorial(buildingsString, this.buildingsImage3, "Buildings 3");
@@ -175,6 +229,11 @@ public class TutorialManager {
 		);
 	}
 	
+	/** 
+	 * load first page of market place
+	 * with its proper action on next and previous buttons
+	 * 
+	 */	
 	@FXML
 	private void loadMarketPlace1() {
 		this.loadTutorial(marketPlaceString, this.marketPlaceImage1, "Market Place 1");
@@ -186,7 +245,11 @@ public class TutorialManager {
 		);
 	}
 	
-	
+	/** 
+	 * load second page of market place
+	 * with its proper action on next and previous buttons
+	 * 
+	 */	
 	@FXML
 	private void loadMarketPlace2() {
 		this.loadTutorial(marketPlaceString, this.marketPlaceImage2, "Market Place 2");
@@ -199,6 +262,11 @@ public class TutorialManager {
 		
 	}
 	
+	/** 
+	 * load third page of market place
+	 * with its proper action on next and previous buttons
+	 * 
+	 */	
 	@FXML
 	private void loadMarketPlace3() {
 		this.loadTutorial(marketPlaceString, this.marketPlaceImage3, "Market Place 3");
@@ -210,6 +278,11 @@ public class TutorialManager {
 		);
 	}
 	
+	/** 
+	 * load fourth page of market place
+	 * with its proper action on next and previous buttons
+	 * 
+	 */	
 	@FXML
 	private void loadMarketPlace4() {
 		this.loadTutorial(marketPlaceString, this.marketPlaceImage4, "Market Place 4");
@@ -222,6 +295,10 @@ public class TutorialManager {
 		
 	}
 	
+	/** 
+	 * load NPC tutorial
+	 * 
+	 */	
 	@FXML
 	private void loadNPC() {
 		this.hideButtons();
@@ -239,6 +316,9 @@ public class TutorialManager {
 		
 	}
 	
+	/**
+	 * Show and hide buttons
+	 */
 	public void showButtons() {
 		this.next.setVisible(true);
 		this.previous.setVisible(true);
