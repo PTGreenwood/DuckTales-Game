@@ -30,41 +30,4 @@ public class RenderingInformation {
     public static final double ANIMAL_SCALE = 0.8;
     // THE MAIN SCALE FOR UI ELEMENTS
     public static final double UI_SCALE = 1.0;
-
-    /**
-     * Construct a {@link RenderingInformation} class with the given initial scale
-     * factor, width and height
-     *
-     * @param scaleFactor
-     *          The initial main scaleFactor
-     * @param width
-     *          The width of the world, in number of tiles
-     * @param height
-     *          The height of the world, in number of tiles
-     */
-    @Deprecated
-    public RenderingInformation(double scaleFactor, int width, int height) {
-        this.worldTileWidth = width;
-        this.worldTileHeight = height;
-    }
-
-    public int getWorldTileHeight() {
-
-        return worldTileHeight;
-    }
-
-    public int getWorldTileWidth() {
-        return this.worldTileWidth;
-    }
-
-    /*----------
-     * SETTERS
-     -----------*/
-    public void setWorldTileWidth(int worldTileWidth) {
-        this.worldTileWidth = worldTileWidth;
-    }
-
-    public void setWorldTileHeight(int worldTileHeight) {
-        this.worldTileHeight = worldTileHeight;
-    }
 }

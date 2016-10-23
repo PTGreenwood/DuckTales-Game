@@ -4,6 +4,7 @@ import javafx.animation.AnimationTimer;
 import javafx.scene.image.ImageView;
 import uq.deco2800.ducktales.features.entities.MainEntityManager;
 import uq.deco2800.ducktales.features.landscape.tiles.TilesManager;
+import uq.deco2800.ducktales.util.exceptions.GameSetupException;
 
 /**
  * The rendering engine for the world display. Currently handle:
@@ -34,11 +35,9 @@ public class WorldDisplayRenderer extends AnimationTimer {
     @Override
     public void handle(long now) {
         // First check if the tiles manager has been instantiated
-        if (tilesManager != null && mainEntityManager != null) {
-            // Check if the world should be moved around
-            if (hDirection != HDirection.NONE || vDirection != VDirection.NONE) {
-                moveWorld();
-            }
+        if (tilesManager != null && mainEntityManager != null &&
+                (hDirection != HDirection.NONE || vDirection != VDirection.NONE)) {
+            moveWorld();
         }
     }
 
@@ -60,6 +59,15 @@ public class WorldDisplayRenderer extends AnimationTimer {
      */
     public void setMainEntityManager(MainEntityManager mainEntityManager) {
         this.mainEntityManager = mainEntityManager;
+    }
+
+    /**
+     * Return the speed at which the world should be moved
+     *
+     * @return The panning speed of the world pane
+     */
+    public int getPanSpeed() {
+        return panSpeed;
     }
 
     /**
@@ -95,7 +103,7 @@ public class WorldDisplayRenderer extends AnimationTimer {
                     sprite.setLayoutX(sprite.getLayoutX() + xAmount);
                     sprite.setLayoutY(sprite.getLayoutY() + yAmount);
                 } else {
-                    System.err.println("Failed to move world. TileSprite not " +
+                    throw new GameSetupException("Failed to move world. TileSprite not " +
                             "yet initiated");
                 }
             }
