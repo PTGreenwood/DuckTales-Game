@@ -1,7 +1,6 @@
 package uq.deco2800.ducktales.features.entities.threats;
 
 import uq.deco2800.ducktales.World;
-import uq.deco2800.ducktales.rendering.sprites.ThreatSprite;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.SecondaryManager;
 import uq.deco2800.ducktales.util.exceptions.GameSetupException;
@@ -16,13 +15,10 @@ import java.util.*;
  */
 public class ThreatManager extends SecondaryManager {
 
-    /** The list of sprites for the enemies */
-    private List<ThreatSprite> threatSprites;
     
     
 
     public ThreatManager() {
-        threatSprites = new ArrayList<>(50);
     }
 
 	/**
