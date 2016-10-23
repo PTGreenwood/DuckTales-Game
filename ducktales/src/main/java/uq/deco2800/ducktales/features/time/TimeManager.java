@@ -186,8 +186,7 @@ public class TimeManager extends SecondaryManager implements Initializable, Tick
 	}
 
 	/**
-	 * Gets the current gameTime Object This was added in for a test. Will
-	 * probably remove later.
+	 * Gets the current gameTime Object This was added in for a test. 
 	 * 
 	 * @return gameTime - The GameTime object being managed done
 	 */
