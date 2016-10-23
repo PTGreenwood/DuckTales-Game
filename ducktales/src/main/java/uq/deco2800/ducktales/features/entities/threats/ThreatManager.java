@@ -20,18 +20,12 @@ public class ThreatManager extends SecondaryManager {
 	 */
 	public void addOneThreat() {
 		if (this.gameManager != null && this.world != null) {
-            // Create a threat
-
-            // Create a sprite
-
-            // Add the threat to the world
-
-            // Add the sprite to the world
 		} else {
             throw new GameSetupException("ThreatManager does not have a reference" +
                     " to GameManager or World yet");
         }
 	}
+	
 	/**
 	 * Set threat level 1.
 	 * @throws Exception 
@@ -107,7 +101,6 @@ public class ThreatManager extends SecondaryManager {
 		ThreatFactory.createLevel4Effect(ResourceType.BLIGHT);
 		ThreatFactory.createLevel4Effect(ResourceType.FEL);
 
-		
 	}
 
 	/**
@@ -129,7 +122,4 @@ public class ThreatManager extends SecondaryManager {
 	public void setWorld(World world) {
 		this.world = world;
 	}
-	
-	
-
 }
