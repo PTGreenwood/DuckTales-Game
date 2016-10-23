@@ -6,5 +6,7 @@ package uq.deco2800.ducktales.features.entities.peons;
  * @author Jin Shin
  */
 public enum PeonBuffType {
-  NEAR_PERFECT, HEALTHY, WELL_FED, WATERLOGGED, STUFFED, HYDRATED
+  HEALTHY, NEAR_PERFECT,
+  WELL_FED, STUFFED,
+  WATERLOGGED, HYDRATED
 }
