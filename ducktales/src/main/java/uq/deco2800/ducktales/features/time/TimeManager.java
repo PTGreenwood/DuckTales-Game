@@ -72,30 +72,37 @@ public class TimeManager extends SecondaryManager implements Initializable, Tick
 	@FXML
 	public void pauseGame() {
 		GameLoop.justPause();
+		timeDisplay.getStylesheets().remove(0);
+		timeDisplay.getStylesheets().add(getClass().getResource("/time/timeDisplayPauseEvent.css").toExternalForm());
 	}
 
 	@FXML
 	public void playGame() {
 		GameLoop.justPlay();
 		GameLoop.setSpeedModifier(1);
+		timeDisplay.getStylesheets().remove(0);
+		timeDisplay.getStylesheets().add(getClass().getResource("/time/timeDisplayNoEvents.css").toExternalForm());
 		System.out.println("Speed 1x"); // set time scale to default
 	}
 
 	@FXML
 	public void fastForwardGame() {
 		GameLoop.setSpeedModifier(1.5);
+		timeDisplay.getStylesheets().remove(0);
+		timeDisplay.getStylesheets().add(getClass().getResource("/time/timeDisplay1.5xEvent.css").toExternalForm());
 		System.out.println("Speed 1.5x"); // set time scale to 1.5x
 	}
 
 	@FXML
 	public void doubleFastForwardGame() {
 		GameLoop.setSpeedModifier(2.5);
+		timeDisplay.getStylesheets().remove(0);
+		timeDisplay.getStylesheets().add(getClass().getResource("/time/timeDisplay2.5xEvents.css").toExternalForm());
 		System.out.println("Speed 2.5x"); // set time scale to 2.5x
 	}
 
 	@Override
 	public void tick() {
-
 		gameTime.tick();
 		// Display the new time\
 		final int currentYear = gameTime.getCurrentYear();
