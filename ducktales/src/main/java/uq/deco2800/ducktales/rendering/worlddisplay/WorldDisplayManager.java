@@ -10,6 +10,7 @@ import uq.deco2800.ducktales.features.weather.Weather;
 import uq.deco2800.ducktales.features.weather.WeatherEffect;
 import uq.deco2800.ducktales.util.SecondaryManager;
 import uq.deco2800.ducktales.rendering.worlddisplay.WorldDisplayRenderer.*;
+import uq.deco2800.ducktales.util.exceptions.GameSetupException;
 
 
 import java.net.URL;
@@ -27,12 +28,6 @@ public class WorldDisplayManager extends SecondaryManager implements Initializab
     @FXML
     private Pane worldDisplay;
 
-    /** The main model of the game */
-    private World world;
-
-    /** The main manager of the game */
-    private GameManager gameManager;
-    
     /** Helper managers */
     private TilesManager tilesManager;
 
@@ -57,6 +52,14 @@ public class WorldDisplayManager extends SecondaryManager implements Initializab
      * which will render the initial world onto the display
      */
     public void initializeWorld() {
+        checkWorldAndGameManager();
+        if (this.worldDisplay == null) {
+            throw new GameSetupException("World display has not been passed to" +
+                    " WorldDisplayManager");
+        } if (this.renderer == null) {
+            throw new GameSetupException("Renderer is not initialized" +
+                    " for WorldDisplayManager");
+        }
         // Instantiate the helper managers
         tilesManager = new TilesManager(this.world, this.worldDisplay);
 
@@ -68,7 +71,27 @@ public class WorldDisplayManager extends SecondaryManager implements Initializab
         renderer.setMainEntityManager(gameManager.getMainEntityManager());
 
     }
-    
+
+    /**
+     * Change the display of the game's rendered world
+     *
+     * @param worldDisplay
+     *          The new display for the game's rendered world
+     */
+    public void setWorldDisplay(Pane worldDisplay) {
+        this.worldDisplay = worldDisplay;
+    }
+
+    /**
+     * Set the renderer that will handle rendering tasks for the world display
+     *
+     * @param renderer
+     *          The renderer for the world display
+     */
+    public void setRenderer(WorldDisplayRenderer renderer) {
+        this.renderer = renderer;
+    }
+
     /**
 	 * Change the current weather of the scene to given weather.
 	 * 
@@ -102,7 +125,7 @@ public class WorldDisplayManager extends SecondaryManager implements Initializab
 	public void changeLightLevel(Pane pane) {
         //getTimeManager is now getCalendarManager.
 		if (this.gameManager.getTimeManager() == null) {
-            System.err.println("Time manager is still empty");
+            throw new GameSetupException("Time manager is still empty");
         } else {
         	//This will change once it's all worked out.
             //boolean nightTime = this.gameManager.getTimeManager().isNight();
@@ -116,20 +139,6 @@ public class WorldDisplayManager extends SecondaryManager implements Initializab
         }
 
 	}
-	
-    public void setWorld(World world) {
-        this.world = world;
-    }
-
-    /**
-     * Pass the handle of the game manager to this manager
-     *
-     * @param gameManager
-     *
-     */
-    public void setGameManager(GameManager gameManager) {
-        this.gameManager = gameManager;
-    }
 
     /**
      * Get the world display pane, which is the pane that all world objects will
