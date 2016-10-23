@@ -324,11 +324,7 @@ public abstract class Season {
     		LOGGER.log(Level.SEVERE, e.toString(), e);
     	}
 	}
-<<<<<<< HEAD
-	
-=======
 
->>>>>>> master
 	/**
 	 * Updates the currentTemperature by incrementing current value
 	 * of the season by the provided modifier

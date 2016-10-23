@@ -10,11 +10,7 @@ public class Autumn extends Season {
 	// because you'd want to save that as an integer
 	public Autumn() {
 		super.name = "Autumn";
-<<<<<<< HEAD
-		super.humidityLevel = 2.2f;
-=======
 		super.humidityLevel = 1.8f;
->>>>>>> master
 		super.maxTemperature = 18;
 		super.currentTemperature = 12;
 		super.minTemperature = 8;
