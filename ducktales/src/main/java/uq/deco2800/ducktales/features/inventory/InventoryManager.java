@@ -76,11 +76,11 @@ public class InventoryManager {
 	 *            The amount of spending or accumulation that has occurred. Can
 	 *            be a positive or negative whole number.
 	 * 
-	 * @throws Exception
+	 * @throws InsufficientResourceException
 	 *             throws an exception when the updating of the value will cause
 	 *             the amount of that resource type to fall below zero.
 	 */
-	public void updateTimberAmount(int amount) throws Exception {
+	public void updateTimberAmount(int amount) throws InsufficientResourceException{
 
 		/*
 		 * Checks if the change in the timber amount will cause the value to
@@ -122,11 +122,11 @@ public class InventoryManager {
 	 *            The amount of spending or accumulation that has occurred. Can
 	 *            be a positive or negative whole number.
 	 * 
-	 * @throws Exception
+	 * @throws InsufficientResourceException
 	 *             throws an exception when the updating of the value will cause
 	 *             the amount of that resource type to fall below zero.
 	 */
-	public void updateMeatAmount(int amount) throws Exception {
+	public void updateMeatAmount(int amount) throws InsufficientResourceException {
 
 		/*
 		 * Checks if the change in the meat amount will cause the value to fall
@@ -167,11 +167,11 @@ public class InventoryManager {
 	 *            The amount of spending or accumulation that has occurred. Can
 	 *            be a positive or negative whole number.
 	 * 
-	 * @throws Exception
+	 * @throws InsufficientResourceException
 	 *             throws an exception when the updating of the value will cause
 	 *             the amount of that resource type to fall below zero.
 	 */
-	public void updateWoolAmount(int amount) throws Exception {
+	public void updateWoolAmount(int amount) throws InsufficientResourceException {
 
 		/*
 		 * Checks if the change in the wool amount will cause the value to fall
@@ -212,11 +212,11 @@ public class InventoryManager {
 	 *            The amount of spending or accumulation that has occurred. Can
 	 *            be a positive or negative whole number.
 	 * 
-	 * @throws Exception
+	 * @throws InsufficientResourceException
 	 *             throws an exception when the updating of the value will cause
 	 *             the amount of that resource type to fall below zero.
 	 */
-	public void updateFeatherAmount(int amount) throws Exception {
+	public void updateFeatherAmount(int amount) throws InsufficientResourceException {
 
 		/*
 		 * Checks if the change in the feather amount will cause the value to
@@ -257,11 +257,11 @@ public class InventoryManager {
 	 *            The amount of spending or accumulation that has occurred. Can
 	 *            be a positive or negative whole number.
 	 * 
-	 * @throws Exception
+	 * @throws InsufficientResourceException
 	 *             throws an exception when the updating of the value will cause
 	 *             the amount of that resource type to fall below zero.
 	 */
-	public void updateStoneAmount(int amount) throws Exception {
+	public void updateStoneAmount(int amount) throws InsufficientResourceException {
 
 		/*
 		 * Checks if the change in the stone amount will cause the value to fall

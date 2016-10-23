@@ -19,7 +19,7 @@ import uq.deco2800.ducktales.util.Point;
  * thirst hunger and thirst will decrease (be more hungry/thirsty) over time
  * lower hunger/thirst will affect its strength
  *
- * @author Leggy, Jin Shin, Daniel Leong
+ * @author Leggy, Jin Shin, Daniel Leong, Peter Greenwood.
  * 
  *
  */
@@ -544,7 +544,7 @@ public class Peon extends AgentEntity {
 				}
 			
 			} catch (IndexOutOfBoundsException e) {
-				System.out.println("Can't upgrade this tool. Nothing to upgrade to");
+				System.out.println("Can't upgrade this tool. Max upgrade reached");
 			}
 		}
 		//Otherwise don't update cause there is no way to.
@@ -577,7 +577,6 @@ public class Peon extends AgentEntity {
      * Chosen to go this route rather than .values() to do soemthing things with it.
      */
 	public ArrayList<ArrayList<ToolType>> getAllToolsList() {
-		System.out.println("TOOLTYPE: " + this.allTools);
 		return this.allTools;
 	}
 	
@@ -628,9 +627,8 @@ public class Peon extends AgentEntity {
 	 * @return String resources
 	 */
 	public String getResourceNeededForUpgrade(ArrayList<ToolType> tool, int currentLevel) {
-		System.out.println("TOOL TYPE SENT: " + tool + ",,,, CURRENT LEVEL SENT: " + currentLevel);
 		if((tool.size() == 1) || (currentLevel >=3) || (currentLevel < 0)) {
-			return "N/A";
+				return "N/A";
 		} else {
 			int timberNeed = tool.get(currentLevel).getTimberCost();
 			int stoneNeed = tool.get(currentLevel).getStoneCost();

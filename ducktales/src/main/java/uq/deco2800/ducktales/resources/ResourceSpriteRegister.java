@@ -3,6 +3,7 @@ package uq.deco2800.ducktales.resources;
 import java.util.concurrent.ConcurrentHashMap;
 
 import javafx.scene.image.Image;
+import uq.deco2800.ducktales.util.exceptions.GameSetupException;
 
 import static uq.deco2800.ducktales.resources.ResourceType.*;
 
@@ -134,7 +135,7 @@ public class ResourceSpriteRegister {
 	 */
 	private void addResource ( ResourceType type, String imageName) {
 		if (resourceTypeRegister.containsKey(type)) {
-			throw new RuntimeException(
+			throw new GameSetupException(
 					"Attempted to add an already registered ResourceTypeInfo \""
 							+ type + "\" to a ResourceSpriteRegister");
 		}
@@ -151,7 +152,7 @@ public class ResourceSpriteRegister {
 	 */
 	public Image getResourceImage(ResourceType resourceType) {
 		if (!resourceTypeRegister.containsKey(resourceType))
-			throw new RuntimeException(
+			throw new GameSetupException(
 					"Attempted to access non-registered ResourceTypeInfo of tile type \""
 							+ resourceType + "\" from a ResourceSpriteRegister");
 		return resourceTypeRegister.get(resourceType);

@@ -7,7 +7,7 @@
 
 <BorderPane fx:id="mainWindow" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uq.deco2800.ducktales.features.missions.MissionMainController">
    <top>
-      <Label fx:id="labelTop" style="-fx-font-family: &quot;Press Start 2P&quot;;" text="MISSION" BorderPane.alignment="CENTER">
+      <Label fx:id="labelTop" style="-fx-font-family: &quot;Press Start 2P&quot;;" text="MISSION" textFill="WHITE" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets top="10.0" />
          </BorderPane.margin>
@@ -17,6 +17,6 @@
       </Label>
    </top>
    <center>
-      <Label fx:id="missionDescription" text="Description of Mission" BorderPane.alignment="CENTER" />
+      <Label fx:id="missionDescription" text="Description of Mission" textFill="WHITE" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>

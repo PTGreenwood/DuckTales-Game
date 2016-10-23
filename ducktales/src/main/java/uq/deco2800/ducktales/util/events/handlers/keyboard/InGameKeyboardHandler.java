@@ -180,6 +180,7 @@ public class InGameKeyboardHandler extends GameEventHandler
 				.match(event)) {
 			GameLoop.setSpeedModifier(2.5);
 			System.out.println("Speed 2.5x"); // set time scale to 2.5x
+
 		} else if (KeyboardManager.getPauseGameKeyCombination().match(event)) {
 			GameLoop.pauseWorld();
 			System.out.println("Pause/UnPause");

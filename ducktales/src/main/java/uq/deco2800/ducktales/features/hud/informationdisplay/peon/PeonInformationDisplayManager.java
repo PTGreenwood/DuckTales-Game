@@ -80,7 +80,7 @@ public class PeonInformationDisplayManager
     public void setPeon(Peon peon) {
     	this.peon = peon;
     	//Setting peons with jobs/tools for testing here.
-    	peon.setJob(JobType.LUMBERJACK);
+    	//peon.setJob(JobType.LUMBERJACK);
          //Setting to axe level 1 to start with.
         //peon.setTool(ToolType.AXElevel1);
     }
