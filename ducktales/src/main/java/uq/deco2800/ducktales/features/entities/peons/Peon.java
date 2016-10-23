@@ -362,7 +362,9 @@ public class Peon extends AgentEntity {
 	}
 
 	/**
-	 * add a debuff to Peon
+	 * Add a debuff to Peon's debuffs array if not already exists.
+	 *
+	 * @param PeonDebuffType debuff: PeonDebuffType.DEBUFFNAME
 	 */
 	public void addDebuff(PeonDebuffType debuff) {
 		if (!debuffs.contains(debuff)) {
@@ -371,7 +373,9 @@ public class Peon extends AgentEntity {
 	}
 
 	/**
-	 * remove a debuff from Peon
+	 * Remove a debuff from Peon's debuffs array if exists.
+	 *
+	 * @param PeonDebuffType debuff: PeonDebuffType.DEBUFFNAME
 	 */
 	public void removeDebuff(PeonDebuffType debuff) {
 		int index = debuffs.indexOf(debuff);
@@ -382,17 +386,18 @@ public class Peon extends AgentEntity {
 	}
 
 	/**
-	 * return all debuffs that Peon has - to access each debuff in the arraylist
-	 * use ArrayList built-in functions such as .get(index) or .contains(var
-	 * name) when .get(index) used to compare to string use
-	 * .get(index).toString() method
+	 * Return a list of all Peon's current debuffs
+	 *
+	 * @return List<PeonDebuffType>
 	 */
 	public List<PeonDebuffType> getDebuffs() {
 		return this.debuffs;
 	}
 
 	/**
-	 * add a buff to Peon
+	 * Add a buff to Peon's buffs array if not already exists.
+	 *
+	 * @param PeonBuffType buff: PeonBuffType.BUFFNAME
 	 */
 	public void addBuff(PeonBuffType buff) {
 		if (!buffs.contains(buff)) {
@@ -401,7 +406,9 @@ public class Peon extends AgentEntity {
 	}
 
 	/**
-	 * remove a buff from Peon
+	 * Remove a buff from Peon's buffs array if not already exists.
+	 *
+	 * @param PeonBuffType buff: PeonBuffType.BUFFNAME
 	 */
 	public void removeBuff(PeonBuffType buff) {
 		int index = buffs.indexOf(buff);
@@ -412,10 +419,9 @@ public class Peon extends AgentEntity {
 	}
 
 	/**
-	 * return all buffs that Peon has - to access each buff in the arraylist use
-	 * ArrayList built-in functions such as .get(index) or .contains(var name)
-	 * when .get(index) used to compare to string use .get(index).toString()
-	 * method
+	 * Return a list of all Peon's current buffs
+	 *
+	 * @return List<PeonBuffType>
 	 */
 	public List<PeonBuffType> getBuffs() {
 		return this.buffs;
@@ -489,8 +495,8 @@ public class Peon extends AgentEntity {
 
 	/**
 	 * function that auto decrease the Peon's hunger and thirst and health
-	 * decrease hunger -= 2 and thirst -=3 every 3 hours
-	 * decrease health under certain threshold of hunger/thirst
+	 * 	- decrease hunger -= 2 and thirst -=3 every 3 hours
+	 * 	- decrease health under certain threshold of hunger/thirst
 	 */
 	private void autoDecrease() {
 		int currentHunger = getHunger(),
@@ -502,40 +508,20 @@ public class Peon extends AgentEntity {
 		if (autoDecreaseTime == 180) {
 			setHunger(currentHunger - 2);
 			setThirst(currentThirst - 3);
-			weatherEffectOnPeon(currentHunger, currentThirst);
 			autoDecreaseTime = 0;
-		}
-	}
-	
-	/**
-	 * function that alters the Peon's status according to the weather
-	 * different weather will have different effect on peon's stats.
-	 */
-	private void weatherEffectOnPeon(int currentHunger, int currentThirst) {
-		 String current = this.gameManager.getWeatherManager().peonEffect();
-		 if (current == "rain"){
-			 setThirst(currentThirst + 4);
-		 }
-		 else if (current == "storm"){
-			 setThirst(currentThirst + 1);
-		}
-		 else if (current == "snow"){
-			 setHunger(currentHunger - 1);
-		}
-		 else if (current == "sunny"){
-			 setThirst(currentThirst - 1);
 		}
 	}
 
 	/**
-	 * Function that checks the status of Peon to add buff/debuff - health/hunger/thirst
-	 * also decrease health according to the debuffs
+	 * A method checking the status of Peon to add buff/debuff - health/hunger/thirst.
+	 * Also decrease Peon's Health according to the applying debuffs.
 	 */
 	private void checkPeonStatus() {
 		checkPeonHealth();
 		checkPeonHunger();
 		checkPeonThirst();
 		temperatureEffectOnPeon();
+		weatherEffectOnPeon(getHunger(), getThirst());
 
 		/** Measure how long the peon is exposed to the debuff **/
 		//HUNGER related
@@ -568,6 +554,28 @@ public class Peon extends AgentEntity {
 		if (thirstyTime >= 60) { setHealth(getHealth() -15); }
 		if (tempHotTime >= 80) { setHealth(getHealth() - 10); }
 		if (tempColdTime >= 80) { setHealth(getHealth() - 10); }
+	}
+
+	/**
+	 * Function that alters the Peon's status according to the weather
+	 * different weather will have different effect on peon's stats.
+	 *
+	 * @param int currentHunger, int currentThirst
+	 */
+	private void weatherEffectOnPeon(int currentHunger, int currentThirst) {
+		 String current = this.gameManager.getWeatherManager().peonEffect();
+		 if (current == "rain"){
+			 setThirst(currentThirst + 4);
+		 }
+		 else if (current == "storm"){
+			 setThirst(currentThirst + 1);
+		}
+		 else if (current == "snow"){
+			 setHunger(currentHunger - 1);
+		}
+		 else if (current == "sunny"){
+			 setThirst(currentThirst - 1);
+		}
 	}
 
 	/**
@@ -640,9 +648,10 @@ public class Peon extends AgentEntity {
 	}
 
 	/**
-		* Fucntion that check Peon's Health and add/remove buff/debuff accordingly
-		* - first remove all buff/debuff relating to health
-		*	- then add buff
+		* A method checking Peon's Health and add/remove buff or debuff according
+		* to its thresholds. 0 < Health < 1000
+		*
+		*		- Each threshold will remove other debuffs and add the new buff
 	  */
 	private void checkPeonHealth() {
 		int currentHealth = getHealth();
@@ -688,6 +697,12 @@ public class Peon extends AgentEntity {
 		}
 	}
 
+	/**
+	 * A method checking Peon's Hunger and add/remove buff or debuff according
+	 * to its thresholds. 0 < Hunger < 100
+	 *
+	 * 	- Each threshold will remove other debuffs and add the new buff
+	 */
 	private void checkPeonHunger() {
 		int currentHunger = getHunger();
 
@@ -727,6 +742,12 @@ public class Peon extends AgentEntity {
 		}
 	}
 
+	/**
+	 * A method checking Peon's Thirst and add/remove buff or debuff according
+	 * to its thresholds. 0 < Thirst < 100
+	 *
+	 * 	- Each threshold will remove other debuffs and add the new buff
+	 */
 	private void checkPeonThirst() {
 		int currentThirst = getThirst();
 
