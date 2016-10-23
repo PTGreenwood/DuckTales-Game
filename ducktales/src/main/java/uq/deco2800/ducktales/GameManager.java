@@ -149,7 +149,13 @@ public class GameManager {
         mainEntityManager.startRoutine();
 
         //Play theme song for the start of the game
-        new GameSound("src/main/resources/sounds/EmotionalRain.wav").start();
+	        //Create Variable for first song to be played.
+	        GameSound Sound1 = new GameSound("src/main/resources/sounds/EmotionalRain.wav");
+	        //Play first song
+	        Sound1.start();
+      
+        
+        
         
         
         // Start the manager of all the horrible threats in the world.

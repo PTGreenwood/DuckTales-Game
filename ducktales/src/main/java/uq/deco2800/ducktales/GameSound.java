@@ -11,18 +11,31 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.SourceDataLine; 
 import javax.sound.sampled.UnsupportedAudioFileException; 
  
+/**
+ *Sound of the game, Extends Thread thus giving functionality to play Asynchronously.
+ * 
+ * Only Plays Wav files.
+ *  
+ * @author Wian
+ *
+ */
 public class GameSound extends Thread { 
  
     private String filename;
  
     private Position curPosition;
  
+    
     private final int EXTERNAL_BUFFER_SIZE = 524288; // 128Kb 
  
     enum Position { 
         LEFT, RIGHT, NORMAL
     };
  
+    /**Constructor takes string as source of the wav file to be played
+     * 
+     * @param wavfile(String) - Location of the wav sound file to be play
+     */
     public GameSound(String wavfile) { 
         filename = wavfile;
         curPosition = Position.NORMAL;
@@ -35,16 +48,22 @@ public class GameSound extends Thread {
  
     public void run() { 
  
+    	//Creates File with given file name
         File soundFile = new File(filename);
         if (!soundFile.exists()) { 
-            System.err.println("Wave file is not found: " + filename);
+            //File at location "filename" doesn't exist print File not found
+        	System.err.println("Wave file is not found: " + filename);
             return;
         } 
  
+        //Opens the Audio Stream
         AudioInputStream audioInputStream = null;
         try { 
+        	//Try opening audioInputStream with given sound file
             audioInputStream = AudioSystem.getAudioInputStream(soundFile);
-        } catch (UnsupportedAudioFileException e1) { 
+        } 
+        //Catch Exceptions
+        catch (UnsupportedAudioFileException e1) { 
             e1.printStackTrace();
             return;
         } catch (IOException e1) { 
@@ -52,6 +71,7 @@ public class GameSound extends Thread {
             return;
         } 
  
+        //Get audio format
         AudioFormat format = audioInputStream.getFormat();
         SourceDataLine auline = null;
         DataLine.Info info = new DataLine.Info(SourceDataLine.class, format);
