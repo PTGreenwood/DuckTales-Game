@@ -21,6 +21,7 @@ import uq.deco2800.ducktales.features.weather.*;
 
 import uq.deco2800.ducktales.rendering.worlddisplay.WorldDisplayManager;
 import uq.deco2800.ducktales.features.missions.MissionManager;
+import uq.deco2800.ducktales.features.notifications.NotificationManager;
 
 import java.io.IOException;
 import java.net.URL;
@@ -75,6 +76,7 @@ public class GameController implements Initializable{
     private MarketManager marketManager;
     
     private HelperManager helperManager;
+    private NotificationManager notificationManager;
     private MissionManager missionManager;
     private LevelManager levelManager;
     private AchievementManager achievementManager;
@@ -119,6 +121,7 @@ public class GameController implements Initializable{
         loadLevel();
         loadAchievement();        
         loadHelper();
+        loadNotifications();
         
         loadTimeDisplay();
         loadWeatherDisplay();
@@ -138,6 +141,7 @@ public class GameController implements Initializable{
         gameManager.setMainEntityManager(this.mainEntityManager);
         gameManager.setTutorialManager(this.tutorialManager);      
         gameManager.setHelperManager(this.helperManager);
+        gameManager.setNotificationManager(this.notificationManager);
         gameManager.setPeonInformationDisplayManager(this.peonInformationDisplayManager);
 
         // Now officially call the game starting method from Game Manager
@@ -196,6 +200,16 @@ public class GameController implements Initializable{
     	achievementManager.showAchievement();
     	closeButton.setVisible(true);
     	missionManager.missionCompletedAction(1);
+    }
+    
+    /**
+     * Show the notification bar
+     */
+    @FXML
+    public void showNotification() {
+        // Hide all other panes first
+
+    	notificationManager.showNotifications();
     }
     
     @FXML
@@ -483,7 +497,6 @@ public class GameController implements Initializable{
             AnchorPane.setLeftAnchor(root, 250.0);
             
             
-            tutorialManager.hideButtons();
             // initially hide it first
             tutorialManager.hideTutorial();
             
@@ -613,12 +626,41 @@ public class GameController implements Initializable{
             AnchorPane.setTopAnchor(root, 580.0);
             AnchorPane.setLeftAnchor(root, 350.0);            
 
-            helperManager.hideHelper();
+            //helperManager.hideHelper();
             
         } catch (IOException e) {
             logger.info("Unable to load Helper:" + e);
 
             throw new GameSetupException("Unable to load Helper");
+        }
+    }
+    
+    @FXML
+    private void loadNotifications() {
+    	
+    	URL location = getClass().getResource("/notifications/notifications.fxml");
+    	
+    	FXMLLoader loader = new FXMLLoader(location);
+    	
+    	try {
+            // load the FXML
+            AnchorPane root = loader.load();
+            
+            // retrieve the controller
+            notificationManager = loader.getController();
+            
+            // add the notification pane to the GUI
+            rootPane.getChildren().add(root);
+            
+            // position the notification pane
+            AnchorPane.setTopAnchor(root, 20.0);
+            AnchorPane.setLeftAnchor(root, 300.0);            
+
+            //notificationManager.hideNotifications();
+            
+        } catch (IOException e) {
+            System.err.println("Unable to load Notifications");
+            logger.info("Unable to load Notifications:" + e);
         }
     }
     

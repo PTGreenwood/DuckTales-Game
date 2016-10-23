@@ -5,7 +5,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.application.Platform;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
@@ -38,10 +37,8 @@ public class DuckTalesController implements Initializable {
 	private AnchorPane mainMenuPane;
 
 	/** implementing a logger, to catch ioe exception */
-	private static Logger logger = LoggerFactory.getLogger(DuckTalesController.class);
-
-	/** The Secondary Managers of the game, each managing an FXML loader */
-    private LoginManager loginManager;
+	private static Logger logger = 
+			LoggerFactory.getLogger(DuckTalesController.class);
 	
 	private WorldBuilderController worldBuilderController;
 
@@ -79,42 +76,16 @@ public class DuckTalesController implements Initializable {
 	}
 
 	/**
-	 * This is the method that will launch the game from the main menu
+	 * This is the method that will display the login screen from the main menu 
+	 * and launch the game.
+	 * 
 	 * @param event
 	 * 			The event that called this method
 	 * @throws Exception
 	 * 			Exception for when attempting to load the game
 	 */
-	
-	
 	@FXML
 	public void startGame(ActionEvent event) throws Exception {
-		
-		/*
-		LoginManager.setClient(client);
-		
-		
-		Parent root1 = FXMLLoader.load(getClass().getResource("/ui/main/login.fxml"));
-        
-		Scene scene = new Scene(root1,300,275);
-		primaryStage= new Stage();
-		primaryStage.initStyle(StageStyle.UNDECORATED);
-        //primaryStage.initStyle(Stage.UNDECORATED);
-		primaryStage.setTitle("FXML Welcome");
-		primaryStage.setScene(scene);
-		primaryStage.showAndWait();
-		// Change between the mainMenuPane and the contentPane
-		toggleMenuPane();
-
-		// Use FXML Loader to load the FXML file as well as instantiate the controller
-		// for the main UI
-		URL location = getClass().getResource("/ui/main/mainUI.fxml");
-		FXMLLoader mainUILoader = new FXMLLoader(location);
-		// Setup the main UI
-		setupMainUI(mainUILoader);
-		// Show the main UI
-		showPane(gamePane);
-		*/
 		
 		loadLoginFrame(client);
 		
@@ -138,7 +109,7 @@ public class DuckTalesController implements Initializable {
 	/**
 	 * This is a helper method that helps setup the main UI of the game
 	 */
-	private void setupMainUI(FXMLLoader loader) throws Exception {
+	private void setupMainUI(FXMLLoader loader) {
 		// Load the FXML
 		try {
 			gamePane = loader.load();
@@ -219,7 +190,7 @@ public class DuckTalesController implements Initializable {
         StackPane root = loader.load();
 
         // Retrieve the controller
-        loginManager = loader.getController();
+        LoginManager loginManager = loader.getController();
         
         if (primaryScene == null) {
         	primaryScene = new Scene(root,400,350);
@@ -227,13 +198,11 @@ public class DuckTalesController implements Initializable {
         
 		primaryStage= new Stage();
 		primaryStage.initStyle(StageStyle.UNDECORATED);
-        //primaryStage.initStyle(Stage.UNDECORATED);
 		LoginController.setPrimaryStage(primaryStage);
 		primaryStage.setTitle("FXML Welcome");
 		primaryStage.setScene(primaryScene);
 		primaryStage.showAndWait();
 		// Change between the mainMenuPane and the contentPane
-		// toggleMenuPane();
 
 	}
 	

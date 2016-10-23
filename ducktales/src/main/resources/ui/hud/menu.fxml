@@ -3,13 +3,32 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane fx:id="menuPane" prefHeight="667.0" prefWidth="200.0" stylesheets="@menu.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uq.deco2800.ducktales.features.hud.menu.MenuManager">
    <children>
       <Button fx:id="showBuildingsButton" alignment="CENTER" layoutX="61.0" layoutY="202.0" mnemonicParsing="false" onAction="#showBuildingsMenu" prefHeight="25.0" prefWidth="35.0" styleClass="optionButton" text="" />
       <Button fx:id="showAnimalsButton" alignment="CENTER" layoutX="99.0" layoutY="203.0" mnemonicParsing="false" onAction="#showAnimalsMenu" prefHeight="25.0" prefWidth="35.0" styleClass="optionButton" text="" />
       <Button fx:id="nextGridButton" alignment="CENTER" layoutX="137.0" layoutY="203.0" mnemonicParsing="false" onAction="#nextGrid" prefHeight="25.0" prefWidth="35.0" styleClass="optionButton" text="&gt;" />
-      <Button fx:id="previousGridButton" alignment="CENTER" layoutX="19.0" layoutY="203.0" mnemonicParsing="false" onAction="#previousGrid" prefHeight="25.0" prefWidth="42.0" styleClass="optionButton" text="&lt;" />
+      <Button fx:id="previousGridButton" alignment="CENTER" layoutX="19.0" layoutY="203.0" mnemonicParsing="false" onAction="#previousGrid" prefHeight="25.0" prefWidth="42.0" styleClass="optionButton" text="&lt;" />      
       <Pane fx:id="optionPane" layoutX="23.0" layoutY="228.0" prefHeight="402.0" prefWidth="152.0" />
+      <Pane fx:id="optionTextPane" layoutX="22.0" layoutY="229.0" mouseTransparent="true" prefHeight="402.0" prefWidth="152.0">
+         <children>
+            <Text fx:id="optionOne" layoutX="62.0" layoutY="15.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="optionText" text="" />
+            <Text fx:id="optionTwo" layoutX="135.0" layoutY="15.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="optionText" text="" />
+            <Text fx:id="optionThree" layoutX="62.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="optionText" text="" />
+            <Text fx:id="optionFour" layoutX="135.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="optionText" text="" />
+            <Text fx:id="optionFive" layoutX="62.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="optionText" text="" />
+            <Text fx:id="optionSix" layoutX="135.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="optionText" text="" />
+            <Text fx:id="optionSeven" layoutX="62.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="optionText" text="" />
+            <Text fx:id="optionEight" layoutX="135.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="optionText" text="" />
+            <Text fx:id="optionNine" layoutX="62.0" layoutY="244.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="optionText" text="" />
+            <Text fx:id="optionTen" layoutX="135.0" layoutY="244.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="optionText" text="" />
+            <Text fx:id="optionEleven" layoutX="62.0" layoutY="300.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="optionText" text="" />
+            <Text fx:id="optionTwelve" layoutX="135.0" layoutY="300.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="optionText" text="" />
+            <Text fx:id="optionThirteen" layoutX="62.0" layoutY="356.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="optionText" text="" />
+            <Text fx:id="optionFourteen" layoutX="135.0" layoutY="356.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="optionText" text="" />
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

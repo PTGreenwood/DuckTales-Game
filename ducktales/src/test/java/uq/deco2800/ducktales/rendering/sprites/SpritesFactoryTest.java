@@ -49,7 +49,7 @@ public class SpritesFactoryTest extends ApplicationTest {
         ResourceSpriteRegister.getInstance();
 
         ResourceType[] buildings = {
-                HOSPITAL, BAKERY, BARN, BUTCHER, CEMETERY, CHURCH, COMMUNITY_BUILDING,
+                HOSPITAL, BAKERY, BUTCHER, CEMETERY, CHURCH, COMMUNITY_BUILDING,
                 FARM, FORGE, HOUSE, MINE, OBSERVATORY, PASTURE, QUARRY, SAWMILL,
                 SCHOOL, GYMNASIUM
         };
@@ -94,4 +94,66 @@ public class SpritesFactoryTest extends ApplicationTest {
     public void start(Stage stage) throws Exception {
 
     }
+    
+    /**
+     * test the night and day animation methods to change the animation
+     */
+    @Test
+    public void testSchoolBuildingSwap() {
+        int buildingIndex = 0;
+
+        ResourceSpriteRegister.getInstance();
+
+        ResourceType school = SCHOOL;
+        ResourceType pasture = PASTURE;
+        
+        BuildingSprite building = SpritesFactory.createBuildingSprite(
+                buildingIndex, school);
+
+        assertEquals(building.getIndex(), buildingIndex);
+        assertEquals(building.getEntityType(), school);
+        
+        assertEquals(false, building.nightAnimation(SCHOOL));
+        assertEquals(building.getIndex(), buildingIndex);
+        assertEquals(building.getEntityType(), school);
+        
+        assertEquals(false, building.dayAnimation(SCHOOL));
+        assertEquals(building.getIndex(), buildingIndex);
+        assertEquals(building.getEntityType(), school);
+        
+        assertEquals(false, building.winterDayAnimation(SCHOOL));
+        assertEquals(false, building.winterNightAnimation(SCHOOL));
+        assertEquals(false, building.winterDayAnimation(PASTURE));
+        assertEquals(false, building.winterNightAnimation(PASTURE));
+        
+        assertEquals(false, building.nightAnimation(PASTURE));
+        
+        assertEquals(false, building.dayAnimation(PASTURE));
+        
+        // wait for 'construction' to finish then retest
+        try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        assertEquals(true, building.nightAnimation(SCHOOL));
+        assertEquals(building.getIndex(), buildingIndex);
+        assertEquals(building.getEntityType(), school);
+        
+        assertEquals(true, building.dayAnimation(SCHOOL));
+        assertEquals(building.getIndex(), buildingIndex);
+        assertEquals(building.getEntityType(), school);
+        
+        assertEquals(false, building.nightAnimation(PASTURE));
+        
+        assertEquals(true, building.dayAnimation(PASTURE));
+        
+        assertEquals(true, building.winterDayAnimation(SCHOOL));
+        assertEquals(true, building.winterNightAnimation(SCHOOL));
+        assertEquals(false, building.winterDayAnimation(PASTURE));
+        assertEquals(false, building.winterNightAnimation(PASTURE));
+        
+    }
+      
 }

@@ -3,65 +3,56 @@ package uq.deco2800.ducktales.features.entities.threats;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import uq.deco2800.ducktales.rendering.sprites.EffectSprite;
 import uq.deco2800.ducktales.rendering.sprites.EnemySprite;
+import uq.deco2800.ducktales.resources.ResourceType;
+import uq.deco2800.ducktales.util.exceptions.GameSetupException;
 
 /**
  * 
  * This class creates enemy and
- * effects types and defines
- * their parameters
+ * effects types for each of the predifined levels and defines
+ * their parameters.
  * 
  * Created by Krista Harrison and Wian Botha
  * @author kristasusanne, wianb
+ *
+ *
+ *
  */
 
 public class ThreatFactory {
 	 /** CONSTANTS */
 	private static String timer = "Timer";
+	private static String invalidEnemy = "Invalid enemy type";
 	protected static ArrayList<Effect> effectsList = new ArrayList<Effect>();
 	protected static ArrayList<Enemy> enemiesList = new ArrayList<Enemy>();
-	//list for enemy ad threat sprites to be stored in
-	protected static ArrayList<EnemySprite> enemySpriteList = new ArrayList<EnemySprite>();
-	public static HashMap<String, Enemy> enemyMap = new HashMap<String, Enemy>();
-    public static HashMap<String, Effect> effectMap = new HashMap<String, Effect>();
-	/**
-	 * 
-	 * Defines the enum types of enemies
-	 *
-	 */
-	public enum EnemyType {
-		RACCOON, BEETLE, WILD_VILLAGER, WOLF, CROW, GORILLA, EVIL_DUCK,
-		LION, CHIMP, BEAR, ZOMBIE_DUCK, ROBBER, ELEPHANT,
-		
-	}
+	protected static final HashMap<Integer, Enemy> enemyMap = new HashMap<Integer, Enemy>();
+    protected static final HashMap<Integer, Effect> effectMap = new HashMap<Integer, Effect>();
 	
-	/**
-	 * 
-	 * Defines the enum types of effects
-	 *
-	 */
-	public enum EffectType {
-		BLACK_SMOKE, SHAKE, POISON_CLOUD, RUMBLE,  EARTHQUAKE, GREEN_FEL_FIRE,
-		BLIGHT, FEL,
-	}
+    //list for enemy and effect sprites to be stored in
+	protected static ArrayList<EnemySprite> enemySpriteList = new ArrayList<EnemySprite>();
+	protected static ArrayList<EffectSprite> effectSpriteList = new ArrayList<EffectSprite>();
 	
 	 /**
      * Create enemies at level 1
      *
-     * @param enemyType
+     * @param enemy
      *          the type of the enemy to be created
-     *          
      */
-	public static void createLevel1Enemy(EnemyType enemy) {
+	public static void createLevel1Enemy(ResourceType enemy) {
 		switch(enemy) {
 		case RACCOON:
-				createRaccoon(EnemyType.RACCOON);
+				createRaccoon(ResourceType.RACCOON);
+				break;
 		case BEETLE:
-				createBeetle(EnemyType.BEETLE);
+				createBeetle(ResourceType.BEETLE);
+				break;
 		case WILD_VILLAGER:
-				createWildVillager(EnemyType.WILD_VILLAGER);
+				createWildVillager(ResourceType.WILD_VILLAGER);
+				break;
 		default:
-			// throw error message
+			throw new GameSetupException(invalidEnemy);
 		}
 		
 	}
@@ -69,135 +60,155 @@ public class ThreatFactory {
 	 /**
      * Create effects at level 1
      *
-     * @param effectType
+     * @param effect
      *          the type of the effect to be created
-     *          
      */
-	public static void createLevel1Effect(EffectType effect) {
+	public static void createLevel1Effect(ResourceType effect) {
 		switch(effect) {
 		case BLACK_SMOKE:
-				createBlackSmoke(EffectType.BLACK_SMOKE);
+				createBlackSmoke(ResourceType.BLACK_SMOKE);
+				break;
 		case SHAKE:
-				createShake(EffectType.SHAKE);
+				createShake(ResourceType.SHAKE);
+				break;
 		default:
-			//throw error message
+			throw new GameSetupException(invalidEnemy);
 		}
 	}
 	
 	 /**
      * Create enemies at level 2
      *
-     * @param enemyType
+     * @param enemy
      *          the type of the enemy to be created
-     *          
+     *
      */
-	public static void createLevel2Enemy(EnemyType enemy) {
+	public static void createLevel2Enemy(ResourceType enemy) {
 		switch(enemy) {
-		case WOLF:
-				createWolf(EnemyType.WOLF);
+		// note the name of this resource had to be changed to 
+		// enemyWolf due to the pre-existence of a WOLF resource
+		case ENEMYWOLF:
+				createWolf(ResourceType.ENEMYWOLF);
+				break;
 		case CROW:
-				createCrow(EnemyType.CROW);
+				createCrow(ResourceType.CROW);
+				break;
 		case GORILLA:
-				createGorilla(EnemyType.GORILLA);
+				createGorilla(ResourceType.GORILLA);
+				break;
 		case EVIL_DUCK:
-				createEvilDuck(EnemyType.EVIL_DUCK);
+				createEvilDuck(ResourceType.EVIL_DUCK);
+				break;
 		default:
-			//Throw error message
+			throw new GameSetupException(invalidEnemy);
 		}	
 	}
 	
 	 /**
      * Create effects at level 2
      *
-     * @param effectType
+     * @param effect
      *          the type of the effect to be created
-     *          
+     *
      */
-	public static void createLevel2Effect(EffectType effect) {
+	public static void createLevel2Effect(ResourceType effect) {
 		switch(effect) {
 		case POISON_CLOUD:
-				createPoisonCloud(EffectType.POISON_CLOUD);
+				createPoisonCloud(ResourceType.POISON_CLOUD);
+				break;
 		case RUMBLE:
-				createRumble(EffectType.RUMBLE);
+				createRumble(ResourceType.RUMBLE);
+				break;
 		default:
-			//Throw error message
+			throw new GameSetupException(invalidEnemy);
 		}
 	}
 	
 	 /**
      * Create enemies at level 3
      *
-     * @param enemyType
+     * @param enemy
      *          the type of the enemy to be created
-     *          
+     *
      */
-	public static void createLevel3Enemy(EnemyType enemy) {
+	public static void createLevel3Enemy(ResourceType enemy) {
 		switch(enemy) {
 		case LION:
-				createLion(EnemyType.LION);
+				createLion(ResourceType.LION);
+				break;
 		case CHIMP:
-				createChimp(EnemyType.CHIMP);
+				createChimp(ResourceType.CHIMP);
+				break;
 		case BEAR:
-				createBear(EnemyType.BEAR);
-		
+				createBear(ResourceType.BEAR);
+				break;
 		default:
-			//Throw error message
+			throw new GameSetupException(invalidEnemy);
 		}
 	}
 	
 	 /**
      * Create effects at level 3
      *
-     * @param effectType
+     * @param effect
      *          the type of the effect to be created
-     *          
+     *
      */
-	public static void createLevel3Effect(EffectType effect) {
+	public static void createLevel3Effect(ResourceType effect) {
 		switch(effect) {
 		case EARTHQUAKE: 
-			createEarthquake(EffectType.EARTHQUAKE);
+			createEarthquake(ResourceType.EARTHQUAKE);
+			break;
 		case GREEN_FEL_FIRE:
-			createGreenFelFire(EffectType.GREEN_FEL_FIRE);
+			createGreenFelFire(ResourceType.GREEN_FEL_FIRE);
+			break;
 		default:
-			//Throw error message
+			throw new GameSetupException(invalidEnemy);
 		}
 	}
 	
 	 /**
      * Create enemies at level 4
      *
-     * @param enemyType
+     * @param ResourceType
      *          the type of the enemy to be created
+	 * @throws Exception 
      *          
      */
-	public static void createLevel4Enemy(EnemyType enemy) {
+	public static void createLevel4Enemy(ResourceType enemy) {
 		switch(enemy) {
 		case ZOMBIE_DUCK:
-				createZombieDuck(EnemyType.ZOMBIE_DUCK);
+				createZombieDuck(ResourceType.ZOMBIE_DUCK);
+				break;
 		case ROBBER:
-				createRobber(EnemyType.ROBBER);
+				createRobber(ResourceType.ROBBER);
+				break;
 		case ELEPHANT:
-				createElephant(EnemyType.ELEPHANT);
+				createElephant(ResourceType.ELEPHANT);
+				break;
 		default:
-			//Throw error message
+			throw new GameSetupException(invalidEnemy);
 		}	
 	}
 	
 	 /**
      * Create effects at level 4
      *
-     * @param effectType
+     * @param ResourceType
      *          the type of the effect to be created
+	 * @throws Exception 
      *          
      */
-	public static void createLevel4Effect(EffectType effect) {
+	public static void createLevel4Effect(ResourceType effect) {
 		switch(effect) {
 		case BLIGHT:
-				createBlight(EffectType.BLIGHT);
+				createBlight(ResourceType.BLIGHT);
+				break;
 		case FEL:
-				createFel(EffectType.FEL);
+				createFel(ResourceType.FEL);
+				break;
 		default:
-			//Throw error message
+			throw new GameSetupException(invalidEnemy);
 		}
 	}
 	
@@ -231,7 +242,7 @@ public class ThreatFactory {
      * of damage and random x and y values
      * for enemies
      *
-     * @param effect
+     * @param enemy
      *          the enemy to have the parameter set
      * @param start
      * 			the integer for the start timer
@@ -261,14 +272,14 @@ public class ThreatFactory {
      * and create the sprite for
      * the effect
      *
-     * @param EffectType
-     * 		the effect type to be created from the enum class
+     * @param blackSmoke
+     * 		the effect type to be created from the ResourceType class
      *          
      */
-	private static void createBlackSmoke(EffectType blackSmoke) {
+	private static void createBlackSmoke(ResourceType blackSmoke) {
 		Effect blackSmokeEffect = new Effect("Black Smoke");
 		setEffectParameters(blackSmokeEffect, 20, 50, 20);
-		EnemySprite blackSmokeSprite = new EnemySprite();
+		EnemySprite blackSmokeSprite = new EnemySprite(0, blackSmoke);
 		enemySpriteList.add(blackSmokeSprite);
 		putInEffectHashMap(blackSmokeEffect);
 		
@@ -281,14 +292,14 @@ public class ThreatFactory {
      * and create the sprite for
      * the effect
      *
-     * @param EffectType
-     * 		the effect type to be created from the enum class
+     * @param shake
+     * 		the effect type to be created from the ResourceType class
      *          
      */
-	private static void createShake(EffectType shake) {
+	private static void createShake(ResourceType shake) {
 		Effect shakeEffect = new Effect("Shake");
 		setEffectParameters(shakeEffect, 50, 100, 20);
-		EnemySprite shakeSprite = new EnemySprite();
+		EnemySprite shakeSprite = new EnemySprite(0, shake);
 		enemySpriteList.add(shakeSprite);
 		
 	}
@@ -302,14 +313,14 @@ public class ThreatFactory {
      * and create the sprite for
      * the enemy
      *
-     * @param EnemyType
-     * 		the enemy type to be created from the enum class
+     * @param raccoon
+     * 		the enemy type to be created from the ResourceType class
      *          
      */
-	private static void createRaccoon(EnemyType raccoon) {
+	private static void createRaccoon(ResourceType raccoon) {
 		Enemy raccoonEnemy = new Enemy("Raccoon");
 		setEnemyParameters(raccoonEnemy, 20, 50, 20);
-		EnemySprite raccoonSprite = new EnemySprite();
+		EnemySprite raccoonSprite = new EnemySprite(0, raccoon);
 		enemySpriteList.add(raccoonSprite);
 			
 	}
@@ -321,14 +332,14 @@ public class ThreatFactory {
      * and create the sprite for
      * the enemy
      *
-     * @param EnemyType
-     * 		the enemy type to be created from the enum class
+     * @param beetle
+     * 		the enemy type to be created from the ResourceType class
      *          
      */
-	private static void createBeetle(EnemyType beetle) {
+	private static void createBeetle(ResourceType beetle) {
 		Enemy beetleEnemy = new Enemy("Beetle");
 		setEnemyParameters(beetleEnemy, 20, 50, 20);
-		EnemySprite beetleSprite = new EnemySprite();
+		EnemySprite beetleSprite = new EnemySprite(0, beetle);
 		enemySpriteList.add(beetleSprite);
 		
 	}
@@ -340,14 +351,14 @@ public class ThreatFactory {
      * and create the sprite for
      * the enemy
      *
-     * @param EnemyType
-     * 		the effect type to be created from the enum class
+     * @param wildVillager
+     * 		the effect type to be created from the ResourceType class
      *          
      */
-	private static void createWildVillager(EnemyType wildVillager) {
+	private static void createWildVillager(ResourceType wildVillager) {
 		Enemy wildVillagerEnemy = new Enemy("Wild Villager");
 		setEnemyParameters(wildVillagerEnemy, 20, 50, 20);
-		EnemySprite wildVillagerSprite = new EnemySprite();
+		EnemySprite wildVillagerSprite = new EnemySprite(0, wildVillager);
 		enemySpriteList.add(wildVillagerSprite);
 	}
 	
@@ -360,14 +371,14 @@ public class ThreatFactory {
      * and create the sprite for
      * the effect
      *
-     * @param EffectType
-     * 		the effect type to be created from the enum class
+     * @param poisonCloud
+     * 		the effect type to be created from the ResourceType class
      *          
      */
-	private static void createPoisonCloud(EffectType poisonCloud) {
+	private static void createPoisonCloud(ResourceType poisonCloud) {
 		Effect poisonCloudEffect = new Effect("Poison Cloud");
 		setEffectParameters(poisonCloudEffect, 20, 50, 30);
-		EnemySprite poisonCloudSprite = new EnemySprite();
+		EnemySprite poisonCloudSprite = new EnemySprite(0, poisonCloud);
 		enemySpriteList.add(poisonCloudSprite);
 		
 	}
@@ -379,14 +390,14 @@ public class ThreatFactory {
      * and create the sprite for
      * the effect
      *
-     * @param EffectType
-     * 		the effect type to be created from the enum class
+     * @param rumble
+     * 		the effect type to be created from the ResourceType class
      *          
      */
-	private static void createRumble(EffectType rumble) {
+	private static void createRumble(ResourceType rumble) {
 		Effect rumbleEffect = new Effect("Rubmle");
 		setEffectParameters(rumbleEffect, 50, 100, 30);
-		EnemySprite rumbleSprite = new EnemySprite();
+		EnemySprite rumbleSprite = new EnemySprite(0, rumble);
 		enemySpriteList.add(rumbleSprite);
 	}
 	
@@ -399,14 +410,14 @@ public class ThreatFactory {
      * and create the sprite for
      * the enemy
      *
-     * @param EnemyType
-     * 		the effect type to be created from the enum class
+     * @param enemyWolf
+     * 		the effect type to be created from the ResourceType class
      *          
      */
-	private static void createWolf(EnemyType wolf) {
+	private static void createWolf(ResourceType enemyWolf) {
 		Enemy wolfEnemy = new Enemy("Wolf");
 		setEnemyParameters(wolfEnemy, 20, 50, 30);
-		EnemySprite wolfSprite = new EnemySprite();
+		EnemySprite wolfSprite = new EnemySprite(0, enemyWolf);
 		enemySpriteList.add(wolfSprite);
 	}
 	
@@ -417,14 +428,14 @@ public class ThreatFactory {
      * and create the sprite for
      * the enemy
      *
-     * @param EnemyType
-     * 		the effect type to be created from the enum class
+     * @param crow
+     * 		the effect type to be created from the ResourceType class
      *          
      */
-	private static void createCrow(EnemyType crow) {
+	private static void createCrow(ResourceType crow) {
 		Enemy crowEnemy = new Enemy("Crow");
 		setEnemyParameters(crowEnemy, 20, 50, 30);
-		EnemySprite crowSprite = new EnemySprite();
+		EnemySprite crowSprite = new EnemySprite(0, crow);
 		enemySpriteList.add(crowSprite);
 	}
 	
@@ -435,14 +446,14 @@ public class ThreatFactory {
      * and create the sprite for
      * the enemy
      *
-     * @param EnemyType
-     * 		the effect type to be created from the enum class
+     * @param gorilla
+     * 		the effect type to be created from the ResourceType class
      *          
      */
-	private static void createGorilla(EnemyType gorilla) {
+	private static void createGorilla(ResourceType gorilla) {
 		Enemy gorillaEnemy = new Enemy("Gorilla");
 		setEnemyParameters(gorillaEnemy, 20, 50, 30);
-		EnemySprite gorillaSprite = new EnemySprite();
+		EnemySprite gorillaSprite = new EnemySprite(0, gorilla);
 		enemySpriteList.add(gorillaSprite);
 	}
 	
@@ -453,14 +464,14 @@ public class ThreatFactory {
      * and create the sprite for
      * the enemy
      *
-     * @param EnemyType
-     * 		the effect type to be created from the enum class
+     * @param evilDuck
+     * 		the effect type to be created from the ResourceType class
      *          
      */
-	private static void createEvilDuck(EnemyType evilDuck) {
+	private static void createEvilDuck(ResourceType evilDuck) {
 		Enemy evilDuckEnemy = new Enemy("Evil Duck");
 		setEnemyParameters(evilDuckEnemy, 20, 50, 30);
-		EnemySprite evilDuckSprite = new EnemySprite();
+		EnemySprite evilDuckSprite = new EnemySprite(0, evilDuck);
 		enemySpriteList.add(evilDuckSprite);
 	}
 	
@@ -473,14 +484,14 @@ public class ThreatFactory {
      * and create the sprite for
      * the effect
      *
-     * @param EffectType
-     * 		the effect type to be created from the enum class
+     * @param earthquake
+     * 		the effect type to be created from the ResourceType class
      *          
      */
-	private static void createEarthquake(EffectType earthquake) {
+	private static void createEarthquake(ResourceType earthquake) {
 		Effect earthquakeEffect = new Effect("Earthquake");
 		setEffectParameters(earthquakeEffect, 20, 50, 40);
-		EnemySprite earthquakeSprite = new EnemySprite();
+		EnemySprite earthquakeSprite = new EnemySprite(0, earthquake);
 		enemySpriteList.add(earthquakeSprite);
 	}
 	
@@ -491,14 +502,14 @@ public class ThreatFactory {
      * and create the sprite for
      * the effect
      *
-     * @param EffectType
-     * 		the effect type to be created from the enum class
+     * @param greenFelFire
+     * 		the effect type to be created from the ResourceType class
      *          
      */
-	private static void createGreenFelFire(EffectType greenFelFire) {
+	private static void createGreenFelFire(ResourceType greenFelFire) {
 		Effect greenFelFireEffect = new Effect("Green Fel Fire");
 		setEffectParameters(greenFelFireEffect, 20, 50, 40);
-		EnemySprite greenFelFireSprite = new EnemySprite();
+		EnemySprite greenFelFireSprite = new EnemySprite(0, greenFelFire);
 		enemySpriteList.add(greenFelFireSprite);
 	}
 	
@@ -511,14 +522,14 @@ public class ThreatFactory {
      * and create the sprite for
      * the enemy
      *
-     * @param EnemyType
-     * 		the effect type to be created from the enum class
+     * @param lion
+     * 		the effect type to be created from the ResourceType class
      *          
      */
-	private static void createLion(EnemyType lion) {
+	private static void createLion(ResourceType lion) {
 		Enemy lionEnemy = new Enemy("Lion");
 		setEnemyParameters(lionEnemy, 50, 100, 40);
-		EnemySprite lionSprite = new EnemySprite();
+		EnemySprite lionSprite = new EnemySprite(0, lion);
 		enemySpriteList.add(lionSprite);
 	}
 
@@ -529,14 +540,14 @@ public class ThreatFactory {
      * and create the sprite for
      * the enemy
      *
-     * @param EnemyType
-     * 		the effect type to be created from the enum class
+     * @param chimp
+     * 		the effect type to be created from the ResourceType class
      *          
      */
-	private static void createChimp(EnemyType chimp) {
+	private static void createChimp(ResourceType chimp) {
 		Enemy chimpEnemy = new Enemy ("Chimp");
 		setEnemyParameters(chimpEnemy, 20, 50, 40);
-		EnemySprite chimpSprite = new EnemySprite();
+		EnemySprite chimpSprite = new EnemySprite(0, chimp);
 		enemySpriteList.add(chimpSprite);
 	}
 	
@@ -547,14 +558,14 @@ public class ThreatFactory {
      * and create the sprite for
      * the enemy
      *
-     * @param EnemyType
-     * 		the effect type to be created from the enum class
+     * @param bear
+     * 		the effect type to be created from the ResourceType class
      *          
      */
-	private static void createBear(EnemyType bear) {
+	private static void createBear(ResourceType bear) {
 		Enemy bearEnemy = new Enemy("Bear");
 		setEnemyParameters(bearEnemy, 20, 50, 40);
-		EnemySprite bearSprite = new EnemySprite();
+		EnemySprite bearSprite = new EnemySprite(0, bear);
 		enemySpriteList.add(bearSprite);
 	}
 	
@@ -567,14 +578,14 @@ public class ThreatFactory {
      * and create the sprite for
      * the effect
      *
-     * @param EffectType
-     * 		the effect type to be created from the enum class
+     * @param blight
+     * 		the effect type to be created from the ResourceType class
      *          
      */
-	private static void createBlight(EffectType blight) {
+	private static void createBlight(ResourceType blight) {
 		Effect blightEffect = new Effect("Blight");
 		setEffectParameters(blightEffect, 20, 50, 50);
-		EnemySprite blightSprite = new EnemySprite();
+		EnemySprite blightSprite = new EnemySprite(0, blight);
 		enemySpriteList.add(blightSprite);
 	}
 	
@@ -585,14 +596,14 @@ public class ThreatFactory {
      * and create the sprite for
      * the effect
      *
-     * @param EffectType
-     * 		the effect type to be created from the enum class
+     * @param fel
+     * 		the effect type to be created from the ResourceType class
      *          
      */
-	private static void createFel(EffectType fel) {
+	private static void createFel(ResourceType fel) {
 		Effect felEffect = new Effect("Fel");
 		setEffectParameters(felEffect, 20, 50, 50);
-		EnemySprite felSprite = new EnemySprite();
+		EnemySprite felSprite = new EnemySprite(0, fel);
 		enemySpriteList.add(felSprite);
 	}
 	
@@ -605,14 +616,14 @@ public class ThreatFactory {
      * and create the sprite for
      * the enemy
      *
-     * @param EnemyType
-     * 		the effect type to be created from the enum class
+     * @param zombieDuck
+     * 		the effect type to be created from the ResourceType class
      *          
      */
-	private static void createZombieDuck(EnemyType zombieDuck) {
+	private static void createZombieDuck(ResourceType zombieDuck) {
 		Enemy zombieDuckEnemy = new Enemy("Zombie Duck");
 		setEnemyParameters(zombieDuckEnemy, 20, 50, 50);
-		EnemySprite zombieDuckSprite = new EnemySprite();
+		EnemySprite zombieDuckSprite = new EnemySprite(0, zombieDuck);
 		enemySpriteList.add(zombieDuckSprite);
 	}
 
@@ -623,14 +634,14 @@ public class ThreatFactory {
      * and create the sprite for
      * the enemy
      *
-     * @param EnemyType
-     * 		the effect type to be created from the enum class
+     * @param robber
+     * 		the effect type to be created from the ResourceType class
      *          
      */
-	private static void createRobber(EnemyType robber) {
+	private static void createRobber(ResourceType robber) {
 		Enemy robberEnemy = new Enemy("Robber");
 		setEnemyParameters(robberEnemy, 20, 50, 50);
-		EnemySprite robberSprite = new EnemySprite();
+		EnemySprite robberSprite = new EnemySprite(0, robber);
 		enemySpriteList.add(robberSprite);
 	}
 
@@ -641,23 +652,23 @@ public class ThreatFactory {
      * and create the sprite for
      * the enemy
      *
-     * @param EnemyType
-     * 		the effect type to be created from the enum class
+     * @param elephant
+     * 		the effect type to be created from the ResourceType class
      *          
      */
-	private static void createElephant(EnemyType elephant) {
+	private static void createElephant(ResourceType elephant) {
 		Enemy elephantEnemy = new Enemy("Elephant");
 		setEnemyParameters(elephantEnemy, 20, 50, 50);
-		EnemySprite elephantSprite = new EnemySprite();
+		EnemySprite elephantSprite = new EnemySprite(0, elephant);
 		enemySpriteList.add(elephantSprite);
 	}
 	
 	private static void putInEnemyHashMap(Enemy enemy){
-		enemyMap.put(enemy.toString(), enemy);
+		enemyMap.put(enemy.hashCode(), enemy);
 	}
 	
 	private static void putInEffectHashMap(Effect effect){
-		effectMap.put(effect.toString(), effect);
+		effectMap.put(effect.hashCode(), effect);
 	}
 
 	

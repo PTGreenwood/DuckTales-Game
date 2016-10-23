@@ -2,6 +2,7 @@
 
 *.swp
 *~
+.recommenders/
 
 bin/
 lib/

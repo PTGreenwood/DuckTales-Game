@@ -1,9 +1,6 @@
 	package uq.deco2800.ducktales.resources;
 
-import uq.deco2800.ducktales.features.entities.agententities.Animal;
-import uq.deco2800.ducktales.features.entities.agententities.Cow;
-import uq.deco2800.ducktales.features.entities.agententities.Duck;
-import uq.deco2800.ducktales.features.entities.agententities.Sheep;
+import uq.deco2800.ducktales.features.entities.agententities.*;
 import uq.deco2800.ducktales.features.entities.resourceentities.DroppableResourceEntity;
 import uq.deco2800.ducktales.features.entities.resourceentities.Feather;
 import uq.deco2800.ducktales.features.entities.worldentities.*;
@@ -64,6 +61,7 @@ public class ResourceInfoRegister {
         register (SAWMILL, Sawmill.X_LENGTH, Sawmill.Y_LENGTH, Sawmill.PASSABILITY);
         register (SCHOOL, School.X_LENGTH, School.Y_LENGTH, School.PASSABILITY);
         register (GYMNASIUM, Gymnasium.X_LENGTH, Gymnasium.Y_LENGTH, Gymnasium.PASSABILITY);
+        register (STORAGEBARN, StorageBarn.X_LENGTH, StorageBarn.Y_LENGTH, StorageBarn.PASSABILITY);
     }
 
     /**
@@ -178,6 +176,9 @@ public class ResourceInfoRegister {
             case GYMNASIUM:
                 building = new Gymnasium(x, y);
                 break;
+            case STORAGEBARN:
+                building = new StorageBarn(x, y);
+                break;
             case CONSTRUCTION:
                 break;
         }
@@ -211,6 +212,9 @@ public class ResourceInfoRegister {
             case DUCK:
                 animal = new Duck(x, y);
                 break;
+            case WOLF:
+                animal = new Wolf(x, y);
+                break;
         }
 
         return animal;
@@ -230,8 +234,8 @@ public class ResourceInfoRegister {
     	DroppableResourceEntity droppableResourceEntity = null;
     	// Check for all droppableResourceEntity's here
     	switch(droppableResourceType) {
-    	case CLOUD:
-    		droppableResourceEntity = new Feather(x, y, droppableResourceType);
+    	case DUCK:
+    		droppableResourceEntity = new Feather(y, x, droppableResourceType);
     	}
     	return droppableResourceEntity;
     }
