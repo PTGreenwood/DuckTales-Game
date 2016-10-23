@@ -39,14 +39,14 @@ public class DuckTalesLauncher extends Application {
 		fxmlLoader.setLocation(location);
 				
 		Parent root = fxmlLoader.load(location.openStream());
-		
+		//method to get the movie player showed up
 		Scene scene = new Scene(root, 1295, 737);
 		Parent root2 = FXMLLoader.load(getClass().getResource("/ui/main/MoviePlayer.fxml"));
 		Scene scene2 = new Scene(root2);
 		Stage s = new Stage();
 		s.setScene(scene2);
 		s.showAndWait();
-		
+		// call the function here to avoid the audio to keep playing
 		MoviePlayerController.closeAudio();
 		primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
