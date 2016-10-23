@@ -47,7 +47,7 @@ public class MenuManager implements Initializable {
 			GYMNASIUM, MINE, OBSERVATORY, PASTURE, QUARRY, SAWMILL,
 			STORAGEBARN };
 	// TODO: TO ADD NEW ANIMALS, REGISTER THEIR NAMES HERE
-	protected static final ResourceType[] ANIMALS = { SHEEP, DUCK, COW, WOLF };
+	private static final ResourceType[] ANIMALS = { SHEEP, DUCK, COW, WOLF };
 
 	// enum to check which is selected, a BUILDING or an ANIMAL
 	public enum MenuType {

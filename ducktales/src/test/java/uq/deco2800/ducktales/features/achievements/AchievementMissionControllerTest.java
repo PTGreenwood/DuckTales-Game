@@ -9,6 +9,9 @@ import javafx.stage.Stage;
 
 public class AchievementMissionControllerTest extends ApplicationTest {
 
+	/**
+	 * Check Image from AchievementMissionController contains actual URL from the image
+	 */
 	@Test
 	public void imageTest() {
 		AchievementMissionController missionController = new AchievementMissionController();
@@ -17,6 +20,9 @@ public class AchievementMissionControllerTest extends ApplicationTest {
 		assertTrue(expectedImageString.contains(actualImageString));
 	}
 	
+	/**
+	 * Check instance in the class works properly
+	 */
 	@Test
 	public void singletonTest() {
 		AchievementMissionController missionController = AchievementMissionController.getInstance();

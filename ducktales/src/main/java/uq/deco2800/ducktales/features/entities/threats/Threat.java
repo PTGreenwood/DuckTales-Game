@@ -13,7 +13,7 @@ import uq.deco2800.ducktales.resources.ResourceType;
  * Handles game threats in the form of enemies
  * and effects.
  * 
- *@author Wian and Krista
+ *@author Wian, Krista, and Zainab
  *
  */
 public class Threat extends Entity {
@@ -37,6 +37,10 @@ public class Threat extends Entity {
 	protected boolean isPassable; // detects whether a tile is passable
 
 	private World world;
+	private String worldName;
+	private int worldWidth;
+	private int worldHeight;
+	
 	private Peon peon;
 	private Building building;
 
@@ -66,7 +70,9 @@ public class Threat extends Entity {
 	}
 
 	public void setWorld(World world) {
-		//Need to implement
+		worldName = world.getName();
+		worldWidth = world.getHeight();
+		worldHeight = world.getWidth();
 	}
 
 	/**
@@ -184,10 +190,11 @@ public class Threat extends Entity {
 	 * @return randomX
 	 */
 	public double getRandomX() {
-		int maxWidth = world.getWidth();
+		//System.out.println("world width = "+ worldWidth);
 		Random random = new Random();
-		randomX = (double) random.nextInt(maxWidth) + 1;
+		randomX = (double) random.nextInt(worldWidth) + 1;
 		// need condition statement to check if the randomX intersect w/ tile not passable
+		//System.out.println("random x = "+ randomX);
 		return randomX;
 	}
 
@@ -197,10 +204,11 @@ public class Threat extends Entity {
 	 * @return randomY
 	 */
 	public double getRandomY() {
-		int maxHeight = world.getHeight();
+		//System.out.println("world Height = "+ worldHeight);
 		Random random = new Random();
-		randomY = (double) random.nextInt(maxHeight) + 1;
+		randomY = (double) random.nextInt(worldHeight) + 1;
 		// need condition statement to check if the randomY intersect w/ tile not passable
+		//System.out.println("random y = "+ randomY);
 		return randomY;
 	}
 	

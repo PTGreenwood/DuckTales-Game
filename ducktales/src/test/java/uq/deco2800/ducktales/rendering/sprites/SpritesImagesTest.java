@@ -26,9 +26,7 @@ public class SpritesImagesTest extends ApplicationTest {
         };
         
         for (ResourceType buildingType : buildings) {
-        	if (buildingType == BARN || buildingType == FARM || 
-        			buildingType == PASTURE || buildingType == QUARRY ||
-        			buildingType == BARN || buildingType == STORAGEBARN) {
+        	if (buildingType == BARN) {
         		assertEquals(true, SpritesImages.dayAnimation(buildingType).isEmpty());
         	} else {
         		assertEquals(false, SpritesImages.dayAnimation(buildingType).isEmpty());
@@ -68,7 +66,14 @@ public class SpritesImagesTest extends ApplicationTest {
         };
         
         for (ResourceType buildingType : buildings) {
-        	assertEquals(true, SpritesImages.winterDayAnimation(buildingType).isEmpty());
+        	if (buildingType == QUARRY || buildingType == PASTURE || 
+        			buildingType == FARM || buildingType == BARN
+        			) {
+        		assertEquals(true, SpritesImages.winterDayAnimation(buildingType).isEmpty());
+        	} else {
+        		assertEquals(false, SpritesImages.winterDayAnimation(buildingType).isEmpty());
+        		
+        	}
         }
 	}
 	
@@ -84,7 +89,14 @@ public class SpritesImagesTest extends ApplicationTest {
         };
         
         for (ResourceType buildingType : buildings) {
-        	assertEquals(true, SpritesImages.winterNightAnimation(buildingType).isEmpty());
+        	if (buildingType == QUARRY || buildingType == PASTURE || 
+        			buildingType == FARM || buildingType == BARN
+        			) {
+        		assertEquals(true, SpritesImages.winterNightAnimation(buildingType).isEmpty());
+        	} else {
+        		assertEquals(false, SpritesImages.winterNightAnimation(buildingType).isEmpty());
+        		
+        	}
         }
 	}
 

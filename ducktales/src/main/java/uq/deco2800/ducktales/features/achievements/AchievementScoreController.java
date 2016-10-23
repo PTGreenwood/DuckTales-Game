@@ -18,6 +18,9 @@ import uq.deco2800.ducktales.features.missions.MissionHandler;
  * 
  */
 public class AchievementScoreController {
+	/** The logger */
+	private static final Logger LOGGER = LoggerFactory.getLogger(AchievementScoreController.class);
+
 	private static final AchievementScoreController INSTANCE = new AchievementScoreController();
 	
 	/** Achievement Score */
@@ -158,8 +161,7 @@ public class AchievementScoreController {
 		    	inventoryManager.updateFeatherAmount(10);
 		    	inventoryManager.updateStoneAmount(10);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				LOGGER.debug("Exception in inventory manager", e);
 			}
 	    	
 	    }
@@ -240,8 +242,7 @@ public class AchievementScoreController {
 				inventoryManager.updateStoneAmount(50);
 		    	inventoryManager.updateMeatAmount(100);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				LOGGER.debug("Exception in inventory manager", e);
 			}
 	    }
 	    /*
