@@ -17,27 +17,45 @@ import uq.deco2800.singularity.common.representations.User;
 
 
 /**
+ * Handles the sign up view created in signUp.fxml
  *
  * @author wentingwang
  */
 public class SignUpController  {
     
     @FXML
+    /** The text field that displays sign up error hints */
     private Text actiontarget;
+    
     @FXML
+    /** The user name input field. */
     private TextField username;
+    
     @FXML
+    /** The password input field for the password the user wants. */
     private PasswordField passwordField;
+    
     @FXML
+    /** 
+     * Another password input field in order to confirm the user's intended
+     * password
+     * */
     private PasswordField passwordField2;
     
-    // Logger for the class
+    /** Logger for the class */
  	private static final Logger LOGGER = Logger.getLogger(SignUpController.class.getName());
     
+ 	/** 
+     * The DuckTales version of the Singularity client that is used for 
+     * login and trade information communication.
+     */
     private static DucktalesClient client = null;
     
-
-    @FXML protected void handleSignUpButtonAction(ActionEvent event) throws Exception {
+    /**
+     * Attempts to create a user account with the given user name and password
+     * if they are valid.
+     */
+    @FXML protected void handleSignUpButtonAction() {
     	boolean bexit = false;
     	if(passwordField.getText().equals(passwordField2.getText()))
     	{
@@ -82,6 +100,9 @@ public class SignUpController  {
     	}
     }
     
+    /**
+     * Changes the view to the login page.
+     */
     @FXML
     protected void viewLoginPage() {
     	LoginVistaNavigator.loadVista(LoginVistaNavigator.LOGIN);

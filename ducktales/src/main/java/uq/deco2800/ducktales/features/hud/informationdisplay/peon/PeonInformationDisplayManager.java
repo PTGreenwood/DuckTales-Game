@@ -57,8 +57,8 @@ public class PeonInformationDisplayManager
     Label currentToolLevel;
     @FXML
     Label resourceCost;
-    //@FXML
-    //Button upgradeToolbutton;
+    @FXML
+    Button upgradeToolsButton;
 
     // JOB PANEL
     @FXML
@@ -81,7 +81,7 @@ public class PeonInformationDisplayManager
     public void setPeon(Peon peon) {
     	this.peon = peon;
     	//Setting peons with jobs/tools for testing here.
-    	peon.setJob(JobType.LUMBERJACK);
+    	//peon.setJob(JobType.LUMBERJACK);
          //Setting to axe level 1 to start with.
         //peon.setTool(ToolType.AXElevel1);
     }
@@ -124,13 +124,14 @@ public class PeonInformationDisplayManager
     		[4:42]  
     		3. Done
     	*/
+
     	//Still to do.
     	//If on level 3 upgrade.
     	//Set style for button to be grayed out and unclickable.
     	
     }
     
-    public static void updateSprite(String name){
-    	PeonManager.getPeonSprite(name);
-    }
+   // public static void updateSprite(String name){
+    //	PeonManager.getPeonSprite(name);
+   // }
 }

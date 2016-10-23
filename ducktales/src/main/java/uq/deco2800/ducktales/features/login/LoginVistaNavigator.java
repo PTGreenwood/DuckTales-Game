@@ -7,6 +7,12 @@ import java.util.logging.Logger;
 import javafx.fxml.FXMLLoader;
 import uq.deco2800.ducktales.features.market.MarketVistaNavigator;
 
+/**
+ * Handles the loading of the login and sign up views.
+ * 
+ * @author markbelonogoff
+ *
+ */
 public class LoginVistaNavigator {
 	
 	/** Logger for the class */

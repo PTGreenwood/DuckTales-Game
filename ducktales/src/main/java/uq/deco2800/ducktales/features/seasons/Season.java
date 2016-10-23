@@ -21,7 +21,7 @@ import uq.deco2800.ducktales.features.weather.WeatherEvents;
 public abstract class Season {
 
 	// Variable declaration for each Season
-	protected String name;
+	protected SeasonType name;
 	protected float humidityLevel;
 	protected int minTemperature;
 	protected int currentTemperature;
@@ -46,7 +46,7 @@ public abstract class Season {
 	 * 
 	 * @return String: Name
 	 */
-	public String getName() {
+	public SeasonType getName() {
 		return this.name;
 
 	}

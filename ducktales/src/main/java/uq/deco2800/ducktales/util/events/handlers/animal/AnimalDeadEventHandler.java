@@ -13,11 +13,13 @@ import uq.deco2800.ducktales.util.events.handlers.GameEventHandler;
  *
  * @author Damian Maher
  */
-public class AnimalDeadEventHandler extends GameEventHandler implements EventHandler<AnimalDeadEvent>{
+public class AnimalDeadEventHandler extends GameEventHandler implements 
+         EventHandler<AnimalDeadEvent>{
 
 	/** Secondary Managers */ 
 	private ResourceEntityManager resourceEntityManager;
 	
+	/** the resource type of the animal that fired the AnimalDeadEvent */
 	private ResourceType resourceType;
 	
     /**
@@ -29,12 +31,17 @@ public class AnimalDeadEventHandler extends GameEventHandler implements EventHan
 	public AnimalDeadEventHandler(GameManager gameManager) {
 		super(gameManager);
 		this.gameManager = gameManager;
-		resourceEntityManager = gameManager.getResourceEntityManager();
+		resourceEntityManager = gameManager.getMainEntityManager()
+				.getResourceEntityManager();
 	}
 
+	/**
+	 * handles the AnimalDeadEvent, drops a resource where the animal died
+	 */
 	@Override
 	public void handle(AnimalDeadEvent event) {
-		resourceEntityManager.dropResource(event.getAnimalType(), event.getX(), event.getY());
+		resourceEntityManager.dropResource(event.getAnimalType(), 
+	    event.getX(), event.getY());
 	}
 
 }

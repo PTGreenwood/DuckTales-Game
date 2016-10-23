@@ -102,7 +102,7 @@ public class LumberjackTest {
 		assertFalse(lumberjack.canBeMentor(peon));
 	}
 
-	public void lumberjackChoppedMentorTest2() {
+	public void lumberjackChoppedMentorTest2() throws Exception {
 		Peon peon = new Peon(10, 10, "John Doe");
 		Tree tree = new Tree(11, 11);
 		for (int i = 0; i < 21; i++) {
@@ -114,7 +114,7 @@ public class LumberjackTest {
 		assertTrue(lumberjack.canBeMentor(peon));
 	}
 
-	public void lumberTest() {
+	public void lumberTest() throws Exception {
 		Peon peon = new Peon(10, 10, "John Doe");
 		assertEquals(peon.getJob(), "Jobless");
 		peon.setStrength(lumberjack.getRequiredStrength() + 1);

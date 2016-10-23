@@ -1,6 +1,5 @@
 package uq.deco2800.ducktales.features.entities.agententities;
 
-import java.util.Random;
 
 import uq.deco2800.ducktales.resources.ResourceType;
 
@@ -11,9 +10,17 @@ import uq.deco2800.ducktales.resources.ResourceType;
  */
 public class Duck extends Animal {
 
-    private boolean canLayEggs = false; // Whether the duck can lay eggs.
-    private boolean canDropFeathers = false; // Whether the duck can drop feathers.
+	/** variables which check whether the duck can produce eggs and feathers */
+    private boolean canLayEggs = false; 
+    private boolean canDropFeathers = false;
 
+    /** 
+     * Constructor for the duck animal, creates a new duck at the specified
+     * location
+     * 
+     * @param x, the x location of the duck
+     * @param y, the y location of the duck
+     */
     public Duck(int x, int y) {
         super(x, y, ResourceType.DUCK, 1, 1, 1, 1, 0.05);
         int var = 20 + (int)(Math.random() * ((100 - 20) + 1));
@@ -26,25 +33,26 @@ public class Duck extends Animal {
 
 
     /**
-     * Enables the duck to lay eggs. Ducks can only lay eggs if their health, hunger, and thirst meet satisfy
+     * Enables the duck to lay eggs. Ducks can only lay eggs if 
+     * their health, hunger, and thirst meet satisfy
      * a certain threshold.
      */
     public void layEggs() {
-        if (this.getHealth() >= 85 && this.getHunger() >= 85 && this.getThirst() >= 85) {
+        if (this.getHealth() >= 85 && this.getHunger() >= 85 && 
+        	this.getThirst() >= 85) {
             this.canLayEggs = true;
         }
     }
 
     /**
-     * Enables the duck to drop feathers. Ducks can only drop feathers when they are dead.
+     * Enables the duck to drop feathers. Ducks can only drop feathers 
+     * when they are dead.
      */
     public void dropFeathers() {
         if (this.isDead()) {
             this.canDropFeathers = true;
         }
     }
-
-    // Getter methods below.
 
     /**
      * Returns whether the duck can lay eggs.

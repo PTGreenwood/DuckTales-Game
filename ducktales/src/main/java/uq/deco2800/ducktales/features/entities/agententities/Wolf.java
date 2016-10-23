@@ -16,45 +16,21 @@ public class Wolf extends Animal {
 
     private List<Point> goalPoints;
 
+    /** 
+     * Constructor for the cow animal, creates a new wolf at the specified
+     * location
+     * 
+     * @param x, the x location of the wolf
+     * @param y, the y location of the wolf
+     */
     public Wolf(int x, int y) {
         super(x, y, ResourceType.WOLF, 1, 1, 1, 1, 0.05);
-        Random random = new Random();
-        int var = random.nextInt(100);
-        int var2 = random.nextInt(50);
+        int var = 20 + (int)(Math.random() * ((100 - 20) + 1));
+        int var2 = 0 + (int)(Math.random() * ((50 - 0) + 1));
         setStartingHealth(var);
-        setStartingHunger(var);
-        setStartingThirst(var);
+        setStartingHunger(var2);
+        setStartingThirst(var2);
         setStartingStrength(var2);
         this.goalPoints = new ArrayList<>();
-    }
-
-    @Override
-    public void tick() {
-        if (goalPoints.isEmpty()) {
-            goalPoints = super.newGoalPoints();
-        } else if (point.distance(goalPoints.get(0)) < speed) {
-            point = goalPoints.remove(0);
-            if (goalPoints.isEmpty()) {
-                this.goalPoints = super.newGoalPoints();
-            }
-        } else {
-            String newDir = null;
-            if (goalPoints.get(0).getX() > point.getX()) {
-                newDir = "Left";
-            }
-            if (goalPoints.get(0).getX() < point.getX()) {
-                newDir = "Right";
-            }
-            if (goalPoints.get(0).getY() > point.getY()) {
-                newDir = "Down";
-            }
-            if (goalPoints.get(0).getY() < point.getY()) {
-                newDir = "Up";
-            }
-            setDirection(newDir);
-            updateType(ResourceType.valueOf(getSprite()));
-            point.moveToward(goalPoints.get(0), getSpeed());
-        }
-        calculateRenderingOrderValues();
     }
 }

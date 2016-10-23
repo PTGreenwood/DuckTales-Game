@@ -61,8 +61,6 @@ public class SpriteInterpolator extends Interpolator {
         }
 
         // Return the right frame
-        //System.out.println(spritesList.get(0).toString());
-        //System.out.println(index);
         return spritesList.get(index);
     }
 

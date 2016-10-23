@@ -109,7 +109,7 @@ public class PeonManager extends SecondaryManager{
                 sprite.setLayoutX(sprite.getLayoutX() + xAmount);
                 sprite.setLayoutY(sprite.getLayoutY() + yAmount);
             } else {
-                throw new RuntimeException("A sprite is not yet " +
+                throw new GameSetupException("A sprite is not yet " +
                         "instantiated");
             }
         }

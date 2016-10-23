@@ -15,9 +15,11 @@ import uq.deco2800.ducktales.rendering.worlddisplay.WorldDisplayManager.Directio
 /**
  * Handle keyboard events happening in-game.
  *
- * Created on 8/09/2016.
+ * Originally created on 8/09/2016.
  * 
- * @author khoiphan21
+ * Last modified: 22 October 2016.
+ * 
+ * @author khoiphan21 && mattyleggy
  */
 public class InGameKeyboardHandler extends GameEventHandler
 		implements EventHandler<KeyEvent> {
@@ -55,7 +57,9 @@ public class InGameKeyboardHandler extends GameEventHandler
 	}
 
 	/**
-	 * Hide all UI menus.
+	 * Hide all UI menus that may be active in the game.
+	 * 
+	 * @author mattyleggy
 	 */
 	private void hideMenus() {
 		gameManager.getMarketManager().hideMarketPlace();
@@ -64,6 +68,11 @@ public class InGameKeyboardHandler extends GameEventHandler
 		gameManager.getAchievementManager().hideAchievement();
 	}
 
+	/**
+	 * Toggle the Marketplace between visible and invisible on the screen.
+	 * 
+	 * @author mattyleggy
+	 */
 	private void toggleMarketPlace() {
 		gameManager.getMissionManager().missionCompletedAction(2);
 		screenVisible = gameManager.getMarketManager().isVisible();
@@ -74,6 +83,11 @@ public class InGameKeyboardHandler extends GameEventHandler
 			gameManager.getMarketManager().showMarketPlace();
 	}
 
+	/**
+	 * Toggle the Achievements between visible and invisible on the screen.
+	 * 
+	 * @author mattyleggy
+	 */
 	private void toggleAchievements() {
 		gameManager.getMissionManager().missionCompletedAction(1);
 		gameManager.getAchievementManager().loadMain();
@@ -85,6 +99,11 @@ public class InGameKeyboardHandler extends GameEventHandler
 			gameManager.getAchievementManager().showAchievement();
 	}
 
+	/**
+	 * Toggle the Missions between visible and invisible on the screen.
+	 * 
+	 * @author mattyleggy
+	 */
 	private void toggleMissions() {
 		gameManager.getMissionManager().loadMain();
 		screenVisible = gameManager.getMissionManager().isVisible();
@@ -95,6 +114,11 @@ public class InGameKeyboardHandler extends GameEventHandler
 			gameManager.getMissionManager().showMission();
 	}
 
+	/**
+	 * Toggle the Tutorial between visible and invisible on the screen.
+	 * 
+	 * @author mattyleggy
+	 */
 	private void toggleTutorial() {
 		gameManager.getMissionManager().missionCompletedAction(0);
 		gameManager.getTutorialManager().loadMain();
@@ -106,8 +130,21 @@ public class InGameKeyboardHandler extends GameEventHandler
 			gameManager.getTutorialManager().showTutorial();
 	}
 
+	/**
+	 * Perform a specific action/event depending on the key code and key event
+	 * that occurred.
+	 * 
+	 * Original author - khoiphan21
+	 * Code changed by mattyleggy 
+	 * 
+	 * @param code
+	 *            the keycode of the event which occurred
+	 * @param event
+	 *            the full event that occurred
+	 */
 	private void handleKeyPressed(KeyCode code, KeyEvent event) {
-		System.out.println(code);
+		// Currently using if-elseif as a switch statement does not allow an
+		// event
 		if (KeyboardManager.getMoveLeftKeyCombination().match(event)) {
 			moveDirection = Direction.RIGHT;
 			displayManager.moveWorld(Direction.RIGHT);
@@ -134,49 +171,73 @@ public class InGameKeyboardHandler extends GameEventHandler
 			this.toggleTutorial();
 		} else if (KeyboardManager.getNormalSpeedKeyCombination()
 				.match(event)) {
-			GameLoop.setSpeedModifier(1);
-			System.out.println("Speed 1x"); // set time scale to default
+			gameManager.getTimeManager().playGame();
+			//GameLoop.setSpeedModifier(1);
+			//System.out.println("Speed 1x"); // set time scale to default
 		} else if (KeyboardManager.getFastSpeedKeyCombination().match(event)) {
-			GameLoop.setSpeedModifier(1.5);
-			System.out.println("Speed 1.5x"); // set time scale to 1.5151x
+			gameManager.getTimeManager().fastForwardGame();
+			//GameLoop.setSpeedModifier(1.5);
+			//System.out.println("Speed 1.5x"); // set time scale to 1.5151x
 		} else if (KeyboardManager.getFastestSpeedKeyCombination()
 				.match(event)) {
-			GameLoop.setSpeedModifier(2.5);
-			System.out.println("Speed 2.5x"); // set time scale to 2.5x
+			gameManager.getTimeManager().doubleFastForwardGame();
+			//GameLoop.setSpeedModifier(2.5);
+			//System.out.println("Speed 2.5x"); // set time scale to 2.5x
+
 		} else if (KeyboardManager.getPauseGameKeyCombination().match(event)) {
-			GameLoop.pauseWorld();
-			System.out.println("Pause/UnPause");
+			gameManager.getTimeManager().pauseGame();
+			//GameLoop.pauseWorld();
+			//System.out.println("Pause/UnPause");
 		} else if (KeyboardManager.getBuildFirstKeyCombination().match(event)) {
 			MenuManager.selectItemByIndex(0);
-		} else if (KeyboardManager.getBuildSecondKeyCombination().match(event)) {
+		} else if (KeyboardManager.getBuildSecondKeyCombination()
+				.match(event)) {
 			MenuManager.selectItemByIndex(1);
 		} else if (KeyboardManager.getBuildThirdKeyCombination().match(event)) {
 			MenuManager.selectItemByIndex(2);
-		} else if (KeyboardManager.getBuildFourthKeyCombination().match(event)) {
+		} else if (KeyboardManager.getBuildFourthKeyCombination()
+				.match(event)) {
 			MenuManager.selectItemByIndex(3);
 		} else if (KeyboardManager.getBuildFifthKeyCombination().match(event)) {
 			MenuManager.selectItemByIndex(4);
 		} else if (KeyboardManager.getBuildSixthKeyCombination().match(event)) {
 			MenuManager.selectItemByIndex(5);
-		} else if (KeyboardManager.getBuildSeventhKeyCombination().match(event)) {
+		} else if (KeyboardManager.getBuildSeventhKeyCombination()
+				.match(event)) {
 			MenuManager.selectItemByIndex(6);
-		} else if (KeyboardManager.getBuildEighthKeyCombination().match(event)) {
+		} else if (KeyboardManager.getBuildEighthKeyCombination()
+				.match(event)) {
 			MenuManager.selectItemByIndex(7);
 		} else if (KeyboardManager.getBuildNinthKeyCombination().match(event)) {
 			MenuManager.selectItemByIndex(8);
 		} else if (KeyboardManager.getBuildTenthKeyCombination().match(event)) {
 			MenuManager.selectItemByIndex(9);
-		} else if (KeyboardManager.getBuildEleventhKeyCombination().match(event)) {
+		} else if (KeyboardManager.getBuildEleventhKeyCombination()
+				.match(event)) {
 			MenuManager.selectItemByIndex(10);
-		} else if (KeyboardManager.getBuildTwelfthKeyCombination().match(event)) {
+		} else if (KeyboardManager.getBuildTwelfthKeyCombination()
+				.match(event)) {
 			MenuManager.selectItemByIndex(11);
-		} else if (KeyboardManager.getBuildThirteenthKeyCombination().match(event)) {
+		} else if (KeyboardManager.getBuildThirteenthKeyCombination()
+				.match(event)) {
 			MenuManager.selectItemByIndex(12);
-		} else if (KeyboardManager.getBuildFourteenthKeyCombination().match(event)) {
+		} else if (KeyboardManager.getBuildFourteenthKeyCombination()
+				.match(event)) {
 			MenuManager.selectItemByIndex(13);
 		}
 	}
 
+	/**
+	 * Perform a specific action/event when a key is released
+	 * 
+	 * Original author - khoiphan21
+	 * Code changed by mattyleggy 
+	 * 
+	 * @param code
+	 *            the key code that was released
+	 * @param event
+	 *            the full event of the event that occurred
+	 */
 	private void handleKeyReleased(KeyCode code, KeyEvent event) {
 		if (KeyboardManager.getMoveLeftKeyCombination().match(event)) {
 			moveDirection = Direction.RIGHT;
