@@ -7,11 +7,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import uq.deco2800.ducktales.features.entities.PeonManager;
 import uq.deco2800.ducktales.features.entities.peons.Peon;
 import uq.deco2800.ducktales.features.jobframework.JobType;
 import uq.deco2800.ducktales.features.peonupgrades.ToolType;
 import uq.deco2800.ducktales.util.SecondaryManager;
-
+import uq.deco2800.ducktales.features.entities.MainEntityManager;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -111,9 +112,25 @@ public class PeonInformationDisplayManager
     	this.peon.upgradeTool();
     	displayPeon();
     	
+    	/**
+    	1. get the sprite of the peon currently being displayed in the information display panel:
+
+    		[4:41]  
+    		(via PeonManager. you guys will also need to write a getPeonManager in MainEntityManager class to let PeonInformationDisplay manager get that reference
+
+    		[4:42]  
+    		2. based on the current type of the tool (I'm not sure how you guys are doing this, so it's up to your implementation), change the sprite's image accordingly
+
+    		[4:42]  
+    		3. Done
+    	*/
     	//Still to do.
     	//If on level 3 upgrade.
     	//Set style for button to be grayed out and unclickable.
     	
+    }
+    
+    public static void updateSprite(String name){
+    	PeonManager.getPeonSprite(name);
     }
 }

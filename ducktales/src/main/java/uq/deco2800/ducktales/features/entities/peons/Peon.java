@@ -644,9 +644,6 @@ public class Peon extends AgentEntity {
 		}
 	}
 
-	public void updateSprite(){
-		PeonSprite peonSprite = PeonManager.getPeonSprite(this.name);
-	}
 
 	
 }

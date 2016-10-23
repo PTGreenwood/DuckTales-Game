@@ -14,6 +14,8 @@ import uq.deco2800.ducktales.util.Coordinate;
 import uq.deco2800.ducktales.util.SpiralPathFinding;
 import uq.deco2800.ducktales.util.Tickable;
 import uq.deco2800.ducktales.util.exceptions.GameSetupException;
+//import uq.deco2800.ducktales.util.SecondaryManager;
+
 
 /**
  * Manager for all the entities in the game.
@@ -238,6 +240,10 @@ public class MainEntityManager implements Tickable {
         this.animalManager.setGameManager(this.gameManager);
         this.buildingManager.setGameManager(this.gameManager);
         this.peonManager.setGameManager(this.gameManager);
+    }
+    
+    public PeonManager getPeonManager(){
+    	return this.peonManager;
     }
 
 }
