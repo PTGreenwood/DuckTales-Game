@@ -10,7 +10,9 @@ import uq.deco2800.ducktales.World;
 
 public class AchievementPeonsControllerTest extends ApplicationTest {
 
-	
+	/**
+	 * Check Image from AchievementPeonsController contains actual URL from the image
+	 */
 	@Test
 	public void ImageTest() {
 		AchievementPeonsController peonsController = new AchievementPeonsController();
