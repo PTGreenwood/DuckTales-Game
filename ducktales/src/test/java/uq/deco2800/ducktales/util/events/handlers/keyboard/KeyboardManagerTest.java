@@ -13,6 +13,9 @@ import javafx.scene.input.MouseEvent;
 import uq.deco2800.ducktales.util.events.handlers.keyboard.KeyboardManager;
 
 public class KeyboardManagerTest {
+	/**
+	 * Test the KeyboardManager for getting the default key events. 
+	 */
 	@Test
 	public void testGetters() {
 		KeyCombination keyCombination = null;
@@ -175,6 +178,9 @@ public class KeyboardManagerTest {
 		Assert.assertTrue(keyCombination.match(event));
 	}
 
+	/**
+	 * Test the KeyboardManager for getting and setting key events. 
+	 */
 	@Test
 	public void testSetters() {
 		KeyCombination keyCombination = null;

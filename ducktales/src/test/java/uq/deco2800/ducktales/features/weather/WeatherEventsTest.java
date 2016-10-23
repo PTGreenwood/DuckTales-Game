@@ -4,6 +4,9 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class WeatherEventsTest {
+	/**
+	 * Test the WeatherEvents with setters and getters
+	 */
 	@Test
 	public void test()
 			throws NullPointerException, InvalidWeatherChanceException {
