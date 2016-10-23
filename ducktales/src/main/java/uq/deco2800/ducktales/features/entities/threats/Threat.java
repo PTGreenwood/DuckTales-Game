@@ -149,7 +149,7 @@ public class Threat extends Entity {
 
 	/**
 	 * 
-	 * @return StartTime if it exists or 0 if the timer has expired or otherwise
+	 * @return StartTime if it exists or 0 if the timer has expired or otherwise.
 	 */
 	public float returnStartTime() {
 		if (hasStartTimer) {
@@ -161,7 +161,7 @@ public class Threat extends Entity {
 
 	/**
 	 * 
-	 * @return EndTime if it exists or 0 if the timer has expired or otherwise
+	 * @return EndTime if it exists or 0 if the timer has expired or otherwise.
 	 */
 	public float returnEndTime() {
 		if (hasEndTimer) {

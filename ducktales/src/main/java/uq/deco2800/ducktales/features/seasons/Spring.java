@@ -9,7 +9,7 @@ public class Spring extends Season {
 	// it to be, so if you want minTemperature you'd put int minTemperature
 	// because you'd want to save that as an integer
 	public Spring() {
-		super.name = "Spring";
+		super.name = SeasonType.SPRING;
 		super.humidityLevel = 2.4f;
 		super.maxTemperature = 20;
 		super.currentTemperature = 13;

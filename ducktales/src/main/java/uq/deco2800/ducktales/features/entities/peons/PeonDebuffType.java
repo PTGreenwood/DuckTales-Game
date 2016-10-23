@@ -9,6 +9,6 @@ public enum PeonDebuffType {
   SICKLY, NEAR_DEATH,
   HUNGRY, STARVING,
   THIRSTY, PARCHED,
-  HOT, BURING,
+  HOT, BURNING,
   COLD, FREEZING
 }

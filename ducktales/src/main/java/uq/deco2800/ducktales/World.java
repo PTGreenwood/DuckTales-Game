@@ -1,5 +1,11 @@
 package uq.deco2800.ducktales;
 
+import static uq.deco2800.ducktales.resources.ResourceType.FARM;
+import static uq.deco2800.ducktales.resources.ResourceType.GRASS_1;
+import static uq.deco2800.ducktales.resources.ResourceType.MINE;
+import static uq.deco2800.ducktales.resources.ResourceType.QUARRY;
+import static uq.deco2800.ducktales.resources.ResourceType.SAWMILL;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -13,19 +19,16 @@ import uq.deco2800.ducktales.features.entities.threats.Threat;
 import uq.deco2800.ducktales.features.entities.worldentities.Building;
 import uq.deco2800.ducktales.features.entities.worldentities.BuildingManager;
 import uq.deco2800.ducktales.features.entities.worldentities.StorageProduceBuilding;
-import uq.deco2800.ducktales.resources.ResourceInfoRegister;
-
-
-import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.features.landscape.tiles.Tile;
-import uq.deco2800.ducktales.features.seasons.Season;
-import uq.deco2800.ducktales.features.seasons.Winter;
+import uq.deco2800.ducktales.features.seasons.SeasonType;
 import uq.deco2800.ducktales.features.time.TimeManager;
 import uq.deco2800.ducktales.rendering.sprites.BuildingSprite;
-import uq.deco2800.ducktales.util.*;
+import uq.deco2800.ducktales.resources.ResourceInfoRegister;
+import uq.deco2800.ducktales.resources.ResourceType;
+import uq.deco2800.ducktales.util.Array2D;
+import uq.deco2800.ducktales.util.Point;
+import uq.deco2800.ducktales.util.Tickable;
 import uq.deco2800.ducktales.util.exceptions.GameSetupException;
-
-import static uq.deco2800.ducktales.resources.ResourceType.*;
 
 /**
  * Models the game's physical environment.
@@ -406,7 +409,7 @@ public class World implements Tickable {
 		List<BuildingSprite> buildingSprites = buildingManager.getBuildingSprites();
 				
 		boolean isWinter = timeManager.seasonManager.getCurrentSeason().getName() 
-				== "Winter";
+				== SeasonType.WINTER;
 
 		for (int x = 0; x < buildingSprites.size(); x++) {
 			// Set the new buildings to be true of false depending on time of day (to get 
