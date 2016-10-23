@@ -195,11 +195,8 @@ public class Threat extends Entity {
 	 * @return randomX
 	 */
 	public double getRandomX() {
-		//System.out.println("world width = "+ worldWidth);
 		Random random = new Random();
 		randomX = (double) random.nextInt(worldWidth) + 1;
-		// need condition statement to check if the randomX intersect w/ tile not passable
-		//System.out.println("random x = "+ randomX);
 		return randomX;
 	}
 
@@ -209,11 +206,8 @@ public class Threat extends Entity {
 	 * @return randomY
 	 */
 	public double getRandomY() {
-		//System.out.println("world Height = "+ worldHeight);
 		Random random = new Random();
 		randomY = (double) random.nextInt(worldHeight) + 1;
-		// need condition statement to check if the randomY intersect w/ tile not passable
-		//System.out.println("random y = "+ randomY);
 		return randomY;
 	}
 	
