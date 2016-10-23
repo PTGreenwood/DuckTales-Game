@@ -11,7 +11,6 @@ import uq.deco2800.ducktales.features.entities.threats.Threat;
 import uq.deco2800.ducktales.features.entities.threats.Effect;
 import uq.deco2800.ducktales.features.entities.threats.Enemy;
 import uq.deco2800.ducktales.features.entities.threats.ThreatManager;
-import uq.deco2800.ducktales.features.entities.threats.ThreatFactory.EnemyType;
 import uq.deco2800.ducktales.features.entities.threats.ThreatFactory;
 
 import static org.junit.Assert.*;
