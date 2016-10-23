@@ -626,7 +626,7 @@ public class GameController implements Initializable{
             AnchorPane.setTopAnchor(root, 580.0);
             AnchorPane.setLeftAnchor(root, 350.0);            
 
-            //helperManager.hideHelper();
+            helperManager.hideHelper();
             
         } catch (IOException e) {
             logger.info("Unable to load Helper:" + e);
