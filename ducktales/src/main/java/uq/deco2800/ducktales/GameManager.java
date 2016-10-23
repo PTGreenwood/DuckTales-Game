@@ -5,7 +5,6 @@ import javafx.scene.layout.Pane;
 import uq.deco2800.ducktales.features.achievements.AchievementManager;
 import uq.deco2800.ducktales.features.entities.MainEntityManager;
 import uq.deco2800.ducktales.features.entities.threats.ThreatManager;
-import uq.deco2800.ducktales.features.entities.resourceentities.ResourceEntityManager;
 import uq.deco2800.ducktales.features.helper.HelperManager;
 import uq.deco2800.ducktales.features.hud.HUDManager;
 import uq.deco2800.ducktales.features.hud.informationdisplay.peon.PeonInformationDisplayManager;
@@ -151,9 +150,9 @@ public class GameManager {
 
         //Play theme song for the start of the game
 	        //Create Variable for first song to be played.
-	        GameSound Sound1 = new GameSound("src/main/resources/sounds/EmotionalRain.wav");
+	        GameSound sound1 = new GameSound("src/main/resources/sounds/EmotionalRain.wav");
 	        //Play first song
-	        Sound1.start();
+	        sound1.start();
       
         
         

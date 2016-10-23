@@ -2,6 +2,9 @@ package uq.deco2800.ducktales.features.achievements;
 
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import uq.deco2800.ducktales.World;
 import uq.deco2800.ducktales.features.entities.threats.ThreatManager;
 import uq.deco2800.ducktales.features.inventory.InventoryManager;
