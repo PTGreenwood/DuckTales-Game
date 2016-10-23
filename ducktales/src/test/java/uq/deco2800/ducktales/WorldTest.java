@@ -5,8 +5,9 @@ import org.junit.Test;
 
 import uq.deco2800.ducktales.features.entities.agententities.Animal;
 import uq.deco2800.ducktales.features.entities.peons.Peon;
+import uq.deco2800.ducktales.features.entities.resourceentities.DroppableResourceEntity;
 import uq.deco2800.ducktales.features.entities.resourceentities.Tree;
-import uq.deco2800.ducktales.features.landscape.tiles.Tile;
+import uq.deco2800.ducktales.features.entities.worldentities.*;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.Point;
 import uq.deco2800.ducktales.util.exceptions.GameSetupException;
@@ -21,9 +22,6 @@ import static org.junit.Assert.*;
  * @author Oliver Yule
  */
 public class WorldTest {
-    private final String NAME = "World name";
-    private final int WIDTH = 10;
-    private final int HEIGHT = 10;
 
     /** Test boundary cases of constructor. */
     @Test
@@ -85,6 +83,8 @@ public class WorldTest {
     	assertTrue(typicalWorld.checkPeonNameDuplication("TestPeon1"));
     	assertFalse(typicalWorld.checkPeonNameDuplication("UnusedName"));
 
+    	assertTrue(typicalWorld.getNumberOfPeons() == 2);
+    	
     	Tree testTree1 = new Tree(5, 5);
     	Tree testTree2 = new Tree(6, 6);
         typicalWorld.addTree(testTree1);
@@ -94,6 +94,17 @@ public class WorldTest {
 
         assertTrue(typicalWorld.getTree(testTree1.hashCode()).equals(testTree1));
         assertTrue(typicalWorld.getTree(testTree2.hashCode()).equals(testTree2));
+
+        DroppableResourceEntity testDroppable = new DroppableResourceEntity(
+        		2, 2, ResourceType.BOX);
+        typicalWorld.addDroppedResource(testDroppable);
+    	assertTrue(typicalWorld.getEntitiesNumber() == 7);
+    	
+    	assertTrue(typicalWorld.getDroppedResource(testDroppable.hashCode()).equals(testDroppable));
+
+    	Building testBuilding = new Butcher(2, 2);
+    	typicalWorld.addBuilding(testBuilding, 2,  2,  2,  2);
+    	assertTrue(typicalWorld.getEntitiesNumber() == 8);
     }
     
     /** Test illegal constuctor parameter. */
@@ -151,7 +162,7 @@ public class WorldTest {
     
     /** Test adding same tree twice. */
     @Test (expected = GameSetupException.class)
-    public void testAddingMultipleTree() {
+    public void testAddTree() {
         World testWorld = new World("TestWorld", 10, 10);
         Tree tree = new Tree(5, 5);
 
@@ -173,4 +184,39 @@ public class WorldTest {
     	}
     }
 
+    /** Test adding same droppable entity twice. */
+    @Test (expected = GameSetupException.class)
+    public void testAddDroppedResource() {
+        World testWorld = new World("TestWorld", 10, 10);
+        DroppableResourceEntity testDroppable = new DroppableResourceEntity(
+        		2, 2, ResourceType.BOX);
+        
+        testWorld.addDroppedResource(testDroppable);
+        testWorld.addDroppedResource(testDroppable);
+    }
+    
+    /** Test getDroppedResource(hashcode) with non-matching hashcode. */
+    @Test (expected=GameSetupException.class)
+    public void testGetDroppedResource() {
+    	World testWorld = new World("TestWorld", 10, 10);
+        DroppableResourceEntity testDroppable = new DroppableResourceEntity(
+        		2, 2, ResourceType.BOX);
+    	
+    	testWorld.addDroppedResource(testDroppable);
+    	if (testDroppable.hashCode() != 1) {
+    		testWorld.getDroppedResource(1);
+    	} else {
+    		testWorld.getDroppedResource(2);
+    	}
+    }
+    
+    /** Test adding same droppable entity twice. */
+    @Test (expected = GameSetupException.class)
+    public void testAddBuilding() {
+        World testWorld = new World("TestWorld", 10, 10);
+    	Building testBuilding = new Butcher(2, 2);
+    	
+    	testWorld.addBuilding(testBuilding, 2,  2,  2,  2);
+    	testWorld.addBuilding(testBuilding, 2,  2,  2,  2);        
+    }
 }
