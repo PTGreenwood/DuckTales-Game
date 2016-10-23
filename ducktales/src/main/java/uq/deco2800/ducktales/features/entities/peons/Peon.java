@@ -38,8 +38,9 @@ public class Peon extends AgentEntity {
 	private List<Point> goalPoints;
 
 	/** Timers for in-game effects **/
-	private int autoDecreaseTime = 0, hungryTime = 0, thirstyTime = 0;
-
+	private int autoDecreaseTime = 0, //natural hunger/thirst decrease
+							hungryTime = 0, thirstyTime = 0, //hunger/thirst debuff
+							hotTime = 0, coldTime = 0; //temperature debuff
 
 	private double speed = 0.05;
 	private int health = 1000;
@@ -506,19 +507,50 @@ public class Peon extends AgentEntity {
 	}
 
 	/**
-	 * function that decrease the Peon's stats according to the weather
+	 * function that decreases the Peon's stats according to the weather
 	 * different weather will have different effect on peon's stats.
 	 */
 	private void weatherEffectOnPeon() {
 
 	}
 
+	/**
+	 * function that
+	 */
+
 	private void temperatureEffectOnPeon() {
 		int currentTemp = season.getCurrentSeason().getCurrentTemperature();
+
+		if (currentTemp >= 23) {
+			if (coldTime == 0) { hotTime += 2; }
+			else if ( (coldTime - 2) > 0 ) { coldTime -= 2; }
+			else if ( (coldTime - 2) == 0 ) { coldTime = 0; }
+			else if ( (coldTime - 2) < 0 ) { hotTime = -(coldTime - 2); coldTime = 0;}
+		}
+		else if (currentTemp <= 22 && currentTemp >= 19) {
+			if (coldTime == 0) { hotTime += 1; }
+			else if ( (coldTime - 1) > 0 ) { coldTime -= 1; }
+			else if ( (coldTime - 1) == 0 ) { coldTime = 0; }
+		}
+		else if (currentTemp <= 18 && currentTemp >= 11) {
+			if (coldTime > 0) { coldTime -= 1; }
+			if (hotTime > 0) { hotTime -= 1; }
+		}
+		else if (currentTemp <= 10 && currentTemp >= 5) {
+			if (hotTime == 0) { coldTime += 1; }
+			else if ( (hotTime - 1) > 0 ) { hotTime -= 1; }
+			else if ( (hotTime - 1) == 0 ) { hotTime = 0; }
+		}
+		else if (currentTemp <= 4 && currentTemp >= 0) {
+			if (hotTime == 0) { coldTime += 2; }
+			else if ( (hotTime - 2) > 0 ) { hotTime -= 2; }
+			else if ( (hotTime - 2) == 0 ) { hotTime = 0; }
+			else if ( (hotTime - 2) < 0 ) { coldTime = -(hotTime - 2); hotTime = 0;}
+		}
 	}
 
 	/**
-	 * Function that check the status of Peon to add buff/debuff - health/hunger/thirst
+	 * Function that checks the status of Peon to add buff/debuff - health/hunger/thirst
 	 * also decrease health according to the debuffs
 	 */
 	private void checkPeonStatus() {
@@ -540,12 +572,8 @@ public class Peon extends AgentEntity {
 							&& !debuffs.contains(PeonDebuffType.PARCHED)) { thirstyTime = 0; }
 
 		// every 60 hungryTime/thirstyTime, loses health by 15
-		if (hungryTime >= 60) {
-			setHealth(getHealth() - 15);
-		}
-		if (thirstyTime >= 60) {
-			setHealth(getHealth() -15);
-		}
+		if (hungryTime >= 60) { setHealth(getHealth() - 15); }
+		if (thirstyTime >= 60) { setHealth(getHealth() -15); }
 	}
 
 	/**
