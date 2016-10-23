@@ -7,6 +7,7 @@ import uq.deco2800.ducktales.features.entities.peons.Peon;
 import uq.deco2800.ducktales.features.hud.informationdisplay.peon.PeonInformationDisplayManager;
 import uq.deco2800.ducktales.util.events.handlers.GameEventHandler;
 import uq.deco2800.ducktales.util.events.peon.PeonClickedEvent;
+import uq.deco2800.ducktales.util.events.job.JobSpritePeonClickedEvent;
 
 /**
  * This handler will do the following tasks:
@@ -18,7 +19,7 @@ import uq.deco2800.ducktales.util.events.peon.PeonClickedEvent;
  * @author khoiphan21
  */
 public class PeonJobSpriteClickedEventHandler extends GameEventHandler
-        implements EventHandler<PeonJobSpriteClickedEvent> {
+        implements EventHandler<JobSpritePeonClickedEvent> {
 
     public PeonJobSpriteClickedEventHandler(GameManager gameManager) {
         super(gameManager);

@@ -2,6 +2,9 @@ package uq.deco2800.ducktales.util.events.job;
 
 import javafx.event.Event;
 import javafx.event.EventType;
+import uq.deco2800.ducktales.World;
+import uq.deco2800.ducktales.features.entities.peons.Peon;
+import uq.deco2800.ducktales.features.jobframework.Job;
 
 /**
  * This event will be fired when a peon sprite is clicked on.
@@ -17,6 +20,7 @@ public class JobSpritePeonClickedEvent extends Event {
 
     /** The name of the peon that fired this event */
     private String peonName;
+    private World world;
     /** The job that corresponds to this event */
     
 
@@ -29,12 +33,12 @@ public class JobSpritePeonClickedEvent extends Event {
      * @param peonName
      *          The name of the peon that was clicked on
      */
-    public PeonJobSpriteClickedEvent(String peonName, Job job) {
-        super(PEON_CLICKED_EVENT);
+    public JobSpritePeonClickedEvent(String peonName, Job job) {
+        super(PEON_JOB_SPRITE_CLICKED_EVENT);
 
         this.peonName = peonName;
         Peon peon = world.getPeon(peonName);
-        peon.setJob(job);
+        peon.applyForJob(job);
     }
 
     /**

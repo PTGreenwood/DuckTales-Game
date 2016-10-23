@@ -7,6 +7,7 @@ import uq.deco2800.ducktales.features.hud.menu.MenuManager;
 import uq.deco2800.ducktales.features.jobframework.*;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.events.ui.MenuSelectedEvent;
+import uq.deco2800.ducktales.util.events.job.JobSpritePeonClickedEvent;
 
 /**
  * The sprite holding the animals to be displayed in the Animals Menu
@@ -16,6 +17,7 @@ import uq.deco2800.ducktales.util.events.ui.MenuSelectedEvent;
  */
 public class JobSprite extends HUDSprite {
 	private Job job;
+        private Peon peon;
     /**
      * Create a sprite of the given animal type, and set up its event handlers
      * @param animalType
@@ -36,7 +38,7 @@ public class JobSprite extends HUDSprite {
         this.setOnMouseClicked(event -> {
             // Check if it's a left mouse click
             if (event.getButton() == MouseButton.PRIMARY) {            	
-                fireEvent(new JobSpriteClickedEvent(peon, job
+                fireEvent(new JobSpritePeonClickedEvent(this.peon.getPeonName(), job
                 ));
             }
         });
