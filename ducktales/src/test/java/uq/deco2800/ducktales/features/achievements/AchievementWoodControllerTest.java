@@ -9,6 +9,9 @@ import javafx.stage.Stage;
 
 public class AchievementWoodControllerTest extends ApplicationTest {
 
+	/**
+	 * Check Image from AchievementWoodController contains actual URL from the image
+	 */
 	@Test
 	public void imageTest() {
 		AchievementWoodController woodController = new AchievementWoodController();
