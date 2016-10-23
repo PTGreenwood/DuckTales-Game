@@ -37,3 +37,10 @@
 	-fx-text-fill: #fff568;
 	-fx-cursor: hand;	
 }
+
+.optionText {
+	-fx-font-family: "Press Start 2P";
+	-fx-font-size: 8px;
+	-fx-background: #000;
+	-fx-fill: #fff568;	
+}

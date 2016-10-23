@@ -127,7 +127,9 @@ public class SpritesFactory {
             case DUCK:
                 return createDuck(index, DUCK);
             case COW:
-                return createCow(index, ResourceType.COW);
+                return createCow(index, COW);
+            case WOLF:
+                return createWolf(index, WOLF);
             default:
                 throw new GameSetupException("The given animal type is" +
                         " not yet registered in SpritesFactory. Unable to" +
@@ -789,20 +791,48 @@ public class SpritesFactory {
      * Create and return a generic cow sprite.
      * @param index
      *     The index of the sprite
-     * @param entityType
+     * @param animalType
      *     The type of the sprite
      *
-     * @return the sprite of a generic duck
+     * @return the sprite of a generic cow
      */
-    private static AnimalSprite createCow(int index, ResourceType entityType) {
+    private static AnimalSprite createCow(int index, ResourceType animalType) {
         // The sprite to be returned
-        AnimalSprite sprite = new AnimalSprite(index, entityType);
+        AnimalSprite sprite = new AnimalSprite(index, animalType);
 
         // Setup the frames for the animation
         List<Image> imageList = new ArrayList<>();
         ResourceSpriteRegister register = ResourceSpriteRegister.getInstance();
         imageList.add(register.getResourceImage(ResourceType.COW));
         // BELOW THIS SHOULD BE THE REMAINING COW SPRITES TO CREATE THE ANIMATION
+
+        // After all images are set up, now call these methods to set up the
+        // actual animation code
+        sprite.setImageList(imageList); // Give the interpolator the list of images
+        sprite.setupAnimation(1.0); // Set up the actual animation, passing the duration
+        sprite.startAnimation(); // Start the actual animation
+
+        return sprite;
+    }
+
+    /**
+     * Create and return a generic wolf sprite.
+     * @param index
+     *     The index of the sprite
+     * @param animalType
+     *     The type of the sprite
+     *
+     * @return the sprite of a generic wolf
+     */
+    private static AnimalSprite createWolf(int index, ResourceType animalType) {
+        // The sprite to be returned
+        AnimalSprite sprite = new AnimalSprite(index, animalType);
+
+        // Setup the frames for the animation
+        List<Image> imageList = new ArrayList<>();
+        ResourceSpriteRegister register = ResourceSpriteRegister.getInstance();
+        imageList.add(register.getResourceImage(ResourceType.WOLF));
+        // BELOW THIS SHOULD BE THE REMAINING WOLF SPRITES TO CREATE THE ANIMATION
 
         // After all images are set up, now call these methods to set up the
         // actual animation code

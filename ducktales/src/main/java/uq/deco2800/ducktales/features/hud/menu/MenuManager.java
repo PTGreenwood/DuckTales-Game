@@ -20,32 +20,15 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.RowConstraints;
+import javafx.scene.text.Text;
 import uq.deco2800.ducktales.features.hud.HUDSprite;
 import uq.deco2800.ducktales.features.hud.menu.animal.AnimalMenuSprite;
 import uq.deco2800.ducktales.features.hud.menu.building.BuildingMenuSprite;
 import uq.deco2800.ducktales.rendering.info.WorldEntityInfo;
 import uq.deco2800.ducktales.resources.ResourceType;
+import uq.deco2800.ducktales.util.events.handlers.keyboard.KeyboardManager;
 
-import static uq.deco2800.ducktales.resources.ResourceType.BAKERY;
-import static uq.deco2800.ducktales.resources.ResourceType.BUTCHER;
-import static uq.deco2800.ducktales.resources.ResourceType.CEMETERY;
-import static uq.deco2800.ducktales.resources.ResourceType.CHURCH;
-import static uq.deco2800.ducktales.resources.ResourceType.COMMUNITY_BUILDING;
-import static uq.deco2800.ducktales.resources.ResourceType.DUCK;
-import static uq.deco2800.ducktales.resources.ResourceType.FARM;
-import static uq.deco2800.ducktales.resources.ResourceType.FORGE;
-import static uq.deco2800.ducktales.resources.ResourceType.HOSPITAL;
-import static uq.deco2800.ducktales.resources.ResourceType.HOUSE;
-import static uq.deco2800.ducktales.resources.ResourceType.MINE;
-import static uq.deco2800.ducktales.resources.ResourceType.OBSERVATORY;
-import static uq.deco2800.ducktales.resources.ResourceType.PASTURE;
-import static uq.deco2800.ducktales.resources.ResourceType.QUARRY;
-import static uq.deco2800.ducktales.resources.ResourceType.SAWMILL;
-import static uq.deco2800.ducktales.resources.ResourceType.SCHOOL;
-import static uq.deco2800.ducktales.resources.ResourceType.GYMNASIUM;
-import static uq.deco2800.ducktales.resources.ResourceType.STORAGEBARN;
-import static uq.deco2800.ducktales.resources.ResourceType.SHEEP;
-import static uq.deco2800.ducktales.resources.ResourceType.COW;
+import static uq.deco2800.ducktales.resources.ResourceType.*;
 
 /**
  * This manager manages the menu section of the HUD
@@ -64,10 +47,10 @@ public class MenuManager implements Initializable {
 			GYMNASIUM, MINE, OBSERVATORY, PASTURE, QUARRY, SAWMILL,
 			STORAGEBARN };
 	// TODO: TO ADD NEW ANIMALS, REGISTER THEIR NAMES HERE
-	public static final ResourceType[] ANIMALS = { SHEEP, DUCK, COW };
+	protected static final ResourceType[] ANIMALS = { SHEEP, DUCK, COW, WOLF };
 
 	// enum to check which is selected, a BUILDING or an ANIMAL
-	public static enum MenuType {
+	public enum MenuType {
 		BUILDING, ANIMAL
 	}
 
@@ -79,6 +62,10 @@ public class MenuManager implements Initializable {
 	// the pane to store all the menu options
 	@FXML
 	private Pane optionPane;
+
+	// the pane for the keyboard shortcuts
+	@FXML
+	private Pane optionTextPane;
 
 	// the button to go to the new grid
 	@FXML
@@ -110,7 +97,37 @@ public class MenuManager implements Initializable {
 	private WorldEntityInfo worldEntityInfo;
 
 	// The grid that is currently active on the HUD.
-	private static GridActive gridActive = null;;
+	private static GridActive gridActive = null;
+
+	/* Text display for all keyboard shortcuts */
+	@FXML
+	private Text optionOne;
+	@FXML
+	private Text optionTwo;
+	@FXML
+	private Text optionThree;
+	@FXML
+	private Text optionFour;
+	@FXML
+	private Text optionFive;
+	@FXML
+	private Text optionSix;
+	@FXML
+	private Text optionSeven;
+	@FXML
+	private Text optionEight;
+	@FXML
+	private Text optionNine;
+	@FXML
+	private Text optionTen;
+	@FXML
+	private Text optionEleven;
+	@FXML
+	private Text optionTwelve;
+	@FXML
+	private Text optionThirteen;
+	@FXML
+	private Text optionFourteen;
 
 	/**
 	 * This method is called when FXML Loader instantiates this class
@@ -125,10 +142,10 @@ public class MenuManager implements Initializable {
 		animalOptionList = new ArrayList<>();
 		nextGridButton.setVisible(false);
 		previousGridButton.setVisible(false);
-		gridActive = new GridActive();
+		gridActive = new GridActive();		
 		// Instantiating and set up the menus
 		setupMenus();
-	}
+	}	
 
 	/**
 	 * Set the current active grid to the provided menu and index value. The
@@ -144,6 +161,7 @@ public class MenuManager implements Initializable {
 	 */
 	private void setCurrentGrid(MenuType currentMenu, int gridIndex) {
 		gridActive.setGridActive(currentMenu, gridIndex);
+		this.displayShortcuts();
 		if (gridActive.getCurrentGridIndex() == 0)
 			previousGridButton.setVisible(false);
 		else
@@ -275,6 +293,41 @@ public class MenuManager implements Initializable {
 		GridPane gridPane = animalOptionList.get(index);
 		optionPane.getChildren().add(gridPane);
 		this.setCurrentGrid(MenuType.ANIMAL, index);
+	}
+	
+	/**
+	 * Display the keyboard shortcuts of the individual buildings/animals in the
+	 * boxes of the grid.
+	 */
+	private void displayShortcuts() {
+		optionOne.setText(
+				KeyboardManager.getBuildFirstKeyCombination().getName());
+		optionTwo.setText(
+				KeyboardManager.getBuildSecondKeyCombination().getName());
+		optionThree.setText(
+				KeyboardManager.getBuildThirdKeyCombination().getName());
+		optionFour.setText(
+				KeyboardManager.getBuildFourthKeyCombination().getName());
+		optionFive.setText(
+				KeyboardManager.getBuildFifthKeyCombination().getName());
+		optionSix.setText(
+				KeyboardManager.getBuildSixthKeyCombination().getName());
+		optionSeven.setText(
+				KeyboardManager.getBuildSeventhKeyCombination().getName());
+		optionEight.setText(
+				KeyboardManager.getBuildEighthKeyCombination().getName());
+		optionNine.setText(
+				KeyboardManager.getBuildNinthKeyCombination().getName());
+		optionTen.setText(
+				KeyboardManager.getBuildTenthKeyCombination().getName());
+		optionEleven.setText(
+				KeyboardManager.getBuildEleventhKeyCombination().getName());
+		optionTwelve.setText(
+				KeyboardManager.getBuildTwelfthKeyCombination().getName());
+		optionThirteen.setText(
+				KeyboardManager.getBuildThirteenthKeyCombination().getName());
+		optionFourteen.setText(
+				KeyboardManager.getBuildFourteenthKeyCombination().getName());
 	}
 
 	/**
@@ -509,9 +562,9 @@ public class MenuManager implements Initializable {
 	 * ui-scale.
 	 * 
 	 * @param sprite
-	 * 			the sprite to adjust the size of
+	 *            the sprite to adjust the size of
 	 * @param uiScale
-	 * 			the scale to resize by
+	 *            the scale to resize by
 	 */
 	private void setBuildingSpriteSizing(BuildingMenuSprite sprite,
 			double uiScale) {

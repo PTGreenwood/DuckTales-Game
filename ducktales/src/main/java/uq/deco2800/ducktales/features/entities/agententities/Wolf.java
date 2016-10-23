@@ -27,34 +27,4 @@ public class Wolf extends Animal {
         setStartingStrength(var2);
         this.goalPoints = new ArrayList<>();
     }
-
-    @Override
-    public void tick() {
-        if (goalPoints.isEmpty()) {
-            goalPoints = super.newGoalPoints();
-        } else if (point.distance(goalPoints.get(0)) < speed) {
-            point = goalPoints.remove(0);
-            if (goalPoints.isEmpty()) {
-                this.goalPoints = super.newGoalPoints();
-            }
-        } else {
-            String newDir = null;
-            if (goalPoints.get(0).getX() > point.getX()) {
-                newDir = "Left";
-            }
-            if (goalPoints.get(0).getX() < point.getX()) {
-                newDir = "Right";
-            }
-            if (goalPoints.get(0).getY() > point.getY()) {
-                newDir = "Down";
-            }
-            if (goalPoints.get(0).getY() < point.getY()) {
-                newDir = "Up";
-            }
-            setDirection(newDir);
-            updateType(ResourceType.valueOf(getSprite()));
-            point.moveToward(goalPoints.get(0), getSpeed());
-        }
-        calculateRenderingOrderValues();
-    }
 }

@@ -6,12 +6,18 @@ import uq.deco2800.ducktales.features.inventory.InventoryManager;
 public class AchievementWoodController {
 	
 	private Image wood1 = new Image("achievements/wood100.png");
-	private Image wood2 = new Image("achievements/wood100.png");
+	private Image wood2 = new Image("achievements/wood1000.png");
 	
 	private InventoryManager inventoryManager;
 	
 	public AchievementWoodController() {
 		this.inventoryManager = new InventoryManager(0,0,0,0,0);
+	}
+	
+	private static final AchievementWoodController INSTANCE = new AchievementWoodController();
+	
+	public static AchievementWoodController getInstance() {
+		return INSTANCE;
 	}
 	
 	public Image getAchievementWoodImage() {

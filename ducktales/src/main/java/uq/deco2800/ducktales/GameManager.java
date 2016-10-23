@@ -90,7 +90,6 @@ public class GameManager {
     private TimeManager timeManager;
     private ThreatManager threatManager;
     private WeatherManager weatherManager;
-    private ResourceEntityManager resourceEntityManager;
     private PeonInformationDisplayManager peonInformationDisplayManager;
     
     private static GameManager gameManager;
@@ -403,30 +402,6 @@ public class GameManager {
      */
     public void setMainEntityManager(MainEntityManager mainEntityManager) {
         this.mainEntityManager = mainEntityManager;
-    }
-
-    /**
-     * Retrieve the manager for all resource entities of the game. Currently the
-     * {@link ResourceEntityManager} is instantiated in {@link GameController}, but
-     * in the future it should be moved to {@link MainEntityManager} if it is not
-     * loaded via FXMLLoader
-     *
-     * @return The manager for all resource entities of the game
-     */
-    public ResourceEntityManager getResourceEntityManager() {
-    	return resourceEntityManager;
-    }
-
-    /**
-     * Give the primary manager a reference of the resource entity manager.
-     * This is mainly required for testing purposes
-     *
-     * @param resourceEntityManager
-     *          The manager for all resource entities in the game, such as trees,
-     *          rocks, stones, etc.
-     */
-    public void setResourceEntityManager(ResourceEntityManager resourceEntityManager) {
-    	this.resourceEntityManager = resourceEntityManager;
     }
 
     /**
