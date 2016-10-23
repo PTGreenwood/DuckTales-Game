@@ -75,4 +75,4 @@ public class TutorialManagerTest extends ApplicationTest {
 //		clickOn("#NPC");
 //		verifyThat("#labelTop",  hasText("NPC"));
 //	}
-//}
+}
