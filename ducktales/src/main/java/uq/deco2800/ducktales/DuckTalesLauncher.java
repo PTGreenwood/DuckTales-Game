@@ -12,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 
 
@@ -45,6 +46,7 @@ public class DuckTalesLauncher extends Application {
 		Stage s = new Stage();
 		s.setScene(scene2);
 		s.showAndWait();
+		
 		MoviePlayerController.closeAudio();
 		primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override

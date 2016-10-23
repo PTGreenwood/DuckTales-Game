@@ -12,6 +12,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 
+
 public class MoviePlayerController implements Initializable{
     @FXML private  MediaView mv;
     private static MediaPlayer mp;
@@ -19,7 +20,7 @@ public class MoviePlayerController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
-		String path = new File("src/main/resources/media/vid.mp4").getAbsolutePath();
+		String path = new File("src/main/resources/media/ducktalesdrums.mp4").getAbsolutePath();
 		me = new Media(new File(path).toURI().toString());
 		mp = new MediaPlayer(me);
 		mv.setMediaPlayer(mp);
