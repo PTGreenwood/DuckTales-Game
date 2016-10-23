@@ -28,7 +28,7 @@ public class Lumberjack extends Job {
      * @param peon
      * @param tree 
      */
-    public void chop(Peon peon, Tree tree){
+    public void chop(Peon peon, Tree tree) throws Exception{
         // the lumber method from Tree.java
         tree.lumber(peon);
         // increase the peon's strength by 2
@@ -38,7 +38,6 @@ public class Lumberjack extends Job {
         if (peon.getTreesChopped()>=10){
             peon.IntelligenceExp(1);
         }
-        // TODO: INTERACT WITH THE TREE CLASS
     }
     /**
      * Defines whether or not the given peon is 
