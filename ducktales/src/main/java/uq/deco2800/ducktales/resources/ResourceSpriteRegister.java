@@ -62,6 +62,12 @@ import static uq.deco2800.ducktales.resources.ResourceType.VOID;
 import static uq.deco2800.ducktales.resources.ResourceType.WATER;
 import static uq.deco2800.ducktales.resources.ResourceType.WOOD_BOX;
 import static uq.deco2800.ducktales.resources.ResourceType.YELLOW;
+import static uq.deco2800.ducktales.resources.ResourceType.MINER;
+import static uq.deco2800.ducktales.resources.ResourceType.LUMBERJACK;
+import static uq.deco2800.ducktales.resources.ResourceType.FARMER;
+import static uq.deco2800.ducktales.resources.ResourceType.BUILDER;
+import static uq.deco2800.ducktales.resources.ResourceType.DOCTOR;
+import static uq.deco2800.ducktales.resources.ResourceType.PRIEST;
 
 
 /**
@@ -121,6 +127,8 @@ public class ResourceSpriteRegister {
 		addAgentEntitiesResources();
 
 		addBuildingResources();
+
+		addJobResources();
 
 	}
 
@@ -476,6 +484,35 @@ public class ResourceSpriteRegister {
 
 		addResource(WATER, "/water.png");
 		addResource(BLANK, "/blank.png");
+	}
+	
+	private void addJobResources(){
+		addResource(MINER, "/peon/jobs/miner.png");
+		addResource(MINER_1, "/peon/jobs/miner_1.png");
+		addResource(MINER_2, "/peon/jobs/miner_2.png");
+		addResource(MINER_3, "/peon/jobs/miner_3.png");
+		addResource(BUILDER, "/peon/jobs/builder.png");
+		addResource(BUILDER_1, "/peon/jobs/builder_1.png");
+		addResource(BUILDER_2, "/peon/jobs/builder_1.png");
+		addResource(BUILDER_3, "/peon/jobs/builder_1.png");
+		addResource(DOCTOR, "/peon/jobs/doctor.png");
+		addResource(DOCTOR_1, "/peon/jobs/doctor_1.png");
+		addResource(DOCTOR_2, "/peon/jobs/doctor_2.png");
+		addResource(DOCTOR_3, "/peon/jobs/doctor_3.png");
+		addResource(LUMBERJACK, "/peon/jobs/lumberjacks.png");
+		addResource(LUMBERJACK_1, "/peon/jobs/lumberjacks_1.png");
+		addResource(LUMBERJACK_2, "/peon/jobs/lumberjacks_2.png");
+		addResource(LUMBERJACK_3, "/peon/jobs/lumberjacks_3.png");
+		addResource(FARMER, "/peon/jobs/farmer.png");
+		addResource(FARMER_1, "/peon/jobs/farmer_1.png");
+		addResource(FARMER_2, "/peon/jobs/farmer_2.png");
+		addResource(FARMER_3, "/peon/jobs/farmer_3.png");
+		addResource(PRIEST, "/peon/jobs/priest.png");
+		addResource(PRIEST_1, "/peon/jobs/priest_1.png");
+		addResource(PRIEST_2, "/peon/jobs/priest_2.png");
+		addResource(PRIEST_3, "/peon/jobs/priest_3.png");
+		
+		
 	}
 
 }

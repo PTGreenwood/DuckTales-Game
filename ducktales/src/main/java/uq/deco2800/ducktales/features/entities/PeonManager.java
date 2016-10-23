@@ -1,6 +1,8 @@
 package uq.deco2800.ducktales.features.entities;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 import uq.deco2800.ducktales.features.entities.peons.Peon;
@@ -10,7 +12,7 @@ import uq.deco2800.ducktales.rendering.sprites.SpritesFactory;
 import uq.deco2800.ducktales.resources.GeneralResourceRegister;
 import uq.deco2800.ducktales.util.SecondaryManager;
 import uq.deco2800.ducktales.util.exceptions.GameSetupException;
-
+import uq.deco2800.ducktales.features.jobframework.*;
 /**
  * Manager for all the entities in the game.
  *
@@ -20,11 +22,22 @@ public class PeonManager extends SecondaryManager{
 
     /** The list of peon sprites */
     private HashMap<String, PeonSprite> peonSprites;
-
+    private Job builder;
+    private Job miner;
+    private Job lumberjack;
+    private Job doctor;
+    private Job farmer;
+    private ArrayList<Job> availableJobs;
     /**
      * Initialize a peon manager with initial sprite list capacity of 50
      */
     public PeonManager() {
+        this.availableJobs = new ArrayList<Job>(Arrays.asList(builder, miner, lumberjack, doctor, farmer));
+        this.farmer = new Farmer();
+        this.doctor = new Doctor();
+        this.lumberjack = new Lumberjack();
+        this.miner = new Miner();
+        this.builder = new Builder();
         peonSprites = new HashMap<>(50);
     }
     

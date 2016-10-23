@@ -30,7 +30,15 @@ public enum ResourceType {
 
         // PEONS
         PEON,
+        
+        // JOBS
+        LUMBERJACK, MINER, BUILDER, DOCTOR, FARMER, 
+        TEACHER, JOBLESS, BLACKSMITH, BAKER, MASON, PRIEST,
 
+		// For job animations
+		MINER_1, MINER_2, MINER_3, LUMBERJACK_1, LUMBERJACK_2, LUMBERJACK_3,
+		DOCTOR_1, DOCTOR_2, DOCTOR_3, FARMER_1, FARMER_2, FARMER_3,
+		BUILDER_1, BUILDER_2, BUILDER_3, PRIEST_1, PRIEST_2, PRIEST_3,
 
         // ANIMALS
         DUCK, DUCKUp, DUCKLeft, DUCKRight, DUCKDown, DUCK_FRONT_RIGHT, DUCK_1_1,
@@ -40,6 +48,7 @@ public enum ResourceType {
         WOLF,
 
         CLOUD,
+
 
         // BUILDINGS
         PASTURE, BUTCHER, BAKERY, COMMUNITY_BUILDING, CONSTRUCTION,

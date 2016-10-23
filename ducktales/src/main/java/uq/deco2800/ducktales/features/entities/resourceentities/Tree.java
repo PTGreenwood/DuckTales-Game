@@ -163,7 +163,8 @@ public class Tree extends ResourceEntity {
 	 * @param loggers
 	 * 
 	 */
-	public void lumber(Peon loggers) {
+	public void lumber(Peon loggers) throws Exception {
+            this.decreaseValue(10);
 	}
 
 	/**
