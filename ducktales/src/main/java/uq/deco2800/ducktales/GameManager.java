@@ -18,7 +18,6 @@ import uq.deco2800.ducktales.features.weather.WeatherManager;
 import uq.deco2800.ducktales.rendering.worlddisplay.CursorManager;
 import uq.deco2800.ducktales.rendering.worlddisplay.WorldDisplayManager;
 import uq.deco2800.ducktales.features.missions.MissionManager;
-import uq.deco2800.ducktales.features.notifications.NotificationHandler;
 import uq.deco2800.ducktales.features.notifications.NotificationManager;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.events.animal.AnimalDeadEvent;
