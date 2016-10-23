@@ -17,7 +17,6 @@ import uq.deco2800.ducktales.util.Point;
 import uq.deco2800.ducktales.features.entities.peons.PeonBuffType;
 import uq.deco2800.ducktales.features.entities.peons.PeonDebuffType;
 import uq.deco2800.ducktales.features.seasons.SeasonManager;
-
 /**
  * Class representing the worker. Peon will have 1000 health, 100 hunger and
  * thirst hunger and thirst will decrease (be more hungry/thirsty) over time
@@ -503,7 +502,28 @@ public class Peon extends AgentEntity {
 		if (autoDecreaseTime == 180) {
 			setHunger(currentHunger - 2);
 			setThirst(currentThirst - 3);
+			weatherEffectOnPeon(currentHunger, currentThirst);
 			autoDecreaseTime = 0;
+		}
+	}
+	
+	/**
+	 * function that alters the Peon's status according to the weather
+	 * different weather will have different effect on peon's stats.
+	 */
+	private void weatherEffectOnPeon(int currentHunger, int currentThirst) {
+		 String current = this.gameManager.getWeatherManager().peonEffect();
+		 if (current == "rain"){
+			 setThirst(currentThirst + 4);
+		 }
+		 else if (current == "storm"){
+			 setThirst(currentThirst + 1);
+		}
+		 else if (current == "snow"){
+			 setHunger(currentHunger - 1);
+		}
+		 else if (current == "sunny"){
+			 setThirst(currentThirst - 1);
 		}
 	}
 
@@ -548,14 +568,6 @@ public class Peon extends AgentEntity {
 		if (thirstyTime >= 60) { setHealth(getHealth() -15); }
 		if (tempHotTime >= 80) { setHealth(getHealth() - 10); }
 		if (tempColdTime >= 80) { setHealth(getHealth() - 10); }
-	}
-
-	/**
-	 * function that decreases the Peon's stats according to the weather
-	 * different weather will have different effect on peon's stats.
-	 */
-	private void weatherEffectOnPeon() {
-
 	}
 
 	/**
