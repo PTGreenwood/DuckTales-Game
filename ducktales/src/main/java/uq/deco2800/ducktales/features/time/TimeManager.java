@@ -182,7 +182,7 @@ public class TimeManager extends SecondaryManager implements Initializable, Tick
 	}
 
 	public void setTime(int hour) {
-		gameTime.setHour(hour);
+		this.getGameTimeObject().setHour(hour);
 	}
 
 	/**
@@ -217,4 +217,12 @@ public class TimeManager extends SecondaryManager implements Initializable, Tick
 		return this.seasonManager;
 	}
 
+	/**
+	 * Sets an object of GameTime. Used for JUnit testing purposes.
+	 * FXML testing and the overridden initialise function causes GameTime
+	 * to not be instantated on TimeManager creation.
+	 */
+	public void setGameTimeObject(GameTime gt) {
+		this.gameTime = gt;
+	}
 }
