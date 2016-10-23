@@ -18,11 +18,11 @@ import static org.junit.Assert.*;
 
 public class ThreatsManagerTest extends ApplicationTest{
 	
+	//Creates ThreatManager variable to be tested
 	ThreatManager TM = new ThreatManager();
 	
 	@Test 
 	public void testForThreatsLvl1(){
-		
 		
 		String name= "world";
 		int worldWidth = 700;
@@ -77,7 +77,6 @@ public class ThreatsManagerTest extends ApplicationTest{
 		ArrayList<Effect> effectsList = new ArrayList<Effect>();
 		effectsList.add(effect1);
 		effectsList.add(effect2);
-
 	}
 
 	@Test
