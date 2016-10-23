@@ -23,6 +23,7 @@ import uq.deco2800.ducktales.resources.ResourceType;
 public class ThreatFactory {
 	 /** CONSTANTS */
 	private static String timer = "Timer";
+	private static String invalidEnemy = "Invalid enemy type";
 	protected static ArrayList<Effect> effectsList = new ArrayList<Effect>();
 	protected static ArrayList<Enemy> enemiesList = new ArrayList<Enemy>();
 	public static HashMap<Integer, Enemy> enemyMap = new HashMap<Integer, Enemy>();
@@ -52,7 +53,7 @@ public class ThreatFactory {
 				createWildVillager(ResourceType.WILD_VILLAGER);
 				break;
 		default:
-			throw new Exception("Invalid enemy type");
+			throw new Exception(invalidEnemy);
 		}
 		
 	}
@@ -74,7 +75,7 @@ public class ThreatFactory {
 				createShake(ResourceType.SHAKE);
 				break;
 		default:
-			throw new Exception("Invalid enemy type");
+			throw new Exception(invalidEnemy);
 		}
 	}
 	
@@ -103,7 +104,7 @@ public class ThreatFactory {
 				createEvilDuck(ResourceType.EVIL_DUCK);
 				break;
 		default:
-			throw new Exception("Invalid enemy type");
+			throw new Exception(invalidEnemy);
 		}	
 	}
 	
@@ -124,7 +125,7 @@ public class ThreatFactory {
 				createRumble(ResourceType.RUMBLE);
 				break;
 		default:
-			throw new Exception("Invalid enemy type");
+			throw new Exception(invalidEnemy);
 		}
 	}
 	
@@ -148,7 +149,7 @@ public class ThreatFactory {
 				createBear(ResourceType.BEAR);
 				break;
 		default:
-			throw new Exception("Invalid enemy type");
+			throw new Exception(invalidEnemy);
 		}
 	}
 	
@@ -169,7 +170,7 @@ public class ThreatFactory {
 			createGreenFelFire(ResourceType.GREEN_FEL_FIRE);
 			break;
 		default:
-			throw new Exception("Invalid enemy type");
+			throw new Exception(invalidEnemy);
 		}
 	}
 	
@@ -193,7 +194,7 @@ public class ThreatFactory {
 				createElephant(ResourceType.ELEPHANT);
 				break;
 		default:
-			throw new Exception("Invalid enemy type");
+			throw new Exception(invalidEnemy);
 		}	
 	}
 	
@@ -214,7 +215,7 @@ public class ThreatFactory {
 				createFel(ResourceType.FEL);
 				break;
 		default:
-			throw new Exception("Invalid enemy type");
+			throw new Exception(invalidEnemy);
 		}
 	}
 	
