@@ -16,6 +16,11 @@ import uq.deco2800.ducktales.util.events.ui.UIEvent;
  */
 public class AnimalDeadEvent extends AnimalEvent{
 	
+	/**
+	 * Required serialVersionUID variable 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	/** The event type */
     public static final EventType<AnimalDeadEvent> ANIMAL_DEAD_EVENT =
             new EventType<>("ANIMAL DEAD EVENT");

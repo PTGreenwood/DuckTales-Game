@@ -101,9 +101,8 @@ public class AnimalManager extends SecondaryManager{
                 animalSprite = animalSprites.get(i);
                 tileSprite = gameManager.getWorldDisplayManager()
                         .getTilesManager().getTileSprite(
-                                animalSprite.getxLocation(), animalSprite.getyLocation()
+                         animalSprite.getxLocation(), animalSprite.getyLocation()
                         );
-
                 // Update the location of the sprites
                 Sprite.updateSpriteLocation(animal, animalSprite, tileSprite);
 
