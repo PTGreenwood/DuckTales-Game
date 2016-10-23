@@ -478,6 +478,7 @@ public class ResourceSpriteRegister {
 	}
 	
 	private void addJobResources(){
+		addResource(PEON, "/peon/basic_peon.png");
 		addResource(MINER_LV1_1, "/peon/jobs/miner.png");
 		addResource(MINER_LV1_2, "/peon/jobs/miner_1.png");
 		addResource(MINER_LV1_3, "/peon/jobs/miner_2.png");
@@ -506,7 +507,7 @@ public class ResourceSpriteRegister {
 		/*
 		 * PEONS
 		 
-		addResource(PEON, "/peon/basic_peon.png");
+		
 		
 		//LumberJack
 		addResource(LUMBERJACK_LV1_1, "/peon/jobs/lumberjacks_1.png");

@@ -1,6 +1,7 @@
 package uq.deco2800.ducktales.util.events.handlers.job;
 
 import javafx.event.EventHandler;
+import javafx.scene.image.Image;
 import uq.deco2800.ducktales.GameManager;
 import uq.deco2800.ducktales.features.entities.peons.Peon;
 import uq.deco2800.ducktales.features.hud.informationdisplay.peon.PeonInformationDisplayManager;
@@ -11,6 +12,7 @@ import uq.deco2800.ducktales.features.jobframework.Job;
 import uq.deco2800.ducktales.features.jobframework.Lumberjack;
 import uq.deco2800.ducktales.features.jobframework.Miner;
 import uq.deco2800.ducktales.features.jobframework.Priest;
+import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 import uq.deco2800.ducktales.util.events.handlers.GameEventHandler;
 import uq.deco2800.ducktales.util.events.job.JobSpritePeonClickedEvent;
 
@@ -26,6 +28,8 @@ import uq.deco2800.ducktales.util.events.job.JobSpritePeonClickedEvent;
 public class JobSpritePeonClickedEventHandler extends GameEventHandler
         implements EventHandler<JobSpritePeonClickedEvent> {
 
+
+	ResourceSpriteRegister rsr;
     public JobSpritePeonClickedEventHandler(GameManager gameManager) {
         super(gameManager);
     }
@@ -36,6 +40,10 @@ public class JobSpritePeonClickedEventHandler extends GameEventHandler
         PeonInformationDisplayManager displayManager =
                 gameManager.getPeonInformationDisplayManager();
         Peon peon = displayManager.getCurrentlyDisplayedPeon();
+        
+    	Image peonSpriteImage = rsr.getInstance().getResourceImage(event.getJobType());
+        gameManager.getMainEntityManager().getPeonManager().getPeonSprite(peon.getPeonName()).setImage(peonSpriteImage);
+    	
         // Task 2
         Job job;
         switch (event.getJobType()) {

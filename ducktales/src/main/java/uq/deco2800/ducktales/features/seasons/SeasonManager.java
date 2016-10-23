@@ -1,8 +1,8 @@
 package uq.deco2800.ducktales.features.seasons;
 
-import java.util.*;
-
-import uq.deco2800.ducktales.features.seasons.Season;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  *

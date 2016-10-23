@@ -1,7 +1,6 @@
 package uq.deco2800.ducktales.features.hud.informationdisplay.peon;
 
 
-import java.awt.Button;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -9,6 +8,7 @@ import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
@@ -16,7 +16,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import uq.deco2800.ducktales.features.entities.peons.Peon;
-import uq.deco2800.ducktales.features.jobframework.JobType;
 import uq.deco2800.ducktales.rendering.info.WorldEntityInfo;
 import uq.deco2800.ducktales.rendering.sprites.JobSprite;
 import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
@@ -95,11 +94,12 @@ public class PeonInformationDisplayManager
     Label peonJobStatus;
     @FXML
     Button assignJobButton;
-
+    @FXML
+    Button upgradeToolsButton;
 
     /** The peon to display */
     private Peon peon;
-
+    ResourceSpriteRegister rsr;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Hide the display at first
@@ -116,6 +116,7 @@ public class PeonInformationDisplayManager
      */
     public Peon getCurrentlyDisplayedPeon() {
         return this.peon;
+        
     }
 
     public void setPeon(Peon peon) {
@@ -178,9 +179,10 @@ public class PeonInformationDisplayManager
      */
     public void displayPeon() {
 
-        // Get the information of the peon
-        //Image peonSpriteImage = rsr.getInstance().getResourceImage(this.peon.getType());
-      //  peonImage.setImage(peonSpriteImage);
+        
+    	// 	Get the information of the peon
+    	Image peonSpriteImage = rsr.getInstance().getResourceImage(this.peon.getType());
+        peonImage.setImage(peonSpriteImage);
         
         peonName.setText(peon.getPeonName());
         peonIntelligence.setText(Integer.toString(peon.getIntelligence()));
@@ -194,13 +196,23 @@ public class PeonInformationDisplayManager
         		peon.getJobToolList(peon.getJob()), peon.getTool().getNextToolLevel()));
         rootDisplay.setVisible(true);
     }
-    
 
+
+    /**
+     * Chagne the peon image in the GUI
+     * 
+     * 
+     */
+    public void changePeonWindow() {
+    	Image peonSpriteImage = rsr.getInstance().getResourceImage(this.peon.getType());
+        peonImage.setImage(peonSpriteImage);
+        
+    }
     @FXML public void handleUpgradeToolButtonAction() {
     	
     	this.peon.upgradeTool();
     	displayPeon();
-		int toolLevel = this.peon.getTool().getToolLevel();
+
     }
 }
 

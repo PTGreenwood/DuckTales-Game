@@ -818,19 +818,21 @@ public class Peon extends AgentEntity {
 	 *
 	 */
 	public void upgradeTool() {
-		if((this.getTool().getToolLevel() < 2) && (this.getTool() != null)) {
-			try {
-				if(this.getJobToolList(this.job).get(this.getTool().getToolLevel() + 1) != null) {
-					this.tool = this.getJobToolList(this.getJob()).get(this.getTool().getToolLevel() + 1);
-				} else {
-					//Hold up. There is no next tool for this job.
-					//do nothing.
-					System.out.println("Get a job you jobless bum");
-				}
+		if(!(this.getJob() == JobType.JOBLESS)) {
+			if((this.getTool().getToolLevel() < 2) && (this.getTool() != null)) {
+				try {
+					if(this.getJobToolList(this.job).get(this.getTool().getToolLevel() + 1) != null) {
+						this.tool = this.getJobToolList(this.getJob()).get(this.getTool().getToolLevel() + 1);
+					} else {
+						//Hold up. There is no next tool for this job.
+						//do nothing.
+						System.out.println("Get a job you jobless bum");
+					}
 
-			} catch (IndexOutOfBoundsException e) {
-				System.out.println("Can't upgrade this tool. Max upgrade reached");
-				throw e;
+				} catch (IndexOutOfBoundsException e) {
+					System.out.println("Can't upgrade this tool. Max upgrade reached");
+					throw e;
+				}
 			}
 		}
 		//Otherwise don't update cause there is no way to.
