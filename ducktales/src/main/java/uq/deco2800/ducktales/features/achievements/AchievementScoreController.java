@@ -2,6 +2,11 @@ package uq.deco2800.ducktales.features.achievements;
 
 
 
+import java.util.logging.Level;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import uq.deco2800.ducktales.World;
 import uq.deco2800.ducktales.features.entities.threats.ThreatManager;
 import uq.deco2800.ducktales.features.inventory.InventoryManager;
@@ -16,6 +21,10 @@ import uq.deco2800.ducktales.features.missions.MissionHandler;
  */
 public class AchievementScoreController {
 	private static final AchievementScoreController INSTANCE = new AchievementScoreController();
+	
+	/** The logger for all messages and exceptions */
+	private static Logger logger = LoggerFactory.getLogger(
+			AchievementScoreController.class);
 	
 	/** Achievement Score */
 	private int intAchieve;
@@ -155,8 +164,8 @@ public class AchievementScoreController {
 		    	inventoryManager.updateFeatherAmount(10);
 		    	inventoryManager.updateStoneAmount(10);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				logger.info("Unable to Inventory Manager:" + e);
+				
 			}
 	    	
 	    }
@@ -237,8 +246,7 @@ public class AchievementScoreController {
 				inventoryManager.updateStoneAmount(50);
 		    	inventoryManager.updateMeatAmount(100);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				logger.info("Unable inventory Manager :" + e);
 			}
 	    }
 	    /*
