@@ -5,6 +5,8 @@ import org.junit.Test;
 import uq.deco2800.ducktales.features.entities.peons.Peon;
 import uq.deco2800.ducktales.features.entities.peons.PeonDebuffType;
 import uq.deco2800.ducktales.features.entities.peons.PeonBuffType;
+import uq.deco2800.ducktales.features.jobframework.JobType;
+import uq.deco2800.ducktales.features.peonupgrades.ToolType;
 
 import static org.junit.Assert.*;
 
@@ -18,7 +20,7 @@ public class PeonTest {
   @Test
   public void peonTest() {
     //Create Peon for testing
-    Peon peon = new Peon(10, 10);
+    Peon peon = new Peon(10, 10, "John Doe");
 
     //Test to see if Peon has no null attributes
     assertNotNull("Peon cannot be null", peon);
@@ -32,8 +34,8 @@ public class PeonTest {
     assertNotNull("Strength cannot be null", peon.getStrength());
     assertNotNull("Resource cannot be null", peon.getResources());
     assertNotNull("Intelligence cannot be null", peon.getIntelligence());
-    assertNotNull("Job cannot be null", peon.getJob());
-    assertNotNull("Qualification cannot be null", peon.getQualification());
+    assertNotNull("Job cannot be null", peon.getJob());   
+    assertNotNull("Qualification cannot be null", peon.getQualificationToolEquipped());
     assertNotNull("Tree choppsed cannot be null", peon.getTreesChopped());
     assertNotNull("Mentor status cannot be null", peon.getMentorStatus());
     //Test attributes setters

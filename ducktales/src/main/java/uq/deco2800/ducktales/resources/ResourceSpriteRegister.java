@@ -45,9 +45,18 @@ import static uq.deco2800.ducktales.resources.ResourceType.SAWMILL;
 import static uq.deco2800.ducktales.resources.ResourceType.SHEEP;
 import static uq.deco2800.ducktales.resources.ResourceType.SHEEPRight0;
 import static uq.deco2800.ducktales.resources.ResourceType.SHEEPRight1;
-import static uq.deco2800.ducktales.resources.ResourceType.TREE_1;
-import static uq.deco2800.ducktales.resources.ResourceType.TREE_2;
-import static uq.deco2800.ducktales.resources.ResourceType.TREE_3;
+import static uq.deco2800.ducktales.resources.ResourceType.TREE_1_SUMMER;
+import static uq.deco2800.ducktales.resources.ResourceType.TREE_2_SUMMER;
+import static uq.deco2800.ducktales.resources.ResourceType.TREE_3_SUMMER;
+import static uq.deco2800.ducktales.resources.ResourceType.TREE_1_AUTUMN;
+import static uq.deco2800.ducktales.resources.ResourceType.TREE_2_AUTUMN;
+import static uq.deco2800.ducktales.resources.ResourceType.TREE_3_AUTUMN;
+import static uq.deco2800.ducktales.resources.ResourceType.TREE_1_WINTER;
+import static uq.deco2800.ducktales.resources.ResourceType.TREE_2_WINTER;
+import static uq.deco2800.ducktales.resources.ResourceType.TREE_3_WINTER;
+import static uq.deco2800.ducktales.resources.ResourceType.TREE_1_SPRING;
+import static uq.deco2800.ducktales.resources.ResourceType.TREE_2_SPRING;
+import static uq.deco2800.ducktales.resources.ResourceType.TREE_3_SPRING;
 import static uq.deco2800.ducktales.resources.ResourceType.VOID;
 import static uq.deco2800.ducktales.resources.ResourceType.WATER;
 import static uq.deco2800.ducktales.resources.ResourceType.WOOD_BOX;
@@ -172,7 +181,7 @@ public class ResourceSpriteRegister {
 		addResource(SCHOOL, "/buildings/school.png");
 		addResource(GYMNASIUM, "/buildings/gymnasium.png");
 		addResource(BUTCHER, "/buildings/butcher.png");
-		addResource(BARN, "/buildings/storagebarn.png");
+		addResource(STORAGEBARN, "/buildings/storagebarn.png");
 
 		addResource(BAKERY, "/buildings/bakery.png");
 		addResource(COMMUNITY_BUILDING, "/buildings/community_building.png");
@@ -201,6 +210,8 @@ public class ResourceSpriteRegister {
 		addResource(BAKERY_3, "/buildings/bakery/bakery_3.png");
 		addResource(BAKERY_4, "/buildings/bakery/bakery_4.png");
 		addResource(BAKERY_5, "/buildings/bakery/bakery_5.png");
+		
+		
 		// Butcher
 		addResource(BUTCHER_1, "/buildings/butcher/butcher_1.png");
 		addResource(BUTCHER_2, "/buildings/butcher/butcher_2.png");
@@ -230,6 +241,12 @@ public class ResourceSpriteRegister {
 		addResource(CHURCH_3, "/buildings/church/church_3.png");
 		addResource(CHURCH_4, "/buildings/church/church_4.png");
 		addResource(CHURCH_5, "/buildings/church/church_5.png");
+		// Community Building
+		addResource(COMMUNITY_BUILDING_1, "/buildings/community_building/community_building_1.png");
+		addResource(COMMUNITY_BUILDING_2, "/buildings/community_building/community_building_2.png");
+		addResource(COMMUNITY_BUILDING_3, "/buildings/community_building/community_building_3.png");
+		addResource(COMMUNITY_BUILDING_4, "/buildings/community_building/community_building_4.png");
+		addResource(COMMUNITY_BUILDING_5, "/buildings/community_building/community_building_5.png");
 		// Observatory
 		addResource(OBSERVATORY_1, "/buildings/observatory/observatory_1.png");
 		addResource(OBSERVATORY_2, "/buildings/observatory/observatory_2.png");
@@ -255,6 +272,13 @@ public class ResourceSpriteRegister {
 		addResource(GYMNASIUM_3, "/buildings/gymnasium/gymnasium_3.png");
 		addResource(GYMNASIUM_4, "/buildings/gymnasium/gymnasium_4.png");
 		addResource(GYMNASIUM_5, "/buildings/gymnasium/gymnasium_5.png");
+		
+		addResource(GYMNASIUM_NIGHT_1, "/buildings/gymnasium_night/gymnasium_night_1.png");
+		addResource(GYMNASIUM_NIGHT_2, "/buildings/gymnasium_night/gymnasium_night_2.png");
+		addResource(GYMNASIUM_NIGHT_3, "/buildings/gymnasium_night/gymnasium_night_3.png");
+		addResource(GYMNASIUM_NIGHT_4, "/buildings/gymnasium_night/gymnasium_night_4.png");
+		addResource(GYMNASIUM_NIGHT_5, "/buildings/gymnasium_night/gymnasium_night_5.png");
+		addResource(GYMNASIUM_NIGHT_6, "/buildings/gymnasium_night/gymnasium_night_6.png");
 		// Hospital
 		addResource(HOSPITAL_1, "/buildings/hospital/hospital_1.png");
 		addResource(HOSPITAL_2, "/buildings/hospital/hospital_2.png");
@@ -272,7 +296,21 @@ public class ResourceSpriteRegister {
 		addResource(MINE_2, "/buildings/mine/mine_2.png");
 		addResource(MINE_3, "/buildings/mine/mine_3.png");
 		addResource(MINE_4, "/buildings/mine/mine_4.png");
-
+		// School - Night
+		addResource(SCHOOL_NIGHT_1, "/buildings/school_night/school_night_1.png");
+		addResource(SCHOOL_NIGHT_2, "/buildings/school_night/school_night_2.png");
+		addResource(SCHOOL_NIGHT_3, "/buildings/school_night/school_night_3.png");
+		addResource(SCHOOL_NIGHT_4, "/buildings/school_night/school_night_4.png");
+		addResource(SCHOOL_NIGHT_5, "/buildings/school_night/school_night_5.png");
+		addResource(SCHOOL_NIGHT_6, "/buildings/school_night/school_night_6.png");
+		// School
+		addResource(SCHOOL_1, "/buildings/school/school_1.png");
+		addResource(SCHOOL_2, "/buildings/school/school_2.png");
+		addResource(SCHOOL_3, "/buildings/school/school_3.png");
+		addResource(SCHOOL_4, "/buildings/school/school_4.png");
+		addResource(SCHOOL_5, "/buildings/school/school_5.png");
+		
+		
 
 		// Advanced buildings' animations
 		// Butcher
@@ -287,6 +325,25 @@ public class ResourceSpriteRegister {
 		addResource(ADV_HOSPITAL_3, "/buildings/adv_hospital/adv_hospital_3.png");
 		addResource(ADV_HOSPITAL_4, "/buildings/adv_hospital/adv_hospital_4.png");
 		addResource(ADV_HOSPITAL_5, "/buildings/adv_hospital/adv_hospital_5.png");
+		// Bakery
+		addResource(BAKERY_1_ADV, "/buildings/adv_bakery/adv_bakery_1.png");
+		addResource(BAKERY_2_ADV, "/buildings/adv_bakery/adv_bakery_2.png");
+		addResource(BAKERY_3_ADV, "/buildings/adv_bakery/adv_bakery_3.png");
+		addResource(BAKERY_4_ADV, "/buildings/adv_bakery/adv_bakery_4.png");
+		addResource(BAKERY_5_ADV, "/buildings/adv_bakery/adv_bakery_5.png");
+		
+		addResource(BAKERY_1_ADV_NIGHT, "/buildings/adv_bakery_night/adv_bakery_night_2.png");
+		addResource(BAKERY_2_ADV_NIGHT, "/buildings/adv_bakery_night/adv_bakery_night_2.png");
+		addResource(BAKERY_3_ADV_NIGHT, "/buildings/adv_bakery_night/adv_bakery_night_3.png");
+		addResource(BAKERY_4_ADV_NIGHT, "/buildings/adv_bakery_night/adv_bakery_night_4.png");
+		addResource(BAKERY_5_ADV_NIGHT, "/buildings/adv_bakery_night/adv_bakery_night_5.png");
+		addResource(BAKERY_6_ADV_NIGHT, "/buildings/adv_bakery_night/adv_bakery_night_6.png");
+		// Sawmill
+		addResource(SAWMILL_ADV_1, "/buildings/adv_sawmill/adv_sawmill_1.png");
+		addResource(SAWMILL_ADV_2, "/buildings/adv_sawmill/adv_sawmill_2.png");
+		addResource(SAWMILL_ADV_3, "/buildings/adv_sawmill/adv_sawmill_3.png");
+		addResource(SAWMILL_ADV_4, "/buildings/adv_sawmill/adv_sawmill_4.png");
+		addResource(SAWMILL_ADV_5, "/buildings/adv_sawmill/adv_sawmill_5.png");
 
 	}
 
@@ -300,7 +357,6 @@ public class ResourceSpriteRegister {
 		/*
 		 * ANIMALS
 		 */
-		addResource(DUCK, "/animal/duck/DUCKDown0.png");
 		addResource(DUCK_1_1, "/animal/duck_1_1.png");
 
 		addResource(DUCKDown0, "/animal/duck/DUCKDown0.png");
@@ -321,17 +377,27 @@ public class ResourceSpriteRegister {
 		addResource(SHEEPRight0, "/animal/sheep/SHEEPRight0.png");
 		addResource(SHEEPRight1, "/animal/sheep/SHEEPRight1.png");
 
-		addResource(SHEEP, "/animal/sheep_with_wool.png");
-
-		addResource(COW, "/animal/cow/COW.png");
 		// addResource(COWUpRight, "/COWUpRight.png");
 		// addResource(COWUpLeft, "/COWUpLeft.png");
 		// addResource(COWDownRight, "/COWDownRight.png");
 		// addResource(COWDownLeft, "/COWDownLeft.png");
 
-		// animal death sprite resource
+		/*
+		 * For the Menu
+		 */
+		addResource(SHEEP, "/animal/menu/sheep_stand.png");
+		addResource(WOLF, "/animal/menu/wolf_front.png");
+		addResource(COW, "/animal/menu/cow_front.png");
+		addResource(DUCK, "/animal/menu/duck_stand.png");
+	}
+	
+	/**
+	 * Add the resources for droppable resource entitis, 
+	 * such as feathers, beef, milk etc
+	 */
+	private void addResourceEntityResources() {
 		addResource(CLOUD, "/animal/cloud.gif");
-	}	
+	}
 	
 	/**
 	 * Add the resources for landscape items such as rocks and trees
@@ -341,9 +407,18 @@ public class ResourceSpriteRegister {
 		addResource(BOX, "/box2.png");
 		addResource(LONG_BOX, "/longbox.png");
 		addResource(WOOD_BOX, "/wood_stock.png");
-		addResource(TREE_1, "/tree_1.png");
-		addResource(TREE_2, "/tree_2.png");
-		addResource(TREE_3, "/tree_3.png");
+		addResource(TREE_1_SUMMER, "/gameresources/trees/seasons/tree_1_summer.png");
+		addResource(TREE_2_SUMMER, "/gameresources/trees/seasons/tree_2_summer.png");
+		addResource(TREE_3_SUMMER, "/gameresources/trees/seasons/tree_3_summer.png");
+		addResource(TREE_1_AUTUMN, "/gameresources/trees/seasons/tree_1_autumn.png");
+		addResource(TREE_2_AUTUMN, "/gameresources/trees/seasons/tree_2_autumn.png");
+		addResource(TREE_3_AUTUMN, "/gameresources/trees/seasons/tree_3_autumn.png");
+		addResource(TREE_1_WINTER, "/gameresources/trees/seasons/tree_1_winter.png");
+		addResource(TREE_2_WINTER, "/gameresources/trees/seasons/tree_2_winter.png");
+		addResource(TREE_3_WINTER, "/gameresources/trees/seasons/tree_3_winter.png");
+		addResource(TREE_1_SPRING, "/gameresources/trees/seasons/tree_1_spring.png");
+		addResource(TREE_2_SPRING, "/gameresources/trees/seasons/tree_2_spring.png");
+		addResource(TREE_3_SPRING, "/gameresources/trees/seasons/tree_3_spring.png");		
 		addResource(ROCK_1, "/rock_1.png");
 		addResource(ROCK_2, "/rock_2.png");
 	}

@@ -16,30 +16,30 @@ public class ChaosGod extends DuckGods {
 	*/
 	  
 	public ChaosGod(String name, String bonus, ImageIcon image) {
-		super();
+		super(name, bonus, image);
 	}
 	 
-	public void giveaward() {
-		
-		/**provides rewards to the user which would result a possitive impact
-		e.g. buffs
-		*/
-		
-		if(isWorshiped){
-      		 /**Peon.speed= Peon.speed*2;
-		*need to change Speed visibility to public
-		*more award details
-		*/
-		}
-		
-	}
-	
-	public void givepenalty() {
-		
-		/**
-		 * provides penalties to the user which would result a negative impact
-		 * e.g. debuffs
-		 */
-	}
+//	public void giveaward() {
+//		
+//		/**provides rewards to the user which would result a possitive impact
+//		e.g. buffs
+//		*/
+//		
+//		if(isWorshiped){
+//      		 /**Peon.speed= Peon.speed*2;
+//		*need to change Speed visibility to public
+//		*more award details
+//		*/
+//		}
+//		
+//	}
+//	
+//	public void givepenalty() {
+//		
+//		/**
+//		 * provides penalties to the user which would result a negative impact
+//		 * e.g. debuffs
+//		 */
+//	}
         
 }

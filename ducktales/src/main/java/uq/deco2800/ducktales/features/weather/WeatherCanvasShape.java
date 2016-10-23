@@ -20,7 +20,15 @@ public class WeatherCanvasShape {
 	// acceleration of fall
 	private int acceleration;
 
-	public WeatherCanvasShape(int x, int y, int direction, int acceleration) {
+	/*
+	 * invariant:
+	 * 
+	 * && x, y, direction, acceleration can be any valid number (negative or
+	 * positive)
+	 * 
+	 */
+
+	public WeatherCanvasShape(int x, int y, int direction, int acceleration) {		
 		this.x = x;
 		this.y = y;
 		this.direction = direction;
@@ -84,5 +92,34 @@ public class WeatherCanvasShape {
 	 */
 	public void setY(int y) {
 		this.y = y;
+	}
+
+	/**
+	 * Set the value of the direction of the shape to be drawn onto the canvas.
+	 * 
+	 * @param direction
+	 *            - direction to store
+	 */
+	public void setDirection(int direction) {
+		this.direction = direction;
+	}
+
+	/**
+	 * Set the value of the acceleration of the shape to be drawn onto the
+	 * canvas.
+	 * 
+	 * @param acceleration
+	 *            - acceleration to store
+	 */
+	public void setAcceleration(int acceleration) {
+		this.acceleration = acceleration;
+	}
+
+	@Override
+	public String toString() {
+		return "Shape configuration (x: " + this.getX() + ", y: " + this.getY()
+				+ ", direction: " + this.getDirection() + ", acceleration: "
+				+ this.getAcceleration() + ")";
+
 	}
 }

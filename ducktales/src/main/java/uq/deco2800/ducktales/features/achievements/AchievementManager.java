@@ -1,148 +1,182 @@
 package uq.deco2800.ducktales.features.achievements;
 
-import java.io.IOException;
-import java.net.URL;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.text.Font;
-import uq.deco2800.ducktales.features.level.LevelHandler;
-import uq.deco2800.ducktales.features.missions.MissionHandler;
 
 /**
  * Manage all fxml action of the achievement 
  * 
- * @author Naehyung Kim
+ * @author Naehyung Kim and Joshua You
  * 
  */
 public class AchievementManager {
 	/** The logger for all messages and exceptions */
-	private static Logger LOGGER = LoggerFactory.getLogger(
+	private static Logger logger = LoggerFactory.getLogger(
 			AchievementManager.class);
 	
 	/** Main window */
 	@FXML
 	private AnchorPane achievementWindow;	
 	
-	/** Right Pane of the window */
+	/** Right pane of the main window */
 	@FXML
-	private AnchorPane rightPane;
+	private BorderPane rightPane;
 	
-	/** Buttons on left Pane */
+	/** Inner pane of the rightPane */
 	@FXML
-	private Button achievementMissionBtn;
+	private AnchorPane innerPane;
+	
+	/** Buttons on left Pane of the main window */
 	@FXML
-	private Button achievementLevelBtn;
+	private Button level;
+	@FXML
+	private Button mission;
+	@FXML
+	private Button wood;
+	@FXML
+	private Button ore;
+	@FXML
+	private Button peons;
+	@FXML
+	private Button threats;
+	@FXML
+	private Button food;
 	
-	private BorderPane achievementsMission;
-	private BorderPane achievementsLevel;
+	/** Title label in rightPane */
+	@FXML
+	private Label topLabel;
 	
-	private Label titleLabel;
+	/** Label at the bottom in rightPane */
+	@FXML
+	private Label bottomLabel;
 	
-	/** Initialize classes */	
-	AchievementHandler achievementMain = AchievementHandler.getInstance();
-	AchievementMission achievementMission = AchievementMission.getInstance();
-	AchievementLevel achievementLevel = AchievementLevel.getInstance();
-	MissionHandler missionMain = MissionHandler.getInstance();
-	LevelHandler levelMain = LevelHandler.getInstance();
+	/** Label for Achievement Description */
+	@FXML
+	private Label achievementMainDescription;
+	
+	/** ImageView for achievement */
+	@FXML
+	private ImageView achievementImageView;
+	
+	/** Description of each achievement */
+	@FXML
+	private Label achievementDescription;
+
+	
+	private Image ore1 = new Image("achievements/ore100.png");
+	
+	private Image wood1 = new Image("achievements/wood100.png");
+	
+	private Image peons1 = new Image("peon/basic_peon.png");
+	
+	/** Initialize classes */
+	private AchievementLevelController levelController = AchievementLevelController.getInstance();
+	private AchievementMissionController missionController = AchievementMissionController.getInstance();
+	private AchievementScoreController scoreController = AchievementScoreController.getInstance();
+	private AchievementOreController oreController = AchievementOreController.getInstance();
+	private AchievementWoodController woodController = AchievementWoodController.getInstance();
 	
 	/**
-	 * Start mission achievement
+	 * Main constructor of {@link Achievement} class
 	 * 
-	 * @param event
-	 * @throws Exception
 	 */
-	@FXML
-	private void startAchievementMission() {
-		
-		removeAllPane();
-		URL location = getClass().getResource("/achievements/achievement.fxml");
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(location);
-		try {
-			achievementsMission = loader.load();
-			ImageView achievementMissionImage = achievementMission
-					.getAchievementMissionImage();
-			Label achievementMissionLabel = achievementMission.getAchievementMissionLabel();
-			achievementMissionLabel.setFont(new Font("Arial", 24));
-			
-			setTitleOnTop(achievementsMission,"Mission");
-			achievementsMission.setCenter(achievementMissionImage);
-			achievementsMission.setBottom(achievementMissionLabel);
-			achievementsMission.setAlignment(achievementMissionLabel, Pos.CENTER);
-			achievementsMission.setPrefHeight(rightPane.getHeight());
-			achievementsMission.setPrefWidth(rightPane.getWidth());		
-			rightPane.getChildren().add(achievementsMission);		
-		} catch (IOException e) {
-			LOGGER.info("Unable to start Achievement GUI", e);
-		}
-		
+	public AchievementManager() {
 				
-	}	
+	}
 	
 	/**
-	 * Start level achievement
-	 * 
-	 * @param event
-	 * @throws Exception
+	 *  Load Main window for achievement. It contains Achievement Title and description of Achievement.
+	 */
+	public void loadMain() {
+		
+		this.topLabel.setText("ACHIEVEMENT");
+		this.bottomLabel.setText("Achievement Score : " + this.scoreController.achievementHolder());
+		this.achievementMainDescription.setVisible(true);
+		this.achievementDescription.setVisible(false);
+		this.achievementImageView.setVisible(false);
+
+	}
+	
+	/**
+	 * This method set the basic design of the achievement with its title, image and description.
+	 * @param title Title of the Achievement such as Ore, Wood, Peons...
+	 * @param description Description of the Achievement
+	 * @param achievementImage Image of the Achievement
+	 */
+	private void loadAchievement(String title, String description, Image achievementImage) {
+		
+		this.topLabel.setText(title);
+		this.achievementMainDescription.setVisible(false);
+		this.achievementImageView.setVisible(true);
+		this.achievementImageView.setImage(achievementImage);
+		this.achievementDescription.setVisible(true);
+		this.achievementDescription.setText(description);	
+		this.achievementDescription.setAlignment(Pos.CENTER);
+		
+	}
+	
+	/**
+	 * Load level achievement in the Achievement GUI.
 	 */
 	@FXML
-	private void startAchievementLevel() {
+	private void loadLevel() {
 		
-		removeAllPane();
-		URL location = getClass().getResource("/achievements/achievementLevel.fxml");
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(location);
-		try {
-			achievementsLevel = loader.load();
-			ImageView achievementLevelImage = achievementLevel.getAchievementLevelImage();
-			Label achievementLevelLabel = achievementLevel.getAchievementLevelLabel();
-			achievementLevelLabel.setFont(new Font("Arial", 24));
+		this.loadAchievement("LEVEL", "Your achievement level of level is the same level as your level.", 
+				this.levelController.getAchievementLevelImage());
+		
+	}
+	
+	/**
+	 * Load Misison Achievement in the Achievement GUI.
+	 */
+	@FXML
+	private void loadMission() {
+		
+		this.loadAchievement("MISSION", "Your missions completion level.",
+				this.missionController.getAchievementMissionImage());;
 			
-			setTitleOnTop(achievementsLevel,"Level");
-			achievementsLevel.setCenter(achievementLevelImage);
-			achievementsLevel.setBottom(achievementLevelLabel);
-			achievementsLevel.setAlignment(achievementLevelLabel, Pos.CENTER);
-			achievementsLevel.setPrefHeight(rightPane.getHeight());
-			achievementsLevel.setPrefWidth(rightPane.getWidth());		
-			rightPane.getChildren().add(achievementsLevel);
-		} catch (IOException e) {
-			LOGGER.info("Unable to start Achievement GUI", e);
-		}
-		
-						
-	}
-		
-	/**
-	 * Set the title on the top of the borderPane
-	 * 	
-	 * @param borderPane
-	 * @param title
-	 */
-	private void setTitleOnTop(BorderPane borderPane, String title){
-		
-		titleLabel = new Label(title);
-		titleLabel.setId("titleLabel");
-		titleLabel.setFont(new Font("Press Start 2P", 36));
-		borderPane.setTop(titleLabel);
-		borderPane.setAlignment(titleLabel, Pos.CENTER);
 	}
 	
 	/**
-	 * Remove all panes
+	 * Load Ore Achievement in the Achievement GUI.
 	 */
-	private void removeAllPane() {
-		rightPane.getChildren().removeAll(achievementsLevel, achievementsMission);
+	@FXML
+	private void loadOre() {
+		
+		this.loadAchievement("ORE", "You have collected many ores and that is good. Good job.",
+			this.oreController.getAchievementOreImage());;
+			
 	}
 	
+	/**
+	 * Load Wood Achievement in the Achievement GUI.
+	 */
+	@FXML
+	private void loadWood() {
+		
+		this.loadAchievement("WOOD", "You're a true lumberjack. This is your wood gathering level.",
+				this.woodController.getAchievementWoodImage());;
+		
+	}
+	
+	/**
+	 * Load Peon Achievement in the Achievement GUI.
+	 */
+	@FXML
+	private void loadPeons() {
+		
+		this.loadAchievement("PEONS", "You have many peons to live for eons.", peons1);
+	}
+	
+
 	/**
 	 * Show and hide main window
 	 */

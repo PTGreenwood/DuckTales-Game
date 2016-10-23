@@ -1,9 +1,5 @@
 package uq.deco2800.ducktales.features.seasons;
 
-import uq.deco2800.ducktales.features.weather.Fire;
-import uq.deco2800.ducktales.features.weather.InvalidWeatherChanceException;
-import uq.deco2800.ducktales.features.weather.Rain;
-import uq.deco2800.ducktales.features.weather.WeatherChance;
 import uq.deco2800.ducktales.features.weather.WeatherEvents;
 
 public class Autumn extends Season {
@@ -14,12 +10,19 @@ public class Autumn extends Season {
 	// because you'd want to save that as an integer
 	public Autumn() {
 		super.name = "Autumn";
+<<<<<<< HEAD
 		super.humidityLevel = 2.2f;
+=======
+		super.humidityLevel = 1.8f;
+>>>>>>> master
 		super.maxTemperature = 18;
 		super.currentTemperature = 12;
 		super.minTemperature = 8;
 		super.timeNightFall = 20;
 		super.timeDayBreak = 5;
+		super.atmosphericIceLevel = 0.0f;
+		super.windLevel = 1.7f;
+		super.fireDanger = 0.6f;
 
 		super.weatherEvents = new WeatherEvents();
 		// If you've added things above then you have to add them here with a

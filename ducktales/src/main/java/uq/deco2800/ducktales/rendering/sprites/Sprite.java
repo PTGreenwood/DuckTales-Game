@@ -179,7 +179,7 @@ public class Sprite extends ImageView{
      */
     public static void updateSpriteLocation(Entity entity, EntitySprite sprite,
                                             TileSprite tileSprite) {
-        final double EPSILON = 0.0001;
+        final double epsilon = 0.0001;
 
         // Now get the coordinates of the center of the tile
         double tileCenterX = tileSprite.getLayoutX() +
@@ -193,7 +193,7 @@ public class Sprite extends ImageView{
 
         // Now check for the 4 cases representing the 4 different directions
         // of movement
-        if (Math.abs(entity.getX() - sprite.getxLocation()) < EPSILON) {
+        if (Math.abs(entity.getX() - sprite.getxLocation()) < epsilon) {
             // moving in the Y direction
             double difference = Math.abs(entity.getY() - sprite.getyLocation());
             if (entity.getY() < sprite.getyLocation()) {
@@ -205,7 +205,7 @@ public class Sprite extends ImageView{
                 sprite.setLayoutX(tileCenterX + difference * maxDistanceX);
                 sprite.setLayoutY(tileCenterY + difference * maxDistanceY);
             }
-        } else if (Math.abs(entity.getY() - sprite.getyLocation()) < EPSILON) {
+        } else if (Math.abs(entity.getY() - sprite.getyLocation()) < epsilon) {
             // moving in the X direction
             double difference = Math.abs(entity.getX() - sprite.getxLocation());
             if (entity.getX() < sprite.getxLocation()) {
@@ -223,12 +223,12 @@ public class Sprite extends ImageView{
         // Update the coordinates of the sprite if it has moved on to a new location
         double xDifference = Math.abs(entity.getX() - sprite.getxLocation());
         double yDifference = Math.abs(entity.getY() - sprite.getyLocation());
-        if (xDifference < EPSILON) {
-            if (Math.abs(yDifference - 1.0) < EPSILON) {
+        if (xDifference < epsilon) {
+            if (Math.abs(yDifference - 1.0) < epsilon) {
                 sprite.setyLocation((int) entity.getY());
             }
-        } else if (Math.abs(xDifference - 1.0) < EPSILON) {
-            if (yDifference < EPSILON) {
+        } else if (Math.abs(xDifference - 1.0) < epsilon) {
+            if (yDifference < epsilon) {
                 sprite.setxLocation((int) entity.getX());
             }
         }

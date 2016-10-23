@@ -1,330 +1,662 @@
 package uq.deco2800.ducktales.features.entities.threats;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
-import uq.deco2800.ducktales.features.entities.Effect;
-import uq.deco2800.ducktales.features.entities.Enemy;
+import uq.deco2800.ducktales.rendering.sprites.EffectSprite;
 import uq.deco2800.ducktales.rendering.sprites.EnemySprite;
+import uq.deco2800.ducktales.resources.ResourceType;
 
 /**
- * Created by Krista on 4/10/2016.
- * @author kristasusanne
+ * 
+ * This class creates enemy and
+ * effects types for each of the predifined levels and defines
+ * their parameters.
+ * 
+ * Created by Krista Harrison and Wian Botha
+ * @author kristasusanne, wianb
+ *
+ *
+ *
  */
 
 public class ThreatFactory {
-
+	 /** CONSTANTS */
 	private static String timer = "Timer";
 	protected static ArrayList<Effect> effectsList = new ArrayList<Effect>();
 	protected static ArrayList<Enemy> enemiesList = new ArrayList<Enemy>();
-	//list for enemy ad threat sprites to be stored in
+	public static HashMap<Integer, Enemy> enemyMap = new HashMap<Integer, Enemy>();
+    public static HashMap<Integer, Effect> effectMap = new HashMap<Integer, Effect>();
+	
+    //list for enemy and effect sprites to be stored in
 	protected static ArrayList<EnemySprite> enemySpriteList = new ArrayList<EnemySprite>();
+	protected static ArrayList<EffectSprite> effectSpriteList = new ArrayList<EffectSprite>();
 	
-	public enum EnemyType {
-		RACCOON, BEETLE, WILD_VILLAGER, WOLF, CROW, GORILLA, EVIL_DUCK,
-		LION, CHIMP, BEAR, ZOMBIE_DUCK, ROBBER, ELEPHANT,
-		
-	}
-	
-	public enum EffectType {
-		BLACK_SMOKE, SHAKE, POISON_CLOUD, RUMBLE,  EARTHQUAKE, GREEN_FEL_FIRE,
-		BLIGHT, FEL,
-	}
-	
-	public static Enemy createLevel1Enemy(EnemyType enemy) {
+	 /**
+     * Create enemies at level 1
+     *
+     * @param ResourceType
+     *          the type of the enemy to be created
+     *          
+     */
+	public static void createLevel1Enemy(ResourceType enemy) {
 		switch(enemy) {
 		case RACCOON:
-			return createRaccoon(EnemyType.RACCOON);
+				createRaccoon(ResourceType.RACCOON);
 		case BEETLE:
-			return createBeetle(EnemyType.BEETLE);
+				createBeetle(ResourceType.BEETLE);
 		case WILD_VILLAGER:
-			return createWildVillager(EnemyType.WILD_VILLAGER);
+				createWildVillager(ResourceType.WILD_VILLAGER);
 		default:
-			return null;
+			// throw error message
 		}
 		
 	}
 	
-	public static Effect createLevel1Effect(EffectType effect) {
+	 /**
+     * Create effects at level 1
+     *
+     * @param ResourceType
+     *          the type of the effect to be created
+     *          
+     */
+	public static void createLevel1Effect(ResourceType effect) {
 		switch(effect) {
 		case BLACK_SMOKE:
-			return createBlackSmoke(EffectType.BLACK_SMOKE);
+				createBlackSmoke(ResourceType.BLACK_SMOKE);
 		case SHAKE:
-			return createShake(EffectType.SHAKE);
+				createShake(ResourceType.SHAKE);
 		default:
-			return null;
+			//throw error message
 		}
 	}
 	
-	public static Enemy createLevel2Enemy(EnemyType enemy) {
+	 /**
+     * Create enemies at level 2
+     *
+     * @param ResourceType
+     *          the type of the enemy to be created
+     *          
+     */
+	public static void createLevel2Enemy(ResourceType enemy) {
 		switch(enemy) {
-		case WOLF:
-			return createWolf(EnemyType.WOLF);
+		// note the name of this resource had to be changed to 
+		// ENEMY_WOLF due to the pre-existence of a WOLF resource
+		case ENEMY_WOLF:
+				createWolf(ResourceType.ENEMY_WOLF);
 		case CROW:
-			return createCrow(EnemyType.CROW);
+				createCrow(ResourceType.CROW);
 		case GORILLA:
-			return createGorilla(EnemyType.GORILLA);
+				createGorilla(ResourceType.GORILLA);
 		case EVIL_DUCK:
-			return createEvilDuck(EnemyType.EVIL_DUCK);
+				createEvilDuck(ResourceType.EVIL_DUCK);
 		default:
-			return null;
+			//Throw error message
 		}	
 	}
 	
-	public static Effect createLevel2Effect(EffectType effect) {
+	 /**
+     * Create effects at level 2
+     *
+     * @param ResourceType
+     *          the type of the effect to be created
+     *          
+     */
+	public static void createLevel2Effect(ResourceType effect) {
 		switch(effect) {
 		case POISON_CLOUD:
-			return createPoisonCloud(EffectType.POISON_CLOUD);
+				createPoisonCloud(ResourceType.POISON_CLOUD);
 		case RUMBLE:
-			return createRumble(EffectType.RUMBLE);
+				createRumble(ResourceType.RUMBLE);
 		default:
-			return null;
+			//Throw error message
 		}
 	}
 	
-	public static Enemy createLevel3Enemy(EnemyType enemy) {
+	 /**
+     * Create enemies at level 3
+     *
+     * @param ResourceType
+     *          the type of the enemy to be created
+     *          
+     */
+	public static void createLevel3Enemy(ResourceType enemy) {
 		switch(enemy) {
 		case LION:
-			return createLion(EnemyType.LION);
+				createLion(ResourceType.LION);
 		case CHIMP:
-			return createChimp(EnemyType.CHIMP);
+				createChimp(ResourceType.CHIMP);
 		case BEAR:
-			return createBear(EnemyType.BEAR);
+				createBear(ResourceType.BEAR);
 		
 		default:
-			return null;
+			//Throw error message
 		}
 	}
 	
-	public static Effect createLevel3Effect(EffectType effect) {
+	 /**
+     * Create effects at level 3
+     *
+     * @param ResourceType
+     *          the type of the effect to be created
+     *          
+     */
+	public static void createLevel3Effect(ResourceType effect) {
 		switch(effect) {
 		case EARTHQUAKE: 
-			return createEarthquake(EffectType.EARTHQUAKE);
+			createEarthquake(ResourceType.EARTHQUAKE);
 		case GREEN_FEL_FIRE:
-			return createGreenFelFire(EffectType.GREEN_FEL_FIRE);
+			createGreenFelFire(ResourceType.GREEN_FEL_FIRE);
 		default:
-			return null;
+			//Throw error message
 		}
 	}
 	
-	public static Enemy createLevel4Enemy(EnemyType enemy) {
+	 /**
+     * Create enemies at level 4
+     *
+     * @param ResourceType
+     *          the type of the enemy to be created
+     *          
+     */
+	public static void createLevel4Enemy(ResourceType enemy) {
 		switch(enemy) {
 		case ZOMBIE_DUCK:
-			return createZombieDuck(EnemyType.ZOMBIE_DUCK);
+				createZombieDuck(ResourceType.ZOMBIE_DUCK);
 		case ROBBER:
-			return createRobber(EnemyType.ROBBER);
+				createRobber(ResourceType.ROBBER);
 		case ELEPHANT:
-			return createElephant(EnemyType.ELEPHANT);
+				createElephant(ResourceType.ELEPHANT);
 		default:
-			return null;
+			//Throw error message
 		}	
 	}
 	
-	public static Effect createLevel4Effect(EffectType effect) {
+	 /**
+     * Create effects at level 4
+     *
+     * @param ResourceType
+     *          the type of the effect to be created
+     *          
+     */
+	public static void createLevel4Effect(ResourceType effect) {
 		switch(effect) {
 		case BLIGHT:
-			return createBlight(EffectType.BLIGHT);
+				createBlight(ResourceType.BLIGHT);
 		case FEL:
-			return createFel(EffectType.FEL);
+				createFel(ResourceType.FEL);
 		default:
-			return null;
+			//Throw error message
 		}
 	}
 	
+	 /**
+     * Set the start timer, end timer, level
+     * of damage and random x and y values
+     * for effects
+     *
+     * @param effect
+     *          the effect to have the parameter set
+     * @param start
+     * 			the integer for the start timer
+     * @param end
+     * 			the integer for the end timer
+     * @param damage
+     *			the integer for level of damage
+     *          
+     */
 	private static void setEffectParameters(Effect effect, int start, int end, int damage) {
 		effect.setStartTimer(start, timer);
 		effect.setEndTimer(end);
 		effect.setTheLevelOfDamage(damage);
-		double X = effect.getRandomX();
-		double Y = effect.getRandomY();
+		double x = effect.getRandomX();
+		double y = effect.getRandomY();
+		putInEffectHashMap(effect);
 		effectsList.add(effect);
 	}
 	
+	 /**
+     * Set the start timer, end timer, level
+     * of damage and random x and y values
+     * for enemies
+     *
+     * @param effect
+     *          the enemy to have the parameter set
+     * @param start
+     * 			the integer for the start timer
+     * @param end
+     * 			the integer for the end timer
+     * @param damage
+     *			the integer for level of damage
+     *          
+     */
 	private static void setEnemyParameters(Enemy enemy, int start, int end, int damage) {
 		enemy.setStartTimer(start, timer);
 		enemy.setEndTimer(end);
 		enemy.setTheLevelOfDamage(damage);
-		double X = enemy.getRandomX();
-		double Y = enemy.getRandomY();
+		double x = enemy.getRandomX();
+		double y = enemy.getRandomY();
+		putInEnemyHashMap(enemy);
 		enemiesList.add(enemy);
 	}
 	
+
 	// Level 1 Effects
-	private static Effect createBlackSmoke(EffectType blackSmoke) {
+	
+	 /**
+     * Create black smoke effect, assign its
+     * start timer, end timer, level
+     * of damage and random x and y values, 
+     * and create the sprite for
+     * the effect
+     *
+     * @param ResourceType
+     * 		the effect type to be created from the ResourceType class
+     *          
+     */
+	private static void createBlackSmoke(ResourceType blackSmoke) {
 		Effect blackSmokeEffect = new Effect("Black Smoke");
 		setEffectParameters(blackSmokeEffect, 20, 50, 20);
-		EnemySprite blackSmokeSprite = new EnemySprite();
+		EnemySprite blackSmokeSprite = new EnemySprite(0, blackSmoke);
 		enemySpriteList.add(blackSmokeSprite);
-		return null;
+		putInEffectHashMap(blackSmokeEffect);
+		
 	}
 	
-	private static Effect createShake(EffectType shake) {
+	 /**
+     * Create shake effect, assign its
+     * start timer, end timer, level
+     * of damage and random x and y values, 
+     * and create the sprite for
+     * the effect
+     *
+     * @param ResourceType
+     * 		the effect type to be created from the ResourceType class
+     *          
+     */
+	private static void createShake(ResourceType shake) {
 		Effect shakeEffect = new Effect("Shake");
 		setEffectParameters(shakeEffect, 50, 100, 20);
-		EnemySprite shakeSprite = new EnemySprite();
+		EnemySprite shakeSprite = new EnemySprite(0, shake);
 		enemySpriteList.add(shakeSprite);
-		return null;
+		
 	}
 	
 	// Level 1 Enemies
-	private static Enemy createRaccoon(EnemyType raccoon) {
+	
+	 /**
+     * Create raccoon enemy, assign its
+     * start timer, end timer, level
+     * of damage and random x and y values, 
+     * and create the sprite for
+     * the enemy
+     *
+     * @param ResourceType
+     * 		the enemy type to be created from the ResourceType class
+     *          
+     */
+	private static void createRaccoon(ResourceType raccoon) {
 		Enemy raccoonEnemy = new Enemy("Raccoon");
 		setEnemyParameters(raccoonEnemy, 20, 50, 20);
-		EnemySprite raccoonSprite = new EnemySprite();
+		EnemySprite raccoonSprite = new EnemySprite(0, raccoon);
 		enemySpriteList.add(raccoonSprite);
-		return null;	
+			
 	}
 	
-	private static Enemy createBeetle(EnemyType beetle) {
+	 /**
+     * Create beetle enemy, assign its
+     * start timer, end timer, level
+     * of damage and random x and y values, 
+     * and create the sprite for
+     * the enemy
+     *
+     * @param ResourceType
+     * 		the enemy type to be created from the ResourceType class
+     *          
+     */
+	private static void createBeetle(ResourceType beetle) {
 		Enemy beetleEnemy = new Enemy("Beetle");
 		setEnemyParameters(beetleEnemy, 20, 50, 20);
-		EnemySprite beetleSprite = new EnemySprite();
+		EnemySprite beetleSprite = new EnemySprite(0, beetle);
 		enemySpriteList.add(beetleSprite);
-		return null;
+		
 	}
 	
-
-	private static Enemy createWildVillager(EnemyType wildVillager) {
+	 /**
+     * Create wild villager enemy, assign its
+     * start timer, end timer, level
+     * of damage and random x and y values, 
+     * and create the sprite for
+     * the enemy
+     *
+     * @param ResourceType
+     * 		the effect type to be created from the ResourceType class
+     *          
+     */
+	private static void createWildVillager(ResourceType wildVillager) {
 		Enemy wildVillagerEnemy = new Enemy("Wild Villager");
 		setEnemyParameters(wildVillagerEnemy, 20, 50, 20);
-		EnemySprite wildVillagerSprite = new EnemySprite();
+		EnemySprite wildVillagerSprite = new EnemySprite(0, wildVillager);
 		enemySpriteList.add(wildVillagerSprite);
-		return null;
 	}
 	
 	// Level 2 Effects
-	private static Effect createPoisonCloud(EffectType poisonCloud) {
+	
+	 /**
+     * Create poison cloud effect, assign its
+     * start timer, end timer, level
+     * of damage and random x and y values, 
+     * and create the sprite for
+     * the effect
+     *
+     * @param ResourceType
+     * 		the effect type to be created from the ResourceType class
+     *          
+     */
+	private static void createPoisonCloud(ResourceType poisonCloud) {
 		Effect poisonCloudEffect = new Effect("Poison Cloud");
 		setEffectParameters(poisonCloudEffect, 20, 50, 30);
-		EnemySprite poisonCloudSprite = new EnemySprite();
+		EnemySprite poisonCloudSprite = new EnemySprite(0, poisonCloud);
 		enemySpriteList.add(poisonCloudSprite);
-		return null;
+		
 	}
 	
-	private static Effect createRumble(EffectType rumble) {
+	 /**
+     * Create rumble effect, assign its
+     * start timer, end timer, level
+     * of damage and random x and y values, 
+     * and create the sprite for
+     * the effect
+     *
+     * @param ResourceType
+     * 		the effect type to be created from the ResourceType class
+     *          
+     */
+	private static void createRumble(ResourceType rumble) {
 		Effect rumbleEffect = new Effect("Rubmle");
 		setEffectParameters(rumbleEffect, 50, 100, 30);
-		EnemySprite rumbleSprite = new EnemySprite();
+		EnemySprite rumbleSprite = new EnemySprite(0, rumble);
 		enemySpriteList.add(rumbleSprite);
-		return null;
 	}
 	
 	// Level 2 Enemies
 
-	private static Enemy createWolf(EnemyType wolf) {
+	 /**
+     * Create wolf enemy, assign its
+     * start timer, end timer, level
+     * of damage and random x and y values, 
+     * and create the sprite for
+     * the enemy
+     *
+     * @param ResourceType
+     * 		the effect type to be created from the ResourceType class
+     *          
+     */
+	private static void createWolf(ResourceType enemy_wolf) {
 		Enemy wolfEnemy = new Enemy("Wolf");
 		setEnemyParameters(wolfEnemy, 20, 50, 30);
-		EnemySprite wolfSprite = new EnemySprite();
+		EnemySprite wolfSprite = new EnemySprite(0, enemy_wolf);
 		enemySpriteList.add(wolfSprite);
-		return null;
 	}
 	
-	private static Enemy createCrow(EnemyType crow) {
+	 /**
+     * Create crow enemy, assign its
+     * start timer, end timer, level
+     * of damage and random x and y values, 
+     * and create the sprite for
+     * the enemy
+     *
+     * @param ResourceType
+     * 		the effect type to be created from the ResourceType class
+     *          
+     */
+	private static void createCrow(ResourceType crow) {
 		Enemy crowEnemy = new Enemy("Crow");
 		setEnemyParameters(crowEnemy, 20, 50, 30);
-		EnemySprite crowSprite = new EnemySprite();
+		EnemySprite crowSprite = new EnemySprite(0, crow);
 		enemySpriteList.add(crowSprite);
-		return null;
 	}
 	
-	private static Enemy createGorilla(EnemyType gorilla) {
+	 /**
+     * Create gorilla enemy, assign its
+     * start timer, end timer, level
+     * of damage and random x and y values, 
+     * and create the sprite for
+     * the enemy
+     *
+     * @param ResourceType
+     * 		the effect type to be created from the ResourceType class
+     *          
+     */
+	private static void createGorilla(ResourceType gorilla) {
 		Enemy gorillaEnemy = new Enemy("Gorilla");
 		setEnemyParameters(gorillaEnemy, 20, 50, 30);
-		EnemySprite gorillaSprite = new EnemySprite();
+		EnemySprite gorillaSprite = new EnemySprite(0, gorilla);
 		enemySpriteList.add(gorillaSprite);
-		return null;
 	}
 	
-	private static Enemy createEvilDuck(EnemyType evilDuck) {
+	 /**
+     * Create evil duck enemy, assign its
+     * start timer, end timer, level
+     * of damage and random x and y values, 
+     * and create the sprite for
+     * the enemy
+     *
+     * @param ResourceType
+     * 		the effect type to be created from the ResourceType class
+     *          
+     */
+	private static void createEvilDuck(ResourceType evilDuck) {
 		Enemy evilDuckEnemy = new Enemy("Evil Duck");
 		setEnemyParameters(evilDuckEnemy, 20, 50, 30);
-		EnemySprite evilDuckSprite = new EnemySprite();
+		EnemySprite evilDuckSprite = new EnemySprite(0, evilDuck);
 		enemySpriteList.add(evilDuckSprite);
-		return null;
 	}
 	
 	// Level 3 Effects
 
-	private static Effect createEarthquake(EffectType earthquake) {
+	 /**
+     * Create earthquake effect, assign its
+     * start timer, end timer, level
+     * of damage and random x and y values, 
+     * and create the sprite for
+     * the effect
+     *
+     * @param ResourceType
+     * 		the effect type to be created from the ResourceType class
+     *          
+     */
+	private static void createEarthquake(ResourceType earthquake) {
 		Effect earthquakeEffect = new Effect("Earthquake");
 		setEffectParameters(earthquakeEffect, 20, 50, 40);
-		EnemySprite earthquakeSprite = new EnemySprite();
+		EnemySprite earthquakeSprite = new EnemySprite(0, earthquake);
 		enemySpriteList.add(earthquakeSprite);
-		return null;
 	}
 	
-	private static Effect createGreenFelFire(EffectType greenFelFire) {
+	 /**
+     * Create green fel fire effect, assign its
+     * start timer, end timer, level
+     * of damage and random x and y values, 
+     * and create the sprite for
+     * the effect
+     *
+     * @param ResourceType
+     * 		the effect type to be created from the ResourceType class
+     *          
+     */
+	private static void createGreenFelFire(ResourceType greenFelFire) {
 		Effect greenFelFireEffect = new Effect("Green Fel Fire");
 		setEffectParameters(greenFelFireEffect, 20, 50, 40);
-		EnemySprite greenFelFireSprite = new EnemySprite();
+		EnemySprite greenFelFireSprite = new EnemySprite(0, greenFelFire);
 		enemySpriteList.add(greenFelFireSprite);
-		return null;
 	}
 	
 	// Level 3 Enemies
-	private static Enemy createLion(EnemyType lion) {
+	
+	 /**
+     * Create lion enemy, assign its
+     * start timer, end timer, level
+     * of damage and random x and y values, 
+     * and create the sprite for
+     * the enemy
+     *
+     * @param ResourceType
+     * 		the effect type to be created from the ResourceType class
+     *          
+     */
+	private static void createLion(ResourceType lion) {
 		Enemy lionEnemy = new Enemy("Lion");
 		setEnemyParameters(lionEnemy, 50, 100, 40);
-		EnemySprite lionSprite = new EnemySprite();
+		EnemySprite lionSprite = new EnemySprite(0, lion);
 		enemySpriteList.add(lionSprite);
-		return null;
 	}
 
-	private static Enemy createChimp(EnemyType chimp) {
+	 /**
+     * Create chimp enemy, assign its
+     * start timer, end timer, level
+     * of damage and random x and y values, 
+     * and create the sprite for
+     * the enemy
+     *
+     * @param ResourceType
+     * 		the effect type to be created from the ResourceType class
+     *          
+     */
+	private static void createChimp(ResourceType chimp) {
 		Enemy chimpEnemy = new Enemy ("Chimp");
 		setEnemyParameters(chimpEnemy, 20, 50, 40);
-		EnemySprite chimpSprite = new EnemySprite();
+		EnemySprite chimpSprite = new EnemySprite(0, chimp);
 		enemySpriteList.add(chimpSprite);
-		return null;
 	}
 	
-	private static Enemy createBear(EnemyType bear) {
+	 /**
+     * Create bear enemy, assign its
+     * start timer, end timer, level
+     * of damage and random x and y values, 
+     * and create the sprite for
+     * the enemy
+     *
+     * @param ResourceType
+     * 		the effect type to be created from the ResourceType class
+     *          
+     */
+	private static void createBear(ResourceType bear) {
 		Enemy bearEnemy = new Enemy("Bear");
 		setEnemyParameters(bearEnemy, 20, 50, 40);
-		EnemySprite bearSprite = new EnemySprite();
+		EnemySprite bearSprite = new EnemySprite(0, bear);
 		enemySpriteList.add(bearSprite);
-		return null;
 	}
 	
 	// Level 4 Effects
-	private static Effect createBlight(EffectType blight) {
+	
+	 /**
+     * Create blight effect, assign its
+     * start timer, end timer, level
+     * of damage and random x and y values, 
+     * and create the sprite for
+     * the effect
+     *
+     * @param ResourceType
+     * 		the effect type to be created from the ResourceType class
+     *          
+     */
+	private static void createBlight(ResourceType blight) {
 		Effect blightEffect = new Effect("Blight");
 		setEffectParameters(blightEffect, 20, 50, 50);
-		EnemySprite blightSprite = new EnemySprite();
+		EnemySprite blightSprite = new EnemySprite(0, blight);
 		enemySpriteList.add(blightSprite);
-		return null;
 	}
 	
-	private static Effect createFel(EffectType fel) {
+	 /**
+     * Create fel effect, assign its
+     * start timer, end timer, level
+     * of damage and random x and y values, 
+     * and create the sprite for
+     * the effect
+     *
+     * @param ResourceType
+     * 		the effect type to be created from the ResourceType class
+     *          
+     */
+	private static void createFel(ResourceType fel) {
 		Effect felEffect = new Effect("Fel");
 		setEffectParameters(felEffect, 20, 50, 50);
-		EnemySprite felSprite = new EnemySprite();
+		EnemySprite felSprite = new EnemySprite(0, fel);
 		enemySpriteList.add(felSprite);
-		return null;
 	}
 	
 	// Level 4 Enemies
-	private static Enemy createZombieDuck(EnemyType zombieDuck) {
+	
+	 /**
+     * Create zombie duck enemy, assign its
+     * start timer, end timer, level
+     * of damage and random x and y values, 
+     * and create the sprite for
+     * the enemy
+     *
+     * @param ResourceType
+     * 		the effect type to be created from the ResourceType class
+     *          
+     */
+	private static void createZombieDuck(ResourceType zombieDuck) {
 		Enemy zombieDuckEnemy = new Enemy("Zombie Duck");
 		setEnemyParameters(zombieDuckEnemy, 20, 50, 50);
-		EnemySprite zombieDuckSprite = new EnemySprite();
+		EnemySprite zombieDuckSprite = new EnemySprite(0, zombieDuck);
 		enemySpriteList.add(zombieDuckSprite);
-		return null;
 	}
 
-	private static Enemy createRobber(EnemyType robber) {
+	 /**
+     * Create robber enemy, assign its
+     * start timer, end timer, level
+     * of damage and random x and y values, 
+     * and create the sprite for
+     * the enemy
+     *
+     * @param ResourceType
+     * 		the effect type to be created from the ResourceType class
+     *          
+     */
+	private static void createRobber(ResourceType robber) {
 		Enemy robberEnemy = new Enemy("Robber");
 		setEnemyParameters(robberEnemy, 20, 50, 50);
-		EnemySprite robberSprite = new EnemySprite();
+		EnemySprite robberSprite = new EnemySprite(0, robber);
 		enemySpriteList.add(robberSprite);
-		return null;
 	}
 
-	private static Enemy createElephant(EnemyType elephant) {
+	 /**
+     * Create elephant enemy, assign its
+     * start timer, end timer, level
+     * of damage and random x and y values, 
+     * and create the sprite for
+     * the enemy
+     *
+     * @param ResourceType
+     * 		the effect type to be created from the ResourceType class
+     *          
+     */
+	private static void createElephant(ResourceType elephant) {
 		Enemy elephantEnemy = new Enemy("Elephant");
 		setEnemyParameters(elephantEnemy, 20, 50, 50);
-		EnemySprite elephantSprite = new EnemySprite();
+		EnemySprite elephantSprite = new EnemySprite(0, elephant);
 		enemySpriteList.add(elephantSprite);
-		return null;
+	}
+	
+	private static void putInEnemyHashMap(Enemy enemy){
+		enemyMap.put(enemy.hashCode(), enemy);
+	}
+	
+	private static void putInEffectHashMap(Effect effect){
+		effectMap.put(effect.hashCode(), effect);
+	}
+
+	
+	public static void clearEnemyHashMap(){
+		enemyMap.clear();
+	}
+	
+	
+	public static void clearEffectHashMap(){
+		effectMap.clear();
 	}
 
 }

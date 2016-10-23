@@ -2,22 +2,26 @@ package uq.deco2800.ducktales;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
-
-import uq.deco2800.ducktales.features.entities.Entity;
-
+import uq.deco2800.ducktales.features.entities.MainEntityManager;
 import uq.deco2800.ducktales.features.entities.agententities.Animal;
 import uq.deco2800.ducktales.features.entities.peons.Peon;
+import uq.deco2800.ducktales.features.entities.resourceentities.DroppableResourceEntity;
+import uq.deco2800.ducktales.features.entities.resourceentities.Tree;
 import uq.deco2800.ducktales.features.entities.threats.Threat;
 import uq.deco2800.ducktales.features.entities.worldentities.Building;
+import uq.deco2800.ducktales.features.entities.worldentities.BuildingManager;
 import uq.deco2800.ducktales.features.entities.worldentities.StorageProduceBuilding;
 import uq.deco2800.ducktales.resources.ResourceInfoRegister;
-import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 
 
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.features.landscape.tiles.Tile;
+import uq.deco2800.ducktales.features.time.TimeManager;
+import uq.deco2800.ducktales.rendering.sprites.BuildingSprite;
 import uq.deco2800.ducktales.util.*;
+import uq.deco2800.ducktales.util.exceptions.GameSetupException;
 
 import static uq.deco2800.ducktales.resources.ResourceType.*;
 
@@ -33,7 +37,7 @@ public class World implements Tickable {
 	 */
 	private static final ResourceType DEFAULT_TILE_TYPE = GRASS_1;
 	// The list of production buildings
-	private final ResourceType[] productionBuildingTypes = {
+	private static final ResourceType[] productionBuildingTypes = {
 			SAWMILL, MINE, FARM, QUARRY
 	};
 
@@ -50,6 +54,8 @@ public class World implements Tickable {
 	private ArrayList<Building> buildings; // All the buildings in the game
 	private HashMap<String, Peon> peons; // All the peons in the game
 	private ArrayList<Threat> threats;
+	private HashMap<Integer, Tree> trees;
+	private ArrayList<DroppableResourceEntity> droppedResources; // All the dropped resources in the game
 
 	/** The registers */
 	private ResourceInfoRegister infoRegister = ResourceInfoRegister.getInstance();
@@ -58,6 +64,8 @@ public class World implements Tickable {
 	ArrayList<ResourceType> productionBuildingsList;
 	
 	private int timer = 0;
+	
+	private ArrayList<Boolean> nightAnimation = new ArrayList<Boolean>();
 	
 	/**
 	 * Instantiates a World with the given specified parameters, with the tiles
@@ -78,6 +86,7 @@ public class World implements Tickable {
 
 		// Instantiate game model
 		this.tiles = new Array2D<>(width, height);
+		this.trees = new HashMap<>(50);
 		this.animals = new ArrayList<>(50);
 		this.buildings = new ArrayList<>(50);
 		this.peons = new HashMap<>(50);
@@ -184,9 +193,43 @@ public class World implements Tickable {
 		if (peons.containsKey(peonName)) {
 			return peons.get(peonName);
 		} else {
-			throw new RuntimeException("Fail to retrieve a peon. Peon with" +
+			throw new GameSetupException("Fail to retrieve a peon. Peon with" +
 					" name: \"" + peonName + "\" has not been added to the" +
 					"game yet.");
+		}
+	}
+
+	/**
+	 * Add a tree to the world model, throwing an exception if a tree with
+	 * the same hashcode is already in the model
+	 *
+	 * @param tree
+	 * 			The tree to be added to the model
+	 */
+	public void addTree(Tree tree) {
+		if (!trees.containsKey(tree.hashCode())) {
+			trees.put(tree.hashCode(), tree);
+		} else {
+			throw new GameSetupException("Failed to add a tree to the world." +
+					" A tree with the same hashcode already exists in the " +
+					"model");
+		}
+	}
+
+	/**
+	 * Retrieve the {@link Tree} with the given hashcode from the game model
+	 * {@link GameSetupException} is thrown if the given hashcode is not
+	 * a key in the hashmap
+	 *
+	 * @param treeHashcode
+	 * 			The hashcode of the tree to be retrieved
+	 */
+	public Tree getTree(int treeHashcode) {
+		if (trees.containsKey(treeHashcode)) {
+			return trees.get(treeHashcode);
+		} else {
+			throw new GameSetupException("A tree with the given hashcode" +
+					" does not exist in the game model");
 		}
 	}
 
@@ -212,6 +255,36 @@ public class World implements Tickable {
 	 */
 	public Animal getAnimal(int index) {
 		return animals.get(index);
+	}
+	
+	/**
+	 * Get the droppedResource with the given index
+	 * 
+	 * @return The dropped resource at the given index in the droppedResources 
+	 *         List
+	 */
+	public DroppableResourceEntity getDroppedResource(int index) {
+		if(droppedResources.contains(index)) {
+			return droppedResources.get(index);
+		} else {
+			throw new RuntimeException("Fail to retrieve a droppedResource."
+				+ " droppedResource with" +
+				" key: \"" + index + "\" has not been added to the" +
+				"game yet.");
+		}
+	}
+	
+	/**
+	 * Set a dropped resource in the droppedResource List using the 
+	 * given Value
+	 */
+	public void addDroppedResoure(DroppableResourceEntity value) {
+		if(droppedResources.contains(value)) {
+			throw new RuntimeException("droppedResources already contains "
+					+ "a dropped resource with value: " + value);
+		} else {
+			droppedResources.add(value);
+		}	
 	}
 
 	/**
@@ -285,7 +358,8 @@ public class World implements Tickable {
 	 * 		The length y of the building - define how many tiles to the upper left
 	 * 		will be checked
 	 *
-	 * @return Whether the building can be added to this tile
+	 * @return true if the location given is available
+	 * 		   false otherwise
 	 */
 	public boolean checkTileAvailability(int startX, int startY, int xLength, int yLength) {
 		for (int x = 0; x < xLength; x++) {
@@ -309,6 +383,63 @@ public class World implements Tickable {
 	@Override
 	public void tick() {
 		timer++;
+		
+		// change the animation between day/night animation depending on time of day
+		// declared here, as not used elsewhere within the class
+		MainEntityManager mainManager = MainEntityManager.getInstance();
+		BuildingManager buildingManager = mainManager.getBuildingManager();
+		GameManager gameManager = GameManager.getGameManager();
+		TimeManager timeManager = gameManager.getTimeManager();
+		
+		List<BuildingSprite> buildingSprites = buildingManager.getBuildingSprites();
+				
+		boolean isWinter = (timeManager.seasonManager.getCurrentSeason().getName() 
+				== "winter");
+
+		for (int x = 0; x < buildingSprites.size(); x++) {
+			// Set the new buildings to be true of false depending on time of day (to get 
+			// right animation started) 
+			if (nightAnimation.size() < buildingSprites.size()) {
+				for (int y = nightAnimation.size(); y < buildingSprites.size(); y++) {
+					nightAnimation.add(y, !timeManager.isNight());
+				}
+			}		
+			
+			
+			// Day time during winter
+			if ((isWinter) && // Check its winter
+					// Check its day time and not updated
+					(!timeManager.isNight() && nightAnimation.get(x))) { 
+				BuildingSprite buildingSprite = buildingSprites.get(x);
+				if (buildingSprite.winterDayAnimation(buildingSprite.getEntityType())) {
+					nightAnimation.set(x, true);
+				}
+			}
+			// Night time during winter
+			else if ((isWinter) && // Check its winter
+					// Check its night and not updated
+					(timeManager.isNight() && !nightAnimation.get(x))) {
+				BuildingSprite buildingSprite = buildingSprites.get(x);
+				if (buildingSprite.winterNightAnimation(buildingSprite.getEntityType())) {
+					nightAnimation.set(x, false);
+				}
+			}
+			// Its night time, change animation to night type - NOT WINTER
+			else if (!nightAnimation.get(x) && timeManager.isNight()) {
+				BuildingSprite buildingSprite = buildingSprites.get(x);
+				if (buildingSprite.nightAnimation(buildingSprite.getEntityType())) {
+					nightAnimation.set(x, true);
+				}
+			} 
+			// Its day time, change animation to day type - NOT WINTER
+			else if (nightAnimation.get(x) && !timeManager.isNight()) {
+				BuildingSprite buildingSprite = buildingSprites.get(x);
+				if (buildingSprite.dayAnimation(buildingSprite.getEntityType())) {
+					nightAnimation.set(x, false);
+				}
+			}
+		}
+		
 		// Update all the tiles
 		for (int y = 0; y < tiles.getHeight(); y++) {
 			for (int x = 0; x < tiles.getWidth(); x++) {
@@ -330,6 +461,11 @@ public class World implements Tickable {
 				buildingSelected.produceMaterial();
 			}
 		}
+	}
+	
+	/** gets number of peons for achievement tracking */
+	public int getNumberOfPeons() {
+		return peons.size();
 	}
 
 }
