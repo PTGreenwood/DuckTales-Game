@@ -181,7 +181,7 @@ public class ResourceEntityManager extends SecondaryManager {
 			}
 
 			// Add that droppable resource to the droppable resource list
-			world.addDroppedResoure(resource);
+			world.addDroppedResource(resource);
 
 			// Add the sprite of the resource to the sprites list, and set
 			// the position of that sprite
