@@ -29,7 +29,7 @@ public class Wool extends DroppableResourceEntity {
 	 * @param type,
 	 *            the resource type of the wool
 	 */
-	public Wool(ResourceType type, int x, int y) {
+	public Wool(int x, int y, ResourceType type) {
 		super(x, y, type);
 		this.type = type;
 		this.x = x;

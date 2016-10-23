@@ -1,6 +1,9 @@
 package uq.deco2800.ducktales;
 
-import java.io.File; 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.File;
 import java.io.IOException; 
 import javax.sound.sampled.AudioFormat; 
 import javax.sound.sampled.AudioInputStream; 
@@ -11,18 +14,34 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.SourceDataLine; 
 import javax.sound.sampled.UnsupportedAudioFileException; 
  
-public class GameSound extends Thread { 
- 
+/**
+ *Sound of the game, Extends Thread thus giving functionality to play Asynchronously.
+ * 
+ * Only Plays Wav files.
+ *  
+ * @author Wian
+ *
+ */
+public class GameSound extends Thread {
+    /** The logger */
+    private static final Logger LOGGER = LoggerFactory.getLogger(GameSound.class);
+
+
     private String filename;
  
     private Position curPosition;
  
-    private final int EXTERNAL_BUFFER_SIZE = 524288; // 128Kb 
+    
+    private static final int externalBufferSize = 524288; // 128Kb 
  
     enum Position { 
         LEFT, RIGHT, NORMAL
     };
  
+    /**Constructor takes string as source of the wav file to be played
+     * 
+     * @param wavfile(String) - Location of the wav sound file to be play
+     */
     public GameSound(String wavfile) { 
         filename = wavfile;
         curPosition = Position.NORMAL;
@@ -35,23 +54,30 @@ public class GameSound extends Thread {
  
     public void run() { 
  
+    	//Creates File with given file name
         File soundFile = new File(filename);
         if (!soundFile.exists()) { 
-            System.err.println("Wave file is not found: " + filename);
+            //File at location "filename" doesn't exist print File not found
+        	LOGGER.info("Wave file is not found: " + filename);
             return;
         } 
  
+        //Opens the Audio Stream
         AudioInputStream audioInputStream = null;
         try { 
+        	//Try opening audioInputStream with given sound file
             audioInputStream = AudioSystem.getAudioInputStream(soundFile);
-        } catch (UnsupportedAudioFileException e1) { 
-            e1.printStackTrace();
+        } 
+        //Catch Exceptions
+        catch (UnsupportedAudioFileException e) {
+            LOGGER.debug("Audio file unsupported", e);
             return;
-        } catch (IOException e1) { 
-            e1.printStackTrace();
+        } catch (IOException e) {
+            LOGGER.debug("Unable to open audio file", e);
             return;
         } 
  
+        //Get audio format
         AudioFormat format = audioInputStream.getFormat();
         SourceDataLine auline = null;
         DataLine.Info info = new DataLine.Info(SourceDataLine.class, format);
@@ -60,10 +86,10 @@ public class GameSound extends Thread {
             auline = (SourceDataLine) AudioSystem.getLine(info);
             auline.open(format);
         } catch (LineUnavailableException e) { 
-            e.printStackTrace();
+            LOGGER.debug("line unavailable", e);
             return;
         } catch (Exception e) { 
-            e.printStackTrace();
+            LOGGER.debug("not sure what happened here", e);
             return;
         } 
  
@@ -78,7 +104,7 @@ public class GameSound extends Thread {
  
         auline.start();
         int nBytesRead = 0;
-        byte[] abData = new byte[EXTERNAL_BUFFER_SIZE];
+        byte[] abData = new byte[externalBufferSize];
  
         try { 
             while (nBytesRead != -1) { 
@@ -87,7 +113,7 @@ public class GameSound extends Thread {
                     auline.write(abData, 0, nBytesRead);
             } 
         } catch (IOException e) { 
-            e.printStackTrace();
+            LOGGER.debug("unable to open file", e);
             return;
         } finally { 
             auline.drain();

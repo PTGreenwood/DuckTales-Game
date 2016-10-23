@@ -118,6 +118,15 @@ public class World implements Tickable {
 	}
 
 	/**
+	 * Get the default tile type.
+	 * 
+	 * @return The ResourceType used as the default tile type.
+	 */
+	public static ResourceType getDefaultTileType() {
+		return DEFAULT_TILE_TYPE;
+	}
+
+	/**
 	 * Retrieves a Tile at the specified coordinates.
 	 *
 	 * @param x
@@ -156,7 +165,7 @@ public class World implements Tickable {
 	 */
 	public void addAnimal(Animal animal) {
 		if (animals.contains(animal)) {
-			throw new RuntimeException("Animal already exists in the game");
+			throw new GameSetupException("Animal already exists in the game");
 		} else {
 			animals.add(animal);
 		}
@@ -176,7 +185,7 @@ public class World implements Tickable {
 		if (!peons.containsKey(peonName)) {
 			peons.put(peonName, peonObject);
 		} else {
-			throw new RuntimeException("Peon name already exists. Please" +
+			throw new GameSetupException("Peon name already exists. Please" +
 					"make sure peon name is checked when adding a new one");
 		}
 	}
@@ -269,7 +278,7 @@ public class World implements Tickable {
 		if(droppedResources.contains(index)) {
 			return droppedResources.get(index);
 		} else {
-			throw new RuntimeException("Fail to retrieve a droppedResource."
+			throw new GameSetupException("Fail to retrieve a droppedResource."
 				+ " droppedResource with" +
 				" key: \"" + index + "\" has not been added to the" +
 				"game yet.");
@@ -282,7 +291,7 @@ public class World implements Tickable {
 	 */
 	public void addDroppedResoure(DroppableResourceEntity value) {
 		if(droppedResources.contains(value)) {
-			throw new RuntimeException("droppedResources already contains "
+			throw new GameSetupException("droppedResources already contains "
 					+ "a dropped resource with value: " + value);
 		} else {
 			droppedResources.add(value);
@@ -308,7 +317,7 @@ public class World implements Tickable {
 							int xLength, int yLength) {
 		// Add the entity
 		if (buildings.contains(building)) {
-			throw new RuntimeException("This building has already " +
+			throw new GameSetupException("This building has already " +
 					"been added to the world");
 		} else {
 			buildings.add(building);

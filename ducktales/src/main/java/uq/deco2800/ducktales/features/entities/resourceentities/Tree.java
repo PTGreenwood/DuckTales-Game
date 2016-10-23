@@ -7,6 +7,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import uq.deco2800.ducktales.features.entities.peons.Peon;
+import uq.deco2800.ducktales.features.seasons.SeasonManager;
+import uq.deco2800.ducktales.features.time.TimeManager;
+import uq.deco2800.ducktales.rendering.sprites.TreeSprite;
+import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
 
 /**
@@ -27,6 +31,13 @@ public class Tree extends ResourceEntity {
 	// time).
 	private final ScheduledExecutorService scheduler = 
 			Executors.newScheduledThreadPool(1);
+	
+	// Manager for the Seasons
+    private SeasonManager seasonManager;
+	private TimeManager timeManager;
+	
+	// The ResourceEntityManager
+	private ResourceEntityManager resourceEntityManager;
 
 	// Logger for the class
 	private static final Logger LOGGER = Logger.getLogger(Tree.class.getName());
@@ -41,7 +52,7 @@ public class Tree extends ResourceEntity {
 	 * @throws Exception
 	 */
 	public Tree(double x, double y) {
-		super(x, y, 1, 1, rare(SUMMER_TYPES), DEFVALUE);
+		super(x, y, 1, 1, rare(SPRING_TYPES), DEFVALUE);
 		// Scheduling the runnable to run every minute in real time.
 		scheduler.scheduleAtFixedRate(createRunnable(this), 24, 24, 
 				TimeUnit.MINUTES);
@@ -49,7 +60,7 @@ public class Tree extends ResourceEntity {
 		 * If the tree is the last type in the list, which will always be the
 		 * rare, set the value of the Resource to be double.
 		 */
-		if (this.getType() == SUMMER_TYPES[SUMMER_TYPES.length - 1]) {
+		if (this.getType() == SPRING_TYPES[SPRING_TYPES.length - 1]) {
 			this.setValue(2 * DEFVALUE);
 		}
 	}
@@ -67,6 +78,14 @@ public class Tree extends ResourceEntity {
 			public void run() {
 				try {
 					tree.increaseValue(50);
+					if(tree.getType().equals(TREE_3_AUTUMN) || 
+							tree.getType().equals(TREE_3_SUMMER) ||
+							tree.getType().equals(TREE_3_SPRING) ||
+							tree.getType().equals(TREE_3_WINTER)){
+						updateRareSprite();
+					}else{
+						updateSprite();
+					}			
 				} catch (Exception e) {
 					LOGGER.log(Level.SEVERE, e.toString(), e);
 				}
@@ -74,7 +93,66 @@ public class Tree extends ResourceEntity {
 		};
 		return aRunnable;
 	}
-
+	
+	/**
+	 * Method that updates the sprite of the tree depending on the season. Used for
+	 * trees that are not rare.
+	 *  
+	 */
+	private void updateSprite(){
+		String season = seasonManager.getCurrentSeason().getName();
+		TreeSprite sprite = resourceEntityManager.getTree(this.hashCode());
+		if(season.equals("Summer")){
+			sprite.setImage(ResourceSpriteRegister.getInstance().getResourceImage(TREE_1_SUMMER));
+		}else if(season.equals("Autumn")){
+			sprite.setImage(ResourceSpriteRegister.getInstance().getResourceImage(TREE_1_AUTUMN));
+		}else if(season.equals("Winter")){
+			sprite.setImage(ResourceSpriteRegister.getInstance().getResourceImage(TREE_1_WINTER));
+		}else if(season.equals("Spring")){
+			sprite.setImage(ResourceSpriteRegister.getInstance().getResourceImage(TREE_1_SPRING));
+		}
+	}
+	/**
+	 * Method that updates the sprite of the tree depending on the season. Used for
+	 * trees that arerare.
+	 *  
+	 */
+	private void updateRareSprite(){
+		String season = seasonManager.getCurrentSeason().getName();
+		TreeSprite sprite = resourceEntityManager.getTree(this.hashCode());
+		if(season.equals("Summer")){
+			sprite.setImage(ResourceSpriteRegister.getInstance().getResourceImage(TREE_3_SUMMER));
+		}else if(season.equals("Autumn")){
+			sprite.setImage(ResourceSpriteRegister.getInstance().getResourceImage(TREE_3_AUTUMN));
+		}else if(season.equals("Winter")){
+			sprite.setImage(ResourceSpriteRegister.getInstance().getResourceImage(TREE_3_WINTER));
+		}else if(season.equals("Spring")){
+			sprite.setImage(ResourceSpriteRegister.getInstance().getResourceImage(TREE_3_SPRING));
+		}
+	}
+	
+	/**
+	 * Set the time manager and the season manager based off the time manager.
+	 * 
+	 * @param timeManager
+	 *            the time manager to set
+	 */
+	public void setTimeManager(TimeManager timeManager) {
+		this.timeManager = timeManager;
+		this.seasonManager = timeManager.getSeasonManager();
+	}
+	
+	/**
+	 * Set the resourceEntitymanager.
+	 * 
+	 * @param resourceEntityManager
+	 *            the manager to set
+	 */
+	public void setResourceEntityManager(ResourceEntityManager resourceEntityManager) {
+		this.resourceEntityManager = resourceEntityManager;
+	}
+	
+	
 	/**
 	 * Function added to avoid error in Lumberjack class will possibly be
 	 * removed later.

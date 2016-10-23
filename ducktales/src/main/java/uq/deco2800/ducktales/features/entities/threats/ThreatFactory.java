@@ -3,46 +3,56 @@ package uq.deco2800.ducktales.features.entities.threats;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import uq.deco2800.ducktales.rendering.sprites.EffectSprite;
 import uq.deco2800.ducktales.rendering.sprites.EnemySprite;
 import uq.deco2800.ducktales.resources.ResourceType;
+import uq.deco2800.ducktales.util.exceptions.GameSetupException;
 
 /**
  * 
  * This class creates enemy and
- * effects types and defines
- * their parameters
+ * effects types for each of the predifined levels and defines
+ * their parameters.
  * 
  * Created by Krista Harrison and Wian Botha
  * @author kristasusanne, wianb
+ *
+ *
+ *
  */
 
 public class ThreatFactory {
 	 /** CONSTANTS */
 	private static String timer = "Timer";
+	private static String invalidEnemy = "Invalid enemy type";
 	protected static ArrayList<Effect> effectsList = new ArrayList<Effect>();
 	protected static ArrayList<Enemy> enemiesList = new ArrayList<Enemy>();
-	//list for enemy ad threat sprites to be stored in
+	protected static final HashMap<Integer, Enemy> enemyMap = new HashMap<Integer, Enemy>();
+    protected static final HashMap<Integer, Effect> effectMap = new HashMap<Integer, Effect>();
+	
+    //list for enemy and effect sprites to be stored in
 	protected static ArrayList<EnemySprite> enemySpriteList = new ArrayList<EnemySprite>();
-	public static HashMap<String, Enemy> enemyMap = new HashMap<String, Enemy>();
-    public static HashMap<String, Effect> effectMap = new HashMap<String, Effect>();
+	protected static ArrayList<EffectSprite> effectSpriteList = new ArrayList<EffectSprite>();
 	
 	 /**
      * Create enemies at level 1
      *
-     * @param ResourceType
+     * @param enemy
      *          the type of the enemy to be created
-     *          
      */
 	public static void createLevel1Enemy(ResourceType enemy) {
 		switch(enemy) {
 		case RACCOON:
 				createRaccoon(ResourceType.RACCOON);
+				break;
 		case BEETLE:
 				createBeetle(ResourceType.BEETLE);
+				break;
 		case WILD_VILLAGER:
 				createWildVillager(ResourceType.WILD_VILLAGER);
+				break;
 		default:
-			// throw error message
+			throw new GameSetupException(invalidEnemy);
 		}
 		
 	}
@@ -50,99 +60,110 @@ public class ThreatFactory {
 	 /**
      * Create effects at level 1
      *
-     * @param ResourceType
+     * @param effect
      *          the type of the effect to be created
-     *          
      */
 	public static void createLevel1Effect(ResourceType effect) {
 		switch(effect) {
 		case BLACK_SMOKE:
 				createBlackSmoke(ResourceType.BLACK_SMOKE);
+				break;
 		case SHAKE:
 				createShake(ResourceType.SHAKE);
+				break;
 		default:
-			//throw error message
+			throw new GameSetupException(invalidEnemy);
 		}
 	}
 	
 	 /**
      * Create enemies at level 2
      *
-     * @param ResourceType
+     * @param enemy
      *          the type of the enemy to be created
-     *          
+     *
      */
 	public static void createLevel2Enemy(ResourceType enemy) {
 		switch(enemy) {
 		// note the name of this resource had to be changed to 
-		// ENEMY_WOLF due to the pre-existence of a WOLF resource
-		case ENEMY_WOLF:
-				createWolf(ResourceType.ENEMY_WOLF);
+		// enemyWolf due to the pre-existence of a WOLF resource
+		case ENEMYWOLF:
+				createWolf(ResourceType.ENEMYWOLF);
+				break;
 		case CROW:
 				createCrow(ResourceType.CROW);
+				break;
 		case GORILLA:
 				createGorilla(ResourceType.GORILLA);
+				break;
 		case EVIL_DUCK:
 				createEvilDuck(ResourceType.EVIL_DUCK);
+				break;
 		default:
-			//Throw error message
+			throw new GameSetupException(invalidEnemy);
 		}	
 	}
 	
 	 /**
      * Create effects at level 2
      *
-     * @param ResourceType
+     * @param effect
      *          the type of the effect to be created
-     *          
+     *
      */
 	public static void createLevel2Effect(ResourceType effect) {
 		switch(effect) {
 		case POISON_CLOUD:
 				createPoisonCloud(ResourceType.POISON_CLOUD);
+				break;
 		case RUMBLE:
 				createRumble(ResourceType.RUMBLE);
+				break;
 		default:
-			//Throw error message
+			throw new GameSetupException(invalidEnemy);
 		}
 	}
 	
 	 /**
      * Create enemies at level 3
      *
-     * @param ResourceType
+     * @param enemy
      *          the type of the enemy to be created
-     *          
+     *
      */
 	public static void createLevel3Enemy(ResourceType enemy) {
 		switch(enemy) {
 		case LION:
 				createLion(ResourceType.LION);
+				break;
 		case CHIMP:
 				createChimp(ResourceType.CHIMP);
+				break;
 		case BEAR:
 				createBear(ResourceType.BEAR);
-		
+				break;
 		default:
-			//Throw error message
+			throw new GameSetupException(invalidEnemy);
 		}
 	}
 	
 	 /**
      * Create effects at level 3
      *
-     * @param ResourceType
+     * @param effect
      *          the type of the effect to be created
-     *          
+     *
      */
 	public static void createLevel3Effect(ResourceType effect) {
 		switch(effect) {
 		case EARTHQUAKE: 
 			createEarthquake(ResourceType.EARTHQUAKE);
+			break;
 		case GREEN_FEL_FIRE:
 			createGreenFelFire(ResourceType.GREEN_FEL_FIRE);
+			break;
 		default:
-			//Throw error message
+			throw new GameSetupException(invalidEnemy);
 		}
 	}
 	
@@ -151,18 +172,22 @@ public class ThreatFactory {
      *
      * @param ResourceType
      *          the type of the enemy to be created
+	 * @throws Exception 
      *          
      */
 	public static void createLevel4Enemy(ResourceType enemy) {
 		switch(enemy) {
 		case ZOMBIE_DUCK:
 				createZombieDuck(ResourceType.ZOMBIE_DUCK);
+				break;
 		case ROBBER:
 				createRobber(ResourceType.ROBBER);
+				break;
 		case ELEPHANT:
 				createElephant(ResourceType.ELEPHANT);
+				break;
 		default:
-			//Throw error message
+			throw new GameSetupException(invalidEnemy);
 		}	
 	}
 	
@@ -171,16 +196,19 @@ public class ThreatFactory {
      *
      * @param ResourceType
      *          the type of the effect to be created
+	 * @throws Exception 
      *          
      */
 	public static void createLevel4Effect(ResourceType effect) {
 		switch(effect) {
 		case BLIGHT:
 				createBlight(ResourceType.BLIGHT);
+				break;
 		case FEL:
 				createFel(ResourceType.FEL);
+				break;
 		default:
-			//Throw error message
+			throw new GameSetupException(invalidEnemy);
 		}
 	}
 	
@@ -214,7 +242,7 @@ public class ThreatFactory {
      * of damage and random x and y values
      * for enemies
      *
-     * @param effect
+     * @param enemy
      *          the enemy to have the parameter set
      * @param start
      * 			the integer for the start timer
@@ -244,7 +272,7 @@ public class ThreatFactory {
      * and create the sprite for
      * the effect
      *
-     * @param ResourceType
+     * @param blackSmoke
      * 		the effect type to be created from the ResourceType class
      *          
      */
@@ -264,7 +292,7 @@ public class ThreatFactory {
      * and create the sprite for
      * the effect
      *
-     * @param ResourceType
+     * @param shake
      * 		the effect type to be created from the ResourceType class
      *          
      */
@@ -285,7 +313,7 @@ public class ThreatFactory {
      * and create the sprite for
      * the enemy
      *
-     * @param ResourceType
+     * @param raccoon
      * 		the enemy type to be created from the ResourceType class
      *          
      */
@@ -304,7 +332,7 @@ public class ThreatFactory {
      * and create the sprite for
      * the enemy
      *
-     * @param ResourceType
+     * @param beetle
      * 		the enemy type to be created from the ResourceType class
      *          
      */
@@ -323,7 +351,7 @@ public class ThreatFactory {
      * and create the sprite for
      * the enemy
      *
-     * @param ResourceType
+     * @param wildVillager
      * 		the effect type to be created from the ResourceType class
      *          
      */
@@ -343,7 +371,7 @@ public class ThreatFactory {
      * and create the sprite for
      * the effect
      *
-     * @param ResourceType
+     * @param poisonCloud
      * 		the effect type to be created from the ResourceType class
      *          
      */
@@ -362,7 +390,7 @@ public class ThreatFactory {
      * and create the sprite for
      * the effect
      *
-     * @param ResourceType
+     * @param rumble
      * 		the effect type to be created from the ResourceType class
      *          
      */
@@ -382,14 +410,14 @@ public class ThreatFactory {
      * and create the sprite for
      * the enemy
      *
-     * @param ResourceType
+     * @param enemyWolf
      * 		the effect type to be created from the ResourceType class
      *          
      */
-	private static void createWolf(ResourceType enemy_wolf) {
+	private static void createWolf(ResourceType enemyWolf) {
 		Enemy wolfEnemy = new Enemy("Wolf");
 		setEnemyParameters(wolfEnemy, 20, 50, 30);
-		EnemySprite wolfSprite = new EnemySprite(0, enemy_wolf);
+		EnemySprite wolfSprite = new EnemySprite(0, enemyWolf);
 		enemySpriteList.add(wolfSprite);
 	}
 	
@@ -400,7 +428,7 @@ public class ThreatFactory {
      * and create the sprite for
      * the enemy
      *
-     * @param ResourceType
+     * @param crow
      * 		the effect type to be created from the ResourceType class
      *          
      */
@@ -418,7 +446,7 @@ public class ThreatFactory {
      * and create the sprite for
      * the enemy
      *
-     * @param ResourceType
+     * @param gorilla
      * 		the effect type to be created from the ResourceType class
      *          
      */
@@ -436,7 +464,7 @@ public class ThreatFactory {
      * and create the sprite for
      * the enemy
      *
-     * @param ResourceType
+     * @param evilDuck
      * 		the effect type to be created from the ResourceType class
      *          
      */
@@ -456,7 +484,7 @@ public class ThreatFactory {
      * and create the sprite for
      * the effect
      *
-     * @param ResourceType
+     * @param earthquake
      * 		the effect type to be created from the ResourceType class
      *          
      */
@@ -474,7 +502,7 @@ public class ThreatFactory {
      * and create the sprite for
      * the effect
      *
-     * @param ResourceType
+     * @param greenFelFire
      * 		the effect type to be created from the ResourceType class
      *          
      */
@@ -494,7 +522,7 @@ public class ThreatFactory {
      * and create the sprite for
      * the enemy
      *
-     * @param ResourceType
+     * @param lion
      * 		the effect type to be created from the ResourceType class
      *          
      */
@@ -512,7 +540,7 @@ public class ThreatFactory {
      * and create the sprite for
      * the enemy
      *
-     * @param ResourceType
+     * @param chimp
      * 		the effect type to be created from the ResourceType class
      *          
      */
@@ -530,7 +558,7 @@ public class ThreatFactory {
      * and create the sprite for
      * the enemy
      *
-     * @param ResourceType
+     * @param bear
      * 		the effect type to be created from the ResourceType class
      *          
      */
@@ -550,7 +578,7 @@ public class ThreatFactory {
      * and create the sprite for
      * the effect
      *
-     * @param ResourceType
+     * @param blight
      * 		the effect type to be created from the ResourceType class
      *          
      */
@@ -568,7 +596,7 @@ public class ThreatFactory {
      * and create the sprite for
      * the effect
      *
-     * @param ResourceType
+     * @param fel
      * 		the effect type to be created from the ResourceType class
      *          
      */
@@ -588,7 +616,7 @@ public class ThreatFactory {
      * and create the sprite for
      * the enemy
      *
-     * @param ResourceType
+     * @param zombieDuck
      * 		the effect type to be created from the ResourceType class
      *          
      */
@@ -606,7 +634,7 @@ public class ThreatFactory {
      * and create the sprite for
      * the enemy
      *
-     * @param ResourceType
+     * @param robber
      * 		the effect type to be created from the ResourceType class
      *          
      */
@@ -624,7 +652,7 @@ public class ThreatFactory {
      * and create the sprite for
      * the enemy
      *
-     * @param ResourceType
+     * @param elephant
      * 		the effect type to be created from the ResourceType class
      *          
      */
@@ -636,11 +664,11 @@ public class ThreatFactory {
 	}
 	
 	private static void putInEnemyHashMap(Enemy enemy){
-		enemyMap.put(enemy.toString(), enemy);
+		enemyMap.put(enemy.hashCode(), enemy);
 	}
 	
 	private static void putInEffectHashMap(Effect effect){
-		effectMap.put(effect.toString(), effect);
+		effectMap.put(effect.hashCode(), effect);
 	}
 
 	

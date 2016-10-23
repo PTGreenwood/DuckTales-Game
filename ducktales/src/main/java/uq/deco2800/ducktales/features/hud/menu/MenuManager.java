@@ -28,26 +28,7 @@ import uq.deco2800.ducktales.rendering.info.WorldEntityInfo;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.events.handlers.keyboard.KeyboardManager;
 
-import static uq.deco2800.ducktales.resources.ResourceType.BAKERY;
-import static uq.deco2800.ducktales.resources.ResourceType.BUTCHER;
-import static uq.deco2800.ducktales.resources.ResourceType.CEMETERY;
-import static uq.deco2800.ducktales.resources.ResourceType.CHURCH;
-import static uq.deco2800.ducktales.resources.ResourceType.COMMUNITY_BUILDING;
-import static uq.deco2800.ducktales.resources.ResourceType.DUCK;
-import static uq.deco2800.ducktales.resources.ResourceType.FARM;
-import static uq.deco2800.ducktales.resources.ResourceType.FORGE;
-import static uq.deco2800.ducktales.resources.ResourceType.HOSPITAL;
-import static uq.deco2800.ducktales.resources.ResourceType.HOUSE;
-import static uq.deco2800.ducktales.resources.ResourceType.MINE;
-import static uq.deco2800.ducktales.resources.ResourceType.OBSERVATORY;
-import static uq.deco2800.ducktales.resources.ResourceType.PASTURE;
-import static uq.deco2800.ducktales.resources.ResourceType.QUARRY;
-import static uq.deco2800.ducktales.resources.ResourceType.SAWMILL;
-import static uq.deco2800.ducktales.resources.ResourceType.SCHOOL;
-import static uq.deco2800.ducktales.resources.ResourceType.GYMNASIUM;
-import static uq.deco2800.ducktales.resources.ResourceType.STORAGEBARN;
-import static uq.deco2800.ducktales.resources.ResourceType.SHEEP;
-import static uq.deco2800.ducktales.resources.ResourceType.COW;
+import static uq.deco2800.ducktales.resources.ResourceType.*;
 
 /**
  * This manager manages the menu section of the HUD
@@ -66,10 +47,10 @@ public class MenuManager implements Initializable {
 			GYMNASIUM, MINE, OBSERVATORY, PASTURE, QUARRY, SAWMILL,
 			STORAGEBARN };
 	// TODO: TO ADD NEW ANIMALS, REGISTER THEIR NAMES HERE
-	public static final ResourceType[] ANIMALS = { SHEEP, DUCK, COW };
+	private static final ResourceType[] ANIMALS = { SHEEP, DUCK, COW, WOLF };
 
 	// enum to check which is selected, a BUILDING or an ANIMAL
-	public static enum MenuType {
+	public enum MenuType {
 		BUILDING, ANIMAL
 	}
 

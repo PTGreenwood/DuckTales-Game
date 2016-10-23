@@ -2,6 +2,9 @@ package uq.deco2800.ducktales.features.achievements;
 
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import uq.deco2800.ducktales.World;
 import uq.deco2800.ducktales.features.entities.threats.ThreatManager;
 import uq.deco2800.ducktales.features.inventory.InventoryManager;
@@ -15,20 +18,27 @@ import uq.deco2800.ducktales.features.missions.MissionHandler;
  * 
  */
 public class AchievementScoreController {
+	/** The logger */
+	private static final Logger LOGGER = LoggerFactory.getLogger(AchievementScoreController.class);
+
 	private static final AchievementScoreController INSTANCE = new AchievementScoreController();
 	
 	/** Achievement Score */
 	private int intAchieve;
 	
+	/** Initialize classes */
 	private LevelHandler levelHandler = LevelHandler.getInstance();
 	private MissionHandler missionHandler = MissionHandler.getInstance();
 	private InventoryManager inventoryManager;
+	
 	private World world;
+	
 	public int achievementToggleWood = 0;
 	public int achievementToggleOres = 0;
 	public int achievementToggleFood = 0;
 	public int achievementTogglePeons = 0;
 	public int achievementToggleThreats = 0;
+	
 	/**
 	 * Constructor of {@link Achievement}.
 	 * 
@@ -151,8 +161,7 @@ public class AchievementScoreController {
 		    	inventoryManager.updateFeatherAmount(10);
 		    	inventoryManager.updateStoneAmount(10);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				LOGGER.debug("Exception in inventory manager", e);
 			}
 	    	
 	    }
@@ -233,8 +242,7 @@ public class AchievementScoreController {
 				inventoryManager.updateStoneAmount(50);
 		    	inventoryManager.updateMeatAmount(100);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				LOGGER.debug("Exception in inventory manager", e);
 			}
 	    }
 	    /*

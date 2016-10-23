@@ -1,7 +1,6 @@
 package uq.deco2800.ducktales.features.entities.threats;
 
 import uq.deco2800.ducktales.World;
-import uq.deco2800.ducktales.rendering.sprites.ThreatSprite;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.SecondaryManager;
 import uq.deco2800.ducktales.util.exceptions.GameSetupException;
@@ -15,15 +14,6 @@ import java.util.*;
  *
  */
 public class ThreatManager extends SecondaryManager {
-
-    /** The list of sprites for the enemies */
-    private List<ThreatSprite> threatSprites;
-    
-    
-
-    public ThreatManager() {
-        threatSprites = new ArrayList<>(50);
-    }
 
 	/**
 	 * Add one initial threat to the world. This is for testing purposes only
@@ -44,8 +34,9 @@ public class ThreatManager extends SecondaryManager {
 	}
 	/**
 	 * Set threat level 1.
+	 * @throws Exception 
 	 */
-	public void threatsLvl1() {
+	public void threatsLvl1() throws Exception {
 		// Clear Effects
 		ThreatFactory.effectsList.clear();
 		ThreatFactory.enemiesList.clear();
@@ -61,8 +52,9 @@ public class ThreatManager extends SecondaryManager {
 
 	/**
 	 * Set threat level 2.
+	 * @throws Exception 
 	 */
-	public void threatsLvl2() {
+	public void threatsLvl2() throws Exception {
 		// Clear Effects
 		ThreatFactory.effectsList.clear();
 		ThreatFactory.enemiesList.clear();
@@ -80,8 +72,9 @@ public class ThreatManager extends SecondaryManager {
 
 	/**
 	 * Set threat level 3.
+	 * @throws Exception 
 	 */
-	public void threatsLvl3() {
+	public void threatsLvl3() throws Exception {
 		// Clear Effects
 		ThreatFactory.effectsList.clear();
 		ThreatFactory.enemiesList.clear();
@@ -98,8 +91,9 @@ public class ThreatManager extends SecondaryManager {
 
 	/**
 	 * Set threat level 4.
+	 * @throws Exception 
 	 */
-	public void threatsLvl4() {
+	public void threatsLvl4() throws Exception {
 		// Clear Effects
 		ThreatFactory.effectsList.clear();
 		ThreatFactory.enemiesList.clear();

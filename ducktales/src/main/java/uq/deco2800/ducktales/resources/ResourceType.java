@@ -38,7 +38,7 @@ public enum ResourceType {
         COW, COWUpRight, COWUpLeft, COWDownRight, COWDownLeft, COW_FRONT_RIGHT,
         SHEEPUp0, SHEEPUp1, SHEEPDown0, SHEEPDown1, SHEEPLeft0, SHEEPLeft1, SHEEPRight0, SHEEPRight1, SHEEP,
         WOLF,
-        
+
         CLOUD,
 
         // BUILDINGS
@@ -82,7 +82,7 @@ public enum ResourceType {
         BOX, LONG_BOX, WOOD_BOX,
         
         // Enemies
-		RACCOON, BEETLE, WILD_VILLAGER, ENEMY_WOLF, CROW, GORILLA, EVIL_DUCK,
+		RACCOON, BEETLE, WILD_VILLAGER, ENEMYWOLF, CROW, GORILLA, EVIL_DUCK,
 		LION, CHIMP, BEAR, ZOMBIE_DUCK, ROBBER, ELEPHANT,
 		
 		// Effects

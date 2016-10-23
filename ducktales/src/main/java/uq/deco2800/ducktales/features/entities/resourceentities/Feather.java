@@ -29,7 +29,7 @@ public class Feather extends DroppableResourceEntity {
 	 * @param type,
 	 *            the resource type of the feather
 	 */
-	public Feather(ResourceType type, int x, int y) {
+	public Feather(int x, int y, ResourceType type) {
 		super(x, y, type);
 		this.type = type;
 		this.x = x;

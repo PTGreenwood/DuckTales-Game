@@ -5,7 +5,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.application.Platform;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
@@ -110,7 +109,7 @@ public class DuckTalesController implements Initializable {
 	/**
 	 * This is a helper method that helps setup the main UI of the game
 	 */
-	private void setupMainUI(FXMLLoader loader) throws Exception {
+	private void setupMainUI(FXMLLoader loader) {
 		// Load the FXML
 		try {
 			gamePane = loader.load();
