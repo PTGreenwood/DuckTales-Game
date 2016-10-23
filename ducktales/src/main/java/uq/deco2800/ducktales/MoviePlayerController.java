@@ -14,27 +14,25 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
 /**
- * MoviePlayer class for DuckTales.
+ * Controller for the introduction video as defined in MoviePlayer.fxml.
  * 
  * @author Wenting Wang
  */
-
-
 public class MoviePlayerController implements Initializable{
-    @FXML private  MediaView mv;
-    private static MediaPlayer mp;
-    private  Media me;
+    @FXML private  MediaView mediaView;
+    private static MediaPlayer mediaPlayer;
+    private  Media media;
   
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// the method to get the location of mp4 file.
 		
 		String path = new File("src/main/resources/media/ducktalesdrums.mp4").getAbsolutePath();
-		me = new Media(new File(path).toURI().toString());
-		mp = new MediaPlayer(me);
-		mv.setMediaPlayer(mp);
+		media = new Media(new File(path).toURI().toString());
+		mediaPlayer = new MediaPlayer(media);
+		mediaView.setMediaPlayer(mediaPlayer);
 		// set the video to play automatically 
-		mp.setAutoPlay(true);
+		mediaPlayer.setAutoPlay(true);
 		/*mp.setOnEndOfMedia(new Runnable() {
 		
 		    
@@ -44,16 +42,17 @@ public class MoviePlayerController implements Initializable{
 		    }
 		});*/
 		// set the window automatically to satisfy with the size of video.
-		DoubleProperty width = mv.fitWidthProperty();
-		DoubleProperty height = mv.fitHeightProperty();
-		width.bind(Bindings.selectDouble(mv.sceneProperty(), "width"));
-		height.bind(Bindings.selectDouble(mv.sceneProperty(), "height"));
+		DoubleProperty width = mediaView.fitWidthProperty();
+		DoubleProperty height = mediaView.fitHeightProperty();
+		width.bind(Bindings.selectDouble(mediaView.sceneProperty(), "width"));
+		height.bind(Bindings.selectDouble(mediaView.sceneProperty(), "height"));
 	} 
 	
 	// function to make the video paused when exiting the window
 	public static void closeAudio()
 	{
-		mp.pause();
+		mediaPlayer.stop();
+		mediaPlayer.dispose();
 	}
 
 }
