@@ -406,8 +406,6 @@ public class World implements Tickable {
 				
 		boolean isWinter = (timeManager.seasonManager.getCurrentSeason().getName() 
 				== "Winter");
-		System.err.println(timeManager.seasonManager.getCurrentSeason().getName());
-		System.err.println(isWinter);
 
 		for (int x = 0; x < buildingSprites.size(); x++) {
 			// Set the new buildings to be true of false depending on time of day (to get 

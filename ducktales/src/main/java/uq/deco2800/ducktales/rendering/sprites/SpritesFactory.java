@@ -220,26 +220,20 @@ public class SpritesFactory {
      * @return The EntitySprite representing a barn
      */
     private static BuildingSprite createBarn(int index, ResourceType type) {
-        // The sprite to be returned
-        BuildingSprite sprite = new BuildingSprite(index, type);
+    	// The sprite to be returned
+   	 BuildingSprite sprite = new BuildingSprite(index, type);
 
-        // Setup the frames for the animation
-        List<Image> imageList = new ArrayList<>();
-        ResourceSpriteRegister register = ResourceSpriteRegister.getInstance();
-
-        // Now add all the images representing the animation here, one-by-one
-        //imageList.add(register.getResourceImage(ResourceType.DIRT_1));  DOES NOT WORK
-        imageList.add(register.getResourceImage(ResourceType.CONSTRUCTION_2));
-        imageList.add(register.getResourceImage(ResourceType.CONSTRUCTION));
-        imageList.add(register.getResourceImage(ResourceType.BARN));
-
-        // After all images are set up, now call these methods to set up the
-        // actual animation code
-        sprite.setImageList(imageList); // Give the interpolator the list of images
-        sprite.setupAnimation(9 * REAL_MINUTE); // Set up the actual animation, passing the duration
-        sprite.startAnimation(); // Start the actual animation
-
-        return sprite;
+        // Setup the sprite with the given parameters
+        setupBuildingSprite(
+                sprite,
+                type,
+                9.0*REAL_MINUTE,
+                1.0, // Total time of idle animation
+                SpritesImages.dayAnimation(type),
+                true
+       );
+        
+       return sprite;
     }
 
     /**
@@ -360,27 +354,20 @@ public class SpritesFactory {
      * @return The EntitySprite representing a farm
      */
     private static BuildingSprite createFarm(int index, ResourceType type) {
-        // The sprite to be returned
-        BuildingSprite sprite = new BuildingSprite(index, type);
+    	// The sprite to be returned
+   	 BuildingSprite sprite = new BuildingSprite(index, type);
 
-        // Setup the frames for the animation
-        List<Image> imageList = new ArrayList<>();
-        ResourceSpriteRegister register = ResourceSpriteRegister.getInstance();
-
-        // Now add all the images representing the animation here, one-by-one
-        //imageList.add(register.getResourceImage(ResourceType.DIRT_1));  DOES NOT WORK
-        imageList.add(register.getResourceImage(ResourceType.CONSTRUCTION_2));
-        imageList.add(register.getResourceImage(ResourceType.CONSTRUCTION));
-        imageList.add(register.getResourceImage(ResourceType.FARM));
-
-        // After all images are set up, now call these methods to set up the
-        // actual animation code
-        sprite.setImageList(imageList); // Give the interpolator the list of images
-        sprite.setupAnimation(4 * REAL_MINUTE); // Set up the actual animation, passing the duration
-        sprite.setAnimationCycleCount(1);
-        sprite.startAnimation(); // Start the actual animation
-
-        return sprite;
+        // Setup the sprite with the given parameters
+        setupBuildingSprite(
+                sprite,
+                type,
+                4.0*REAL_MINUTE,
+                1.0, // Total time of idle animation
+                SpritesImages.dayAnimation(type),
+                true
+       );
+        
+       return sprite;
     }
 
     /**
@@ -500,26 +487,20 @@ public class SpritesFactory {
      * @return The EntitySprite representing a pasture
      */
     private static BuildingSprite createPasture(int index, ResourceType type) {
-        // The sprite to be returned
-        BuildingSprite sprite = new BuildingSprite(index, type);
+    	// The sprite to be returned
+   	 BuildingSprite sprite = new BuildingSprite(index, type);
 
-        // Setup the frames for the animation
-        List<Image> imageList = new ArrayList<>();
-        ResourceSpriteRegister register = ResourceSpriteRegister.getInstance();
-
-        // Now add all the images representing the animation here, one-by-one
-        //imageList.add(register.getResourceImage(ResourceType.DIRT_1));  DOES NOT WORK
-        imageList.add(register.getResourceImage(ResourceType.CONSTRUCTION_2));
-        imageList.add(register.getResourceImage(ResourceType.CONSTRUCTION));
-        imageList.add(register.getResourceImage(ResourceType.PASTURE));
-
-        // After all images are set up, now call these methods to set up the
-        // actual animation code
-        sprite.setImageList(imageList); // Give the interpolator the list of images
-        sprite.setupAnimation(4 * REAL_MINUTE); // Set up the actual animation, passing the duration
-        sprite.startAnimation(); // Start the actual animation
-
-        return sprite;
+        // Setup the sprite with the given parameters
+        setupBuildingSprite(
+                sprite,
+                type,
+                4.0*REAL_MINUTE,
+                1.0, // Total time of idle animation
+                SpritesImages.dayAnimation(type),
+                true
+       );
+        
+       return sprite;
     }
 
     /**
@@ -533,26 +514,20 @@ public class SpritesFactory {
      * @return The EntitySprite representing a quarry
      */
     private static BuildingSprite createQuarry(int index, ResourceType type) {
-        // The sprite to be returned
-        BuildingSprite sprite = new BuildingSprite(index, type);
+    	// The sprite to be returned
+   	 BuildingSprite sprite = new BuildingSprite(index, type);
 
-        // Setup the frames for the animation
-        List<Image> imageList = new ArrayList<>();
-        ResourceSpriteRegister register = ResourceSpriteRegister.getInstance();
-
-        // Now add all the images representing the animation here, one-by-one
-        //imageList.add(register.getResourceImage(ResourceType.DIRT_1));  DOES NOT WORK
-        imageList.add(register.getResourceImage(ResourceType.CONSTRUCTION_2));
-        imageList.add(register.getResourceImage(ResourceType.CONSTRUCTION));
-        imageList.add(register.getResourceImage(ResourceType.QUARRY));
-
-        // After all images are set up, now call these methods to set up the
-        // actual animation code
-        sprite.setImageList(imageList); // Give the interpolator the list of images
-        sprite.setupAnimation(5 * REAL_MINUTE); // Set up the actual animation, passing the duration
-        sprite.startAnimation(); // Start the actual animation
-
-        return sprite;
+        // Setup the sprite with the given parameters
+        setupBuildingSprite(
+                sprite,
+                type,
+                5.0*REAL_MINUTE,
+                1.0, // Total time of idle animation
+                SpritesImages.dayAnimation(type),
+                true
+       );
+        
+       return sprite;
     }
     
     /**
@@ -566,26 +541,20 @@ public class SpritesFactory {
      * @return The EntitySprite representing a storage barn
      */
     private static BuildingSprite createStorageBarn(int index, ResourceType type) {
-        // The sprite to be returned
-        BuildingSprite sprite = new BuildingSprite(index, type);
+    	// The sprite to be returned
+   	 BuildingSprite sprite = new BuildingSprite(index, type);
 
-        // Setup the frames for the animation
-        List<Image> imageList = new ArrayList<>();
-        ResourceSpriteRegister register = ResourceSpriteRegister.getInstance();
-
-        // Now add all the images representing the animation here, one-by-one
-        //imageList.add(register.getResourceImage(ResourceType.DIRT_1));  DOES NOT WORK
-        imageList.add(register.getResourceImage(ResourceType.CONSTRUCTION_2));
-        imageList.add(register.getResourceImage(ResourceType.CONSTRUCTION));
-        imageList.add(register.getResourceImage(ResourceType.QUARRY));
-
-        // After all images are set up, now call these methods to set up the
-        // actual animation code
-        sprite.setImageList(imageList); // Give the interpolator the list of images
-        sprite.setupAnimation(5 * REAL_MINUTE); // Set up the actual animation, passing the duration
-        sprite.startAnimation(); // Start the actual animation
-
-        return sprite;
+        // Setup the sprite with the given parameters
+        setupBuildingSprite(
+                sprite,
+                type,
+                7.0*REAL_MINUTE,
+                1.0, // Total time of idle animation
+                SpritesImages.dayAnimation(type),
+                true
+       );
+        
+       return sprite;
     }
 
     /**
