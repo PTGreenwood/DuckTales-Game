@@ -145,7 +145,7 @@ public class Animal extends AgentEntity {
 
 			return goalPointsList;
 		} else {
-			
+			return null;
 		}
 	}
 
