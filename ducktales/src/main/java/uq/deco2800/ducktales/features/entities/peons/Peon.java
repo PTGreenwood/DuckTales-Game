@@ -812,10 +812,10 @@ public class Peon extends AgentEntity {
     	ArrayList<ToolType> teacherTools = new ArrayList<ToolType>(Arrays.asList(ToolType.CLOTHESlevel1, ToolType.CLOTHESlevel2, ToolType.CLOTHESlevel3));
     	ArrayList<ToolType> joblessTools = new ArrayList<ToolType>(Arrays.asList(ToolType.NOTHING));
     	ArrayList<ToolType> blacksmithTools = new ArrayList<ToolType>(Arrays.asList(ToolType.TONGSlevel1, ToolType.TONGSlevel2, ToolType.TONGSlevel3));
-    	ArrayList<ToolType> bakerTools = new ArrayList<ToolType>(Arrays.asList(ToolType.ROLLINGPINlevel1, ToolType.ROLLINGPINlevel2, ToolType.ROLLINGPINlevel3));
+    	ArrayList<ToolType> gymcoachTools = new ArrayList<ToolType>(Arrays.asList(ToolType.FITNESSlevel1, ToolType.FITNESSlevel2, ToolType.FITNESSlevel3));
     	ArrayList<ToolType> masonTools = new ArrayList<ToolType>(Arrays.asList(ToolType.CHISELlevel1, ToolType.CHISELlevel2, ToolType.CHISELlevel3));
 
-    	this.allTools.addAll(Arrays.asList(lumberJackTools, minerTools, builderTools, doctorTools, farmerTools, teacherTools, blacksmithTools, bakerTools, masonTools, joblessTools ));
+    	this.allTools.addAll(Arrays.asList(lumberJackTools, minerTools, builderTools, doctorTools, farmerTools, teacherTools, blacksmithTools, masonTools, gymcoachTools, joblessTools ));
     }
 
     /**
@@ -857,17 +857,14 @@ public class Peon extends AgentEntity {
 		} else if(job == JobType.BLACKSMITH) {
 			return this.allTools.get(6);
 
-		} else if(job == JobType.BAKER) {
-			return this.allTools.get(7);
-
 		} else if(job == JobType.MASON) {
-			return this.allTools.get(8);
+			return this.allTools.get(7);
 			
 		} else if(job == JobType.GYMCOACH) {
-			return this.allTools.get(9);
+			return this.allTools.get(8);
 			
 		} else if(job == JobType.JOBLESS) {
-			return this.allTools.get(10);
+			return this.allTools.get(9);
 		}
 		return null;
 	}

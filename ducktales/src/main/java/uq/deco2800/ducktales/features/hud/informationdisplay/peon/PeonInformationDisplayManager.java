@@ -96,7 +96,7 @@ public class PeonInformationDisplayManager
     	//this.peon.setJob(JobType.GYMCOACH);
 		//this.peon.setJob(JobType.MASON);
 		//this.peon.setJob(JobType.TEACHER);
-
+    	this.peon.setJob(JobType.JOBLESS);
     }
     
     /**
