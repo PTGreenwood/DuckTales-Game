@@ -9,6 +9,10 @@ import javafx.stage.Stage;
 
 public class MissionHandlerTest extends ApplicationTest {
 
+	
+	/**
+	 *  CHeck image has right URL
+	 */
 	@Test
 	public void missionImageTest() {
 		
@@ -22,6 +26,9 @@ public class MissionHandlerTest extends ApplicationTest {
 		
 	}
 	
+	/**
+	 * Check getCountCompletedMission returns right value
+	 */
 	@Test
 	public void getCountCompletedMissionsTest() {
 		MissionHandler missionHandler = new MissionHandler();
@@ -36,6 +43,9 @@ public class MissionHandlerTest extends ApplicationTest {
 		assertTrue(missionHandler.getNumberOfCompletedMissions() == countNumberOfZeros);
 	}
 	
+	/**
+	 * Check missionImageCompeted method returns right Image
+	 */
 	@Test
 	public void missionImageCompletedTest() {
 		MissionHandler missionHandler = new MissionHandler();
@@ -47,6 +57,9 @@ public class MissionHandlerTest extends ApplicationTest {
 		assertTrue(expectedImageURL.contains(actualImageURL));
 	}
 	
+	/**
+	 * Check instance in the class works properly
+	 */
 	@Test
 	public void singletonTest() {
 		MissionHandler missionHandler = MissionHandler.getInstance();
