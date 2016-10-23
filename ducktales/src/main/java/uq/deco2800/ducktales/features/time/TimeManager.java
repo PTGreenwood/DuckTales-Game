@@ -220,7 +220,7 @@ public class TimeManager extends SecondaryManager implements Initializable, Tick
 	/**
 	 * Sets an object of GameTime. Used for JUnit testing purposes.
 	 * FXML testing and the overridden initialise function causes GameTime
-	 * to not be instantated on TimeManager creation.
+	 * to not be instantiated on TimeManager creation.
 	 */
 	public void setGameTimeObject(GameTime gt) {
 		this.gameTime = gt;
