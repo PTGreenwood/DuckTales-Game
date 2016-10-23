@@ -44,10 +44,13 @@ public class ThreatFactory {
 		switch(enemy) {
 		case RACCOON:
 				createRaccoon(ResourceType.RACCOON);
+				break;
 		case BEETLE:
 				createBeetle(ResourceType.BEETLE);
+				break;
 		case WILD_VILLAGER:
 				createWildVillager(ResourceType.WILD_VILLAGER);
+				break;
 		default:
 			throw new Exception("Invalid enemy type");
 		}
@@ -66,8 +69,10 @@ public class ThreatFactory {
 		switch(effect) {
 		case BLACK_SMOKE:
 				createBlackSmoke(ResourceType.BLACK_SMOKE);
+				break;
 		case SHAKE:
 				createShake(ResourceType.SHAKE);
+				break;
 		default:
 			throw new Exception("Invalid enemy type");
 		}
@@ -87,12 +92,16 @@ public class ThreatFactory {
 		// enemyWolf due to the pre-existence of a WOLF resource
 		case ENEMYWOLF:
 				createWolf(ResourceType.ENEMYWOLF);
+				break;
 		case CROW:
 				createCrow(ResourceType.CROW);
+				break;
 		case GORILLA:
 				createGorilla(ResourceType.GORILLA);
+				break;
 		case EVIL_DUCK:
 				createEvilDuck(ResourceType.EVIL_DUCK);
+				break;
 		default:
 			throw new Exception("Invalid enemy type");
 		}	
@@ -110,8 +119,10 @@ public class ThreatFactory {
 		switch(effect) {
 		case POISON_CLOUD:
 				createPoisonCloud(ResourceType.POISON_CLOUD);
+				break;
 		case RUMBLE:
 				createRumble(ResourceType.RUMBLE);
+				break;
 		default:
 			throw new Exception("Invalid enemy type");
 		}
@@ -129,11 +140,13 @@ public class ThreatFactory {
 		switch(enemy) {
 		case LION:
 				createLion(ResourceType.LION);
+				break;
 		case CHIMP:
 				createChimp(ResourceType.CHIMP);
+				break;
 		case BEAR:
 				createBear(ResourceType.BEAR);
-		
+				break;
 		default:
 			throw new Exception("Invalid enemy type");
 		}
@@ -151,8 +164,10 @@ public class ThreatFactory {
 		switch(effect) {
 		case EARTHQUAKE: 
 			createEarthquake(ResourceType.EARTHQUAKE);
+			break;
 		case GREEN_FEL_FIRE:
 			createGreenFelFire(ResourceType.GREEN_FEL_FIRE);
+			break;
 		default:
 			throw new Exception("Invalid enemy type");
 		}
@@ -170,10 +185,13 @@ public class ThreatFactory {
 		switch(enemy) {
 		case ZOMBIE_DUCK:
 				createZombieDuck(ResourceType.ZOMBIE_DUCK);
+				break;
 		case ROBBER:
 				createRobber(ResourceType.ROBBER);
+				break;
 		case ELEPHANT:
 				createElephant(ResourceType.ELEPHANT);
+				break;
 		default:
 			throw new Exception("Invalid enemy type");
 		}	
@@ -191,8 +209,10 @@ public class ThreatFactory {
 		switch(effect) {
 		case BLIGHT:
 				createBlight(ResourceType.BLIGHT);
+				break;
 		case FEL:
 				createFel(ResourceType.FEL);
+				break;
 		default:
 			throw new Exception("Invalid enemy type");
 		}
