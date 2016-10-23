@@ -40,7 +40,6 @@ public class JobSpritePeonClickedEvent extends Event {
         this.peonName = peonName;
         Peon peon = world.getPeon(peonName);
         peon.applyForJob(job);
-        LOGGER.info(peon.getJob().name());
     }
 
     /**
