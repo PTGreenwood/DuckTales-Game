@@ -287,7 +287,7 @@ public class World implements Tickable {
 	 * Set a dropped resource in the droppedResource List using the 
 	 * given Value
 	 */
-	public void addDroppedResoure(DroppableResourceEntity value) {
+	public void addDroppedResource(DroppableResourceEntity value) {
 		if(droppedResources.containsKey(value.hashCode())) {
 			throw new GameSetupException("droppedResources already contains "
 					+ "a dropped resource with value: " + value);
