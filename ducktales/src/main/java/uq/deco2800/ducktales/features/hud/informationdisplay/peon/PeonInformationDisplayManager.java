@@ -66,8 +66,9 @@ public class PeonInformationDisplayManager
     Label currentToolLevel;
     @FXML
     Label resourceCost;
-    //@FXML
-    //Button upgradeToolbutton;
+    
+    @FXML
+    Button upgradeToolbutton;
 
 	private static final ResourceType[] JOBS = {
         ResourceType.LUMBERJACK_LV1_1,  ResourceType.MINER_LV1_1,  ResourceType.BUILDER_LV1_1,
@@ -94,34 +95,10 @@ public class PeonInformationDisplayManager
     Label peonJobStatus;
     @FXML
     Button assignJobButton;
-    /*
-    Button lumberjackButton;
-    @FXML
-    Button minerButton;
-    @FXML
-    Button builderButton;
-    @FXML
-    Button doctorButton;
-    @FXML
-    Button farmerButton;
-    @FXML
-    Button teacherButton;
-    @FXML
-    Button blackSmithButton;
-    @FXML
-    Button masonButton;
-    @FXML
-    Button gymCoachButton;
-    @FXML
-    Button joblessButton;
-*/
-
-
 
 
     /** The peon to display */
     private Peon peon;
-    private ResourceSpriteRegister rsr;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -171,15 +148,15 @@ public class PeonInformationDisplayManager
 	private void setupJobMenu() {
 		JobSprite lumberjackSprite = new JobSprite(ResourceType.LUMBERJACK_LV1_1);
 		JobSprite minerSprite = new JobSprite(ResourceType.MINER_LV1_1);
-		JobSprite blackSmithSprite = new JobSprite(ResourceType.BLACKSMITH_LV1_1);
+		//JobSprite blackSmithSprite = new JobSprite(ResourceType.BLACKSMITH_LV1_1);
 		JobSprite builderSprite = new JobSprite(ResourceType.BUILDER_LV1_1);
 		JobSprite doctorSprite = new JobSprite(ResourceType.DOCTOR_LV1_1);
 		JobSprite farmerSprite = new JobSprite(ResourceType.FARMER_LV1_1);
-		JobSprite gymcoachSprite = new JobSprite(ResourceType.GYMCOACH_LV1_1);
+		//JobSprite gymcoachSprite = new JobSprite(ResourceType.GYMCOACH_LV1_1);
 		JobSprite priestSprite = new JobSprite( ResourceType.PRIEST_LV1_1);
 		ArrayList<JobSprite> jobsList = new ArrayList<JobSprite>(Arrays.asList(
-				lumberjackSprite, minerSprite, blackSmithSprite, builderSprite,
-				doctorSprite, farmerSprite, gymcoachSprite, priestSprite
+				lumberjackSprite, minerSprite, builderSprite,
+				doctorSprite, farmerSprite, priestSprite
 			));
 
         VBox content = new VBox(10);
@@ -202,8 +179,8 @@ public class PeonInformationDisplayManager
     public void displayPeon() {
 
         // Get the information of the peon
-        Image peonSpriteImage = rsr.getInstance().getResourceImage(this.peon.getType());
-        peonImage.setImage(peonSpriteImage);
+        //Image peonSpriteImage = rsr.getInstance().getResourceImage(this.peon.getType());
+      //  peonImage.setImage(peonSpriteImage);
         
         peonName.setText(peon.getPeonName());
         peonIntelligence.setText(Integer.toString(peon.getIntelligence()));
@@ -218,125 +195,14 @@ public class PeonInformationDisplayManager
         rootDisplay.setVisible(true);
     }
     
-    /**
-     * Method that updates the Instance of the Peon to be the correct sprite
-     * according to job and tool type.
-     */
-    public void updatePeonSprite(ResourceType newType) {
-    	if(!(this.peon.getType() == newType)) {
-    		this.peon.updateType(newType);
-    	}
 
-        Image peonSpriteImage = rsr.getInstance().getResourceImage(newType);
-        peonImage.setImage(peonSpriteImage);
-    	gameManager.getMainEntityManager().getPeonManager().getPeonSprite(this.peon.getPeonName()).setImage(peonSpriteImage);
-    }
-    
-    
     @FXML public void handleUpgradeToolButtonAction() {
+    	
     	this.peon.upgradeTool();
     	displayPeon();
 		int toolLevel = this.peon.getTool().getToolLevel();
     }
 }
 
-/*
-    	switch(this.peon.getJob()) {
-    		case LUMBERJACK:
 
-    				if(toolLevel == 1) {
-    					updatePeonSprite(ResourceType.LUMBERJACK_LV2);
-    				} else {
-    					updatePeonSprite(ResourceType.LUMBERJACK_LV3);
-    				}
-    				break;
-
-    		case BLACKSMITH:
-					if(toolLevel == 1) {
-						updatePeonSprite(ResourceType.BLACKSMITH_LV2);
-					} else {
-						updatePeonSprite(ResourceType.BLACKSMITH_LV3);
-					}
-					break;
-					
-    		case BUILDER:
-					if(toolLevel == 1) {
-						updatePeonSprite(ResourceType.BUILDER_LV2);
-					} else {
-						updatePeonSprite(ResourceType.BUILDER_LV3);
-					}
-
-					break;
-    		case DOCTOR:
-					if(toolLevel == 1) {
-						updatePeonSprite(ResourceType.DOCTOR_LV2);
-					} else {
-						updatePeonSprite(ResourceType.DOCTOR_LV3);
-					}
-
-					break;
-    		case FARMER:
-					if(toolLevel == 1) {
-						updatePeonSprite(ResourceType.FARMER_LV2);
-					} else {
-						updatePeonSprite(ResourceType.FARMER_LV3);
-					}
-
-					break;
-    		case GYMCOACH:
-					if(toolLevel == 1) {
-						updatePeonSprite(ResourceType.GYMCOACH_LV2);
-					} else {
-						updatePeonSprite(ResourceType.GYMCOACH_LV3);
-					}
-
-					break;
-    		case JOBLESS:
-					break;
-					
-    		case MASON:
-					if(toolLevel == 1) {
-						updatePeonSprite(ResourceType.STONE_MASON_LV2);
-					} else {
-						updatePeonSprite(ResourceType.STONE_MASON_LV3);
-					}
-
-					break;
-    		case MINER:
-					if(toolLevel == 1) {
-						updatePeonSprite(ResourceType.MINER_LV2);
-					} else {
-						updatePeonSprite(ResourceType.MINER_LV3);
-					}
-
-					break;
-    		case PRIEST:
-					break;
-					
-    		case TEACHER:
-					if(toolLevel == 1) {
-						updatePeonSprite(ResourceType.TEACHER_LV2);
-					} else {
-						updatePeonSprite(ResourceType.TEACHER_LV3);
-					}
-					
-
-					break;
-    		default:
-			break;
-
-    	}
-    	*/
-    	/**
-    	1. get the sprite of the peon currently being displayed in the information display panel:
-
-    		[4:41]  
-    		(via PeonManager. you guys will also need to write a getPeonManager in MainEntityManager class to let PeonInformationDisplay manager get that reference
-
-    		[4:42]  
-    		2. based on the current type of the tool (I'm not sure how you guys are doing this, so it's up to your implementation), change the sprite's image accordingly
-
-    		[4:42]  
-    		3. Done
-    	*/
 

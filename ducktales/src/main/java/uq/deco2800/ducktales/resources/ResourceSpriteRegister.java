@@ -478,7 +478,7 @@ public class ResourceSpriteRegister {
 	}
 	
 	private void addJobResources(){
-		/*addResource(MINER_LV1_1, "/peon/jobs/miner.png");
+		addResource(MINER_LV1_1, "/peon/jobs/miner.png");
 		addResource(MINER_LV1_2, "/peon/jobs/miner_1.png");
 		addResource(MINER_LV1_3, "/peon/jobs/miner_2.png");
 		addResource(MINER_LV1_4, "/peon/jobs/miner_3.png");
@@ -490,10 +490,10 @@ public class ResourceSpriteRegister {
 		addResource(DOCTOR_LV1_2, "/peon/jobs/doctor_1.png");
 		addResource(DOCTOR_LV1_3, "/peon/jobs/doctor_2.png");
 		addResource(DOCTOR_LV1_4, "/peon/jobs/doctor_3.png");
-		addResource(LUMBERJACK_LV1_1, "/peon/jobs/lumberjacks.png");
-		addResource(LUMBERJACK_LV1_2, "/peon/jobs/lumberjacks_1.png");
-		addResource(LUMBERJACK_LV1_3, "/peon/jobs/lumberjacks_2.png");
-		addResource(LUMBERJACK_LV1_4, "/peon/jobs/lumberjacks_3.png");
+		addResource(LUMBERJACK_LV1_1, "/peon/jobs/lumberjacks_1.png");
+		addResource(LUMBERJACK_LV1_2, "/peon/jobs/lumberjacks_2.png");
+		addResource(LUMBERJACK_LV1_3, "/peon/jobs/lumberjacks_3.png");
+		addResource(LUMBERJACK_LV1_4, "/peon/jobs/lumberjacks_4.png");
 		addResource(FARMER_LV1_1, "/peon/jobs/farmer.png");
 		addResource(FARMER_LV1_2, "/peon/jobs/farmer_1.png");
 		addResource(FARMER_LV1_3, "/peon/jobs/farmer_2.png");
@@ -501,11 +501,11 @@ public class ResourceSpriteRegister {
 		addResource(PRIEST_LV1_1, "/peon/jobs/priest.png");
 		addResource(PRIEST_LV1_2, "/peon/jobs/priest_1.png");
 		addResource(PRIEST_LV1_3, "/peon/jobs/priest_2.png");
-		addResource(PRIEST_LV1_4, "/peon/jobs/priest_3.png");*/
-		
+		addResource(PRIEST_LV1_4, "/peon/jobs/priest_3.png");
+	
 		/*
 		 * PEONS
-		 */
+		 
 		addResource(PEON, "/peon/basic_peon.png");
 		
 		//LumberJack
@@ -546,7 +546,10 @@ public class ResourceSpriteRegister {
 		addResource(GYMCOACH_LV2_1, "/toolsUpgrade/gymcoach/gymcoach_lv2.png");
 		addResource(GYMCOACH_LV3_1, "/toolsUpgrade/gymcoach/gymcoach_lv3_left.png");
 		//Priest
-		addResource(PRIEST_LV1_1, "/peon/jobs/priest_Church.png");		
+		addResource(PRIEST_LV1_1, "/peon/jobs/priest.png");
+		addResource(PRIEST_LV1_2, "/peon/jobs/priest_1.png");
+		addResource(PRIEST_LV1_3, "/peon/jobs/priest_2.png");
+		addResource(PRIEST_LV1_4, "/peon/jobs/priest_3.png");	
 		//Stonemason
 		addResource(STONE_MASON_LV1_1, "/peon/jobs/stonemason.png");
 		addResource(STONE_MASON_LV2_1, "/toolsUpgrade/stonemason/stonemason_lv2.png");	
@@ -555,7 +558,7 @@ public class ResourceSpriteRegister {
 		addResource(TEACHER_LV1_1, "/peon/jobs/teacher_1.png");
 		addResource(TEACHER_LV2_1, "/toolsUpgrade/teacher/teacher_lv2.png");	
 		addResource(TEACHER_LV3_1, "/toolsUpgrade/teacher/teacher_lv3.png");	
-		
+		*/
 		
 		
 	}
