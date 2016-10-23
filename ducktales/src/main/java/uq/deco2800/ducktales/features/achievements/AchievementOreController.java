@@ -5,7 +5,7 @@ import uq.deco2800.ducktales.features.inventory.InventoryManager;
 /**
  * Controller for the Ores achievement. 
  * 
- * @author Naehyung Kim, Joshua You and Justin Kuhnel
+ * @author Naehyung Kim
  *
  */
 public class AchievementOreController {

@@ -8,28 +8,16 @@ import uq.deco2800.ducktales.features.entities.threats.ThreatManager;
 /**
  * Controller for the Threat achievement. 
  * 
- * @author Joshua You and Justin Kuhnel
+ * @author Joshua You
  *
  */
 public class AchievementThreatController {
 	
 	/** Images for Threat achievement */
-	private Image threat1 = new Image("achievements/threats1.png");
-	private Image threat2 = new Image("achievements/threats2.png");
-	private Image threat3 = new Image("achievements/threats3.png");
+	private Image threat1 = new Image("achievemnts/threat1.png");
+	private Image threat2 = new Image("achievemnts/threat2.png");
+	private Image threat3 = new Image("achievemnts/threat3.png");
 	
-	
-private static final AchievementThreatController INSTANCE = new AchievementThreatController();
-	
-	/**
-	 * Constructor of {@link Achievements}
-	 * 	
-	 * @return <CODE>INSTANCE</CODE>
-	 */
-	
-	public static AchievementThreatController getInstance() {
-		return INSTANCE;
-	}
 	/**
 	 * Changes images with certain number of returned enemy.
 	 * 	

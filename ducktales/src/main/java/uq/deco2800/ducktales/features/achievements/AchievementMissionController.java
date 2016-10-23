@@ -5,7 +5,7 @@ import uq.deco2800.ducktales.features.missions.MissionHandler;
 /**
  * Controller for the Missions achievement. 
  * 
- * @author Naehyung Kim and Justin Kuhnel
+ * @author Naehyung Kim
  *
  */
 public class AchievementMissionController {
