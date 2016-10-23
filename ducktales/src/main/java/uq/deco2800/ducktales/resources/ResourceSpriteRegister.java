@@ -394,8 +394,28 @@ public class ResourceSpriteRegister {
 		 * PEONS
 		 */
 		addResource(PEON, "/peon/basic_peon.png");
-
-
+		
+		//LumberJack
+		addResource(LUMBERJACK, "/peon/jobs/lumberjacks.png");
+		//Miner
+		addResource(MINER, "/peon/jobs/miner.png");		
+		//Blacksmith
+		addResource(BLACKSMITH, "/peon/jobs/blacksmiths.png");		
+		//Builder
+		addResource(BUILDER, "/peon/jobs/builder.png");		
+		//Doctor
+		addResource(DOCTOR, "/peon/jobs/doctor.png");		
+		//Farmer
+		addResource(FARMER, "/peon/jobs/farmer.png");		
+		//GymCoach
+		addResource(GYMCOACH, "/peon/jobs/GymCoach.png");	
+		//Priest
+		addResource(PRIEST, "/peon/jobs/priest_Church.png");		
+		//Stonemason
+		addResource(STONE_MASON, "/peon/jobs/stonemason.png");		
+		//Teacher
+		addResource(TEACHER, "/peon/jobs/teacher.png");
+		
 		/*
 		 * ANIMALS
 		 */

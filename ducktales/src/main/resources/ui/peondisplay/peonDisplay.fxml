@@ -17,6 +17,7 @@
             <ImageView fx:id="peonImage" fitHeight="160.0" fitWidth="160.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" styleClass="peon-image">
                <image>
                   <Image url="@generic_peon_high_res.png" />
+                  
                </image>
             </ImageView>
          </children>

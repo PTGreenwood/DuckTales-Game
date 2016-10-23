@@ -35,7 +35,7 @@ public class Peon extends AgentEntity {
 	/** The Main Manager of the game */
 	protected GameManager gameManager;
 
-	private static final ResourceType TYPE = ResourceType.PEON;
+	private static ResourceType TYPE = ResourceType.PEON;
 	private List<Point> goalPoints;
 
 	/** Timers for in-game effects **/
@@ -105,7 +105,7 @@ public class Peon extends AgentEntity {
 		constructList();
 
 	}
-
+	
 	public String getPeonName() {
 		return peonName;
 	}
@@ -801,8 +801,7 @@ public class Peon extends AgentEntity {
 
 	/**
      * Constructs an ArrayList<ArrayList<ToolType>> To be pulled to get information when needed
-     * Not sure of any other way to access all the enums values... as .values() didn't work :S
-     * TODO: Make less obtrusive. Use Iterator.
+     * Not sure of any other way to access all the enums values... as .values() didn't work
      */
     public void constructList() {
     	ArrayList<ToolType> lumberJackTools = new ArrayList<ToolType>(Arrays.asList(ToolType.AXElevel1, ToolType.AXElevel2, ToolType.AXElevel3));
@@ -888,6 +887,7 @@ public class Peon extends AgentEntity {
 			return returnStatement;
 		}
 	}
+	
 	
 }
 

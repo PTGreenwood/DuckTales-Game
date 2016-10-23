@@ -301,6 +301,13 @@ public class MainEntityManager implements Tickable {
         this.peonManager.setGameManager(this.gameManager);
     }
 
+    /**
+     * Method to return the current instance of the Peon manager.
+     * Returns the instance of the peon manager that contains all the
+     * peons in the game.
+     * 
+     * @return the instance of the peon manager initialised.
+     */
     public PeonManager getPeonManager(){
     	return this.peonManager;
     }

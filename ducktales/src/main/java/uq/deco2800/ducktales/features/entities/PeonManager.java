@@ -8,6 +8,7 @@ import uq.deco2800.ducktales.rendering.sprites.PeonSprite;
 import uq.deco2800.ducktales.rendering.sprites.Sprite;
 import uq.deco2800.ducktales.rendering.sprites.SpritesFactory;
 import uq.deco2800.ducktales.resources.GeneralResourceRegister;
+import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.SecondaryManager;
 import uq.deco2800.ducktales.util.exceptions.GameSetupException;
 
@@ -114,4 +115,5 @@ public class PeonManager extends SecondaryManager{
             }
         }
     }
+    
 }
