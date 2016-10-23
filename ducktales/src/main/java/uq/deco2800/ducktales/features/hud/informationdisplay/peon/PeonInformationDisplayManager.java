@@ -213,39 +213,39 @@ public class PeonInformationDisplayManager
 					if(toolLevel == 1) {
 						updatePeonSprite(ResourceType.BLACKSMITH_LV2);
 					} else {
-						updatePeonSprite(ResourceType.BLACKSMITH);
+						updatePeonSprite(ResourceType.BLACKSMITH_LV3);
 					}
 					break;
 					
     		case BUILDER:
 					if(toolLevel == 1) {
-						updatePeonSprite(ResourceType.BUILDER);
+						updatePeonSprite(ResourceType.BUILDER_LV2);
 					} else {
-						updatePeonSprite(ResourceType.BUILDER);
+						updatePeonSprite(ResourceType.BUILDER_LV3);
 					}
 
 					break;
     		case DOCTOR:
 					if(toolLevel == 1) {
-						updatePeonSprite(ResourceType.DOCTOR);
+						updatePeonSprite(ResourceType.DOCTOR_LV2);
 					} else {
-						updatePeonSprite(ResourceType.DOCTOR);
+						updatePeonSprite(ResourceType.DOCTOR_LV3);
 					}
 
 					break;
     		case FARMER:
 					if(toolLevel == 1) {
-						updatePeonSprite(ResourceType.FARMER);
+						updatePeonSprite(ResourceType.FARMER_LV2);
 					} else {
-						updatePeonSprite(ResourceType.FARMER);
+						updatePeonSprite(ResourceType.FARMER_LV3);
 					}
 
 					break;
     		case GYMCOACH:
 					if(toolLevel == 1) {
-						updatePeonSprite(ResourceType.GYMCOACH);
+						updatePeonSprite(ResourceType.GYMCOACH_LV2);
 					} else {
-						updatePeonSprite(ResourceType.GYMCOACH);
+						updatePeonSprite(ResourceType.GYMCOACH_LV3);
 					}
 
 					break;
@@ -254,33 +254,28 @@ public class PeonInformationDisplayManager
 					
     		case MASON:
 					if(toolLevel == 1) {
-						updatePeonSprite(ResourceType.STONE_MASON);
+						updatePeonSprite(ResourceType.STONE_MASON_LV2);
 					} else {
-						updatePeonSprite(ResourceType.STONE_MASON);
+						updatePeonSprite(ResourceType.STONE_MASON_LV3);
 					}
 
 					break;
     		case MINER:
 					if(toolLevel == 1) {
-						updatePeonSprite(ResourceType.MINER);
+						updatePeonSprite(ResourceType.MINER_LV2);
 					} else {
-						updatePeonSprite(ResourceType.MINER);
+						updatePeonSprite(ResourceType.MINER_LV3);
 					}
 
 					break;
     		case PRIEST:
-					if(toolLevel == 1) {
-						updatePeonSprite(ResourceType.PRIEST);
-					} else {
-						updatePeonSprite(ResourceType.PRIEST);
-					}
-
 					break;
+					
     		case TEACHER:
 					if(toolLevel == 1) {
-						updatePeonSprite(ResourceType.TEACHER);
+						updatePeonSprite(ResourceType.TEACHER_LV2);
 					} else {
-						updatePeonSprite(ResourceType.TEACHER);
+						updatePeonSprite(ResourceType.TEACHER_LV3);
 					}
 					
 
