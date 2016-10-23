@@ -1,25 +1,27 @@
 package uq.deco2800.ducktales.features.hud.informationdisplay.peon;
 
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
-import uq.deco2800.ducktales.features.entities.peons.Peon;
-import uq.deco2800.ducktales.util.SecondaryManager;
 
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.ResourceBundle;
-import uq.deco2800.ducktales.rendering.info.WorldEntityInfo;
-import uq.deco2800.ducktales.resources.ResourceType;
-import uq.deco2800.ducktales.rendering.sprites.JobSprite;
 
-import static uq.deco2800.ducktales.resources.ResourceType.*;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import uq.deco2800.ducktales.features.entities.peons.Peon;
+import uq.deco2800.ducktales.rendering.info.WorldEntityInfo;
+import uq.deco2800.ducktales.rendering.sprites.JobSprite;
+import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
+import uq.deco2800.ducktales.resources.ResourceType;
+import uq.deco2800.ducktales.util.SecondaryManager;
+
 /**
  * This class is the FXML controller for the peon information display
  *
@@ -29,7 +31,9 @@ import static uq.deco2800.ducktales.resources.ResourceType.*;
 public class PeonInformationDisplayManager
         extends SecondaryManager
         implements Initializable {
-    /**
+
+
+	/**
      * FXML Variables
      */
     // ROOT
@@ -61,14 +65,15 @@ public class PeonInformationDisplayManager
     Label currentToolLevel;
     @FXML
     Label resourceCost;
-    //@FXML
-    //Button upgradeToolbutton;
+    
+    @FXML
+    Button upgradeToolbutton;
 
 	private static final ResourceType[] JOBS = {
-        LUMBERJACK, MINER, BUILDER,
-            DOCTOR, FARMER, TEACHER, 
-            JOBLESS, BLACKSMITH, BAKER, 
-            MASON, PRIEST
+        ResourceType.LUMBERJACK_LV1_1,  ResourceType.MINER_LV1_1,  ResourceType.BUILDER_LV1_1,
+        ResourceType.DOCTOR_LV1_1,  ResourceType.FARMER_LV1_1,  ResourceType.TEACHER_LV1_1, 
+        ResourceType.PEON,  ResourceType.BLACKSMITH_LV1_1,  ResourceType.STONE_MASON_LV1_1, 
+        ResourceType.GYMCOACH_LV1_1,  ResourceType.PRIEST_LV1_1
 	};
 	
 	private ArrayList<JobSprite> jobDisplaySprites;
@@ -85,16 +90,20 @@ public class PeonInformationDisplayManager
     // JOB PANEL
     @FXML
     ScrollPane jobList;
-
-    // @FXML
-    // Button assignJobButton;
+    @FXML
+    Label peonJobStatus;
+    @FXML
+    Button assignJobButton;
+    @FXML
+    Button upgradeToolsButton;
 
     /** The peon to display */
     private Peon peon;
-
+    ResourceSpriteRegister rsr;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Hide the display at first
+
         rootDisplay.setVisible(false);
 
         setupJobMenu();
@@ -107,14 +116,12 @@ public class PeonInformationDisplayManager
      */
     public Peon getCurrentlyDisplayedPeon() {
         return this.peon;
+        
     }
 
     public void setPeon(Peon peon) {
     	this.peon = peon;
-    	//Setting peons with jobs/tools for testing here.
-    	//peon.setJob(JobType.LUMBERJACK);
-        //Setting to axe level 1 to start with.
-        //peon.setTool(ToolType.AXElevel1);
+
     }
     
     private void setupMenus() {
@@ -140,12 +147,14 @@ public class PeonInformationDisplayManager
 		setupJobMenu();
 	}
 	private void setupJobMenu() {
-		JobSprite lumberjackSprite = new JobSprite(LUMBERJACK);
-		JobSprite minerSprite = new JobSprite(MINER);
-		JobSprite builderSprite = new JobSprite(BUILDER);
-		JobSprite doctorSprite = new JobSprite(DOCTOR);
-		JobSprite farmerSprite = new JobSprite(FARMER);
-		JobSprite priestSprite = new JobSprite(PRIEST);
+		JobSprite lumberjackSprite = new JobSprite(ResourceType.LUMBERJACK_LV1_1);
+		JobSprite minerSprite = new JobSprite(ResourceType.MINER_LV1_1);
+		//JobSprite blackSmithSprite = new JobSprite(ResourceType.BLACKSMITH_LV1_1);
+		JobSprite builderSprite = new JobSprite(ResourceType.BUILDER_LV1_1);
+		JobSprite doctorSprite = new JobSprite(ResourceType.DOCTOR_LV1_1);
+		JobSprite farmerSprite = new JobSprite(ResourceType.FARMER_LV1_1);
+		//JobSprite gymcoachSprite = new JobSprite(ResourceType.GYMCOACH_LV1_1);
+		JobSprite priestSprite = new JobSprite( ResourceType.PRIEST_LV1_1);
 		ArrayList<JobSprite> jobsList = new ArrayList<JobSprite>(Arrays.asList(
 				lumberjackSprite, minerSprite, builderSprite,
 				doctorSprite, farmerSprite, priestSprite
@@ -168,28 +177,42 @@ public class PeonInformationDisplayManager
      */
     public void displayPeon() {
 
-        // Get the information of the peon
+        
+    	// 	Get the information of the peon
+    	Image peonSpriteImage = rsr.getInstance().getResourceImage(this.peon.getType());
+        peonImage.setImage(peonSpriteImage);
+        
         peonName.setText(peon.getPeonName());
         peonIntelligence.setText(Integer.toString(peon.getIntelligence()));
         peonStrength.setText(Integer.toString(peon.getStrength()));
         peonHealth.setText(Integer.toString(peon.getHealth()));
         peonHunger.setText(Integer.toString(peon.getHunger()));
         peonThirst.setText(Integer.toString(peon.getThirst()));
-
+        
         currentToolLevel.setText(peon.getTool().getName());
         resourceCost.setText(peon.getResourceNeededForUpgrade(
         		peon.getJobToolList(peon.getJob()), peon.getTool().getNextToolLevel()));
-
         rootDisplay.setVisible(true);
     }
-    
+
+
+    /**
+     * Chagne the peon image in the GUI
+     * 
+     * 
+     */
+    public void changePeonWindow() {
+    	Image peonSpriteImage = rsr.getInstance().getResourceImage(this.peon.getType());
+        peonImage.setImage(peonSpriteImage);
+        
+    }
     @FXML public void handleUpgradeToolButtonAction() {
+    	
     	this.peon.upgradeTool();
     	displayPeon();
-    	
-    	//Still to do.
-    	//If on level 3 upgrade.
-    	//Set style for button to be grayed out and unclickable.
-    	
+
     }
 }
+
+
+

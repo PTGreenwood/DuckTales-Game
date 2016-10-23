@@ -37,18 +37,14 @@ public enum ToolType {
         TONGSlevel1("Bronze", 0, 6, JobType.BLACKSMITH, 6.0, 10, 5, 0, 10, false),
         TONGSlevel2("Silver", 1, 6, JobType.BLACKSMITH, 11.0, 20, 0, 0, 60, true),
         TONGSlevel3("Gold", 2, 6, JobType.BLACKSMITH, 21.0, 80, 0, 0, 130, true),
-               
-        ROLLINGPINlevel1("Bronze", 0, 7, JobType.BAKER, 6.0, 10, 5, 0, 10, false),
-        ROLLINGPINlevel2("Silver", 1, 7, JobType.BAKER, 11.0, 20, 0, 0, 60, true),
-        ROLLINGPINlevel3("Gold", 2, 7, JobType.BAKER, 21.0, 80, 0, 0, 130, true),
-        
-        CHISELlevel1("Bronze", 0, 8, JobType.MASON, 6.0, 10, 5, 0, 10, false),
-        CHISELlevel2("Silver", 1, 8, JobType.MASON, 11.0, 20, 0, 0, 60, true),
-        CHISELlevel3("Gold", 2, 8, JobType.MASON, 21.0, 80, 0, 0, 130, true),
+   
+        CHISELlevel1("Bronze", 0, 7, JobType.MASON, 6.0, 10, 5, 0, 10, false),
+        CHISELlevel2("Silver", 1, 7, JobType.MASON, 11.0, 20, 0, 0, 60, true),
+        CHISELlevel3("Gold", 2, 7, JobType.MASON, 21.0, 80, 0, 0, 130, true),
 
-        HOLINESSlevel1("Bronze", 0, 8, JobType.PRIEST, 0.0, 10, 5, 0, 10, false),
-        HOLINESSlevel2("Silver", 1, 8, JobType.PRIEST, 0.0, 20, 0, 0, 60, true),
-        HOLINESSlevel3("Gold", 2, 8, JobType.PRIEST, 0.0, 80, 0, 0, 130, true),
+        FITNESSlevel1("Bronze", 0, 8, JobType.GYMCOACH, 0.0, 10, 5, 0, 10, false),
+        FITNESSlevel2("Silver", 1, 8, JobType.GYMCOACH, 0.0, 20, 0, 0, 60, true),
+        FITNESSlevel3("Gold", 2, 8, JobType.GYMCOACH, 0.0, 80, 0, 0, 130, true),
         
     	NOTHING("Empty", 0, 9, JobType.JOBLESS, 0.0, 0, 0, 0, 0, false);
     
@@ -120,6 +116,8 @@ public enum ToolType {
         public int getArrayNumber() {
         	return this.arrayNumber;
         }
+        
+        
         
         
 }

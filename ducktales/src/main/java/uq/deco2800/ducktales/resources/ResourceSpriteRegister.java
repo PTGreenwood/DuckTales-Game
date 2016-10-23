@@ -1,5 +1,7 @@
 package uq.deco2800.ducktales.resources;
 
+import static uq.deco2800.ducktales.resources.ResourceType.*;
+
 import java.util.concurrent.ConcurrentHashMap;
 
 import javafx.scene.image.Image;
@@ -62,12 +64,6 @@ import static uq.deco2800.ducktales.resources.ResourceType.VOID;
 import static uq.deco2800.ducktales.resources.ResourceType.WATER;
 import static uq.deco2800.ducktales.resources.ResourceType.WOOD_BOX;
 import static uq.deco2800.ducktales.resources.ResourceType.YELLOW;
-import static uq.deco2800.ducktales.resources.ResourceType.MINER;
-import static uq.deco2800.ducktales.resources.ResourceType.LUMBERJACK;
-import static uq.deco2800.ducktales.resources.ResourceType.FARMER;
-import static uq.deco2800.ducktales.resources.ResourceType.BUILDER;
-import static uq.deco2800.ducktales.resources.ResourceType.DOCTOR;
-import static uq.deco2800.ducktales.resources.ResourceType.PRIEST;
 
 
 /**
@@ -398,11 +394,6 @@ public class ResourceSpriteRegister {
 	}
 
 	private void addAgentEntitiesResources() {
-		/*
-		 * PEONS
-		 */
-		addResource(PEON, "/peon/basic_peon.png");
-
 
 		/*
 		 * ANIMALS
@@ -487,30 +478,88 @@ public class ResourceSpriteRegister {
 	}
 	
 	private void addJobResources(){
-		addResource(MINER, "/peon/jobs/miner.png");
-		addResource(MINER_1, "/peon/jobs/miner_1.png");
-		addResource(MINER_2, "/peon/jobs/miner_2.png");
-		addResource(MINER_3, "/peon/jobs/miner_3.png");
-		addResource(BUILDER, "/peon/jobs/builder.png");
-		addResource(BUILDER_1, "/peon/jobs/builder_1.png");
-		addResource(BUILDER_2, "/peon/jobs/builder_1.png");
-		addResource(BUILDER_3, "/peon/jobs/builder_1.png");
-		addResource(DOCTOR, "/peon/jobs/doctor.png");
-		addResource(DOCTOR_1, "/peon/jobs/doctor_1.png");
-		addResource(DOCTOR_2, "/peon/jobs/doctor_2.png");
-		addResource(DOCTOR_3, "/peon/jobs/doctor_3.png");
-		addResource(LUMBERJACK, "/peon/jobs/lumberjacks.png");
-		addResource(LUMBERJACK_1, "/peon/jobs/lumberjacks_1.png");
-		addResource(LUMBERJACK_2, "/peon/jobs/lumberjacks_2.png");
-		addResource(LUMBERJACK_3, "/peon/jobs/lumberjacks_3.png");
-		addResource(FARMER, "/peon/jobs/farmer.png");
-		addResource(FARMER_1, "/peon/jobs/farmer_1.png");
-		addResource(FARMER_2, "/peon/jobs/farmer_2.png");
-		addResource(FARMER_3, "/peon/jobs/farmer_3.png");
-		addResource(PRIEST, "/peon/jobs/priest.png");
-		addResource(PRIEST_1, "/peon/jobs/priest_1.png");
-		addResource(PRIEST_2, "/peon/jobs/priest_2.png");
-		addResource(PRIEST_3, "/peon/jobs/priest_3.png");
+		addResource(PEON, "/peon/basic_peon.png");
+		addResource(MINER_LV1_1, "/peon/jobs/miner.png");
+		addResource(MINER_LV1_2, "/peon/jobs/miner_1.png");
+		addResource(MINER_LV1_3, "/peon/jobs/miner_2.png");
+		addResource(MINER_LV1_4, "/peon/jobs/miner_3.png");
+		addResource(BUILDER_LV1_1, "/peon/jobs/builder.png");
+		addResource(BUILDER_LV1_2, "/peon/jobs/builder_1.png");
+		addResource(BUILDER_LV1_3, "/peon/jobs/builder_1.png");
+		addResource(BUILDER_LV1_4, "/peon/jobs/builder_1.png");
+		addResource(DOCTOR_LV1_1, "/peon/jobs/doctor.png");
+		addResource(DOCTOR_LV1_2, "/peon/jobs/doctor_1.png");
+		addResource(DOCTOR_LV1_3, "/peon/jobs/doctor_2.png");
+		addResource(DOCTOR_LV1_4, "/peon/jobs/doctor_3.png");
+		addResource(LUMBERJACK_LV1_1, "/peon/jobs/lumberjacks_1.png");
+		addResource(LUMBERJACK_LV1_2, "/peon/jobs/lumberjacks_2.png");
+		addResource(LUMBERJACK_LV1_3, "/peon/jobs/lumberjacks_3.png");
+		addResource(LUMBERJACK_LV1_4, "/peon/jobs/lumberjacks_4.png");
+		addResource(FARMER_LV1_1, "/peon/jobs/farmer.png");
+		addResource(FARMER_LV1_2, "/peon/jobs/farmer_1.png");
+		addResource(FARMER_LV1_3, "/peon/jobs/farmer_2.png");
+		addResource(FARMER_LV1_4, "/peon/jobs/farmer_3.png");
+		addResource(PRIEST_LV1_1, "/peon/jobs/priest.png");
+		addResource(PRIEST_LV1_2, "/peon/jobs/priest_1.png");
+		addResource(PRIEST_LV1_3, "/peon/jobs/priest_2.png");
+		addResource(PRIEST_LV1_4, "/peon/jobs/priest_3.png");
+	
+		/*
+		 * PEONS
+		 
+		
+		
+		//LumberJack
+		addResource(LUMBERJACK_LV1_1, "/peon/jobs/lumberjacks_1.png");
+		addResource(LUMBERJACK_LV1_2, "/peon/jobs/lumberjacks_2.png");
+		addResource(LUMBERJACK_LV1_3, "/peon/jobs/lumberjacks_3.png");
+		addResource(LUMBERJACK_LV1_4, "/peon/jobs/lumberjacks_4.png");
+		
+		addResource(LUMBERJACK_LV2_1, "/toolsUpgrade/lumberjack/lumberjack_lv2.png");
+		addResource(LUMBERJACK_LV2_2, "/toolsUpgrade/lumberjack/lumberjack_lv2_back_left.png");
+		addResource(LUMBERJACK_LV2_3, "/toolsUpgrade/lumberjack/lumberjack_lv2_back_right.png");
+		addResource(LUMBERJACK_LV2_4, "/toolsUpgrade/lumberjack/lumberjack_lv2_right.png");
+		
+		addResource(LUMBERJACK_LV3_1, "/toolsUpgrade/lumberjack/lumberjack_lv3.png");
+		
+		//Miner
+		addResource(MINER_LV1_1, "/peon/jobs/miner_1.png");
+		addResource(MINER_LV2_1, "/toolsUpgrade/miner/miner_lv2.png");
+		addResource(MINER_LV3_1, "/toolsUpgrade/miner/miner_lv3.png");
+		//Blacksmith
+		addResource(BLACKSMITH_LV1_1, "/peon/jobs/blacksmiths_1.png");	
+		addResource(BLACKSMITH_LV2_1, "/toolsUpgrade/blacksmith/blacksmiths_lv2.png");
+		addResource(BLACKSMITH_LV3_1, "/toolsUpgrade/blacksmith/blacksmiths_lv3.png");
+		//Builder
+		addResource(BUILDER_LV1_1, "/peon/jobs/builder_1.png");		
+		addResource(BUILDER_LV2_1, "/toolsUpgrade/builder/builder_lv2.png");
+		addResource(BUILDER_LV3_1, "/toolsUpgrade/builder/builder_lv3_left.png");
+		//Doctor
+		addResource(DOCTOR_LV1_1, "/peon/jobs/doctor_1.png");	
+		addResource(DOCTOR_LV2_1, "/toolsUpgrade/doctor/doctor_lv2.png");
+		addResource(DOCTOR_LV3_1, "/toolsUpgrade/doctor/doctor_lv3_left.png");
+		//Farmer
+		addResource(FARMER_LV1_1, "/peon/jobs/farmer_1.png");		
+		addResource(FARMER_LV2_1, "/toolsUpgrade/farmer/farmer_lv2.png");
+		addResource(FARMER_LV3_1, "/toolsUpgrade/farmer/farmer_lv3_left.png");
+		//GymCoach
+		addResource(GYMCOACH_LV1_1, "/peon/jobs/GymCoach_1.png");
+		addResource(GYMCOACH_LV2_1, "/toolsUpgrade/gymcoach/gymcoach_lv2.png");
+		addResource(GYMCOACH_LV3_1, "/toolsUpgrade/gymcoach/gymcoach_lv3_left.png");
+		//Priest
+		addResource(PRIEST_LV1_1, "/peon/jobs/priest.png");
+		addResource(PRIEST_LV1_2, "/peon/jobs/priest_1.png");
+		addResource(PRIEST_LV1_3, "/peon/jobs/priest_2.png");
+		addResource(PRIEST_LV1_4, "/peon/jobs/priest_3.png");	
+		//Stonemason
+		addResource(STONE_MASON_LV1_1, "/peon/jobs/stonemason.png");
+		addResource(STONE_MASON_LV2_1, "/toolsUpgrade/stonemason/stonemason_lv2.png");	
+		addResource(STONE_MASON_LV3_1, "/toolsUpgrade/stonemason/stonemason_lv3.png");	
+		//Teacher
+		addResource(TEACHER_LV1_1, "/peon/jobs/teacher_1.png");
+		addResource(TEACHER_LV2_1, "/toolsUpgrade/teacher/teacher_lv2.png");	
+		addResource(TEACHER_LV3_1, "/toolsUpgrade/teacher/teacher_lv3.png");	
+		*/
 		
 		
 	}

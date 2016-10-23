@@ -180,7 +180,7 @@ public abstract class Entity implements Comparable<Entity>, Tickable{
 	 * 
 	 * @param newType New entity type.
 	 */
-	protected void updateType(ResourceType newType){
+	public void updateType(ResourceType newType){
 		this.type = newType;
 	}
 	

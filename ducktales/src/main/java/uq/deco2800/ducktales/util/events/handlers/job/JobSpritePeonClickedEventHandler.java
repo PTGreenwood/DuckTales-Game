@@ -1,11 +1,19 @@
 package uq.deco2800.ducktales.util.events.handlers.job;
 
 import javafx.event.EventHandler;
+import javafx.scene.image.Image;
 import uq.deco2800.ducktales.GameManager;
-import uq.deco2800.ducktales.World;
 import uq.deco2800.ducktales.features.entities.peons.Peon;
 import uq.deco2800.ducktales.features.hud.informationdisplay.peon.PeonInformationDisplayManager;
-import uq.deco2800.ducktales.features.jobframework.*;
+import uq.deco2800.ducktales.features.jobframework.Builder;
+import uq.deco2800.ducktales.features.jobframework.Doctor;
+import uq.deco2800.ducktales.features.jobframework.Farmer;
+import uq.deco2800.ducktales.features.jobframework.Job;
+import uq.deco2800.ducktales.features.jobframework.Lumberjack;
+import uq.deco2800.ducktales.features.jobframework.Miner;
+import uq.deco2800.ducktales.features.jobframework.Priest;
+import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
+import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.events.handlers.GameEventHandler;
 import uq.deco2800.ducktales.util.events.job.JobSpritePeonClickedEvent;
 
@@ -21,6 +29,8 @@ import uq.deco2800.ducktales.util.events.job.JobSpritePeonClickedEvent;
 public class JobSpritePeonClickedEventHandler extends GameEventHandler
         implements EventHandler<JobSpritePeonClickedEvent> {
 
+
+	ResourceSpriteRegister rsr;
     public JobSpritePeonClickedEventHandler(GameManager gameManager) {
         super(gameManager);
     }
@@ -31,28 +41,38 @@ public class JobSpritePeonClickedEventHandler extends GameEventHandler
         PeonInformationDisplayManager displayManager =
                 gameManager.getPeonInformationDisplayManager();
         Peon peon = displayManager.getCurrentlyDisplayedPeon();
+        
 
+    	
         // Task 2
         Job job;
         switch (event.getJobType()) {
-            case LUMBERJACK:
+            case LUMBERJACK_LV1_1:
                 job = new Lumberjack();
+
                 break;
-            case MINER:
+            case MINER_LV1_1:
                 job = new Miner();
+
                 break;
-            case BUILDER:
+            case BUILDER_LV1_1:
                 job = new Builder();
+
                 break;
-            case DOCTOR:
+            case DOCTOR_LV1_1:
                 job = new Doctor();
+
                 break;
-            case FARMER:
+            case FARMER_LV1_1:
                 job = new Farmer();
+
                 break;
-            case PRIEST:
+            case PRIEST_LV1_1:
                 job = new Priest();
                 break;
+            //case BLACKSMITH_LV1_1:
+            //	job = new Blacksmith();
+                //break;
             default:
                 job = new Builder();
                 break;

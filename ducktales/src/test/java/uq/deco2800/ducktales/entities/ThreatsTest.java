@@ -34,8 +34,10 @@ public class ThreatsTest extends ApplicationTest{
 		
 		enemy.setWorld(world);
 		assertNotNull("Enemy cannot be null.", enemy);
-		assertNotNull("The enemy's speed cannot be null.", enemy.getRandomX());
-		assertNotNull("The enemy's speed cannot be null.", enemy.getRandomY());
+		assertNotNull("The RandomX cannot be null.", enemy.getRandomX());
+		assertNotNull("The RandomY cannot be null.", enemy.getRandomY());
+		assertNotNull("The start time cannot be null.", enemy.returnStartTime());
+		assertNotNull("The end time cannot be null.", enemy.returnEndTime());
 		assertNotNull("Enemy's X coordinate cannot be null.", enemy.getX());
 		assertNotNull("Enemy's Y coordinate cannot be null.", enemy.getY());
 		assertNotNull("The enemy's level of damage cannot be null", enemy.getTheLevelOfDamage());
@@ -43,6 +45,10 @@ public class ThreatsTest extends ApplicationTest{
 		
 		effect.setWorld(world);
 		assertNotNull("Effect cannot be null.", effect);
+		assertNotNull("The RandomX cannot be null.", effect.getRandomX());
+		assertNotNull("The RandomY cannot be null.", effect.getRandomY());
+		assertNotNull("The start time cannot be null.", effect.returnStartTime());
+		assertNotNull("The end time cannot be null.", effect.returnEndTime());
 		assertNotNull("Effect's X coordinate cannot be null.", effect.getX());
 		assertNotNull("Effect's Y coordinate cannot be null.", effect.getY());
 		assertNotNull("The effect's level of damage cannot be null", effect.getTheLevelOfDamage());

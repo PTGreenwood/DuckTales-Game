@@ -15,6 +15,8 @@ import uq.deco2800.ducktales.util.Coordinate;
 import uq.deco2800.ducktales.util.SpiralPathFinding;
 import uq.deco2800.ducktales.util.Tickable;
 import uq.deco2800.ducktales.util.exceptions.GameSetupException;
+//import uq.deco2800.ducktales.util.SecondaryManager;
+
 
 /**
  * Manager for all the entities in the game.
@@ -298,7 +300,17 @@ public class MainEntityManager implements Tickable {
         this.buildingManager.setGameManager(this.gameManager);
         this.peonManager.setGameManager(this.gameManager);
     }
-    
+
+    /**
+     * Method to return the current instance of the Peon manager.
+     * Returns the instance of the peon manager that contains all the
+     * peons in the game.
+     * 
+     * @return the instance of the peon manager initialised.
+     */
+    public PeonManager getPeonManager(){
+    	return this.peonManager;
+    }
     
     /** 
      * Method to return the current instance of the building manager. 
@@ -309,6 +321,7 @@ public class MainEntityManager implements Tickable {
      */
     public BuildingManager getBuildingManager() {
     	return this.buildingManager;
+
     }
 
 }

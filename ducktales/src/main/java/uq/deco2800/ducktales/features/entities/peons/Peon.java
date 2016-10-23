@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Random;
 
 import uq.deco2800.ducktales.GameManager;
+import uq.deco2800.ducktales.features.entities.PeonManager;
 import uq.deco2800.ducktales.features.entities.agententities.AgentEntity;
 import uq.deco2800.ducktales.features.jobframework.Job;
 import uq.deco2800.ducktales.features.jobframework.JobType;
@@ -22,7 +23,7 @@ import uq.deco2800.ducktales.features.seasons.SeasonManager;
  * thirst hunger and thirst will decrease (be more hungry/thirsty) over time
  * lower hunger/thirst will affect its strength
  *
- * @author Leggy, Jin Shin, Daniel Leong, Peter Greenwood.
+ * @author Leggy, Jin Shin, Daniel Leong, Peter Greenwood(pgwood).
  *
  *
  */
@@ -33,7 +34,7 @@ public class Peon extends AgentEntity {
 	/** The Main Manager of the game */
 	protected GameManager gameManager;
 
-	private static final ResourceType TYPE = ResourceType.PEON;
+	private static ResourceType TYPE = ResourceType.PEON;
 	private List<Point> goalPoints;
 
 	/** Timers for in-game effects **/
@@ -64,7 +65,8 @@ public class Peon extends AgentEntity {
 																		// debuff
 																		// by
 																		// PeonBuffType.BUFFNAME
-
+	
+	
 	// Job related information
 
 	private JobType job = JobType.JOBLESS;
@@ -111,6 +113,7 @@ public class Peon extends AgentEntity {
 	 * A method which returns the name of the Peon
 	 * @return A name of the Peon
 	 */
+
 	public String getPeonName() {
 		return peonName;
 	}
@@ -830,19 +833,21 @@ public class Peon extends AgentEntity {
 	 *
 	 */
 	public void upgradeTool() {
-		if((this.getTool().getToolLevel() < 2) && (this.getTool() != null)) {
-			try {
-				if(this.getJobToolList(this.job).get(this.getTool().getToolLevel() + 1) != null) {
-					this.tool = this.getJobToolList(this.getJob()).get(this.getTool().getToolLevel() + 1);
-				} else {
-					//Hold up. There is no next tool for this job.
-					//do nothing.
-					System.out.println("Get a job you jobless bum");
-				}
+		if(!(this.getJob() == JobType.JOBLESS)) {
+			if((this.getTool().getToolLevel() < 2) && (this.getTool() != null)) {
+				try {
+					if(this.getJobToolList(this.job).get(this.getTool().getToolLevel() + 1) != null) {
+						this.tool = this.getJobToolList(this.getJob()).get(this.getTool().getToolLevel() + 1);
+					} else {
+						//Hold up. There is no next tool for this job.
+						//do nothing.
+						System.out.println("Get a job you jobless bum");
+					}
 
-			} catch (IndexOutOfBoundsException e) {
-				System.out.println("Can't upgrade this tool. Max upgrade reached");
-				throw e;
+				} catch (IndexOutOfBoundsException e) {
+					System.out.println("Can't upgrade this tool. Max upgrade reached");
+					throw e;
+				}
 			}
 		}
 		//Otherwise don't update cause there is no way to.
@@ -850,8 +855,7 @@ public class Peon extends AgentEntity {
 
 	/**
      * Constructs an ArrayList<ArrayList<ToolType>> To be pulled to get information when needed
-     * Not sure of any other way to access all the enums values... as .values() didn't work :S
-     * TODO: Make less obtrusive. Use Iterator.
+     * Not sure of any other way to access all the enums values... as .values() didn't work
      */
     public void constructList() {
     	ArrayList<ToolType> lumberJackTools = new ArrayList<ToolType>(Arrays.asList(ToolType.AXElevel1, ToolType.AXElevel2, ToolType.AXElevel3));
@@ -862,10 +866,10 @@ public class Peon extends AgentEntity {
     	ArrayList<ToolType> teacherTools = new ArrayList<ToolType>(Arrays.asList(ToolType.CLOTHESlevel1, ToolType.CLOTHESlevel2, ToolType.CLOTHESlevel3));
     	ArrayList<ToolType> joblessTools = new ArrayList<ToolType>(Arrays.asList(ToolType.NOTHING));
     	ArrayList<ToolType> blacksmithTools = new ArrayList<ToolType>(Arrays.asList(ToolType.TONGSlevel1, ToolType.TONGSlevel2, ToolType.TONGSlevel3));
-    	ArrayList<ToolType> bakerTools = new ArrayList<ToolType>(Arrays.asList(ToolType.ROLLINGPINlevel1, ToolType.ROLLINGPINlevel2, ToolType.ROLLINGPINlevel3));
+    	ArrayList<ToolType> gymcoachTools = new ArrayList<ToolType>(Arrays.asList(ToolType.FITNESSlevel1, ToolType.FITNESSlevel2, ToolType.FITNESSlevel3));
     	ArrayList<ToolType> masonTools = new ArrayList<ToolType>(Arrays.asList(ToolType.CHISELlevel1, ToolType.CHISELlevel2, ToolType.CHISELlevel3));
 
-    	this.allTools.addAll(Arrays.asList(lumberJackTools, minerTools, builderTools, doctorTools, farmerTools, teacherTools, blacksmithTools, bakerTools, masonTools, joblessTools ));
+    	this.allTools.addAll(Arrays.asList(lumberJackTools, minerTools, builderTools, doctorTools, farmerTools, teacherTools, blacksmithTools, masonTools, gymcoachTools, joblessTools ));
     }
 
     /**
@@ -907,12 +911,12 @@ public class Peon extends AgentEntity {
 		} else if(job == JobType.BLACKSMITH) {
 			return this.allTools.get(6);
 
-		} else if(job == JobType.BAKER) {
-			return this.allTools.get(7);
-
 		} else if(job == JobType.MASON) {
+			return this.allTools.get(7);
+			
+		} else if(job == JobType.GYMCOACH) {
 			return this.allTools.get(8);
-
+			
 		} else if(job == JobType.JOBLESS) {
 			return this.allTools.get(9);
 		}
@@ -937,8 +941,8 @@ public class Peon extends AgentEntity {
 			return returnStatement;
 		}
 	}
-
-
-
-
+	
+	
 }
+
+
