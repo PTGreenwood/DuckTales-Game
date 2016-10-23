@@ -33,14 +33,14 @@ public class MissionGameControllerTest extends ApplicationTest {
 		stage.setScene(tutorialScene);
 		stage.show();
     }
-	/*
+	
 	@Test
 	public void checkMissions() {
 
 		
 		//verifyThat("#Missions", hasText("Missions"));
-		verifyThat("#labelTop", hasText("GAME"));
-	}*/
+		//verifyThat("#labelTop", hasText("GAME"));
+	}
 	
 	@Test
     public void testIsNotNull() {
