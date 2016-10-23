@@ -26,6 +26,9 @@ public class GameSound extends Thread {
     /** The logger */
     private static final Logger LOGGER = LoggerFactory.getLogger(GameSound.class);
 
+    private Thread thread;
+    
+    String threadName = "Game Sound";
 
     private String filename;
  
@@ -75,13 +78,12 @@ public class GameSound extends Thread {
             return;
         } catch (IOException e) {
             LOGGER.debug("Unable to open audio file", e);
-            return;
-        } finally {
-        	try {
+            try {
 				audioInputStream.close();
-			} catch (IOException e) {
-				e.printStackTrace();
+			} catch (IOException exception) {
+				exception.printStackTrace();
 			}
+            return;
         }
  
         //Get audio format
@@ -97,9 +99,8 @@ public class GameSound extends Thread {
             return;
         } catch (Exception e) { 
             LOGGER.debug("not sure what happened here", e);
+            auline.close();
             return;
-        } finally{
-        	  auline.close();
         }
  
         if (auline.isControlSupported(FloatControl.Type.PAN)) { 
@@ -129,5 +130,14 @@ public class GameSound extends Thread {
             auline.close();
         } 
  
-    } 
+    }
+    
+    public void start() {
+    	LOGGER.debug("Attempting to start a new thread for the game sound");
+    	if (thread == null) {
+    		thread = new Thread(this, threadName);
+    		thread.start();
+    	}
+    	
+    }
 } 
