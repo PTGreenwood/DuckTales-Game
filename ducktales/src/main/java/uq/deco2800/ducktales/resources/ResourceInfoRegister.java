@@ -235,7 +235,7 @@ public class ResourceInfoRegister {
     	// Check for all droppableResourceEntity's here
     	switch(droppableResourceType) {
     	case DUCK:
-    		droppableResourceEntity = new Feather(droppableResourceType, x, y);
+    		droppableResourceEntity = new Feather(y, x, droppableResourceType);
     	}
     	return droppableResourceEntity;
     }
