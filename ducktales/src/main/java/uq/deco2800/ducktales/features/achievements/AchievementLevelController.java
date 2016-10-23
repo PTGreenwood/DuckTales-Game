@@ -7,7 +7,7 @@ import uq.deco2800.ducktales.features.level.LevelHandler;
 /**
  * Controller for the Levels achievement. 
  * 
- * @author Joshua You and Naehyung Kim
+ * @author Joshua You, Justin Kuhnel and Naehyung Kim
  *
  */
 public class AchievementLevelController {
