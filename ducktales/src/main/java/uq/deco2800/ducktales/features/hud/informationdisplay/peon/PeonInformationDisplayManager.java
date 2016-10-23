@@ -7,7 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -63,11 +63,31 @@ public class PeonInformationDisplayManager
 
     // JOB PANEL
     @FXML
-    ScrollPane jobList;
+    ListView jobList;
     @FXML
     Label peonJobStatus;
     @FXML
     Button assignJobButton;
+    @FXML
+    Button lumberjackButton;
+    @FXML
+    Button minerButton;
+    @FXML
+    Button builderButton;
+    @FXML
+    Button doctorButton;
+    @FXML
+    Button farmerButton;
+    @FXML
+    Button teacherButton;
+    @FXML
+    Button blackSmithButton;
+    @FXML
+    Button masonButton;
+    @FXML
+    Button gymCoachButton;
+    @FXML
+    Button joblessButton;
 
     /** The peon to display */
     private Peon peon;
@@ -105,7 +125,6 @@ public class PeonInformationDisplayManager
      */
     public void displayPeon() {
 
-       
         // Get the information of the peon
         peonName.setText(peon.getPeonName());
         peonIntelligence.setText(Integer.toString(peon.getIntelligence()));
@@ -135,6 +154,45 @@ public class PeonInformationDisplayManager
     	gameManager.getMainEntityManager().getPeonManager().getPeonSprite(this.peon.getPeonName()).setImage(peonSpriteImage);
     }
     
+    @FXML public void setLumberJack() {
+    	
+    }
+    
+    @FXML public void setMiner() {
+    	
+    }    
+    
+    @FXML public void setBuilder() {
+    	
+    }
+    
+    @FXML public void setDoctor() {
+    	
+    }
+    
+    @FXML public void setFarmer() {
+    	
+    }    
+    
+    @FXML public void setTeacher() {
+    	
+    }
+    
+    @FXML public void setBlackSmith() {
+    	
+    }
+    
+    @FXML public void setMason() {
+    	
+    }
+    
+    @FXML public void setGymCoach() {
+    	
+    }
+    
+    @FXML public void setJobless() {
+    	
+    }
     
     @FXML public void handleUpgradeToolButtonAction() {
     	this.peon.upgradeTool();

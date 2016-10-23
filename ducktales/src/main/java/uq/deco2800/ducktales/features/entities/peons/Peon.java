@@ -24,7 +24,7 @@ import uq.deco2800.ducktales.features.seasons.SeasonManager;
  * thirst hunger and thirst will decrease (be more hungry/thirsty) over time
  * lower hunger/thirst will affect its strength
  *
- * @author Leggy, Jin Shin, Daniel Leong, Peter Greenwood.
+ * @author Leggy, Jin Shin, Daniel Leong, Peter Greenwood(pgwood).
  *
  *
  */

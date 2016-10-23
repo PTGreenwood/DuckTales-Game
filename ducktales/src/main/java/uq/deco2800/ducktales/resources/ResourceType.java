@@ -8,7 +8,7 @@ package uq.deco2800.ducktales.resources;
  * in the future
  *
  * Created on 24/08/2016.
- * @author khoiphan21
+ * @author khoiphan21, pgwood
  */
 public enum ResourceType {
         // For WorldBuilder
