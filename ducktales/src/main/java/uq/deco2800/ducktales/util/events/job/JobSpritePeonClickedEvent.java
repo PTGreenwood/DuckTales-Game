@@ -1,6 +1,6 @@
 package uq.deco2800.ducktales.util.events.job;
 
-import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
+
 import javafx.event.Event;
 import javafx.event.EventType;
 import uq.deco2800.ducktales.World;
