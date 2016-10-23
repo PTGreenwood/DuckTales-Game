@@ -2,25 +2,24 @@ package uq.deco2800.ducktales.features.hud.informationdisplay.peon;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import uq.deco2800.ducktales.features.entities.peons.Peon;
-import uq.deco2800.ducktales.features.jobframework.JobType;
-import uq.deco2800.ducktales.features.peonupgrades.ToolType;
 import uq.deco2800.ducktales.util.SecondaryManager;
 
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.ResourceBundle;
-import uq.deco2800.ducktales.features.jobframework.*;
 import uq.deco2800.ducktales.rendering.info.WorldEntityInfo;
 import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.rendering.sprites.JobSprite;
-import uq.deco2800.ducktales.resources.ResourceType.*;
+
+import static uq.deco2800.ducktales.resources.ResourceType.*;
 /**
  * This class is the FXML controller for the peon information display
  *
@@ -66,13 +65,13 @@ public class PeonInformationDisplayManager
     //Button upgradeToolbutton;
 
 	private static final ResourceType[] JOBS = {
-        ResourceType.LUMBERJACK, ResourceType.MINER, ResourceType.BUILDER,
-            ResourceType.DOCTOR, ResourceType.FARMER, ResourceType.TEACHER, 
-            ResourceType.JOBLESS, ResourceType.BLACKSMITH, ResourceType.BAKER, 
-            ResourceType.MASON, ResourceType.PRIEST
+        LUMBERJACK, MINER, BUILDER,
+            DOCTOR, FARMER, TEACHER, 
+            JOBLESS, BLACKSMITH, BAKER, 
+            MASON, PRIEST
 	};
 	
-	private static ArrayList<JobSprite> jobDisplaySprites = new ArrayList<>();
+	private ArrayList<JobSprite> jobDisplaySprites;
 	/** Helpers for rendering info*/
 	private WorldEntityInfo worldEntityInfo;
 	
@@ -99,6 +98,8 @@ public class PeonInformationDisplayManager
     public void initialize(URL location, ResourceBundle resources) {
         // Hide the display at first
         rootDisplay.setVisible(false);
+
+        setupJobMenu();
     }
 
     public void setPeon(Peon peon) {
@@ -132,22 +133,28 @@ public class PeonInformationDisplayManager
 		setupJobMenu();
 	}
 	private void setupJobMenu() {
-		JobSprite lumberjackSprite = new JobSprite(ResourceType.LUMBERJACK);
-		JobSprite minerSprite = new JobSprite(ResourceType.MINER);
-		JobSprite builderSprite = new JobSprite(ResourceType.BUILDER);
-		JobSprite doctorSprite = new JobSprite(ResourceType.DOCTOR);
-		JobSprite farmerSprite = new JobSprite(ResourceType.FARMER);
-		JobSprite priestSprite = new JobSprite(ResourceType.PRIEST);
+		JobSprite lumberjackSprite = new JobSprite(LUMBERJACK);
+		JobSprite minerSprite = new JobSprite(MINER);
+		JobSprite builderSprite = new JobSprite(BUILDER);
+		JobSprite doctorSprite = new JobSprite(DOCTOR);
+		JobSprite farmerSprite = new JobSprite(FARMER);
+		JobSprite priestSprite = new JobSprite(PRIEST);
 		ArrayList<JobSprite> jobsList = new ArrayList<JobSprite>(Arrays.asList(
 				lumberjackSprite, minerSprite, builderSprite,
 				doctorSprite, farmerSprite, priestSprite
 			));
+
+        VBox content = new VBox(10);
+
 		for (JobSprite jobsprite : jobsList){
 			jobsprite.setFitHeight(100); // set max height to 100px
     		jobsprite.setFitWidth(100); // Will set it to a square
-			jobList.setContent(jobsprite);
+			content.getChildren().add(jobsprite);
 		}
-			
+
+		System.err.println("\n\n\n Job sprites should have been added \n\n\n");
+
+        jobList.setContent(content);
 			
 	}
     /**

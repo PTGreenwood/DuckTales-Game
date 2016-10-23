@@ -128,6 +128,8 @@ public class ResourceSpriteRegister {
 
 		addBuildingResources();
 
+		addJobResources();
+
 	}
 
 
