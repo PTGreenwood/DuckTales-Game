@@ -4,6 +4,7 @@ package uq.deco2800.ducktales;
 import org.junit.Test;
 
 import uq.deco2800.ducktales.features.entities.agententities.Animal;
+import uq.deco2800.ducktales.features.entities.peons.Peon;
 import uq.deco2800.ducktales.features.entities.resourceentities.Tree;
 import uq.deco2800.ducktales.features.landscape.tiles.Tile;
 import uq.deco2800.ducktales.resources.ResourceType;
@@ -24,28 +25,6 @@ public class WorldTest {
     private final int WIDTH = 10;
     private final int HEIGHT = 10;
 
-    @Test
-    public void testBasicTreeAddition() {
-        World world = new World(NAME, WIDTH, HEIGHT);
-
-        Tree tree = new Tree(5, 5);
-
-        world.addTree(tree);
-
-        assertEquals(tree, world.getTree(tree.hashCode()));
-    }
-
-    @Test(expected = GameSetupException.class)
-    public void testAddingMultipleTree() {
-        World world = new World(NAME, WIDTH, HEIGHT);
-
-        Tree tree = new Tree(5, 5);
-
-        world.addTree(tree);
-        world.addTree(tree);
-
-    }
-
     /** Test boundary cases of constructor. */
     @Test
     public void boundaryTest() {
@@ -55,14 +34,11 @@ public class WorldTest {
     
     /**
      * Typical use case.
-     * Test constructor, getName(), getWidth(), getHeight(), getTile(),
-     * addAnimal(), getEntitiesNumber(), getAnimal()
+     * Test typical use of constructor and public methods.
      */
     @Test
     public void typicalTest() {
     	World typicalWorld = new World("TestWorld", 30, 40);
-    	Animal testAnimal1 = new Animal(2, 2, ResourceType.SHEEP, 25, 25, 25, 25, 2);
-    	Animal testAnimal2 = new Animal(4, 4, ResourceType.SHEEP, 25, 25, 25, 25, 2);
     	
     	assertTrue(typicalWorld.getName().equals("TestWorld"));
     	assertFalse(typicalWorld.getName().equals("WrongName"));
@@ -76,11 +52,15 @@ public class WorldTest {
     	// Test getTile() and ensure that tile types are set to default.
     	assertTrue(typicalWorld.getTile(2, 2).getTileType().equals(
     			World.getDefaultTileType()));
+    	assertTrue(typicalWorld.getTile(new Point(10, 15)).getTileType().equals(
+    			World.getDefaultTileType()));
     	if (!World.getDefaultTileType().equals(ResourceType.WATER)) {
 	    	assertFalse(typicalWorld.getTile(1, 5).getTileType().equals(
 	    			ResourceType.WATER));
     	}
     	
+    	Animal testAnimal1 = new Animal(2, 2, ResourceType.SHEEP, 25, 25, 25, 25, 2);
+    	Animal testAnimal2 = new Animal(4, 4, ResourceType.SHEEP, 25, 25, 25, 25, 2);
     	assertTrue(typicalWorld.getEntitiesNumber() == 0);
     	typicalWorld.addAnimal(testAnimal1);
     	assertTrue(typicalWorld.getEntitiesNumber() == 1);
@@ -90,6 +70,30 @@ public class WorldTest {
     	assertTrue(typicalWorld.getAnimal(0).equals(testAnimal1));
     	assertFalse(typicalWorld.getAnimal(0).equals(testAnimal2));
     	assertTrue(typicalWorld.getAnimal(1).equals(testAnimal2));
+    	
+    	Peon testPeon1 = new Peon(1, 1, "TestPeon1");
+    	Peon testPeon2 = new Peon(2, 2, "TestPeon1");
+    	typicalWorld.addPeon("TestPeon1", testPeon1);
+    	assertTrue(typicalWorld.getEntitiesNumber() == 3);
+    	typicalWorld.addPeon("TestPeon2", testPeon2);
+    	assertTrue(typicalWorld.getEntitiesNumber() == 4);
+    	
+    	assertTrue(typicalWorld.getPeon("TestPeon1").equals(testPeon1));
+    	assertFalse(typicalWorld.getPeon("TestPeon1").equals(testPeon2));
+    	assertTrue(typicalWorld.getPeon("TestPeon2").equals(testPeon2));
+   	
+    	assertTrue(typicalWorld.checkPeonNameDuplication("TestPeon1"));
+    	assertFalse(typicalWorld.checkPeonNameDuplication("UnusedName"));
+
+    	Tree testTree1 = new Tree(5, 5);
+    	Tree testTree2 = new Tree(6, 6);
+        typicalWorld.addTree(testTree1);
+    	assertTrue(typicalWorld.getEntitiesNumber() == 5);
+        typicalWorld.addTree(testTree2);
+    	assertTrue(typicalWorld.getEntitiesNumber() == 6);
+
+        assertTrue(typicalWorld.getTree(testTree1.hashCode()).equals(testTree1));
+        assertTrue(typicalWorld.getTree(testTree2.hashCode()).equals(testTree2));
     }
     
     /** Test illegal constuctor parameter. */
@@ -106,7 +110,7 @@ public class WorldTest {
     }
     
     /** Test adding same animal twice. */
-    @Test (expected=RuntimeException.class)
+    @Test (expected=GameSetupException.class)
     public void testAddAnimal() {
     	World testWorld = new World("World", 10, 10);
     	Animal testAnimal = new Animal(2, 2, ResourceType.SHEEP, 25, 25, 25, 25, 2);
@@ -120,7 +124,53 @@ public class WorldTest {
     public void testGetAnimal() {
     	World testWorld = new World("World", 10, 10);
     	Animal testAnimal = new Animal(2, 2, ResourceType.SHEEP, 25, 25, 25, 25, 2);
+
     	testWorld.addAnimal(testAnimal);
     	testWorld.getAnimal(1);
     }
+    
+    /** Test adding same peon twice. */
+    @Test (expected=GameSetupException.class)
+    public void testAddPeon() {
+    	World testWorld = new World("TestWorld", 10, 10);
+    	Peon testPeon = new Peon(1, 1, "TestPeon");
+    	
+    	testWorld.addPeon("TestPeon", testPeon);
+    	testWorld.addPeon("TestPeon", testPeon);
+    }
+    
+    /** Test getPeon(name) for invalid name. */
+    @Test (expected=GameSetupException.class)
+    public void testGetPeon() {
+    	World testWorld = new World("TestWorld", 10, 10);
+    	Peon testPeon = new Peon(1, 1, "TestPeon");
+    	
+    	testWorld.addPeon("TestPeon", testPeon);
+    	testWorld.getPeon("WrongName");
+    }
+    
+    /** Test adding same tree twice. */
+    @Test (expected = GameSetupException.class)
+    public void testAddingMultipleTree() {
+        World testWorld = new World("TestWorld", 10, 10);
+        Tree tree = new Tree(5, 5);
+
+        testWorld.addTree(tree);
+        testWorld.addTree(tree);
+    }
+    
+    /** Test getTree(hashcode) with non-matching hashcode. */
+    @Test (expected=GameSetupException.class)
+    public void testGetTree() {
+    	World testWorld = new World("TestWorld", 10, 10);
+    	Tree testTree = new Tree(2, 2);
+    	
+    	testWorld.addTree(testTree);
+    	if (testTree.hashCode() != 1) {
+    		testWorld.getTree(1);
+    	} else {
+    		testWorld.getTree(2);
+    	}
+    }
+
 }
