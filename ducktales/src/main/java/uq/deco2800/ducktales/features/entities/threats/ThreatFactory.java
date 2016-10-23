@@ -23,6 +23,7 @@ import uq.deco2800.ducktales.resources.ResourceType;
 public class ThreatFactory {
 	 /** CONSTANTS */
 	private static String timer = "Timer";
+	private static String invalidEnemy = "Invalid enemy type";
 	protected static ArrayList<Effect> effectsList = new ArrayList<Effect>();
 	protected static ArrayList<Enemy> enemiesList = new ArrayList<Enemy>();
 	public static HashMap<Integer, Enemy> enemyMap = new HashMap<Integer, Enemy>();
@@ -44,12 +45,15 @@ public class ThreatFactory {
 		switch(enemy) {
 		case RACCOON:
 				createRaccoon(ResourceType.RACCOON);
+				break;
 		case BEETLE:
 				createBeetle(ResourceType.BEETLE);
+				break;
 		case WILD_VILLAGER:
 				createWildVillager(ResourceType.WILD_VILLAGER);
+				break;
 		default:
-			throw new Exception("Invalid enemy type");
+			throw new Exception(invalidEnemy);
 		}
 		
 	}
@@ -66,10 +70,12 @@ public class ThreatFactory {
 		switch(effect) {
 		case BLACK_SMOKE:
 				createBlackSmoke(ResourceType.BLACK_SMOKE);
+				break;
 		case SHAKE:
 				createShake(ResourceType.SHAKE);
+				break;
 		default:
-			throw new Exception("Invalid enemy type");
+			throw new Exception(invalidEnemy);
 		}
 	}
 	
@@ -87,14 +93,18 @@ public class ThreatFactory {
 		// enemyWolf due to the pre-existence of a WOLF resource
 		case ENEMYWOLF:
 				createWolf(ResourceType.ENEMYWOLF);
+				break;
 		case CROW:
 				createCrow(ResourceType.CROW);
+				break;
 		case GORILLA:
 				createGorilla(ResourceType.GORILLA);
+				break;
 		case EVIL_DUCK:
 				createEvilDuck(ResourceType.EVIL_DUCK);
+				break;
 		default:
-			throw new Exception("Invalid enemy type");
+			throw new Exception(invalidEnemy);
 		}	
 	}
 	
@@ -110,10 +120,12 @@ public class ThreatFactory {
 		switch(effect) {
 		case POISON_CLOUD:
 				createPoisonCloud(ResourceType.POISON_CLOUD);
+				break;
 		case RUMBLE:
 				createRumble(ResourceType.RUMBLE);
+				break;
 		default:
-			throw new Exception("Invalid enemy type");
+			throw new Exception(invalidEnemy);
 		}
 	}
 	
@@ -129,13 +141,15 @@ public class ThreatFactory {
 		switch(enemy) {
 		case LION:
 				createLion(ResourceType.LION);
+				break;
 		case CHIMP:
 				createChimp(ResourceType.CHIMP);
+				break;
 		case BEAR:
 				createBear(ResourceType.BEAR);
-		
+				break;
 		default:
-			throw new Exception("Invalid enemy type");
+			throw new Exception(invalidEnemy);
 		}
 	}
 	
@@ -151,10 +165,12 @@ public class ThreatFactory {
 		switch(effect) {
 		case EARTHQUAKE: 
 			createEarthquake(ResourceType.EARTHQUAKE);
+			break;
 		case GREEN_FEL_FIRE:
 			createGreenFelFire(ResourceType.GREEN_FEL_FIRE);
+			break;
 		default:
-			throw new Exception("Invalid enemy type");
+			throw new Exception(invalidEnemy);
 		}
 	}
 	
@@ -170,12 +186,15 @@ public class ThreatFactory {
 		switch(enemy) {
 		case ZOMBIE_DUCK:
 				createZombieDuck(ResourceType.ZOMBIE_DUCK);
+				break;
 		case ROBBER:
 				createRobber(ResourceType.ROBBER);
+				break;
 		case ELEPHANT:
 				createElephant(ResourceType.ELEPHANT);
+				break;
 		default:
-			throw new Exception("Invalid enemy type");
+			throw new Exception(invalidEnemy);
 		}	
 	}
 	
@@ -191,10 +210,12 @@ public class ThreatFactory {
 		switch(effect) {
 		case BLIGHT:
 				createBlight(ResourceType.BLIGHT);
+				break;
 		case FEL:
 				createFel(ResourceType.FEL);
+				break;
 		default:
-			throw new Exception("Invalid enemy type");
+			throw new Exception(invalidEnemy);
 		}
 	}
 	
