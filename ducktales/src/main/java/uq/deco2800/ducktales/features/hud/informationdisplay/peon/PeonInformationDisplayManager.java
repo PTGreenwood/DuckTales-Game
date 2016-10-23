@@ -159,8 +159,6 @@ public class PeonInformationDisplayManager
 			content.getChildren().add(jobsprite);
 		}
 
-		System.err.println("\n\n\n Job sprites should have been added \n\n\n");
-
         jobList.setContent(content);
 			
 	}

@@ -80,8 +80,6 @@ public class ResourceEntityManager extends SecondaryManager {
                 resourceManager.addTree(ResourceType.TREE_1_SUMMER, randomX, randomY);
             }
         }
-        System.err.println("\n\n\n Number of trees in the world:" +
-                " " + treeSprites.size() + "\n\n");
     }
 
     /**
