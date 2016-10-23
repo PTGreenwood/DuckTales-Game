@@ -54,6 +54,7 @@ public class Peon extends AgentEntity {
 	private int strength;
 	private int intelligence;
 	private String peonName;
+	private boolean isDead = false; //whether Peon is dead (Health == 0)
 	private ArrayList<ArrayList<ToolType>> allTools;
 
 	private List<PeonDebuffType> debuffs = new ArrayList<PeonDebuffType>(); // access
@@ -107,13 +108,26 @@ public class Peon extends AgentEntity {
 		constructList();
 
 	}
-	
+
+	/**
+	 * A method which returns the name of the Peon
+	 * @return A name of the Peon
+	 */
+
 	public String getPeonName() {
 		return peonName;
 	}
 
 	public void setPeonName(String peonName) {
 		this.peonName = peonName;
+	}
+
+	public boolean isDead() {
+		return this.isDead;
+	}
+
+	public void setIsDead() {
+		this.isDead = true;
 	}
 
 	/**
@@ -699,6 +713,7 @@ public class Peon extends AgentEntity {
 		}
 		else if ( currentHealth == 0) {
 			//Peon Dead...
+			setIsDead();
 		}
 	}
 
