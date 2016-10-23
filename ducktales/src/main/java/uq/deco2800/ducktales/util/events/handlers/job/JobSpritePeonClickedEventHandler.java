@@ -13,6 +13,7 @@ import uq.deco2800.ducktales.features.jobframework.Lumberjack;
 import uq.deco2800.ducktales.features.jobframework.Miner;
 import uq.deco2800.ducktales.features.jobframework.Priest;
 import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
+import uq.deco2800.ducktales.resources.ResourceType;
 import uq.deco2800.ducktales.util.events.handlers.GameEventHandler;
 import uq.deco2800.ducktales.util.events.job.JobSpritePeonClickedEvent;
 
@@ -41,26 +42,30 @@ public class JobSpritePeonClickedEventHandler extends GameEventHandler
                 gameManager.getPeonInformationDisplayManager();
         Peon peon = displayManager.getCurrentlyDisplayedPeon();
         
-    	Image peonSpriteImage = rsr.getInstance().getResourceImage(event.getJobType());
-        gameManager.getMainEntityManager().getPeonManager().getPeonSprite(peon.getPeonName()).setImage(peonSpriteImage);
+
     	
         // Task 2
         Job job;
         switch (event.getJobType()) {
             case LUMBERJACK_LV1_1:
                 job = new Lumberjack();
+
                 break;
             case MINER_LV1_1:
                 job = new Miner();
+
                 break;
             case BUILDER_LV1_1:
                 job = new Builder();
+
                 break;
             case DOCTOR_LV1_1:
                 job = new Doctor();
+
                 break;
             case FARMER_LV1_1:
                 job = new Farmer();
+
                 break;
             case PRIEST_LV1_1:
                 job = new Priest();
