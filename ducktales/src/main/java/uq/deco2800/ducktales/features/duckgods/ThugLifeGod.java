@@ -15,7 +15,7 @@ public class ThugLifeGod extends DuckGods {
 	*/
 	  
 	public ThugLifeGod(String name, String bonus, ImageIcon image) {
-		super();
+		super(name, bonus, image);
 	}
 
 	public void giveaward() {

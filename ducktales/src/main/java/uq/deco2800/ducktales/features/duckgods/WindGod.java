@@ -15,7 +15,7 @@ public class WindGod extends DuckGods {
 	*/
 	  
 	public WindGod(String name, String bonus, ImageIcon image) {
-		super();
+		super(name, bonus, image);
 	}
 
 	public void giveaward() {

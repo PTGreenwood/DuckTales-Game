@@ -68,7 +68,7 @@ public class WorldEntitySprite extends ImageView {
         this.sizeInTileUnit = size;
     }
 
-    public int[][] getTileUnitSize(int[][] size) {
+    public int[][] getTileUnitSize() {
         return this.sizeInTileUnit;
     }
 

@@ -15,7 +15,7 @@ public class EarthGod extends DuckGods {
 	*/
 	  
 	public EarthGod(String name, String bonus, ImageIcon image) {
-		super();
+		super(name, bonus, image);
 	}
 	 
 	public void giveaward() {
