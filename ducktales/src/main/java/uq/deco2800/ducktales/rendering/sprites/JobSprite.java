@@ -18,6 +18,7 @@ import uq.deco2800.ducktales.util.events.job.JobSpritePeonClickedEvent;
 public class JobSprite extends HUDSprite {
 	private Job job;
         private Peon peon;
+
     /**
      * Create a sprite of the given animal type, and set up its event handlers
      * @param animalType
@@ -26,6 +27,7 @@ public class JobSprite extends HUDSprite {
         super(peonJob);
 		//this.job = job;
         setupMouseEventHandlers();
+
     }
     public Job getJob(){
     	return this.job;
@@ -38,7 +40,7 @@ public class JobSprite extends HUDSprite {
         this.setOnMouseClicked(event -> {
             // Check if it's a left mouse click
             if (event.getButton() == MouseButton.PRIMARY) {            	
-                fireEvent(new JobSpritePeonClickedEvent(this.peon.getPeonName(), job
+                fireEvent(new JobSpritePeonClickedEvent(this.getSpriteType()
                 ));
             }
         });

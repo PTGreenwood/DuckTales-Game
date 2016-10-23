@@ -100,6 +100,15 @@ public class PeonInformationDisplayManager
         setupJobMenu();
     }
 
+    /**
+     * Get the peon currently being displayed
+     *
+     * @return the peon model that is currently displayed
+     */
+    public Peon getCurrentlyDisplayedPeon() {
+        return this.peon;
+    }
+
     public void setPeon(Peon peon) {
     	this.peon = peon;
     	//Setting peons with jobs/tools for testing here.
