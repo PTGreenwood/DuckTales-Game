@@ -86,8 +86,8 @@ public class Peon extends AgentEntity {
 	 */
 	private int buildingsMade;
 	// affinity bounds
-	private static final int DEFAULT_MAX = 10;
-	private static final int DEFAULT_MIN = 1;
+	private static final int DEFAULT_MAX = 30;
+	private static final int DEFAULT_MIN = 10;
 
 	/**
 	 * @param x
