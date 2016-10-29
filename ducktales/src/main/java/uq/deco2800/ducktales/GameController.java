@@ -7,6 +7,8 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import uq.deco2800.ducktales.features.achievements.AchievementManager;
 import uq.deco2800.ducktales.features.entities.MainEntityManager;
 import uq.deco2800.ducktales.features.helper.HelperManager;
@@ -15,21 +17,17 @@ import uq.deco2800.ducktales.features.hud.informationdisplay.peon.PeonInformatio
 import uq.deco2800.ducktales.features.level.LevelManager;
 import uq.deco2800.ducktales.features.market.MarketManager;
 import uq.deco2800.ducktales.features.market.MarketVistaNavigator;
-import uq.deco2800.ducktales.features.time.TimeManager;
-import uq.deco2800.ducktales.features.tutorials.TutorialManager;
-import uq.deco2800.ducktales.features.weather.*;
-
-import uq.deco2800.ducktales.rendering.worlddisplay.WorldDisplayManager;
 import uq.deco2800.ducktales.features.missions.MissionManager;
 import uq.deco2800.ducktales.features.notifications.NotificationManager;
+import uq.deco2800.ducktales.features.time.TimeManager;
+import uq.deco2800.ducktales.features.tutorials.TutorialManager;
+import uq.deco2800.ducktales.features.weather.WeatherManager;
+import uq.deco2800.ducktales.rendering.worlddisplay.WorldDisplayManager;
+import uq.deco2800.ducktales.util.exceptions.GameSetupException;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import org.slf4j.Logger; 
-import org.slf4j.LoggerFactory;
-import uq.deco2800.ducktales.util.exceptions.GameSetupException;
 
 /**
  * <p>
@@ -591,7 +589,7 @@ public class GameController implements Initializable{
             AnchorPane.setTopAnchor(root, 20.0);
             AnchorPane.setLeftAnchor(root, 300.0);            
 
-            //notificationManager.hideNotifications();
+
             
         } catch (IOException e) {
             System.err.println("Unable to load Notifications");

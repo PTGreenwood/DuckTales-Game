@@ -1,24 +1,5 @@
 package uq.deco2800.ducktales.features.entities.resourceentities;
 
-import static uq.deco2800.ducktales.resources.ResourceType.TREE_1_AUTUMN;
-import static uq.deco2800.ducktales.resources.ResourceType.TREE_1_SPRING;
-import static uq.deco2800.ducktales.resources.ResourceType.TREE_1_SUMMER;
-import static uq.deco2800.ducktales.resources.ResourceType.TREE_1_WINTER;
-import static uq.deco2800.ducktales.resources.ResourceType.TREE_2_AUTUMN;
-import static uq.deco2800.ducktales.resources.ResourceType.TREE_2_SPRING;
-import static uq.deco2800.ducktales.resources.ResourceType.TREE_2_SUMMER;
-import static uq.deco2800.ducktales.resources.ResourceType.TREE_2_WINTER;
-import static uq.deco2800.ducktales.resources.ResourceType.TREE_3_AUTUMN;
-import static uq.deco2800.ducktales.resources.ResourceType.TREE_3_SPRING;
-import static uq.deco2800.ducktales.resources.ResourceType.TREE_3_SUMMER;
-import static uq.deco2800.ducktales.resources.ResourceType.TREE_3_WINTER;
-
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import uq.deco2800.ducktales.features.entities.peons.Peon;
 import uq.deco2800.ducktales.features.seasons.SeasonManager;
 import uq.deco2800.ducktales.features.seasons.SeasonType;
@@ -26,6 +7,14 @@ import uq.deco2800.ducktales.features.time.TimeManager;
 import uq.deco2800.ducktales.rendering.sprites.TreeSprite;
 import uq.deco2800.ducktales.resources.ResourceSpriteRegister;
 import uq.deco2800.ducktales.resources.ResourceType;
+
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import static uq.deco2800.ducktales.resources.ResourceType.*;
 
 /**
  * A Tree. Class containing all properties and specifications of a tree.
@@ -86,6 +75,7 @@ public class Tree extends ResourceEntity {
 	 */
 	private Runnable createRunnable(Tree tree) {
 		Runnable aRunnable = new Runnable() {
+			@Override
 			public void run() {
 				try {
 					tree.increaseValue(50);

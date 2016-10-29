@@ -3,16 +3,9 @@ package uq.deco2800.ducktales;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.sound.sampled.*;
 import java.io.File;
-import java.io.IOException; 
-import javax.sound.sampled.AudioFormat; 
-import javax.sound.sampled.AudioInputStream; 
-import javax.sound.sampled.AudioSystem; 
-import javax.sound.sampled.DataLine; 
-import javax.sound.sampled.FloatControl; 
-import javax.sound.sampled.LineUnavailableException; 
-import javax.sound.sampled.SourceDataLine; 
-import javax.sound.sampled.UnsupportedAudioFileException; 
+import java.io.IOException;
  
 /**
  *Sound of the game, Extends Thread thus giving functionality to play Asynchronously.
@@ -131,7 +124,7 @@ public class GameSound extends Thread {
         } 
  
     }
-    
+    @Override
     public void start() {
     	LOGGER.debug("Attempting to start a new thread for the game sound");
     	if (thread == null) {

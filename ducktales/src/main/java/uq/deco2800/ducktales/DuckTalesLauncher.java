@@ -1,8 +1,5 @@
 package uq.deco2800.ducktales;
 
-import java.net.URL;
-
-
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
@@ -12,8 +9,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
+
+import java.net.URL;
 
 
 /**
@@ -64,7 +62,6 @@ public class DuckTalesLauncher extends Application {
 		primaryStage.setScene(scene);
 		primaryStage.setMinWidth(1200);
 		primaryStage.setMinHeight(700);
-		//primaryStage.setOnCloseRequest(e -> System.exit(0));
 		primaryStage.show();
 		
 

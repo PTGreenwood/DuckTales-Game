@@ -563,7 +563,7 @@ public class Peon extends AgentEntity {
 
 		//Temperatue releated
 		// - HOT
-		if (debuffs.contains(PeonDebuffType.HOT)) { 
+		if (debuffs.contains(PeonDebuffType.HOT)) {
 			tempHotTime += 1; }
 		else if (debuffs.contains(PeonDebuffType.BURNING)) { 
 			tempHotTime += 2; }
@@ -572,7 +572,7 @@ public class Peon extends AgentEntity {
 			tempHotTime = 0; }
 
 		// - COLD
-		if (debuffs.contains(PeonDebuffType.COLD)) { 
+		if (debuffs.contains(PeonDebuffType.COLD)) {
 			tempColdTime += 1; }
 		else if (debuffs.contains(PeonDebuffType.FREEZING)) { 
 			tempColdTime += 2; }
