@@ -1,5 +1,5 @@
 ###deco2800-2016-ducktales
 
-Ducktales is not a rollercoaster game.
+DECO2800 - Main Project. Agile Methodology. Java.
 
 
